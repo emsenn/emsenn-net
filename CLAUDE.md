@@ -129,7 +129,7 @@ date-created: 2025-01-01T00:00:00
 
 ## Style
 
-emsenn has a detailed style guide at `content/slop/emsemioverse-style-guide.md`. Key rules
+emsenn has a detailed style guide at `content/writing/text/style-guide.md`. Key rules
 for agent-generated writing:
 
 - Write respectfully: don't tell the reader how to feel; acknowledge people have qualities

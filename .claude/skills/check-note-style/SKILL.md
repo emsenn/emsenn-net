@@ -7,7 +7,7 @@ Check the style of: $ARGUMENTS
 ## Instructions
 
 1. Read the file at `$ARGUMENTS`.
-2. Read the style guide at `content/slop/emsemioverse-style-guide.md`.
+2. Read the style guide at `content/writing/text/style-guide.md`.
 3. Check for violations of the following rules, noting line numbers:
 
 **Voice and word choice**

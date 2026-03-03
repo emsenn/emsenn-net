@@ -7,7 +7,7 @@ Review the lesson at: $ARGUMENTS
 ## Instructions
 
 1. Read the target lesson file.
-2. Read the style guide at `content/slop/emsemioverse-style-guide.md`.
+2. Read the style guide at `content/writing/text/style-guide.md`.
 3. Check the lesson against each criterion below. For each, note whether the lesson passes, partially passes, or fails, with specific line numbers and quotes.
 
 ## Pedagogical criteria
