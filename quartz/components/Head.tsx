@@ -5,6 +5,132 @@ import { googleFontHref, googleFontSubsetHref } from "../util/theme"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { unescapeHTML } from "../util/escape"
 import { CustomOgImagesEmitterName } from "../plugins/emitters/ogImage"
+
+function buildJsonLd(
+  slug: string,
+  title: string,
+  description: string,
+  pageUrl: string,
+  baseUrl: string,
+  frontmatter?: Record<string, unknown>,
+): object[] {
+  const siteUrl = `https://${baseUrl}`
+  const author = {
+    "@type": "Person",
+    name: "emsenn",
+    url: siteUrl,
+  }
+
+  const datePublished = frontmatter?.created
+    ? new Date(frontmatter.created as string).toISOString()
+    : undefined
+  const dateModified = frontmatter?.modified
+    ? new Date(frontmatter.modified as string).toISOString()
+    : datePublished
+
+  const graphs: object[] = []
+
+  // Site-wide WebSite schema (on index page only, to avoid repetition)
+  if (slug === "index") {
+    graphs.push({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "emsenn",
+      url: siteUrl,
+      description:
+        "Research site of emsenn — relationality, semiotics, mathematics, and Indigenous epistemologies.",
+      author,
+    })
+  }
+
+  // Determine page type from slug
+  const slugParts = slug.split("/")
+  let pageSchema: Record<string, unknown>
+
+  if (
+    slugParts.includes("terms") ||
+    slugParts.includes("concepts")
+  ) {
+    // Term or concept definition
+    pageSchema = {
+      "@context": "https://schema.org",
+      "@type": "DefinedTerm",
+      name: title,
+      description,
+      url: pageUrl,
+      inDefinedTermSet: {
+        "@type": "DefinedTermSet",
+        name: slugParts.slice(0, slugParts.indexOf("terms")).join("/") ||
+              slugParts.slice(0, slugParts.indexOf("concepts")).join("/"),
+        url: siteUrl,
+      },
+    }
+  } else if (
+    slugParts.includes("people") ||
+    (slugParts[0] === "encyclopedia" && slugParts[1] === "people")
+  ) {
+    // Person page
+    pageSchema = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: title,
+      description,
+      url: pageUrl,
+    }
+  } else if (slugParts.includes("curricula")) {
+    // Learning resource
+    pageSchema = {
+      "@context": "https://schema.org",
+      "@type": "LearningResource",
+      name: title,
+      description,
+      url: pageUrl,
+      author,
+      inLanguage: "en",
+      ...(datePublished && { datePublished }),
+      ...(dateModified && { dateModified }),
+    }
+  } else if (slug !== "index" && slug !== "404") {
+    // Default: Article
+    pageSchema = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: title,
+      description,
+      url: pageUrl,
+      author,
+      publisher: author,
+      inLanguage: "en",
+      ...(datePublished && { datePublished }),
+      ...(dateModified && { dateModified }),
+    }
+  } else {
+    pageSchema = {}
+  }
+
+  if (Object.keys(pageSchema).length > 0) {
+    graphs.push(pageSchema)
+  }
+
+  // BreadcrumbList from slug path
+  if (slug !== "index" && slug !== "404" && slugParts.length > 1) {
+    const breadcrumbs = slugParts.map((part, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      name: part.replace(/-/g, " "),
+      item: `${siteUrl}/${slugParts.slice(0, idx + 1).join("/")}`,
+    }))
+
+    graphs.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumbs,
+    })
+  }
+
+  return graphs
+}
+
 export default (() => {
   const Head: QuartzComponent = ({
     cfg,
@@ -35,6 +161,16 @@ export default (() => {
       (e) => e.name === CustomOgImagesEmitterName,
     )
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
+
+    // Build JSON-LD structured data
+    const jsonLdGraphs = buildJsonLd(
+      fileData.slug ?? "index",
+      fileData.frontmatter?.title ?? title,
+      description,
+      socialUrl,
+      cfg.baseUrl ?? "emsenn.net",
+      fileData.frontmatter as Record<string, unknown> | undefined,
+    )
 
     return (
       <head>
@@ -85,6 +221,14 @@ export default (() => {
         <link rel="icon" href={iconPath} />
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
+
+        {jsonLdGraphs.map((graph, idx) => (
+          <script
+            type="application/ld+json"
+            key={`jsonld-${idx}`}
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }}
+          />
+        ))}
 
         {css.map((resource) => CSSResourceToStyleElement(resource, true))}
         {js

@@ -107,15 +107,14 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
       document.head.appendChild(gtagScript);
     `)
   } else if (cfg.analytics?.provider === "plausible") {
-    const plausibleHost = cfg.analytics.host ?? "https://plausible.io"
     componentResources.afterDOMLoaded.push(`
       const plausibleScript = document.createElement('script');
-      plausibleScript.src = '${plausibleHost}/js/script.manual.js';
-      plausibleScript.setAttribute('data-domain', location.hostname);
-      plausibleScript.defer = true;
+      plausibleScript.src = 'https://plausible.io/js/pa-uEfmM68kHkki7J1WX7kei.js';
+      plausibleScript.async = true;
       plausibleScript.onload = () => {
         window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };
-        plausible('pageview');
+        plausible.init = plausible.init || function(i) { plausible.o = i || {}; };
+        plausible.init();
         document.addEventListener('nav', () => {
           plausible('pageview');
         });
