@@ -30,9 +30,9 @@ Fixed special directories:
 
 | Directory              | Purpose                          | Published |
 | ---------------------- | -------------------------------- | --------- |
-| `content/encyclopedia` | Reference entries                | yes       |
+| `content/general`      | Cross-disciplinary reference     | yes       |
 | `content/personal`     | Personal writing                 | yes       |
-| `content/writing`      | Fiction                          | yes       |
+| `content/writing`      | Writing discipline (style, etc.) | yes       |
 | `content/assets`       | Images and binary files          | yes       |
 | `content/slop`         | AI working area — drafts         | no        |
 | `content/triage`       | Unprocessed inbox content        | no        |

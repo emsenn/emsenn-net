@@ -55,9 +55,9 @@ directory may have an `index.md` whose `title:` frontmatter describes its purpos
 Fixed special directories:
 
 - `assets/` — images and binary files
-- `encyclopedia/` — reference entries (events, people, terms, times)
+- `general/` — cross-disciplinary reference entries (events, people, terms, times)
 - `personal/` — emsenn's personal writing
-- `writing/` — fiction
+- `writing/` — writing as a discipline (style guides, content-type conventions)
 - `private/` — private notes, gitignored, never touch
 - `slop/` — AI agent workspace (see below)
 - `triage/` — unprocessed inbox (see below)
@@ -129,8 +129,18 @@ date-created: 2025-01-01T00:00:00
 
 ## Style
 
-emsenn has a detailed style guide at `content/writing/text/style-guide.md`. Key rules
-for agent-generated writing:
+The vault uses three writing registers:
+
+- **PTGAE** (Plain Technical General American English) — the formal register for all
+  published vault content. Full guide at `content/writing/text/style-guide.md`.
+  Agent-generated content for publication follows PTGAE unless told otherwise.
+- **Voice Notes** — observations on emsenn's natural writing voice, at
+  `content/personal/writing/style/voice-notes.md`. Use when writing in emsenn's
+  personal register (babbles, letters-to-the-web, personal essays).
+- **Polemic Register** — emsenn's mode for political analysis and institutional critique,
+  at `content/personal/writing/style/polemic-register.md`.
+
+Key PTGAE rules for agent-generated writing:
 
 - Write respectfully: don't tell the reader how to feel; acknowledge people have qualities
   but are not those qualities
