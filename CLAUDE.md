@@ -152,6 +152,51 @@ When writing or editing content intended for publication, read the full style gu
 - `content/private/` is gitignored — never stage files from there
 - `.claude/worktrees/` and `.claude/projects/` are gitignored; `.claude/skills/` is tracked
 
+## Skills
+
+Skills are the vault's executable capabilities. They live in two places:
+
+- **Core agent skills** in `.claude/skills/` — operational skills for vault maintenance
+  (auditing, creating content, committing, style checking, lesson writing)
+- **Content-embedded skills** throughout `content/` — domain skills that live alongside
+  the content they operate on (e.g., `content/mathematics/.../skills/learn-*/SKILL.md`)
+
+Each skill is a `SKILL.md` file in a directory named for the skill. Skills have typed
+inputs and outputs, declare dependencies, and specify a runtime.
+
+### Skill-First Workflow
+
+Before performing any non-trivial operation, follow this protocol:
+
+1. **Check for an existing skill.** Search `.claude/skills/` and `content/**/SKILL.md`
+   for a skill that matches the operation.
+2. **If a skill exists, read it.** Verify that it does exactly what the current task
+   requires — not approximately, exactly.
+3. **If the skill is close but not right, improve it.** Update the skill to handle the
+   current case correctly. This is not a detour; it is the work. Every skill improvement
+   makes the next invocation better.
+4. **If no skill exists, consider creating one.** If the operation is likely to recur or
+   encodes knowledge about how the vault works, write a SKILL.md before doing the work
+   manually. Use `/write-learn-skill` for learning skills; model new operational skills
+   on the patterns in `.claude/skills/`.
+5. **Then execute using the skill.** Follow the skill's instructions rather than
+   improvising.
+
+### Accreting Knowledge
+
+Agent sessions surface information about how the vault should work — directory placement
+rules, frontmatter conventions, linking patterns, stylistic preferences, domain
+relationships. This information should not vanish when the session ends. Encode it:
+
+- **Operational rules** → CLAUDE.md or the ASR spec at
+  `content/technology/specifications/agential-semioverse-repository/`
+- **Recurring operations** → SKILL.md files
+- **Executable tooling** → Python scripts in `scripts/`
+- **Formal specifications** → Lean or Agda code when the mathematics is stable enough
+
+The goal is to move progressively from ad hoc agent work toward interactions mediated
+entirely by well-defined ASR functions.
+
 ## What Not to Touch
 
 - `content/private/` — private notes, not in git
