@@ -1,17 +1,16 @@
-# Quartz v4
+# emsenn.net
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+Research site for emsenn, a Lakota land steward and independent researcher. The central project is **relationality** — a metaphysical and philosophical-mathematical framework, grounded in Lakota epistemologies, that treats relations as ontologically prior to entities.
 
-Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
+Published at [emsenn.net](https://emsenn.net).
 
-🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
+## Structure
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+- `content/` — Obsidian vault (tracked as a [separate repository](https://github.com/emsenn/content))
+- `quartz/` — site generator framework
+- `quartz.config.ts` — site configuration
+- `quartz.layout.ts` — layout configuration
 
-## Sponsors
+## Built with Quartz
 
-<p align="center">
-  <a href="https://github.com/sponsors/jackyzha0">
-    <img src="https://cdn.jsdelivr.net/gh/jackyzha0/jackyzha0/sponsorkit/sponsors.svg" />
-  </a>
-</p>
+This site is built with [Quartz v4](https://quartz.jzhao.xyz/) by [jackyzha0](https://github.com/jackyzha0/quartz). Quartz is licensed under MIT.
