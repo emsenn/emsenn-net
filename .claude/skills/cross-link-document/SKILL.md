@@ -1,5 +1,10 @@
 ---
 description: Add wikilinks, citations, and bibliography entries to a document by finding references to vault content and published sources
+id: cross-link-document
+region:
+  reads: ["content/"]
+  writes: ["content/"]
+dependencies: []
 ---
 
 Cross-link this document: $ARGUMENTS

@@ -1,5 +1,10 @@
 ---
 description: List all published content directories that are missing an index.md
+id: audit-content-folders
+region:
+  reads: ["content/"]
+  writes: []
+dependencies: []
 ---
 
 Run this command now and report the results:

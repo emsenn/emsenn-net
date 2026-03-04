@@ -1,5 +1,10 @@
 ---
 description: Create a new content folder with an index.md at the given path
+id: make-content-folder
+region:
+  reads: ["content/"]
+  writes: ["content/{path}/"]
+dependencies: []
 ---
 
 Create a content folder at: $ARGUMENTS

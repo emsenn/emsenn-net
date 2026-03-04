@@ -1,5 +1,10 @@
 ---
+id: review-lesson
 description: Review a curriculum lesson against pedagogical criteria and report what it does well and what it lacks
+region:
+  reads: ["content/"]
+  writes: []
+dependencies: []
 ---
 
 Review the lesson at: $ARGUMENTS

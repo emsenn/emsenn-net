@@ -1,5 +1,10 @@
 ---
+id: commit-repository
 description: Stage all changes and commit them with an appropriate message
+region:
+  reads: ["content/", ".claude/"]
+  writes: []
+dependencies: []
 ---
 
 Run `git status` now to see what has changed, then:

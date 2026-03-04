@@ -1,5 +1,10 @@
 ---
 description: Scan files for frontmatter issues and fix them (wrong field names, missing required fields, formatting problems)
+id: fix-frontmatter
+region:
+  reads: ["content/"]
+  writes: ["content/"]
+dependencies: []
 ---
 
 Fix frontmatter issues in: $ARGUMENTS

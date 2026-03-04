@@ -1,5 +1,11 @@
 ---
+id: walk-the-site
 description: Walk the published site as a first-time visitor, finding and fixing friction points
+region:
+  reads: ["content/"]
+  writes: ["content/"]
+dependencies:
+  - check-note-style
 ---
 
 Walk the site starting from: $ARGUMENTS

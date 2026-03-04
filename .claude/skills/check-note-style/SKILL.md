@@ -1,5 +1,10 @@
 ---
 description: Review a note against emsenn's style guide and report violations with line numbers and suggested fixes
+id: check-note-style
+region:
+  reads: ["content/", "content/writing/text/style-guide.md"]
+  writes: []
+dependencies: []
 ---
 
 Check the style of: $ARGUMENTS

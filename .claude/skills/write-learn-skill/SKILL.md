@@ -1,5 +1,12 @@
 ---
+id: write-learn-skill
 description: Create a learn-* skill that defines a node in the vault's curriculum dependency graph
+region:
+  reads: ["content/"]
+  writes: ["content/{discipline}/skills/"]
+dependencies:
+  - make-content-folder
+  - write-lesson
 ---
 
 Create a learn skill for: $ARGUMENTS

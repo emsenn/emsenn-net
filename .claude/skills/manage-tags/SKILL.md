@@ -1,5 +1,10 @@
 ---
 description: Clean, normalize, and add structural tags across the vault
+id: manage-tags
+region:
+  reads: ["content/"]
+  writes: ["content/"]
+dependencies: []
 ---
 
 Manage tags across the vault: $ARGUMENTS

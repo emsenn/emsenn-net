@@ -1,5 +1,12 @@
 ---
+id: restructure-discipline
 description: Move, rename, or reorganize a discipline module while preserving internal links and structure
+region:
+  reads: ["content/"]
+  writes: ["content/"]
+dependencies:
+  - audit-vault-references
+  - make-content-folder
 ---
 
 Restructure a discipline: $ARGUMENTS

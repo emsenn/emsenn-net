@@ -1,5 +1,11 @@
 ---
 description: Create a new note with correct frontmatter in the appropriate content directory
+id: write-new-note
+region:
+  reads: ["content/"]
+  writes: ["content/{discipline}/"]
+dependencies:
+  - make-content-folder
 ---
 
 Create a new note for: $ARGUMENTS

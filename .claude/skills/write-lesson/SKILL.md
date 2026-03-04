@@ -1,5 +1,11 @@
 ---
+id: write-lesson
 description: Write a new curriculum lesson with sound pedagogical structure in the appropriate module
+region:
+  reads: ["content/"]
+  writes: ["content/{discipline}/curricula/"]
+dependencies:
+  - make-content-folder
 ---
 
 Write a lesson on: $ARGUMENTS

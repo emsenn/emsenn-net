@@ -1,5 +1,11 @@
 ---
+id: evaluate-slop
 description: Evaluate a file or directory in slop/ and propose whether to promote, revise, or delete it
+region:
+  reads: ["content/slop/", "content/"]
+  writes: ["content/slop/", "content/"]
+dependencies:
+  - check-note-style
 ---
 
 Evaluate slop content: $ARGUMENTS

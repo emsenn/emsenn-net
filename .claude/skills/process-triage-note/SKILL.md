@@ -1,5 +1,12 @@
 ---
+id: process-triage-note
 description: Examine a file in content/triage/ and propose moving it to its proper location
+region:
+  reads: ["content/triage/", "content/"]
+  writes: ["content/triage/", "content/"]
+dependencies:
+  - make-content-folder
+  - write-new-note
 ---
 
 Read this file: $ARGUMENTS
