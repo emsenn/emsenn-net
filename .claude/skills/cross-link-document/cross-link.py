@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Add wikilinks to an Obsidian vault by finding unlinked mentions.
+"""Add markdown links to an Obsidian vault by finding unlinked mentions.
 
 For each link target defined in a JSON config, finds the first unlinked
-mention in each .md file and replaces it with a [[wikilink]]. Skips
-frontmatter, existing links, code blocks, and the target's own page.
+mention in each .md file and replaces it with a markdown link [text](path).
+Skips frontmatter, existing links, code blocks, and the target's own page.
 
 Usage:
     python .claude/skills/cross-link-document/cross-link.py [CONFIG] [--dry-run] [--verbose]
@@ -157,22 +157,32 @@ def build_search_pattern(term: str) -> re.Pattern:
     return re.compile(pattern)
 
 
-def make_wikilink(matched_text: str, wikilink_target: str, display: str | None) -> str:
-    """Construct the wikilink replacement string.
+def compute_relative_path(from_file: str, to_file: str) -> str:
+    """Compute relative path from from_file to to_file.
 
-    If matched_text equals the wikilink target, use [[target]].
-    If matched_text differs, use [[target|matched_text]] unless display is set.
-    If display is set, use [[target|display]].
+    Both paths are relative to vault root.
     """
-    if display is not None:
-        if display == wikilink_target:
-            return f"[[{wikilink_target}]]"
-        return f"[[{wikilink_target}|{display}]]"
+    from_dir = os.path.dirname(from_file)
+    rel = os.path.relpath(to_file, from_dir).replace("\\", "/")
+    if not rel.startswith("."):
+        rel = "./" + rel
+    return rel
 
-    if matched_text == wikilink_target:
-        return f"[[{wikilink_target}]]"
-    else:
-        return f"[[{wikilink_target}|{matched_text}]]"
+
+def make_markdown_link(
+    matched_text: str,
+    self_path: str,
+    source_rel_path: str,
+    display: str | None,
+) -> str:
+    """Construct a markdown link [display](relative/path.md).
+
+    self_path is the target file's path relative to vault root.
+    source_rel_path is the source file's path relative to vault root.
+    """
+    rel_path = compute_relative_path(source_rel_path, self_path)
+    link_text = display if display is not None else matched_text
+    return f"[{link_text}]({rel_path})"
 
 
 def process_file(
@@ -182,7 +192,7 @@ def process_file(
     dry_run: bool,
     verbose: bool,
 ) -> dict[str, int]:
-    """Process a single file, adding wikilinks for all targets.
+    """Process a single file, adding markdown links for all targets.
 
     Returns a dict mapping target wikilink -> number of links added (0 or 1).
     """
@@ -247,7 +257,7 @@ def process_file(
                     continue
 
                 # Found a valid match -- replace it
-                replacement = make_wikilink(matched_text, wikilink_target, display)
+                replacement = make_markdown_link(matched_text, self_path, rel_path, display)
 
                 content = content[:pos] + replacement + content[pos + length:]
                 link_added = True
@@ -272,7 +282,7 @@ def process_file(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Add wikilinks to an Obsidian vault by finding unlinked mentions."
+        description="Add markdown links to an Obsidian vault by finding unlinked mentions."
     )
     parser.add_argument(
         "config",
@@ -359,7 +369,7 @@ def main():
         info = totals[wl]
         if info["files_linked"] > 0:
             total_links += info["files_linked"]
-            print(f"  [[{wl}]]: {info['files_linked']} links added")
+            print(f"  {wl}: {info['files_linked']} links added")
 
     print(f"\nTotal files modified: {len(files_modified)}")
     print(f"Total links added: {total_links}")
@@ -370,7 +380,7 @@ def main():
     if targets_with_zero:
         print(f"\nTargets with no unlinked mentions found ({len(targets_with_zero)}):")
         for wl in targets_with_zero:
-            print(f"  [[{wl}]]")
+            print(f"  {wl}")
 
 
 if __name__ == "__main__":

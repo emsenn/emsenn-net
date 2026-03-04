@@ -1,5 +1,5 @@
 ---
-description: Add wikilinks, citations, and bibliography entries to a document by finding references to vault content and published sources
+description: Add markdown links, citations, and bibliography entries to a document by finding references to vault content and published sources
 id: cross-link-document
 region:
   reads: ["content/"]
@@ -19,9 +19,9 @@ python .claude/skills/cross-link-document/cross-link.py
 ```
 
 The config file `cross-link-config.json` (in this directory) defines search terms
-and wikilink targets. Edit it to add new linkable concepts. The script:
+and link targets. Edit it to add new linkable concepts. The script:
 - Finds unlinked mentions of configured terms across the vault
-- Replaces the first occurrence per file with a wikilink
+- Replaces the first occurrence per file with a markdown link `[text](path.md)`
 - Skips frontmatter, code blocks, existing links, and the target file itself
 - Supports `--dry-run` mode
 
@@ -55,7 +55,7 @@ and wikilink targets. Edit it to add new linkable concepts. The script:
 
 6. **Present the proposed changes** in two tables:
 
-   **Wikilinks:**
+   **Links:**
 
    | Line | Current text | Proposed link | Target exists? |
    |------|-------------|---------------|----------------|
@@ -68,9 +68,9 @@ and wikilink targets. Edit it to add new linkable concepts. The script:
 7. **Wait for confirmation.** emsenn may reject specific links or request different
    targets.
 
-8. **Apply approved changes.** Use `[[wikilinks]]` for vault content and `[@citekey]`
-   for bibliography references. Place citations after the sentence they support.
-   Add any new BibTeX entries to `bibliography.bib`.
+8. **Apply approved changes.** Use markdown links `[text](path.md)` for vault content
+   and `[@citekey]` for bibliography references. Place citations after the sentence
+   they support. Add any new BibTeX entries to `bibliography.bib`.
 
 9. **Report** the number of links added, citations added, bibliography entries created,
    and any remaining gaps (references that should link somewhere but have no target,
@@ -84,5 +84,6 @@ and wikilink targets. Edit it to add new linkable concepts. The script:
   to a page titled "The").
 - Prefer specific targets over generic ones (e.g., link to
   `sociology/terms/recursive-governance` not just `sociology/`).
-- For people, use `[[Full Name]]` on first mention, consistent with the style guide.
-- Citation gaps are the most important finding. Prioritize them over wikilinks.
+- For people, use `[Full Name](path/to/person.md)` on first mention, consistent with
+  the style guide.
+- Citation gaps are the most important finding. Prioritize them over links.
