@@ -127,6 +127,34 @@ title: Note Title
 date-created: 2025-01-01T00:00:00
 ```
 
+## Tags
+
+Tags are cross-cutting thematic discovery labels, modeled on academic journal keywords.
+They signal which conceptual communities a page participates in, enabling readers and
+crawlers to find related content across structural boundaries.
+
+Tag conventions:
+
+- **CamelCase**: capitalize every word including articles and prepositions
+  (`PoliticalTheory`, `SettlerColonialism`, `ArchiveOfOurOwn`)
+- **Flat**: no `/` separators, no hierarchy — `Anarchism` not `Sociology/Anarchism`
+- **3-5 per page** (max 10)
+- **Most-specific first**: order tags from most specific to least specific
+- **Cross-cutting only**: never duplicate directory position (a file in `mathematics/`
+  does not need a `Mathematics` tag)
+- **From the vocabulary**: prefer existing tags at `content/tags/` over inventing new ones
+
+Content type is a separate `type:` frontmatter field, not a tag:
+
+```yaml
+type: term
+tags:
+  - Anarchism
+  - PoliticalTheory
+```
+
+Full specification at `content/technology/specifications/agential-semioverse-repository/semantic-frontmatter.md`.
+
 ## Style
 
 The vault uses three writing registers:
