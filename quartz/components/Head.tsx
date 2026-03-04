@@ -52,6 +52,7 @@ function buildJsonLd(
     term: "DefinedTerm",
     concept: "DefinedTerm",
     person: "Person",
+    question: "Question",
     lesson: "LearningResource",
     text: "Article",
     letter: "Article",

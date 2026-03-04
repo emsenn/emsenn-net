@@ -10,12 +10,13 @@ Mapping:
   */curricula/     -> type: lesson
   */text/          -> type: text
   */skills/        -> type: skill
+  */questions/     -> type: question
   personal/writing/babbles/          -> type: babble
   personal/writing/letters-to-the-web/  -> type: letter
   index.md (any)   -> type: index
 
 When multiple types apply, the most specific wins:
-  term > concept > person > school > lesson > text > babble > letter > skill > topic > index
+  term > concept > person > school > question > lesson > text > babble > letter > skill > topic > index
 
 Does NOT touch files that already have a type: field.
 Does NOT touch files in private/, meta/, .obsidian/.
@@ -38,7 +39,7 @@ SKIP_DIRS = {"private", "meta", ".obsidian"}
 # Type priority: more specific first
 TYPE_PRIORITY = [
     "term", "concept", "person", "school",
-    "lesson", "text", "letter", "babble",
+    "question", "lesson", "text", "letter", "babble",
     "skill", "topic", "index",
 ]
 
@@ -72,6 +73,7 @@ def determine_type(filepath, filename):
         "people": "person",
         "concepts": "concept",
         "schools": "school",
+        "questions": "question",
         "topics": "topic",
         "curricula": "lesson",
         "text": "text",

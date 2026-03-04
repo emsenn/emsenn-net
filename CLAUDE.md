@@ -95,6 +95,7 @@ Standard subdirectories:
 - `concepts/` — individual concept notes
 - `terms/` — glossary entries
 - `curricula/` — structured learning sequences
+- `questions/` — persistent inquiry-shaping questions tracked as independent objects
 - `history/` — cross-cutting; any module may have one; not a topic
 - `specifications/` — formal specifications (used in `technology/`)
 
