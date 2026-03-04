@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
-"""Fix broken/erroneous tags in vault frontmatter.
+"""Fix and normalize tags in vault frontmatter.
 
 Handles:
 1. Tags that are file paths (contain "/" or ".md") — removed
 2. Tags that are YAML field names (start with "name:") — removed
 3. Tags containing markdown links or LaTeX — removed
-4. Near-duplicate normalization: "math" → "mathematics", "Babble" → "babble"
-5. Case normalization for tags that should be lowercase
+4. type/ tags remaining in tags array — removed (should be type: field)
+5. Discipline-echo tags that duplicate directory position — removed
+6. Structural/workflow tags — removed
+7. CamelCase normalization (capitalize every word)
+8. Deduplication
 
-Preserves all other frontmatter and body content exactly.
+Tags follow the vault's CamelCase convention: every word capitalized,
+including articles and prepositions (per WCAG screen reader guidance).
 """
 
 import os
@@ -24,28 +28,92 @@ CONTENT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # Directories to skip entirely
 SKIP_DIRS = {"private", ".obsidian"}
 
-# Tags that are proper nouns or acronyms and should keep their casing
-PRESERVE_CASE = {
-    "covid-19", "lakota", "peirce", "saussure", "norse paganism",
-    "norway", "christianization", "okaga", "teraum", "gnoponemacs",
-    "org-mode", "mud", "tab", "ai",
+# ── Discipline-echo removal ──────────────────────────────────────────
+
+DISCIPLINE_ECHO = {
+    "biology": {"biology"},
+    "business": {"business"},
+    "cosmology": {"cosmology"},
+    "design": {"design"},
+    "domestic": {"domestics", "domestic"},
+    "ecology": {"ecology"},
+    "education": {"education"},
+    "fabrication": {"fabrication"},
+    "games": {"games"},
+    "information": {"information-theory"},
+    "linguistics": {"linguistics"},
+    "material-science": {"material-science"},
+    "mathematics": {"mathematics"},
+    "medicine": {"medicine"},
+    "neurology": {"neurology"},
+    "philosophy": {"philosophy"},
+    "relationality": {"relationality"},
+    "sociology": {"sociology"},
+    "technology": {"technology"},
+    "writing": {"writing"},
 }
 
-# Normalization map: bad tag → good tag (or None to remove)
-NORMALIZE = {
-    "math": "mathematics",
-    "Babble": "babble",
+# ── Structural/workflow tags to remove ────────────────────────────────
+
+REMOVE_TAGS = {
+    "curricula", "curriculum", "curriculum-design",
+    "stub", "triage", "misc", "terms", "texts",
+    "lesson", "lesson-design", "references", "vault",
+    "tab", "workflow", "workflows", "seo",
+    "study", "personal", "explainer",
 }
+
+# ── CamelCase conversion ─────────────────────────────────────────────
+
+CAMEL_OVERRIDES = {
+    "3d-printing": "3DPrinting",
+    "ai": "AI",
+    "covid-19": "COVID19",
+    "gnoponemacs": "GnoponEmacs",
+    "inaturalist": "INaturalist",
+    "mkdocs": "MkDocs",
+    "org-mode": "OrgMode",
+    "ritm": "RITM",
+}
+
+
+def is_already_camel(tag):
+    """Return True if tag is already in CamelCase."""
+    if len(tag) < 2:
+        return False
+    return any(c.isupper() for c in tag[1:])
+
+
+def to_camel_case(tag):
+    """Convert a lowercase-hyphenated tag to CamelCase."""
+    if tag in CAMEL_OVERRIDES:
+        return CAMEL_OVERRIDES[tag]
+    if is_already_camel(tag):
+        return tag
+    parts = tag.split("-")
+    return "".join(p.capitalize() for p in parts)
+
+
+def get_discipline_root(filepath):
+    """Return the top-level discipline directory for a file path."""
+    rel = os.path.relpath(filepath, CONTENT_DIR).replace(os.sep, "/")
+    parts = rel.split("/")
+    if len(parts) < 2:
+        return None
+    return parts[0]
 
 
 def is_bad_tag(tag):
-    """Return a reason string if the tag is bad, else None."""
+    """Return a reason string if the tag should be removed, else None."""
     # File paths
     if ".md" in tag:
         return "contains .md (file path)"
-    # Slash in tag (but allow type/ prefix)
-    if "/" in tag and not tag.startswith("type/"):
-        return f"contains / (looks like path or compound: {tag})"
+    # type/ tags (should be type: field now)
+    if tag.startswith("type/"):
+        return "type/ tag (should be type: field)"
+    # Slash in tag
+    if "/" in tag:
+        return f"contains / (looks like path: {tag})"
     # YAML field name leaked into tags
     if tag.startswith("name:"):
         return "starts with name: (YAML field)"
@@ -58,40 +126,40 @@ def is_bad_tag(tag):
     return None
 
 
-def normalize_tag(tag):
-    """Return normalized tag, or None if the tag should be removed."""
+def normalize_tag(tag, discipline_root=None):
+    """Return (normalized_tag, reason) or (None, reason) to remove."""
     # Check if it's outright bad
     reason = is_bad_tag(tag)
     if reason:
         return None, reason
 
-    # Exact normalization matches
-    if tag in NORMALIZE:
-        return NORMALIZE[tag], f"normalized: {tag} → {NORMALIZE[tag]}"
-
-    # Case normalization for tags that should be lowercase
-    # Most tags should be lowercase; preserve acronyms/proper nouns
+    # Check discipline echo
     lower = tag.lower()
-    if tag != lower and lower not in PRESERVE_CASE:
-        # It's a capitalized tag that isn't a known proper noun
-        return lower, f"lowercased: {tag} → {lower}"
+    if discipline_root and discipline_root in DISCIPLINE_ECHO:
+        if lower in DISCIPLINE_ECHO[discipline_root]:
+            return None, f"discipline echo: {tag} in {discipline_root}/"
+
+    # Check structural tags
+    if lower in REMOVE_TAGS:
+        return None, f"structural tag: {tag}"
+
+    # CamelCase normalization
+    camel = to_camel_case(tag)
+    if camel != tag:
+        return camel, f"CamelCase: {tag} -> {camel}"
 
     return tag, None
 
 
 def parse_frontmatter(content):
-    """Parse frontmatter from markdown content.
-
-    Returns (frontmatter_str, body_str, has_frontmatter).
-    frontmatter_str does NOT include the --- delimiters.
-    """
+    """Parse frontmatter from markdown content."""
     if not content.startswith("---"):
         return None, content, False
     end = content.find("\n---", 3)
     if end < 0:
         return None, content, False
-    fm = content[4:end]  # skip "---\n"
-    body = content[end + 4:]  # skip "\n---"
+    fm = content[4:end]
+    body = content[end + 4:]
     return fm, body, True
 
 
@@ -99,7 +167,6 @@ def extract_tags_from_frontmatter(fm_lines):
     """Find the tags section in frontmatter lines.
 
     Returns (tag_start_idx, tag_end_idx, tags_list, indent).
-    tag_start_idx is the line with 'tags:', tag_end_idx is one past the last tag line.
     """
     tags_start = None
     tags = []
@@ -109,10 +176,8 @@ def extract_tags_from_frontmatter(fm_lines):
         stripped = line.strip()
         if stripped.startswith("tags:"):
             tags_start = i
-            # Check for inline tags: tags: [a, b, c]
             rest = stripped[5:].strip()
             if rest.startswith("["):
-                # Inline array format
                 inner = rest.strip("[]")
                 if inner:
                     tags = [t.strip().strip('"').strip("'") for t in inner.split(",")]
@@ -121,16 +186,14 @@ def extract_tags_from_frontmatter(fm_lines):
 
         if tags_start is not None and i > tags_start:
             if stripped.startswith("- "):
-                # Detect indent
                 leading = len(line) - len(line.lstrip())
-                indent = line[:leading]
+                if leading > 0:
+                    indent = line[:leading]
                 tag_val = stripped[2:].strip().strip('"').strip("'")
                 tags.append(tag_val)
             elif stripped == "" or stripped.startswith("#"):
-                # Empty line or comment within tags — could be part of the block
                 continue
             else:
-                # We've left the tags section
                 return tags_start, i, tags, indent
 
     if tags_start is not None:
@@ -145,7 +208,6 @@ def rebuild_tags_section(tags, indent="  "):
         return ["tags: []"]
     lines = ["tags:"]
     for tag in tags:
-        # Quote tags that contain special YAML characters
         if any(c in tag for c in ":#{}[]&*?|>!%@`"):
             lines.append(f'{indent}- "{tag}"')
         else:
@@ -168,17 +230,19 @@ def process_file(filepath):
     if tags_start is None or not tags:
         return []
 
+    discipline_root = get_discipline_root(filepath)
+
     changes = []
     new_tags = []
     seen = set()
 
     for tag in tags:
-        normalized, reason = normalize_tag(tag)
+        normalized, reason = normalize_tag(tag, discipline_root)
         if normalized is None:
             changes.append(f"  REMOVED: \"{tag}\" ({reason})")
             continue
         if reason:
-            changes.append(f"  CHANGED: \"{tag}\" → \"{normalized}\" ({reason})")
+            changes.append(f"  CHANGED: \"{tag}\" -> \"{normalized}\" ({reason})")
 
         # Deduplicate
         if normalized.lower() in seen:
@@ -212,7 +276,6 @@ def main():
     }
 
     for root, dirs, files in os.walk(CONTENT_DIR):
-        # Skip excluded directories
         dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
 
         for f in files:
@@ -238,8 +301,8 @@ def main():
     print(f"Summary:")
     print(f"  Files modified: {total_files}")
     print(f"  Total tag changes: {total_changes}")
-    print(f"    Removed (bad tags): {changes_by_type['removed']}")
-    print(f"    Changed (normalized): {changes_by_type['changed']}")
+    print(f"    Removed (bad/echo/structural): {changes_by_type['removed']}")
+    print(f"    Changed (CamelCase): {changes_by_type['changed']}")
     print(f"    Deduped: {changes_by_type['deduped']}")
 
 

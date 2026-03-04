@@ -1,5 +1,5 @@
 ---
-description: Clean, normalize, and add structural tags across the vault
+description: Clean, normalize, and manage tags and type fields across the vault
 id: manage-tags
 region:
   reads: ["content/"]
@@ -9,54 +9,72 @@ dependencies: []
 
 Manage tags across the vault: $ARGUMENTS
 
+## Tag Architecture
+
+Tags in this vault follow a separation of concerns:
+
+- **`type:` frontmatter field** — encodes content type (term, lesson, index, etc.),
+  derived from directory position. Maps to Schema.org `@type`.
+- **`tags:` array** — pure cross-cutting thematic discovery surface. Tags signal
+  conceptual territory that does not duplicate directory position.
+
+### Tag conventions
+
+- **CamelCase**: capitalize every word including articles and prepositions
+  (per WCAG screen reader guidance). Example: `PoliticalTheory`, `SettlerColonialism`.
+- **3-5 tags per page** (maximum 10)
+- **Most-specific to least-specific** ordering
+- **No nesting** — flat tags only (no `/` separators)
+- **No discipline echoes** — do not tag a file with its own directory name
+  (e.g., no `Sociology` tag on files in `sociology/`)
+- Tags are drawn from the controlled vocabulary at `content/tags/`
+
 ## Scripts
 
 Two colocated scripts handle tag operations:
 
-### Fix broken tags
+### Fix and normalize tags
 
 ```bash
 python .claude/skills/manage-tags/fix-tags.py
 ```
 
 Normalizes and cleans tag values across the vault:
-- Removes path-like tags (containing `/` or `.md` unless they are `type/` tags)
-- Normalizes near-duplicates (`math` → `mathematics`, `Babble` → `babble`)
-- Removes tags that are YAML field names, markdown links, or LaTeX
-- Preserves proper noun tags (e.g., `Peirce`, `Lakota`)
+- Removes path-like tags (containing `/` or `.md`)
+- Removes leftover `type/` tags (should be `type:` field)
+- Removes discipline-echo tags that duplicate directory position
+- Removes structural/workflow tags (`curricula`, `stub`, `triage`, etc.)
+- Converts tags to CamelCase
+- Deduplicates tags
 
-### Add type tags
+### Add type fields
 
 ```bash
 python .claude/skills/manage-tags/add-type-tags.py
 ```
 
-Adds structural `type/` tags based on directory location:
+Adds `type:` frontmatter field based on directory location:
 
-| Directory pattern | Tag |
+| Directory pattern | type value |
 |---|---|
-| `*/terms/` | `type/term` |
-| `*/people/` | `type/person` |
-| `*/concepts/` | `type/concept` |
-| `*/schools/` | `type/school` |
-| `*/topics/` | `type/topic` |
-| `*/curricula/` | `type/lesson` |
-| `*/text/` | `type/text` |
-| `personal/writing/babbles/` | `type/babble` |
-| `personal/writing/letters-to-the-web/` | `type/letter` |
-| `index.md` | `type/index` |
+| `*/terms/` | `term` |
+| `*/people/` | `person` |
+| `*/concepts/` | `concept` |
+| `*/schools/` | `school` |
+| `*/topics/` | `topic` |
+| `*/curricula/` | `lesson` |
+| `*/text/` | `text` |
+| `*/skills/` | `skill` |
+| `personal/writing/babbles/` | `babble` |
+| `personal/writing/letters-to-the-web/` | `letter` |
+| `index.md` | `index` |
+
+When multiple types apply, the most specific wins (term > concept > topic > index).
 
 Both scripts are idempotent — running them again after no changes produces zero modifications.
-
-## Tag taxonomy
-
-The vault uses a hierarchical tag system with these families:
-
-- `type/` — structural document type (term, person, concept, index, etc.)
-- Content-specific tags (e.g., `mathematics`, `sociology`, `babble`)
 
 ## Instructions
 
 1. If asked to clean tags, run `fix-tags.py` first, then `add-type-tags.py`.
-2. If asked to add a new tag family, update the `add-type-tags.py` script.
-3. Report the number of files modified and tags changed.
+2. Report the number of files modified and tags changed.
+3. When creating new content, always include `type:` field and CamelCase tags.
