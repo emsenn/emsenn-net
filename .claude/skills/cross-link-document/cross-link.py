@@ -6,8 +6,8 @@ mention in each .md file and replaces it with a [[wikilink]]. Skips
 frontmatter, existing links, code blocks, and the target's own page.
 
 Usage:
-    python scripts/cross-link.py [CONFIG] [--dry-run] [--verbose]
-    python scripts/cross-link.py scripts/cross-link-config.json --dry-run
+    python .claude/skills/cross-link-document/cross-link.py [CONFIG] [--dry-run] [--verbose]
+    python .claude/skills/cross-link-document/cross-link.py --dry-run
     python scripts/cross-link.py --help
 """
 
@@ -23,7 +23,7 @@ from pathlib import Path
 SKIP_DIRS = {"private", "meta", "slop", "triage", ".obsidian"}
 
 # Default config path relative to repo root
-DEFAULT_CONFIG = "scripts/cross-link-config.json"
+DEFAULT_CONFIG = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cross-link-config.json")
 
 
 def load_config(config_path: str) -> list[dict]:
@@ -297,9 +297,9 @@ def main():
     )
     args = parser.parse_args()
 
-    # Determine repo root (parent of scripts/)
+    # Determine repo root (ancestor of .claude/skills/cross-link-document/)
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    repo_root = os.path.dirname(script_dir)
+    repo_root = os.path.dirname(os.path.dirname(os.path.dirname(script_dir)))
 
     # Vault root
     if args.vault_root:

@@ -4,7 +4,23 @@ description: Add wikilinks, citations, and bibliography entries to a document by
 
 Cross-link this document: $ARGUMENTS
 
-## Instructions
+## Batch cross-linking
+
+For vault-wide automated cross-linking, use the colocated script:
+
+```bash
+python .claude/skills/cross-link-document/cross-link.py --dry-run
+python .claude/skills/cross-link-document/cross-link.py
+```
+
+The config file `cross-link-config.json` (in this directory) defines search terms
+and wikilink targets. Edit it to add new linkable concepts. The script:
+- Finds unlinked mentions of configured terms across the vault
+- Replaces the first occurrence per file with a wikilink
+- Skips frontmatter, code blocks, existing links, and the target file itself
+- Supports `--dry-run` mode
+
+## Single-document instructions
 
 1. **Read the document** at `$ARGUMENTS`.
 

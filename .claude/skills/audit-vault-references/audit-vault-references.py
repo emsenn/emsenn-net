@@ -6,10 +6,10 @@ and markdown links ([text](target.md)), and reports references that do
 not resolve to any existing file.
 
 Usage:
-    python scripts/audit-vault-references.py [--vault-root content/]
-                                              [--format table|json|csv]
-                                              [--category]
-                                              [--ignore GLOB ...]
+    python .claude/skills/audit-vault-references/audit-vault-references.py [--vault-root content/]
+                                                                          [--format table|json|csv]
+                                                                          [--category]
+                                                                          [--ignore GLOB ...]
 """
 
 import argparse
