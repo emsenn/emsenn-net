@@ -26,10 +26,50 @@ WIKILINK_RE = re.compile(r"\[\[([^\]|#]+)(?:#[^\]|]*)?\|?[^\]]*\]\]")
 MD_LINK_RE = re.compile(r"\[(?:[^\]]*)\]\(([^)#]+\.md)(?:#[^)]*)?\)")
 
 
+def extract_frontmatter(md_file: Path) -> dict:
+    """Extract title and aliases from a markdown file's YAML frontmatter."""
+    try:
+        content = md_file.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return {}
+
+    lines = content.split("\n")
+    if not lines or lines[0].strip() != "---":
+        return {}
+
+    fm_lines = []
+    for line in lines[1:]:
+        if line.strip() == "---":
+            break
+        fm_lines.append(line)
+
+    result = {}
+    # Simple YAML parsing for title and aliases
+    for i, line in enumerate(fm_lines):
+        if line.startswith("title:"):
+            val = line[len("title:"):].strip().strip('"').strip("'")
+            if val:
+                result["title"] = val
+        elif line.startswith("aliases:"):
+            aliases = []
+            for alias_line in fm_lines[i + 1:]:
+                stripped = alias_line.strip()
+                if stripped.startswith("- "):
+                    alias = stripped[2:].strip().strip('"').strip("'")
+                    if alias:
+                        aliases.append(alias)
+                elif not stripped or not alias_line.startswith(" "):
+                    break
+            result["aliases"] = aliases
+
+    return result
+
+
 def find_all_md_files(vault_root: Path, ignore_patterns: list[str]) -> dict[str, Path]:
     """Build a map of slug -> path for all .md files in the vault."""
     files: dict[str, Path] = {}
     slugs_by_stem: dict[str, list[Path]] = defaultdict(list)
+    titles_and_aliases: dict[str, list[Path]] = defaultdict(list)
 
     for md_file in vault_root.rglob("*.md"):
         rel = md_file.relative_to(vault_root)
@@ -53,7 +93,13 @@ def find_all_md_files(vault_root: Path, ignore_patterns: list[str]) -> dict[str,
         stem = md_file.stem.lower()
         slugs_by_stem[stem].append(md_file)
 
-    return files, slugs_by_stem
+        # Index by aliases for wikilink resolution
+        fm = extract_frontmatter(md_file)
+        for alias in fm.get("aliases", []):
+            key = alias.lower().replace(" ", "-")
+            titles_and_aliases[key].append(md_file)
+
+    return files, slugs_by_stem, titles_and_aliases
 
 
 def resolve_wikilink(
@@ -62,6 +108,7 @@ def resolve_wikilink(
     vault_root: Path,
     files: dict[str, Path],
     slugs_by_stem: dict[str, list[Path]],
+    titles_and_aliases: dict[str, list[Path]] = None,
 ) -> bool:
     """Check if a wikilink target resolves to an existing file."""
     target_clean = target.strip()
@@ -71,6 +118,10 @@ def resolve_wikilink(
     # Try exact match by stem (case-insensitive)
     target_lower = target_clean.lower().replace(" ", "-")
     if target_lower in slugs_by_stem:
+        return True
+
+    # Try match by title or alias (case-insensitive)
+    if titles_and_aliases and target_lower in titles_and_aliases:
         return True
 
     # Try as a relative path from source
@@ -116,8 +167,9 @@ def resolve_md_link(
     if candidate.exists():
         return True
 
-    # Try from vault root
-    candidate = (vault_root / target_clean).resolve()
+    # Try from vault root (strip leading / to avoid absolute path override)
+    target_from_root = target_clean.lstrip("/")
+    candidate = (vault_root / target_from_root).resolve()
     if candidate.exists():
         return True
 
@@ -164,7 +216,9 @@ def audit_vault(
     categorize: bool = False,
 ) -> list[dict]:
     """Run the full audit and return broken references."""
-    files, slugs_by_stem = find_all_md_files(vault_root, ignore_patterns)
+    files, slugs_by_stem, titles_and_aliases = find_all_md_files(
+        vault_root, ignore_patterns
+    )
     broken = []
 
     for slug, md_file in sorted(files.items()):
@@ -190,7 +244,8 @@ def audit_vault(
             for match in WIKILINK_RE.finditer(line):
                 target = match.group(1)
                 if not resolve_wikilink(
-                    target, md_file, vault_root, files, slugs_by_stem
+                    target, md_file, vault_root, files, slugs_by_stem,
+                    titles_and_aliases,
                 ):
                     entry = {
                         "source": slug,
