@@ -43,13 +43,31 @@ function buildJsonLd(
     })
   }
 
-  // Determine page type from slug
+  // Determine page type from type: frontmatter field, falling back to slug
   const slugParts = slug.split("/")
+  const contentType = frontmatter?.type as string | undefined
+
+  // Map type: field to Schema.org @type
+  const typeToSchemaType: Record<string, string> = {
+    term: "DefinedTerm",
+    concept: "DefinedTerm",
+    person: "Person",
+    lesson: "LearningResource",
+    text: "Article",
+    letter: "Article",
+    babble: "Article",
+    school: "Article",
+    topic: "Article",
+    skill: "Article",
+    index: "CollectionPage",
+  }
+
   let pageSchema: Record<string, unknown>
+  const schemaType = contentType ? typeToSchemaType[contentType] : undefined
 
   if (
-    slugParts.includes("terms") ||
-    slugParts.includes("concepts")
+    schemaType === "DefinedTerm" ||
+    (!schemaType && (slugParts.includes("terms") || slugParts.includes("concepts")))
   ) {
     // Term or concept definition
     pageSchema = {
@@ -61,13 +79,15 @@ function buildJsonLd(
       inDefinedTermSet: {
         "@type": "DefinedTermSet",
         name: slugParts.slice(0, slugParts.indexOf("terms")).join("/") ||
-              slugParts.slice(0, slugParts.indexOf("concepts")).join("/"),
+              slugParts.slice(0, slugParts.indexOf("concepts")).join("/") ||
+              slugParts[0],
         url: siteUrl,
       },
     }
   } else if (
-    slugParts.includes("people") ||
-    (slugParts[0] === "encyclopedia" && slugParts[1] === "people")
+    schemaType === "Person" ||
+    (!schemaType && (slugParts.includes("people") ||
+      (slugParts[0] === "encyclopedia" && slugParts[1] === "people")))
   ) {
     // Person page
     pageSchema = {
@@ -77,7 +97,10 @@ function buildJsonLd(
       description,
       url: pageUrl,
     }
-  } else if (slugParts.includes("curricula")) {
+  } else if (
+    schemaType === "LearningResource" ||
+    (!schemaType && slugParts.includes("curricula"))
+  ) {
     // Learning resource
     pageSchema = {
       "@context": "https://schema.org",
@@ -90,8 +113,19 @@ function buildJsonLd(
       ...(datePublished && { datePublished }),
       ...(dateModified && { dateModified }),
     }
+  } else if (schemaType === "CollectionPage") {
+    // Collection / index page
+    pageSchema = {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: title,
+      description,
+      url: pageUrl,
+      author,
+      inLanguage: "en",
+    }
   } else if (slug !== "index" && slug !== "404") {
-    // Default: Article
+    // Default: Article (also used for text, letter, babble, school, topic, skill)
     pageSchema = {
       "@context": "https://schema.org",
       "@type": "Article",
