@@ -11,72 +11,91 @@ right skill. Skills are grouped by intent category.
 
 ## Create
 
-| Skill | Triggers | Input |
-|-------|----------|-------|
-| write-new-note | "write a note", "create a page", "add a term/concept" | topic or title |
-| write-lesson | "write a lesson", "teach about" | topic + discipline |
-| write-learn-skill | "create a learning skill", "add to curriculum" | topic + discipline |
-| make-content-folder | "create a folder", "make directory" | path |
+| Skill | Path | Triggers | Input |
+|-------|------|----------|-------|
+| write-new-note | `technology/specifications/semiotic-markdown/skills/write-new-note/` | "write a note", "create a page" | topic or title |
+| write-lesson | `education/disciplines/pedagogy/skills/write-lesson/` | "write a lesson", "teach about" | topic + discipline |
+| write-learn-skill | `education/disciplines/pedagogy/skills/write-learn-skill/` | "create a learning skill" | topic + discipline |
+| make-content-folder | `technology/specifications/agential-semioverse-repository/skills/make-content-folder/` | "create a folder", "make directory" | path |
+| record-idea | `technology/specifications/agential-semioverse-repository/skills/record-idea/` | "record idea", "idea about" | idea text + thing |
+| create-skill | `technology/specifications/agential-semioverse-repository/skills/create-skill/` | "create skill", "new skill" | skill name + parent thing |
+
+## Edit
+
+| Skill | Path | Triggers | Input |
+|-------|------|----------|-------|
+| edit-markdown | `technology/specifications/semiotic-markdown/skills/edit-markdown/` | "edit", "update", "add to", "modify" | file path + instruction |
+| improve-skill | `technology/specifications/agential-semioverse-repository/skills/improve-skill/` | "improve skill", "update skill" | skill id + what to change |
 
 ## Maintain
 
-| Skill | Triggers | Input |
-|-------|----------|-------|
-| fix-frontmatter | "fix frontmatter", "fix metadata" | path or glob |
-| manage-tags | "fix tags", "normalize tags", "add type fields" | path or "all" |
-| cross-link-document | "cross-link", "add links to" | file path |
-| audit-vault-references | "find broken links", "audit references" | none (vault-wide) |
-| audit-content-folders | "find missing indexes", "audit folders" | none (vault-wide) |
+| Skill | Path | Triggers | Input |
+|-------|------|----------|-------|
+| fix-frontmatter | `technology/specifications/agential-semioverse-repository/skills/fix-frontmatter/` | "fix frontmatter", "fix metadata" | path or glob |
+| manage-tags | `technology/specifications/agential-semioverse-repository/skills/manage-tags/` | "fix tags", "normalize tags" | path or "all" |
+| cross-link-document | `technology/specifications/semiotic-markdown/skills/cross-link-document/` | "cross-link", "add links to" | file path |
+| audit-vault-references | `technology/specifications/agential-semioverse-repository/skills/audit-vault-references/` | "find broken links", "audit references" | none |
+| audit-content-folders | `technology/specifications/agential-semioverse-repository/skills/audit-content-folders/` | "find missing indexes", "audit folders" | none |
 
 ## Review
 
-| Skill | Triggers | Input |
-|-------|----------|-------|
-| check-note-style | "check style", "review style" | file path |
-| review-lesson | "review lesson", "audit lesson" | file path |
-| walk-the-site | "walk the site", "check the site" | starting path |
+| Skill | Path | Triggers | Input |
+|-------|------|----------|-------|
+| check-note-style | `technology/specifications/semiotic-markdown/skills/check-note-style/` | "check style", "review style" | file path |
+| review-lesson | `education/disciplines/pedagogy/skills/review-lesson/` | "review lesson", "audit lesson" | file path |
+| walk-the-site | `technology/specifications/agential-semioverse-repository/skills/walk-the-site/` | "walk the site", "check the site" | starting path |
+| check-skill | `technology/specifications/agential-semioverse-repository/skills/check-skill/` | "check skill", "validate skill" | skill id or --all |
+| assess-page | `technology/specifications/agential-semioverse-repository/skills/assess-page/` | "assess", "audit page", "what would make this better" | path or random |
 
 ## Process
 
-| Skill | Triggers | Input |
-|-------|----------|-------|
-| evaluate-slop | "evaluate slop", "assess draft" | file or dir in slop/ |
-| process-triage-note | "process triage", "sort triage" | file in triage/ |
+| Skill | Path | Triggers | Input |
+|-------|------|----------|-------|
+| evaluate-slop | `technology/specifications/agential-semioverse-repository/skills/evaluate-slop/` | "evaluate slop", "assess draft" | file or dir in slop/ |
+| process-triage-note | `technology/specifications/agential-semioverse-repository/skills/process-triage-note/` | "process triage", "sort triage" | file in triage/ |
 
 ## Organize
 
-| Skill | Triggers | Input |
-|-------|----------|-------|
-| restructure-discipline | "restructure", "reorganize", "move discipline" | discipline path |
-| stabilize | "stabilize" | any path in content/ |
+| Skill | Path | Triggers | Input |
+|-------|------|----------|-------|
+| restructure-discipline | `technology/specifications/agential-semioverse-repository/skills/restructure-discipline/` | "restructure", "reorganize" | discipline path |
+| stabilize | `technology/specifications/agential-semioverse-repository/skills/stabilize/` | "stabilize" | any path in content/ |
 
 ## Meta
 
-| Skill | Triggers | Input |
-|-------|----------|-------|
-| commit-repository | "commit", "save changes" | none |
-| encode-learning | "encode this", "remember this", "update memory" | what to encode |
-| improve-skill | "improve skill", "update skill" | skill id + what to change |
+| Skill | Path | Triggers | Input |
+|-------|------|----------|-------|
+| commit-repository | `technology/specifications/agential-semioverse-repository/skills/commit-repository/` | "commit", "save changes" | none |
+| encode-learning | `technology/specifications/agential-semioverse-repository/skills/encode-learning/` | "encode this", "remember this" | what to encode |
+| better-emsemioverse | `personal/projects/emsemioverse/skills/better-emsemioverse/` | "better the emsemioverse" | area? |
+| better-mathematical-universe | `mathematics/objects/universes/skills/better-mathematical-universe/` | "better mathematical universe", "improve the semiotic universe", "improve the semioverse" | universe name? |
+| list-skills | `technology/specifications/agential-semioverse-repository/skills/list-skills/` | "list skills", "what skills" | thing path? |
+| delete-skill | `technology/specifications/agential-semioverse-repository/skills/delete-skill/` | "delete skill", "remove skill" | skill id |
 
 ## Read / Understand
 
-| Skill | Triggers | Input |
-|-------|----------|-------|
-| orient-to-area | "what's in", "show me", "explore" | path or discipline name |
-| trace-derivation | "how does X derive", "what produces X" | concept name |
+| Skill | Path | Triggers | Input |
+|-------|------|----------|-------|
+| find-thing | `technology/specifications/agential-semioverse-repository/skills/find-thing/` | "find", "where is", "locate" | query string |
+| orient-to-area | `technology/specifications/agential-semioverse-repository/skills/orient-to-area/` | "what's in", "show me", "explore" | path or discipline |
+| trace-derivation | `technology/specifications/agential-semioverse-repository/skills/trace-derivation/` | "how does X derive" | concept name |
+| learn-about-the-emsemioverse | `personal/projects/emsemioverse/skills/learn-about-the-emsemioverse/` | "learn about the emsemioverse", "what is the emsemioverse" | none |
 
 ## Format / Validate
 
-| Skill | Triggers | Input |
-|-------|----------|-------|
-| generate-rdf | "generate TTL", "extract RDF" | file path |
-| validate-thing | "validate", "check constraints" | path |
+| Skill | Path | Triggers | Input |
+|-------|------|----------|-------|
+| generate-rdf | `technology/specifications/semiotic-markdown/skills/generate-rdf/` | "generate TTL", "extract RDF" | file path |
+| validate-thing | `technology/specifications/agential-semioverse-repository/skills/validate-thing/` | "validate", "check constraints" | path |
 
 ## Routing rules
 
 1. If the prompt starts with `/`, it names a skill directly.
 2. If the prompt matches a trigger phrase, route to that skill.
-3. If the prompt is a correction (see `memory/interaction-patterns.md`),
+3. If the prompt is a correction (frustration signals, "stop doing X"),
    stop and fix the error before routing.
 4. If the prompt is meta-commentary, update infrastructure files.
 5. If no skill matches, ask emsenn what operation they want.
+
+All paths are relative to `content/`. Each skill's `SKILL.md` is at
+`content/{path}/SKILL.md`.

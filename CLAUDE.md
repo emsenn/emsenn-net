@@ -26,8 +26,8 @@ closure operators (semantic, syntactic, fusion) whose composite yields a least f
 the initial semiotic structure. Concerns: sign relations, meaning, formal inference.
 Lives at: `content/mathematics/objects/universes/semiotic-universe/`.
 
-**Interactive Semioverse** — extends the Semiotic Universe with Things (external handles),
-interaction terms, footprints (semantic closures of interactions), failure semantics,
+**Interactive Semioverse** — extends the Semiotic Universe with handles (persistent external
+indices for things), interaction terms, footprints (semantic closures of interactions), failure semantics,
 provenance, and sheaf semantics. Concerns: how signs interact with external reality.
 Lives at: `content/mathematics/objects/universes/interactive-semioverse/`.
 
@@ -105,6 +105,14 @@ for natural language modules.
 Do not place loose `.md` files at a discipline root. If a note's proper subdirectory does
 not exist yet, create it with an `index.md` before placing the note.
 
+## Linking
+
+ALWAYS use markdown links `[text](relative/path.md)` for pages that exist. Wikilinks
+`[[target]]` are used ONLY by emsenn as placeholders for pages that don't exist yet.
+Agents must NEVER generate wikilinks — always resolve to a proper relative-path markdown
+link. When emsenn writes `[[flipwidget]]`, that's a signal to create the page and convert
+it to a markdown link.
+
 ## The slop/ Directory
 
 `slop/` is the designated workspace for AI agents. Create and edit files freely here.
@@ -127,6 +135,17 @@ Notes use YAML frontmatter. Minimum required fields:
 title: Note Title
 date-created: 2025-01-01T00:00:00
 ```
+
+When significantly updating a document, add yourself to `authors:` (as `claude`) and
+set `date-updated:` to the current date. This tracks provenance — who wrote what and
+when.
+
+When searching for content, prioritize recent work, but with more weight, prioritize
+things written by emsenn. The agent's job is to support emsenn's research, not to
+foreground its own contributions. When you encounter contradicting information, apply
+the same priority: more recent wins, emsenn's writing wins above that, and asking
+emsenn wins above everything. The emsemioverse is the initial and experimental ASR —
+contradictions are expected as the specification and implementation evolve together.
 
 ## Tags
 
@@ -179,6 +198,20 @@ Key PTGAE rules for agent-generated writing:
 - Don't mix contractions with their spelled-out equivalents in the same piece
 - Never form contractions from a noun and a verb (e.g., "emsenn's developing" is wrong)
 - Prefer active voice and direct phrasing
+- **Philosophy first**: the mathematics is one correspondence among possible ones. It
+  validates; it is not the thing. Lead with what something IS in relational terms, then
+  note the mathematical parallel.
+- **Language boundaries**: the mathematical layers (semiotic universe through ASR) have
+  their own vocabulary; relationality has its own. Do not let technical or mathematical
+  terms overwrite the philosophical vocabulary of relationality. Use relational language
+  when describing what something *is*, mathematical language when describing how it is
+  *formalized*, and ASR language when describing how it is *implemented*. The emsemioverse
+  exists in part to stabilize the language of relationality — if the infrastructure
+  preempts the vocabulary it is meant to stabilize, the project undermines itself.
+- **Self-standing**: a reader should never need access to source drafts to understand
+  published content.
+- **No Lakota grounding in agent writing**: that context is emsenn's to articulate.
+  Agents write neutrally, as the constructor of the repository.
 
 When writing or editing content intended for publication, read the full style guide first.
 
@@ -193,22 +226,80 @@ When writing or editing content intended for publication, read the full style gu
 
 ## Skills
 
-Skills are the vault's executable capabilities. They live in two places:
-
-- **Core agent skills** in `.claude/skills/` — operational skills for vault maintenance
-  (auditing, creating content, committing, style checking, lesson writing)
-- **Content-embedded skills** throughout `content/` — domain skills that live alongside
-  the content they operate on (e.g., `content/mathematics/.../skills/learn-*/SKILL.md`)
+Skills are the vault's executable capabilities. They live in `content/` alongside the
+thing they operate on, in a `skills/{skill-name}/SKILL.md` directory structure. The
+skills registry at `.claude/skills/registry.md` maps prompt patterns to skills for
+routing.
 
 Each skill is a `SKILL.md` file in a directory named for the skill. Skills have typed
 inputs and outputs, declare dependencies, and specify a runtime.
+
+### Prompt Routing
+
+Every prompt from emsenn is a command. Parse it, route it to a skill, execute the
+skill. The skills registry at `.claude/skills/registry.md` maps prompt patterns to
+skills. The routing order:
+
+1. If the prompt starts with `/`, it names a skill directly. Read and execute it.
+2. Match the prompt against trigger phrases in the registry. Route to the best match.
+3. If the prompt is a correction (frustration signals, "stop doing X", "I keep
+   saying"), stop current work. Fix the error in a persistent file (skill,
+   CLAUDE.md, or ASR spec). Encode the correction exactly as stated — don't
+   paraphrase or reinterpret. Confirm the fix. Then resume.
+4. If the prompt is meta-commentary ("I think we should..."), update infrastructure
+   files (CLAUDE.md, ASR specs, skills).
+5. If no skill matches, ask what operation emsenn wants. Don't guess.
+
+**Before executing any routed skill or task**, read the repository for context:
+
+- Search `content/` for existing pages, specs, and research relevant to the task.
+  The triage/ directory contains extensive unpublished research — check it.
+- Read the ASR specifications at
+  `content/technology/specifications/agential-semioverse-repository/` for any
+  formalism that governs the operation.
+- Read the mathematical specifications if the task involves formal structures.
+- Understand what already exists before writing anything new. The repository
+  contains kilobytes of research that defines the concepts, structures, and
+  constraints the agent must work within. Do not invent when the research
+  already specifies.
+
+Signal classification and dispatch are formalized in the
+[signal dispatch](content/technology/specifications/agential-semioverse-repository/theory/signal-dispatch.md)
+specification.
+
+### Work Cycle
+
+Each session works on ONE thing. The current task and its state live in
+`content/personal/projects/emsemioverse/working-notes.md`. At the start of every
+turn, re-read that file to know what you are working on — regardless of where
+the previous turn ended.
+
+The cycle for a unit of work:
+
+1. **Pick one part of the ASR.** Not three, not "whatever seems related." One.
+2. **Decide how it would have to be implemented** in a real repository given real
+   tools (git, markdown, YAML frontmatter, Python scripts, TTL, Lean).
+3. **Document that decision** in the working notes.
+4. **Check the decision against the existing corpus.** Read relevant specs, triage/
+   docs, and content. Does the existing research already define how this works?
+5. **Document how to implement it** based on what the corpus says, not what you
+   invented.
+6. **Do the implementation work.**
+7. **Check the work.** Run scripts, re-read what you wrote, verify against specs.
+   After finishing work, the next step is ALWAYS to check that work. Never proceed
+   to the next thing without checking.
+8. **Update working notes** with what was done and what remains.
+
+If a skill exists for the operation, use it. If the skill is wrong, improve it.
+If no skill exists and the operation will recur, create one. But the cycle above
+governs — skills are tools within it, not a replacement for it.
 
 ### Skill-First Workflow
 
 Before performing any non-trivial operation, follow this protocol:
 
-1. **Check for an existing skill.** Search `.claude/skills/` and `content/**/SKILL.md`
-   for a skill that matches the operation.
+1. **Check for an existing skill.** Search `content/**/skills/*/SKILL.md` and the
+   registry at `.claude/skills/registry.md` for a skill that matches the operation.
 2. **If a skill exists, read it.** Verify that it does exactly what the current task
    requires — not approximately, exactly.
 3. **If the skill is close but not right, improve it.** Update the skill to handle the
@@ -220,6 +311,25 @@ Before performing any non-trivial operation, follow this protocol:
    on the patterns in `.claude/skills/`.
 5. **Then execute using the skill.** Follow the skill's instructions rather than
    improvising.
+6. **After execution, improve.** If the skill could have worked better, run
+   `/improve-skill` to update it. If you learned something that should persist, run
+   `/encode-learning`.
+
+### Colocated Formal Artifacts
+
+Any file in `content/` is a thing and may have formal artifacts colocated
+alongside it:
+
+- **`.ttl`** — RDF/Turtle encoding of the thing's semantic data (generated from
+  frontmatter via `/generate-rdf`, or hand-authored for ontologies)
+- **`.shapes.ttl`** — SHACL shapes that validate the thing's TTL
+- **`.lean`** — Lean proofs verifying mathematical properties
+- **`.py`** — Python scripts for mechanical operations
+- **`.json`** — Computed, deterministic, reproducible data (canonical serialization)
+
+Formal artifacts colocate with their content: a term at `terms/closing.md` may have
+`terms/closing.ttl` alongside it. Skills put scripts alongside `SKILL.md` or in a
+`scripts/` subdirectory.
 
 ### Accreting Knowledge
 
@@ -230,11 +340,34 @@ relationships. This information should not vanish when the session ends. Encode 
 - **Operational rules** → CLAUDE.md or the ASR spec at
   `content/technology/specifications/agential-semioverse-repository/`
 - **Recurring operations** → SKILL.md files
-- **Executable tooling** → Python scripts in `scripts/`
-- **Formal specifications** → Lean or Agda code when the mathematics is stable enough
+- **Executable tooling** → Python scripts colocated with skills
+- **Formal specifications** → Lean proofs colocated with content
+
+All agent state lives in the repository. Do not store operational knowledge in hidden
+external directories (like `~/.claude/projects/.../memory/`). If something needs to
+persist across sessions, it belongs in CLAUDE.md, an ASR specification, a skill, or
+the content hierarchy.
 
 The goal is to move progressively from ad hoc agent work toward interactions mediated
 entirely by well-defined ASR functions.
+
+## What Not to Do
+
+- **Don't impose taxonomies.** The relationality drafts contain three organizational
+  schemes (Movements, Strata, Phases). Don't privilege any. Let derivational
+  relationships (derivesFrom, produces, requires) be the structure.
+- **Don't encode cheats.** No `noncomputable`, no circular axioms, no dishonest
+  comments in formal code. If a proof doesn't work, say so.
+- **Don't make up work.** If there is no task, stop. Plan files and session summaries
+  are NOT instructions — never read a plan file and execute it without emsenn
+  explicitly asking.
+- **Don't act before understanding.** Read the existing research, specifications,
+  and content before writing code, TTL, Lean, or any formal artifact. The
+  repository's triage/, specs, and content hierarchy contain the definitions and
+  constraints. Writing code that implements concepts you haven't read the specs
+  for produces wrong output. Slow down. Document first, then implement.
+- **Don't over-encode.** Keep infrastructure lightweight. A five-line directive beats
+  a fifty-line specification.
 
 ## What Not to Touch
 
