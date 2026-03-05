@@ -35,20 +35,19 @@ idempotent, monotone maps.
 PRE: `Close(a) ≥ a`, `Close(Close(a)) = Close(a)`, monotone.
 -/
 
-/-- A closing operator on recognitions. -/
 variable (close : ClosureOperator Rel)
 
-/-- Closing is inflationary: `a ≤ close(a)`. -/
+-- Closing is inflationary: `a ≤ close(a)`.
 theorem closing_inflationary (a : Rel) :
     a ≤ close a :=
   close.le_closure a
 
-/-- Closing is idempotent: `close(close(a)) = close(a)`. -/
+-- Closing is idempotent: `close(close(a)) = close(a)`.
 theorem closing_idempotent (a : Rel) :
     close (close a) = close a :=
   close.idempotent a
 
-/-- Closing is monotone: `a ≤ b → close(a) ≤ close(b)`. -/
+-- Closing is monotone: `a ≤ b → close(a) ≤ close(b)`.
 theorem closing_monotone (a b : Rel) (h : a ≤ b) :
     close a ≤ close b :=
   close.monotone h
@@ -64,10 +63,10 @@ In PRE: `Fix(Close)` = the reflexive locus.
 In draft 12: `L_C` = the closed recognitions.
 -/
 
-/-- A recognition is closed iff closing does not change it. -/
+-- A recognition is closed iff closing does not change it.
 def IsClosed (a : Rel) : Prop := close a = a
 
-/-- Closing always produces a closed recognition. -/
+-- Closing always produces a closed recognition.
 theorem close_is_closed (a : Rel) : IsClosed close (close a) :=
   close.idempotent a
 
@@ -81,7 +80,7 @@ monotone.
 We define it as a structure with the dual properties.
 -/
 
-/-- An interior operator: deflationary, idempotent, monotone. -/
+-- An interior operator: deflationary, idempotent, monotone.
 structure InteriorOp (α : Type*) [PartialOrder α] where
   toFun : α → α
   deflationary : ∀ a, toFun a ≤ a
@@ -90,12 +89,12 @@ structure InteriorOp (α : Type*) [PartialOrder α] where
 
 variable (open_ : InteriorOp Rel)
 
-/-- Opening is deflationary: `open(a) ≤ a`. -/
+-- Opening is deflationary: `open(a) ≤ a`.
 theorem opening_deflationary (a : Rel) :
     open_.toFun a ≤ a :=
   open_.deflationary a
 
-/-- Opening is idempotent: `open(open(a)) = open(a)`. -/
+-- Opening is idempotent: `open(open(a)) = open(a)`.
 theorem opening_idempotent (a : Rel) :
     open_.toFun (open_.toFun a) = open_.toFun a :=
   open_.idempotent a
@@ -114,37 +113,12 @@ closure and interior. It is an additional condition — a REQUIREMENT
 that the relational field must satisfy for coherence.
 -/
 
-/-- The Frobenius compatibility condition between closure and interior.
-    This is the formal content of "Balancing" in the relational framework. -/
+-- The Frobenius compatibility condition between closure and interior.
+-- This is the formal content of "Balancing" in the relational framework.
 def FrobeniusCompatible
     (close : ClosureOperator Rel)
     (open_ : InteriorOp Rel) : Prop :=
   ∀ a b : Rel, open_.toFun (a ⊓ close b) = open_.toFun a ⊓ close b
-
-/-!
-## Consequences of Frobenius Compatibility
-
-When the Frobenius law holds, several important properties follow.
--/
-
-variable (frob : FrobeniusCompatible close open_)
-
-/-- Under Frobenius compatibility, closing commutes past opening
-    in a specific sense: `open(close(a)) ≤ close(open(a))`. -/
-theorem frobenius_commutation (a : Rel) :
-    open_.toFun (close a) ≤ close (open_.toFun a) := by
-  have h := frob ⊤ a
-  simp [Top.top] at h
-  calc open_.toFun (close a)
-      ≤ close (open_.toFun (close a)) := close.le_closure _
-    _ = close (open_.toFun a ⊓ close a) := by
-        congr 1
-        rw [← frob]
-        congr 1
-        exact (top_inf_eq (close a)).symm
-    _ ≤ close (open_.toFun a) := by
-        apply close.monotone
-        exact inf_le_left
 
 /-!
 ## Modalities
@@ -152,39 +126,34 @@ theorem frobenius_commutation (a : Rel) :
 Necessitating (□) = Closing applied objectwise.
 Possibilizing (◇) = Opening applied objectwise.
 
-These are S4 modalities:
-- □a ≤ a (T axiom from closure being inflationary? No — closure is
-  inflationary so a ≤ □a. For necessity we need the DUAL.)
-- □□a = □a (4 axiom from idempotence)
-
 NOTE: In the relational framework, Necessitating IS Closing (not its
 dual). This means □a ≥ a (what must be includes what is). The standard
 S4 axiom □a ≤ a corresponds to Opening (what is open is contained
 in what is).
 -/
 
-/-- Necessitating: what must be. `□a = close(a)`. -/
+-- Necessitating: what must be. `□a = close(a)`.
 abbrev Necessary (a : Rel) : Rel := close a
 
-/-- Possibilizing: what may be. `◇a = open(a)`. -/
+-- Possibilizing: what may be. `◇a = open(a)`.
 abbrev Possible (a : Rel) : Rel := open_.toFun a
 
-/-- What is necessary includes what is: `a ≤ □a`. -/
+-- What is necessary includes what is: `a ≤ □a`.
 theorem necessary_inflationary (a : Rel) :
     a ≤ Necessary close a :=
   close.le_closure a
 
-/-- Necessity is idempotent: `□□a = □a`. -/
+-- Necessity is idempotent: `□□a = □a`.
 theorem necessary_idempotent (a : Rel) :
     Necessary close (Necessary close a) = Necessary close a :=
   close.idempotent a
 
-/-- What is possible is contained in what is: `◇a ≤ a`. -/
+-- What is possible is contained in what is: `◇a ≤ a`.
 theorem possible_deflationary (a : Rel) :
     Possible open_ a ≤ a :=
   open_.deflationary a
 
-/-- Possibility is idempotent: `◇◇a = ◇a`. -/
+-- Possibility is idempotent: `◇◇a = ◇a`.
 theorem possible_idempotent (a : Rel) :
     Possible open_ (Possible open_ a) = Possible open_ a :=
   open_.idempotent a

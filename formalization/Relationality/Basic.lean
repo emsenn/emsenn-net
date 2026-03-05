@@ -25,7 +25,7 @@ mathematical names available via Mathlib:
 -/
 
 import Mathlib.Order.Heyting.Basic
-import Mathlib.Order.CompleteLattice
+import Mathlib.Order.CompleteLattice.Basic
 
 namespace Relationality
 
