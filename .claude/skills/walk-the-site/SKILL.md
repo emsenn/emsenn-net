@@ -1,13 +1,25 @@
 ---
-id: walk-the-site
 description: Walk the published site as a first-time visitor, finding and fixing friction points
+id: walk-the-site
+version: [0, 1]
+kind: operational
+runtime: inference
+triggers:
+  - "walk the site"
+  - "browse as visitor"
+  - "check the site"
+inputs:
+  entry_point: string?
+outputs:
+  pages_visited: string[]
+  issues: object[]
 region:
   reads: ["content/"]
   writes: ["content/"]
 dependencies:
   - check-note-style
+scopes: []
 ---
-
 Walk the site starting from: $ARGUMENTS
 
 ("index.md" for homepage, "random" for a random published page, or a specific path)

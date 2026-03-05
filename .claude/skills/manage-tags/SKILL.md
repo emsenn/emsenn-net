@@ -1,12 +1,24 @@
 ---
 description: Clean, normalize, and manage tags and type fields across the vault
 id: manage-tags
+version: [0, 1]
+kind: operational
+runtime: script
+triggers:
+  - "manage tags"
+  - "fix tags"
+  - "clean tags"
+  - "normalize tags"
+inputs:
+  path: string?
+outputs:
+  files_modified: number
 region:
   reads: ["content/"]
   writes: ["content/"]
 dependencies: []
+scopes: []
 ---
-
 Manage tags across the vault: $ARGUMENTS
 
 ## Tag Architecture

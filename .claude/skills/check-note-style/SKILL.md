@@ -1,12 +1,24 @@
 ---
 description: Review a note against emsenn's style guide and report violations with line numbers and suggested fixes
 id: check-note-style
+version: [0, 1]
+kind: operational
+runtime: inference
+triggers:
+  - "check style"
+  - "review style"
+  - "style check"
+inputs:
+  path: string
+outputs:
+  violations: object[]
+  summary: object
 region:
   reads: ["content/", "content/writing/text/style-guide.md"]
   writes: []
 dependencies: []
+scopes: []
 ---
-
 Check the style of: $ARGUMENTS
 
 ## Instructions

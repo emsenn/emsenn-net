@@ -1,13 +1,26 @@
 ---
 description: Create a new note with correct frontmatter in the appropriate content directory
 id: write-new-note
+version: [0, 1]
+kind: operational
+runtime: inference
+triggers:
+  - "write a note"
+  - "create a page"
+  - "add a note about"
+  - "write about"
+inputs:
+  subject: string
+  destination: string?
+outputs:
+  path: string
 region:
   reads: ["content/"]
   writes: ["content/{discipline}/"]
 dependencies:
   - make-content-folder
+scopes: []
 ---
-
 Create a new note for: $ARGUMENTS
 
 ## Instructions

@@ -1,12 +1,23 @@
 ---
 description: Add markdown links, citations, and bibliography entries to a document by finding references to vault content and published sources
 id: cross-link-document
+version: [0, 1]
+kind: operational
+runtime: script
+triggers:
+  - "cross-link"
+  - "add links"
+  - "link document"
+inputs:
+  path: string?
+outputs:
+  links_added: number
 region:
   reads: ["content/"]
   writes: ["content/"]
 dependencies: []
+scopes: []
 ---
-
 Cross-link this document: $ARGUMENTS
 
 ## Batch cross-linking

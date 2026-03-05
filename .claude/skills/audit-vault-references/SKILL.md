@@ -1,12 +1,24 @@
 ---
 description: Scan the vault for broken internal references (wikilinks and markdown links) and report them categorized by type
 id: audit-vault-references
+version: [0, 1]
+kind: operational
+runtime: script
+triggers:
+  - "audit references"
+  - "find broken links"
+  - "check references"
+inputs:
+  path: string?
+outputs:
+  broken_references: object[]
+  categories: object
 region:
   reads: ["content/"]
   writes: []
 dependencies: []
+scopes: []
 ---
-
 Run the reference audit script (colocated in this skill directory) and present the results:
 
 ```bash

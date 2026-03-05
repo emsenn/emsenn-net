@@ -1,12 +1,26 @@
 ---
 id: restructure-discipline
 description: Move, rename, or reorganize a discipline module while preserving internal links and structure
+version: [1, 0]
+kind: operational
+runtime: inference
+triggers:
+  - "restructure"
+  - "reorganize discipline"
+  - "move discipline"
+inputs:
+  discipline: string
+  plan: string?
+outputs:
+  moves: object[]
+  links_fixed: number
 region:
   reads: ["content/"]
   writes: ["content/"]
 dependencies:
   - audit-vault-references
   - make-content-folder
+scopes: []
 ---
 
 Restructure a discipline: $ARGUMENTS

@@ -1,13 +1,24 @@
 ---
-id: evaluate-slop
 description: Evaluate a file or directory in slop/ and propose whether to promote, revise, or delete it
+id: evaluate-slop
+version: [0, 1]
+kind: operational
+runtime: inference
+triggers:
+  - "evaluate slop"
+  - "check slop"
+  - "review slop content"
+inputs:
+  path: string
+outputs:
+  dispositions: object[]
 region:
   reads: ["content/slop/", "content/"]
   writes: ["content/slop/", "content/"]
 dependencies:
   - check-note-style
+scopes: []
 ---
-
 Evaluate slop content: $ARGUMENTS
 
 ## Instructions

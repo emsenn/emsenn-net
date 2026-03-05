@@ -1,14 +1,26 @@
 ---
-id: process-triage-note
 description: Examine a file in content/triage/ and propose moving it to its proper location
+id: process-triage-note
+version: [0, 1]
+kind: operational
+runtime: inference
+triggers:
+  - "process triage"
+  - "sort triage"
+  - "handle triage note"
+inputs:
+  path: string
+outputs:
+  destination: string
+  actions: string[]
 region:
   reads: ["content/triage/", "content/"]
   writes: ["content/triage/", "content/"]
 dependencies:
   - make-content-folder
   - write-new-note
+scopes: []
 ---
-
 Read this file: $ARGUMENTS
 
 Run this now to see the current content structure:

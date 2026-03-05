@@ -1,12 +1,23 @@
 ---
-id: review-lesson
 description: Review a curriculum lesson against pedagogical criteria and report what it does well and what it lacks
+id: review-lesson
+version: [0, 1]
+kind: operational
+runtime: inference
+triggers:
+  - "review lesson"
+  - "check lesson"
+  - "audit lesson"
+inputs:
+  path: string
+outputs:
+  report: object
 region:
   reads: ["content/"]
   writes: []
 dependencies: []
+scopes: []
 ---
-
 Review the lesson at: $ARGUMENTS
 
 ## Instructions

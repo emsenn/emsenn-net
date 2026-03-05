@@ -1,12 +1,24 @@
 ---
 description: Scan files for frontmatter issues and fix them (wrong field names, missing required fields, formatting problems)
 id: fix-frontmatter
+version: [0, 1]
+kind: operational
+runtime: inference
+triggers:
+  - "fix frontmatter"
+  - "check frontmatter"
+  - "clean frontmatter"
+inputs:
+  path: string?
+outputs:
+  files_modified: number
+  issues_found: object[]
 region:
   reads: ["content/"]
   writes: ["content/"]
 dependencies: []
+scopes: []
 ---
-
 Fix frontmatter issues in: $ARGUMENTS
 
 If `$ARGUMENTS` is empty, scan the entire vault. Otherwise, scope to the given path.

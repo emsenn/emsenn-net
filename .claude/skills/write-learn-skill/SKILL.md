@@ -1,14 +1,26 @@
 ---
-id: write-learn-skill
 description: Create a learn-* skill that defines a node in the vault's curriculum dependency graph
+id: write-learn-skill
+version: [0, 1]
+kind: meta
+runtime: inference
+triggers:
+  - "create a learn skill"
+  - "write a learning skill"
+  - "add a curriculum node"
+inputs:
+  subject: string
+  module: string?
+outputs:
+  path: string
 region:
   reads: ["content/"]
   writes: ["content/{discipline}/skills/"]
 dependencies:
   - make-content-folder
   - write-lesson
+scopes: []
 ---
-
 Create a learn skill for: $ARGUMENTS
 
 ## Instructions

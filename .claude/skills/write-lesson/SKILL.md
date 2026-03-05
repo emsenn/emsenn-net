@@ -1,13 +1,25 @@
 ---
-id: write-lesson
 description: Write a new curriculum lesson with sound pedagogical structure in the appropriate module
+id: write-lesson
+version: [0, 1]
+kind: operational
+runtime: inference
+triggers:
+  - "write a lesson"
+  - "create a lesson"
+  - "write curriculum"
+inputs:
+  subject: string
+  module: string?
+outputs:
+  path: string
 region:
   reads: ["content/"]
   writes: ["content/{discipline}/curricula/"]
 dependencies:
   - make-content-folder
+scopes: []
 ---
-
 Write a lesson on: $ARGUMENTS
 
 ## Instructions
