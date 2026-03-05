@@ -1,46 +1,35 @@
 /-
 # Relationality — Basic Definitions
 
-This module establishes the foundational setting for formalizing
-emsenn's relational framework. The recognition field is modeled
-as a complete Heyting algebra, which Mathlib provides.
+Relational vocabulary as aliases for the operations provided by
+RecognitionField (via its HeytingAlgebra instance).
 
-The key insight: we do not ASSUME a Heyting algebra. The relational
-derivation EARNS it from the requirements of coherent distinction.
-But for formal verification, we work within the structure and verify
-that claimed properties hold.
+The sole assumption throughout is [RecognitionField Rel]. The
+HeytingAlgebra structure is derived from Genesis.lean's instance
+construction. No independent Mathlib imports introduce new axioms.
 
 ## Naming conventions
-
-We use the relational vocabulary as primary names, with the standard
-mathematical names available via Mathlib:
 
   Including    ↔  ≤  (partial order)
   Togethering  ↔  ⊓  (inf/meet)
   Eithering    ↔  ⊔  (sup/join)
   Inducing     ↔  ⇨  (Heyting implication)
-  Negating     ↔  ᶜ  (complement/pseudocomplement)
+  Negating     ↔  ᶜ  (pseudocomplement)
   Bottom       ↔  ⊥  (Relationlessness)
-  Top          ↔  ⊤  (maximal recognition)
+  Top          ↔  ⊤  (FullRecognition)
 -/
 
-import Mathlib.Order.Heyting.Basic
-import Mathlib.Order.CompleteLattice.Basic
+import Relationality.Genesis
 
 namespace Relationality
 
-/-!
-## The Recognition Field
+noncomputable section
 
-We work over an arbitrary complete Heyting algebra `Rel`.
-This is the recognition field — the ordered collection of all
-recognitions, equipped with the operations that coherent
-distinction earns.
--/
+variable {Rel : Type*} [RecognitionField Rel]
 
-variable {Rel : Type*} [HeytingAlgebra Rel]
-
--- Relational vocabulary as aliases for Mathlib operations
+-- Relational vocabulary as aliases.
+-- These use the HeytingAlgebra notation (⊓, ⊔, ⇨, etc.) which is
+-- available through the RecognitionField.toHeytingAlgebra instance.
 
 /-- Including: `a` is included in `b` iff `a ≤ b`. -/
 abbrev Includes (a b : Rel) : Prop := a ≤ b
@@ -61,7 +50,9 @@ abbrev Negate (a : Rel) : Rel := aᶜ
 /-- Relationlessness: the absence of all recognition. -/
 abbrev Relationlessness : Rel := ⊥
 
-/-- Top: the maximal recognition. -/
+/-- FullRecognition: the maximal recognition. -/
 abbrev FullRecognition : Rel := ⊤
+
+end
 
 end Relationality
