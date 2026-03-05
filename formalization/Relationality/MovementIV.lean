@@ -31,8 +31,6 @@ import Mathlib.Order.GaloisConnection.Defs
 
 namespace Relationality.MovementIV
 
-noncomputable section
-
 variable {Rel : Type*} [RecognitionField Rel]
 
 /-!
@@ -199,7 +197,5 @@ theorem full_cohesion_inflationary (a : Rel) :
       ≤ coh.flat (coh.shape a) := coh.gc_sf.le_u_l a
     _ ≤ coh.crisp (coh.sharp (coh.flat (coh.shape a))) :=
         coh.gc_sc.le_u_l _
-
-end
 
 end Relationality.MovementIV

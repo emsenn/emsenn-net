@@ -27,8 +27,6 @@ import Mathlib.Order.Closure
 
 namespace Relationality.MovementII
 
-noncomputable section
-
 variable {Rel : Type*} [RecognitionField Rel]
 
 /-!
@@ -135,7 +133,5 @@ theorem possible_deflationary (a : Rel) :
 theorem possible_idempotent (a : Rel) :
     Possible open_ (Possible open_ a) = Possible open_ a :=
   open_.idempotent a
-
-end
 
 end Relationality.MovementII

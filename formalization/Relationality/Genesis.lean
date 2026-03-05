@@ -95,7 +95,7 @@ This is the SOLE point where HeytingAlgebra enters the formalization.
 No subsequent file assumes HeytingAlgebra independently.
 -/
 
-noncomputable instance RecognitionField.toHeytingAlgebra {R : Type*}
+instance RecognitionField.toHeytingAlgebra {R : Type*}
     [rf : RecognitionField R] : HeytingAlgebra R where
   le := rf.le
   le_refl := rf.le_refl

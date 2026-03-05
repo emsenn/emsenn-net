@@ -23,8 +23,6 @@ import Relationality.Genesis
 
 namespace Relationality
 
-noncomputable section
-
 variable {Rel : Type*} [RecognitionField Rel]
 
 -- Relational vocabulary as aliases.
@@ -52,7 +50,5 @@ abbrev Relationlessness : Rel := ⊥
 
 /-- FullRecognition: the maximal recognition. -/
 abbrev FullRecognition : Rel := ⊤
-
-end
 
 end Relationality

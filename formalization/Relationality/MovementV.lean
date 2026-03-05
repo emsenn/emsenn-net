@@ -28,8 +28,6 @@ import Relationality.MovementIII
 
 namespace Relationality.MovementV
 
-noncomputable section
-
 variable {Rel : Type*} [RecognitionField Rel]
 
 /-!
@@ -158,7 +156,5 @@ The type boundary of Rel expresses the meta-boundary: what
 cannot be expressed as an element of Rel or a function on Rel
 does not enter the formalization.
 -/
-
-end
 
 end Relationality.MovementV

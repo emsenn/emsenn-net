@@ -32,8 +32,6 @@ import Mathlib.Order.Closure
 
 namespace Relationality.MovementIII
 
-noncomputable section
-
 variable {Rel : Type*} [RecognitionField Rel]
 
 /-!
@@ -185,7 +183,5 @@ theorem envelope_ge_possible (a : Rel)
     (h : open_.toFun (flow.toFun a) ≤ close (flow.toFun a)) :
     open_.toFun (flow.toFun a) ≤ StableEnvelope flow close open_ a := by
   exact le_inf h (le_refl _)
-
-end
 
 end Relationality.MovementIII

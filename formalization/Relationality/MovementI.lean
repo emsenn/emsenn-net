@@ -19,8 +19,6 @@ import Relationality.Basic
 
 namespace Relationality.MovementI
 
-noncomputable section
-
 variable {Rel : Type*} [RecognitionField Rel]
 
 /-!
@@ -131,7 +129,5 @@ theorem either_distributes_together (a b c : Rel) :
     Either a (Together b c) = Together (Either a b) (Either a c) := by
   show a ⊔ b ⊓ c = (a ⊔ b) ⊓ (a ⊔ c)
   exact sup_inf_left a b c
-
-end
 
 end Relationality.MovementI
