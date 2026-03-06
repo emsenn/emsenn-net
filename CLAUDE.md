@@ -208,6 +208,13 @@ Key PTGAE rules for agent-generated writing:
   *formalized*, and ASR language when describing how it is *implemented*. The emsemioverse
   exists in part to stabilize the language of relationality — if the infrastructure
   preempts the vocabulary it is meant to stabilize, the project undermines itself.
+- **Discipline-neutral**: content within a discipline is written as that discipline's
+  content, in plain technical general American English. Do not orient discipline content
+  around "here is how this connects back to relationality" — those connections emerge
+  from the semiotic network (links, typed relations, cross-domain `requires:`) as the
+  repository grows. Write about technical debt as a software engineering concept, about
+  Heyting algebras as mathematical objects, about care ethics as a philosophical position.
+  The network does the connecting; the pages do the defining.
 - **Self-standing**: a reader should never need access to source drafts to understand
   published content.
 - **No Lakota grounding in agent writing**: that context is emsenn's to articulate.
@@ -264,7 +271,7 @@ skills. The routing order:
   already specifies.
 
 Signal classification and dispatch are formalized in the
-[signal dispatch](content/technology/specifications/agential-semioverse-repository/theory/signal-dispatch.md)
+[prompt routing](content/technology/specifications/agential-semioverse-repository/theory/prompt-routing.md)
 specification.
 
 ### Work Cycle
@@ -353,9 +360,18 @@ entirely by well-defined ASR functions.
 
 ## What Not to Do
 
-- **Don't impose taxonomies.** The relationality drafts contain three organizational
-  schemes (Movements, Strata, Phases). Don't privilege any. Let derivational
-  relationships (derivesFrom, produces, requires) be the structure.
+- **Don't impose taxonomies.** Movements, Strata, Phases are publishing/presentation
+  conveniences — they are NOT inherent features of relationality. They are not proven,
+  they are not the structure, they are not the thing. Never use them as an organizing
+  principle for analysis, encoding, or presentation of relational concepts. The actual
+  structure is the derivational graph: derivesFrom, produces, requires, incites. These
+  relationships between concepts ARE the structure. Everything else is a view.
+- **Don't treat drafts as canonical.** The concordance, slop notes, RDF ontology,
+  and AI-generated concept files are working materials toward stabilization — NOT
+  settled truth. There is no canonical source for relationality concepts yet.
+  Stabilization follows a dependency chain: ASR must stabilize first, then the
+  emsemioverse, then relationality concepts. Until then, all concept vocabularies
+  and organizational schemes are provisional.
 - **Don't encode cheats.** No `noncomputable`, no circular axioms, no dishonest
   comments in formal code. If a proof doesn't work, say so.
 - **Don't make up work.** If there is no task, stop. Plan files and session summaries

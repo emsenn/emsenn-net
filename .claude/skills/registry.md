@@ -25,6 +25,7 @@ right skill. Skills are grouped by intent category.
 | Skill | Path | Triggers | Input |
 |-------|------|----------|-------|
 | edit-markdown | `technology/specifications/semiotic-markdown/skills/edit-markdown/` | "edit", "update", "add to", "modify" | file path + instruction |
+| split-note | `technology/specifications/semiotic-markdown/skills/split-note/` | "split", "separate into", "break apart" | source file + target concepts |
 | improve-skill | `technology/specifications/agential-semioverse-repository/skills/improve-skill/` | "improve skill", "update skill" | skill id + what to change |
 
 ## Maintain
@@ -36,6 +37,7 @@ right skill. Skills are grouped by intent category.
 | cross-link-document | `technology/specifications/semiotic-markdown/skills/cross-link-document/` | "cross-link", "add links to" | file path |
 | audit-vault-references | `technology/specifications/agential-semioverse-repository/skills/audit-vault-references/` | "find broken links", "audit references" | none |
 | audit-content-folders | `technology/specifications/agential-semioverse-repository/skills/audit-content-folders/` | "find missing indexes", "audit folders" | none |
+| audit-technical-debt | `technology/specifications/agential-semioverse-repository/skills/audit-technical-debt/` | "audit technical debt", "find technical debt", "what needs fixing" | scope? |
 
 ## Review
 
@@ -87,6 +89,9 @@ right skill. Skills are grouped by intent category.
 |-------|------|----------|-------|
 | generate-rdf | `technology/specifications/semiotic-markdown/skills/generate-rdf/` | "generate TTL", "extract RDF" | file path |
 | validate-thing | `technology/specifications/agential-semioverse-repository/skills/validate-thing/` | "validate", "check constraints" | path |
+| validate-content | `technology/specifications/agential-semioverse-repository/skills/validate-content/` | "validate content", "check frontmatter", "run content validation" | path?, type?, errors-only? |
+| enrich-mathematical-content | `mathematics/specifications/mathematical-agential-semioverse-repository/skills/enrich-mathematical-content/` | "enrich math", "add math frontmatter" | path |
+| enrich-philosophical-content | `philosophy/specifications/philosophical-agential-semioverse-repository/skills/enrich-philosophical-content/` | "enrich philosophy", "add philosophy frontmatter" | path |
 
 ## Routing rules
 
@@ -96,6 +101,21 @@ right skill. Skills are grouped by intent category.
    stop and fix the error before routing.
 4. If the prompt is meta-commentary, update infrastructure files.
 5. If no skill matches, ask emsenn what operation they want.
+
+### Compound prompts
+
+When a prompt contains multiple operations joined by "and then" or
+commas, decompose it into a sequence of skill invocations. Execute
+each skill in order, passing outputs forward as inputs where
+applicable. Example:
+
+> "Split X and Y into separate files, then write curricula, then
+> write a learn skill"
+
+Decomposes to: `/split-note` → `/write-lesson` → `/write-learn-skill`.
+
+Read each skill before executing. If any step's output is needed as
+input to the next step, pass it explicitly.
 
 All paths are relative to `content/`. Each skill's `SKILL.md` is at
 `content/{path}/SKILL.md`.
