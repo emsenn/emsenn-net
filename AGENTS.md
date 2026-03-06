@@ -45,7 +45,7 @@ root — there is no `study/` directory. Use `find content -mindepth 1 -maxdepth
 to discover the current set.
 
 Each discipline follows a standard internal structure (`disciplines/`, `topics/`,
-`schools/`, `text/`, `terms/`, `concepts/`, `curricula/`, `history/`). Full spec at
+`schools/`, `texts/`, `terms/`, `concepts/`, `curricula/`, `history/`). Full spec at
 `content/technology/specifications/agential-semioverse-repository/directory-organization/`.
 
 ## Frontmatter Schema

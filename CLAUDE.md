@@ -91,7 +91,7 @@ Standard subdirectories:
 - `disciplines/` — formal subdisciplines
 - `topics/` — areas of inquiry
 - `schools/` — named theoretical traditions or thinkers
-- `text/` — papers, essays, readings
+- `texts/` — papers, essays, readings
 - `concepts/` — individual concept notes
 - `terms/` — glossary entries
 - `curricula/` — structured learning sequences
@@ -180,7 +180,7 @@ Full specification at `content/technology/specifications/agential-semioverse-rep
 The vault uses three writing registers:
 
 - **PTGAE** (Plain Technical General American English) — the formal register for all
-  published vault content. Full guide at `content/writing/text/style-guide.md`.
+  published vault content. Full guide at `content/writing/texts/style-guide.md`.
   Agent-generated content for publication follows PTGAE unless told otherwise.
 - **Voice Notes** — observations on emsenn's natural writing voice, at
   `content/personal/writing/style/voice-notes.md`. Use when writing in emsenn's
