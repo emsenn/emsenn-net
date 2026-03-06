@@ -38,6 +38,7 @@ right skill. Skills are grouped by intent category.
 | audit-vault-references | `technology/specifications/agential-semioverse-repository/skills/audit-vault-references/` | "find broken links", "audit references" | none |
 | audit-content-folders | `technology/specifications/agential-semioverse-repository/skills/audit-content-folders/` | "find missing indexes", "audit folders" | none |
 | audit-technical-debt | `technology/specifications/agential-semioverse-repository/skills/audit-technical-debt/` | "audit technical debt", "find technical debt", "what needs fixing" | scope? |
+| tighten-specification | `technology/specifications/agential-semioverse-repository/skills/tighten-specification/` | "tighten specification", "tighten spec", "find spec gap", "underspecified", "specify" | scope? |
 
 ## Review
 
@@ -53,8 +54,8 @@ right skill. Skills are grouped by intent category.
 
 | Skill | Path | Triggers | Input |
 |-------|------|----------|-------|
-| evaluate-slop | `technology/specifications/agential-semioverse-repository/skills/evaluate-slop/` | "evaluate slop", "assess draft" | file or dir in slop/ |
-| process-triage-note | `technology/specifications/agential-semioverse-repository/skills/process-triage-note/` | "process triage", "sort triage" | file in triage/ |
+| evaluate-slop | `technology/specifications/agential-semioverse-repository/skills/evaluate-slop/` | "evaluate slop", "assess draft", "check slop", "clean up slop" | file or dir in slop/ |
+| process-triage-note | `technology/specifications/agential-semioverse-repository/skills/process-triage-note/` | "process triage", "sort triage", "handle triage note", "what is this triage note" | file in triage/ |
 
 ## Organize
 
