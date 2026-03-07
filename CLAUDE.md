@@ -95,12 +95,15 @@ writing.
 
 ## Do not
 
-- Use slop/ as source of truth
-- Impose taxonomies (Movements, Strata, Phases) on relationality
+- Use slop/ as source of truth — verify against actual specs instead
+- Impose taxonomies (Movements, Strata, Phases) on relationality — use
+  the derivational graph (derivesFrom, produces, requires, incites)
 - Treat drafts or AI-generated content as canonical
 - Encode cheats in formal code (`noncomputable`, circular axioms, `sorry`)
-- Make up work — if there is no task, stop
+  — if a proof does not work, say so
+- Make up work — if there is no task, ask emsenn
 - Act before reading existing specs and research
 - Touch: `quartz/`, `quartz.config.ts`, `quartz.layout.ts`,
   `content/.obsidian/`, `content/private/`
 - Add implementation content to `content/mathematics/objects/universes/*/`
+  — implementation goes in `technology/specifications/`
