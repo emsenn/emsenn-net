@@ -27,8 +27,13 @@ Both tools are functional. Lean requires `~/.elan/bin` on PATH and downloads
 
 ### Lean 4 + Mathlib
 
-- `HeytingAlgebra` is a typeclass at `Mathlib.Order.Heyting.Basic`
+- `HeytingAlgebra` is a typeclass at `Mathlib.Order.Heyting.Basic`,
+  extending `BoundedOrder` and `DistribLattice`
+- Also provides `GeneralizedHeytingAlgebra`, `CoheytingAlgebra`, `BiheytingAlgebra`
+- Convenience constructors: `HeytingAlgebra.ofHImp` and `HeytingAlgebra.ofCompl`
 - Rich library of lemmas: `le_himp_iff`, `inf_le_left`, `sup_le`, etc.
+- Category of Heyting algebras: `HeytAlg` with `HeytingHom` morphisms and
+  forgetful functors (`Mathlib.Order.Category.HeytAlg`)
 - Typeclass inference provides instances automatically
 - The deleted formalization used this: `RecognitionField` fields → `HeytingAlgebra`
   instance → all Mathlib lemmas available
@@ -55,6 +60,9 @@ modules and name what you use). Lean's is more automatic (typeclass inference).
 - Provides inflationary, idempotent, monotone maps on partial orders
 - No built-in `InteriorOperator` (the deleted formalization defined one)
 - No built-in nucleus / Frobenius compatibility
+- An independent Lean 4 formalization by Hotz et al. (2024) covers frames,
+  nuclei, and fixed-point Heyting algebra construction (240+ theorems,
+  compiles clean) — not in Mathlib but demonstrates the path
 
 ### Agda + stdlib
 
@@ -95,17 +103,25 @@ Lean + Mathlib is substantially ahead for frames/locales/completeness.
 
 ### Lean 4 + Mathlib
 
-- `CategoryTheory.Monad` and `CategoryTheory.Comonad` exist
-- Sheaf theory: `CategoryTheory.Sites.Sheaf` for Grothendieck topologies
-- Topos theory: under development
+- `CategoryTheory.Monad` and `CategoryTheory.Comonad` with full axiomatics
+- Eilenberg-Moore coalgebras, adjunction-induced comonads, Beck's
+  comonadicity theorem
+- Sheaf theory: `CategoryTheory.Sites.Sheaf` for Grothendieck topologies,
+  canonical/subcanonical topologies, sheaf cohomology in progress (Riou 2025)
+- `Locale` defined as opposite category of `Frame`
 - GaloisConnection is in `Order.GaloisConnection`
 
 ### Agda + agda-categories
 
 - Full categorical formalization: categories, functors, natural
   transformations, adjunctions, monads, comonads
-- More explicitly constructive
-- Sheaf theory: limited compared to Mathlib
+- Comonads include: cofree comonads, distributive laws, morphisms,
+  relative comonads
+- Monads: strong, relative, graded, idempotent, Kleisli/Eilenberg-Moore
+- Proof-relevant: coherence isomorphisms made explicit
+- Sheaf theory: `Categories.Category.Site` and `.Topos` exist as stubs;
+  Jon Sterling's independent constructive-sheaf-semantics project is
+  more developed but standalone
 
 ### Verdict
 
