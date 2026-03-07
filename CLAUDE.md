@@ -75,6 +75,11 @@ content. Key rules: use `emsenn` (lowercase), avoid vague adverbs,
 prefer active voice, lead with philosophy not mathematics, write
 discipline-neutral content, no Lakota grounding in agent writing.
 
+## Policies
+
+Standing commitments are loaded via `.claude/rules/policies/`. See
+`content/personal/projects/emsemioverse/policies/` for full rationale.
+
 ## Priority
 
 When encountering conflicting information: more recent wins, emsenn's
