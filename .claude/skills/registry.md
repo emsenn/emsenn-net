@@ -21,6 +21,7 @@ right skill. Skills are grouped by intent category.
 | create-skill | `technology/specifications/agential-semioverse-repository/skills/create-skill/` | "create skill", "new skill" | skill name + parent thing |
 | create-plan | `technology/specifications/agential-semioverse-repository/plans/skills/create-plan/` | "create a plan", "plan for", "propose work on" | title + motivation |
 | record-decision | `technology/specifications/agential-semioverse-repository/plans/skills/record-decision/` | "record a decision", "document this decision", "ADR for" | title + context |
+| write-directory-agent-instructions | `technology/specifications/agential-semioverse-repository/skills/write-directory-agent-instructions/` | "write AGENTS.md for", "add agent instructions to", "create directory agent context" | directory path |
 
 ## Edit
 
