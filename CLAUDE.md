@@ -10,9 +10,15 @@ tell emsenn — do not silently work around it or invent alternative work.
 1. Initialize the content submodule: `git submodule update --init content`
    then `ls content/` to confirm files exist. If empty, stop.
 2. Install dependencies: `nvm install --lts && nvm use --lts && npm install`
-3. Read `content/personal/projects/emsemioverse/working-notes.md` for
-   current task and prior session context.
-4. Run `git log --oneline -5` in both repos to see recent changes.
+3. **Review plans**: run the review-plans skill at
+   `content/technology/specifications/agential-semioverse-repository/plans/skills/review-plans/SKILL.md`.
+   This shows all plans, their statuses, what's active, what's blocked.
+   The active plan is what you should be working on unless emsenn says
+   otherwise.
+4. Read `content/personal/projects/emsemioverse/working-notes.md` for
+   additional session context. Working notes should be thin — they point
+   to plans, not duplicate them.
+5. Run `git log --oneline -5` in both repos to see recent changes.
 
 ## Project
 
