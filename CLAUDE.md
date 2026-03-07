@@ -2,6 +2,34 @@
 
 Instructions for Claude Code and Claude agents working in this repository.
 
+## Session Start Checks
+
+Before doing ANY work, set up the repository environment. If setup fails,
+STOP and tell emsenn — do not silently work around it, do not invent
+alternative work, do not proceed with partial access.
+
+1. **Initialize the content submodule.** Run `git submodule update --init
+   content` and then `ls content/` to confirm files exist. The `content/`
+   directory is a git submodule containing the entire Obsidian vault — all
+   specs, skills, research, and working notes. If it cannot be cloned or is
+   empty, the agent cannot do meaningful work. Stop and say so.
+
+2. **Install dependencies.** Run the build setup commands from AGENTS.md
+   (`nvm install --lts && nvm use --lts && npm install`). If tools needed
+   for the current task (e.g. `lean`, `agda`, `python`) are not installed,
+   install them before proceeding.
+
+3. **Read working notes.** Read
+   `content/personal/projects/emsemioverse/working-notes.md` to know what
+   the current task is and what the previous session accomplished.
+
+4. **Check recent changes.** Run `git log --oneline -5` in both the parent
+   repo and the content submodule to understand what happened recently.
+
+The principle: if you cannot reproduce the repository's working environment,
+you cannot work in the repository. Setting up the environment IS the first
+task, not an obstacle to skip past.
+
 ## Project Overview
 
 This is **emsenn's** research site, built with [Quartz 4](https://quartz.jzhao.xyz/). The
@@ -372,6 +400,11 @@ entirely by well-defined ASR functions.
   Stabilization follows a dependency chain: ASR must stabilize first, then the
   emsemioverse, then relationality concepts. Until then, all concept vocabularies
   and organizational schemes are provisional.
+- **Never use slop/ as a source of truth.** Content in `slop/` is agent workspace
+  — drafts, working notes, intermediate outputs. Never use code, formalizations,
+  vocabulary, or structural decisions from slop/ as the basis for published
+  content, formal artifacts, or further agent work. If something in slop/ looks
+  useful, verify it against the actual specifications before relying on it.
 - **Don't encode cheats.** No `noncomputable`, no circular axioms, no dishonest
   comments in formal code. If a proof doesn't work, say so.
 - **Don't make up work.** If there is no task, stop. Plan files and session summaries
