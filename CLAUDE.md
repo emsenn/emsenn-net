@@ -2,6 +2,28 @@
 
 Instructions for Claude Code and Claude agents working in this repository.
 
+## Session Start Checks
+
+Before doing ANY work, verify these conditions. If any check fails, STOP and
+tell emsenn immediately — do not silently work around it.
+
+1. **Content submodule is populated.** Run `ls content/` and confirm files
+   exist. The `content/` directory is a git submodule containing the entire
+   Obsidian vault — all specs, skills, research, and working notes. If it is
+   empty, the agent is blind to the primary working area of this repository.
+   Do not proceed without it. Tell emsenn: "The content submodule is empty
+   and I cannot do meaningful work without it."
+
+2. **Working notes are read.** Read
+   `content/personal/projects/emsemioverse/working-notes.md` to know what
+   the current task is and what the previous session accomplished.
+
+3. **Recent changes are checked.** Run `git log --oneline -5` in both the
+   parent repo and the content submodule to understand what happened recently.
+
+If any of these checks cannot be completed (e.g. the submodule won't clone),
+that is a blocking issue. Say so. Do not invent alternative work.
+
 ## Project Overview
 
 This is **emsenn's** research site, built with [Quartz 4](https://quartz.jzhao.xyz/). The
