@@ -88,7 +88,7 @@ right skill. Skills are grouped by intent category.
 
 | Skill | Path | Triggers | Input |
 |-------|------|----------|-------|
-| generate-rdf | `technology/specifications/semiotic-markdown/skills/generate-rdf/` | "generate TTL", "extract RDF" | file path |
+| generate-rdf | `technology/specifications/semiotic-markdown/skills/generate-rdf/` | "generate rdf", "create turtle", "convert to ttl", "generate ttl", "build rdf" | path?, --all, --dry-run, --stats, --force, --combined |
 | validate-thing | `technology/specifications/agential-semioverse-repository/skills/validate-thing/` | "validate", "check constraints" | path |
 | validate-content | `technology/specifications/agential-semioverse-repository/skills/validate-content/` | "validate content", "check frontmatter", "run content validation" | path?, type?, errors-only? |
 | enrich-mathematical-content | `mathematics/specifications/mathematical-agential-semioverse-repository/skills/enrich-mathematical-content/` | "enrich math", "add math frontmatter" | path |

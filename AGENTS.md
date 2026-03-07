@@ -66,7 +66,7 @@ Large binary files are managed with Git LFS. Tracked types: `pdf`, `epub`, `docx
 - Work directly on `main` — do not create worktrees or branches unless explicitly asked
 - emsenn edits the vault concurrently in Obsidian; run `git status` before staging
 - Markdown files use LF line endings (enforced by `.gitattributes`)
-- Internal links use Obsidian wiki-link syntax: `[[path/to/note|Display Text]]`
+- Internal links use relative-path markdown syntax: `[Display Text](relative/path.md)`. Agents must NEVER generate wikilinks (`[[...]]`) — those are placeholders for emsenn only.
 - `content/private/` is gitignored — do not stage or reference those files
 - Agent-generated drafts belong in `content/slop/`
 - Do not place loose `.md` files at a discipline root; use the appropriate subdirectory
