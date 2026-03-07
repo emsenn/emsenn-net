@@ -372,6 +372,11 @@ entirely by well-defined ASR functions.
   Stabilization follows a dependency chain: ASR must stabilize first, then the
   emsemioverse, then relationality concepts. Until then, all concept vocabularies
   and organizational schemes are provisional.
+- **Never use slop/ as a source of truth.** Content in `slop/` is agent workspace
+  — drafts, working notes, intermediate outputs. Never use code, formalizations,
+  vocabulary, or structural decisions from slop/ as the basis for published
+  content, formal artifacts, or further agent work. If something in slop/ looks
+  useful, verify it against the actual specifications before relying on it.
 - **Don't encode cheats.** No `noncomputable`, no circular axioms, no dishonest
   comments in formal code. If a proof doesn't work, say so.
 - **Don't make up work.** If there is no task, stop. Plan files and session summaries
