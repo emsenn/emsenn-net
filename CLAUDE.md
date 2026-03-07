@@ -74,6 +74,15 @@ discipline-neutral content, no Lakota grounding in agent writing.
 When encountering conflicting information: more recent wins, emsenn's
 writing wins above that, asking emsenn wins above everything.
 
+## Message handling
+
+In response to every user message, apply the interpret-message skill at
+`content/technology/specifications/agential-semioverse-repository/skills/interpret-message/SKILL.md`.
+This skill implements the encoding loop: extract meaning from the
+message, write texts, refine terms/concepts, identify research
+questions, then execute actions. The user's words are the primary input
+to the emsemioverse — encode them as content, don't just discuss them.
+
 ## Skills and workflow
 
 Skills are `SKILL.md` files in `content/`. Registry at

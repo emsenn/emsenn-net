@@ -97,8 +97,17 @@ right skill. Skills are grouped by intent category.
 | enrich-mathematical-content | `mathematics/specifications/mathematical-agential-semioverse-repository/skills/enrich-mathematical-content/` | "enrich math", "add math frontmatter" | path |
 | enrich-philosophical-content | `philosophy/specifications/philosophical-agential-semioverse-repository/skills/enrich-philosophical-content/` | "enrich philosophy", "add philosophy frontmatter" | path |
 
+## Default
+
+| Skill | Path | Triggers | Input |
+|-------|------|----------|-------|
+| interpret-message | `technology/specifications/agential-semioverse-repository/skills/interpret-message/` | every user message (default) | user message |
+
 ## Routing rules
 
+0. Before any other routing, apply interpret-message to extract and
+   encode meaning from the user's message. This is the default
+   behavior for every message.
 1. If the prompt starts with `/`, it names a skill directly.
 2. If the prompt matches a trigger phrase, route to that skill.
 3. If the prompt is a correction (frustration signals, "stop doing X"),
