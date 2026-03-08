@@ -103,13 +103,15 @@ right skill. Skills are grouped by intent category.
 
 | Skill | Path | Triggers | Input |
 |-------|------|----------|-------|
-| interpret-message | `technology/specifications/agential-semioverse-repository/skills/interpret-message/` | every user message (default) | user message |
+| interpret-first-message | `technology/specifications/agential-semioverse-repository/skills/interpret-first-message/` | first message of session, session-opening message | user message |
+| interpret-message | `technology/specifications/agential-semioverse-repository/skills/interpret-message/` | every subsequent user message (default) | user message |
 
 ## Routing rules
 
-0. Before any other routing, apply interpret-message to extract and
-   encode meaning from the user's message. This is the default
-   behavior for every message.
+0. For the first message of a session, apply interpret-first-message
+   to parse session goals, load targeted context, and set up the work
+   cycle. For subsequent messages, apply interpret-message to extract
+   and encode meaning.
 1. If the prompt starts with `/`, it names a skill directly.
 2. If the prompt matches a trigger phrase, route to that skill.
 3. If the prompt is a correction (frustration signals, "stop doing X"),

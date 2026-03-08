@@ -15,10 +15,7 @@ tell emsenn — do not silently work around it or invent alternative work.
    This shows all plans, their statuses, what's active, what's blocked.
    The active plan is what you should be working on unless emsenn says
    otherwise.
-4. Read `content/personal/projects/emsemioverse/working-notes.md` for
-   additional session context. Working notes should be thin — they point
-   to plans, not duplicate them.
-5. Run `git log --oneline -5` in both repos to see recent changes.
+4. Run `git log --oneline -5` in both repos to see recent changes.
 
 ## Project
 
@@ -93,6 +90,24 @@ This skill implements the encoding loop: extract meaning from the
 message, write texts, refine terms/concepts, identify research
 questions, then execute actions. The user's words are the primary input
 to the emsemioverse — encode them as content, don't just discuss them.
+
+## Recording session state
+
+Session progress lives in the repository, not in a single notes file.
+
+- **Work progress**: append to the `## Log` section of each plan you
+  work on. Record what was done, what was decided, and what remains.
+- **Architectural choices**: write decision records at
+  `content/technology/specifications/agential-semioverse-repository/plans/decisions/`.
+- **Corrections from emsenn**: encode as decision records or policy
+  revisions (at `content/personal/projects/emsemioverse/policies/`).
+- **Key insights**: write texts in the appropriate discipline or
+  project directory.
+- **Active work state**: the plans system is the source of truth.
+  The review-plans skill shows current state.
+
+Do NOT maintain a separate working-notes or session-log file. The
+plans, decisions, and texts ARE the session record.
 
 ## Skills and workflow
 

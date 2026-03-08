@@ -20,6 +20,8 @@ import os
 import re
 import subprocess
 import sys
+import urllib.request
+import urllib.error
 from pathlib import Path
 
 from mcp.server.fastmcp import FastMCP
@@ -380,6 +382,115 @@ def validate_frontmatter(path: str) -> str:
         "errors": errors,
         "warnings": warnings,
         "fields_present": list(fm.keys()),
+    })
+
+
+# ── Tool 8: delegate_task ──────────────────────────────────────────
+
+OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
+DEFAULT_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:7b")
+
+
+@mcp.tool()
+def delegate_task(
+    task: str,
+    context: str = "",
+    model: str = "",
+    temperature: float = 0.3,
+) -> str:
+    """Delegate a text-forming task to a local LLM via Ollama.
+
+    The local model is a text-forming tool, NOT a knowledge source.
+    All knowledge must be supplied in the context parameter — the model
+    transforms, classifies, or formats supplied content. Never ask the
+    model to generate knowledge from its training data.
+
+    GOOD: "Classify this file as term/concept/text" + file content
+    GOOD: "Generate frontmatter matching this schema" + schema + content
+    GOOD: "Summarize this text in 2 sentences" + text
+    BAD:  "What are some development paradigms?" (no context needed = wrong tool)
+    BAD:  "Explain Heyting algebras" (knowledge generation = wrong tool)
+
+    Args:
+        task: Clear instruction for what the local model should produce.
+        context: File content the model needs. REQUIRED for meaningful results.
+        model: Ollama model name (default: qwen2.5:7b).
+        temperature: Sampling temperature (default: 0.3 for determinism).
+    """
+    model = model or DEFAULT_MODEL
+
+    prompt = task
+    if context:
+        prompt = f"{task}\n\n---\nContext:\n{context}"
+
+    payload = json.dumps({
+        "model": model,
+        "prompt": prompt,
+        "stream": False,
+        "options": {"temperature": temperature},
+    }).encode()
+
+    req = urllib.request.Request(
+        f"{OLLAMA_URL}/api/generate",
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            body = json.loads(resp.read())
+            return json.dumps({
+                "model": body.get("model", model),
+                "response": body.get("response", ""),
+                "eval_count": body.get("eval_count", 0),
+                "total_duration_ms": round(
+                    body.get("total_duration", 0) / 1_000_000
+                ),
+            })
+    except urllib.error.URLError as e:
+        return json.dumps({"error": f"Ollama connection failed: {e}"})
+    except Exception as e:
+        return json.dumps({"error": str(e)})
+
+
+# ── Tool 9: infer_triage_frontmatter ──────────────────────────────
+
+@mcp.tool()
+def infer_triage_frontmatter(
+    batch: int = 1,
+    dry_run: bool = False,
+    file: str = "",
+) -> str:
+    """Enrich triage frontmatter using a local LLM via Ollama.
+
+    Picks triage files (oldest-modified first), passes content to a local
+    model to infer type, tags, description, discipline, and defines.
+    Verifies that body content is unchanged before writing.
+
+    Complements enrich_triage (mechanical fixes) with inference-based
+    classification. Skips files already marked triage-status: enriched.
+
+    Args:
+        batch: Number of files to process (default: 1).
+        dry_run: Preview changes without writing (default: False).
+        file: Process a specific file (relative to triage/).
+    """
+    cmd = [sys.executable, str(SCRIPT_DIR / "infer-triage-frontmatter.py")]
+    if dry_run:
+        cmd.append("--dry-run")
+    cmd.extend(["--batch", str(batch)])
+    if file:
+        cmd.extend(["--file", file])
+
+    result = subprocess.run(
+        cmd, capture_output=True, text=True, timeout=300,
+        env={**os.environ, "PYTHONIOENCODING": "utf-8"},
+    )
+    return json.dumps({
+        "success": result.returncode == 0,
+        "output": result.stdout[-3000:] if result.stdout else "",
+        "errors": result.stderr[-500:] if result.stderr else "",
     })
 
 
