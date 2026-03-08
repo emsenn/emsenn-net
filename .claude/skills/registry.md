@@ -19,10 +19,10 @@ right skill. Skills are grouped by intent category.
 | make-content-folder | `technology/specifications/agential-semioverse-repository/skills/make-content-folder/` | "create a folder", "make directory" | path |
 | record-idea | `technology/specifications/agential-semioverse-repository/skills/record-idea/` | "record idea", "idea about" | idea text + thing |
 | create-skill | `technology/specifications/agential-semioverse-repository/skills/create-skill/` | "create skill", "new skill" | skill name + parent thing |
-| write-term-or-concept | `technology/specifications/agential-semioverse-repository/skills/write-term-or-concept/` | "write term", "write concept", "define term" | name + definition? + layer? |
-| write-derivation-text | `technology/specifications/semiotic-endeavor/skills/write-derivation-text/` | "write derivation text", "document derivation", "trace what X contributes" | source + target? + type? |
-| integrate-cross-domain-concept | `technology/specifications/semiotic-endeavor/skills/integrate-cross-domain-concept/` | "integrate concept", "bring X into endeavor spec" | concept + source domain? |
-| create-plan | `technology/specifications/agential-semioverse-repository/plans/skills/create-plan/` | "create a plan", "plan for", "propose work on" | title + motivation |
+| write-term-or-concept | `technology/specifications/agential-semioverse-repository/skills/write-term-or-concept/` | "write term", "write concept", "define term", "create term file", "what does X mean (needs term entry)" | name + definition? + layer? |
+| write-derivation-text | `technology/specifications/semiotic-endeavor/skills/write-derivation-text/` | "write derivation text", "document derivation", "trace what X contributes", "source of inspiration", "X inspires Y", "mark X as derivation source" | source + target? + type? |
+| integrate-cross-domain-concept | `technology/specifications/semiotic-endeavor/skills/integrate-cross-domain-concept/` | "integrate concept", "bring X into endeavor spec", "what does X contribute to the endeavor", "how does X map to endeavor vocabulary" | concept + source domain? |
+| create-plan | `technology/specifications/agential-semioverse-repository/plans/skills/create-plan/` | "create a plan", "plan for", "propose work on", "let's plan", "plan rewriting", "plan to" | title + motivation |
 | review-plans | `technology/specifications/agential-semioverse-repository/plans/skills/review-plans/` | "review plans", "what are the plans", "plan status", "show plans", "show board" | none |
 | situational-assessment | `technology/specifications/agential-semioverse-repository/plans/skills/situational-assessment/` | "assess situation", "where are we", "what should we do", "take stock", "what should I work on" | none |
 | update-plan | `technology/specifications/agential-semioverse-repository/plans/skills/update-plan/` | "update plan", "log progress", "complete plan", "abandon plan" | plan number + action |
