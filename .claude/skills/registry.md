@@ -116,6 +116,7 @@ right skill. Skills are grouped by intent category.
 | generate-rdf | `technology/specifications/semiotic-markdown/skills/generate-rdf/` | "generate rdf", "create turtle", "convert to ttl", "generate ttl", "build rdf" | path?, --all, --dry-run, --stats, --force, --combined |
 | validate-thing | `technology/specifications/agential-semioverse-repository/skills/validate-thing/` | "validate", "check constraints" | path |
 | validate-content | `technology/specifications/agential-semioverse-repository/skills/validate-content/` | "validate content", "check frontmatter", "run content validation" | path?, type?, errors-only? |
+| validate-plan-status | `technology/specifications/agential-semioverse-repository/plans/skills/validate-plan-status/` | "validate plans", "check plan status" | --verbose? |
 | enrich-mathematical-content | `mathematics/specifications/mathematical-agential-semioverse-repository/skills/enrich-mathematical-content/` | "enrich math", "add math frontmatter" | path |
 | enrich-philosophical-content | `philosophy/specifications/philosophical-agential-semioverse-repository/skills/enrich-philosophical-content/` | "enrich philosophy", "add philosophy frontmatter" | path |
 
