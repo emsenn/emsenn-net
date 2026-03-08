@@ -18,7 +18,7 @@ right skill. Skills are grouped by intent category.
 | write-learn-skill | `education/disciplines/pedagogy/skills/write-learn-skill/` | "create a learning skill" | topic + discipline |
 | make-content-folder | `technology/specifications/agential-semioverse-repository/skills/make-content-folder/` | "create a folder", "make directory" | path |
 | record-idea | `technology/specifications/agential-semioverse-repository/skills/record-idea/` | "record idea", "idea about" | idea text + thing |
-| make-specification | `technology/specifications/semiotic-specification/skills/make-specification/` | "make specification", "create spec", "new specification", "write spec", "scaffold spec" | spec-id + category? + source_material[]? |
+| make-specification | `technology/specifications/semiotic-specification-specification/skills/make-specification/` | "make specification", "create spec", "new specification", "write spec", "scaffold spec" | spec-id + category? + source_material[]? |
 | create-skill | `technology/specifications/agential-semioverse-repository/skills/create-skill/` | "create skill", "new skill" | skill name + parent thing |
 | write-term-or-concept | `technology/specifications/agential-semioverse-repository/skills/write-term-or-concept/` | "write term", "write concept", "define term", "create term file", "what does X mean (needs term entry)" | name + definition? + layer? |
 | write-derivation-text | `technology/specifications/semiotic-endeavor/skills/write-derivation-text/` | "write derivation text", "document derivation", "trace what X contributes", "source of inspiration", "X inspires Y", "mark X as derivation source" | source + target? + type? |
