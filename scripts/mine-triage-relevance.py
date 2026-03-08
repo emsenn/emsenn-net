@@ -71,16 +71,18 @@ def get_dir_quality(filepath):
     except ValueError:
         return "unknown"
 
-CLASSIFY_PROMPT = """You are a relevance classifier. Given a focus topic and a file excerpt, rate how relevant the file is to the focus on a 0-3 scale:
+CLASSIFY_PROMPT = """You are a technical relevance classifier. Given a focus topic and a file excerpt, rate how TECHNICALLY useful the file is for writing a specification about the focus. Score 0-3:
 
-0 = not relevant at all
-1 = tangentially related, unlikely to contain useful ideas
-2 = moderately relevant, contains ideas that could inform the focus
-3 = highly relevant, directly addresses concepts central to the focus
+0 = not relevant, or only shares vocabulary without technical substance
+1 = tangentially related, discusses the topic but without definitions, schemas, or concrete mechanisms
+2 = contains definitions, interfaces, data structures, protocols, or concrete mechanisms relevant to the focus
+3 = directly provides technical structure (schemas, type definitions, lifecycle states, validation rules, APIs) that a specification could formalize
+
+IMPORTANT: Philosophical discussion, motivation, or argumentation about WHY something matters scores 0-1 even if it uses relevant vocabulary. Only score 2-3 if the text contains technical structure: definitions you could put in a spec, schemas you could validate against, interfaces you could implement, protocols you could follow.
 
 Output ONLY a JSON object with two fields:
 - "score": integer 0-3
-- "reason": one sentence explaining why (max 20 words)
+- "reason": one sentence explaining what technical content was found (or why none was) (max 20 words)
 
 Do not output anything else.
 
