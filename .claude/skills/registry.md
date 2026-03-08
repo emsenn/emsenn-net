@@ -19,6 +19,11 @@ right skill. Skills are grouped by intent category.
 | make-content-folder | `technology/specifications/agential-semioverse-repository/skills/make-content-folder/` | "create a folder", "make directory" | path |
 | record-idea | `technology/specifications/agential-semioverse-repository/skills/record-idea/` | "record idea", "idea about" | idea text + thing |
 | create-skill | `technology/specifications/agential-semioverse-repository/skills/create-skill/` | "create skill", "new skill" | skill name + parent thing |
+| create-plan | `technology/specifications/agential-semioverse-repository/plans/skills/create-plan/` | "create a plan", "plan for", "propose work on" | title + motivation |
+| review-plans | `technology/specifications/agential-semioverse-repository/plans/skills/review-plans/` | "review plans", "what are the plans", "what should I work on", "plan status", "show plans" | none |
+| update-plan | `technology/specifications/agential-semioverse-repository/plans/skills/update-plan/` | "update plan", "log progress", "complete plan", "abandon plan" | plan number + action |
+| record-decision | `technology/specifications/agential-semioverse-repository/plans/skills/record-decision/` | "record a decision", "document this decision", "ADR for" | title + context |
+| write-directory-agent-instructions | `technology/specifications/agential-semioverse-repository/skills/write-directory-agent-instructions/` | "write AGENTS.md for", "add agent instructions to", "create directory agent context" | directory path |
 
 ## Edit
 
@@ -94,8 +99,17 @@ right skill. Skills are grouped by intent category.
 | enrich-mathematical-content | `mathematics/specifications/mathematical-agential-semioverse-repository/skills/enrich-mathematical-content/` | "enrich math", "add math frontmatter" | path |
 | enrich-philosophical-content | `philosophy/specifications/philosophical-agential-semioverse-repository/skills/enrich-philosophical-content/` | "enrich philosophy", "add philosophy frontmatter" | path |
 
+## Default
+
+| Skill | Path | Triggers | Input |
+|-------|------|----------|-------|
+| interpret-message | `technology/specifications/agential-semioverse-repository/skills/interpret-message/` | every user message (default) | user message |
+
 ## Routing rules
 
+0. Before any other routing, apply interpret-message to extract and
+   encode meaning from the user's message. This is the default
+   behavior for every message.
 1. If the prompt starts with `/`, it names a skill directly.
 2. If the prompt matches a trigger phrase, route to that skill.
 3. If the prompt is a correction (frustration signals, "stop doing X"),
