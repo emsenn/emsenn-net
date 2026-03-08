@@ -17,21 +17,65 @@ tell emsenn — do not silently work around it or invent alternative work.
    otherwise.
 4. Run `git log --oneline -5` in both repos to see recent changes.
 
-## Project
+## The emsemioverse
 
-This is **emsenn's** research site (emsenn.net), built with Quartz 4.
-`content/` is an Obsidian vault and the primary working area.
+This repository is the **emsemioverse** — a semiotic endeavor conducted
+by emsenn, a Lakota land steward and independent researcher.
 
-emsenn is a Lakota land steward and independent researcher. The central
-project is **relationality** — a philosophical-mathematical framework
-treating relations as ontologically prior to entities. All agent work
-supports that project.
+An **endeavor** is an organized, sustained, intentional effort whose
+purpose is immanent — discovered through the work itself, not assigned
+from outside. The emsemioverse is not a project (projects end) and not
+an enterprise (enterprises capture outcomes). It is an ongoing effort
+with no guaranteed outcome and no fixed end.
 
-The vault is organized as an **Agential Semioverse Repository (ASR)** — a
-formal hierarchy of mathematical structures (semiotic universe → interactive
-semioverse → agential semioverse → ASR) that governs the vault's structure.
-Specs live at `content/technology/specifications/agential-semioverse-repository/`.
-Mathematical specs at `content/mathematics/objects/universes/`.
+The endeavor's central concern is **relationality** — a philosophical-
+mathematical framework treating relations as ontologically prior to
+entities. All agent work supports this.
+
+### Key terms
+
+These have precise secondary intensions. Full definitions at
+`content/technology/specifications/semiotic-endeavor/terms/`.
+
+- **Endeavor**: the organized, sustained activity. The emsemioverse is
+  this.
+- **Repository**: the structured, versioned artifact the endeavor
+  produces. This git repo and its content are the repository — the
+  endeavor's body, not its activity.
+- **Method**: the system of conventions governing how the endeavor
+  conducts itself. The semiotic-* specifications, policies, and skills
+  are the method. These documents (CLAUDE.md, AGENTS.md) are part of
+  the method.
+- **Practice**: the actual doing of work according to method. Each
+  agent session is practice — method applied to a concrete situation.
+- **Project**: a bounded effort that ends when an internally controlled
+  condition is met (e.g., "write the PM spec").
+- **Operation**: a bounded effort that ends when an external condition
+  is met (e.g., "get the PM system working across sessions").
+
+### Formal structure
+
+The repository is organized as an **Agential Semioverse Repository
+(ASR)** — a formal hierarchy of mathematical structures:
+
+semiotic universe → interactive semioverse → agential semioverse → ASR
+
+Specs: `content/technology/specifications/agential-semioverse-repository/`.
+Mathematical specs: `content/mathematics/objects/universes/`.
+The semiotic-endeavor spec: `content/technology/specifications/semiotic-endeavor/`.
+
+### The endeavor's method
+
+The semiotic-* specification family defines the method:
+
+- **semiotic-endeavor** — what an endeavor is; organizational levels
+- **semiotic-markdown** — how files carry semantic structure
+- **semiotic-specification** — how conventions are documented
+- **semiotic-project-management** — how work is planned and tracked
+- **semiotic-versioning** — how artifacts are versioned
+- **semiotic-changelog** — how changes are tracked
+
+These live at `content/technology/specifications/semiotic-*/`.
 
 ## Content structure
 
@@ -86,14 +130,16 @@ writing wins above that, asking emsenn wins above everything.
 
 In response to every user message, apply the interpret-message skill at
 `content/technology/specifications/agential-semioverse-repository/skills/interpret-message/SKILL.md`.
-This skill implements the encoding loop: extract meaning from the
-message, write texts, refine terms/concepts, identify research
-questions, then execute actions. The user's words are the primary input
-to the emsemioverse — encode them as content, don't just discuss them.
+This skill implements the encoding loop — the endeavor's practice of
+turning input into encoded meaning: extract meaning from the message,
+write texts, refine terms/concepts, identify research questions, then
+execute actions. The user's words are the primary input to the
+emsemioverse — encode them as content, don't just discuss them.
 
 ## Recording session state
 
-Session progress lives in the repository, not in a single notes file.
+Session progress accretes in the repository — the endeavor's artifact —
+not in ephemeral conversation.
 
 - **Work progress**: append to the `## Log` section of each plan you
   work on. Record what was done, what was decided, and what remains.
@@ -111,9 +157,10 @@ plans, decisions, and texts ARE the session record.
 
 ## Skills and workflow
 
-Skills are `SKILL.md` files in `content/`. Registry at
-`.claude/skills/registry.md`. Prompts starting with `/` name a skill
-directly. The ASR theory documents at
+Skills are part of the endeavor's method — codified capabilities at
+`SKILL.md` files in `content/`. Registry at `.claude/skills/registry.md`.
+Prompts starting with `/` name a skill directly. The ASR theory
+documents at
 `content/technology/specifications/agential-semioverse-repository/theory/`
 formalize prompt routing, skill interaction, and work-unit lifecycle.
 

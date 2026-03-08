@@ -2,12 +2,16 @@
 
 Instructions for AI agents working in this repository.
 
-## Project
+## The emsemioverse
 
-Quartz 4 static site publishing emsenn's research from an Obsidian vault.
-Live at **emsenn.net**. The `content/` directory is the vault and primary
-working area. See `CLAUDE.md` for full project context and session-start
-procedure.
+This repository is the **emsemioverse** — a semiotic endeavor conducted
+by emsenn. An **endeavor** is an organized, sustained, intentional effort
+whose purpose is immanent (discovered through the work, not assigned from
+outside), with no guaranteed outcome and no fixed end.
+
+The site is built with Quartz 4 and published at **emsenn.net**. The
+`content/` directory is an Obsidian vault and the primary working area.
+See `CLAUDE.md` for full context and session-start procedure.
 
 ## Build
 
@@ -17,13 +21,27 @@ nvm install --lts && nvm use --lts && npm install
 
 Do not run `npx quartz build` unless explicitly asked — builds are slow.
 
-## How this repository works
+## Method and practice
 
-This vault is an **Agential Semioverse Repository (ASR)**. The
-specifications at
-`content/technology/specifications/agential-semioverse-repository/`
-define how the vault is organized, how agents interact with it, and
-what governance structures constrain work.
+The endeavor's **method** is the system of conventions governing how work
+is done. The endeavor's **practice** is the actual doing of work according
+to that method. Each agent session is practice.
+
+### The semiotic-* specifications
+
+The method is defined by the semiotic-* specification family at
+`content/technology/specifications/semiotic-*/`:
+
+- **semiotic-endeavor** — what an endeavor is; organizational levels
+- **semiotic-markdown** — how files carry semantic structure
+- **semiotic-specification** — how conventions are documented
+- **semiotic-project-management** — how work is planned and tracked
+- **semiotic-versioning** — how artifacts are versioned
+- **semiotic-changelog** — how changes are tracked
+
+Full definitions of terms (endeavor, repository, method, practice,
+project, operation) at
+`content/technology/specifications/semiotic-endeavor/terms/`.
 
 ### The encoding loop
 
@@ -43,10 +61,22 @@ Other agents should read the policies directory directly.
 
 Work is tracked through plans at
 `content/technology/specifications/agential-semioverse-repository/plans/`.
-Session progress is recorded in each plan's `## Log` section.
-Architectural choices are recorded as decision records at
-`plans/decisions/`. There is no separate session-notes file — the
-plans, decisions, and texts ARE the session record.
+Plans track **projects** (bounded efforts ending when an internally
+controlled condition is met) and **operations** (bounded efforts ending
+when an external condition is met). Session progress is recorded in each
+plan's `## Log` section. Architectural choices are recorded as decision
+records at `plans/decisions/`. There is no separate session-notes file —
+the plans, decisions, and texts ARE the session record.
+
+### Formal structure
+
+The repository is organized as an **Agential Semioverse Repository
+(ASR)** — instantiating a formal hierarchy of mathematical structures:
+
+semiotic universe → interactive semioverse → agential semioverse → ASR
+
+Specs: `content/technology/specifications/agential-semioverse-repository/`.
+Mathematical specs: `content/mathematics/objects/universes/`.
 
 ### Content organization
 
