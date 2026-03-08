@@ -20,7 +20,8 @@ right skill. Skills are grouped by intent category.
 | record-idea | `technology/specifications/agential-semioverse-repository/skills/record-idea/` | "record idea", "idea about" | idea text + thing |
 | create-skill | `technology/specifications/agential-semioverse-repository/skills/create-skill/` | "create skill", "new skill" | skill name + parent thing |
 | create-plan | `technology/specifications/agential-semioverse-repository/plans/skills/create-plan/` | "create a plan", "plan for", "propose work on" | title + motivation |
-| review-plans | `technology/specifications/agential-semioverse-repository/plans/skills/review-plans/` | "review plans", "what are the plans", "what should I work on", "plan status", "show plans" | none |
+| review-plans | `technology/specifications/agential-semioverse-repository/plans/skills/review-plans/` | "review plans", "what are the plans", "plan status", "show plans", "show board" | none |
+| situational-assessment | `technology/specifications/agential-semioverse-repository/plans/skills/situational-assessment/` | "assess situation", "where are we", "what should we do", "take stock", "what should I work on" | none |
 | update-plan | `technology/specifications/agential-semioverse-repository/plans/skills/update-plan/` | "update plan", "log progress", "complete plan", "abandon plan" | plan number + action |
 | record-decision | `technology/specifications/agential-semioverse-repository/plans/skills/record-decision/` | "record a decision", "document this decision", "ADR for" | title + context |
 | write-directory-agent-instructions | `technology/specifications/agential-semioverse-repository/skills/write-directory-agent-instructions/` | "write AGENTS.md for", "add agent instructions to", "create directory agent context" | directory path |
