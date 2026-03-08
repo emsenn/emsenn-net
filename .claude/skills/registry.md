@@ -83,6 +83,7 @@ right skill. Skills are grouped by intent category.
 | delegate-task | `technology/specifications/agential-semioverse-repository/skills/delegate-task/` | `mcp__asr__delegate_task` | task, context? |
 | mine-triage-relevance | `technology/specifications/agential-semioverse-repository/skills/mine-triage-relevance/` | `mcp__asr__mine_triage_relevance` | focus, directory?, threshold? |
 | infer-triage-frontmatter | `technology/specifications/agential-semioverse-repository/skills/infer-triage-frontmatter/` | `mcp__asr__infer_triage_frontmatter` | batch?, dry_run?, file? |
+| llm-status | — | `mcp__asr__llm_status` | none |
 
 ## Organize
 

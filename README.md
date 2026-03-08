@@ -9,6 +9,19 @@ framework treating relations as ontologically prior to entities. The
 repository holds research across mathematics, philosophy, technology,
 ecology, linguistics, and other disciplines.
 
+## Prerequisites
+
+**Required** (site build):
+- Node.js (LTS, managed via nvm)
+- Python 3.10+
+
+**Optional** (local inference):
+- [Ollama](https://ollama.com/) — CPU-based LLM inference (GGUF models)
+- [Foundry Local](https://github.com/microsoft/Foundry) — NPU-accelerated
+  inference (ONNX models, Snapdragon X / Intel NPU)
+
+Run `python scripts/check-environment.py` to see what is available.
+
 ## Structure
 
 - `content/` — Obsidian vault containing all research content. Tracked
@@ -23,6 +36,25 @@ root (`mathematics/`, `philosophy/`, `technology/`, `ecology/`, etc.),
 each following a standard structure of `terms/`, `concepts/`, `texts/`,
 `curricula/`, and more. The organizing conventions are specified at
 `content/technology/specifications/`.
+
+## Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `check-environment.py` | Report available tools and backends (no side effects) |
+| `local_llm.py` | Shared client for Ollama + Foundry Local (imported by other scripts) |
+| `mcp-server.py` | MCP server exposing repository tools to Claude Code |
+| `infer-triage-frontmatter.py` | Enrich triage file frontmatter via local LLM |
+| `mine-triage-relevance.py` | Pre-classify triage files by relevance to a focus |
+| `extract-formal-definitions.py` | Extract formal definitions from triage files |
+| `enrich-triage.py` | Mechanical frontmatter fixes (title, dates, deprecated fields) |
+| `index-triage.py` | Build/rebuild the triage index |
+
+All inference scripts use `local_llm.py`, which auto-detects available
+backends. When both Ollama and Foundry are available, Foundry (NPU) is
+preferred for models it supports. Set `LLM_DISABLED=1` to skip all
+local inference. Set `LLM_BACKEND=ollama` or `LLM_BACKEND=foundry` to
+force a specific backend.
 
 ## Build
 

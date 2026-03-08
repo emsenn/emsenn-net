@@ -20,8 +20,6 @@ import os
 import re
 import subprocess
 import sys
-import urllib.request
-import urllib.error
 from pathlib import Path
 
 from mcp.server.fastmcp import FastMCP
@@ -385,11 +383,13 @@ def validate_frontmatter(path: str) -> str:
     })
 
 
+# ── Local LLM integration ─────────────────────────────────────────
+
+sys.path.insert(0, str(SCRIPT_DIR))
+import local_llm  # noqa: E402
+
+
 # ── Tool 8: delegate_task ──────────────────────────────────────────
-
-OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
-DEFAULT_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:7b")
-
 
 @mcp.tool()
 def delegate_task(
@@ -417,41 +417,26 @@ def delegate_task(
         model: Ollama model name (default: qwen2.5:7b).
         temperature: Sampling temperature (default: 0.3 for determinism).
     """
-    model = model or DEFAULT_MODEL
-
-    prompt = task
+    messages = [{"role": "system", "content": task}]
     if context:
-        prompt = f"{task}\n\n---\nContext:\n{context}"
+        messages.append({"role": "user", "content": context})
+    else:
+        messages = [{"role": "user", "content": task}]
 
-    payload = json.dumps({
-        "model": model,
-        "prompt": prompt,
-        "stream": False,
-        "options": {"temperature": temperature},
-    }).encode()
-
-    req = urllib.request.Request(
-        f"{OLLAMA_URL}/api/generate",
-        data=payload,
-        headers={"Content-Type": "application/json"},
-        method="POST",
+    result = local_llm.complete(
+        messages=messages,
+        model=model,
+        temperature=temperature,
     )
 
-    try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            body = json.loads(resp.read())
-            return json.dumps({
-                "model": body.get("model", model),
-                "response": body.get("response", ""),
-                "eval_count": body.get("eval_count", 0),
-                "total_duration_ms": round(
-                    body.get("total_duration", 0) / 1_000_000
-                ),
-            })
-    except urllib.error.URLError as e:
-        return json.dumps({"error": f"Ollama connection failed: {e}"})
-    except Exception as e:
-        return json.dumps({"error": str(e)})
+    if result["error"]:
+        return json.dumps({"error": result["error"]})
+
+    return json.dumps({
+        "model": result["model"],
+        "backend": result["backend"],
+        "response": result["response"],
+    })
 
 
 # ── Tool 9: infer_triage_frontmatter ──────────────────────────────
@@ -461,6 +446,7 @@ def infer_triage_frontmatter(
     batch: int = 1,
     dry_run: bool = False,
     file: str = "",
+    model: str = "",
 ) -> str:
     """Enrich triage frontmatter using a local LLM via Ollama.
 
@@ -476,6 +462,7 @@ def infer_triage_frontmatter(
         batch: Number of files to process (default: 1).
         dry_run: Preview changes without writing (default: False).
         file: Process a specific file (relative to triage/).
+        model: Ollama model to use (default: qwen2.5:3b).
     """
     cmd = [sys.executable, str(SCRIPT_DIR / "infer-triage-frontmatter.py")]
     if dry_run:
@@ -483,6 +470,8 @@ def infer_triage_frontmatter(
     cmd.extend(["--batch", str(batch)])
     if file:
         cmd.extend(["--file", file])
+    if model:
+        cmd.extend(["--model", model])
 
     result = subprocess.run(
         cmd, capture_output=True, text=True, timeout=300,
@@ -551,6 +540,22 @@ def mine_triage_relevance(
         "relevant_count": len(relevant),
         "files": relevant,
         "stderr": result.stderr[-500:] if result.stderr else "",
+    })
+
+
+# ── Tool 11: llm_status ──────────────────────────────────────────
+
+@mcp.tool()
+def llm_status() -> str:
+    """Report which local LLM backends are available and what models they have.
+
+    Returns backend names, model lists, and which backend would be
+    preferred for inference. Useful for diagnostics and choosing models.
+    """
+    return json.dumps({
+        "available": local_llm.is_available(),
+        "backends": local_llm.available_backends(),
+        "models": local_llm.available_models(),
     })
 
 

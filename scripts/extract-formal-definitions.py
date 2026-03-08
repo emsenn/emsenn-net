@@ -14,12 +14,13 @@ import argparse
 import json
 import os
 import sys
-import urllib.request
-import urllib.error
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent
+
+sys.path.insert(0, str(SCRIPT_DIR))
+import local_llm  # noqa: E402
 
 for candidate in [REPO_ROOT / "content", REPO_ROOT.parent / "content"]:
     if candidate.is_dir() and (candidate / "triage").is_dir():
@@ -30,8 +31,7 @@ else:
     sys.exit(1)
 
 TRIAGE_DIR = CONTENT_DIR / "triage"
-OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
-DEFAULT_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:7b")
+DEFAULT_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:3b")
 
 SKIP_DIRS = {".git", "node_modules", "__pycache__", ".obsidian", ".trash"}
 
@@ -61,25 +61,17 @@ def extract_definition(filepath, model=DEFAULT_MODEL):
 
     prompt = EXTRACT_PROMPT.format(content=content)
 
-    payload = json.dumps({
-        "model": model,
-        "prompt": prompt,
-        "stream": False,
-        "options": {"temperature": 0.1, "num_predict": 300},
-    }).encode()
-
-    req = urllib.request.Request(
-        f"{OLLAMA_URL}/api/generate",
-        data=payload,
-        headers={"Content-Type": "application/json"},
+    result = local_llm.complete(
+        messages=[{"role": "user", "content": prompt}],
+        model=model,
+        temperature=0.1,
+        max_tokens=300,
     )
 
-    try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            result = json.loads(resp.read())
-            response_text = result.get("response", "").strip()
-    except (urllib.error.URLError, TimeoutError) as e:
-        return {"path": rel_path, "error": str(e)}
+    if result["error"]:
+        return {"path": rel_path, "error": result["error"]}
+
+    response_text = result["response"].strip()
 
     # Parse JSON from response
     try:
@@ -118,8 +110,10 @@ def main():
                         help="Max files to process (0=all)")
     parser.add_argument("--relevance-filter", default="",
                         help="Only output entries where relevance contains this word")
-    parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument("--model", default="")
     args = parser.parse_args()
+
+    active_model = args.model or local_llm.suggest_model("extraction")
 
     if args.files:
         files = [Path(f) for f in args.files]
@@ -139,7 +133,7 @@ def main():
 
     results = []
     for i, filepath in enumerate(files):
-        result = extract_definition(filepath, model=args.model)
+        result = extract_definition(filepath, model=active_model)
         if result and "error" not in result:
             relevance = result.get("relevance_to_method", "none")
             if args.relevance_filter:

@@ -18,12 +18,13 @@ import argparse
 import json
 import os
 import sys
-import urllib.request
-import urllib.error
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent
+
+sys.path.insert(0, str(SCRIPT_DIR))
+import local_llm  # noqa: E402
 
 for candidate in [REPO_ROOT / "content", REPO_ROOT.parent / "content"]:
     if candidate.is_dir() and (candidate / "triage").is_dir():
@@ -34,8 +35,7 @@ else:
     sys.exit(1)
 
 TRIAGE_DIR = CONTENT_DIR / "triage"
-OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
-DEFAULT_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:7b")
+DEFAULT_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:3b")
 
 SKIP_DIRS = {".git", "node_modules", "__pycache__", ".obsidian", ".trash"}
 
@@ -126,33 +126,17 @@ def classify_file(filepath, focus, model=DEFAULT_MODEL):
         excerpt=excerpt[:3000],  # hard cap on excerpt length
     )
 
-    payload = json.dumps({
-        "model": model,
-        "prompt": prompt,
-        "stream": False,
-        "options": {"temperature": 0.1, "num_predict": 100},
-    }).encode()
+    result = local_llm.complete(
+        messages=[{"role": "user", "content": prompt}],
+        model=model,
+        temperature=0.1,
+        max_tokens=100,
+    )
 
-    response_text = None
-    last_error = None
-    for attempt in range(3):
-        req = urllib.request.Request(
-            f"{OLLAMA_URL}/api/generate",
-            data=payload,
-            headers={"Content-Type": "application/json"},
-        )
-        try:
-            with urllib.request.urlopen(req, timeout=120) as resp:
-                result = json.loads(resp.read())
-                response_text = result.get("response", "").strip()
-                break
-        except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
-            last_error = e
-            import time
-            time.sleep(2 * (attempt + 1))
+    if result["error"]:
+        return {"path": rel_path, "score": -1, "reason": f"LLM error: {result['error']}"}
 
-    if response_text is None:
-        return {"path": rel_path, "score": -1, "reason": f"ollama error: {last_error}"}
+    response_text = result["response"].strip()
 
     # Parse the JSON response
     try:
@@ -213,8 +197,8 @@ def main():
                         help="Subdirectory of triage/ to search (default: all)")
     parser.add_argument("--threshold", type=int, default=2,
                         help="Minimum relevance score to include (default: 2)")
-    parser.add_argument("--model", default=DEFAULT_MODEL,
-                        help=f"Ollama model to use (default: {DEFAULT_MODEL})")
+    parser.add_argument("--model", default="",
+                        help="Model to use (default: auto-selected)")
     parser.add_argument("--limit", type=int, default=0,
                         help="Max files to classify (0=all)")
     parser.add_argument("--all", action="store_true",
@@ -239,9 +223,12 @@ def main():
     print(f"Classifying {len(files)} files against focus: {args.focus}",
           file=sys.stderr)
 
+    active_model = args.model or local_llm.suggest_model("classification")
+    print(f"Using model: {active_model}", file=sys.stderr)
+
     results = []
     for i, filepath in enumerate(files):
-        result = classify_file(filepath, args.focus, model=args.model)
+        result = classify_file(filepath, args.focus, model=active_model)
         results.append(result)
         if (i + 1) % 10 == 0:
             print(f"  ... {i + 1}/{len(files)}", file=sys.stderr)
