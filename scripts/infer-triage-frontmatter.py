@@ -25,6 +25,7 @@ import re
 import sys
 import urllib.request
 import urllib.error
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -42,6 +43,59 @@ else:
 TRIAGE_DIR = CONTENT_DIR / "triage"
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
 DEFAULT_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:7b")
+
+SCRIPT_VERSION = "2"
+
+# Model trust ordering — higher index = more trusted for enrichment.
+# When a file was enriched by a model at or above the current model's
+# trust level, we skip it. When enriched by a lower-trust model, we
+# re-enrich. Models not in this list get trust level 0 (lowest).
+MODEL_TRUST_ORDER = [
+    "qwen2.5:3b",
+    "qwen2.5:7b",
+    "qwen2.5:14b",
+    "qwen2.5:32b",
+    "llama3.1:8b",
+    "llama3.1:70b",
+    "claude-haiku-4",
+    "claude-sonnet-4",
+    "claude-opus-4",
+]
+
+
+def get_model_trust_level(model_name: str) -> int:
+    """Return the trust level for a model (index in MODEL_TRUST_ORDER).
+
+    Models not in the list get trust level 0. Models in the list get
+    their 1-based index (so even the lowest listed model outranks
+    unlisted models).
+    """
+    try:
+        return MODEL_TRUST_ORDER.index(model_name) + 1
+    except ValueError:
+        return 0
+
+
+def parse_enrichment_provenance(fm_text: str) -> tuple[str, int]:
+    """Extract the enriching model name and its trust level from provenance.
+
+    Parses triage-enriched-by field which has format:
+      infer-triage-frontmatter-v<N>-by-<model>
+
+    Returns (model_name, trust_level). Returns ("", 0) if no provenance.
+    """
+    match = re.search(
+        r'^triage-enriched-by:\s*["\']?infer-triage-frontmatter-v\d+-by-(.+?)["\']?\s*$',
+        fm_text, re.MULTILINE
+    )
+    if match:
+        model_name = match.group(1).strip()
+        return model_name, get_model_trust_level(model_name)
+    # Legacy: old-style "triage-status: enriched" has no model info → trust 0
+    if re.search(r'^triage-status:\s*enriched', fm_text, re.MULTILINE):
+        return "unknown", 0
+    return "", -1  # -1 means never enriched
+
 
 # Valid type values from the semantic-frontmatter spec
 VALID_TYPES = [
@@ -67,8 +121,8 @@ Rules:
 - If the file has very little content, set type to "babble" and add minimal tags
 - If you cannot determine a field, omit it rather than guess poorly
 - Do NOT invent a date-created value. If no date-created exists, omit it entirely
-- Preserve existing date-created, date-updated, authors, aliases, triage-status fields exactly
-- Add triage-status: enriched if not already present
+- Preserve existing date-created, date-updated, authors, aliases fields exactly
+- Do NOT add triage-status, triage-enriched-by, or date-triage-enriched fields — those are added by the script, not by you
 
 Example output format:
 ---
@@ -80,7 +134,6 @@ tags:
   - BroaderTag
   - BroadestTag
 description: "One sentence about what this file covers."
-triage-status: enriched
 target-discipline: technology
 ---"""
 
@@ -188,6 +241,36 @@ def validate_frontmatter(fm_text: str) -> list[str]:
     return warnings
 
 
+def stamp_provenance(fm_text: str, model: str) -> str:
+    """Add provenance fields and strip any model-generated triage-status.
+
+    Injects triage-enriched-by and date-triage-enriched into the
+    frontmatter. Strips triage-status if the model included it despite
+    being told not to.
+    """
+    # Strip any triage-status, triage-enriched-by, or date-triage-enriched
+    # the model may have generated (we control these, not the model)
+    lines = fm_text.split("\n")
+    cleaned = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("triage-status:"):
+            continue
+        if stripped.startswith("triage-enriched-by:"):
+            continue
+        if stripped.startswith("date-triage-enriched:"):
+            continue
+        cleaned.append(line)
+
+    # Append provenance fields
+    provenance_tag = f"infer-triage-frontmatter-v{SCRIPT_VERSION}-by-{model}"
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S")
+    cleaned.append(f'triage-enriched-by: "{provenance_tag}"')
+    cleaned.append(f"date-triage-enriched: {now}")
+
+    return "\n".join(cleaned)
+
+
 def get_triage_files_oldest_first() -> list[Path]:
     """Get all triage .md files, sorted by modification time (oldest first)."""
     skip_dirs = {".trash", ".obsidian", "node_modules", ".git"}
@@ -219,11 +302,18 @@ def enrich_file(filepath: Path, dry_run: bool = False, model: str = "") -> dict:
     if not content.strip():
         return {"status": "skipped", "message": "empty file"}
 
-    # Skip files already enriched
-    if "triage-status: enriched" in content:
-        return {"status": "skipped", "message": "already enriched"}
-
     original_fm, body = parse_frontmatter_and_body(content)
+
+    # Model-aware skip logic: check enrichment provenance
+    current_model = model or DEFAULT_MODEL
+    current_trust = get_model_trust_level(current_model)
+    if original_fm:
+        prev_model, prev_trust = parse_enrichment_provenance(original_fm)
+        if prev_trust >= 0 and prev_trust >= current_trust:
+            return {
+                "status": "skipped",
+                "message": f"already enriched by {prev_model} (trust {prev_trust} >= {current_trust})",
+            }
 
     # Build the prompt
     prompt = ENRICHMENT_PROMPT.format(valid_types=", ".join(VALID_TYPES))
@@ -246,6 +336,9 @@ def enrich_file(filepath: Path, dry_run: bool = False, model: str = "") -> dict:
 
     # Validate the generated frontmatter
     warnings = validate_frontmatter(new_fm_text)
+
+    # Stamp provenance (strip any model-generated triage-status, add our fields)
+    new_fm_text = stamp_provenance(new_fm_text, current_model)
 
     # Reconstruct the file: new frontmatter + original body
     # The body must be EXACTLY the same as the original

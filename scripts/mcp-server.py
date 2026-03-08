@@ -469,7 +469,8 @@ def infer_triage_frontmatter(
     Verifies that body content is unchanged before writing.
 
     Complements enrich_triage (mechanical fixes) with inference-based
-    classification. Skips files already marked triage-status: enriched.
+    classification. Skips files already enriched by an equal or higher
+    trust model (uses triage-enriched-by provenance field).
 
     Args:
         batch: Number of files to process (default: 1).
