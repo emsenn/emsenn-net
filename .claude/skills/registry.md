@@ -19,6 +19,7 @@ right skill. Skills are grouped by intent category.
 | make-content-folder | `technology/specifications/agential-semioverse-repository/skills/make-content-folder/` | "create a folder", "make directory" | path |
 | record-idea | `technology/specifications/agential-semioverse-repository/skills/record-idea/` | "record idea", "idea about" | idea text + thing |
 | make-specification | `technology/specifications/specification-specification/skills/make-specification/` | "make specification", "create spec", "new specification", "write spec", "scaffold spec" | spec-id + category? + source_material[]? |
+| make-semiotic-specification | `technology/specifications/semiotic-specification-specification/skills/make-semiotic-specification/` | "make semiotic specification", "create semiotic spec", "new semiotic specification", "write semiotic spec" | spec-id + category? + source_material[]? |
 | create-skill | `technology/specifications/agential-semioverse-repository/skills/create-skill/` | "create skill", "new skill" | skill name + parent thing |
 | write-term-or-concept | `technology/specifications/agential-semioverse-repository/skills/write-term-or-concept/` | "write term", "write concept", "define term", "create term file", "what does X mean (needs term entry)" | name + definition? + layer? |
 | write-derivation-text | `technology/specifications/semiotic-endeavor/skills/write-derivation-text/` | "write derivation text", "document derivation", "trace what X contributes", "source of inspiration", "X inspires Y", "mark X as derivation source" | source + target? + type? |
