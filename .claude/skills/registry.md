@@ -61,6 +61,22 @@ right skill. Skills are grouped by intent category.
 |-------|------|----------|-------|
 | evaluate-slop | `technology/specifications/agential-semioverse-repository/skills/evaluate-slop/` | "evaluate slop", "assess draft", "check slop", "clean up slop" | file or dir in slop/ |
 | process-triage-note | `technology/specifications/agential-semioverse-repository/skills/process-triage-note/` | "process triage", "sort triage", "handle triage note", "what is this triage note" | file in triage/ |
+| enrich-triage | `technology/specifications/agential-semioverse-repository/skills/enrich-triage/` | "enrich triage", "clean up triage" | path?, batch? |
+| mine-triage | `technology/specifications/agential-semioverse-repository/skills/mine-triage/` | "mine triage", "survey triage" | focus + lens |
+
+## MCP tools (runtime: mcp)
+
+| Skill | Path | MCP tool | Input |
+|-------|------|----------|-------|
+| find-in-repo | `technology/specifications/agential-semioverse-repository/skills/find-in-repo/` | `mcp__asr__find_in_repo` | query, discipline?, type? |
+| query-triage-index | `technology/specifications/agential-semioverse-repository/skills/query-triage-index/` | `mcp__asr__query_triage_index` | enrichment?, discipline?, type?, status? |
+| rebuild-triage-index | `technology/specifications/agential-semioverse-repository/skills/rebuild-triage-index/` | `mcp__asr__rebuild_triage_index` | none |
+| list-plans | `technology/specifications/agential-semioverse-repository/skills/list-plans/` | `mcp__asr__list_plans` | status?, priority? |
+| list-skills | `technology/specifications/agential-semioverse-repository/skills/list-skills/` | `mcp__asr__list_skills` | kind?, search? |
+| validate-frontmatter | `technology/specifications/agential-semioverse-repository/skills/validate-frontmatter/` | `mcp__asr__validate_frontmatter` | path |
+| delegate-task | `technology/specifications/agential-semioverse-repository/skills/delegate-task/` | `mcp__asr__delegate_task` | task, context? |
+| mine-triage-relevance | `technology/specifications/agential-semioverse-repository/skills/mine-triage-relevance/` | `mcp__asr__mine_triage_relevance` | focus, directory?, threshold? |
+| infer-triage-frontmatter | `technology/specifications/agential-semioverse-repository/skills/infer-triage-frontmatter/` | `mcp__asr__infer_triage_frontmatter` | batch?, dry_run?, file? |
 
 ## Organize
 

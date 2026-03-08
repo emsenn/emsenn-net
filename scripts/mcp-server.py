@@ -494,6 +494,65 @@ def infer_triage_frontmatter(
     })
 
 
+# ── Tool 10: mine_triage_relevance ────────────────────────────────
+
+@mcp.tool()
+def mine_triage_relevance(
+    focus: str,
+    directory: str = "",
+    threshold: int = 2,
+    limit: int = 0,
+    search_all: bool = False,
+) -> str:
+    """Pre-classify triage files by relevance to a focus using local LLM.
+
+    Reads the first ~500 words of each file and asks ollama to score
+    relevance (0-3). Returns files scoring >= threshold, sorted by
+    relevance. Use this BEFORE reading files in full — it reduces the
+    number of files the inference agent needs to process.
+
+    Args:
+        focus: Topic to classify relevance against (e.g. "semiotic specifications").
+        directory: Subdirectory of triage/ to search (default: all of triage).
+        threshold: Minimum relevance score to include (default: 2).
+        limit: Max files to classify, 0=all (default: 0).
+        search_all: Search all content, not just triage (default: False).
+    """
+    cmd = [
+        sys.executable, str(SCRIPT_DIR / "mine-triage-relevance.py"),
+        "--focus", focus,
+        "--threshold", str(threshold),
+    ]
+    if directory:
+        cmd.extend(["--dir", directory])
+    if limit > 0:
+        cmd.extend(["--limit", str(limit)])
+    if search_all:
+        cmd.append("--all")
+
+    result = subprocess.run(
+        cmd, capture_output=True, text=True, timeout=600,
+        env={**os.environ, "PYTHONIOENCODING": "utf-8"},
+    )
+
+    # Parse JSON lines from stdout
+    relevant = []
+    for line in result.stdout.strip().split("\n"):
+        if line.strip():
+            try:
+                relevant.append(json.loads(line))
+            except json.JSONDecodeError:
+                pass
+
+    return json.dumps({
+        "success": result.returncode == 0,
+        "focus": focus,
+        "relevant_count": len(relevant),
+        "files": relevant,
+        "stderr": result.stderr[-500:] if result.stderr else "",
+    })
+
+
 # ── Run ───────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
