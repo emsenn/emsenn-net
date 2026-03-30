@@ -127,6 +127,76 @@ article.h-entry {
   border-left: 3px solid var(--text);
 }
 
+/* === BREADCRUMBS === */
+.breadcrumbs {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.65em;
+  letter-spacing: 0.04em;
+  color: var(--mid);
+  margin-bottom: 0.3em;
+}
+.breadcrumbs a {
+  color: var(--mid);
+}
+.breadcrumb-sep {
+  margin: 0 0.3em;
+  color: var(--mid-border);
+}
+
+/* === TYPE-AWARE BORDERS === */
+article[data-type="term"],
+article[data-type="definition"] { border-left-color: var(--mid); }
+article[data-type="concept"]    { border-left-color: var(--accent); }
+article[data-type="lesson"]     { border-left-color: rgba(70,90,70,1); }
+article[data-type="babble"]     { border-left-color: var(--mid-light); }
+@media (prefers-color-scheme: dark) {
+  article[data-type="lesson"]   { border-left-color: rgba(120,160,120,1); }
+}
+
+/* === TYPE-SPECIFIC METADATA === */
+.type-meta {
+  margin-bottom: 1.2em;
+  padding: 0.6em 0.8em;
+  background: var(--mid-faint);
+  border-left: 2px solid var(--mid-border);
+  font-size: 0.88em;
+}
+.type-meta-label {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  margin-bottom: 0.3em;
+}
+.type-meta-value {
+  font-family: "IBM Plex Serif", "Source Serif Pro", Georgia, serif;
+}
+.type-meta ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.type-meta li {
+  margin-bottom: 0.2em;
+}
+.type-meta li::before {
+  content: "— ";
+  color: var(--mid);
+}
+.type-meta--definition .type-meta-value {
+  font-size: 1.05em;
+  font-style: italic;
+}
+.type-meta--abstract {
+  border-left-color: var(--accent);
+}
+.type-meta--abstract p {
+  font-family: "IBM Plex Serif", "Source Serif Pro", Georgia, serif;
+  margin: 0;
+}
+
 /* === HEADINGS: constructive typography === */
 h1, h2, h3, h4, h5, h6 {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
@@ -411,34 +481,29 @@ a.citation {
 
 /* === CITE THIS === */
 .cite-this {
-  margin-top: 2em;
-  padding-top: 0.8em;
-  border-top: 1px solid var(--rule);
+  margin-top: 0.8em;
+  background: var(--bg);
+  padding: 1.2em 1.4em;
+  border-left: 3px solid var(--mid-border);
 }
 .cite-this h2 {
-  font-size: 1.1em;
-}
-.cite-this details {
-  margin: 0.4em 0;
-}
-.cite-this summary {
+  all: unset;
+  display: block;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  cursor: pointer;
+  font-size: 0.6em;
+  font-weight: normal;
   color: var(--mid);
-}
-.cite-this summary:hover {
-  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 0.4em;
 }
 .cite-block {
-  margin: 0.4em 0 0.8em;
-  padding: 0.6em 0.8em;
-  font-size: 0.8em;
+  margin: 0;
+  padding: 0;
+  font-size: 0.75em;
   line-height: 1.5;
-  background: var(--surface);
-  border: 1px solid var(--mid-border);
+  background: none;
+  border: none;
   overflow-x: auto;
   white-space: pre-wrap;
   word-break: break-word;
@@ -448,6 +513,7 @@ a.citation {
   padding: 0;
   background: none;
   border: none;
+  color: var(--mid);
 }
 
 /* === TABLE OF CONTENTS === */

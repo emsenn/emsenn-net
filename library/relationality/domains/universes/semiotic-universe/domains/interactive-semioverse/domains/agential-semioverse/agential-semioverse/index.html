@@ -1,75 +1,509 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Agential Semioverse - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-01-04","datePublished":"2026-01-04","description":"Abstract Let\u0026rsquo;s construct an Agential Semioverse: an interactive-semioverse enriched with agents, skills, and tools, where all operations are mediated by a disciplined skill calculus and interpreted as interaction operators on partial states.\nThe Agential Semioverse extends the Interactive Semioverse by adding:\na set of agent handles with profiles (roles, goals, policies, memory); a set of tools as primitive, typed, partial operators on states; a skill calculus that composes tools into parametric procedures; an execution semantics for agent-skill evaluation; policy and authorization as monotone restrictions on admissible operators; a fusion principle identifying skills with fragmentwise identical semantics. All new operators must be fragment-preserving and closure-compatible. The resulting structure admits a least fixed point extension and is initial among agential semioverse structures over the same primitives.\n","name":"Agential Semioverse","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/agential-semioverse/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Agential Semioverse</h1><div class=meta><time class=dt-published datetime=2026-01-04T00:00:00Z>2026-01-04</time></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#abstract>Abstract</a></li><li><a href=#scope-and-intent>Scope and intent</a></li><li><a href=#interactive-semioverse>The guiding constraint is that agency is internal: all agent activity must be
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agential Semioverse - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-01-04",
+  "datePublished": "2026-01-04",
+  "description": "Abstract Let\u0026rsquo;s construct an Agential Semioverse: an interactive-semioverse enriched with agents, skills, and tools, where all operations are mediated by a disciplined skill calculus and interpreted as interaction operators on partial states.\nThe Agential Semioverse extends the Interactive Semioverse by adding:\na set of agent handles with profiles (roles, goals, policies, memory); a set of tools as primitive, typed, partial operators on states; a skill calculus that composes tools into parametric procedures; an execution semantics for agent-skill evaluation; policy and authorization as monotone restrictions on admissible operators; a fusion principle identifying skills with fragmentwise identical semantics. All new operators must be fragment-preserving and closure-compatible. The resulting structure admits a least fixed point extension and is initial among agential semioverse structures over the same primitives.\n",
+  "name": "Agential Semioverse",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/agential-semioverse/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/">Universes</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/">Semiotic universe</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/">Interactive semioverse</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/">Agential semioverse</a></nav>
+  <h1 class="p-name">Agential Semioverse</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-01-04T00:00:00Z">2026-01-04</time>
+    
+    
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#scope-and-intent">Scope and intent</a></li>
+    <li><a href="#interactive-semioverse">The guiding constraint is that agency is internal: all agent activity must be
 representable as admissible interaction operators acting over the same
 universe, closure structure, and provenance discipline already defined for the
-Interactive Semioverse.</a></li></ul><ul><li><a href=#underlying-universe-assumed>Underlying universe (assumed)</a></li></ul><ul><li><a href=#agent-handles>Agent Handles</a></li><li><a href=#agent-profiles>Agent Profiles</a></li><li><a href=#memory-as-a-local-fragment>Memory as a Local Fragment</a></li><li><a href=#internal-agents>Internal agents</a></li></ul><ul><li><a href=#module-roots-and-containment>Module Roots and Containment</a></li><li><a href=#membership-and-inheritance>Membership and Inheritance</a></li></ul><ul><li><a href=#tool-signatures>Tool Signatures</a></li><li><a href=#tool-admissibility>Tool Admissibility</a></li></ul><ul><li><a href=#skill-terms>Skill Terms</a></li><li><a href=#definable-skills>Definable Skills</a></li></ul><ul><li><a href=#interpretation-into-interaction-operators>Interpretation into Interaction Operators</a></li><li><a href=#skill-equivalence>Skill Equivalence</a></li></ul><ul><li><a href=#authorization-scopes>Authorization scopes</a></li></ul><ul><li><a href=#agent-execution>Agent Execution</a></li><li><a href=#memory-update>Memory Update</a></li></ul><ul><li><a href=#agential-closure-operator>Agential Closure Operator</a></li><li><a href=#least-fixed-point>Least Fixed Point</a></li></ul><ul><li><a href=#extensions>Extensions</a></li></ul></nav></details><div class=e-content><h2 id=abstract>Abstract</h2><p>Let&rsquo;s construct an <strong>Agential Semioverse</strong>: an <a href=../interactive-semioverse/interactive-semioverse.md class=link-internal>interactive-semioverse</a> enriched with agents, skills, and tools, where all operations are mediated by a disciplined skill calculus and interpreted as interaction operators on partial states.</p><p>The Agential Semioverse extends the Interactive Semioverse by adding:</p><ul><li>a set of agent handles with profiles (roles, goals, policies, memory);</li><li>a set of tools as primitive, typed, partial operators on states;</li><li>a skill calculus that composes tools into parametric procedures;</li><li>an execution semantics for agent-skill evaluation;</li><li>policy and authorization as monotone restrictions on admissible operators;</li><li>a fusion principle identifying skills with fragmentwise identical semantics.</li></ul><p>All new operators must be fragment-preserving and closure-compatible. The
-resulting structure admits a <a href=../../../concepts/fixed-point/index.md class=link-internal>least fixed point</a> extension and is initial among
-agential semioverse structures over the same primitives.</p><h2 id=scope-and-intent>Scope and intent</h2><p>This specification defines the Agential Semioverse as an iteration of the
-Interactive Semioverse in which internal agents operate over a <a href=../../../../linguistics/topics/semiotics/index.md class=link-internal>semiotic</a>
+Interactive Semioverse.</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#underlying-universe-assumed">Underlying universe (assumed)</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#agent-handles">Agent Handles</a></li>
+    <li><a href="#agent-profiles">Agent Profiles</a></li>
+    <li><a href="#memory-as-a-local-fragment">Memory as a Local Fragment</a></li>
+    <li><a href="#internal-agents">Internal agents</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#module-roots-and-containment">Module Roots and Containment</a></li>
+    <li><a href="#membership-and-inheritance">Membership and Inheritance</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#tool-signatures">Tool Signatures</a></li>
+    <li><a href="#tool-admissibility">Tool Admissibility</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#skill-terms">Skill Terms</a></li>
+    <li><a href="#definable-skills">Definable Skills</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#interpretation-into-interaction-operators">Interpretation into Interaction Operators</a></li>
+    <li><a href="#skill-equivalence">Skill Equivalence</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#authorization-scopes">Authorization scopes</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#agent-execution">Agent Execution</a></li>
+    <li><a href="#memory-update">Memory Update</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#agential-closure-operator">Agential Closure Operator</a></li>
+    <li><a href="#least-fixed-point">Least Fixed Point</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#extensions">Extensions</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h2 id="abstract">Abstract</h2>
+<p>Let&rsquo;s construct an <strong>Agential Semioverse</strong>: an <a href="../interactive-semioverse/interactive-semioverse.md" class="link-internal">interactive-semioverse</a> enriched with agents, skills, and tools, where all operations are mediated by a disciplined skill calculus and interpreted as interaction operators on partial states.</p>
+<p>The Agential Semioverse extends the Interactive Semioverse by adding:</p>
+<ul>
+<li>a set of agent handles with profiles (roles, goals, policies, memory);</li>
+<li>a set of tools as primitive, typed, partial operators on states;</li>
+<li>a skill calculus that composes tools into parametric procedures;</li>
+<li>an execution semantics for agent-skill evaluation;</li>
+<li>policy and authorization as monotone restrictions on admissible operators;</li>
+<li>a fusion principle identifying skills with fragmentwise identical semantics.</li>
+</ul>
+<p>All new operators must be fragment-preserving and closure-compatible. The
+resulting structure admits a <a href="../../../concepts/fixed-point/index.md" class="link-internal">least fixed point</a> extension and is initial among
+agential semioverse structures over the same primitives.</p>
+<h2 id="scope-and-intent">Scope and intent</h2>
+<p>This specification defines the Agential Semioverse as an iteration of the
+Interactive Semioverse in which internal agents operate over a <a href="../../../../linguistics/topics/semiotics/index.md" class="link-internal">semiotic</a>
 library. It does not define user interfaces, model architectures, or
 deployment topology. It defines only the mathematical objects, admissibility
 constraints, and execution judgments required to make agents, skills, and
-executable documents precise, interoperable, and non-arbitrary.</p><h2 id=interactive-semioverse>The guiding constraint is that agency is internal: all agent activity must be
+executable documents precise, interoperable, and non-arbitrary.</p>
+<h2 id="interactive-semioverse">The guiding constraint is that agency is internal: all agent activity must be
 representable as admissible interaction operators acting over the same
 universe, closure structure, and provenance discipline already defined for the
-Interactive Semioverse.</h2><h1 id=base-semioverse-reference>Base Semioverse (Reference)</h1><h2 id=underlying-universe-assumed>Underlying universe (assumed)</h2><p>Let U denote the universe of partial <a href=../../../../linguistics/topics/semiotics/index.md class=link-internal>semiotic</a> states. Elements of U are
+Interactive Semioverse.</h2>
+<h1 id="base-semioverse-reference">Base Semioverse (Reference)</h1>
+<h2 id="underlying-universe-assumed">Underlying universe (assumed)</h2>
+<p>Let U denote the universe of partial <a href="../../../../linguistics/topics/semiotics/index.md" class="link-internal">semiotic</a> states. Elements of U are
 fragmentary, monotone-extensible structures (for example, libraries of files
 with metadata, provenance, and evaluation state). Let Int denote the class of
-admissible interaction operators:</p><p>E: U -> U</p><p>such that E satisfies the previously defined constraints (monotonicity,
+admissible interaction operators:</p>
+<p>E: U -&gt; U</p>
+<p>such that E satisfies the previously defined constraints (monotonicity,
 fragment compatibility, closure preservation, provenance extension, and
 failure monotonicity). No object introduced below may bypass or weaken these
-constraints.</p><p>We assume a fixed Interactive Semioverse as in the base mathematics, with:</p><ul><li>a complete <a href=../../../concepts/heyting-algebra/index.md class=link-internal>Heyting algebra</a> H with modality j and trace G;</li><li>a definable operator algebra Op^def interpreted into H;</li><li>fragments as finitely generated modal-temporal subalgebras;</li><li><a href=../../../concepts/closure-operator/index.md class=link-internal>closure operators</a> S_sem, S_syn, S_fus with <a href=../../../concepts/fixed-point/index.md class=link-internal>least fixed point</a> X*;</li><li><a href=../interactive-semioverse/terms/handle.md class=link-internal>handles</a>, <a href=../interactive-semioverse/terms/interaction-term.md class=link-internal>interaction terms</a>, <a href=../interactive-semioverse/terms/footprint.md class=link-internal>footprints</a>, provenance, failure, and
-interaction operators.</li></ul><p>All agential structures are built on top of this base.</p><hr><h1 id=agents-and-profiles>Agents and Profiles</h1><h2 id=agent-handles>Agent Handles</h2><p>Let Agent be a set of <strong>agent handles</strong>. Handles are external indices and are
-not elements of H.</p><h2 id=agent-profiles>Agent Profiles</h2><p>An <strong>agent profile</strong> is a tuple</p><p>P(a) = (role_a, goals_a, policy_a, Skills_a, Tools_a, Mem_a)</p><p>where:</p><ul><li>role_a is a role label;</li><li>goals_a is a finite set of goals;</li><li>policy_a is a policy predicate on actions (Section 6);</li><li>Skills_a is a set of skills the agent can invoke;</li><li>Tools_a is a set of tools the agent can invoke directly;</li><li>Mem_a is a partial state (or fragment) representing agent memory.</li></ul><p>We collect profiles as a function P : Agent -> Profile.</p><h2 id=memory-as-a-local-fragment>Memory as a Local Fragment</h2><p>Each memory Mem_a is a partial state (H_a, Op_a) with H_a subset of H and
+constraints.</p>
+<p>We assume a fixed Interactive Semioverse as in the base mathematics, with:</p>
+<ul>
+<li>a complete <a href="../../../concepts/heyting-algebra/index.md" class="link-internal">Heyting algebra</a> H with modality j and trace G;</li>
+<li>a definable operator algebra Op^def interpreted into H;</li>
+<li>fragments as finitely generated modal-temporal subalgebras;</li>
+<li><a href="../../../concepts/closure-operator/index.md" class="link-internal">closure operators</a> S_sem, S_syn, S_fus with <a href="../../../concepts/fixed-point/index.md" class="link-internal">least fixed point</a> X*;</li>
+<li><a href="../interactive-semioverse/terms/handle.md" class="link-internal">handles</a>, <a href="../interactive-semioverse/terms/interaction-term.md" class="link-internal">interaction terms</a>, <a href="../interactive-semioverse/terms/footprint.md" class="link-internal">footprints</a>, provenance, failure, and
+interaction operators.</li>
+</ul>
+<p>All agential structures are built on top of this base.</p>
+<hr>
+<h1 id="agents-and-profiles">Agents and Profiles</h1>
+<h2 id="agent-handles">Agent Handles</h2>
+<p>Let Agent be a set of <strong>agent handles</strong>. Handles are external indices and are
+not elements of H.</p>
+<h2 id="agent-profiles">Agent Profiles</h2>
+<p>An <strong>agent profile</strong> is a tuple</p>
+<p>P(a) = (role_a, goals_a, policy_a, Skills_a, Tools_a, Mem_a)</p>
+<p>where:</p>
+<ul>
+<li>role_a is a role label;</li>
+<li>goals_a is a finite set of goals;</li>
+<li>policy_a is a policy predicate on actions (Section 6);</li>
+<li>Skills_a is a set of skills the agent can invoke;</li>
+<li>Tools_a is a set of tools the agent can invoke directly;</li>
+<li>Mem_a is a partial state (or fragment) representing agent memory.</li>
+</ul>
+<p>We collect profiles as a function P : Agent -&gt; Profile.</p>
+<h2 id="memory-as-a-local-fragment">Memory as a Local Fragment</h2>
+<p>Each memory Mem_a is a partial state (H_a, Op_a) with H_a subset of H and
 Op_a subset of Op^def, intended to be fragment-bounded. Memory is updated only
-through skills and is closed under the base <a href=../../../concepts/closure-operator/index.md class=link-internal>closure operator</a> S.</p><h2 id=internal-agents>Internal agents</h2><p>An internal agent is a triple</p><p>A = (Sigma, K, Pi)</p><p>where:</p><ul><li>Sigma is a bounded internal state space (finite or well-founded);</li><li>K subseteq Int is a finite set of interaction operators (the agent&rsquo;s
-skillset);</li><li>Pi: (Sigma x U) -> P(K) is a policy selecting admissible operators.</li></ul><p>The induced agent step operator is:</p><p>E_A: (U x Sigma) -> (U x Sigma)</p><p>such that:</p><p>E_A(u, sigma) = (E(u), sigma')</p><p>with E in Pi(sigma, u).</p><p>Key constraints:</p><ul><li>E_A is monotone in U;</li><li>agent state updates may not invalidate prior provenance;</li><li>agents may only act via operators in K.</li></ul><p>Given a profile P(a), take Sigma = Mem_a, derive K from the denotations of
-Skills_a, and let Pi be induced by policy_a and scope checks.</p><hr><h1 id=module-semantics>Module Semantics</h1><h2 id=module-roots-and-containment>Module Roots and Containment</h2><p>A <strong>module</strong> is a colocated collection of artifacts intended to be interpreted
-as one thing. Module roots are defined by anchors of the form:</p><p>/{id}/{id}.md</p><p>The anchor defines the module id and the module root directory. A module owns
-all files in its subtree except those under nested module roots.</p><h2 id=membership-and-inheritance>Membership and Inheritance</h2><p>Each file belongs to the nearest ancestor module root; files with no ancestor
+through skills and is closed under the base <a href="../../../concepts/closure-operator/index.md" class="link-internal">closure operator</a> S.</p>
+<h2 id="internal-agents">Internal agents</h2>
+<p>An internal agent is a triple</p>
+<p>A = (Sigma, K, Pi)</p>
+<p>where:</p>
+<ul>
+<li>Sigma is a bounded internal state space (finite or well-founded);</li>
+<li>K subseteq Int is a finite set of interaction operators (the agent&rsquo;s
+skillset);</li>
+<li>Pi: (Sigma x U) -&gt; P(K) is a policy selecting admissible operators.</li>
+</ul>
+<p>The induced agent step operator is:</p>
+<p>E_A: (U x Sigma) -&gt; (U x Sigma)</p>
+<p>such that:</p>
+<p>E_A(u, sigma) = (E(u), sigma')</p>
+<p>with E in Pi(sigma, u).</p>
+<p>Key constraints:</p>
+<ul>
+<li>E_A is monotone in U;</li>
+<li>agent state updates may not invalidate prior provenance;</li>
+<li>agents may only act via operators in K.</li>
+</ul>
+<p>Given a profile P(a), take Sigma = Mem_a, derive K from the denotations of
+Skills_a, and let Pi be induced by policy_a and scope checks.</p>
+<hr>
+<h1 id="module-semantics">Module Semantics</h1>
+<h2 id="module-roots-and-containment">Module Roots and Containment</h2>
+<p>A <strong>module</strong> is a colocated collection of artifacts intended to be interpreted
+as one thing. Module roots are defined by anchors of the form:</p>
+<p>/{id}/{id}.md</p>
+<p>The anchor defines the module id and the module root directory. A module owns
+all files in its subtree except those under nested module roots.</p>
+<h2 id="membership-and-inheritance">Membership and Inheritance</h2>
+<p>Each file belongs to the nearest ancestor module root; files with no ancestor
 module are unscoped and should be rejected by validation unless explicitly
-marked as global.</p><p>Tools and skills resolve by inheritance:</p><p>local module -> kind registry -> parent modules -> global defaults</p><p>Nearest definitions take precedence.</p><hr><h1 id=tools-as-primitive-operators>Tools as Primitive Operators</h1><h2 id=tool-signatures>Tool Signatures</h2><p>A <strong>tool</strong> t is a tuple</p><p>t = (name, invocation, precondition, effect)</p><p>where:</p><ul><li><p>invocation identifies a runnable capability (command, script, or service)
-and how to execute it;</p></li><li><p>precondition is a predicate on state and inputs;</p></li><li><p>effect is a partial function</p><p>t : U x In_t -> U x Out_t</p></li></ul><p>with failure represented by bottom and failure marks.</p><p>Tools need not carry typed schemas; skills provide the structured interfaces
-and map skill inputs to tool invocations.</p><h2 id=tool-admissibility>Tool Admissibility</h2><p>A tool is <strong>admissible</strong> if its interpretation t is:</p><ul><li>monotone in <a href=../../../../sociology/terms/the-state.md class=link-internal>the state</a> component;</li><li>fragment-preserving (maps fragments to fragments);</li><li>closure-compatible: S(t(X)) >= t(S(X)) for all X.</li></ul><p>Admissible tools are the primitive operators for skills.</p><hr><h1 id=skill-specification-normative>Skill Specification (Normative)</h1><p>A Skill S is a tuple:</p><p>S := (id, T_in, T_out, Scopes, S)</p><p>where:</p><ul><li>id is a globally stable identifier;</li><li>T_in is a strict input schema (total decoding required);</li><li>T_out is a strict output schema, including effect reports;</li><li>Scopes is a finite set of authorization predicates;</li><li>S: T_in -> Int is the denotation of the skill.</li></ul><p>A Skill does not execute by itself. Execution is defined only after:</p><ul><li>successful input decoding,</li><li>authorization satisfaction,</li><li>operator construction via S.</li></ul><p>Representation (for example, SKILL.md with YAML frontmatter, templates, or
-scripts) is non-normative. Multiple representations may denote the same Skill.</p><hr><h1 id=skill-calculus>Skill Calculus</h1><h2 id=skill-terms>Skill Terms</h2><p>Let SkillTerm be the smallest set generated by:</p><p>s ::= call(t, args)
+marked as global.</p>
+<p>Tools and skills resolve by inheritance:</p>
+<p>local module -&gt; kind registry -&gt; parent modules -&gt; global defaults</p>
+<p>Nearest definitions take precedence.</p>
+<hr>
+<h1 id="tools-as-primitive-operators">Tools as Primitive Operators</h1>
+<h2 id="tool-signatures">Tool Signatures</h2>
+<p>A <strong>tool</strong> t is a tuple</p>
+<p>t = (name, invocation, precondition, effect)</p>
+<p>where:</p>
+<ul>
+<li>
+<p>invocation identifies a runnable capability (command, script, or service)
+and how to execute it;</p>
+</li>
+<li>
+<p>precondition is a predicate on state and inputs;</p>
+</li>
+<li>
+<p>effect is a partial function</p>
+<p>t : U x In_t -&gt; U x Out_t</p>
+</li>
+</ul>
+<p>with failure represented by bottom and failure marks.</p>
+<p>Tools need not carry typed schemas; skills provide the structured interfaces
+and map skill inputs to tool invocations.</p>
+<h2 id="tool-admissibility">Tool Admissibility</h2>
+<p>A tool is <strong>admissible</strong> if its interpretation t is:</p>
+<ul>
+<li>monotone in <a href="../../../../sociology/terms/the-state.md" class="link-internal">the state</a> component;</li>
+<li>fragment-preserving (maps fragments to fragments);</li>
+<li>closure-compatible: S(t(X)) &gt;= t(S(X)) for all X.</li>
+</ul>
+<p>Admissible tools are the primitive operators for skills.</p>
+<hr>
+<h1 id="skill-specification-normative">Skill Specification (Normative)</h1>
+<p>A Skill S is a tuple:</p>
+<p>S := (id, T_in, T_out, Scopes, S)</p>
+<p>where:</p>
+<ul>
+<li>id is a globally stable identifier;</li>
+<li>T_in is a strict input schema (total decoding required);</li>
+<li>T_out is a strict output schema, including effect reports;</li>
+<li>Scopes is a finite set of authorization predicates;</li>
+<li>S: T_in -&gt; Int is the denotation of the skill.</li>
+</ul>
+<p>A Skill does not execute by itself. Execution is defined only after:</p>
+<ul>
+<li>successful input decoding,</li>
+<li>authorization satisfaction,</li>
+<li>operator construction via S.</li>
+</ul>
+<p>Representation (for example, SKILL.md with YAML frontmatter, templates, or
+scripts) is non-normative. Multiple representations may denote the same Skill.</p>
+<hr>
+<h1 id="skill-calculus">Skill Calculus</h1>
+<h2 id="skill-terms">Skill Terms</h2>
+<p>Let SkillTerm be the smallest set generated by:</p>
+<p>s ::= call(t, args)
 | let x = s1 in s2
 | seq(s1, s2)
 | if p then s1 else s2
 | lambda x. s
-| s1(s2)</p><p>where t is a tool name and p is a predicate on outputs or state.</p><h2 id=definable-skills>Definable Skills</h2><p>The set Skill^def is the closure of primitive tool calls under the above
+| s1(s2)</p>
+<p>where t is a tool name and p is a predicate on outputs or state.</p>
+<h2 id="definable-skills">Definable Skills</h2>
+<p>The set Skill^def is the closure of primitive tool calls under the above
 constructors, with definitional equality given by beta-eta rules and any
-explicit equations declared by the system.</p><p>Skills are parametric: each skill term carries an input and output schema.</p><hr><h1 id=skill-interpretation>Skill Interpretation</h1><h2 id=interpretation-into-interaction-operators>Interpretation into Interaction Operators</h2><p>An interpretation is a family of maps</p><p><a href=-.md class=link-internal>-</a>_skill : Skill^def -> (U x In_s -> U x Out_s)</p><p>satisfying:</p><ol><li>Tool correspondence: <a href=call%28t,-args%29.md class=link-internal>call(t, args)</a>_skill = t for each tool t.</li><li>Monotonicity: s_skill is monotone in <a href=../../../../sociology/terms/the-state.md class=link-internal>the state</a> component.</li><li>Fragment preservation: for any fragment F, s_skill(F, in) has carrier
-contained in the closure of F.</li><li>Closure compatibility: S(s_skill(X, in)) >= s_skill(S(X), in).</li><li>Failure preservation: failures are monotone and do not heal.</li></ol><p>Thus each skill denotes an interaction operator equipped with I/O behavior.</p><h2 id=skill-equivalence>Skill Equivalence</h2><p>For a partial state X, define s ~_X t if for all fragments F subset of H_X and
-all inputs in:</p><p>s_skill(F, in) = t_skill(F, in)</p><p>as partial states (with failure marks), and this equality is hereditarily
-extensional under definable skill composition.</p><hr><h1 id=executable-documents-skill-instances>Executable Documents (Skill Instances)</h1><p>An executable document is a concrete instance of a Skill embedded in the
-<a href=../../../../linguistics/topics/semiotics/index.md class=link-internal>semiotic</a> library.</p><p>Normatively, an executable document specifies:</p><ul><li>a reference to a Skill S,</li><li>a concrete input value x in T_in,</li><li>optional expected artifacts or targets,</li><li>optional additional scope requirements.</li></ul><p>The document denotes the operator:</p><p>E = S(x)</p><p>The Markdown body may provide narrative context, templates rendered during
+explicit equations declared by the system.</p>
+<p>Skills are parametric: each skill term carries an input and output schema.</p>
+<hr>
+<h1 id="skill-interpretation">Skill Interpretation</h1>
+<h2 id="interpretation-into-interaction-operators">Interpretation into Interaction Operators</h2>
+<p>An interpretation is a family of maps</p>
+<p><a href="-.md" class="link-internal">-</a>_skill : Skill^def -&gt; (U x In_s -&gt; U x Out_s)</p>
+<p>satisfying:</p>
+<ol>
+<li>Tool correspondence: <a href="call%28t,-args%29.md" class="link-internal">call(t, args)</a>_skill = t for each tool t.</li>
+<li>Monotonicity: s_skill is monotone in <a href="../../../../sociology/terms/the-state.md" class="link-internal">the state</a> component.</li>
+<li>Fragment preservation: for any fragment F, s_skill(F, in) has carrier
+contained in the closure of F.</li>
+<li>Closure compatibility: S(s_skill(X, in)) &gt;= s_skill(S(X), in).</li>
+<li>Failure preservation: failures are monotone and do not heal.</li>
+</ol>
+<p>Thus each skill denotes an interaction operator equipped with I/O behavior.</p>
+<h2 id="skill-equivalence">Skill Equivalence</h2>
+<p>For a partial state X, define s ~_X t if for all fragments F subset of H_X and
+all inputs in:</p>
+<p>s_skill(F, in) = t_skill(F, in)</p>
+<p>as partial states (with failure marks), and this equality is hereditarily
+extensional under definable skill composition.</p>
+<hr>
+<h1 id="executable-documents-skill-instances">Executable Documents (Skill Instances)</h1>
+<p>An executable document is a concrete instance of a Skill embedded in the
+<a href="../../../../linguistics/topics/semiotics/index.md" class="link-internal">semiotic</a> library.</p>
+<p>Normatively, an executable document specifies:</p>
+<ul>
+<li>a reference to a Skill S,</li>
+<li>a concrete input value x in T_in,</li>
+<li>optional expected artifacts or targets,</li>
+<li>optional additional scope requirements.</li>
+</ul>
+<p>The document denotes the operator:</p>
+<p>E = S(x)</p>
+<p>The Markdown body may provide narrative context, templates rendered during
 execution, and constraints or annotations. The body has no semantic force
 beyond what is admitted by S. Documents do not introduce new operators;
-they instantiate existing ones.</p><hr><h1 id=effect-reports-and-artifacts-required>Effect Reports and Artifacts (Required)</h1><p>Every Skill execution must produce, as part of T_out, an effect report
-describing its interaction with U. At minimum, this includes:</p><ul><li>created paths,</li><li>modified paths,</li><li>content hashes or structural summaries,</li><li>optional previews or renderings.</li></ul><p>All filesystem-level effects must be reflected here. Silent or implicit side
+they instantiate existing ones.</p>
+<hr>
+<h1 id="effect-reports-and-artifacts-required">Effect Reports and Artifacts (Required)</h1>
+<p>Every Skill execution must produce, as part of T_out, an effect report
+describing its interaction with U. At minimum, this includes:</p>
+<ul>
+<li>created paths,</li>
+<li>modified paths,</li>
+<li>content hashes or structural summaries,</li>
+<li>optional previews or renderings.</li>
+</ul>
+<p>All filesystem-level effects must be reflected here. Silent or implicit side
 effects are disallowed. This keeps execution observable, composable, and
-compatible with provenance tracking.</p><hr><h1 id=policy-and-authorization>Policy and Authorization</h1><p>A <strong>policy</strong> is a predicate Pol_a on (skill, input, state) such that:</p><ul><li>Pol_a is monotone in <a href=../../../../sociology/terms/the-state.md class=link-internal>the state</a> component;</li><li>if Pol_a(s, in, X) holds and X &lt;= Y, then Pol_a(s, in, Y) holds;</li><li>Pol_a restricts the agent to Skills_a and Tools_a.</li></ul><p>We define a policy-restricted interpretation</p><p>s_a(X, in) =
-if Pol_a(s, in, X) then s_skill(X, in) else failure</p><p>Policies thus form monotone subsemioverse structures.</p><h2 id=authorization-scopes>Authorization scopes</h2><p>Let C be an authorization context. A Skill execution is defined iff:</p><p>C |= Scopes</p><p>Authorization must be checked before operator construction, file access, and
+compatible with provenance tracking.</p>
+<hr>
+<h1 id="policy-and-authorization">Policy and Authorization</h1>
+<p>A <strong>policy</strong> is a predicate Pol_a on (skill, input, state) such that:</p>
+<ul>
+<li>Pol_a is monotone in <a href="../../../../sociology/terms/the-state.md" class="link-internal">the state</a> component;</li>
+<li>if Pol_a(s, in, X) holds and X &lt;= Y, then Pol_a(s, in, Y) holds;</li>
+<li>Pol_a restricts the agent to Skills_a and Tools_a.</li>
+</ul>
+<p>We define a policy-restricted interpretation</p>
+<p>s_a(X, in) =
+if Pol_a(s, in, X) then s_skill(X, in) else failure</p>
+<p>Policies thus form monotone subsemioverse structures.</p>
+<h2 id="authorization-scopes">Authorization scopes</h2>
+<p>Let C be an authorization context. A Skill execution is defined iff:</p>
+<p>C |= Scopes</p>
+<p>Authorization must be checked before operator construction, file access, and
 agent state updates. Transport-level mechanisms (for example, MCP over HTTP
 with bearer tokens) are implementation details, but scope satisfaction is a
-semantic requirement.</p><hr><h1 id=role-of-language-models-non-foundational>Role of Language Models (Non-Foundational)</h1><p>Language models may be used to implement or approximate the policy function
-Pi, to assist in selecting Skills or constructing inputs. However:</p><ul><li>LLMs have no semantic standing in this specification.</li><li>Replacing an LLM with a rule engine or script does not change agenthood.</li></ul><p>All guarantees are enforced at the operator and schema level, not by model
+semantic requirement.</p>
+<hr>
+<h1 id="role-of-language-models-non-foundational">Role of Language Models (Non-Foundational)</h1>
+<p>Language models may be used to implement or approximate the policy function
+Pi, to assist in selecting Skills or constructing inputs. However:</p>
+<ul>
+<li>LLMs have no semantic standing in this specification.</li>
+<li>Replacing an LLM with a rule engine or script does not change agenthood.</li>
+</ul>
+<p>All guarantees are enforced at the operator and schema level, not by model
 behavior. This makes the agential semioverse robust to changes in model
-capability and vendor practice.</p><hr><h1 id=execution-semantics>Execution Semantics</h1><h2 id=agent-execution>Agent Execution</h2><p>An <strong>execution step</strong> is a tuple</p><p>Exec(a, s, in, X) = (X&rsquo;, out, trace)</p><p>where:</p><ul><li>a is an agent;</li><li>s is a skill in Skills_a;</li><li>X is the current state;</li><li>(X&rsquo;, out) = s_a(X, in);</li><li>trace is a provenance record capturing tool calls, inputs, outputs, and
-referenced handles.</li></ul><h2 id=memory-update>Memory Update</h2><p>Memory is updated by a skill-local operator M_a:</p><p>Mem_a&rsquo; = M_a(Mem_a, trace)</p><p>with M_a fragment-preserving and closure-compatible.</p><hr><h1 id=agential-closure-and-fusion>Agential Closure and Fusion</h1><h2 id=agential-closure-operator>Agential Closure Operator</h2><p>Define an operator S_agent on agential partial states by closing under:</p><ol><li>semantic closure S_sem on H;</li><li>syntactic closure on Skill^def (lambda-definability, composition);</li><li>fusion of skill equivalence ~_X (identifying skills with equal fragmentwise
-semantics);</li><li>admissible tool naming: introduce a skill <a href=../../../../linguistics/topics/semiotics/terms/symbol.md class=link-internal>symbol</a> for any admissible
-behavior already definable by existing skills.</li></ol><h2 id=least-fixed-point>Least Fixed Point</h2><p>By monotonicity and inflationary properties, S_agent has a <a href=../../../concepts/fixed-point/index.md class=link-internal>least fixed point</a>
+capability and vendor practice.</p>
+<hr>
+<h1 id="execution-semantics">Execution Semantics</h1>
+<h2 id="agent-execution">Agent Execution</h2>
+<p>An <strong>execution step</strong> is a tuple</p>
+<p>Exec(a, s, in, X) = (X&rsquo;, out, trace)</p>
+<p>where:</p>
+<ul>
+<li>a is an agent;</li>
+<li>s is a skill in Skills_a;</li>
+<li>X is the current state;</li>
+<li>(X&rsquo;, out) = s_a(X, in);</li>
+<li>trace is a provenance record capturing tool calls, inputs, outputs, and
+referenced handles.</li>
+</ul>
+<h2 id="memory-update">Memory Update</h2>
+<p>Memory is updated by a skill-local operator M_a:</p>
+<p>Mem_a&rsquo; = M_a(Mem_a, trace)</p>
+<p>with M_a fragment-preserving and closure-compatible.</p>
+<hr>
+<h1 id="agential-closure-and-fusion">Agential Closure and Fusion</h1>
+<h2 id="agential-closure-operator">Agential Closure Operator</h2>
+<p>Define an operator S_agent on agential partial states by closing under:</p>
+<ol>
+<li>semantic closure S_sem on H;</li>
+<li>syntactic closure on Skill^def (lambda-definability, composition);</li>
+<li>fusion of skill equivalence ~_X (identifying skills with equal fragmentwise
+semantics);</li>
+<li>admissible tool naming: introduce a skill <a href="../../../../linguistics/topics/semiotics/terms/symbol.md" class="link-internal">symbol</a> for any admissible
+behavior already definable by existing skills.</li>
+</ol>
+<h2 id="least-fixed-point">Least Fixed Point</h2>
+<p>By monotonicity and inflationary properties, S_agent has a <a href="../../../concepts/fixed-point/index.md" class="link-internal">least fixed point</a>
 A* extending the primitive agent, tool, and skill data. We call A* the
-<strong>Agential Semioverse</strong>.</p><hr><h1 id=universal-property>Universal Property</h1><p>An <strong>agential semioverse structure</strong> consists of:</p><ul><li>a base <a href=../interactive-semioverse/index.md class=link-internal>interactive semioverse</a> (H, j, G, Op^def, &mldr;);</li><li>a set of agents with profiles;</li><li>a set of admissible tools;</li><li>a skill calculus with an interpretation into interaction operators;</li><li>a <a href=../../../concepts/fixed-point/index.md class=link-internal>fixed point</a> of S_agent extending the primitive data.</li></ul><p>A <a href=../../categories/ordinary-categories/terms/morphism.md class=link-internal>morphism</a> between two agential semioverse structures preserves:</p><ul><li>the <a href=../../../../general/people/arend-heyting.md class=link-internal>Heyting</a>, modal, and trace structure;</li><li>tool interpretations;</li><li>skill interpretations;</li><li>agent profile constraints (role, policy, memory).</li></ul><p><strong>Theorem 9.1 (Initiality).</strong>
-The <a href=../../../concepts/fixed-point/index.md class=link-internal>least fixed point</a> A* is initial among all agential semioverse structures
-extending the same primitive data, up to fragmentwise extensional equality.</p><hr><h1 id=exposure-and-interoperability>Exposure and Interoperability</h1><p>Skills may be exposed as tools over standardized protocols (for example, MCP)
-by exporting:</p><ul><li>id,</li><li>input/output schemas,</li><li>required scopes.</li></ul><p>This exposure does not change the semantics of the Skill; it only makes S
+<strong>Agential Semioverse</strong>.</p>
+<hr>
+<h1 id="universal-property">Universal Property</h1>
+<p>An <strong>agential semioverse structure</strong> consists of:</p>
+<ul>
+<li>a base <a href="../interactive-semioverse/index.md" class="link-internal">interactive semioverse</a> (H, j, G, Op^def, &hellip;);</li>
+<li>a set of agents with profiles;</li>
+<li>a set of admissible tools;</li>
+<li>a skill calculus with an interpretation into interaction operators;</li>
+<li>a <a href="../../../concepts/fixed-point/index.md" class="link-internal">fixed point</a> of S_agent extending the primitive data.</li>
+</ul>
+<p>A <a href="../../categories/ordinary-categories/terms/morphism.md" class="link-internal">morphism</a> between two agential semioverse structures preserves:</p>
+<ul>
+<li>the <a href="../../../../general/people/arend-heyting.md" class="link-internal">Heyting</a>, modal, and trace structure;</li>
+<li>tool interpretations;</li>
+<li>skill interpretations;</li>
+<li>agent profile constraints (role, policy, memory).</li>
+</ul>
+<p><strong>Theorem 9.1 (Initiality).</strong>
+The <a href="../../../concepts/fixed-point/index.md" class="link-internal">least fixed point</a> A* is initial among all agential semioverse structures
+extending the same primitive data, up to fragmentwise extensional equality.</p>
+<hr>
+<h1 id="exposure-and-interoperability">Exposure and Interoperability</h1>
+<p>Skills may be exposed as tools over standardized protocols (for example, MCP)
+by exporting:</p>
+<ul>
+<li>id,</li>
+<li>input/output schemas,</li>
+<li>required scopes.</li>
+</ul>
+<p>This exposure does not change the semantics of the Skill; it only makes S
 callable by external clients. The same Skill may be used internally by agents
-and externally by users.</p><hr><h1 id=discussion>Discussion</h1><p>The Agential Semioverse is the minimal extension of the Interactive Semioverse
+and externally by users.</p>
+<hr>
+<h1 id="discussion">Discussion</h1>
+<p>The Agential Semioverse is the minimal extension of the Interactive Semioverse
 that treats agents, skills, and tools as first-class mathematical objects. It
-ensures that all operational behavior is:</p><ul><li>parametric (skills are typed and compositional),</li><li>fragment-preserving (locality is respected),</li><li>closure-compatible (no raw or out-of-band mutations),</li><li>auditable (provenance is explicit).</li></ul><p>This object provides the formal ground for implementing agent systems over
-Markdown/YAML data stores while preserving the <a href=../../../../linguistics/topics/semiotics/index.md class=link-internal>semiotic</a> closure discipline.</p><h2 id=extensions>Extensions</h2><p>The base specification above defines single-agent execution. The following
-documents extend it with multi-agent structures:</p><ul><li><a href=../../../../technology/specifications/agential-semioverse-repository/theory/multi-agent-coordination.md class=link-internal>Multi-agent coordination</a> — regions as downward-closed subsets of the fragment <a href=../../posets/terms/lattice.md class=link-internal>lattice</a>, region-restricted agents, non-interference for disjoint regions, parallel and sequential composition with handoffs, fan-out and pipeline patterns, and coordination correctness conditions.</li><li><a href=../../../../technology/specifications/agential-semioverse-repository/theory/work-unit-lifecycle.md class=link-internal>Work-unit lifecycle</a> — work units as typed tuples with preconditions, postconditions, and provenance traces; lifecycle state machines; effect reports with completeness and soundness invariants; chain validation via Petri nets; effect composition; idempotency as closure; and audit trails.</li><li><a href=../../../../technology/specifications/agential-semioverse-repository/theory/skill-manifests.md class=link-internal>Skill manifests</a> — typed I/O schemas, region declarations for conflict-free parallelism, dependency graphs, manifest versioning, and the manifest registry.</li><li><a href=../../../../technology/specifications/agential-semioverse-repository/theory/coordination-patterns.md class=link-internal>Coordination patterns</a> — observed patterns (config-driven batch, directory-partitioned fan-out, pipeline composition, incremental expansion, read-audit-fix cycle) mapped to their formal models.</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/agential-semioverse/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-01-04>2026-01-04</time></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Agential Semioverse</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+ensures that all operational behavior is:</p>
+<ul>
+<li>parametric (skills are typed and compositional),</li>
+<li>fragment-preserving (locality is respected),</li>
+<li>closure-compatible (no raw or out-of-band mutations),</li>
+<li>auditable (provenance is explicit).</li>
+</ul>
+<p>This object provides the formal ground for implementing agent systems over
+Markdown/YAML data stores while preserving the <a href="../../../../linguistics/topics/semiotics/index.md" class="link-internal">semiotic</a> closure discipline.</p>
+<h2 id="extensions">Extensions</h2>
+<p>The base specification above defines single-agent execution. The following
+documents extend it with multi-agent structures:</p>
+<ul>
+<li><a href="../../../../technology/specifications/agential-semioverse-repository/theory/multi-agent-coordination.md" class="link-internal">Multi-agent coordination</a> — regions as downward-closed subsets of the fragment <a href="../../posets/terms/lattice.md" class="link-internal">lattice</a>, region-restricted agents, non-interference for disjoint regions, parallel and sequential composition with handoffs, fan-out and pipeline patterns, and coordination correctness conditions.</li>
+<li><a href="../../../../technology/specifications/agential-semioverse-repository/theory/work-unit-lifecycle.md" class="link-internal">Work-unit lifecycle</a> — work units as typed tuples with preconditions, postconditions, and provenance traces; lifecycle state machines; effect reports with completeness and soundness invariants; chain validation via Petri nets; effect composition; idempotency as closure; and audit trails.</li>
+<li><a href="../../../../technology/specifications/agential-semioverse-repository/theory/skill-manifests.md" class="link-internal">Skill manifests</a> — typed I/O schemas, region declarations for conflict-free parallelism, dependency graphs, manifest versioning, and the manifest registry.</li>
+<li><a href="../../../../technology/specifications/agential-semioverse-repository/theory/coordination-patterns.md" class="link-internal">Coordination patterns</a> — observed patterns (config-driven batch, directory-partitioned fan-out, pipeline composition, incremental expansion, read-audit-fix cycle) mapped to their formal models.</li>
+</ul>
+
+  </div>
+  
+  
+</article>
+<section class="page-relations" resource="http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/agential-semioverse/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>date-created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-01-04">2026-01-04</time></dd>
+      </div><div class="relation">
+        <dt>title</dt>
+        <dd property="schema:name">Agential Semioverse</dd>
+      </div>
+  </dl>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

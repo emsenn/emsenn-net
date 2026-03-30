@@ -1,32 +1,237 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Semiotic Universe Lean Formalization - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-07","datePublished":"2026-03-07","description":"Lean Formalization of the Semiotic Universe Lean 4 + Mathlib formalization of the semiotic universe specification.\nApproach This formalization takes the axiomatic approach: it postulates that H is a Heyting algebra and that j and G satisfy certain properties, then proves that the derived lemmas follow. The axioms are justified by the constructive arguments in the spec (H = Sub(Y) in a topos, j is a Lawvere-Tierney topology, etc.), but the construction itself is not formalized here.\n","keywords":"Lean, MathematicalUniverse","name":"Semiotic Universe Lean Formalization","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/formalization/domains/lean/readme/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Semiotic Universe Lean Formalization</h1><div class=meta><time class=dt-published datetime=2026-03-07T00:00:00Z>2026-03-07</time></div><div class=e-content><h1 id=lean-formalization-of-the-semiotic-universe>Lean Formalization of the Semiotic Universe</h1><p>Lean 4 + Mathlib formalization of the
-<a href=../../semiotic-universe.md class=link-internal>semiotic universe</a> specification.</p><h2 id=approach>Approach</h2><p>This formalization takes the <strong>axiomatic</strong> approach: it postulates
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semiotic Universe Lean Formalization - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-07",
+  "datePublished": "2026-03-07",
+  "description": "Lean Formalization of the Semiotic Universe Lean 4 + Mathlib formalization of the semiotic universe specification.\nApproach This formalization takes the axiomatic approach: it postulates that H is a Heyting algebra and that j and G satisfy certain properties, then proves that the derived lemmas follow. The axioms are justified by the constructive arguments in the spec (H = Sub(Y) in a topos, j is a Lawvere-Tierney topology, etc.), but the construction itself is not formalized here.\n",
+  "keywords": "Lean, MathematicalUniverse",
+  "name": "Semiotic Universe Lean Formalization",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/formalization/domains/lean/readme/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="documentation">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/">Universes</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/">Semiotic universe</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/formalization/">Formalization</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/formalization/domains/lean/">Lean</a></nav>
+  <h1 class="p-name">Semiotic Universe Lean Formalization</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-07T00:00:00Z">2026-03-07</time>
+    
+    
+  </div>
+  <div class="e-content">
+    <h1 id="lean-formalization-of-the-semiotic-universe">Lean Formalization of the Semiotic Universe</h1>
+<p>Lean 4 + Mathlib formalization of the
+<a href="../../semiotic-universe.md" class="link-internal">semiotic universe</a> specification.</p>
+<h2 id="approach">Approach</h2>
+<p>This formalization takes the <strong>axiomatic</strong> approach: it postulates
 that H is a Heyting algebra and that j and G satisfy certain
 properties, then proves that the derived lemmas follow. The axioms
 are justified by the constructive arguments in the spec (H = Sub(Y)
 in a topos, j is a Lawvere-Tierney topology, etc.), but the
-construction itself is not formalized here.</p><p>For the constructive approach that builds H from the ground up,
-see the <a href=../agda/README.md class=link-internal>Agda formalization</a>.</p><h2 id=setup>Setup</h2><p>Requires Lean 4 and Lake. The <code>lean-toolchain</code> file pins the
-version. To build:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>cd formalization/lean/
-</span></span><span style=display:flex><span>lake build
+construction itself is not formalized here.</p>
+<p>For the constructive approach that builds H from the ground up,
+see the <a href="../agda/README.md" class="link-internal">Agda formalization</a>.</p>
+<h2 id="setup">Setup</h2>
+<p>Requires Lean 4 and Lake. The <code>lean-toolchain</code> file pins the
+version. To build:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cd formalization/lean/
+</span></span><span style="display:flex;"><span>lake build
 </span></span></code></pre></div><p>Mathlib is a dependency (for <code>HeytingAlgebra</code>, <code>CompleteLattice</code>,
-and standard order-theoretic lemmas).</p><h2 id=module-structure>Module structure</h2><table><thead><tr><th>File</th><th>Spec section</th><th>What it formalizes</th></tr></thead><tbody><tr><td><code>HeytingDomain.lean</code></td><td>§1.1</td><td>H as a Heyting algebra (axiomatized)</td></tr><tr><td><code>ModalClosure.lean</code></td><td>§1.2</td><td>j : H → H (habit-formation)</td></tr><tr><td><code>TraceComonad.lean</code></td><td>§1.3</td><td>G : H → H (semiotic provenance)</td></tr><tr><td><code>Ambient.lean</code></td><td>§1.4</td><td>Interaction axioms (j and G cohere)</td></tr><tr><td><code>Syntax.lean</code></td><td>§2</td><td>Typed lambda calculus, raw operators</td></tr><tr><td><code>Fragment.lean</code></td><td>§3</td><td>Finitely generated modal-temporal subalgebras</td></tr><tr><td><code>Interpretation.lean</code></td><td>§4</td><td>Interpretation mapping (semiosis formalized)</td></tr><tr><td><code>Test/Trivial.lean</code></td><td>—</td><td>Golden tests with concrete instances</td></tr></tbody></table><h2 id=conventions>Conventions</h2><h3 id=one-file-one-concept>One file, one concept</h3><p>Each <code>.lean</code> file formalizes one section of the specification.
+and standard order-theoretic lemmas).</p>
+<h2 id="module-structure">Module structure</h2>
+<table>
+  <thead>
+      <tr>
+          <th>File</th>
+          <th>Spec section</th>
+          <th>What it formalizes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>HeytingDomain.lean</code></td>
+          <td>§1.1</td>
+          <td>H as a Heyting algebra (axiomatized)</td>
+      </tr>
+      <tr>
+          <td><code>ModalClosure.lean</code></td>
+          <td>§1.2</td>
+          <td>j : H → H (habit-formation)</td>
+      </tr>
+      <tr>
+          <td><code>TraceComonad.lean</code></td>
+          <td>§1.3</td>
+          <td>G : H → H (semiotic provenance)</td>
+      </tr>
+      <tr>
+          <td><code>Ambient.lean</code></td>
+          <td>§1.4</td>
+          <td>Interaction axioms (j and G cohere)</td>
+      </tr>
+      <tr>
+          <td><code>Syntax.lean</code></td>
+          <td>§2</td>
+          <td>Typed lambda calculus, raw operators</td>
+      </tr>
+      <tr>
+          <td><code>Fragment.lean</code></td>
+          <td>§3</td>
+          <td>Finitely generated modal-temporal subalgebras</td>
+      </tr>
+      <tr>
+          <td><code>Interpretation.lean</code></td>
+          <td>§4</td>
+          <td>Interpretation mapping (semiosis formalized)</td>
+      </tr>
+      <tr>
+          <td><code>Test/Trivial.lean</code></td>
+          <td>—</td>
+          <td>Golden tests with concrete instances</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="conventions">Conventions</h2>
+<h3 id="one-file-one-concept">One file, one concept</h3>
+<p>Each <code>.lean</code> file formalizes one section of the specification.
 The file header comment names the corresponding spec section and
-summarizes what mathematical structure it captures.</p><h3 id=typeclass-vs-structure>Typeclass vs. structure</h3><ul><li><strong><code>class</code></strong> for ambient assumptions (<code>HeytingDomain</code>,
+summarizes what mathematical structure it captures.</p>
+<h3 id="typeclass-vs-structure">Typeclass vs. structure</h3>
+<ul>
+<li><strong><code>class</code></strong> for ambient assumptions (<code>HeytingDomain</code>,
 <code>ModalClosure</code>, <code>TraceComonad</code>, <code>SemioticAmbient</code>). These are
 the operators and axioms that Lean&rsquo;s instance resolution should
-find automatically.</li><li><strong><code>structure</code></strong> for data objects (<code>Fragment</code>,
+find automatically.</li>
+<li><strong><code>structure</code></strong> for data objects (<code>Fragment</code>,
 <code>PartialSemiotic</code>). These are specific mathematical objects,
-not ambient properties.</li></ul><h3 id=sorry-is-honest>sorry is honest</h3><p>Use <code>sorry</code> for steps that need more work. Document what the
-sorry represents in a comment.</p><h3 id=naming-conventions>Naming conventions</h3><ul><li>Typeclasses: <code>CamelCase</code> (<code>ModalClosure</code>, <code>TraceComonad</code>)</li><li>Predicates: <code>IsCamelCase</code> (<code>IsHabitual</code>, <code>IsFragment</code>)</li><li>Lemmas: <code>snake_case</code> describing the statement
-(<code>isHabitual_top</code>, <code>TraceComonad.monotone</code>)</li><li>Follow Mathlib naming conventions where applicable</li></ul><h2 id=roadmap>Roadmap</h2><ol><li><strong>Ambient structure (H, j, G)</strong> — done (sorry-free)</li><li><strong>Typed lambda calculus</strong> — done (<code>Syntax.lean</code>)</li><li><strong>Fragments</strong> — done (<code>Fragment.lean</code>)</li><li><strong>Interpretation</strong> — done (<code>Interpretation.lean</code>)</li><li><strong>Fusion and closure operators</strong> — <code>SemioticUniverse/Fusion.lean</code></li><li><strong>Initiality theorem</strong> — <code>SemioticUniverse/Initiality.lean</code></li></ol></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>emsenn. (2026, March 7). Semiotic Universe Lean Formalization. <i>emsenn.net</i>. https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/formalization/domains/lean/readme/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@misc{emsenn2026-readme,
+not ambient properties.</li>
+</ul>
+<h3 id="sorry-is-honest">sorry is honest</h3>
+<p>Use <code>sorry</code> for steps that need more work. Document what the
+sorry represents in a comment.</p>
+<h3 id="naming-conventions">Naming conventions</h3>
+<ul>
+<li>Typeclasses: <code>CamelCase</code> (<code>ModalClosure</code>, <code>TraceComonad</code>)</li>
+<li>Predicates: <code>IsCamelCase</code> (<code>IsHabitual</code>, <code>IsFragment</code>)</li>
+<li>Lemmas: <code>snake_case</code> describing the statement
+(<code>isHabitual_top</code>, <code>TraceComonad.monotone</code>)</li>
+<li>Follow Mathlib naming conventions where applicable</li>
+</ul>
+<h2 id="roadmap">Roadmap</h2>
+<ol>
+<li><strong>Ambient structure (H, j, G)</strong> — done (sorry-free)</li>
+<li><strong>Typed lambda calculus</strong> — done (<code>Syntax.lean</code>)</li>
+<li><strong>Fragments</strong> — done (<code>Fragment.lean</code>)</li>
+<li><strong>Interpretation</strong> — done (<code>Interpretation.lean</code>)</li>
+<li><strong>Fusion and closure operators</strong> — <code>SemioticUniverse/Fusion.lean</code></li>
+<li><strong>Initiality theorem</strong> — <code>SemioticUniverse/Initiality.lean</code></li>
+</ol>
+
+  </div>
+  
+  <section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <details>
+    <summary>APA</summary>
+    <pre class="cite-block"><code>emsenn. (2026, March 7). Semiotic Universe Lean Formalization. <i>emsenn.net</i>. http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/formalization/domains/lean/readme/</code></pre>
+  </details>
+  <details>
+    <summary>BibTeX</summary>
+    <pre class="cite-block"><code>@misc{emsenn2026-readme,
   author    = {emsenn},
   title     = {Semiotic Universe Lean Formalization},
   year      = {2026},
-  url       = {https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/formalization/domains/lean/readme/},
+  url       = {http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/formalization/domains/lean/readme/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/formalization/domains/lean/readme/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-07>2026-03-07</time></dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/lean/>Lean</a></li><li><a href=/tags/mathematicaluniverse/>MathematicalUniverse</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Semiotic Universe Lean Formalization</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/documentation/>documentation</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+  </details>
+</section>
+</article>
+<section class="page-relations" resource="http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/formalization/domains/lean/readme/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>date-created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-07">2026-03-07</time></dd>
+      </div><div class="relation">
+        <dt>tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/lean/">Lean</a></li><li><a href="/tags/mathematicaluniverse/">MathematicalUniverse</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>title</dt>
+        <dd property="schema:name">Semiotic Universe Lean Formalization</dd>
+      </div><div class="relation">
+        <dt>type</dt>
+        <dd property="dc:type"><a href="/types/documentation/">documentation</a></dd>
+      </div>
+  </dl>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

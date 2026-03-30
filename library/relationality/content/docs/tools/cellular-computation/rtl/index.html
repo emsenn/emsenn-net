@@ -1,88 +1,383 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"Recognition Term Language (RTL) Specification – Version 0.x (normative)\nLayer Declaration — RTL (Layer 2: Structural Judgments) This document occupies Layer 2 (RTL) of the GFRTU stack:\nRole: defines the JSON encoding of judgments Γ⊢M:A\\Gamma \\vdash M : A and the internal term calculus for recognition fibers over a GFRTU cell. Depends on: the GFRTU mathematics (gfrtu.md) for the interpretation of judgments as arrows in the sheaf topos, and on CDS (cds.md) for the structural context in which judgments live. Provides to higher layers: canonical judgment payloads and normalization rules that CCE (Layer 3) applies when deciding admissibility. Must not do: redefine closure/repair processes, logging, or transport behavior specified in cce.md, cce-abi.md, or cce-rpc.md. Determinism and fuel accounting are specified here only as properties of RTL normalization; the use of fuel, repair logs, and evidence vectors is owned by CCE (Layer 3) and its ABI/RPC surfaces (Layers 4–5).\n","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/content/docs/tools/cellular-computation/rtl/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name></h1><div class=meta></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#layer-declaration--rtl-layer-2-structural-judgments>Layer Declaration — RTL (Layer 2: Structural Judgments)</a></li><li><a href=#1-purpose-and-scope>1. Purpose and Scope</a></li><li><a href=#2-syntax-and-constructors>2. Syntax and Constructors</a><ul><li><a href=#21-core-forms>2.1 Core Forms</a></li><li><a href=#22-canonical-key-order>2.2 Canonical Key Order</a></li><li><a href=#23-deterministic-context-ordering>2.3 Deterministic Context Ordering</a></li></ul></li><li><a href=#3-operator-catalogue-from-cds-rtl_signature>3. Operator Catalogue (from CDS <code>rtl_signature</code>)</a></li><li><a href=#4-canonicalization-and-normalization>4. Canonicalization and Normalization</a><ul><li><a href=#41-reduction-order>4.1 Reduction Order</a></li><li><a href=#42-json-encoding-rules>4.2 JSON Encoding Rules</a></li><li><a href=#43-determinism-proof-sketch>4.3 Determinism Proof Sketch</a></li></ul></li><li><a href=#5-admissibility-and-error-surface>5. Admissibility and Error Surface</a></li><li><a href=#6-examples>6. Examples</a><ul><li><a href=#61-boolean-cell-judgment>6.1 Boolean Cell Judgment</a></li><li><a href=#62-σδ-interaction>6.2 σ/Δ Interaction</a></li></ul></li><li><a href=#7-interpretive-reading-inside-the-gfrtu>7. Interpretive Reading inside the GFRTU</a></li><li><a href=#8-normativity-checklist-for-implementers>8. Normativity Checklist for Implementers</a></li></ul></nav></details><div class=e-content><h1 id=recognition-term-language-rtl>Recognition Term Language (RTL)</h1><p><strong>Specification – Version 0.x (normative)</strong></p><hr><h2 id=layer-declaration--rtl-layer-2-structural-judgments>Layer Declaration — RTL (Layer 2: Structural Judgments)</h2><p>This document occupies <strong>Layer 2 (RTL)</strong> of the GFRTU stack:</p><ul><li><strong>Role:</strong> defines the JSON encoding of judgments <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Γ</mi><mo>⊢</mo><mi>M</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\Gamma \vdash M : A</annotation></semantics></math></span> and the internal term calculus for recognition fibers over a GFRTU cell.</li><li><strong>Depends on:</strong> the GFRTU mathematics (<code>gfrtu.md</code>) for the interpretation of judgments as arrows in the sheaf topos, and on CDS (<code>cds.md</code>) for the structural context in which judgments live.</li><li><strong>Provides to higher layers:</strong> canonical judgment payloads and normalization rules that CCE (Layer 3) applies when deciding admissibility.</li><li><strong>Must not do:</strong> redefine closure/repair processes, logging, or transport behavior specified in <code>cce.md</code>, <code>cce-abi.md</code>, or <code>cce-rpc.md</code>.</li></ul><p>Determinism and fuel accounting are specified here only as <strong>properties of RTL normalization</strong>; the <em>use</em> of fuel, repair logs, and evidence vectors is owned by CCE (Layer 3) and its ABI/RPC surfaces (Layers 4–5).</p><h2 id=1-purpose-and-scope>1. Purpose and Scope</h2><p>The Recognition Term Language (RTL) encodes judgments <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Γ</mi><mo>⊢</mo><mi>M</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\Gamma \vdash M : A</annotation></semantics></math></span>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "Recognition Term Language (RTL) Specification – Version 0.x (normative)\nLayer Declaration — RTL (Layer 2: Structural Judgments) This document occupies Layer 2 (RTL) of the GFRTU stack:\nRole: defines the JSON encoding of judgments Γ⊢M:A\\Gamma \\vdash M : A and the internal term calculus for recognition fibers over a GFRTU cell. Depends on: the GFRTU mathematics (gfrtu.md) for the interpretation of judgments as arrows in the sheaf topos, and on CDS (cds.md) for the structural context in which judgments live. Provides to higher layers: canonical judgment payloads and normalization rules that CCE (Layer 3) applies when deciding admissibility. Must not do: redefine closure/repair processes, logging, or transport behavior specified in cce.md, cce-abi.md, or cce-rpc.md. Determinism and fuel accounting are specified here only as properties of RTL normalization; the use of fuel, repair logs, and evidence vectors is owned by CCE (Layer 3) and its ABI/RPC surfaces (Layers 4–5).\n",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/content/docs/tools/cellular-computation/rtl/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#layer-declaration--rtl-layer-2-structural-judgments">Layer Declaration — RTL (Layer 2: Structural Judgments)</a></li>
+    <li><a href="#1-purpose-and-scope">1. Purpose and Scope</a></li>
+    <li><a href="#2-syntax-and-constructors">2. Syntax and Constructors</a>
+      <ul>
+        <li><a href="#21-core-forms">2.1 Core Forms</a></li>
+        <li><a href="#22-canonical-key-order">2.2 Canonical Key Order</a></li>
+        <li><a href="#23-deterministic-context-ordering">2.3 Deterministic Context Ordering</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-operator-catalogue-from-cds-rtl_signature">3. Operator Catalogue (from CDS <code>rtl_signature</code>)</a></li>
+    <li><a href="#4-canonicalization-and-normalization">4. Canonicalization and Normalization</a>
+      <ul>
+        <li><a href="#41-reduction-order">4.1 Reduction Order</a></li>
+        <li><a href="#42-json-encoding-rules">4.2 JSON Encoding Rules</a></li>
+        <li><a href="#43-determinism-proof-sketch">4.3 Determinism Proof Sketch</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-admissibility-and-error-surface">5. Admissibility and Error Surface</a></li>
+    <li><a href="#6-examples">6. Examples</a>
+      <ul>
+        <li><a href="#61-boolean-cell-judgment">6.1 Boolean Cell Judgment</a></li>
+        <li><a href="#62-σδ-interaction">6.2 σ/Δ Interaction</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-interpretive-reading-inside-the-gfrtu">7. Interpretive Reading inside the GFRTU</a></li>
+    <li><a href="#8-normativity-checklist-for-implementers">8. Normativity Checklist for Implementers</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="recognition-term-language-rtl">Recognition Term Language (RTL)</h1>
+<p><strong>Specification – Version 0.x (normative)</strong></p>
+<hr>
+<h2 id="layer-declaration--rtl-layer-2-structural-judgments">Layer Declaration — RTL (Layer 2: Structural Judgments)</h2>
+<p>This document occupies <strong>Layer 2 (RTL)</strong> of the GFRTU stack:</p>
+<ul>
+<li><strong>Role:</strong> defines the JSON encoding of judgments <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Γ</mi><mo>⊢</mo><mi>M</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\Gamma \vdash M : A</annotation></semantics></math></span> and the internal term calculus for recognition fibers over a GFRTU cell.</li>
+<li><strong>Depends on:</strong> the GFRTU mathematics (<code>gfrtu.md</code>) for the interpretation of judgments as arrows in the sheaf topos, and on CDS (<code>cds.md</code>) for the structural context in which judgments live.</li>
+<li><strong>Provides to higher layers:</strong> canonical judgment payloads and normalization rules that CCE (Layer 3) applies when deciding admissibility.</li>
+<li><strong>Must not do:</strong> redefine closure/repair processes, logging, or transport behavior specified in <code>cce.md</code>, <code>cce-abi.md</code>, or <code>cce-rpc.md</code>.</li>
+</ul>
+<p>Determinism and fuel accounting are specified here only as <strong>properties of RTL normalization</strong>; the <em>use</em> of fuel, repair logs, and evidence vectors is owned by CCE (Layer 3) and its ABI/RPC surfaces (Layers 4–5).</p>
+<h2 id="1-purpose-and-scope">1. Purpose and Scope</h2>
+<p>The Recognition Term Language (RTL) encodes judgments <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Γ</mi><mo>⊢</mo><mi>M</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\Gamma \vdash M : A</annotation></semantics></math></span>
 for recognition fibers over a GFRTU cell. RTL defines the syntax, typing,
 canonicalization, and admissibility checks required by the Cellular Closure
-Engine (CCE) to evaluate recognition claims.</p><hr><h2 id=2-syntax-and-constructors>2. Syntax and Constructors</h2><h3 id=21-core-forms>2.1 Core Forms</h3><p>A judgment is encoded as a JSON object with lexicographically sorted keys:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-jsonc data-lang=jsonc><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;context&#34;</span>: [ {<span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;x&#34;</span>, <span style=color:#f92672>&#34;type&#34;</span>: {<span style=color:#f92672>&#34;ref&#34;</span>: <span style=color:#e6db74>&#34;Ob U&#34;</span>}} ],
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;term&#34;</span>: {<span style=color:#f92672>&#34;var&#34;</span>: <span style=color:#e6db74>&#34;x&#34;</span>},
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;type&#34;</span>: {<span style=color:#f92672>&#34;ref&#34;</span>: <span style=color:#e6db74>&#34;Ob U&#34;</span>}
-</span></span><span style=display:flex><span>}
+Engine (CCE) to evaluate recognition claims.</p>
+<hr>
+<h2 id="2-syntax-and-constructors">2. Syntax and Constructors</h2>
+<h3 id="21-core-forms">2.1 Core Forms</h3>
+<p>A judgment is encoded as a JSON object with lexicographically sorted keys:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-jsonc" data-lang="jsonc"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;context&#34;</span>: [ {<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;x&#34;</span>, <span style="color:#f92672">&#34;type&#34;</span>: {<span style="color:#f92672">&#34;ref&#34;</span>: <span style="color:#e6db74">&#34;Ob U&#34;</span>}} ],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;term&#34;</span>: {<span style="color:#f92672">&#34;var&#34;</span>: <span style="color:#e6db74">&#34;x&#34;</span>},
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;type&#34;</span>: {<span style="color:#f92672">&#34;ref&#34;</span>: <span style="color:#e6db74">&#34;Ob U&#34;</span>}
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Terms and types support the following constructors (all keys MUST appear exactly
-as shown; unknown keys MUST be rejected):</p><ul><li>Variables: <code>{ "var": "name" }</code></li><li>Products: <code>{ "prod": [term, ...] }</code></li><li>Coproduct injections: <code>{ "inl": term }</code>, <code>{ "inr": term }</code></li><li>Arrows: <code>{ "lambda": {"arg": "name", "arg_type": type, "body": term} }</code></li><li>Application: <code>{ "app": {"fn": term, "arg": term} }</code></li><li>Modalities: <code>{ "sigma": term }</code>, <code>{ "delta": term }</code></li><li>Cell‑provided operators: <code>{ "op": "name", "args": [term, ...] }</code></li><li>Equality witness: <code>{ "path": {"lhs": term, "rhs": term} }</code></li></ul><p>Types mirror term constructors with <code>"type"</code> replacing <code>"term"</code> keys. For
+as shown; unknown keys MUST be rejected):</p>
+<ul>
+<li>Variables: <code>{ &quot;var&quot;: &quot;name&quot; }</code></li>
+<li>Products: <code>{ &quot;prod&quot;: [term, ...] }</code></li>
+<li>Coproduct injections: <code>{ &quot;inl&quot;: term }</code>, <code>{ &quot;inr&quot;: term }</code></li>
+<li>Arrows: <code>{ &quot;lambda&quot;: {&quot;arg&quot;: &quot;name&quot;, &quot;arg_type&quot;: type, &quot;body&quot;: term} }</code></li>
+<li>Application: <code>{ &quot;app&quot;: {&quot;fn&quot;: term, &quot;arg&quot;: term} }</code></li>
+<li>Modalities: <code>{ &quot;sigma&quot;: term }</code>, <code>{ &quot;delta&quot;: term }</code></li>
+<li>Cell‑provided operators: <code>{ &quot;op&quot;: &quot;name&quot;, &quot;args&quot;: [term, ...] }</code></li>
+<li>Equality witness: <code>{ &quot;path&quot;: {&quot;lhs&quot;: term, &quot;rhs&quot;: term} }</code></li>
+</ul>
+<p>Types mirror term constructors with <code>&quot;type&quot;</code> replacing <code>&quot;term&quot;</code> keys. For
 operators from <code>rtl_signature.constructors</code>, types MUST state variance for each
-argument using <code>"variance": ["+", "-", ...]</code> and MUST include <code>"admissible": true|false</code> flags. Key order is normative: inside each constructor object, the
+argument using <code>&quot;variance&quot;: [&quot;+&quot;, &quot;-&quot;, ...]</code> and MUST include <code>&quot;admissible&quot;: true|false</code> flags. Key order is normative: inside each constructor object, the
 keys MUST appear as listed above before canonicalization so independent engines
-serialize the same byte sequence.</p><h3 id=22-canonical-key-order>2.2 Canonical Key Order</h3><p>Implementations MUST serialize each constructor with the following key order
-before applying overall JSON key sorting:</p><ul><li>Variable: <code>var</code></li><li>Product: <code>prod</code></li><li>Coproducts: <code>inl</code> or <code>inr</code></li><li>Arrow: <code>lambda</code> with nested keys <code>arg</code>, <code>arg_type</code>, <code>body</code></li><li>Application: <code>app</code> with nested keys <code>arg</code>, <code>fn</code></li><li>Modalities: <code>delta</code>, <code>sigma</code></li><li>Operator: <code>op</code>, <code>args</code></li><li>Path: <code>lhs</code>, <code>rhs</code></li></ul><p>Nested objects MUST themselves use lexicographic ordering (e.g., inside
+serialize the same byte sequence.</p>
+<h3 id="22-canonical-key-order">2.2 Canonical Key Order</h3>
+<p>Implementations MUST serialize each constructor with the following key order
+before applying overall JSON key sorting:</p>
+<ul>
+<li>Variable: <code>var</code></li>
+<li>Product: <code>prod</code></li>
+<li>Coproducts: <code>inl</code> or <code>inr</code></li>
+<li>Arrow: <code>lambda</code> with nested keys <code>arg</code>, <code>arg_type</code>, <code>body</code></li>
+<li>Application: <code>app</code> with nested keys <code>arg</code>, <code>fn</code></li>
+<li>Modalities: <code>delta</code>, <code>sigma</code></li>
+<li>Operator: <code>op</code>, <code>args</code></li>
+<li>Path: <code>lhs</code>, <code>rhs</code></li>
+</ul>
+<p>Nested objects MUST themselves use lexicographic ordering (e.g., inside
 <code>arg_type</code>, the key <code>ref</code> precedes any operator keys). Unknown keys or altered
 ordering MUST be rejected with <code>RTL_UNKNOWN_FIELD</code> to prevent non‑deterministic
-hashes.</p><h3 id=23-deterministic-context-ordering>2.3 Deterministic Context Ordering</h3><p>Contexts MUST list bindings in declaration order from outermost to innermost.
+hashes.</p>
+<h3 id="23-deterministic-context-ordering">2.3 Deterministic Context Ordering</h3>
+<p>Contexts MUST list bindings in declaration order from outermost to innermost.
 When normalizing, implementations MUST preserve this order; alpha‑equivalent
 re‑orderings are not allowed. The ordering corresponds to the presheaf index in
-the Acts and anchors the hashing of <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Γ</mi><mo>⊢</mo><mi>M</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\Gamma \vdash M : A</annotation></semantics></math></span> judgments.</p><hr><h2 id=3-operator-catalogue-from-cds-rtl_signature>3. Operator Catalogue (from CDS <code>rtl_signature</code>)</h2><p>Each operator entry in <code>rtl_signature.constructors</code> MUST map to a typing rule
-and a canonical encoding:</p><table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>name</code></td><td>Identifier referenced by <code>{ "op": name }</code> in terms</td></tr><tr><td><code>arity</code></td><td>List of type expressions for arguments; length MUST equal <code>args</code> length</td></tr><tr><td><code>variance</code></td><td>Parallel list of <code>+</code>/<code>-</code>/<code>0</code> indicating covariance/contravariance/fixed</td></tr><tr><td><code>admissible</code></td><td>If false, operator may appear only in contexts marked <code>defining</code></td></tr><tr><td><code>rewrite</code></td><td>Optional canonical rewrite used in §4.1(5)</td></tr><tr><td><code>cell_effects</code></td><td>Optional list of invariants triggered (e.g., <code>"sigma_delta_closed"</code>)</td></tr></tbody></table><p>Encodings for operator applications MUST be <code>{ "op": name, "args": [ ... ] }</code> with
+the Acts and anchors the hashing of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Γ</mi><mo>⊢</mo><mi>M</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\Gamma \vdash M : A</annotation></semantics></math></span> judgments.</p>
+<hr>
+<h2 id="3-operator-catalogue-from-cds-rtl_signature">3. Operator Catalogue (from CDS <code>rtl_signature</code>)</h2>
+<p>Each operator entry in <code>rtl_signature.constructors</code> MUST map to a typing rule
+and a canonical encoding:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Field</th>
+          <th>Meaning</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>name</code></td>
+          <td>Identifier referenced by <code>{ &quot;op&quot;: name }</code> in terms</td>
+      </tr>
+      <tr>
+          <td><code>arity</code></td>
+          <td>List of type expressions for arguments; length MUST equal <code>args</code> length</td>
+      </tr>
+      <tr>
+          <td><code>variance</code></td>
+          <td>Parallel list of <code>+</code>/<code>-</code>/<code>0</code> indicating covariance/contravariance/fixed</td>
+      </tr>
+      <tr>
+          <td><code>admissible</code></td>
+          <td>If false, operator may appear only in contexts marked <code>defining</code></td>
+      </tr>
+      <tr>
+          <td><code>rewrite</code></td>
+          <td>Optional canonical rewrite used in §4.1(5)</td>
+      </tr>
+      <tr>
+          <td><code>cell_effects</code></td>
+          <td>Optional list of invariants triggered (e.g., <code>&quot;sigma_delta_closed&quot;</code>)</td>
+      </tr>
+  </tbody>
+</table>
+<p>Encodings for operator applications MUST be <code>{ &quot;op&quot;: name, &quot;args&quot;: [ ... ] }</code> with
 <code>args</code> sorted only by source order (no host re‑ordering). If <code>admissible</code> is
 false, the operator MUST appear only inside <code>defining_expression.judgments</code> of
-the CDS; occurrence elsewhere is <code>RTL_UNKNOWN_OPERATOR</code>.</p><p>CCE MUST reject any term referencing an operator not present in the CDS. Variance
+the CDS; occurrence elsewhere is <code>RTL_UNKNOWN_OPERATOR</code>.</p>
+<p>CCE MUST reject any term referencing an operator not present in the CDS. Variance
 controls substitution during β‑reduction: contravariant arguments are normalized
-before substitution; covariant arguments normalize after substitution.</p><hr><h2 id=4-canonicalization-and-normalization>4. Canonicalization and Normalization</h2><h3 id=41-reduction-order>4.1 Reduction Order</h3><p>Canonicalization MUST be deterministic and terminating. Engines MUST implement
+before substitution; covariant arguments normalize after substitution.</p>
+<hr>
+<h2 id="4-canonicalization-and-normalization">4. Canonicalization and Normalization</h2>
+<h3 id="41-reduction-order">4.1 Reduction Order</h3>
+<p>Canonicalization MUST be deterministic and terminating. Engines MUST implement
 call‑by‑value, left‑to‑right normalization with explicit fuel accounting
-(<code>fuel_default = 256</code> unless overridden by CCE fuel):</p><ol><li><strong>Context thinning</strong>: remove unused bindings (fuel −= 1 per removal).</li><li><strong>β-reduction</strong>: <code>(lambda x. M) N → M[x := N]</code> after <code>N</code> is normalized; fuel
-decreases by 1 per β‑step.</li><li><strong>η-reduction</strong>: <code>lambda x. f x → f</code> when <code>x</code> not free in <code>f</code>; fuel −= 1.</li><li><strong>Modal commuting conversions</strong>: <code>sigma (delta t) → delta (sigma t)</code> iff
-the cell marks σ, Δ commuting in <code>rtl_signature</code>; fuel −= 1.</li><li><strong>Operator canonical forms</strong>: normalize arguments left to right; when
+(<code>fuel_default = 256</code> unless overridden by CCE fuel):</p>
+<ol>
+<li><strong>Context thinning</strong>: remove unused bindings (fuel −= 1 per removal).</li>
+<li><strong>β-reduction</strong>: <code>(lambda x. M) N → M[x := N]</code> after <code>N</code> is normalized; fuel
+decreases by 1 per β‑step.</li>
+<li><strong>η-reduction</strong>: <code>lambda x. f x → f</code> when <code>x</code> not free in <code>f</code>; fuel −= 1.</li>
+<li><strong>Modal commuting conversions</strong>: <code>sigma (delta t) → delta (sigma t)</code> iff
+the cell marks σ, Δ commuting in <code>rtl_signature</code>; fuel −= 1.</li>
+<li><strong>Operator canonical forms</strong>: normalize arguments left to right; when
 <code>rewrite</code> is present, apply it once after argument normalization. Fuel −= 1
-per operator reduction.</li><li><strong>Product/Coproduct</strong>: flatten nested products, normalize injections; fuel −=
-1 per flattening.</li></ol><p>This ordering is <strong>semantically anchored</strong>: left‑to‑right evaluation follows the
+per operator reduction.</li>
+<li><strong>Product/Coproduct</strong>: flatten nested products, normalize injections; fuel −=
+1 per flattening.</li>
+</ol>
+<p>This ordering is <strong>semantically anchored</strong>: left‑to‑right evaluation follows the
 site object ordering declared in the CDS sections, ensuring that modal moves
 (<code>sigma</code>, <code>delta</code>) respect the same presheaf index order used by the fixed layer.
 Runtimes MUST NOT reorder arguments or contexts based on host heuristics; doing
 so would sever the correspondence between normalization traces and the GFRTU
-closure iteration <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><msup><mi>G</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">UG^n</annotation></semantics></math></span>.</p><p>Reduction proceeds until no rule applies or fuel is exhausted. Fuel exhaustion
+closure iteration <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><msup><mi>G</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">UG^n</annotation></semantics></math></span>.</p>
+<p>Reduction proceeds until no rule applies or fuel is exhausted. Fuel exhaustion
 MUST be signalled with <code>RTL_CANONICALIZATION_DIVERGED</code> and results in rejection
-by CCE. Engines MUST expose consumed fuel to CCE for repair logging.</p><h3 id=42-json-encoding-rules>4.2 JSON Encoding Rules</h3><ul><li>Keys MUST be sorted lexicographically during canonicalization before hashing.</li><li>Optional fields are forbidden unless listed in §2; extraneous fields trigger
-<code>RTL_UNKNOWN_FIELD</code>.</li><li>Numeric literals MUST be strings in canonical form (no <code>+</code>, no trailing zeros).</li><li>Boolean literals are allowed only when the fiber carrier is Boolean and MUST be
-encoded as JSON booleans.</li></ul><h3 id=43-determinism-proof-sketch>4.3 Determinism Proof Sketch</h3><p>Given finite terms and the prioritized reduction order, each step strictly
+by CCE. Engines MUST expose consumed fuel to CCE for repair logging.</p>
+<h3 id="42-json-encoding-rules">4.2 JSON Encoding Rules</h3>
+<ul>
+<li>Keys MUST be sorted lexicographically during canonicalization before hashing.</li>
+<li>Optional fields are forbidden unless listed in §2; extraneous fields trigger
+<code>RTL_UNKNOWN_FIELD</code>.</li>
+<li>Numeric literals MUST be strings in canonical form (no <code>+</code>, no trailing zeros).</li>
+<li>Boolean literals are allowed only when the fiber carrier is Boolean and MUST be
+encoded as JSON booleans.</li>
+</ul>
+<h3 id="43-determinism-proof-sketch">4.3 Determinism Proof Sketch</h3>
+<p>Given finite terms and the prioritized reduction order, each step strictly
 reduces either syntactic height or the multiset of redex positions while
 consuming fuel. Modal commuting conversions are guarded by the CDS‑declared
 commuting flag, ensuring no critical pair cycles. Memoizing subterm hashes on
 constructor boundaries forces identical byte outputs because any two reduction
 paths share the same ordered list of consumed fuel values and the same
 topologically sorted redex positions. Therefore normalization terminates and
-yields a unique normal form for fixed CDS data.</p><hr><h2 id=5-admissibility-and-error-surface>5. Admissibility and Error Surface</h2><p>CCE uses the following errors while consuming RTL:</p><table><thead><tr><th>Code</th><th>Condition</th></tr></thead><tbody><tr><td><code>RTL_UNKNOWN_FIELD</code></td><td>A term/type contains an unrecognized key</td></tr><tr><td><code>RTL_UNKNOWN_OPERATOR</code></td><td><code>op</code> not present in CDS <code>rtl_signature</code></td></tr><tr><td><code>RTL_VARIANCE_MISMATCH</code></td><td>Operator argument count or variance mismatch</td></tr><tr><td><code>RTL_ILLEGAL_MODAL</code></td><td>σ/Δ applied where CDS forbids commuting conversions</td></tr><tr><td><code>RTL_CANONICALIZATION_DIVERGED</code></td><td>Normalization did not terminate within declared fuel</td></tr><tr><td><code>RTL_TYPE_MISMATCH</code></td><td>Typing rule failure during judgment checking</td></tr></tbody></table><p>CCE MUST stop evaluation on the first hard error and return it through the ABI
-and RPC layers.</p><hr><h2 id=6-examples>6. Examples</h2><h3 id=61-boolean-cell-judgment>6.1 Boolean Cell Judgment</h3><p>For the minimal CDS in CDS §8.1, a valid judgment is:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-jsonc data-lang=jsonc><span style=display:flex><span>{<span style=color:#f92672>&#34;context&#34;</span>: [], <span style=color:#f92672>&#34;term&#34;</span>: {<span style=color:#f92672>&#34;var&#34;</span>: <span style=color:#e6db74>&#34;true&#34;</span>}, <span style=color:#f92672>&#34;type&#34;</span>: {<span style=color:#f92672>&#34;ref&#34;</span>: <span style=color:#e6db74>&#34;Ob U&#34;</span>}}
-</span></span></code></pre></div><p>Normalization is the identity; the resulting hash contributes to the CDS <code>id</code>.</p><h3 id=62-σδ-interaction>6.2 σ/Δ Interaction</h3><p>For a cell whose <code>rtl_signature</code> declares σ and Δ commuting, the term
-<code>{ "sigma": { "delta": {"var": "x"} } }</code> canonicalizes to
-<code>{ "delta": { "sigma": {"var": "x"} } }</code>. If commuting is false, the input is
-rejected with <code>RTL_ILLEGAL_MODAL</code>.</p><hr><h2 id=7-interpretive-reading-inside-the-gfrtu>7. Interpretive Reading inside the GFRTU</h2><p>RTL is not a free‑floating term calculus; its operators are internal arrows of
+yields a unique normal form for fixed CDS data.</p>
+<hr>
+<h2 id="5-admissibility-and-error-surface">5. Admissibility and Error Surface</h2>
+<p>CCE uses the following errors while consuming RTL:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Code</th>
+          <th>Condition</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>RTL_UNKNOWN_FIELD</code></td>
+          <td>A term/type contains an unrecognized key</td>
+      </tr>
+      <tr>
+          <td><code>RTL_UNKNOWN_OPERATOR</code></td>
+          <td><code>op</code> not present in CDS <code>rtl_signature</code></td>
+      </tr>
+      <tr>
+          <td><code>RTL_VARIANCE_MISMATCH</code></td>
+          <td>Operator argument count or variance mismatch</td>
+      </tr>
+      <tr>
+          <td><code>RTL_ILLEGAL_MODAL</code></td>
+          <td>σ/Δ applied where CDS forbids commuting conversions</td>
+      </tr>
+      <tr>
+          <td><code>RTL_CANONICALIZATION_DIVERGED</code></td>
+          <td>Normalization did not terminate within declared fuel</td>
+      </tr>
+      <tr>
+          <td><code>RTL_TYPE_MISMATCH</code></td>
+          <td>Typing rule failure during judgment checking</td>
+      </tr>
+  </tbody>
+</table>
+<p>CCE MUST stop evaluation on the first hard error and return it through the ABI
+and RPC layers.</p>
+<hr>
+<h2 id="6-examples">6. Examples</h2>
+<h3 id="61-boolean-cell-judgment">6.1 Boolean Cell Judgment</h3>
+<p>For the minimal CDS in CDS §8.1, a valid judgment is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-jsonc" data-lang="jsonc"><span style="display:flex;"><span>{<span style="color:#f92672">&#34;context&#34;</span>: [], <span style="color:#f92672">&#34;term&#34;</span>: {<span style="color:#f92672">&#34;var&#34;</span>: <span style="color:#e6db74">&#34;true&#34;</span>}, <span style="color:#f92672">&#34;type&#34;</span>: {<span style="color:#f92672">&#34;ref&#34;</span>: <span style="color:#e6db74">&#34;Ob U&#34;</span>}}
+</span></span></code></pre></div><p>Normalization is the identity; the resulting hash contributes to the CDS <code>id</code>.</p>
+<h3 id="62-σδ-interaction">6.2 σ/Δ Interaction</h3>
+<p>For a cell whose <code>rtl_signature</code> declares σ and Δ commuting, the term
+<code>{ &quot;sigma&quot;: { &quot;delta&quot;: {&quot;var&quot;: &quot;x&quot;} } }</code> canonicalizes to
+<code>{ &quot;delta&quot;: { &quot;sigma&quot;: {&quot;var&quot;: &quot;x&quot;} } }</code>. If commuting is false, the input is
+rejected with <code>RTL_ILLEGAL_MODAL</code>.</p>
+<hr>
+<h2 id="7-interpretive-reading-inside-the-gfrtu">7. Interpretive Reading inside the GFRTU</h2>
+<p>RTL is not a free‑floating term calculus; its operators are internal arrows of
 the sheaf topos described in <code>gfrtu.md</code>. Implementations MUST therefore enforce
-these interpretive constraints:</p><ol><li><strong>Context as sieve.</strong> The <code>context</code> list represents a matching family over a
+these interpretive constraints:</p>
+<ol>
+<li><strong>Context as sieve.</strong> The <code>context</code> list represents a matching family over a
 sieve in the site. Thinning (§4.1) is more than an optimization—it enforces
-that unused components do not contribute phantom evidence to sheaf gluing.</li><li><strong>Modal naturality.</strong> σ and Δ MUST be interpreted as natural transformations
+that unused components do not contribute phantom evidence to sheaf gluing.</li>
+<li><strong>Modal naturality.</strong> σ and Δ MUST be interpreted as natural transformations
 on the recognition sheaf. The commuting conversion in §4.1(4) is valid only
 when the CDS declares naturality, ensuring that normalization respects the
-Beck–Chevalley conditions of the site.</li><li><strong>Operators as internal morphisms.</strong> Every <code>{ "op": name }</code> stands for an
-internal morphism on the fixed layer <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">H^\ast</annotation></semantics></math></span>. Variance annotations mirror
+Beck–Chevalley conditions of the site.</li>
+<li><strong>Operators as internal morphisms.</strong> Every <code>{ &quot;op&quot;: name }</code> stands for an
+internal morphism on the fixed layer <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">H^\ast</annotation></semantics></math></span>. Variance annotations mirror
 the adjunctions of the ambient topos; mismatched variance thus signals a
 failure to preserve internal hom structure and MUST be rejected determinis-
-tically.</li><li><strong>Canonical judgment hashing.</strong> The hash of a canonical judgment is the
+tically.</li>
+<li><strong>Canonical judgment hashing.</strong> The hash of a canonical judgment is the
 witness that the internal arrow is well‑typed and normalized. Altering any
 serialization detail (spacing, key order) would change the hash and sever the
 link to the ambient mathematics; implementations MUST reject such drift by
-re‑canonicalizing and re‑hashing before use.</li></ol><p>These requirements keep RTL judgments aligned with the GFRTU’s internal logic
-rather than host‑specific term representations.</p><hr><h2 id=8-normativity-checklist-for-implementers>8. Normativity Checklist for Implementers</h2><p>Before accepting or emitting an RTL judgment, engines MUST verify:</p><ol><li><strong>Signature provenance.</strong> Every referenced operator is present in the paired
+re‑canonicalizing and re‑hashing before use.</li>
+</ol>
+<p>These requirements keep RTL judgments aligned with the GFRTU’s internal logic
+rather than host‑specific term representations.</p>
+<hr>
+<h2 id="8-normativity-checklist-for-implementers">8. Normativity Checklist for Implementers</h2>
+<p>Before accepting or emitting an RTL judgment, engines MUST verify:</p>
+<ol>
+<li><strong>Signature provenance.</strong> Every referenced operator is present in the paired
 CDS <code>rtl_signature</code> and is justified by the Acts. Missing provenance is a
-hard rejection <code>RTL_UNKNOWN_OPERATOR</code>.</li><li><strong>Fuel disclosure.</strong> Normalization MUST be performed under an explicit fuel
+hard rejection <code>RTL_UNKNOWN_OPERATOR</code>.</li>
+<li><strong>Fuel disclosure.</strong> Normalization MUST be performed under an explicit fuel
 bound (default 256 β/η/commuting steps). The consumed fuel MUST be recorded in
 the CCE repair log when normalization feeds into closure; implicit or
-variable fuel makes the judgment non‑replayable.</li><li><strong>Hash stability.</strong> After canonicalization, recompute the judgment hash and
+variable fuel makes the judgment non‑replayable.</li>
+<li><strong>Hash stability.</strong> After canonicalization, recompute the judgment hash and
 ensure it matches any caller‑provided hash. Disagreements MUST be surfaced as
-<code>RTL_CANONICALIZATION_DIVERGED</code> rather than silently rehashing.</li><li><strong>Context/site alignment.</strong> The free variables in <code>context</code> MUST reference
+<code>RTL_CANONICALIZATION_DIVERGED</code> rather than silently rehashing.</li>
+<li><strong>Context/site alignment.</strong> The free variables in <code>context</code> MUST reference
 objects declared in CDS <code>site.objects</code>; otherwise the judgment cannot be
-interpreted in the GFRTU topos and MUST be rejected.</li><li><strong>Variance enforcement.</strong> Contravariant arguments MUST be normalized before
+interpreted in the GFRTU topos and MUST be rejected.</li>
+<li><strong>Variance enforcement.</strong> Contravariant arguments MUST be normalized before
 substitution, covariant after. Deviations make the judgment non‑deterministic
-and MUST be rejected with <code>RTL_VARIANCE_MISMATCH</code>.</li></ol><p>Compliance with this checklist produces RTL judgments that are deterministic
+and MUST be rejected with <code>RTL_VARIANCE_MISMATCH</code>.</li>
+</ol>
+<p>Compliance with this checklist produces RTL judgments that are deterministic
 artifacts of the GFRTU mathematics and safe to embed in CDS or transport via ABI
-and RPC surfaces.</p><hr></div></article></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+and RPC surfaces.</p>
+<hr>
+
+  </div>
+  
+  
+</article>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

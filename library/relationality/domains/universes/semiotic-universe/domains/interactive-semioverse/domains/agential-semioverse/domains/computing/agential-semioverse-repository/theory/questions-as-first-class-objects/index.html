@@ -1,19 +1,230 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Questions as First-Class Objects - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-04","datePublished":"2026-03-04","description":"This document specifies how an Agential Semioverse Repository treats questions as first-class objects — entities with their own identity, frontmatter, lifecycle, and linking surface — rather than leaving them embedded as prose within other documents.\nMotivation The vault has well-developed infrastructure for answers: terms define things, concepts explain them, lessons teach them, curricula sequence them. It has no infrastructure for the questions that motivate those answers. This means:\nEssential questions that span multiple curricula cannot be tracked or linked to. Research questions embedded in specification documents cannot be referenced from elsewhere. Self-check questions in lessons are structurally invisible — they cannot be searched, tagged, or cross-linked. The relationship between a question and the content that addresses it is implicit (both live in the same document) rather than explicit (a typed relation). There is no way to record a question that does not yet have an answer, except as prose in an existing document. The vault cannot represent \u0026ldquo;I do not know\u0026rdquo; as a first-class state. The Structural Alignment Problem The vault\u0026rsquo;s decolonial pedagogy content endorses problem-posing education over the banking model. The banking model deposits answers; problem-posing education centers questions. If the vault\u0026rsquo;s architecture has robust infrastructure for deposited answers but none for the questions that motivate them, the architecture structurally reproduces the banking model at the organizational level. This is not a surface-level aesthetic concern — it is a structural alignment problem between the vault\u0026rsquo;s stated pedagogy and its implemented architecture.\n","keywords":"AgentialSemioverse, Pedagogy","name":"Questions as First-Class Objects","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/theory/questions-as-first-class-objects/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Questions as First-Class Objects</h1><div class=meta><time class=dt-published datetime=2026-03-04T00:00:00Z>2026-03-04</time></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#motivation>Motivation</a><ul><li><a href=#the-structural-alignment-problem>The Structural Alignment Problem</a></li></ul></li><li><a href=#pedagogical-grounding>Pedagogical Grounding</a></li><li><a href=#mapping-to-the-semioverse-hierarchy>Mapping to the Semioverse Hierarchy</a><ul><li><a href=#interactive-semioverse-question-as-suspended-interaction-term>Interactive Semioverse: Question as Suspended Interaction Term</a></li><li><a href=#footprint-as-answer>Footprint as Answer</a></li><li><a href=#agential-semioverse-question-as-work-unit-with-deferred-output>Agential Semioverse: Question as Work Unit with Deferred Output</a></li></ul></li><li><a href=#specification>Specification</a><ul><li><a href=#questions-subdirectory><code>questions/</code> Subdirectory</a></li><li><a href=#type-question-content-type><code>type: question</code> Content Type</a></li><li><a href=#questions-and-addresses-relation-fields><code>questions</code> and <code>addresses</code> Relation Fields</a></li></ul></li><li><a href=#what-this-changes>What This Changes</a></li></ul></nav></details><div class=e-content><p>This document specifies how an Agential Semioverse Repository treats questions as first-class objects — entities with their own identity, frontmatter, lifecycle, and linking surface — rather than leaving them embedded as prose within other documents.</p><h2 id=motivation>Motivation</h2><p>The vault has well-developed infrastructure for answers: <a href=../directory-organization/index.md class=link-internal>terms</a> define things, concepts explain them, lessons teach them, curricula sequence them. It has no infrastructure for the questions that motivate those answers. This means:</p><ul><li>Essential questions that span multiple curricula cannot be tracked or linked to.</li><li>Research questions embedded in specification documents cannot be referenced from elsewhere.</li><li>Self-check questions in lessons are structurally invisible — they cannot be searched, tagged, or cross-linked.</li><li>The relationship between a question and the content that addresses it is implicit (both live in the same document) rather than explicit (a typed relation).</li><li>There is no way to record a question that does not yet have an answer, except as prose in an existing document. The vault cannot represent &ldquo;I do not know&rdquo; as a first-class state.</li></ul><h3 id=the-structural-alignment-problem>The Structural Alignment Problem</h3><p>The vault&rsquo;s decolonial pedagogy content endorses problem-posing education over the banking model. The banking model deposits answers; problem-posing education centers questions. If the vault&rsquo;s architecture has robust infrastructure for deposited answers but none for the questions that motivate them, the architecture structurally reproduces the banking model at the organizational level. This is not a surface-level aesthetic concern — it is a structural alignment problem between the vault&rsquo;s stated pedagogy and its implemented architecture.</p><p>The relationality framework itself is driven by questions. The <a href=../../../../relationality/index.md class=link-internal>derivation</a> states: &ldquo;Each step of the derivation answers this question for what has been produced so far, and each answer exposes a new question.&rdquo; Questions are the engine of the derivation. Giving questions first-class status makes the vault&rsquo;s architecture more consistent with its central philosophical text.</p><h2 id=pedagogical-grounding>Pedagogical Grounding</h2><p>Four traditions treat questions as structurally important knowledge objects.</p><p><strong>Paulo Freire: Generative Themes.</strong> In <em>Pedagogy of the Oppressed</em>, Freire&rsquo;s concept of generative themes — the issues and contradictions that emerge from a community&rsquo;s situation and become the raw material for inquiry — treats the question-shaped problem as the fundamental unit of learning. A generative theme is not an answer; it is a problem that structures an investigation.</p><p><strong>Wiggins and McTighe: Essential Questions.</strong> The <em>Understanding by Design</em> framework introduces essential questions — questions that are open-ended, recur across a curriculum, and can be returned to at increasing levels of sophistication. An essential question like &ldquo;What makes a proof convincing?&rdquo; is not answered once and discarded. It is revisited throughout a learning path, each return yielding deeper engagement. Essential questions are distinct from unit questions (bounded, resolved within a single lesson) and factual questions (which have definite answers).</p><p><strong>Socratic Method.</strong> The Socratic tradition treats questions as epistemically productive instruments. The question is the primary pedagogical unit: understanding develops through a sequence of questions, not through a sequence of statements. A question is not a gap waiting to be filled — it is a tool that shapes what kind of knowledge can emerge.</p><p><strong>Knowledge Management.</strong> Stack Overflow treats a question as a first-class entity with its own identity, lifecycle (open, answered, closed, duplicate), tags, and relation to answers. The question is not consumed by its answer — it persists as a navigational object. In the Zettelkasten tradition, fleeting notes often begin as questions, but the method does not formalize questions as a distinct note type. The Zettelkasten gap is the gap this vault has: questions dissolve into answers and lose their identity.</p><h2 id=mapping-to-the-semioverse-hierarchy>Mapping to the Semioverse Hierarchy</h2><h3 id=interactive-semioverse-question-as-suspended-interaction-term>Interactive Semioverse: Question as Suspended Interaction Term</h3><p>An <a href=../../../../mathematics/objects/universes/interactive-semioverse/terms/interaction-term.md class=link-internal>interaction term</a> is an expression built from handles and definable operators, interpreted into the Heyting algebra H. In the current formalism, if an interaction term is ill-formed or its application undefined, it interprets as bottom (the failure value). A question is not a failure — it is a <em>pending</em> interaction, one whose closure has not yet been computed.</p><p>This suggests a natural extension: alongside the failure value bottom, introduce a <em>suspension</em> value that represents an interaction whose closure is deferred rather than failed. The handle fragment generated by a question-as-suspended-interaction would be a partial fragment — containing the semantic seeds of the question&rsquo;s handles but lacking the closure that would constitute an answer.</p><h3 id=footprint-as-answer>Footprint as Answer</h3><p>The <a href=../../../../mathematics/objects/universes/interactive-semioverse/terms/footprint.md class=link-internal>footprint</a> is the semantic closure of a handle fragment. If a question is a suspended interaction term, then answering a question is the act of computing its closure — applying the composite closure operator S to produce a stable footprint. An unanswered question is an interaction term with a handle fragment but no footprint. A partially answered question is one whose closure is not yet a fixed point. A fully answered question is one whose footprint has stabilized. This gives a precise formal account of the lifecycle of a question.</p><h3 id=agential-semioverse-question-as-work-unit-with-deferred-output>Agential Semioverse: Question as Work Unit with Deferred Output</h3><p>In the <a href=../../../../mathematics/objects/universes/agential-semioverse/index.md class=link-internal>agential semioverse</a>, a <a href=./work-units-and-chains.md class=link-internal>work unit</a> is a skill invocation with concrete inputs and a closure (expected outputs). A question can be modeled as a work unit whose output slot is unfilled — the inputs are given (the question&rsquo;s framing, context, and scope), but the closure has not been computed. This maps to the <a href=./work-unit-lifecycle.md class=link-internal>work-unit lifecycle</a>: a question is a work unit in a &ldquo;pending&rdquo; state, waiting for an agent to execute it.</p><h2 id=specification>Specification</h2><p>The vault adopts a hybrid approach to question infrastructure.</p><h3 id=questions-subdirectory><code>questions/</code> Subdirectory</h3><p><code>questions/</code> is a recognized standard subdirectory in the <a href=../directory-organization/index.md class=link-internal>directory organization specification</a>. It holds persistent questions that structure inquiry within a discipline. Each file records a question, its status, and links to content that motivates or addresses it.</p><p>Not every question warrants a file. Self-check exercises within lessons and factual questions with definite answers are better left inline. The <code>questions/</code> subdirectory is for questions that merit tracking as independent objects: essential questions, research questions, and unresolved problems.</p><h3 id=type-question-content-type><code>type: question</code> Content Type</h3><p><code>question</code> is a valid value for the <code>type:</code> frontmatter field, as specified in <a href=../semantic-frontmatter.md class=link-internal>semantic frontmatter</a>. It maps to Schema.org <code>Question</code>.</p><p>Frontmatter for a question file:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>title</span>: <span style=color:#e6db74>&#34;What does it mean to understand something?&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>type</span>: <span style=color:#ae81ff>question</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>date-created</span>: <span style=color:#e6db74>2026-03-04T00:00:00</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>status</span>: <span style=color:#ae81ff>open</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>tags</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>Learning</span>
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>Epistemology</span>
-</span></span></code></pre></div><p>The <code>status</code> field tracks the question&rsquo;s lifecycle:</p><ul><li><code>open</code> — the question has been recorded but not addressed</li><li><code>partially-addressed</code> — some content engages the question, but it remains open</li><li><code>resolved</code> — the question has been addressed to the point where it no longer drives active inquiry (it may still be revisited)</li></ul><h3 id=questions-and-addresses-relation-fields><code>questions</code> and <code>addresses</code> Relation Fields</h3><p>Two typed relation fields in <a href=../semantic-frontmatter.md class=link-internal>semantic frontmatter</a> create explicit links between questions and the content that engages them:</p><ul><li><code>questions:</code> — a list of questions this page raises, investigates, or is motivated by. These are inquiry-shaping questions, not rhetorical or self-check.</li><li><code>addresses:</code> — a list of questions this page contributes toward answering. The inverse of <code>questions</code>.</li></ul><p>These fields allow questions to participate in the vault&rsquo;s semantic graph without requiring every question to exist as a standalone file. A text can declare the questions it raises; another text can declare that it addresses one of those questions. The graph connects them.</p><h2 id=what-this-changes>What This Changes</h2><ol><li>The <a href=../directory-organization/index.md class=link-internal>directory organization specification</a> recognizes <code>questions/</code> as a standard subdirectory.</li><li>The <a href=../semantic-frontmatter.md class=link-internal>semantic frontmatter specification</a> adds <code>question</code> to valid <code>type</code> values, and adds <code>questions</code> and <code>addresses</code> as typed relation fields.</li><li>Head.tsx maps <code>type: question</code> to Schema.org <code>Question</code> for JSON-LD.</li><li>The add-type-tags script assigns <code>type: question</code> to files in <code>questions/</code> directories.</li></ol></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>emsenn. (2026, March 4). Questions as First-Class Objects. <i>emsenn.net</i>. https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/theory/questions-as-first-class-objects/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@article{emsenn2026-questions-as-first-class-objects,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Questions as First-Class Objects - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-04",
+  "datePublished": "2026-03-04",
+  "description": "This document specifies how an Agential Semioverse Repository treats questions as first-class objects — entities with their own identity, frontmatter, lifecycle, and linking surface — rather than leaving them embedded as prose within other documents.\nMotivation The vault has well-developed infrastructure for answers: terms define things, concepts explain them, lessons teach them, curricula sequence them. It has no infrastructure for the questions that motivate those answers. This means:\nEssential questions that span multiple curricula cannot be tracked or linked to. Research questions embedded in specification documents cannot be referenced from elsewhere. Self-check questions in lessons are structurally invisible — they cannot be searched, tagged, or cross-linked. The relationship between a question and the content that addresses it is implicit (both live in the same document) rather than explicit (a typed relation). There is no way to record a question that does not yet have an answer, except as prose in an existing document. The vault cannot represent \u0026ldquo;I do not know\u0026rdquo; as a first-class state. The Structural Alignment Problem The vault\u0026rsquo;s decolonial pedagogy content endorses problem-posing education over the banking model. The banking model deposits answers; problem-posing education centers questions. If the vault\u0026rsquo;s architecture has robust infrastructure for deposited answers but none for the questions that motivate them, the architecture structurally reproduces the banking model at the organizational level. This is not a surface-level aesthetic concern — it is a structural alignment problem between the vault\u0026rsquo;s stated pedagogy and its implemented architecture.\n",
+  "keywords": "AgentialSemioverse, Pedagogy",
+  "name": "Questions as First-Class Objects",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/theory/questions-as-first-class-objects/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="text">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/">Universes</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/">Semiotic universe</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/">Interactive semioverse</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/">Agential semioverse</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/">Computing</a></nav>
+  <h1 class="p-name">Questions as First-Class Objects</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-04T00:00:00Z">2026-03-04</time>
+    
+    
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#motivation">Motivation</a>
+      <ul>
+        <li><a href="#the-structural-alignment-problem">The Structural Alignment Problem</a></li>
+      </ul>
+    </li>
+    <li><a href="#pedagogical-grounding">Pedagogical Grounding</a></li>
+    <li><a href="#mapping-to-the-semioverse-hierarchy">Mapping to the Semioverse Hierarchy</a>
+      <ul>
+        <li><a href="#interactive-semioverse-question-as-suspended-interaction-term">Interactive Semioverse: Question as Suspended Interaction Term</a></li>
+        <li><a href="#footprint-as-answer">Footprint as Answer</a></li>
+        <li><a href="#agential-semioverse-question-as-work-unit-with-deferred-output">Agential Semioverse: Question as Work Unit with Deferred Output</a></li>
+      </ul>
+    </li>
+    <li><a href="#specification">Specification</a>
+      <ul>
+        <li><a href="#questions-subdirectory"><code>questions/</code> Subdirectory</a></li>
+        <li><a href="#type-question-content-type"><code>type: question</code> Content Type</a></li>
+        <li><a href="#questions-and-addresses-relation-fields"><code>questions</code> and <code>addresses</code> Relation Fields</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-this-changes">What This Changes</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>This document specifies how an Agential Semioverse Repository treats questions as first-class objects — entities with their own identity, frontmatter, lifecycle, and linking surface — rather than leaving them embedded as prose within other documents.</p>
+<h2 id="motivation">Motivation</h2>
+<p>The vault has well-developed infrastructure for answers: <a href="../directory-organization/index.md" class="link-internal">terms</a> define things, concepts explain them, lessons teach them, curricula sequence them. It has no infrastructure for the questions that motivate those answers. This means:</p>
+<ul>
+<li>Essential questions that span multiple curricula cannot be tracked or linked to.</li>
+<li>Research questions embedded in specification documents cannot be referenced from elsewhere.</li>
+<li>Self-check questions in lessons are structurally invisible — they cannot be searched, tagged, or cross-linked.</li>
+<li>The relationship between a question and the content that addresses it is implicit (both live in the same document) rather than explicit (a typed relation).</li>
+<li>There is no way to record a question that does not yet have an answer, except as prose in an existing document. The vault cannot represent &ldquo;I do not know&rdquo; as a first-class state.</li>
+</ul>
+<h3 id="the-structural-alignment-problem">The Structural Alignment Problem</h3>
+<p>The vault&rsquo;s decolonial pedagogy content endorses problem-posing education over the banking model. The banking model deposits answers; problem-posing education centers questions. If the vault&rsquo;s architecture has robust infrastructure for deposited answers but none for the questions that motivate them, the architecture structurally reproduces the banking model at the organizational level. This is not a surface-level aesthetic concern — it is a structural alignment problem between the vault&rsquo;s stated pedagogy and its implemented architecture.</p>
+<p>The relationality framework itself is driven by questions. The <a href="../../../../relationality/index.md" class="link-internal">derivation</a> states: &ldquo;Each step of the derivation answers this question for what has been produced so far, and each answer exposes a new question.&rdquo; Questions are the engine of the derivation. Giving questions first-class status makes the vault&rsquo;s architecture more consistent with its central philosophical text.</p>
+<h2 id="pedagogical-grounding">Pedagogical Grounding</h2>
+<p>Four traditions treat questions as structurally important knowledge objects.</p>
+<p><strong>Paulo Freire: Generative Themes.</strong> In <em>Pedagogy of the Oppressed</em>, Freire&rsquo;s concept of generative themes — the issues and contradictions that emerge from a community&rsquo;s situation and become the raw material for inquiry — treats the question-shaped problem as the fundamental unit of learning. A generative theme is not an answer; it is a problem that structures an investigation.</p>
+<p><strong>Wiggins and McTighe: Essential Questions.</strong> The <em>Understanding by Design</em> framework introduces essential questions — questions that are open-ended, recur across a curriculum, and can be returned to at increasing levels of sophistication. An essential question like &ldquo;What makes a proof convincing?&rdquo; is not answered once and discarded. It is revisited throughout a learning path, each return yielding deeper engagement. Essential questions are distinct from unit questions (bounded, resolved within a single lesson) and factual questions (which have definite answers).</p>
+<p><strong>Socratic Method.</strong> The Socratic tradition treats questions as epistemically productive instruments. The question is the primary pedagogical unit: understanding develops through a sequence of questions, not through a sequence of statements. A question is not a gap waiting to be filled — it is a tool that shapes what kind of knowledge can emerge.</p>
+<p><strong>Knowledge Management.</strong> Stack Overflow treats a question as a first-class entity with its own identity, lifecycle (open, answered, closed, duplicate), tags, and relation to answers. The question is not consumed by its answer — it persists as a navigational object. In the Zettelkasten tradition, fleeting notes often begin as questions, but the method does not formalize questions as a distinct note type. The Zettelkasten gap is the gap this vault has: questions dissolve into answers and lose their identity.</p>
+<h2 id="mapping-to-the-semioverse-hierarchy">Mapping to the Semioverse Hierarchy</h2>
+<h3 id="interactive-semioverse-question-as-suspended-interaction-term">Interactive Semioverse: Question as Suspended Interaction Term</h3>
+<p>An <a href="../../../../mathematics/objects/universes/interactive-semioverse/terms/interaction-term.md" class="link-internal">interaction term</a> is an expression built from handles and definable operators, interpreted into the Heyting algebra H. In the current formalism, if an interaction term is ill-formed or its application undefined, it interprets as bottom (the failure value). A question is not a failure — it is a <em>pending</em> interaction, one whose closure has not yet been computed.</p>
+<p>This suggests a natural extension: alongside the failure value bottom, introduce a <em>suspension</em> value that represents an interaction whose closure is deferred rather than failed. The handle fragment generated by a question-as-suspended-interaction would be a partial fragment — containing the semantic seeds of the question&rsquo;s handles but lacking the closure that would constitute an answer.</p>
+<h3 id="footprint-as-answer">Footprint as Answer</h3>
+<p>The <a href="../../../../mathematics/objects/universes/interactive-semioverse/terms/footprint.md" class="link-internal">footprint</a> is the semantic closure of a handle fragment. If a question is a suspended interaction term, then answering a question is the act of computing its closure — applying the composite closure operator S to produce a stable footprint. An unanswered question is an interaction term with a handle fragment but no footprint. A partially answered question is one whose closure is not yet a fixed point. A fully answered question is one whose footprint has stabilized. This gives a precise formal account of the lifecycle of a question.</p>
+<h3 id="agential-semioverse-question-as-work-unit-with-deferred-output">Agential Semioverse: Question as Work Unit with Deferred Output</h3>
+<p>In the <a href="../../../../mathematics/objects/universes/agential-semioverse/index.md" class="link-internal">agential semioverse</a>, a <a href="./work-units-and-chains.md" class="link-internal">work unit</a> is a skill invocation with concrete inputs and a closure (expected outputs). A question can be modeled as a work unit whose output slot is unfilled — the inputs are given (the question&rsquo;s framing, context, and scope), but the closure has not been computed. This maps to the <a href="./work-unit-lifecycle.md" class="link-internal">work-unit lifecycle</a>: a question is a work unit in a &ldquo;pending&rdquo; state, waiting for an agent to execute it.</p>
+<h2 id="specification">Specification</h2>
+<p>The vault adopts a hybrid approach to question infrastructure.</p>
+<h3 id="questions-subdirectory"><code>questions/</code> Subdirectory</h3>
+<p><code>questions/</code> is a recognized standard subdirectory in the <a href="../directory-organization/index.md" class="link-internal">directory organization specification</a>. It holds persistent questions that structure inquiry within a discipline. Each file records a question, its status, and links to content that motivates or addresses it.</p>
+<p>Not every question warrants a file. Self-check exercises within lessons and factual questions with definite answers are better left inline. The <code>questions/</code> subdirectory is for questions that merit tracking as independent objects: essential questions, research questions, and unresolved problems.</p>
+<h3 id="type-question-content-type"><code>type: question</code> Content Type</h3>
+<p><code>question</code> is a valid value for the <code>type:</code> frontmatter field, as specified in <a href="../semantic-frontmatter.md" class="link-internal">semantic frontmatter</a>. It maps to Schema.org <code>Question</code>.</p>
+<p>Frontmatter for a question file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;What does it mean to understand something?&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">question</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">date-created</span>: <span style="color:#e6db74">2026-03-04T00:00:00</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">status</span>: <span style="color:#ae81ff">open</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tags</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">Learning</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">Epistemology</span>
+</span></span></code></pre></div><p>The <code>status</code> field tracks the question&rsquo;s lifecycle:</p>
+<ul>
+<li><code>open</code> — the question has been recorded but not addressed</li>
+<li><code>partially-addressed</code> — some content engages the question, but it remains open</li>
+<li><code>resolved</code> — the question has been addressed to the point where it no longer drives active inquiry (it may still be revisited)</li>
+</ul>
+<h3 id="questions-and-addresses-relation-fields"><code>questions</code> and <code>addresses</code> Relation Fields</h3>
+<p>Two typed relation fields in <a href="../semantic-frontmatter.md" class="link-internal">semantic frontmatter</a> create explicit links between questions and the content that engages them:</p>
+<ul>
+<li><code>questions:</code> — a list of questions this page raises, investigates, or is motivated by. These are inquiry-shaping questions, not rhetorical or self-check.</li>
+<li><code>addresses:</code> — a list of questions this page contributes toward answering. The inverse of <code>questions</code>.</li>
+</ul>
+<p>These fields allow questions to participate in the vault&rsquo;s semantic graph without requiring every question to exist as a standalone file. A text can declare the questions it raises; another text can declare that it addresses one of those questions. The graph connects them.</p>
+<h2 id="what-this-changes">What This Changes</h2>
+<ol>
+<li>The <a href="../directory-organization/index.md" class="link-internal">directory organization specification</a> recognizes <code>questions/</code> as a standard subdirectory.</li>
+<li>The <a href="../semantic-frontmatter.md" class="link-internal">semantic frontmatter specification</a> adds <code>question</code> to valid <code>type</code> values, and adds <code>questions</code> and <code>addresses</code> as typed relation fields.</li>
+<li>Head.tsx maps <code>type: question</code> to Schema.org <code>Question</code> for JSON-LD.</li>
+<li>The add-type-tags script assigns <code>type: question</code> to files in <code>questions/</code> directories.</li>
+</ol>
+
+  </div>
+  
+  <section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <details>
+    <summary>APA</summary>
+    <pre class="cite-block"><code>emsenn. (2026, March 4). Questions as First-Class Objects. <i>emsenn.net</i>. http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/theory/questions-as-first-class-objects/</code></pre>
+  </details>
+  <details>
+    <summary>BibTeX</summary>
+    <pre class="cite-block"><code>@article{emsenn2026-questions-as-first-class-objects,
   author    = {emsenn},
   title     = {Questions as First-Class Objects},
   year      = {2026},
-  url       = {https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/theory/questions-as-first-class-objects/},
+  url       = {http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/theory/questions-as-first-class-objects/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/theory/questions-as-first-class-objects/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-04>2026-03-04</time></dd></div><div class=relation><dt>questions</dt><dd property="emsenn:Questions"><ul><li>Should the vault treat questions as first-class objects with independent identity?</li><li>How do questions map to the semioverse hierarchy?</li></ul></dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/agentialsemioverse/>AgentialSemioverse</a></li><li><a href=/tags/pedagogy/>Pedagogy</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Questions as First-Class Objects</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/text/>text</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+  </details>
+</section>
+</article>
+<section class="page-relations" resource="http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/theory/questions-as-first-class-objects/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>date-created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-04">2026-03-04</time></dd>
+      </div><div class="relation">
+        <dt>questions</dt>
+        <dd property="emsenn:Questions"><ul><li>Should the vault treat questions as first-class objects with independent identity?</li><li>How do questions map to the semioverse hierarchy?</li></ul></dd>
+      </div><div class="relation">
+        <dt>tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/agentialsemioverse/">AgentialSemioverse</a></li><li><a href="/tags/pedagogy/">Pedagogy</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>title</dt>
+        <dd property="schema:name">Questions as First-Class Objects</dd>
+      </div><div class="relation">
+        <dt>type</dt>
+        <dd property="dc:type"><a href="/types/text/">text</a></dd>
+      </div>
+  <div class="relation">
+    <dt>referenced-by</dt>
+    <dd>
+      <ul><li><a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/domains/agential-semioverse-repository/domains/theory/questions-as-first-class-objects/">Questions as First-Class Objects</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

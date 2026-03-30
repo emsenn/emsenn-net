@@ -1,8 +1,112 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"Cellular Data Serialization (CDS)\nSpecification – Version 0.x (normative)\nPurpose and Scope Cellular Data Serialization (CDS) provides a canonical JSON carrier for the structural state of a single local universe (cell) in a Generative Fibered Relational Trace Universe (GFRTU). A CDS serialization:\nencodes the cell site and restricted Grothendieck topology; encodes recognition fibers and their candidate fixed layer; binds the Recognition Term Language (RTL) to cell objects and operations; enumerates structural vocabulary and generative constructors; records admissibility, canonicalization, and invariant laws; and may include defining RTL judgments that operationally generate the cell. CDS is closed‑world: every input required by the Cellular Closure Engine (CCE) to test admissibility or build closure MUST appear in a single CDS JSON object. Whether a CDS is closure‑complete is a semantic property determined by CCE, not an alternate file format.\n","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-data-serialization/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name></h1><div class=meta></div><div class=e-content><p>Cellular Data Serialization (CDS)</p><p><strong>Specification – Version 0.x (normative)</strong></p><hr><ol><li>Purpose and Scope</li></ol><p>Cellular Data Serialization (CDS) provides a canonical JSON carrier for the structural state of a single local universe (<strong>cell</strong>) in a Generative Fibered Relational Trace Universe (GFRTU). A CDS serialization:</p><ul><li>encodes the cell site and restricted Grothendieck topology;</li><li>encodes recognition fibers and their candidate fixed layer;</li><li>binds the Recognition Term Language (RTL) to cell objects and operations;</li><li>enumerates structural vocabulary and generative constructors;</li><li>records admissibility, canonicalization, and invariant laws; and</li><li>may include defining RTL judgments that operationally generate the cell.</li></ul><p>CDS is <strong>closed‑world</strong>: every input required by the Cellular Closure Engine (CCE) to test admissibility or build closure MUST appear in a single CDS JSON object. Whether a CDS is closure‑complete is a semantic property determined by CCE, not an alternate file format.</p><hr><ol start=2><li>Conformance and Terminology</li></ol><p>The key words <strong>MUST</strong>, <strong>MUST NOT</strong>, <strong>REQUIRED</strong>, <strong>SHOULD</strong>, and <strong>MAY</strong> follow RFC 2119.</p><ul><li>A <strong>structural CDS serialization</strong> satisfies all MUST‑level schema constraints but may violate closure‑generated invariants.</li><li>A <strong>closure‑complete CDS serialization</strong> is structural and satisfies all invariants declared under <code>"laws.invariants"</code> after CCE refinement.</li></ul><p>Implementations MUST accept any serialization satisfying MUST‑level requirements and reject those that do not.</p><hr><ol start=3><li>Canonical JSON Schema Fragments</li></ol><p>Implementers MUST validate CDS payloads using machine‑checkable fragments. The schema fragments below illustrate the required JSON shape. Canonicalization is defined in §5: implementations MUST sort all JSON object keys lexicographically; the examples reflect one valid instance of that order but are not themselves normative about key order. The filename stem MUST equal the canonical hash in <code>id</code>.</p><p>3.1 Top-level object</p><pre tabindex=0><code>{
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "Cellular Data Serialization (CDS)\nSpecification – Version 0.x (normative)\nPurpose and Scope Cellular Data Serialization (CDS) provides a canonical JSON carrier for the structural state of a single local universe (cell) in a Generative Fibered Relational Trace Universe (GFRTU). A CDS serialization:\nencodes the cell site and restricted Grothendieck topology; encodes recognition fibers and their candidate fixed layer; binds the Recognition Term Language (RTL) to cell objects and operations; enumerates structural vocabulary and generative constructors; records admissibility, canonicalization, and invariant laws; and may include defining RTL judgments that operationally generate the cell. CDS is closed‑world: every input required by the Cellular Closure Engine (CCE) to test admissibility or build closure MUST appear in a single CDS JSON object. Whether a CDS is closure‑complete is a semantic property determined by CCE, not an alternate file format.\n",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-data-serialization/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software/domains/ideas/">Ideas</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/">Cellular closure computing</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    
+  </div>
+  <div class="e-content">
+    <p>Cellular Data Serialization (CDS)</p>
+<p><strong>Specification – Version 0.x (normative)</strong></p>
+<hr>
+<ol>
+<li>Purpose and Scope</li>
+</ol>
+<p>Cellular Data Serialization (CDS) provides a canonical JSON carrier for the structural state of a single local universe (<strong>cell</strong>) in a Generative Fibered Relational Trace Universe (GFRTU). A CDS serialization:</p>
+<ul>
+<li>encodes the cell site and restricted Grothendieck topology;</li>
+<li>encodes recognition fibers and their candidate fixed layer;</li>
+<li>binds the Recognition Term Language (RTL) to cell objects and operations;</li>
+<li>enumerates structural vocabulary and generative constructors;</li>
+<li>records admissibility, canonicalization, and invariant laws; and</li>
+<li>may include defining RTL judgments that operationally generate the cell.</li>
+</ul>
+<p>CDS is <strong>closed‑world</strong>: every input required by the Cellular Closure Engine (CCE) to test admissibility or build closure MUST appear in a single CDS JSON object. Whether a CDS is closure‑complete is a semantic property determined by CCE, not an alternate file format.</p>
+<hr>
+<ol start="2">
+<li>Conformance and Terminology</li>
+</ol>
+<p>The key words <strong>MUST</strong>, <strong>MUST NOT</strong>, <strong>REQUIRED</strong>, <strong>SHOULD</strong>, and <strong>MAY</strong> follow RFC 2119.</p>
+<ul>
+<li>A <strong>structural CDS serialization</strong> satisfies all MUST‑level schema constraints but may violate closure‑generated invariants.</li>
+<li>A <strong>closure‑complete CDS serialization</strong> is structural and satisfies all invariants declared under <code>&quot;laws.invariants&quot;</code> after CCE refinement.</li>
+</ul>
+<p>Implementations MUST accept any serialization satisfying MUST‑level requirements and reject those that do not.</p>
+<hr>
+<ol start="3">
+<li>Canonical JSON Schema Fragments</li>
+</ol>
+<p>Implementers MUST validate CDS payloads using machine‑checkable fragments. The schema fragments below illustrate the required JSON shape. Canonicalization is defined in §5: implementations MUST sort all JSON object keys lexicographically; the examples reflect one valid instance of that order but are not themselves normative about key order. The filename stem MUST equal the canonical hash in <code>id</code>.</p>
+<p>3.1 Top-level object</p>
+<pre tabindex="0"><code>{
   &#34;id&#34;: &#34;sha256-hex&#34;,
   &#34;kind&#34;: &#34;cds&#34;,                 // literal
   &#34;site&#34;: { ... },
@@ -15,13 +119,22 @@
   &#34;defining_expression&#34;: { ... }, // optional
   &#34;examples&#34;: { ... }             // optional
 }
-</code></pre><p>Required fields: <code>id</code>, <code>kind</code>, <code>site</code>, <code>fibers</code>, <code>fixed_layer</code>, <code>rtl_signature</code>, <code>structural_vocabulary</code>, <code>constructors</code>, and <code>laws</code>. Unknown extra keys MUST be rejected.</p><p>3.2 Site</p><pre tabindex=0><code>{
+</code></pre><p>Required fields: <code>id</code>, <code>kind</code>, <code>site</code>, <code>fibers</code>, <code>fixed_layer</code>, <code>rtl_signature</code>, <code>structural_vocabulary</code>, <code>constructors</code>, and <code>laws</code>. Unknown extra keys MUST be rejected.</p>
+<p>3.2 Site</p>
+<pre tabindex="0"><code>{
   &#34;objects&#34;: [ {&#34;id&#34;: &#34;string&#34;, &#34;cover&#34;: [&#34;string&#34;, ...]} , ...],
   &#34;morphisms&#34;: [ {&#34;src&#34;: &#34;string&#34;, &#34;tgt&#34;: &#34;string&#34;, &#34;id&#34;: &#34;string&#34;}, ...],
   &#34;topology&#34;: [ [&#34;string&#34;, ...], ... ],
   &#34;heyting_table&#34;: {&#34;meet&#34;: [&#34;string&#34;](&#34;string&#34;), &#34;join&#34;: [&#34;string&#34;](&#34;string&#34;), &#34;imp&#34;: [&#34;string&#34;](&#34;string&#34;)}
 }
-</code></pre><ul><li><code>objects.id</code> MUST be unique and total.</li><li><code>topology</code> is a list of sieves. Each inner array is a sieve specified by morphism identifiers drawn from <code>site.morphisms[*].id</code>. All morphisms in a single sieve MUST share the same codomain object, and that codomain is the object covered by the sieve. A CDS validator MUST reject sieves containing morphisms with different codomains or unknown morphism identifiers.</li><li><code>heyting_table</code> MUST present closed Heyting operations on finite joins and meets. Any missing or asymmetric table entry is an error <code>CDS_SITE_HEYTING_GAP</code>.</li><li>Morphisms MUST form a small category: identity and associativity violations trigger <code>CDS_SITE_CATEGORY_FAIL</code>.</li></ul><p>3.3 Fibers and Fixed Layer</p><pre tabindex=0><code>{
+</code></pre><ul>
+<li><code>objects.id</code> MUST be unique and total.</li>
+<li><code>topology</code> is a list of sieves. Each inner array is a sieve specified by morphism identifiers drawn from <code>site.morphisms[*].id</code>. All morphisms in a single sieve MUST share the same codomain object, and that codomain is the object covered by the sieve. A CDS validator MUST reject sieves containing morphisms with different codomains or unknown morphism identifiers.</li>
+<li><code>heyting_table</code> MUST present closed Heyting operations on finite joins and meets. Any missing or asymmetric table entry is an error <code>CDS_SITE_HEYTING_GAP</code>.</li>
+<li>Morphisms MUST form a small category: identity and associativity violations trigger <code>CDS_SITE_CATEGORY_FAIL</code>.</li>
+</ul>
+<p>3.3 Fibers and Fixed Layer</p>
+<pre tabindex="0"><code>{
   &#34;recognition&#34;: {
     &#34;carrier&#34;: &#34;string&#34;,          // e.g., Discrete, Boolean, Heyting
     &#34;sigma&#34;: {&#34;table&#34;: [&#34;string&#34;](&#34;string&#34;)},
@@ -32,7 +145,13 @@
     {&#34;object&#34;: &#34;string&#34;, &#34;elements&#34;: [&#34;string&#34;, ...]}
   ]
 }
-</code></pre><ul><li><code>sections</code> MUST supply at least one section per site object.</li><li>Sections MUST obey <code>sigma</code>/<code>delta</code> closure tables; violations MUST trigger <code>CDS_FIBER_SIGMA_DELTA_VIOLATION</code>.</li><li>The <strong>fixed layer</strong> is encoded identically but represents stabilized sections; sheaf gluing failures MUST trigger <code>CDS_FIXED_LAYER_SHEAF_FAIL</code>.</li></ul><p>3.4 RTL Signature and Vocabulary</p><pre tabindex=0><code>{
+</code></pre><ul>
+<li><code>sections</code> MUST supply at least one section per site object.</li>
+<li>Sections MUST obey <code>sigma</code>/<code>delta</code> closure tables; violations MUST trigger <code>CDS_FIBER_SIGMA_DELTA_VIOLATION</code>.</li>
+<li>The <strong>fixed layer</strong> is encoded identically but represents stabilized sections; sheaf gluing failures MUST trigger <code>CDS_FIXED_LAYER_SHEAF_FAIL</code>.</li>
+</ul>
+<p>3.4 RTL Signature and Vocabulary</p>
+<pre tabindex="0"><code>{
   &#34;rtl_signature&#34;: {
     &#34;base_types&#34;: [&#34;string&#34;, ...],
     &#34;constructors&#34;: [
@@ -46,7 +165,9 @@
     &#34;relations&#34;: [ {&#34;name&#34;: &#34;string&#34;, &#34;arity&#34;: [&#34;string&#34;, ...]} ]
   }
 }
-</code></pre><p>Unknown operators MUST be rejected during CCE admission with <code>CDS_UNKNOWN_OPERATOR</code>.</p><p>3.5 Constructors and Laws</p><pre tabindex=0><code>{
+</code></pre><p>Unknown operators MUST be rejected during CCE admission with <code>CDS_UNKNOWN_OPERATOR</code>.</p>
+<p>3.5 Constructors and Laws</p>
+<pre tabindex="0"><code>{
   &#34;constructors&#34;: [
     {&#34;name&#34;: &#34;pullback&#34;, &#34;inputs&#34;: [&#34;object&#34;, &#34;morphism&#34;], &#34;outputs&#34;: [&#34;object&#34;],
      &#34;total&#34;: true, &#34;stable_under_sigma&#34;: true, &#34;stable_under_delta&#34;: true}
@@ -64,12 +185,158 @@
     &#34;repair_log&#34;: []
   }
 }
-</code></pre><p>Constructors MUST be total over declared vocabulary unless marked otherwise. <code>laws.canonicalization.strategy</code> MUST match the RTL normalization plan (§5) and MUST be applied before hashing. The <code>repair_log</code> array MUST be present (possibly empty) to receive deterministic repair entries from CCE.</p><p>3.6 Defining Expression and Examples</p><p><code>defining_expression</code> encodes the generating RTL derivations that constructed the cell. The JSON shape is:</p><pre tabindex=0><code>{
+</code></pre><p>Constructors MUST be total over declared vocabulary unless marked otherwise. <code>laws.canonicalization.strategy</code> MUST match the RTL normalization plan (§5) and MUST be applied before hashing. The <code>repair_log</code> array MUST be present (possibly empty) to receive deterministic repair entries from CCE.</p>
+<p>3.6 Defining Expression and Examples</p>
+<p><code>defining_expression</code> encodes the generating RTL derivations that constructed the cell. The JSON shape is:</p>
+<pre tabindex="0"><code>{
   &#34;judgments&#34;: [ {&#34;context&#34;: [...], &#34;term&#34;: {...}, &#34;type&#34;: {...}} ],
   &#34;derivation_order&#34;: &#34;height-then-leftmost&#34;,
   &#34;closure_depth&#34;: 8
 }
-</code></pre><p>CCE MUST emit <code>CDS_DEF_EXPR_OVERRUN</code> if the closure_depth is insufficient to reconstruct the fixed layer. <code>examples</code> MUST contain only canonicalized payloads obeying the top-level schema.</p><hr><ol start=4><li>Admissibility Invariants and Error Codes</li></ol><p>Implementations MUST check the following invariants and return the listed codes on violation:</p><table><thead><tr><th>Component</th><th>Condition</th><th>Code</th><th>Severity</th></tr></thead><tbody><tr><td>Site</td><td>Morphisms compose associatively and respect identities</td><td><code>CDS_SITE_CATEGORY_FAIL</code></td><td>hard</td></tr><tr><td>Site</td><td>Topology covers are stable under pullback</td><td><code>CDS_SITE_TOPOLOGY_FAIL</code></td><td>hard</td></tr><tr><td>Site</td><td>Heyting table is total and symmetric</td><td><code>CDS_SITE_HEYTING_GAP</code></td><td>hard</td></tr><tr><td>Recognition</td><td>σ, Δ tables commute with Heyting implication</td><td><code>CDS_FIBER_SIGMA_DELTA_FAIL</code></td><td>hard</td></tr><tr><td>Recognition</td><td>Section elements closed under σ and Δ</td><td><code>CDS_FIBER_SIGMA_DELTA_VIOLATION</code></td><td>hard</td></tr><tr><td>Fixed Layer</td><td>Sections glue uniquely over topology sieves</td><td><code>CDS_FIXED_LAYER_SHEAF_FAIL</code></td><td>repairable</td></tr><tr><td>RTL Signature</td><td>Every constructor referenced by <code>constructors</code> exists in RTL</td><td><code>CDS_UNKNOWN_OPERATOR</code></td><td>hard</td></tr><tr><td>Canonicalization</td><td><code>laws.canonicalization</code> present and matches RTL strategy</td><td><code>CDS_CANONICALIZATION_MISMATCH</code></td><td>hard</td></tr><tr><td>Canonicalization</td><td>Tables follow section order; no host reordering</td><td><code>CDS_CANONICAL_ORDER_FAIL</code></td><td>hard</td></tr><tr><td>Invariants</td><td>Any declared invariant is violated after closure</td><td>code from <code>laws.invariants</code></td><td>severity tag</td></tr></tbody></table><p>Hard violations MUST cause rejection by CDS validators and by CCE <code>apply</code>. If an invariant is marked <code>repairable</code>, CCE MAY attempt a deterministic repair; failure of that repair MUST escalate to the same code with severity <code>hard</code>.</p><hr><ol start=7><li>Implementation Checklist and Mathematical Alignment</li></ol><p>Implementers MUST follow this sequence to produce interoperable CDS payloads that witness the GFRTU mathematics rather than host conventions:</p><ol><li><strong>Ingest against the Acts</strong>: load the site, recognition fibers, and RTL signature strictly as a presheaf over the Act objects. Reject any field that cannot be located in the Act vocabulary.</li><li><strong>Canonicalize tables</strong>: emit <code>heyting_table</code>, <code>sigma</code>, and <code>delta</code> entries in the object order declared under <code>site.objects</code>; do not sort by host locale. When hashing, serialize exactly this order to ensure hashes witness the presheaf element order mandated by the Acts.</li><li><strong>Validate closure intent</strong>: ensure <code>laws.canonicalization.strategy</code> matches the RTL reduction order and that <code>defining_expression.closure_depth</code> is sufficient to cover all constructor layers. Emit <code>CDS_DEF_EXPR_OVERRUN</code> if it cannot.</li><li><strong>Record provenance</strong>: include <code>examples</code> only after canonicalization and capture their hashes in <code>laws.repair_log</code> when used as repair seeds. Each log entry MUST cite <code>before_hash</code> and <code>after_hash</code> so replay reconstructs the sheaf repairs deterministically.</li><li><strong>Hash and name</strong>: compute the SHA‑256 of the fully canonical JSON and set both <code>id</code> and the filename stem to that digest. Any divergence signals failure to respect the categorical ordering and MUST halt publication.</li></ol><p>The checklist is interpretive: it relates presheaf elements, sheafification, and σ/Δ stabilization directly to the GFRTU Acts so that every serialized cell is a reproducible witness of the mathematics.</p><ol start=5><li>Canonicalization and Hashing</li></ol><p>Canonicalization MUST be deterministic:</p><ol><li>Normalize RTL judgments using the strategy declared in <code>laws.canonicalization.strategy</code> (see RTL §4).</li><li>Sort the keys of every JSON object lexicographically and remove redundant whitespace. Arrays preserve their semantic order; only object keys are sorted.</li><li>Encode integers and decimals in canonical string form (no leading zeros, no <code>+</code>, and minimal exponent form for scientific notation).</li><li>Hash the canonicalized bytes with <code>laws.canonicalization.hash</code> (SHA‑256 by default). The resulting hex digest MUST equal <code>id</code> and the filename stem.</li><li>Any mismatch MUST surface as <code>CDS_ID_MISMATCH</code>.</li><li>Normalize lattice tables (<code>heyting_table</code>, <code>fibers.recognition.heyting</code>, <code>fixed_layer.recognition.heyting</code>) and <code>sigma</code>/<code>delta</code> matrices so rows and columns follow the <strong>declaration order of elements inside</strong> <strong>sections</strong>. This ties the tabulation of operations to the presheaf indexing order from <code>acts/recognition.md</code> and prevents host runtimes from re‑ordering truth values. Any other ordering MUST be rejected as <code>CDS_CANONICAL_ORDER_FAIL</code>.</li></ol><p>When CCE repairs invariants, it MUST append entries to <code>laws.repair_log = [{"code": ..., "before_hash": ..., "after_hash": ...}]</code> and recompute <code>id</code> after each repair to ensure reproducibility.</p><hr><ol start=6><li>Generation Rules</li></ol><p>A CDS MAY be produced by enumerating the constructors and laws inside the serialization itself. The generation pipeline is:</p><ol><li>Seed with <code>structural_vocabulary.objects</code> and <code>morphisms</code>.</li><li>Apply <code>constructors</code> in the declared order with breadth‑first layering up to <code>defining_expression.closure_depth</code>.</li><li>After each layer, enforce <code>laws.invariants</code> and canonicalize. Repairable invariants MUST use deterministic recipes recorded in <code>laws.repair_log</code>.</li><li>Record each layer’s judgments inside <code>defining_expression.judgments</code> using RTL canonical encodings.</li></ol><p>CCE MUST re‑execute this pipeline during <code>apply</code> when a defining expression is present to guarantee the caller’s payload is reproducible.</p><hr><ol start=7><li>Interpretive Semantics and Reproducibility Duties</li></ol><p>CDS data are not merely encodings: they are <strong>material witnesses</strong> of the three GFRTU fixed points introduced in <code>gfrtu.md</code> §0.1. Implementations MUST respect the following interpretive constraints to keep CDS normative and reproducible:</p><ol><li><strong>Sheaf completion witness.</strong> <code>site.topology</code> and <code>fixed_layer.sections</code> jointly represent the sheafified recognition object. Any repair to the fixed layer MUST correspond to a canonical plus‑construction on the presheaf of sections; repair hashes therefore stand for explicit sheafification steps.</li><li><strong>σ/Δ stabilization witness.</strong> <code>fibers.recognition.sigma</code> and <code>.delta</code> tables encode commuting endomorphisms. Stabilization fuel in <code>defining_expression.closure_depth</code> bounds the number of σ/Δ iterations and MUST be recorded verbatim in the repair log when saturation is required to reach a fixed point.</li><li><strong>Generative closure witness.</strong> <code>constructors</code> enumerate the generative operators for the least fixed point of the closure operator (UG). The breadth‑first layering in §6 is not optional bookkeeping—it is the discrete presentation of the closure iteration (UG^n(\emptyset)). Deviating from this order invalidates the intended universe and MUST be rejected.</li><li><strong>Hash monotonicity.</strong> Every repair log entry MUST satisfy <code>before_hash != after_hash</code> and MUST be produced by hashing the canonical payload immediately before and after the repair. This monotonicity proves that each corrective step strictly advances the closure without hidden state or nondeterministic rewrites.</li></ol><p>These duties ensure that a CDS serialization can be replayed as a faithful derivation of the GFRTU cell rather than a loose description.</p><hr><ol start=8><li>Cross‑References to RTL and CCE</li></ol><ul><li><code>rtl_signature</code> MUST match the RTL operator catalogue (RTL §3) and its canonical JSON encodings (RTL §4).</li><li><code>laws.canonicalization</code> MUST match the RTL normalization strategy (RTL §4.2).</li><li>CCE uses <code>constructors</code>, <code>fixed_layer</code>, and <code>laws.invariants</code> during Phase 3 closure (CCE §5) and MUST emit the error codes defined here.</li></ul><hr><ol start=9><li>Worked Examples</li></ol><p>9.1 Minimal Boolean Recognition Cell</p><pre tabindex=0><code>{
+</code></pre><p>CCE MUST emit <code>CDS_DEF_EXPR_OVERRUN</code> if the closure_depth is insufficient to reconstruct the fixed layer. <code>examples</code> MUST contain only canonicalized payloads obeying the top-level schema.</p>
+<hr>
+<ol start="4">
+<li>Admissibility Invariants and Error Codes</li>
+</ol>
+<p>Implementations MUST check the following invariants and return the listed codes on violation:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Component</th>
+          <th>Condition</th>
+          <th>Code</th>
+          <th>Severity</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Site</td>
+          <td>Morphisms compose associatively and respect identities</td>
+          <td><code>CDS_SITE_CATEGORY_FAIL</code></td>
+          <td>hard</td>
+      </tr>
+      <tr>
+          <td>Site</td>
+          <td>Topology covers are stable under pullback</td>
+          <td><code>CDS_SITE_TOPOLOGY_FAIL</code></td>
+          <td>hard</td>
+      </tr>
+      <tr>
+          <td>Site</td>
+          <td>Heyting table is total and symmetric</td>
+          <td><code>CDS_SITE_HEYTING_GAP</code></td>
+          <td>hard</td>
+      </tr>
+      <tr>
+          <td>Recognition</td>
+          <td>σ, Δ tables commute with Heyting implication</td>
+          <td><code>CDS_FIBER_SIGMA_DELTA_FAIL</code></td>
+          <td>hard</td>
+      </tr>
+      <tr>
+          <td>Recognition</td>
+          <td>Section elements closed under σ and Δ</td>
+          <td><code>CDS_FIBER_SIGMA_DELTA_VIOLATION</code></td>
+          <td>hard</td>
+      </tr>
+      <tr>
+          <td>Fixed Layer</td>
+          <td>Sections glue uniquely over topology sieves</td>
+          <td><code>CDS_FIXED_LAYER_SHEAF_FAIL</code></td>
+          <td>repairable</td>
+      </tr>
+      <tr>
+          <td>RTL Signature</td>
+          <td>Every constructor referenced by <code>constructors</code> exists in RTL</td>
+          <td><code>CDS_UNKNOWN_OPERATOR</code></td>
+          <td>hard</td>
+      </tr>
+      <tr>
+          <td>Canonicalization</td>
+          <td><code>laws.canonicalization</code> present and matches RTL strategy</td>
+          <td><code>CDS_CANONICALIZATION_MISMATCH</code></td>
+          <td>hard</td>
+      </tr>
+      <tr>
+          <td>Canonicalization</td>
+          <td>Tables follow section order; no host reordering</td>
+          <td><code>CDS_CANONICAL_ORDER_FAIL</code></td>
+          <td>hard</td>
+      </tr>
+      <tr>
+          <td>Invariants</td>
+          <td>Any declared invariant is violated after closure</td>
+          <td>code from <code>laws.invariants</code></td>
+          <td>severity tag</td>
+      </tr>
+  </tbody>
+</table>
+<p>Hard violations MUST cause rejection by CDS validators and by CCE <code>apply</code>. If an invariant is marked <code>repairable</code>, CCE MAY attempt a deterministic repair; failure of that repair MUST escalate to the same code with severity <code>hard</code>.</p>
+<hr>
+<ol start="7">
+<li>Implementation Checklist and Mathematical Alignment</li>
+</ol>
+<p>Implementers MUST follow this sequence to produce interoperable CDS payloads that witness the GFRTU mathematics rather than host conventions:</p>
+<ol>
+<li><strong>Ingest against the Acts</strong>: load the site, recognition fibers, and RTL signature strictly as a presheaf over the Act objects. Reject any field that cannot be located in the Act vocabulary.</li>
+<li><strong>Canonicalize tables</strong>: emit <code>heyting_table</code>, <code>sigma</code>, and <code>delta</code> entries in the object order declared under <code>site.objects</code>; do not sort by host locale. When hashing, serialize exactly this order to ensure hashes witness the presheaf element order mandated by the Acts.</li>
+<li><strong>Validate closure intent</strong>: ensure <code>laws.canonicalization.strategy</code> matches the RTL reduction order and that <code>defining_expression.closure_depth</code> is sufficient to cover all constructor layers. Emit <code>CDS_DEF_EXPR_OVERRUN</code> if it cannot.</li>
+<li><strong>Record provenance</strong>: include <code>examples</code> only after canonicalization and capture their hashes in <code>laws.repair_log</code> when used as repair seeds. Each log entry MUST cite <code>before_hash</code> and <code>after_hash</code> so replay reconstructs the sheaf repairs deterministically.</li>
+<li><strong>Hash and name</strong>: compute the SHA‑256 of the fully canonical JSON and set both <code>id</code> and the filename stem to that digest. Any divergence signals failure to respect the categorical ordering and MUST halt publication.</li>
+</ol>
+<p>The checklist is interpretive: it relates presheaf elements, sheafification, and σ/Δ stabilization directly to the GFRTU Acts so that every serialized cell is a reproducible witness of the mathematics.</p>
+<ol start="5">
+<li>Canonicalization and Hashing</li>
+</ol>
+<p>Canonicalization MUST be deterministic:</p>
+<ol>
+<li>Normalize RTL judgments using the strategy declared in <code>laws.canonicalization.strategy</code> (see RTL §4).</li>
+<li>Sort the keys of every JSON object lexicographically and remove redundant whitespace. Arrays preserve their semantic order; only object keys are sorted.</li>
+<li>Encode integers and decimals in canonical string form (no leading zeros, no <code>+</code>, and minimal exponent form for scientific notation).</li>
+<li>Hash the canonicalized bytes with <code>laws.canonicalization.hash</code> (SHA‑256 by default). The resulting hex digest MUST equal <code>id</code> and the filename stem.</li>
+<li>Any mismatch MUST surface as <code>CDS_ID_MISMATCH</code>.</li>
+<li>Normalize lattice tables (<code>heyting_table</code>, <code>fibers.recognition.heyting</code>, <code>fixed_layer.recognition.heyting</code>) and <code>sigma</code>/<code>delta</code> matrices so rows and columns follow the <strong>declaration order of elements inside</strong> <strong>sections</strong>. This ties the tabulation of operations to the presheaf indexing order from <code>acts/recognition.md</code> and prevents host runtimes from re‑ordering truth values. Any other ordering MUST be rejected as <code>CDS_CANONICAL_ORDER_FAIL</code>.</li>
+</ol>
+<p>When CCE repairs invariants, it MUST append entries to <code>laws.repair_log = [{&quot;code&quot;: ..., &quot;before_hash&quot;: ..., &quot;after_hash&quot;: ...}]</code> and recompute <code>id</code> after each repair to ensure reproducibility.</p>
+<hr>
+<ol start="6">
+<li>Generation Rules</li>
+</ol>
+<p>A CDS MAY be produced by enumerating the constructors and laws inside the serialization itself. The generation pipeline is:</p>
+<ol>
+<li>Seed with <code>structural_vocabulary.objects</code> and <code>morphisms</code>.</li>
+<li>Apply <code>constructors</code> in the declared order with breadth‑first layering up to <code>defining_expression.closure_depth</code>.</li>
+<li>After each layer, enforce <code>laws.invariants</code> and canonicalize. Repairable invariants MUST use deterministic recipes recorded in <code>laws.repair_log</code>.</li>
+<li>Record each layer’s judgments inside <code>defining_expression.judgments</code> using RTL canonical encodings.</li>
+</ol>
+<p>CCE MUST re‑execute this pipeline during <code>apply</code> when a defining expression is present to guarantee the caller’s payload is reproducible.</p>
+<hr>
+<ol start="7">
+<li>Interpretive Semantics and Reproducibility Duties</li>
+</ol>
+<p>CDS data are not merely encodings: they are <strong>material witnesses</strong> of the three GFRTU fixed points introduced in <code>gfrtu.md</code> §0.1. Implementations MUST respect the following interpretive constraints to keep CDS normative and reproducible:</p>
+<ol>
+<li><strong>Sheaf completion witness.</strong> <code>site.topology</code> and <code>fixed_layer.sections</code> jointly represent the sheafified recognition object. Any repair to the fixed layer MUST correspond to a canonical plus‑construction on the presheaf of sections; repair hashes therefore stand for explicit sheafification steps.</li>
+<li><strong>σ/Δ stabilization witness.</strong> <code>fibers.recognition.sigma</code> and <code>.delta</code> tables encode commuting endomorphisms. Stabilization fuel in <code>defining_expression.closure_depth</code> bounds the number of σ/Δ iterations and MUST be recorded verbatim in the repair log when saturation is required to reach a fixed point.</li>
+<li><strong>Generative closure witness.</strong> <code>constructors</code> enumerate the generative operators for the least fixed point of the closure operator (UG). The breadth‑first layering in §6 is not optional bookkeeping—it is the discrete presentation of the closure iteration (UG^n(\emptyset)). Deviating from this order invalidates the intended universe and MUST be rejected.</li>
+<li><strong>Hash monotonicity.</strong> Every repair log entry MUST satisfy <code>before_hash != after_hash</code> and MUST be produced by hashing the canonical payload immediately before and after the repair. This monotonicity proves that each corrective step strictly advances the closure without hidden state or nondeterministic rewrites.</li>
+</ol>
+<p>These duties ensure that a CDS serialization can be replayed as a faithful derivation of the GFRTU cell rather than a loose description.</p>
+<hr>
+<ol start="8">
+<li>Cross‑References to RTL and CCE</li>
+</ol>
+<ul>
+<li><code>rtl_signature</code> MUST match the RTL operator catalogue (RTL §3) and its canonical JSON encodings (RTL §4).</li>
+<li><code>laws.canonicalization</code> MUST match the RTL normalization strategy (RTL §4.2).</li>
+<li>CCE uses <code>constructors</code>, <code>fixed_layer</code>, and <code>laws.invariants</code> during Phase 3 closure (CCE §5) and MUST emit the error codes defined here.</li>
+</ul>
+<hr>
+<ol start="9">
+<li>Worked Examples</li>
+</ol>
+<p>9.1 Minimal Boolean Recognition Cell</p>
+<pre tabindex="0"><code>{
   &#34;id&#34;: &#34;6f6c...&#34;, &#34;kind&#34;: &#34;cds&#34;,
   &#34;site&#34;: {&#34;objects&#34;: [{&#34;id&#34;: &#34;U&#34;, &#34;cover&#34;: []}], &#34;morphisms&#34;: [],
            &#34;topology&#34;: [&#34;U&#34;](&#34;U&#34;),
@@ -90,4 +357,39 @@
             &#34;invariants&#34;: [{&#34;name&#34;: &#34;sheaf_condition&#34;, &#34;severity&#34;: &#34;hard&#34;, &#34;code&#34;: &#34;CDS_INV_SHEAF&#34;}],
             &#34;repair_log&#34;: []}
 }
-</code></pre><p>CCE will accept any RTL judgment <code>⊢ t : Ob U</code> whose evaluation lies in the fixed layer elements <code>{0,1}</code>; unknown elements trigger <code>CDS_FIBER_SIGMA_DELTA_VIOLATION</code>.</p><p>9.2 σ/Δ Cell with Nontrivial Topology</p><p>A richer cell may introduce two objects <code>U,V</code> with a covering <code>V→U</code>. The CDS MUST list both objects, the cover in <code>topology</code>, σ/Δ tables closed under pullback, and constructors such as <code>pullback</code> and <code>sigma_extension</code>. A sample RTL judgment can be recorded in <code>defining_expression.judgments</code> and verified by CCE; repairs to <code>fixed_layer</code> via sheafification MUST use the plus construction (CCE §6.2) and update <code>fixed_layer.sections</code> accordingly with corresponding <code>repair_log</code> entries.</p><hr><ol start=10><li>Normativity Checklist and Evidence Duties</li></ol><p>To keep CDS payloads fully normative and reproducible, implementers MUST satisfy this checklist before emitting or accepting a serialization:</p><ol><li><strong>Source alignment.</strong> Verify that every operator, constructor, and invariant is justified by the Acts and their interpretation in <code>gfrtu.md</code>. Introducing ad hoc extensions, even if type‑correct, violates CDS normativity.</li><li><strong>Canonical byte witness.</strong> Confirm that the canonicalization pipeline in §5 was executed and that <code>id</code> and the filename stem are equal to the resulting SHA‑256 digest. Any host‑level pretty‑printing MUST be rejected rather than “fixed”.</li><li><strong>Deterministic repair evidence.</strong> If any invariant repair occurred, ensure <code>laws.repair_log</code> entries pair strictly increasing hashes (<code>before_hash != after_hash</code>) and that each entry references the invariant code that triggered it. Missing or reordered entries render the CDS non‑normative.</li><li><strong>σ/Δ fuel disclosure.</strong> Record the exact stabilization fuel actually used, even when equal to the default, in <code>defining_expression.closure_depth</code>. A CDS lacking this disclosure is <strong>non‑replayable</strong> and MUST be refused by CCE.</li><li><strong>Topology admissibility proof.</strong> Emit a machine‑checkable proof object in <code>examples</code> or <code>defining_expression</code> showing that listed sieves are stable under pullback. The proof must be hash‑stable and refer to objects/morphisms by canonical identifiers.</li><li><strong>Cross‑document compatibility.</strong> Confirm that the canonicalization strategy matches RTL (§4.1–§4.2) and that closure semantics match CCE (§5) without host‑specific reinterpretation. Divergence here is a hard error <code>CDS_CANONICALIZATION_MISMATCH</code>.</li></ol><p>The checklist must be encoded as deterministic metadata in <code>laws.repair_log</code> or <code>examples</code> so downstream tools can audit compliance without heuristics. A CDS that passes this checklist is a complete, replayable witness of the GFRTU cell.</p><hr></div></article></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+</code></pre><p>CCE will accept any RTL judgment <code>⊢ t : Ob U</code> whose evaluation lies in the fixed layer elements <code>{0,1}</code>; unknown elements trigger <code>CDS_FIBER_SIGMA_DELTA_VIOLATION</code>.</p>
+<p>9.2 σ/Δ Cell with Nontrivial Topology</p>
+<p>A richer cell may introduce two objects <code>U,V</code> with a covering <code>V→U</code>. The CDS MUST list both objects, the cover in <code>topology</code>, σ/Δ tables closed under pullback, and constructors such as <code>pullback</code> and <code>sigma_extension</code>. A sample RTL judgment can be recorded in <code>defining_expression.judgments</code> and verified by CCE; repairs to <code>fixed_layer</code> via sheafification MUST use the plus construction (CCE §6.2) and update <code>fixed_layer.sections</code> accordingly with corresponding <code>repair_log</code> entries.</p>
+<hr>
+<ol start="10">
+<li>Normativity Checklist and Evidence Duties</li>
+</ol>
+<p>To keep CDS payloads fully normative and reproducible, implementers MUST satisfy this checklist before emitting or accepting a serialization:</p>
+<ol>
+<li><strong>Source alignment.</strong> Verify that every operator, constructor, and invariant is justified by the Acts and their interpretation in <code>gfrtu.md</code>. Introducing ad hoc extensions, even if type‑correct, violates CDS normativity.</li>
+<li><strong>Canonical byte witness.</strong> Confirm that the canonicalization pipeline in §5 was executed and that <code>id</code> and the filename stem are equal to the resulting SHA‑256 digest. Any host‑level pretty‑printing MUST be rejected rather than “fixed”.</li>
+<li><strong>Deterministic repair evidence.</strong> If any invariant repair occurred, ensure <code>laws.repair_log</code> entries pair strictly increasing hashes (<code>before_hash != after_hash</code>) and that each entry references the invariant code that triggered it. Missing or reordered entries render the CDS non‑normative.</li>
+<li><strong>σ/Δ fuel disclosure.</strong> Record the exact stabilization fuel actually used, even when equal to the default, in <code>defining_expression.closure_depth</code>. A CDS lacking this disclosure is <strong>non‑replayable</strong> and MUST be refused by CCE.</li>
+<li><strong>Topology admissibility proof.</strong> Emit a machine‑checkable proof object in <code>examples</code> or <code>defining_expression</code> showing that listed sieves are stable under pullback. The proof must be hash‑stable and refer to objects/morphisms by canonical identifiers.</li>
+<li><strong>Cross‑document compatibility.</strong> Confirm that the canonicalization strategy matches RTL (§4.1–§4.2) and that closure semantics match CCE (§5) without host‑specific reinterpretation. Divergence here is a hard error <code>CDS_CANONICALIZATION_MISMATCH</code>.</li>
+</ol>
+<p>The checklist must be encoded as deterministic metadata in <code>laws.repair_log</code> or <code>examples</code> so downstream tools can audit compliance without heuristics. A CDS that passes this checklist is a complete, replayable witness of the GFRTU cell.</p>
+<hr>
+
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

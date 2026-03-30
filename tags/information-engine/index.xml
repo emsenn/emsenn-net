@@ -1,133 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Information-Engine on emsenn.net</title><link>https://emsenn.net/tags/information-engine/</link><description>Recent content in Information-Engine on emsenn.net</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://emsenn.net/tags/information-engine/index.xml" rel="self" type="application/rss+xml"/><item><title>Relational Information Dynamics Computer</title><link>https://emsenn.net/library/relationality/domains/technology/domains/computing/domains/computer-architecture/informational-dynamics-computer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/relationality/domains/technology/domains/computing/domains/computer-architecture/informational-dynamics-computer/</guid><description>&lt;p&gt;This document describes the &lt;strong&gt;Relational Information Dynamics Computer&lt;/strong&gt;: a
-relational information engine over a quasicrystalline hypertensor sheaf
-(&lt;code&gt;specifications/information-engine.md&lt;/code&gt;), together with the services that
-expose it to users and external systems.&lt;/p&gt;
-&lt;p&gt;At the core, the computer realises a &lt;strong&gt;relational informational dynamics
-engine&lt;/strong&gt; over this hypertensor sheaf. The rest of this document fixes the
-machine model used by all other texts.&lt;/p&gt;
-&lt;h2 id="1-instruction-set-acts"&gt;1. Instruction set (acts)&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;The &lt;strong&gt;instruction set&lt;/strong&gt; of the computer is the catalogue of acts in
-&lt;code&gt;docs/math/content/acts/&lt;/code&gt;. Each act page:
-&lt;ul&gt;
-&lt;li&gt;records the recognition that forced the act (Story),&lt;/li&gt;
-&lt;li&gt;names its &lt;code&gt;top&lt;/code&gt;/&lt;code&gt;bottom&lt;/code&gt; witnesses (its immediate dependencies),&lt;/li&gt;
-&lt;li&gt;and gives a proof sketch for why the act is earned.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;In the runtime, each act is realised by a &lt;strong&gt;single rewrite handler&lt;/strong&gt; under
-&lt;code&gt;app/rewriter/acts/&lt;/code&gt;:
-&lt;ul&gt;
-&lt;li&gt;the handler takes a finite carrier (payload) as input,&lt;/li&gt;
-&lt;li&gt;produces outputs and optional recognitions,&lt;/li&gt;
-&lt;li&gt;and never orchestrates multi-step flows on its own.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ACT_BINDINGS&lt;/code&gt; ties these acts to their handlers and, where applicable, to
-Pydantic carrier types.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="2-state-model-hypertensor-sheaf-and-recognitions"&gt;2. State model (hypertensor sheaf and recognitions)&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;The &lt;strong&gt;global state&lt;/strong&gt; of the computer is carried by a quasicrystalline
-hypertensor sheaf as described by the universal-state theorems. In the
-runtime this appears as:
-&lt;ul&gt;
-&lt;li&gt;Trace/context fibres with recognitions (TracePoints) and provenance,&lt;/li&gt;
-&lt;li&gt;profile towers (&lt;code&gt;ProfileTower&lt;/code&gt; and &lt;code&gt;ProfileLevel&lt;/code&gt;) over fibres,&lt;/li&gt;
-&lt;li&gt;lattice windows and sheaf sections (&lt;code&gt;LatticeWindow&lt;/code&gt;, &lt;code&gt;LatticeSite&lt;/code&gt;,
-&lt;code&gt;SheafSection&lt;/code&gt;) representing finite &lt;code&gt;(window, towers)&lt;/code&gt; carriers.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;All persistent information is stored as:
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;recognitions&lt;/strong&gt; (TracePoints) with act references and metadata,&lt;/li&gt;
-&lt;li&gt;and &lt;strong&gt;sections&lt;/strong&gt; of the hypertensor sheaf or their views (towers, windows,
-sections embedded in recognitions).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Internal theorems (universal state, sheaf sections, universal dynamics)
-explain how acts act locally on these carriers and how finite sections glue
-into the global state.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="3-execution-model-runbooks-and-rewriter"&gt;3. Execution model (runbooks and rewriter)&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Programs are expressed as &lt;strong&gt;runbooks&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;YAML or in-memory &lt;code&gt;RunbookCreate&lt;/code&gt; values under &lt;code&gt;runbooks/library/&lt;/code&gt; and
-tests in &lt;code&gt;tests/test_runbook_*.py&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Each runbook is a finite directed acyclic graph of steps; each step names
-one or more acts plus its input/output wiring.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;The &lt;strong&gt;RewriterEngine&lt;/strong&gt; (&lt;code&gt;app/rewriter/engine.py&lt;/code&gt;) is the execution engine:
-&lt;ul&gt;
-&lt;li&gt;it resolves dependencies into an execution plan,&lt;/li&gt;
-&lt;li&gt;builds an &lt;code&gt;ExecutionContext&lt;/code&gt; for each step (trace id, inputs, DB handles,
-measurement fabric, known acts),&lt;/li&gt;
-&lt;li&gt;dispatches each act to its handler,&lt;/li&gt;
-&lt;li&gt;and records outputs and recognitions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Traces&lt;/strong&gt; are special recognitions and runbooks that record execution
-histories:
-&lt;ul&gt;
-&lt;li&gt;trace and judgement-triad acts link recognitions to trace fibres and step
-order,&lt;/li&gt;
-&lt;li&gt;the traceability service and runbooks like &lt;code&gt;traceability-view.yaml&lt;/code&gt; expose
-these histories as structured data.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="4-interfaces-io-surfaces"&gt;4. Interfaces (I/O surfaces)&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;HTTP/OpenAPI&lt;/strong&gt; (via &lt;code&gt;app/main.py&lt;/code&gt;):
-&lt;ul&gt;
-&lt;li&gt;exposes endpoints such as &lt;code&gt;/api/runbooks&lt;/code&gt;, &lt;code&gt;/api/runbooks/{id}/execute&lt;/code&gt;,
-&lt;code&gt;/api/intake/validate&lt;/code&gt;, and &lt;code&gt;/api/runbooks/validate&lt;/code&gt;,&lt;/li&gt;
-&lt;li&gt;each endpoint either:
-&lt;ul&gt;
-&lt;li&gt;runs a specific runbook (e.g., intake, universal-state towers,
-information probes), or&lt;/li&gt;
-&lt;li&gt;returns data produced by runbooks (e.g., recognitions, sections,
-traceability views).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;MCP server&lt;/strong&gt; (&lt;code&gt;app/mcp_server.py&lt;/code&gt;):
-&lt;ul&gt;
-&lt;li&gt;provides tools for model clients to:
-&lt;ul&gt;
-&lt;li&gt;list acts and handlers,&lt;/li&gt;
-&lt;li&gt;read documentation texts,&lt;/li&gt;
-&lt;li&gt;validate and execute runbooks,&lt;/li&gt;
-&lt;li&gt;query recognitions and traceability views.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Future interfaces (e.g. RDF/linked data, ActivityPub) are treated as
-projections of recognitions and sheaf sections into external formats; they
-may not introduce new state or semantics.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="5-surrounding-services"&gt;5. Surrounding services&lt;/h2&gt;
-&lt;p&gt;Around the core engine, the computer includes:&lt;/p&gt;</description></item><item><title>Relational Information Physics Computer</title><link>https://emsenn.net/library/relationality/domains/technology/domains/computing/domains/computer-architecture/informational-physics-computer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/relationality/domains/technology/domains/computing/domains/computer-architecture/informational-physics-computer/</guid><description>&lt;p&gt;This document describes the &lt;strong&gt;Relational Information Physics Computer&lt;/strong&gt;: a
-relational information engine over the quasicrystalline hypertensor sheaf &lt;code&gt;𝒮&lt;/code&gt;
-(&lt;code&gt;specifications/information-engine.md&lt;/code&gt;), together with the services that
-expose it to users and external systems.&lt;/p&gt;
-&lt;p&gt;At the core, the computer realises:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;the &lt;strong&gt;information engine&lt;/strong&gt; pipeline (intake → measurement → towers/flow →
-sheaf sections → dynamics),&lt;/li&gt;
-&lt;li&gt;the &lt;strong&gt;measurement fabric&lt;/strong&gt; and &lt;strong&gt;Markov dynamics&lt;/strong&gt; stacks that track and
-evolve observables,&lt;/li&gt;
-&lt;li&gt;the &lt;strong&gt;quasicrystalline hypertensor sheaf&lt;/strong&gt; and its dynamics acting as the
-global information state &lt;code&gt;𝒮&lt;/code&gt;,&lt;/li&gt;
-&lt;li&gt;the &lt;strong&gt;knowledge and traceability graphs&lt;/strong&gt; that expose recognitions and their
-dependencies,&lt;/li&gt;
-&lt;li&gt;and the &lt;strong&gt;storage, network, and policy&lt;/strong&gt; stacks that make the system robust
-and multi-tenant.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="1-core-engine"&gt;1. Core engine&lt;/h2&gt;
-&lt;p&gt;The core engine is specified by the &lt;strong&gt;Relational Information Engine&lt;/strong&gt;
-(&lt;code&gt;specifications/information-engine.md&lt;/code&gt;):&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Information-Engine on emsenn.net</title>
+    <link>http://localhost:1313/tags/information-engine/</link>
+    <description>Recent content in Information-Engine on emsenn.net</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/tags/information-engine/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Relational Information Dynamics Computer</title>
+      <link>http://localhost:1313/library/relationality/domains/technology/domains/computing/domains/computer-architecture/informational-dynamics-computer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/library/relationality/domains/technology/domains/computing/domains/computer-architecture/informational-dynamics-computer/</guid>
+      <description>&lt;p&gt;This document describes the &lt;strong&gt;Relational Information Dynamics Computer&lt;/strong&gt;: a&#xA;relational information engine over a quasicrystalline hypertensor sheaf&#xA;(&lt;code&gt;specifications/information-engine.md&lt;/code&gt;), together with the services that&#xA;expose it to users and external systems.&lt;/p&gt;&#xA;&lt;p&gt;At the core, the computer realises a &lt;strong&gt;relational informational dynamics&#xA;engine&lt;/strong&gt; over this hypertensor sheaf. The rest of this document fixes the&#xA;machine model used by all other texts.&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-instruction-set-acts&#34;&gt;1. Instruction set (acts)&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The &lt;strong&gt;instruction set&lt;/strong&gt; of the computer is the catalogue of acts in&#xA;&lt;code&gt;docs/math/content/acts/&lt;/code&gt;.  Each act page:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;records the recognition that forced the act (Story),&lt;/li&gt;&#xA;&lt;li&gt;names its &lt;code&gt;top&lt;/code&gt;/&lt;code&gt;bottom&lt;/code&gt; witnesses (its immediate dependencies),&lt;/li&gt;&#xA;&lt;li&gt;and gives a proof sketch for why the act is earned.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;In the runtime, each act is realised by a &lt;strong&gt;single rewrite handler&lt;/strong&gt; under&#xA;&lt;code&gt;app/rewriter/acts/&lt;/code&gt;:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;the handler takes a finite carrier (payload) as input,&lt;/li&gt;&#xA;&lt;li&gt;produces outputs and optional recognitions,&lt;/li&gt;&#xA;&lt;li&gt;and never orchestrates multi-step flows on its own.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;ACT_BINDINGS&lt;/code&gt; ties these acts to their handlers and, where applicable, to&#xA;Pydantic carrier types.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;2-state-model-hypertensor-sheaf-and-recognitions&#34;&gt;2. State model (hypertensor sheaf and recognitions)&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The &lt;strong&gt;global state&lt;/strong&gt; of the computer is carried by a quasicrystalline&#xA;hypertensor sheaf as described by the universal-state theorems.  In the&#xA;runtime this appears as:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Trace/context fibres with recognitions (TracePoints) and provenance,&lt;/li&gt;&#xA;&lt;li&gt;profile towers (&lt;code&gt;ProfileTower&lt;/code&gt; and &lt;code&gt;ProfileLevel&lt;/code&gt;) over fibres,&lt;/li&gt;&#xA;&lt;li&gt;lattice windows and sheaf sections (&lt;code&gt;LatticeWindow&lt;/code&gt;, &lt;code&gt;LatticeSite&lt;/code&gt;,&#xA;&lt;code&gt;SheafSection&lt;/code&gt;) representing finite &lt;code&gt;(window, towers)&lt;/code&gt; carriers.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;All persistent information is stored as:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;recognitions&lt;/strong&gt; (TracePoints) with act references and metadata,&lt;/li&gt;&#xA;&lt;li&gt;and &lt;strong&gt;sections&lt;/strong&gt; of the hypertensor sheaf or their views (towers, windows,&#xA;sections embedded in recognitions).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Internal theorems (universal state, sheaf sections, universal dynamics)&#xA;explain how acts act locally on these carriers and how finite sections glue&#xA;into the global state.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;3-execution-model-runbooks-and-rewriter&#34;&gt;3. Execution model (runbooks and rewriter)&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Programs are expressed as &lt;strong&gt;runbooks&lt;/strong&gt;:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;YAML or in-memory &lt;code&gt;RunbookCreate&lt;/code&gt; values under &lt;code&gt;runbooks/library/&lt;/code&gt; and&#xA;tests in &lt;code&gt;tests/test_runbook_*.py&lt;/code&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Each runbook is a finite directed acyclic graph of steps; each step names&#xA;one or more acts plus its input/output wiring.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;The &lt;strong&gt;RewriterEngine&lt;/strong&gt; (&lt;code&gt;app/rewriter/engine.py&lt;/code&gt;) is the execution engine:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;it resolves dependencies into an execution plan,&lt;/li&gt;&#xA;&lt;li&gt;builds an &lt;code&gt;ExecutionContext&lt;/code&gt; for each step (trace id, inputs, DB handles,&#xA;measurement fabric, known acts),&lt;/li&gt;&#xA;&lt;li&gt;dispatches each act to its handler,&lt;/li&gt;&#xA;&lt;li&gt;and records outputs and recognitions.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Traces&lt;/strong&gt; are special recognitions and runbooks that record execution&#xA;histories:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;trace and judgement-triad acts link recognitions to trace fibres and step&#xA;order,&lt;/li&gt;&#xA;&lt;li&gt;the traceability service and runbooks like &lt;code&gt;traceability-view.yaml&lt;/code&gt; expose&#xA;these histories as structured data.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;4-interfaces-io-surfaces&#34;&gt;4. Interfaces (I/O surfaces)&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;HTTP/OpenAPI&lt;/strong&gt; (via &lt;code&gt;app/main.py&lt;/code&gt;):&#xA;&lt;ul&gt;&#xA;&lt;li&gt;exposes endpoints such as &lt;code&gt;/api/runbooks&lt;/code&gt;, &lt;code&gt;/api/runbooks/{id}/execute&lt;/code&gt;,&#xA;&lt;code&gt;/api/intake/validate&lt;/code&gt;, and &lt;code&gt;/api/runbooks/validate&lt;/code&gt;,&lt;/li&gt;&#xA;&lt;li&gt;each endpoint either:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;runs a specific runbook (e.g., intake, universal-state towers,&#xA;information probes), or&lt;/li&gt;&#xA;&lt;li&gt;returns data produced by runbooks (e.g., recognitions, sections,&#xA;traceability views).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;MCP server&lt;/strong&gt; (&lt;code&gt;app/mcp_server.py&lt;/code&gt;):&#xA;&lt;ul&gt;&#xA;&lt;li&gt;provides tools for model clients to:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;list acts and handlers,&lt;/li&gt;&#xA;&lt;li&gt;read documentation texts,&lt;/li&gt;&#xA;&lt;li&gt;validate and execute runbooks,&lt;/li&gt;&#xA;&lt;li&gt;query recognitions and traceability views.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Future interfaces (e.g. RDF/linked data, ActivityPub) are treated as&#xA;projections of recognitions and sheaf sections into external formats; they&#xA;may not introduce new state or semantics.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;5-surrounding-services&#34;&gt;5. Surrounding services&lt;/h2&gt;&#xA;&lt;p&gt;Around the core engine, the computer includes:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Relational Information Physics Computer</title>
+      <link>http://localhost:1313/library/relationality/domains/technology/domains/computing/domains/computer-architecture/informational-physics-computer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/library/relationality/domains/technology/domains/computing/domains/computer-architecture/informational-physics-computer/</guid>
+      <description>&lt;p&gt;This document describes the &lt;strong&gt;Relational Information Physics Computer&lt;/strong&gt;: a&#xA;relational information engine over the quasicrystalline hypertensor sheaf &lt;code&gt;𝒮&lt;/code&gt;&#xA;(&lt;code&gt;specifications/information-engine.md&lt;/code&gt;), together with the services that&#xA;expose it to users and external systems.&lt;/p&gt;&#xA;&lt;p&gt;At the core, the computer realises:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;the &lt;strong&gt;information engine&lt;/strong&gt; pipeline (intake → measurement → towers/flow →&#xA;sheaf sections → dynamics),&lt;/li&gt;&#xA;&lt;li&gt;the &lt;strong&gt;measurement fabric&lt;/strong&gt; and &lt;strong&gt;Markov dynamics&lt;/strong&gt; stacks that track and&#xA;evolve observables,&lt;/li&gt;&#xA;&lt;li&gt;the &lt;strong&gt;quasicrystalline hypertensor sheaf&lt;/strong&gt; and its dynamics acting as the&#xA;global information state &lt;code&gt;𝒮&lt;/code&gt;,&lt;/li&gt;&#xA;&lt;li&gt;the &lt;strong&gt;knowledge and traceability graphs&lt;/strong&gt; that expose recognitions and their&#xA;dependencies,&lt;/li&gt;&#xA;&lt;li&gt;and the &lt;strong&gt;storage, network, and policy&lt;/strong&gt; stacks that make the system robust&#xA;and multi-tenant.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;1-core-engine&#34;&gt;1. Core engine&lt;/h2&gt;&#xA;&lt;p&gt;The core engine is specified by the &lt;strong&gt;Relational Information Engine&lt;/strong&gt;&#xA;(&lt;code&gt;specifications/information-engine.md&lt;/code&gt;):&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

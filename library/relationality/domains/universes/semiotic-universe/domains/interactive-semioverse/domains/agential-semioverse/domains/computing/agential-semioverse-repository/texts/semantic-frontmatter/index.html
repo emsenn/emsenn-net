@@ -1,89 +1,500 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ASR Semantic Frontmatter - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"emsenn"},"dateModified":"2026-03-03","datePublished":"2026-03-03","description":"Specification for typed relation fields, hierarchical tags, and RDF generation in ASR frontmatter.","keywords":"StructuredData, SemanticWeb","name":"ASR Semantic Frontmatter","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/semantic-frontmatter/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>ASR Semantic Frontmatter</h1><div class=meta><time class=dt-published datetime=2026-03-03T00:00:00Z>2026-03-03</time>
-<span>by <span class=p-author>emsenn</span></span>
-<span class=p-summary>Specification for typed relation fields, hierarchical tags, and RDF generation in ASR frontmatter.</span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#motivation>Motivation</a></li><li><a href=#design-principles>Design principles</a><ul><li><a href=#source-stays-in-frontmatter>Source stays in frontmatter</a></li><li><a href=#tags-signal-shared-territory>Tags signal shared territory</a></li><li><a href=#tags-are-flat-and-camelcase>Tags are flat and CamelCase</a></li><li><a href=#tag-count-and-ordering>Tag count and ordering</a></li><li><a href=#the-type-field>The <code>type</code> field</a></li><li><a href=#relation-fields-are-optional>Relation fields are optional</a></li><li><a href=#domain-specific-extensions>Domain-specific extensions</a></li></ul></li><li><a href=#typed-relation-fields>Typed relation fields</a><ul><li><a href=#defines><code>defines</code></a></li><li><a href=#cites><code>cites</code></a></li><li><a href=#teaches><code>teaches</code></a></li><li><a href=#requires><code>requires</code></a></li><li><a href=#part-of><code>part-of</code></a></li><li><a href=#extends><code>extends</code></a></li><li><a href=#questions><code>questions</code></a></li><li><a href=#addresses><code>addresses</code></a></li></ul></li><li><a href=#observed-usage>Observed usage</a></li><li><a href=#tag-vocabulary>Tag vocabulary</a><ul><li><a href=#tag-conventions>Tag conventions</a></li><li><a href=#tag-pages>Tag pages</a></li></ul></li><li><a href=#rdf-generation>RDF generation</a><ul><li><a href=#build-time-process>Build-time process</a></li><li><a href=#namespace-prefixes>Namespace prefixes</a></li><li><a href=#example-output>Example output</a></li><li><a href=#implementation-status>Implementation status</a></li></ul></li><li><a href=#migration-plan>Migration plan</a></li></ul></nav></details><div class=e-content><p>This document specifies how an Agential Semioverse Repository extends
-<a href=../semiotic-markdown/index.md class=link-internal>Semiotic Markdown</a> frontmatter with
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASR Semantic Frontmatter - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "emsenn"
+  },
+  "dateModified": "2026-03-03",
+  "datePublished": "2026-03-03",
+  "description": "Specification for typed relation fields, hierarchical tags, and RDF generation in ASR frontmatter.",
+  "keywords": "StructuredData, SemanticWeb",
+  "name": "ASR Semantic Frontmatter",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/semantic-frontmatter/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/">Universes</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/">Semiotic universe</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/">Interactive semioverse</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/">Agential semioverse</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/">Computing</a></nav>
+  <h1 class="p-name">ASR Semantic Frontmatter</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-03T00:00:00Z">2026-03-03</time>
+    <span>by <span class="p-author">emsenn</span></span>
+    <span class="p-summary">Specification for typed relation fields, hierarchical tags, and RDF generation in ASR frontmatter.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#motivation">Motivation</a></li>
+    <li><a href="#design-principles">Design principles</a>
+      <ul>
+        <li><a href="#source-stays-in-frontmatter">Source stays in frontmatter</a></li>
+        <li><a href="#tags-signal-shared-territory">Tags signal shared territory</a></li>
+        <li><a href="#tags-are-flat-and-camelcase">Tags are flat and CamelCase</a></li>
+        <li><a href="#tag-count-and-ordering">Tag count and ordering</a></li>
+        <li><a href="#the-type-field">The <code>type</code> field</a></li>
+        <li><a href="#relation-fields-are-optional">Relation fields are optional</a></li>
+        <li><a href="#domain-specific-extensions">Domain-specific extensions</a></li>
+      </ul>
+    </li>
+    <li><a href="#typed-relation-fields">Typed relation fields</a>
+      <ul>
+        <li><a href="#defines"><code>defines</code></a></li>
+        <li><a href="#cites"><code>cites</code></a></li>
+        <li><a href="#teaches"><code>teaches</code></a></li>
+        <li><a href="#requires"><code>requires</code></a></li>
+        <li><a href="#part-of"><code>part-of</code></a></li>
+        <li><a href="#extends"><code>extends</code></a></li>
+        <li><a href="#questions"><code>questions</code></a></li>
+        <li><a href="#addresses"><code>addresses</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#observed-usage">Observed usage</a></li>
+    <li><a href="#tag-vocabulary">Tag vocabulary</a>
+      <ul>
+        <li><a href="#tag-conventions">Tag conventions</a></li>
+        <li><a href="#tag-pages">Tag pages</a></li>
+      </ul>
+    </li>
+    <li><a href="#rdf-generation">RDF generation</a>
+      <ul>
+        <li><a href="#build-time-process">Build-time process</a></li>
+        <li><a href="#namespace-prefixes">Namespace prefixes</a></li>
+        <li><a href="#example-output">Example output</a></li>
+        <li><a href="#implementation-status">Implementation status</a></li>
+      </ul>
+    </li>
+    <li><a href="#migration-plan">Migration plan</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>This document specifies how an Agential Semioverse Repository extends
+<a href="../semiotic-markdown/index.md" class="link-internal">Semiotic Markdown</a> frontmatter with
 typed semantic relations, hierarchical tags, and a build-time process
-for generating machine-readable linked data.</p><p>These typed relation fields are the vocabulary from which the
-<a href=./predicate-graph.md class=link-internal>predicate graph</a> is built. Each field defined
+for generating machine-readable linked data.</p>
+<p>These typed relation fields are the vocabulary from which the
+<a href="./predicate-graph.md" class="link-internal">predicate graph</a> is built. Each field defined
 here generates triplets in the graph; each triplet carries a predicate
-from this vocabulary.</p><h2 id=motivation>Motivation</h2><p>The <a href=../semiotic-markdown/index.md class=link-internal>Semiotic Markdown</a> specification
+from this vocabulary.</p>
+<h2 id="motivation">Motivation</h2>
+<p>The <a href="../semiotic-markdown/index.md" class="link-internal">Semiotic Markdown</a> specification
 defines the base frontmatter schema: <code>title</code>, <code>date-created</code>,
 <code>aliases</code>, <code>authors</code>, <code>tags</code>, <code>description</code>. These fields identify a
 file and classify it. But they do not describe the file&rsquo;s <em>semantic
 relations</em> to other files — what it defines, what it cites, what it
-depends on, what it teaches.</p><p>Body-level wikilinks create connections, but they are untyped: a link
+depends on, what it teaches.</p>
+<p>Body-level wikilinks create connections, but they are untyped: a link
 from page A to page B says &ldquo;A references B&rdquo; without saying <em>how</em>. A
 term definition page that wikilinks to another term might be defining
 it, citing it, contrasting it, or depending on it as a prerequisite.
 These distinctions are invisible to machines and to the vault&rsquo;s own
-infrastructure.</p><p>Typed relation fields in frontmatter make these distinctions explicit.
-They serve three purposes:</p><ol><li><strong>Predicate graph construction</strong>: typed relations in frontmatter are
+infrastructure.</p>
+<p>Typed relation fields in frontmatter make these distinctions explicit.
+They serve three purposes:</p>
+<ol>
+<li><strong>Predicate graph construction</strong>: typed relations in frontmatter are
 extracted as triplets by the
-<a href=./predicate-graph.md class=link-internal>predicate graph</a> tool, forming the computable
-semantic substrate of the repository.</li><li><strong>Navigation and discovery</strong>: typed relations enable richer backlinks
+<a href="./predicate-graph.md" class="link-internal">predicate graph</a> tool, forming the computable
+semantic substrate of the repository.</li>
+<li><strong>Navigation and discovery</strong>: typed relations enable richer backlinks
 (&ldquo;pages that cite this,&rdquo; &ldquo;pages that define terms used here,&rdquo;
-&ldquo;lessons that teach this concept&rdquo;).</li><li><strong>External interoperability</strong>: typed relations map to established
+&ldquo;lessons that teach this concept&rdquo;).</li>
+<li><strong>External interoperability</strong>: typed relations map to established
 vocabularies (Schema.org, Dublin Core, SKOS), connecting the vault&rsquo;s
-concepts to the broader semantic web.</li><li><strong>Build-time generation</strong>: typed relations can be compiled into
-RDF/Turtle at build time.</li></ol><h2 id=design-principles>Design principles</h2><h3 id=source-stays-in-frontmatter>Source stays in frontmatter</h3><p>Typed relations are authored in frontmatter YAML, not in separate files. The frontmatter is the single source of truth. Machine-readable formats (RDF/Turtle, JSON-LD) are derived artifacts generated at build time and MUST NOT be hand-edited.</p><h3 id=tags-signal-shared-territory>Tags signal shared territory</h3><p>Tags identify the conceptual communities a page belongs to. A tag like <code>affect</code> says &ldquo;this page shares conceptual territory with other work tagged <code>affect</code>.&rdquo; Tags are chosen to overlap with terms used by external bodies — academic fields, open-source communities, activist networks — so that the vault&rsquo;s content is findable by people who already use those terms.</p><p>Tags are NOT redundant with directory position. A file at <code>sociology/terms/feeling-rules.md</code> does not need a <code>sociology</code> tag (the directory already carries that). Tags carry <em>cross-cutting</em> classification: a sociology term might be tagged <code>affect</code> and <code>labor</code> to signal connections that the directory hierarchy does not encode.</p><h3 id=tags-are-flat-and-camelcase>Tags are flat and CamelCase</h3><p>Tags are flat labels — no <code>/</code> separators, no nesting. A tag like <code>Anarchism</code> stands on its own; it does not need to be scoped as <code>Sociology/Politics/Anarchism</code> because the directory already encodes structural position.</p><p>Tags use CamelCase formatting: capitalize every word, including articles and prepositions. This follows the W3C WCAG and Mastodon/Fediverse convention for <a href=../../topics/internet/topics/tagging/terms/hashtag.md class=link-internal>hashtag</a> accessibility — screen readers parse CamelCase by detecting capitalization transitions, so <code>#PoliticalTheory</code> reads as two words while <code>#politicaltheory</code> reads as one unintelligible string.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>tags</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>Anarchism</span>
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>PoliticalTheory</span>
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>Sociology</span>
-</span></span></code></pre></div><h3 id=tag-count-and-ordering>Tag count and ordering</h3><p>Pages SHOULD have 3-5 tags. No page should have more than 10. Tags are ordered from most specific to least specific — the first tag is the page&rsquo;s primary conceptual community, and subsequent tags broaden the context.</p><h3 id=the-type-field>The <code>type</code> field</h3><p>Content type is NOT a tag. It is a separate frontmatter field derived from directory position:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>type</span>: <span style=color:#ae81ff>term</span>
-</span></span></code></pre></div><p>Valid values: <code>term</code>, <code>topic</code>, <code>index</code>, <code>lesson</code>, <code>person</code>, <code>concept</code>, <code>school</code>, <code>text</code>, <code>babble</code>, <code>letter</code>, <code>skill</code>, <code>question</code>. The <code>type</code> field maps to Schema.org <code>@type</code>:</p><table><thead><tr><th><code>type</code> value</th><th>Schema.org <code>@type</code></th></tr></thead><tbody><tr><td><code>term</code>, <code>concept</code></td><td><code>DefinedTerm</code></td></tr><tr><td><code>lesson</code></td><td><code>LearningResource</code></td></tr><tr><td><code>person</code></td><td><code>Person</code></td></tr><tr><td><code>question</code></td><td><code>Question</code></td></tr><tr><td><code>text</code>, <code>letter</code>, <code>babble</code></td><td><code>Article</code></td></tr><tr><td><code>index</code></td><td><code>CollectionPage</code></td></tr><tr><td>default</td><td><code>Article</code></td></tr></tbody></table><h3 id=relation-fields-are-optional>Relation fields are optional</h3><p>No typed relation field is required. Adding them incrementally — starting with the most-linked pages and working outward — is the intended workflow. Pages without typed relations continue to work exactly as before.</p><h3 id=domain-specific-extensions>Domain-specific extensions</h3><p>The type and relation vocabularies defined here are general — they apply across any discipline. Specific knowledge domains may extend both with types and relations that carry domain-specific validity requirements. When a page uses a domain-specific relation, the shapes governing that relation validate it regardless of what other relations the page uses. See <a href=./theory/domain-specific-content.md class=link-internal>Domain-Specific Content</a> for how this works.</p><p>Current domain-specific extensions:</p><ul><li><a href=../../../mathematics/specifications/mathematical-agential-semioverse-repository/index.md class=link-internal>Mathematical ASR</a> — adds types <code>theorem</code>, <code>proof</code>, <code>axiom</code>, <code>definition</code>, <code>conjecture</code>, <code>lemma</code>, <code>corollary</code>, <code>proposition</code> and relations <code>proven-by</code>, <code>proves</code>, <code>notation</code></li><li><a href=../../../philosophy/specifications/philosophical-agential-semioverse-repository/index.md class=link-internal>Philosophical ASR</a> — adds types <code>claim</code>, <code>argument</code>, <code>objection</code>, <code>position</code>, <code>tradition</code> and relations <code>argued-by</code>, <code>supports</code>, <code>targets</code>, <code>contested-by</code></li><li><a href=../../../sociology/specifications/sociological-agential-semioverse-repository/index.md class=link-internal>Sociological ASR</a> — adds relations <code>school</code>, <code>integrates</code>, <code>produces</code>, <code>sustains</code>, <code>contests</code>, <code>uses-concepts</code>, <code>emerges-under</code></li><li><a href=../../../games/specifications/ludic-agential-semioverse-repository/index.md class=link-internal>Ludic ASR</a> — adds type <code>specification</code> and relations <code>uses-mechanic</code>, <code>classifies</code>, <code>boundary-with</code>, <code>models</code></li><li><a href=../../../education/specifications/educational-agential-semioverse-repository/index.md class=link-internal>Educational ASR</a> — adds types <code>curriculum</code>, <code>skill</code>, <code>transmission-mode</code> and relations <code>practiced-through</code>, <code>scaffolds</code>, <code>builds-on</code></li></ul><h2 id=typed-relation-fields>Typed relation fields</h2><h3 id=defines><code>defines</code></h3><p>A list of terms or concepts that this page defines. The page is the authoritative source for these terms within the vault.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>defines</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;feeling rules&#34;</span>
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;emotion work&#34;</span>
-</span></span></code></pre></div><p>Maps to: <code>skos:definition</code>, <code>schema:definedTerm</code></p><h3 id=cites><code>cites</code></h3><p>A list of references this page draws on. These are intellectual debts — works or people whose ideas the page engages substantively, not passing mentions.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>cites</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;Arlie Russell Hochschild&#34;</span>
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;The Managed Heart&#34;</span>
-</span></span></code></pre></div><p>Maps to: <code>schema:citation</code>, <code>dcterms:references</code></p><p>The <code>cites</code> relation is distinct from inline <code>[@citekey]</code> citations in the document body. Inline citations are point-of-evidence markers for specific claims; <code>cites</code> declares a document-level intellectual dependency. See the <a href=../../semiotic-markdown/citations.md class=link-internal>citation specification</a> for the full citation model.</p><h3 id=teaches><code>teaches</code></h3><p>A list of concepts or skills the page is designed to help the reader understand. Used primarily in <code>curricula/</code> pages.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>teaches</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;lattices&#34;</span>
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;meet and join&#34;</span>
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;bounded lattice&#34;</span>
-</span></span></code></pre></div><p>Maps to: <code>schema:teaches</code>, <code>schema:educationalAlignment</code></p><h3 id=requires><code>requires</code></h3><p>A list of concepts or pages that the reader should understand before this page. Equivalent to the existing <code>dependencies</code> field used in curricula.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>requires</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;partial orders&#34;</span>
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;Hasse diagrams&#34;</span>
-</span></span></code></pre></div><p>Maps to: <code>schema:coursePrerequisites</code>, <code>dcterms:requires</code></p><h3 id=part-of><code>part-of</code></h3><p>A list of larger structures this page belongs to. Used when directory hierarchy alone does not capture the relationship.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>part-of</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;cybernetic postliberalism&#34;</span>
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;californication genealogy&#34;</span>
-</span></span></code></pre></div><p>Maps to: <code>schema:isPartOf</code>, <code>dcterms:isPartOf</code></p><h3 id=extends><code>extends</code></h3><p>A list of concepts this page builds upon or generalizes. Distinct from <code>requires</code> (which is about reader prerequisites) — <code>extends</code> is about conceptual <a href=../../../philosophy/disciplines/critical-theory/schools/foucault/terms/genealogy.md class=link-internal>genealogy</a>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>extends</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;neurotic academic&#34;</span>
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;neurotic influencer&#34;</span>
-</span></span></code></pre></div><p>Maps to: <code>skos:broader</code> (inverse), <code>schema:isBasedOn</code></p><h3 id=questions><code>questions</code></h3><p>A list of questions this page raises, investigates, or is motivated by. These are inquiry-shaping questions — not rhetorical or self-check. They signal that the page participates in an ongoing investigation. See <a href=./theory/questions-as-first-class-objects.md class=link-internal>Questions as First-Class Objects</a> for the formal rationale.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>questions</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;What is the relationship between formalization and understanding?&#34;</span>
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;When does closure fail to be idempotent?&#34;</span>
-</span></span></code></pre></div><p>Maps to: <code>schema:about</code></p><h3 id=addresses><code>addresses</code></h3><p>A list of questions this page contributes toward answering. The inverse of <code>questions</code> (which declares questions raised). A page that <code>addresses</code> a question provides evidence, argument, or formal development relevant to it.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>addresses</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;Is there engagement between the Black radical tradition and Russian semiotics?&#34;</span>
-</span></span></code></pre></div><p>Maps to: <code>schema:about</code></p><h2 id=observed-usage>Observed usage</h2><p>The <a href=./predicate-graph.md class=link-internal>predicate graph</a> tool reports actual
-predicate usage across the repository. As of 2026-03-06:</p><table><thead><tr><th>Predicate</th><th>Occurrences</th><th>Specified here</th><th>Notes</th></tr></thead><tbody><tr><td><code>type</code></td><td>2722</td><td>Yes (Section: The <code>type</code> field)</td><td>Most-used predicate; routes axiom evaluation</td></tr><tr><td><code>tagged</code></td><td>1803</td><td>Yes (via <code>tags</code> field)</td><td>Cross-cutting classification</td></tr><tr><td><code>defines</code></td><td>1719</td><td>Yes</td><td>Core relation for terms and concepts</td></tr><tr><td><code>teaches</code></td><td>509</td><td>Yes</td><td>Primarily in curricula</td></tr><tr><td><code>authors</code></td><td>505</td><td>Yes (base schema)</td><td>Provenance tracking</td></tr><tr><td><code>cites</code></td><td>446</td><td>Yes</td><td>Intellectual dependencies</td></tr><tr><td><code>requires</code></td><td>206</td><td>Yes</td><td>Prerequisite relations; 206 produce graph edges</td></tr><tr><td><code>mirrors</code></td><td>61</td><td>No</td><td>Emerged in practice; not yet specified</td></tr><tr><td><code>references</code></td><td>49</td><td>No</td><td>Emerged in practice; not yet specified</td></tr><tr><td><code>questions</code></td><td>29</td><td>Yes</td><td>Inquiry-shaping questions</td></tr><tr><td><code>notation</code></td><td>11</td><td>Domain-specific (math)</td><td>Mathematical notation</td></tr><tr><td><code>source</code></td><td>11</td><td>No</td><td>Emerged in practice</td></tr><tr><td><code>part-of</code></td><td>5</td><td>Yes</td><td>Structural containment</td></tr></tbody></table><p>Predicates with fewer than 5 occurrences: <code>extends</code> (specified),
+concepts to the broader semantic web.</li>
+<li><strong>Build-time generation</strong>: typed relations can be compiled into
+RDF/Turtle at build time.</li>
+</ol>
+<h2 id="design-principles">Design principles</h2>
+<h3 id="source-stays-in-frontmatter">Source stays in frontmatter</h3>
+<p>Typed relations are authored in frontmatter YAML, not in separate files. The frontmatter is the single source of truth. Machine-readable formats (RDF/Turtle, JSON-LD) are derived artifacts generated at build time and MUST NOT be hand-edited.</p>
+<h3 id="tags-signal-shared-territory">Tags signal shared territory</h3>
+<p>Tags identify the conceptual communities a page belongs to. A tag like <code>affect</code> says &ldquo;this page shares conceptual territory with other work tagged <code>affect</code>.&rdquo; Tags are chosen to overlap with terms used by external bodies — academic fields, open-source communities, activist networks — so that the vault&rsquo;s content is findable by people who already use those terms.</p>
+<p>Tags are NOT redundant with directory position. A file at <code>sociology/terms/feeling-rules.md</code> does not need a <code>sociology</code> tag (the directory already carries that). Tags carry <em>cross-cutting</em> classification: a sociology term might be tagged <code>affect</code> and <code>labor</code> to signal connections that the directory hierarchy does not encode.</p>
+<h3 id="tags-are-flat-and-camelcase">Tags are flat and CamelCase</h3>
+<p>Tags are flat labels — no <code>/</code> separators, no nesting. A tag like <code>Anarchism</code> stands on its own; it does not need to be scoped as <code>Sociology/Politics/Anarchism</code> because the directory already encodes structural position.</p>
+<p>Tags use CamelCase formatting: capitalize every word, including articles and prepositions. This follows the W3C WCAG and Mastodon/Fediverse convention for <a href="../../topics/internet/topics/tagging/terms/hashtag.md" class="link-internal">hashtag</a> accessibility — screen readers parse CamelCase by detecting capitalization transitions, so <code>#PoliticalTheory</code> reads as two words while <code>#politicaltheory</code> reads as one unintelligible string.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">tags</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">Anarchism</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">PoliticalTheory</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">Sociology</span>
+</span></span></code></pre></div><h3 id="tag-count-and-ordering">Tag count and ordering</h3>
+<p>Pages SHOULD have 3-5 tags. No page should have more than 10. Tags are ordered from most specific to least specific — the first tag is the page&rsquo;s primary conceptual community, and subsequent tags broaden the context.</p>
+<h3 id="the-type-field">The <code>type</code> field</h3>
+<p>Content type is NOT a tag. It is a separate frontmatter field derived from directory position:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">term</span>
+</span></span></code></pre></div><p>Valid values: <code>term</code>, <code>topic</code>, <code>index</code>, <code>lesson</code>, <code>person</code>, <code>concept</code>, <code>school</code>, <code>text</code>, <code>babble</code>, <code>letter</code>, <code>skill</code>, <code>question</code>. The <code>type</code> field maps to Schema.org <code>@type</code>:</p>
+<table>
+  <thead>
+      <tr>
+          <th><code>type</code> value</th>
+          <th>Schema.org <code>@type</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>term</code>, <code>concept</code></td>
+          <td><code>DefinedTerm</code></td>
+      </tr>
+      <tr>
+          <td><code>lesson</code></td>
+          <td><code>LearningResource</code></td>
+      </tr>
+      <tr>
+          <td><code>person</code></td>
+          <td><code>Person</code></td>
+      </tr>
+      <tr>
+          <td><code>question</code></td>
+          <td><code>Question</code></td>
+      </tr>
+      <tr>
+          <td><code>text</code>, <code>letter</code>, <code>babble</code></td>
+          <td><code>Article</code></td>
+      </tr>
+      <tr>
+          <td><code>index</code></td>
+          <td><code>CollectionPage</code></td>
+      </tr>
+      <tr>
+          <td>default</td>
+          <td><code>Article</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="relation-fields-are-optional">Relation fields are optional</h3>
+<p>No typed relation field is required. Adding them incrementally — starting with the most-linked pages and working outward — is the intended workflow. Pages without typed relations continue to work exactly as before.</p>
+<h3 id="domain-specific-extensions">Domain-specific extensions</h3>
+<p>The type and relation vocabularies defined here are general — they apply across any discipline. Specific knowledge domains may extend both with types and relations that carry domain-specific validity requirements. When a page uses a domain-specific relation, the shapes governing that relation validate it regardless of what other relations the page uses. See <a href="./theory/domain-specific-content.md" class="link-internal">Domain-Specific Content</a> for how this works.</p>
+<p>Current domain-specific extensions:</p>
+<ul>
+<li><a href="../../../mathematics/specifications/mathematical-agential-semioverse-repository/index.md" class="link-internal">Mathematical ASR</a> — adds types <code>theorem</code>, <code>proof</code>, <code>axiom</code>, <code>definition</code>, <code>conjecture</code>, <code>lemma</code>, <code>corollary</code>, <code>proposition</code> and relations <code>proven-by</code>, <code>proves</code>, <code>notation</code></li>
+<li><a href="../../../philosophy/specifications/philosophical-agential-semioverse-repository/index.md" class="link-internal">Philosophical ASR</a> — adds types <code>claim</code>, <code>argument</code>, <code>objection</code>, <code>position</code>, <code>tradition</code> and relations <code>argued-by</code>, <code>supports</code>, <code>targets</code>, <code>contested-by</code></li>
+<li><a href="../../../sociology/specifications/sociological-agential-semioverse-repository/index.md" class="link-internal">Sociological ASR</a> — adds relations <code>school</code>, <code>integrates</code>, <code>produces</code>, <code>sustains</code>, <code>contests</code>, <code>uses-concepts</code>, <code>emerges-under</code></li>
+<li><a href="../../../games/specifications/ludic-agential-semioverse-repository/index.md" class="link-internal">Ludic ASR</a> — adds type <code>specification</code> and relations <code>uses-mechanic</code>, <code>classifies</code>, <code>boundary-with</code>, <code>models</code></li>
+<li><a href="../../../education/specifications/educational-agential-semioverse-repository/index.md" class="link-internal">Educational ASR</a> — adds types <code>curriculum</code>, <code>skill</code>, <code>transmission-mode</code> and relations <code>practiced-through</code>, <code>scaffolds</code>, <code>builds-on</code></li>
+</ul>
+<h2 id="typed-relation-fields">Typed relation fields</h2>
+<h3 id="defines"><code>defines</code></h3>
+<p>A list of terms or concepts that this page defines. The page is the authoritative source for these terms within the vault.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">defines</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;feeling rules&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;emotion work&#34;</span>
+</span></span></code></pre></div><p>Maps to: <code>skos:definition</code>, <code>schema:definedTerm</code></p>
+<h3 id="cites"><code>cites</code></h3>
+<p>A list of references this page draws on. These are intellectual debts — works or people whose ideas the page engages substantively, not passing mentions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">cites</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;Arlie Russell Hochschild&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;The Managed Heart&#34;</span>
+</span></span></code></pre></div><p>Maps to: <code>schema:citation</code>, <code>dcterms:references</code></p>
+<p>The <code>cites</code> relation is distinct from inline <code>[@citekey]</code> citations in the document body. Inline citations are point-of-evidence markers for specific claims; <code>cites</code> declares a document-level intellectual dependency. See the <a href="../../semiotic-markdown/citations.md" class="link-internal">citation specification</a> for the full citation model.</p>
+<h3 id="teaches"><code>teaches</code></h3>
+<p>A list of concepts or skills the page is designed to help the reader understand. Used primarily in <code>curricula/</code> pages.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">teaches</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;lattices&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;meet and join&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;bounded lattice&#34;</span>
+</span></span></code></pre></div><p>Maps to: <code>schema:teaches</code>, <code>schema:educationalAlignment</code></p>
+<h3 id="requires"><code>requires</code></h3>
+<p>A list of concepts or pages that the reader should understand before this page. Equivalent to the existing <code>dependencies</code> field used in curricula.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">requires</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;partial orders&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;Hasse diagrams&#34;</span>
+</span></span></code></pre></div><p>Maps to: <code>schema:coursePrerequisites</code>, <code>dcterms:requires</code></p>
+<h3 id="part-of"><code>part-of</code></h3>
+<p>A list of larger structures this page belongs to. Used when directory hierarchy alone does not capture the relationship.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">part-of</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;cybernetic postliberalism&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;californication genealogy&#34;</span>
+</span></span></code></pre></div><p>Maps to: <code>schema:isPartOf</code>, <code>dcterms:isPartOf</code></p>
+<h3 id="extends"><code>extends</code></h3>
+<p>A list of concepts this page builds upon or generalizes. Distinct from <code>requires</code> (which is about reader prerequisites) — <code>extends</code> is about conceptual <a href="../../../philosophy/disciplines/critical-theory/schools/foucault/terms/genealogy.md" class="link-internal">genealogy</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">extends</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;neurotic academic&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;neurotic influencer&#34;</span>
+</span></span></code></pre></div><p>Maps to: <code>skos:broader</code> (inverse), <code>schema:isBasedOn</code></p>
+<h3 id="questions"><code>questions</code></h3>
+<p>A list of questions this page raises, investigates, or is motivated by. These are inquiry-shaping questions — not rhetorical or self-check. They signal that the page participates in an ongoing investigation. See <a href="./theory/questions-as-first-class-objects.md" class="link-internal">Questions as First-Class Objects</a> for the formal rationale.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">questions</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;What is the relationship between formalization and understanding?&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;When does closure fail to be idempotent?&#34;</span>
+</span></span></code></pre></div><p>Maps to: <code>schema:about</code></p>
+<h3 id="addresses"><code>addresses</code></h3>
+<p>A list of questions this page contributes toward answering. The inverse of <code>questions</code> (which declares questions raised). A page that <code>addresses</code> a question provides evidence, argument, or formal development relevant to it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">addresses</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;Is there engagement between the Black radical tradition and Russian semiotics?&#34;</span>
+</span></span></code></pre></div><p>Maps to: <code>schema:about</code></p>
+<h2 id="observed-usage">Observed usage</h2>
+<p>The <a href="./predicate-graph.md" class="link-internal">predicate graph</a> tool reports actual
+predicate usage across the repository. As of 2026-03-06:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Predicate</th>
+          <th>Occurrences</th>
+          <th>Specified here</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>type</code></td>
+          <td>2722</td>
+          <td>Yes (Section: The <code>type</code> field)</td>
+          <td>Most-used predicate; routes axiom evaluation</td>
+      </tr>
+      <tr>
+          <td><code>tagged</code></td>
+          <td>1803</td>
+          <td>Yes (via <code>tags</code> field)</td>
+          <td>Cross-cutting classification</td>
+      </tr>
+      <tr>
+          <td><code>defines</code></td>
+          <td>1719</td>
+          <td>Yes</td>
+          <td>Core relation for terms and concepts</td>
+      </tr>
+      <tr>
+          <td><code>teaches</code></td>
+          <td>509</td>
+          <td>Yes</td>
+          <td>Primarily in curricula</td>
+      </tr>
+      <tr>
+          <td><code>authors</code></td>
+          <td>505</td>
+          <td>Yes (base schema)</td>
+          <td>Provenance tracking</td>
+      </tr>
+      <tr>
+          <td><code>cites</code></td>
+          <td>446</td>
+          <td>Yes</td>
+          <td>Intellectual dependencies</td>
+      </tr>
+      <tr>
+          <td><code>requires</code></td>
+          <td>206</td>
+          <td>Yes</td>
+          <td>Prerequisite relations; 206 produce graph edges</td>
+      </tr>
+      <tr>
+          <td><code>mirrors</code></td>
+          <td>61</td>
+          <td>No</td>
+          <td>Emerged in practice; not yet specified</td>
+      </tr>
+      <tr>
+          <td><code>references</code></td>
+          <td>49</td>
+          <td>No</td>
+          <td>Emerged in practice; not yet specified</td>
+      </tr>
+      <tr>
+          <td><code>questions</code></td>
+          <td>29</td>
+          <td>Yes</td>
+          <td>Inquiry-shaping questions</td>
+      </tr>
+      <tr>
+          <td><code>notation</code></td>
+          <td>11</td>
+          <td>Domain-specific (math)</td>
+          <td>Mathematical notation</td>
+      </tr>
+      <tr>
+          <td><code>source</code></td>
+          <td>11</td>
+          <td>No</td>
+          <td>Emerged in practice</td>
+      </tr>
+      <tr>
+          <td><code>part-of</code></td>
+          <td>5</td>
+          <td>Yes</td>
+          <td>Structural containment</td>
+      </tr>
+  </tbody>
+</table>
+<p>Predicates with fewer than 5 occurrences: <code>extends</code> (specified),
 <code>addresses</code> (specified), <code>publish_to</code>, <code>vocabulary</code>, <code>todo</code>, <code>school</code>
 (domain-specific), <code>proven-by</code> (domain-specific), <code>argued-by</code>
-(domain-specific), <code>supports</code> (domain-specific).</p><p>The <code>mirrors</code> and <code>references</code> predicates emerged in practice without
+(domain-specific), <code>supports</code> (domain-specific).</p>
+<p>The <code>mirrors</code> and <code>references</code> predicates emerged in practice without
 being specified. <code>mirrors</code> appears to mark parallel content across
 disciplines; <code>references</code> marks non-intellectual citations. Both need
-specification if they are to participate in axiom evaluation.</p><h2 id=tag-vocabulary>Tag vocabulary</h2><p>Tags SHOULD be drawn from a <a href=../../topics/internet/topics/tagging/terms/controlled-vocabulary.md class=link-internal>controlled vocabulary</a>. The vocabulary is maintained as tag index pages under <code>content/tags/</code>. Tags function like academic journal <a href=../../topics/internet/topics/tagging/terms/keyword.md class=link-internal>keywords</a>: they signal which conceptual communities a page participates in, enabling cross-cutting discovery across a corpus where directory structure encodes structural classification.</p><h3 id=tag-conventions>Tag conventions</h3><ul><li><strong>CamelCase</strong>: <code>Anarchism</code>, <code>PoliticalTheory</code>, <code>SettlerColonialism</code></li><li><strong>Flat</strong>: no <code>/</code> separators, no hierarchy</li><li><strong>3-5 per page</strong> (max 10)</li><li><strong>Most-specific first</strong>: <code>Anarchism</code>, <code>PoliticalTheory</code>, <code>Sociology</code></li><li><strong>Cross-cutting only</strong>: never duplicate directory position</li><li><strong>From the vocabulary</strong>: prefer existing tags over inventing new ones</li></ul><h3 id=tag-pages>Tag pages</h3><p>Each tag SHOULD have a corresponding page at <code>content/tags/&lt;TagName>.md</code> (CamelCase filename matching the tag) that:</p><ol><li>Defines the tag&rsquo;s scope in one or two sentences</li><li>Lists related tags (both within the vault and external equivalents)</li><li>Links to key pages using the tag</li><li>Notes which external communities use this or similar terminology</li></ol><p>The tag vocabulary follows a hybrid model inspired by <a href=../../topics/internet/topics/tagging/terms/tag-wrangling.md class=link-internal>tag wrangling</a>: authors can apply any tag, but the controlled vocabulary maintained under <code>content/tags/</code> represents the canonical set. Periodic reconciliation brings actual usage in line with the vocabulary.</p><h2 id=rdf-generation>RDF generation</h2><h3 id=build-time-process>Build-time process</h3><p>At build time, the site generator SHOULD compile frontmatter relations into RDF/Turtle files. The process:</p><ol><li>For each published page, read its frontmatter.</li><li>If typed relation fields are present, generate triples.</li><li>Write a per-page <code>.ttl</code> file alongside the HTML output.</li><li>Optionally generate a combined graph file (<code>/knowledge-graph.ttl</code>) containing all triples.</li></ol><h3 id=namespace-prefixes>Namespace prefixes</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-turtle data-lang=turtle><span style=display:flex><span><span style=color:#66d9ef>@prefix</span> emsenn: &lt;https://emsenn.net/&gt; .
-</span></span><span style=display:flex><span><span style=color:#66d9ef>@prefix</span> schema: &lt;https://schema.org/&gt; .
-</span></span><span style=display:flex><span><span style=color:#66d9ef>@prefix</span> skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .
-</span></span><span style=display:flex><span><span style=color:#66d9ef>@prefix</span> dcterms: &lt;http://purl.org/dc/terms/&gt; .
-</span></span><span style=display:flex><span><span style=color:#66d9ef>@prefix</span> foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
-</span></span></code></pre></div><h3 id=example-output>Example output</h3><p>Given the frontmatter:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>title</span>: <span style=color:#e6db74>&#34;Feeling rules&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>defines</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;feeling rules&#34;</span>
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;emotion work&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>cites</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;Arlie Russell Hochschild&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>tags</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>affect</span>
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>labor</span>
-</span></span></code></pre></div><p>The generated Turtle would be:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-turtle data-lang=turtle><span style=display:flex><span>emsenn:<span style=color:#f92672>sociology</span><span style=color:#960050;background-color:#1e0010>/terms/feeling-rules</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>a</span> skos:<span style=color:#f92672>Concept</span>, schema:<span style=color:#f92672>DefinedTerm</span> ;
-</span></span><span style=display:flex><span>  schema:<span style=color:#f92672>name</span> <span style=color:#e6db74>&#34;Feeling rules&#34;</span> ;
-</span></span><span style=display:flex><span>  skos:<span style=color:#f92672>definition</span> <span style=color:#e6db74>&#34;feeling rules&#34;</span> ;
-</span></span><span style=display:flex><span>  skos:<span style=color:#f92672>definition</span> <span style=color:#e6db74>&#34;emotion work&#34;</span> ;
-</span></span><span style=display:flex><span>  dcterms:<span style=color:#f92672>references</span> emsenn:<span style=color:#f92672>general</span><span style=color:#960050;background-color:#1e0010>/people/arlie-russell-hochschild</span> ;
-</span></span><span style=display:flex><span>  schema:<span style=color:#f92672>keywords</span> <span style=color:#e6db74>&#34;affect&#34;</span>, <span style=color:#e6db74>&#34;labor&#34;</span> .
-</span></span></code></pre></div><h3 id=implementation-status>Implementation status</h3><p>RDF generation is not yet implemented. The specification describes the target architecture. Implementation requires a Quartz emitter plugin that:</p><ol><li>Reads <code>QuartzPluginData</code> during the emit phase</li><li>Extracts typed relation fields from frontmatter</li><li>Resolves relation targets to page slugs where possible</li><li>Generates Turtle syntax</li><li>Writes <code>.ttl</code> files to the output directory</li></ol><p>The JSON-LD generation already implemented in <code>quartz/components/Head.tsx</code> (see <a href=./web-discoverability.md class=link-internal>ASR Web Discoverability</a>) handles Schema.org types derived from directory position. The RDF generation described here is complementary: it handles typed relations between pages, which JSON-LD per-page metadata does not capture.</p><h2 id=migration-plan>Migration plan</h2><p>Adopting semantic frontmatter is incremental:</p><ol><li><strong>Phase 1</strong> (done): Add <code>defines</code> to all <code>terms/</code> pages.</li><li><strong>Phase 2</strong> (done): Add <code>teaches</code> and <code>requires</code> to all <code>curricula/</code> pages. Migrate <code>dependencies</code> → <code>requires</code>.</li><li><strong>Phase 3</strong> (done): Add <code>cites</code> to pages with bibliography references.</li><li><strong>Phase 4</strong> (done): Tag cleanup — normalize case, remove duplicates.</li><li><strong>Phase 5</strong> (done): Write tag pages under <code>content/tags/</code> for the controlled vocabulary.</li><li><strong>Phase 6</strong> (in progress): Tag architecture overhaul — migrate <code>type/</code> tags to <code>type:</code> field, convert tags to CamelCase, enforce flat/cross-cutting-only conventions.</li><li><strong>Phase 7</strong> (planned): Implement the RDF emitter plugin for build-time generation.</li></ol><p>Each phase is independently useful. The vault functions without any of them, and each addition makes the vault&rsquo;s semantic structure more explicit and more machine-readable.</p></div></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/semantic-frontmatter/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-03>2026-03-03</time></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">Specification for typed relation fields, hierarchical tags, and RDF generation in ASR frontmatter.</dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/structureddata/>StructuredData</a></li><li><a href=/tags/semanticweb/>SemanticWeb</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">ASR Semantic Frontmatter</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+specification if they are to participate in axiom evaluation.</p>
+<h2 id="tag-vocabulary">Tag vocabulary</h2>
+<p>Tags SHOULD be drawn from a <a href="../../topics/internet/topics/tagging/terms/controlled-vocabulary.md" class="link-internal">controlled vocabulary</a>. The vocabulary is maintained as tag index pages under <code>content/tags/</code>. Tags function like academic journal <a href="../../topics/internet/topics/tagging/terms/keyword.md" class="link-internal">keywords</a>: they signal which conceptual communities a page participates in, enabling cross-cutting discovery across a corpus where directory structure encodes structural classification.</p>
+<h3 id="tag-conventions">Tag conventions</h3>
+<ul>
+<li><strong>CamelCase</strong>: <code>Anarchism</code>, <code>PoliticalTheory</code>, <code>SettlerColonialism</code></li>
+<li><strong>Flat</strong>: no <code>/</code> separators, no hierarchy</li>
+<li><strong>3-5 per page</strong> (max 10)</li>
+<li><strong>Most-specific first</strong>: <code>Anarchism</code>, <code>PoliticalTheory</code>, <code>Sociology</code></li>
+<li><strong>Cross-cutting only</strong>: never duplicate directory position</li>
+<li><strong>From the vocabulary</strong>: prefer existing tags over inventing new ones</li>
+</ul>
+<h3 id="tag-pages">Tag pages</h3>
+<p>Each tag SHOULD have a corresponding page at <code>content/tags/&lt;TagName&gt;.md</code> (CamelCase filename matching the tag) that:</p>
+<ol>
+<li>Defines the tag&rsquo;s scope in one or two sentences</li>
+<li>Lists related tags (both within the vault and external equivalents)</li>
+<li>Links to key pages using the tag</li>
+<li>Notes which external communities use this or similar terminology</li>
+</ol>
+<p>The tag vocabulary follows a hybrid model inspired by <a href="../../topics/internet/topics/tagging/terms/tag-wrangling.md" class="link-internal">tag wrangling</a>: authors can apply any tag, but the controlled vocabulary maintained under <code>content/tags/</code> represents the canonical set. Periodic reconciliation brings actual usage in line with the vocabulary.</p>
+<h2 id="rdf-generation">RDF generation</h2>
+<h3 id="build-time-process">Build-time process</h3>
+<p>At build time, the site generator SHOULD compile frontmatter relations into RDF/Turtle files. The process:</p>
+<ol>
+<li>For each published page, read its frontmatter.</li>
+<li>If typed relation fields are present, generate triples.</li>
+<li>Write a per-page <code>.ttl</code> file alongside the HTML output.</li>
+<li>Optionally generate a combined graph file (<code>/knowledge-graph.ttl</code>) containing all triples.</li>
+</ol>
+<h3 id="namespace-prefixes">Namespace prefixes</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-turtle" data-lang="turtle"><span style="display:flex;"><span><span style="color:#66d9ef">@prefix</span> emsenn: &lt;https://emsenn.net/&gt; .
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@prefix</span> schema: &lt;https://schema.org/&gt; .
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@prefix</span> skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@prefix</span> dcterms: &lt;http://purl.org/dc/terms/&gt; .
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@prefix</span> foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+</span></span></code></pre></div><h3 id="example-output">Example output</h3>
+<p>Given the frontmatter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Feeling rules&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">defines</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;feeling rules&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;emotion work&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">cites</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;Arlie Russell Hochschild&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tags</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">affect</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">labor</span>
+</span></span></code></pre></div><p>The generated Turtle would be:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-turtle" data-lang="turtle"><span style="display:flex;"><span>emsenn:<span style="color:#f92672">sociology</span><span style="color:#960050;background-color:#1e0010">/terms/feeling-rules</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">a</span> skos:<span style="color:#f92672">Concept</span>, schema:<span style="color:#f92672">DefinedTerm</span> ;
+</span></span><span style="display:flex;"><span>  schema:<span style="color:#f92672">name</span> <span style="color:#e6db74">&#34;Feeling rules&#34;</span> ;
+</span></span><span style="display:flex;"><span>  skos:<span style="color:#f92672">definition</span> <span style="color:#e6db74">&#34;feeling rules&#34;</span> ;
+</span></span><span style="display:flex;"><span>  skos:<span style="color:#f92672">definition</span> <span style="color:#e6db74">&#34;emotion work&#34;</span> ;
+</span></span><span style="display:flex;"><span>  dcterms:<span style="color:#f92672">references</span> emsenn:<span style="color:#f92672">general</span><span style="color:#960050;background-color:#1e0010">/people/arlie-russell-hochschild</span> ;
+</span></span><span style="display:flex;"><span>  schema:<span style="color:#f92672">keywords</span> <span style="color:#e6db74">&#34;affect&#34;</span>, <span style="color:#e6db74">&#34;labor&#34;</span> .
+</span></span></code></pre></div><h3 id="implementation-status">Implementation status</h3>
+<p>RDF generation is not yet implemented. The specification describes the target architecture. Implementation requires a Quartz emitter plugin that:</p>
+<ol>
+<li>Reads <code>QuartzPluginData</code> during the emit phase</li>
+<li>Extracts typed relation fields from frontmatter</li>
+<li>Resolves relation targets to page slugs where possible</li>
+<li>Generates Turtle syntax</li>
+<li>Writes <code>.ttl</code> files to the output directory</li>
+</ol>
+<p>The JSON-LD generation already implemented in <code>quartz/components/Head.tsx</code> (see <a href="./web-discoverability.md" class="link-internal">ASR Web Discoverability</a>) handles Schema.org types derived from directory position. The RDF generation described here is complementary: it handles typed relations between pages, which JSON-LD per-page metadata does not capture.</p>
+<h2 id="migration-plan">Migration plan</h2>
+<p>Adopting semantic frontmatter is incremental:</p>
+<ol>
+<li><strong>Phase 1</strong> (done): Add <code>defines</code> to all <code>terms/</code> pages.</li>
+<li><strong>Phase 2</strong> (done): Add <code>teaches</code> and <code>requires</code> to all <code>curricula/</code> pages. Migrate <code>dependencies</code> → <code>requires</code>.</li>
+<li><strong>Phase 3</strong> (done): Add <code>cites</code> to pages with bibliography references.</li>
+<li><strong>Phase 4</strong> (done): Tag cleanup — normalize case, remove duplicates.</li>
+<li><strong>Phase 5</strong> (done): Write tag pages under <code>content/tags/</code> for the controlled vocabulary.</li>
+<li><strong>Phase 6</strong> (in progress): Tag architecture overhaul — migrate <code>type/</code> tags to <code>type:</code> field, convert tags to CamelCase, enforce flat/cross-cutting-only conventions.</li>
+<li><strong>Phase 7</strong> (planned): Implement the RDF emitter plugin for build-time generation.</li>
+</ol>
+<p>Each phase is independently useful. The vault functions without any of them, and each addition makes the vault&rsquo;s semantic structure more explicit and more machine-readable.</p>
+
+  </div>
+  
+  
+</article>
+<section class="page-relations" resource="http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/semantic-frontmatter/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>date-created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-03">2026-03-03</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/information/terms/description/">description</a></dt>
+        <dd property="schema:description">Specification for typed relation fields, hierarchical tags, and RDF generation in ASR frontmatter.</dd>
+      </div><div class="relation">
+        <dt>tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/structureddata/">StructuredData</a></li><li><a href="/tags/semanticweb/">SemanticWeb</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>title</dt>
+        <dd property="schema:name">ASR Semantic Frontmatter</dd>
+      </div>
+  </dl>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

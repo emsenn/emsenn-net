@@ -1,21 +1,586 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Semiotic Markdown - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"Semiotic Markdown Specification This specification describes how Markdown files, as ingested by the semiotic publisher [@semiotic-publisher], are interpreted as concepts in the Semiotic Universe [@semiotic-universe] and its Stewardable Semiotic Concept Universe extension [@stewardable-semiotic-concept-universe], and how their structure is mapped into atoms, fragments, and publication views.\nNormative statements in this document use \u0026ldquo;MUST\u0026rdquo;, \u0026ldquo;SHOULD\u0026rdquo;, and \u0026ldquo;MAY\u0026rdquo; in the conventional requirements-language sense.\n1. File Model Throughout this specification, the loader denotes the Markdown‑to‑concept stage of the semiotic publisher [@semiotic-publisher].\n","keywords":"semantics, syntax, semiotics, tooling, specification","name":"Semiotic Markdown","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/content/specs/semiotic-markdown/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Semiotic Markdown</h1><div class=meta></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#1-file-model>1. File Model</a></li><li><a href=#2-identification-and-slugs>2. Identification and Slugs</a><ul><li><a href=#21-concept-identifiers>2.1 Concept identifiers</a></li><li><a href=#22-slugification>2.2 Slugification</a></li></ul></li><li><a href=#3-yaml-frontmatter-fields>3. YAML Frontmatter Fields</a><ul><li><a href=#31-core-identity>3.1 Core identity</a></li><li><a href=#32-classification-and-status>3.2 Classification and status</a></li><li><a href=#33-names-aliases-and-folders>3.3 Names, aliases, and folders</a></li><li><a href=#34-temporal-metadata>3.4 Temporal metadata</a></li><li><a href=#35-licensing>3.5 Licensing</a></li><li><a href=#36-publication-routing>3.6 Publication routing</a></li><li><a href=#37-subjects-and-facts-relational-metadata>3.7 Subjects and facts (relational metadata)</a></li><li><a href=#38-citation-metadata-for-pandoc-optional>3.8 Citation metadata for Pandoc (optional)</a></li></ul></li><li><a href=#4-body-syntax>4. Body Syntax</a><ul><li><a href=#41-general-markdown>4.1 General Markdown</a></li><li><a href=#42-wikilinks>4.2 Wikilinks</a></li><li><a href=#43-markdown-links>4.3 Markdown links</a></li><li><a href=#44-inline-citations-pandocstyle>4.4 Inline citations (Pandoc‑style)</a></li></ul></li><li><a href=#5-derived-semantic-structure>5. Derived Semantic Structure</a><ul><li><a href=#51-annotations-and-atoms>5.1 Annotations and atoms</a></li><li><a href=#52-jrelations-and-closure>5.2 j‑relations and closure</a></li></ul></li></ul></nav></details><div class=e-content><h1 id=semiotic-markdown-specification>Semiotic Markdown Specification</h1><p>This specification describes how Markdown files, as ingested by the semiotic publisher [@semiotic-publisher], are interpreted as concepts in the Semiotic Universe [@semiotic-universe] and its Stewardable Semiotic Concept Universe extension [@stewardable-semiotic-concept-universe], and how their structure is mapped into atoms, fragments, and publication views.</p><p>Normative statements in this document use &ldquo;MUST&rdquo;, &ldquo;SHOULD&rdquo;, and &ldquo;MAY&rdquo; in the conventional requirements-language sense.</p><h2 id=1-file-model>1. File Model</h2><ul><li><p>Throughout this specification, the <strong>loader</strong> denotes the Markdown‑to‑concept stage of the semiotic publisher [@semiotic-publisher].</p></li><li><p>A <strong>concept file</strong> is a UTF‑8 <code>*.md</code> file under the configured <code>vault_dir</code>.</p></li><li><p>Each file is parsed as:</p><ul><li>an optional YAML <strong>frontmatter</strong> block delimited by <code>---</code> at the top, and</li><li>a Markdown <strong>body</strong>.</li></ul></li><li><p>The loader treats one file as one concept.</p></li></ul><h2 id=2-identification-and-slugs>2. Identification and Slugs</h2><h3 id=21-concept-identifiers>2.1 Concept identifiers</h3><ul><li>Frontmatter field <code>id</code> (string) MAY be provided.</li><li>If <code>id</code> is absent, the concept id is derived from the file path:<ul><li>take the path relative to <code>vault_dir</code>,</li><li>drop the file extension,</li><li>apply the slugification function (below).</li></ul></li></ul><h3 id=22-slugification>2.2 Slugification</h3><p>The slugification function <code>slugify</code> is applied to ids, folder names, link targets, and some metadata values:</p><ul><li>Convert to lowercase and trim surrounding whitespace.</li><li>Replace <code>/</code> and <code>\</code> with <code>-</code>.</li><li>Replace any character not in <code>[a-z0-9_-]</code> with <code>-</code>.</li><li>Collapse consecutive <code>-</code> into a single <code>-</code>.</li><li>Trim leading and trailing <code>-</code>.</li><li>If the result is empty, use <code>"item"</code>.</li></ul><h2 id=3-yaml-frontmatter-fields>3. YAML Frontmatter Fields</h2><p>This section describes the frontmatter schema recognized by the loader and how each field contributes to the universe semantics.</p><h3 id=31-core-identity>3.1 Core identity</h3><ul><li><code>title</code> (string)<ul><li>Human‑readable title for the concept.</li><li>If absent, defaults to the file’s stem (basename without extension).</li></ul></li><li><code>id</code> (string, optional)<ul><li>Explicit concept identifier.</li><li>If present, is slugified and used as the concept id.</li></ul></li></ul><h3 id=32-classification-and-status>3.2 Classification and status</h3><ul><li><code>type</code> (string, optional)<ul><li>Concept type (e.g. <code>"doc"</code>, <code>"tag"</code>, <code>"status"</code>).</li><li>Semantics:<ul><li>Generates an annotation term <code>HasType(type)</code>.</li><li>Interns a <code>type</code> atom for this value.</li><li>May induce tag atoms via <code>type_tag_rules</code> in configuration.</li></ul></li></ul></li><li><code>status</code> (string, optional)<ul><li>Editorial or publication status (e.g. <code>"draft"</code>, <code>"sketch"</code>, <code>"public"</code>, <code>"deprecated"</code>).</li><li>Semantics:<ul><li>Generates an annotation term <code>HasStatus(status)</code>.</li><li>Interns a <code>status</code> atom for this value.</li><li>May induce tag atoms via <code>status_tag_rules</code> in configuration.</li><li>May be used by publishing and theming (e.g. draft styling, selection filters).</li></ul></li></ul></li><li><code>tags</code> (list of strings, optional)<ul><li>Free‑form topical tags.</li><li>Semantics:<ul><li>For each tag value <code>t</code>, generates <code>HasTag(t)</code>.</li><li>Interns a <code>tag</code> atom with value <code>t</code>.</li></ul></li></ul></li></ul><h3 id=33-names-aliases-and-folders>3.3 Names, aliases, and folders</h3><ul><li><code>aliases</code> (list of strings, optional)<ul><li>Alternate names for the concept.</li><li>Semantics:<ul><li>For each alias, generates <code>AliasFor(alias)</code>.</li><li>Interns an <code>alias</code> atom.</li><li>Aliases participate in concept resolution (e.g. citation and link resolving).</li></ul></li></ul></li><li>Folders (implicit)<ul><li>The file’s path segments under <code>vault_dir</code> are used as folder annotations.</li><li>All path components except the filename are collected and slugified.</li><li>Semantics:<ul><li>For each folder segment <code>f</code>, generates <code>InFolder(f)</code>.</li><li>Interns a <code>folder</code> atom.</li><li><code>folder_tag_rules</code> in configuration MAY map folders to tags via <code>j</code>‑relations.</li></ul></li></ul></li></ul><h3 id=34-temporal-metadata>3.4 Temporal metadata</h3><ul><li><code>created</code> (string, optional)<ul><li>Creation timestamp or date string (no enforced format).</li><li>Semantics:<ul><li>Used by the temporal trace operator to create:<ul><li><code>created</code> atom with the full string.</li><li><code>created_year</code> atom with the first four characters.</li></ul></li></ul></li></ul></li><li><code>updated</code> (string, optional)<ul><li>Last‑update timestamp or date string.</li><li>Semantics:<ul><li>Used by the temporal trace operator to create:<ul><li><code>updated</code> atom with the full string.</li><li><code>updated_year</code> atom with the first four characters.</li></ul></li></ul></li></ul></li></ul><h3 id=35-licensing>3.5 Licensing</h3><ul><li><code>license</code> (string, optional)<ul><li>Human‑readable declaration of the license for this concept (e.g. <code>"CC BY-SA 4.0"</code>, <code>"All rights reserved"</code>, <code>"CC0"</code>).</li><li>Semantics:<ul><li>Stored as <code>concept.license</code> and surfaced in rendered HTML metadata.</li><li>By default, if <code>license</code> is absent, the site’s global policy applies (no reuse or derivatives without permission).</li><li>The license field does not currently generate atoms.</li></ul></li></ul></li></ul><h3 id=36-publication-routing>3.6 Publication routing</h3><ul><li><code>publish_to</code> (string or list of strings, optional)<ul><li>Project selectors indicating which publication projects the concept belongs to (e.g. <code>"emsenn-net"</code>, <code>"math-papers"</code>).</li><li>Semantics:<ul><li>Stored verbatim in frontmatter metadata.</li><li>Used by project selection (<code>project_universe</code>) to build sub‑universes specified in configuration (<code>projects.*.publish_to</code>).</li><li>Does not create atoms.</li></ul></li></ul></li></ul><h3 id=37-subjects-and-facts-relational-metadata>3.7 Subjects and facts (relational metadata)</h3><ul><li><p><code>subjects</code> (mapping from string → string, optional)</p><ul><li>Defines named subject aliases for use in <code>facts</code>.</li><li>Schema:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>subjects</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>alias1</span>: <span style=color:#ae81ff>target-id-1</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>alias2</span>: <span style=color:#ae81ff>target-id-2</span>
-</span></span></code></pre></div></li><li>Semantics:<ul><li>Internally, each alias maps to a slugified target id.</li><li>Subjects themselves do not create atoms; they parameterise facts.</li></ul></li></ul></li><li><p><code>facts</code> (mapping from subject alias → predicate→object(s), optional)</p><ul><li>Declarative relational metadata.</li><li>Schema:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>facts</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>subject-alias-or-id</span>:
-</span></span><span style=display:flex><span>    <span style=color:#f92672>predicate-1</span>: <span style=color:#ae81ff>object-or-alias</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>predicate-2</span>:
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>object-or-alias-a</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>object-or-alias-b</span>
-</span></span></code></pre></div></li><li>Semantics:<ul><li>For each triple <code>(predicate, subject, object)</code>:<ul><li>Resolve <code>subject</code> via <code>subjects</code> if present; otherwise slugify the subject key.</li><li>Resolve <code>object</code> via <code>subjects</code> if present; otherwise slugify the object value.</li><li>Append a fact tuple <code>(predicate, subject_id, object_id)</code> to the concept.</li><li>Generate an annotation term:<ul><li><code>Fact(predicate, subject_id, object_id)</code>.</li></ul></li><li>Intern a <code>fact</code> atom whose value is the string
-<code>"{predicate}:{subject_id}->{object_id}"</code>.</li></ul></li></ul></li></ul></li></ul><h3 id=38-citation-metadata-for-pandoc-optional>3.8 Citation metadata for Pandoc (optional)</h3><ul><li><code>bibliography</code> (string, optional)<ul><li>Path to a bibliography file (e.g. <code>content/ref/refs.bib</code>).</li></ul></li><li><code>csl</code> (string, optional)<ul><li>Path to a CSL style file for Pandoc.</li></ul></li><li>Semantics:<ul><li>Currently preserved in metadata for use by Pandoc export and future citation tooling.</li><li>Does not yet generate atoms directly.</li></ul></li></ul><h2 id=4-body-syntax>4. Body Syntax</h2><h3 id=41-general-markdown>4.1 General Markdown</h3><ul><li>The body is parsed as CommonMark‑style Markdown using <code>markdown-it</code>.</li><li>Headings, paragraphs, lists, code blocks, and inline emphasis are rendered as usual; they do not, by themselves, create semantic atoms.</li></ul><h3 id=42-wikilinks>4.2 Wikilinks</h3><ul><li>Syntax:<ul><li><code>[Label](Label)</code></li><li><code>[concept-id-or-slug](concept-id-or-slug)</code></li></ul></li><li>Resolution:<ul><li><code>Label</code> is slugified to derive a target id.</li><li>The HTML renderer rewrites wikilinks into standard Markdown links to <code>docs/&lt;target-id>.html</code> (respecting the current base href).</li></ul></li><li>Semantics:<ul><li>For each wikilink target id <code>k</code>, the loader:<ul><li>Generates <code>LinksTo(k)</code> as an annotation term.</li><li>Interns a <code>link</code> atom with value <code>k</code>.</li></ul></li></ul></li></ul><h3 id=43-markdown-links>4.3 Markdown links</h3><ul><li>Syntax:<ul><li><code>[text](relative/path/to/other.md)</code></li><li><code>[text](relative/path/to/other)</code></li></ul></li><li>Resolution:<ul><li>Links whose targets start with a URI scheme (<code>^[a-z]+://</code>) are treated as external and do not participate in concept resolution.</li><li>For other targets:<ul><li>The path is normalised relative to the current file, the extension (if any) is removed, and the result is slugified.</li><li>The slugified value is used as a link target id.</li></ul></li><li>HTML rendering uses the original link markup; no additional rewriting is performed beyond standard Markdown rendering.</li></ul></li><li>Semantics:<ul><li>For each internal target id, generates <code>LinksTo(target_id)</code> and a corresponding <code>link</code> atom.</li></ul></li></ul><h3 id=44-inline-citations-pandocstyle>4.4 Inline citations (Pandoc‑style)</h3><ul><li>Recognised citation groups:<ul><li><code>[@key]</code></li><li><code>[@key; @other]</code></li><li><code>[@key, @other]</code> (commas are also accepted as separators).</li></ul></li><li>Parsing:<ul><li>A citation group is detected when text matches <code>[...]</code> whose contents contain one or more <code>@key</code> tokens separated by commas or semicolons.</li><li><code>@key</code> tokens are extracted; <code>-@key</code> (author‑suppressed form) is recognised for parsing but rendered the same at present.</li></ul></li><li>HTML rendering:<ul><li>Each <code>key</code> is resolved using:<ul><li>concept id,</li><li>slugified concept title,</li><li>aliases and their slugified forms.</li></ul></li><li>If resolution succeeds:<ul><li>The citation is rendered as <code>&lt;a class="citation" href="...">@key&lt;/a></code> pointing to the concept page.</li></ul></li><li>If resolution fails:<ul><li>The citation is rendered as <code>&lt;span class="citation">@key&lt;/span></code> (external or unknown reference).</li></ul></li><li>Multiple keys in one group are rendered inside a single bracketed citation, separated by <code>"; "</code>.</li></ul></li><li>Semantics:<ul><li>Inline citations currently affect HTML presentation but do not create atoms or j‑relations.</li><li>They are intended as a trace/provenance layer that can be lifted into the semiotic universe in future revisions.</li></ul></li></ul><h2 id=5-derived-semantic-structure>5. Derived Semantic Structure</h2><h3 id=51-annotations-and-atoms>5.1 Annotations and atoms</h3><p>Given a loaded concept, the loader constructs a multiset of annotation terms from:</p><ul><li><code>tags</code> → <code>HasTag(tag)</code></li><li><code>status</code> → <code>HasStatus(status)</code></li><li><code>type</code> → <code>HasType(type)</code></li><li><code>aliases</code> → <code>AliasFor(alias)</code></li><li>folders → <code>InFolder(folder)</code></li><li>links (wikilinks and internal Markdown links) → <code>LinksTo(target_id)</code></li><li><code>facts</code> → <code>Fact(predicate, subject_id, object_id)</code></li></ul><p>Each annotation interpreter maps its term into a finite feature set:</p><ul><li><code>HasTag(t)</code> → one <code>tag</code> atom with value <code>t</code>.</li><li><code>HasStatus(s)</code> → one <code>status</code> atom with value <code>s</code>.</li><li><code>HasType(t)</code> → one <code>type</code> atom with value <code>t</code>.</li><li><code>AliasFor(a)</code> → one <code>alias</code> atom with value <code>a</code>.</li><li><code>InFolder(f)</code> → one <code>folder</code> atom with value <code>f</code>.</li><li><code>LinksTo(k)</code> → one <code>link</code> atom with value <code>k</code>.</li><li><code>Fact(p, s, o)</code> → one <code>fact</code> atom with value <code>"{p}:{s}->{o}"</code>.</li></ul><p>The union of all such atoms for a concept forms its <strong>base feature set</strong>.</p><h3 id=52-jrelations-and-closure>5.2 j‑relations and closure</h3><p>Configuration MAY specify relational closure rules:</p><ul><li><code>folder_tag_rules[folder] = tag</code><ul><li>Creates a j‑relation from <code>folder</code> atom <code>folder</code> to <code>tag</code> atom <code>tag</code>.</li></ul></li><li><code>tag_synonyms[a] = b</code><ul><li>Creates symmetric j‑relations between <code>tag</code> atoms <code>a</code> and <code>b</code>.</li></ul></li><li><code>type_tag_rules[type] = tag</code><ul><li>Creates a j‑relation from <code>type</code> atom <code>type</code> to <code>tag</code> atom <code>tag</code>.</li></ul></li><li><code>status_tag_rules[status] = tag</code><ul><li>Creates a j‑relation from <code>status</code> atom <code>status</code> to <code>tag</code> atom <code>tag</code>.</li></ul></li></ul><p>The semantic fragment and contribution for each concept are then computed by iterated application of:</p><ul><li>temporal enrichment (trace operator <code>G</code>) via <code>created</code>/<code>updated</code> fields, and</li><li>graph closure (<code>j</code>) following the configured j‑relations.</li></ul><p>This section is descriptive: implementations MUST preserve extensivity, monotonicity, and idempotence of the combined closure but MAY refine the set of j‑relations in future versions of this specification. The full categorical treatment of fragments, j/G‑closure, and stewardship operators is given in the universe constructions [@semiotic-universe; @stewardable-semiotic-concept-universe].</p></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>emsenn. (). Semiotic Markdown. <i>emsenn.net</i>. https://emsenn.net/library/relationality/content/specs/semiotic-markdown/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@misc{emsenn-semiotic-markdown,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semiotic Markdown - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "Semiotic Markdown Specification This specification describes how Markdown files, as ingested by the semiotic publisher [@semiotic-publisher], are interpreted as concepts in the Semiotic Universe [@semiotic-universe] and its Stewardable Semiotic Concept Universe extension [@stewardable-semiotic-concept-universe], and how their structure is mapped into atoms, fragments, and publication views.\nNormative statements in this document use \u0026ldquo;MUST\u0026rdquo;, \u0026ldquo;SHOULD\u0026rdquo;, and \u0026ldquo;MAY\u0026rdquo; in the conventional requirements-language sense.\n1. File Model Throughout this specification, the loader denotes the Markdown‑to‑concept stage of the semiotic publisher [@semiotic-publisher].\n",
+  "keywords": "semantics, syntax, semiotics, tooling, specification",
+  "name": "Semiotic Markdown",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/content/specs/semiotic-markdown/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="doc">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a></nav>
+  <h1 class="p-name">Semiotic Markdown</h1>
+  <div class="meta">
+    
+    
+    
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-file-model">1. File Model</a></li>
+    <li><a href="#2-identification-and-slugs">2. Identification and Slugs</a>
+      <ul>
+        <li><a href="#21-concept-identifiers">2.1 Concept identifiers</a></li>
+        <li><a href="#22-slugification">2.2 Slugification</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-yaml-frontmatter-fields">3. YAML Frontmatter Fields</a>
+      <ul>
+        <li><a href="#31-core-identity">3.1 Core identity</a></li>
+        <li><a href="#32-classification-and-status">3.2 Classification and status</a></li>
+        <li><a href="#33-names-aliases-and-folders">3.3 Names, aliases, and folders</a></li>
+        <li><a href="#34-temporal-metadata">3.4 Temporal metadata</a></li>
+        <li><a href="#35-licensing">3.5 Licensing</a></li>
+        <li><a href="#36-publication-routing">3.6 Publication routing</a></li>
+        <li><a href="#37-subjects-and-facts-relational-metadata">3.7 Subjects and facts (relational metadata)</a></li>
+        <li><a href="#38-citation-metadata-for-pandoc-optional">3.8 Citation metadata for Pandoc (optional)</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-body-syntax">4. Body Syntax</a>
+      <ul>
+        <li><a href="#41-general-markdown">4.1 General Markdown</a></li>
+        <li><a href="#42-wikilinks">4.2 Wikilinks</a></li>
+        <li><a href="#43-markdown-links">4.3 Markdown links</a></li>
+        <li><a href="#44-inline-citations-pandocstyle">4.4 Inline citations (Pandoc‑style)</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-derived-semantic-structure">5. Derived Semantic Structure</a>
+      <ul>
+        <li><a href="#51-annotations-and-atoms">5.1 Annotations and atoms</a></li>
+        <li><a href="#52-jrelations-and-closure">5.2 j‑relations and closure</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="semiotic-markdown-specification">Semiotic Markdown Specification</h1>
+<p>This specification describes how Markdown files, as ingested by the semiotic publisher [@semiotic-publisher], are interpreted as concepts in the Semiotic Universe [@semiotic-universe] and its Stewardable Semiotic Concept Universe extension [@stewardable-semiotic-concept-universe], and how their structure is mapped into atoms, fragments, and publication views.</p>
+<p>Normative statements in this document use &ldquo;MUST&rdquo;, &ldquo;SHOULD&rdquo;, and &ldquo;MAY&rdquo; in the conventional requirements-language sense.</p>
+<h2 id="1-file-model">1. File Model</h2>
+<ul>
+<li>
+<p>Throughout this specification, the <strong>loader</strong> denotes the Markdown‑to‑concept stage of the semiotic publisher [@semiotic-publisher].</p>
+</li>
+<li>
+<p>A <strong>concept file</strong> is a UTF‑8 <code>*.md</code> file under the configured <code>vault_dir</code>.</p>
+</li>
+<li>
+<p>Each file is parsed as:</p>
+<ul>
+<li>an optional YAML <strong>frontmatter</strong> block delimited by <code>---</code> at the top, and</li>
+<li>a Markdown <strong>body</strong>.</li>
+</ul>
+</li>
+<li>
+<p>The loader treats one file as one concept.</p>
+</li>
+</ul>
+<h2 id="2-identification-and-slugs">2. Identification and Slugs</h2>
+<h3 id="21-concept-identifiers">2.1 Concept identifiers</h3>
+<ul>
+<li>Frontmatter field <code>id</code> (string) MAY be provided.</li>
+<li>If <code>id</code> is absent, the concept id is derived from the file path:
+<ul>
+<li>take the path relative to <code>vault_dir</code>,</li>
+<li>drop the file extension,</li>
+<li>apply the slugification function (below).</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-slugification">2.2 Slugification</h3>
+<p>The slugification function <code>slugify</code> is applied to ids, folder names, link targets, and some metadata values:</p>
+<ul>
+<li>Convert to lowercase and trim surrounding whitespace.</li>
+<li>Replace <code>/</code> and <code>\</code> with <code>-</code>.</li>
+<li>Replace any character not in <code>[a-z0-9_-]</code> with <code>-</code>.</li>
+<li>Collapse consecutive <code>-</code> into a single <code>-</code>.</li>
+<li>Trim leading and trailing <code>-</code>.</li>
+<li>If the result is empty, use <code>&quot;item&quot;</code>.</li>
+</ul>
+<h2 id="3-yaml-frontmatter-fields">3. YAML Frontmatter Fields</h2>
+<p>This section describes the frontmatter schema recognized by the loader and how each field contributes to the universe semantics.</p>
+<h3 id="31-core-identity">3.1 Core identity</h3>
+<ul>
+<li><code>title</code> (string)
+<ul>
+<li>Human‑readable title for the concept.</li>
+<li>If absent, defaults to the file’s stem (basename without extension).</li>
+</ul>
+</li>
+<li><code>id</code> (string, optional)
+<ul>
+<li>Explicit concept identifier.</li>
+<li>If present, is slugified and used as the concept id.</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-classification-and-status">3.2 Classification and status</h3>
+<ul>
+<li><code>type</code> (string, optional)
+<ul>
+<li>Concept type (e.g. <code>&quot;doc&quot;</code>, <code>&quot;tag&quot;</code>, <code>&quot;status&quot;</code>).</li>
+<li>Semantics:
+<ul>
+<li>Generates an annotation term <code>HasType(type)</code>.</li>
+<li>Interns a <code>type</code> atom for this value.</li>
+<li>May induce tag atoms via <code>type_tag_rules</code> in configuration.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>status</code> (string, optional)
+<ul>
+<li>Editorial or publication status (e.g. <code>&quot;draft&quot;</code>, <code>&quot;sketch&quot;</code>, <code>&quot;public&quot;</code>, <code>&quot;deprecated&quot;</code>).</li>
+<li>Semantics:
+<ul>
+<li>Generates an annotation term <code>HasStatus(status)</code>.</li>
+<li>Interns a <code>status</code> atom for this value.</li>
+<li>May induce tag atoms via <code>status_tag_rules</code> in configuration.</li>
+<li>May be used by publishing and theming (e.g. draft styling, selection filters).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>tags</code> (list of strings, optional)
+<ul>
+<li>Free‑form topical tags.</li>
+<li>Semantics:
+<ul>
+<li>For each tag value <code>t</code>, generates <code>HasTag(t)</code>.</li>
+<li>Interns a <code>tag</code> atom with value <code>t</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-names-aliases-and-folders">3.3 Names, aliases, and folders</h3>
+<ul>
+<li><code>aliases</code> (list of strings, optional)
+<ul>
+<li>Alternate names for the concept.</li>
+<li>Semantics:
+<ul>
+<li>For each alias, generates <code>AliasFor(alias)</code>.</li>
+<li>Interns an <code>alias</code> atom.</li>
+<li>Aliases participate in concept resolution (e.g. citation and link resolving).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Folders (implicit)
+<ul>
+<li>The file’s path segments under <code>vault_dir</code> are used as folder annotations.</li>
+<li>All path components except the filename are collected and slugified.</li>
+<li>Semantics:
+<ul>
+<li>For each folder segment <code>f</code>, generates <code>InFolder(f)</code>.</li>
+<li>Interns a <code>folder</code> atom.</li>
+<li><code>folder_tag_rules</code> in configuration MAY map folders to tags via <code>j</code>‑relations.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="34-temporal-metadata">3.4 Temporal metadata</h3>
+<ul>
+<li><code>created</code> (string, optional)
+<ul>
+<li>Creation timestamp or date string (no enforced format).</li>
+<li>Semantics:
+<ul>
+<li>Used by the temporal trace operator to create:
+<ul>
+<li><code>created</code> atom with the full string.</li>
+<li><code>created_year</code> atom with the first four characters.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>updated</code> (string, optional)
+<ul>
+<li>Last‑update timestamp or date string.</li>
+<li>Semantics:
+<ul>
+<li>Used by the temporal trace operator to create:
+<ul>
+<li><code>updated</code> atom with the full string.</li>
+<li><code>updated_year</code> atom with the first four characters.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="35-licensing">3.5 Licensing</h3>
+<ul>
+<li><code>license</code> (string, optional)
+<ul>
+<li>Human‑readable declaration of the license for this concept (e.g. <code>&quot;CC BY-SA 4.0&quot;</code>, <code>&quot;All rights reserved&quot;</code>, <code>&quot;CC0&quot;</code>).</li>
+<li>Semantics:
+<ul>
+<li>Stored as <code>concept.license</code> and surfaced in rendered HTML metadata.</li>
+<li>By default, if <code>license</code> is absent, the site’s global policy applies (no reuse or derivatives without permission).</li>
+<li>The license field does not currently generate atoms.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="36-publication-routing">3.6 Publication routing</h3>
+<ul>
+<li><code>publish_to</code> (string or list of strings, optional)
+<ul>
+<li>Project selectors indicating which publication projects the concept belongs to (e.g. <code>&quot;emsenn-net&quot;</code>, <code>&quot;math-papers&quot;</code>).</li>
+<li>Semantics:
+<ul>
+<li>Stored verbatim in frontmatter metadata.</li>
+<li>Used by project selection (<code>project_universe</code>) to build sub‑universes specified in configuration (<code>projects.*.publish_to</code>).</li>
+<li>Does not create atoms.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="37-subjects-and-facts-relational-metadata">3.7 Subjects and facts (relational metadata)</h3>
+<ul>
+<li>
+<p><code>subjects</code> (mapping from string → string, optional)</p>
+<ul>
+<li>Defines named subject aliases for use in <code>facts</code>.</li>
+<li>Schema:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">subjects</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">alias1</span>: <span style="color:#ae81ff">target-id-1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">alias2</span>: <span style="color:#ae81ff">target-id-2</span>
+</span></span></code></pre></div></li>
+<li>Semantics:
+<ul>
+<li>Internally, each alias maps to a slugified target id.</li>
+<li>Subjects themselves do not create atoms; they parameterise facts.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>facts</code> (mapping from subject alias → predicate→object(s), optional)</p>
+<ul>
+<li>Declarative relational metadata.</li>
+<li>Schema:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">facts</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">subject-alias-or-id</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">predicate-1</span>: <span style="color:#ae81ff">object-or-alias</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">predicate-2</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">object-or-alias-a</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">object-or-alias-b</span>
+</span></span></code></pre></div></li>
+<li>Semantics:
+<ul>
+<li>For each triple <code>(predicate, subject, object)</code>:
+<ul>
+<li>Resolve <code>subject</code> via <code>subjects</code> if present; otherwise slugify the subject key.</li>
+<li>Resolve <code>object</code> via <code>subjects</code> if present; otherwise slugify the object value.</li>
+<li>Append a fact tuple <code>(predicate, subject_id, object_id)</code> to the concept.</li>
+<li>Generate an annotation term:
+<ul>
+<li><code>Fact(predicate, subject_id, object_id)</code>.</li>
+</ul>
+</li>
+<li>Intern a <code>fact</code> atom whose value is the string
+<code>&quot;{predicate}:{subject_id}-&gt;{object_id}&quot;</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="38-citation-metadata-for-pandoc-optional">3.8 Citation metadata for Pandoc (optional)</h3>
+<ul>
+<li><code>bibliography</code> (string, optional)
+<ul>
+<li>Path to a bibliography file (e.g. <code>content/ref/refs.bib</code>).</li>
+</ul>
+</li>
+<li><code>csl</code> (string, optional)
+<ul>
+<li>Path to a CSL style file for Pandoc.</li>
+</ul>
+</li>
+<li>Semantics:
+<ul>
+<li>Currently preserved in metadata for use by Pandoc export and future citation tooling.</li>
+<li>Does not yet generate atoms directly.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-body-syntax">4. Body Syntax</h2>
+<h3 id="41-general-markdown">4.1 General Markdown</h3>
+<ul>
+<li>The body is parsed as CommonMark‑style Markdown using <code>markdown-it</code>.</li>
+<li>Headings, paragraphs, lists, code blocks, and inline emphasis are rendered as usual; they do not, by themselves, create semantic atoms.</li>
+</ul>
+<h3 id="42-wikilinks">4.2 Wikilinks</h3>
+<ul>
+<li>Syntax:
+<ul>
+<li><code>[Label](Label)</code></li>
+<li><code>[concept-id-or-slug](concept-id-or-slug)</code></li>
+</ul>
+</li>
+<li>Resolution:
+<ul>
+<li><code>Label</code> is slugified to derive a target id.</li>
+<li>The HTML renderer rewrites wikilinks into standard Markdown links to <code>docs/&lt;target-id&gt;.html</code> (respecting the current base href).</li>
+</ul>
+</li>
+<li>Semantics:
+<ul>
+<li>For each wikilink target id <code>k</code>, the loader:
+<ul>
+<li>Generates <code>LinksTo(k)</code> as an annotation term.</li>
+<li>Interns a <code>link</code> atom with value <code>k</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="43-markdown-links">4.3 Markdown links</h3>
+<ul>
+<li>Syntax:
+<ul>
+<li><code>[text](relative/path/to/other.md)</code></li>
+<li><code>[text](relative/path/to/other)</code></li>
+</ul>
+</li>
+<li>Resolution:
+<ul>
+<li>Links whose targets start with a URI scheme (<code>^[a-z]+://</code>) are treated as external and do not participate in concept resolution.</li>
+<li>For other targets:
+<ul>
+<li>The path is normalised relative to the current file, the extension (if any) is removed, and the result is slugified.</li>
+<li>The slugified value is used as a link target id.</li>
+</ul>
+</li>
+<li>HTML rendering uses the original link markup; no additional rewriting is performed beyond standard Markdown rendering.</li>
+</ul>
+</li>
+<li>Semantics:
+<ul>
+<li>For each internal target id, generates <code>LinksTo(target_id)</code> and a corresponding <code>link</code> atom.</li>
+</ul>
+</li>
+</ul>
+<h3 id="44-inline-citations-pandocstyle">4.4 Inline citations (Pandoc‑style)</h3>
+<ul>
+<li>Recognised citation groups:
+<ul>
+<li><code>[@key]</code></li>
+<li><code>[@key; @other]</code></li>
+<li><code>[@key, @other]</code> (commas are also accepted as separators).</li>
+</ul>
+</li>
+<li>Parsing:
+<ul>
+<li>A citation group is detected when text matches <code>[...]</code> whose contents contain one or more <code>@key</code> tokens separated by commas or semicolons.</li>
+<li><code>@key</code> tokens are extracted; <code>-@key</code> (author‑suppressed form) is recognised for parsing but rendered the same at present.</li>
+</ul>
+</li>
+<li>HTML rendering:
+<ul>
+<li>Each <code>key</code> is resolved using:
+<ul>
+<li>concept id,</li>
+<li>slugified concept title,</li>
+<li>aliases and their slugified forms.</li>
+</ul>
+</li>
+<li>If resolution succeeds:
+<ul>
+<li>The citation is rendered as <code>&lt;a class=&quot;citation&quot; href=&quot;...&quot;&gt;@key&lt;/a&gt;</code> pointing to the concept page.</li>
+</ul>
+</li>
+<li>If resolution fails:
+<ul>
+<li>The citation is rendered as <code>&lt;span class=&quot;citation&quot;&gt;@key&lt;/span&gt;</code> (external or unknown reference).</li>
+</ul>
+</li>
+<li>Multiple keys in one group are rendered inside a single bracketed citation, separated by <code>&quot;; &quot;</code>.</li>
+</ul>
+</li>
+<li>Semantics:
+<ul>
+<li>Inline citations currently affect HTML presentation but do not create atoms or j‑relations.</li>
+<li>They are intended as a trace/provenance layer that can be lifted into the semiotic universe in future revisions.</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-derived-semantic-structure">5. Derived Semantic Structure</h2>
+<h3 id="51-annotations-and-atoms">5.1 Annotations and atoms</h3>
+<p>Given a loaded concept, the loader constructs a multiset of annotation terms from:</p>
+<ul>
+<li><code>tags</code> → <code>HasTag(tag)</code></li>
+<li><code>status</code> → <code>HasStatus(status)</code></li>
+<li><code>type</code> → <code>HasType(type)</code></li>
+<li><code>aliases</code> → <code>AliasFor(alias)</code></li>
+<li>folders → <code>InFolder(folder)</code></li>
+<li>links (wikilinks and internal Markdown links) → <code>LinksTo(target_id)</code></li>
+<li><code>facts</code> → <code>Fact(predicate, subject_id, object_id)</code></li>
+</ul>
+<p>Each annotation interpreter maps its term into a finite feature set:</p>
+<ul>
+<li><code>HasTag(t)</code> → one <code>tag</code> atom with value <code>t</code>.</li>
+<li><code>HasStatus(s)</code> → one <code>status</code> atom with value <code>s</code>.</li>
+<li><code>HasType(t)</code> → one <code>type</code> atom with value <code>t</code>.</li>
+<li><code>AliasFor(a)</code> → one <code>alias</code> atom with value <code>a</code>.</li>
+<li><code>InFolder(f)</code> → one <code>folder</code> atom with value <code>f</code>.</li>
+<li><code>LinksTo(k)</code> → one <code>link</code> atom with value <code>k</code>.</li>
+<li><code>Fact(p, s, o)</code> → one <code>fact</code> atom with value <code>&quot;{p}:{s}-&gt;{o}&quot;</code>.</li>
+</ul>
+<p>The union of all such atoms for a concept forms its <strong>base feature set</strong>.</p>
+<h3 id="52-jrelations-and-closure">5.2 j‑relations and closure</h3>
+<p>Configuration MAY specify relational closure rules:</p>
+<ul>
+<li><code>folder_tag_rules[folder] = tag</code>
+<ul>
+<li>Creates a j‑relation from <code>folder</code> atom <code>folder</code> to <code>tag</code> atom <code>tag</code>.</li>
+</ul>
+</li>
+<li><code>tag_synonyms[a] = b</code>
+<ul>
+<li>Creates symmetric j‑relations between <code>tag</code> atoms <code>a</code> and <code>b</code>.</li>
+</ul>
+</li>
+<li><code>type_tag_rules[type] = tag</code>
+<ul>
+<li>Creates a j‑relation from <code>type</code> atom <code>type</code> to <code>tag</code> atom <code>tag</code>.</li>
+</ul>
+</li>
+<li><code>status_tag_rules[status] = tag</code>
+<ul>
+<li>Creates a j‑relation from <code>status</code> atom <code>status</code> to <code>tag</code> atom <code>tag</code>.</li>
+</ul>
+</li>
+</ul>
+<p>The semantic fragment and contribution for each concept are then computed by iterated application of:</p>
+<ul>
+<li>temporal enrichment (trace operator <code>G</code>) via <code>created</code>/<code>updated</code> fields, and</li>
+<li>graph closure (<code>j</code>) following the configured j‑relations.</li>
+</ul>
+<p>This section is descriptive: implementations MUST preserve extensivity, monotonicity, and idempotence of the combined closure but MAY refine the set of j‑relations in future versions of this specification. The full categorical treatment of fragments, j/G‑closure, and stewardship operators is given in the universe constructions [@semiotic-universe; @stewardable-semiotic-concept-universe].</p>
+
+  </div>
+  
+  <section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <details>
+    <summary>APA</summary>
+    <pre class="cite-block"><code>emsenn. (). Semiotic Markdown. <i>emsenn.net</i>. http://localhost:1313/library/relationality/content/specs/semiotic-markdown/</code></pre>
+  </details>
+  <details>
+    <summary>BibTeX</summary>
+    <pre class="cite-block"><code>@misc{emsenn-semiotic-markdown,
   author    = {emsenn},
   title     = {Semiotic Markdown},
-  url       = {https://emsenn.net/library/relationality/content/specs/semiotic-markdown/},
+  url       = {http://localhost:1313/library/relationality/content/specs/semiotic-markdown/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/relationality/content/specs/semiotic-markdown/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>depends_on</dt><dd property="emsenn:Depends_on"><ul><li>semiotic-publisher</li></ul></dd></div><div class=relation><dt>status</dt><dd property="emsenn:Status">draft</dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/semantics/>semantics</a></li><li><a href=/tags/syntax/>syntax</a></li><li><a href=/tags/semiotics/>semiotics</a></li><li><a href=/tags/tooling/>tooling</a></li><li><a href=/tags/specification/>specification</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Semiotic Markdown</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/doc/>doc</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+  </details>
+</section>
+</article>
+<section class="page-relations" resource="http://localhost:1313/library/relationality/content/specs/semiotic-markdown/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>depends_on</dt>
+        <dd property="emsenn:Depends_on"><ul><li>semiotic-publisher</li></ul></dd>
+      </div><div class="relation">
+        <dt>status</dt>
+        <dd property="emsenn:Status">draft</dd>
+      </div><div class="relation">
+        <dt>tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/semantics/">semantics</a></li><li><a href="/tags/syntax/">syntax</a></li><li><a href="/tags/semiotics/">semiotics</a></li><li><a href="/tags/tooling/">tooling</a></li><li><a href="/tags/specification/">specification</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>title</dt>
+        <dd property="schema:name">Semiotic Markdown</dd>
+      </div><div class="relation">
+        <dt>type</dt>
+        <dd property="dc:type"><a href="/types/doc/">doc</a></dd>
+      </div>
+  </dl>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

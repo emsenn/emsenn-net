@@ -1,20 +1,209 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"Relationality Research Program Repository This repository is the home of the Relationality Research Program. It implements a Stewardable Semiotic Concept Universe (SSCU) backed by a flatfile datastore under content/ and operative code under src/. The operative code is the current Semiotic Publishing Service within the broader Semiotic Software Engine, turning Markdown concept artifacts into an evaluated SSCU instance and rendering HTML projections without writing intermediate trees inside the repo.\nRepository layout content/: flatfile datastore containing the universe’s Markdown concepts and metadata that instantiate the Stewardable Semiotic Concept Universe. src/: operative code for the Semiotic Publishing Service (part of the Semiotic Software Engine) that evaluates the SSCU snapshot and emits projections. universe.yaml and presets (e.g., content-site.universe.yaml, emsenn-net*.universe.yaml): publishing configurations that control which content subsets and HTML options are applied. Conceptual mapping Markdown → Const/AnnTerm: Each Markdown file contains YAML frontmatter with id, title, optional tags, ann (annotation terms), and optional same_as declarations for ≈ transport. Ann_X(k): Annotation terms are parsed into the v0 AnnTerm language (AtomTerm, KeyValTerm, RefTerm). Unparseable terms become failure-marked. T_{k,X}: Interpretations ⟦t⟧ generate the fragment seeds. Ref terms are transported through the ≈ groupoid. F_{k,X}: The fragment contains generators; if any generator is ⊥_fail the fragment collapses to {⊥_fail}. Sem_X(k) = S(F_{k,X}): v0 applies the conservative closure S (identity with trace) and records provenance. HTML projection: The evaluated instance feeds projections (site:static, single:html). Failures and unresolved references surface in diagnostics. Concept pages also surface the interpreted generator set T_{k,X} and fragment elements F_{k,X} so readers can audit how annotations denoted into the partial structure. Modes: strict vs permissive Permissive (default): unresolved references are rendered as broken links/diagnostics but do not stop the build. Strict: unresolved references trigger a build error. HTML sanitization is enabled by default; set html.sanitize: false in universe.yaml to allow raw HTML from Markdown.\n","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/readme/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name></h1><div class=meta></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#repository-layout>Repository layout</a></li><li><a href=#conceptual-mapping>Conceptual mapping</a></li><li><a href=#modes-strict-vs-permissive>Modes: strict vs permissive</a></li><li><a href=#output-styling-and-accessibility>Output styling and accessibility</a></li><li><a href=#caching-deltas-and-manifests>Caching, deltas, and manifests</a></li><li><a href=#identity-transport--groupoid>Identity transport (≈ groupoid)</a></li><li><a href=#running-the-tool>Running the tool</a><ul><li><a href=#publication-presets>Publication presets</a></li></ul></li><li><a href=#publishing-to-github-pages>Publishing to GitHub Pages</a></li><li><a href=#examples-and-tests>Examples and tests</a></li></ul></nav></details><div class=e-content><h1 id=relationality-research-program-repository>Relationality Research Program Repository</h1><p>This repository is the home of the Relationality Research Program. It implements a Stewardable Semiotic Concept Universe (SSCU) backed by a flatfile datastore under <code>content/</code> and operative code under <code>src/</code>. The operative code is the current <strong>Semiotic Publishing Service</strong> within the broader <strong>Semiotic Software Engine</strong>, turning Markdown concept artifacts into an evaluated SSCU instance and rendering HTML projections without writing intermediate trees inside the repo.</p><h2 id=repository-layout>Repository layout</h2><ul><li><code>content/</code>: flatfile datastore containing the universe’s Markdown concepts and metadata that instantiate the Stewardable Semiotic Concept Universe.</li><li><code>src/</code>: operative code for the Semiotic Publishing Service (part of the Semiotic Software Engine) that evaluates the SSCU snapshot and emits projections.</li><li><code>universe.yaml</code> and presets (e.g., <code>content-site.universe.yaml</code>, <code>emsenn-net*.universe.yaml</code>): publishing configurations that control which content subsets and HTML options are applied.</li></ul><h2 id=conceptual-mapping>Conceptual mapping</h2><ol><li><strong>Markdown → Const/AnnTerm</strong>: Each Markdown file contains YAML frontmatter with <code>id</code>, <code>title</code>, optional <code>tags</code>, <code>ann</code> (annotation terms), and optional <code>same_as</code> declarations for ≈ transport.</li><li><strong>Ann_X(k)</strong>: Annotation terms are parsed into the v0 AnnTerm language (<code>AtomTerm</code>, <code>KeyValTerm</code>, <code>RefTerm</code>). Unparseable terms become failure-marked.</li><li><strong>T_{k,X}</strong>: Interpretations ⟦t⟧ generate the fragment seeds. Ref terms are transported through the ≈ groupoid.</li><li><strong>F_{k,X}</strong>: The fragment contains generators; if any generator is ⊥_fail the fragment collapses to {⊥_fail}.</li><li><strong>Sem_X(k) = S(F_{k,X})</strong>: v0 applies the conservative closure S (identity with trace) and records provenance.</li><li><strong>HTML projection</strong>: The evaluated instance feeds projections (<code>site:static</code>, <code>single:html</code>). Failures and unresolved references surface in diagnostics. Concept pages also surface the interpreted generator set <code>T_{k,X}</code> and fragment elements <code>F_{k,X}</code> so readers can audit how annotations denoted into the partial structure.</li></ol><h2 id=modes-strict-vs-permissive>Modes: strict vs permissive</h2><ul><li><strong>Permissive (default)</strong>: unresolved references are rendered as broken links/diagnostics but do not stop the build.</li><li><strong>Strict</strong>: unresolved references trigger a build error.</li></ul><p>HTML sanitization is enabled by default; set <code>html.sanitize: false</code> in <code>universe.yaml</code> to allow raw HTML from Markdown.</p><p>Set <code>html.lang</code> to the BCP-47 language tag you want on emitted HTML roots (default <code>en</code>). Both projections and their manual
-fallbacks use this value for the <code>&lt;html lang="..."></code> attribute so screen readers announce the correct language.</p><p>Static-site styling defaults to inline CSS for simplicity. Set <code>html.assets.inline: false</code> to emit a hashed stylesheet under
-<code>assets/style-&lt;hash>.css</code> (optionally with <code>html.assets.minify: true</code> to squeeze whitespace). Manifests record the asset hash and
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "Relationality Research Program Repository This repository is the home of the Relationality Research Program. It implements a Stewardable Semiotic Concept Universe (SSCU) backed by a flatfile datastore under content/ and operative code under src/. The operative code is the current Semiotic Publishing Service within the broader Semiotic Software Engine, turning Markdown concept artifacts into an evaluated SSCU instance and rendering HTML projections without writing intermediate trees inside the repo.\nRepository layout content/: flatfile datastore containing the universe’s Markdown concepts and metadata that instantiate the Stewardable Semiotic Concept Universe. src/: operative code for the Semiotic Publishing Service (part of the Semiotic Software Engine) that evaluates the SSCU snapshot and emits projections. universe.yaml and presets (e.g., content-site.universe.yaml, emsenn-net*.universe.yaml): publishing configurations that control which content subsets and HTML options are applied. Conceptual mapping Markdown → Const/AnnTerm: Each Markdown file contains YAML frontmatter with id, title, optional tags, ann (annotation terms), and optional same_as declarations for ≈ transport. Ann_X(k): Annotation terms are parsed into the v0 AnnTerm language (AtomTerm, KeyValTerm, RefTerm). Unparseable terms become failure-marked. T_{k,X}: Interpretations ⟦t⟧ generate the fragment seeds. Ref terms are transported through the ≈ groupoid. F_{k,X}: The fragment contains generators; if any generator is ⊥_fail the fragment collapses to {⊥_fail}. Sem_X(k) = S(F_{k,X}): v0 applies the conservative closure S (identity with trace) and records provenance. HTML projection: The evaluated instance feeds projections (site:static, single:html). Failures and unresolved references surface in diagnostics. Concept pages also surface the interpreted generator set T_{k,X} and fragment elements F_{k,X} so readers can audit how annotations denoted into the partial structure. Modes: strict vs permissive Permissive (default): unresolved references are rendered as broken links/diagnostics but do not stop the build. Strict: unresolved references trigger a build error. HTML sanitization is enabled by default; set html.sanitize: false in universe.yaml to allow raw HTML from Markdown.\n",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/readme/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#repository-layout">Repository layout</a></li>
+    <li><a href="#conceptual-mapping">Conceptual mapping</a></li>
+    <li><a href="#modes-strict-vs-permissive">Modes: strict vs permissive</a></li>
+    <li><a href="#output-styling-and-accessibility">Output styling and accessibility</a></li>
+    <li><a href="#caching-deltas-and-manifests">Caching, deltas, and manifests</a></li>
+    <li><a href="#identity-transport--groupoid">Identity transport (≈ groupoid)</a></li>
+    <li><a href="#running-the-tool">Running the tool</a>
+      <ul>
+        <li><a href="#publication-presets">Publication presets</a></li>
+      </ul>
+    </li>
+    <li><a href="#publishing-to-github-pages">Publishing to GitHub Pages</a></li>
+    <li><a href="#examples-and-tests">Examples and tests</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="relationality-research-program-repository">Relationality Research Program Repository</h1>
+<p>This repository is the home of the Relationality Research Program. It implements a Stewardable Semiotic Concept Universe (SSCU) backed by a flatfile datastore under <code>content/</code> and operative code under <code>src/</code>. The operative code is the current <strong>Semiotic Publishing Service</strong> within the broader <strong>Semiotic Software Engine</strong>, turning Markdown concept artifacts into an evaluated SSCU instance and rendering HTML projections without writing intermediate trees inside the repo.</p>
+<h2 id="repository-layout">Repository layout</h2>
+<ul>
+<li><code>content/</code>: flatfile datastore containing the universe’s Markdown concepts and metadata that instantiate the Stewardable Semiotic Concept Universe.</li>
+<li><code>src/</code>: operative code for the Semiotic Publishing Service (part of the Semiotic Software Engine) that evaluates the SSCU snapshot and emits projections.</li>
+<li><code>universe.yaml</code> and presets (e.g., <code>content-site.universe.yaml</code>, <code>emsenn-net*.universe.yaml</code>): publishing configurations that control which content subsets and HTML options are applied.</li>
+</ul>
+<h2 id="conceptual-mapping">Conceptual mapping</h2>
+<ol>
+<li><strong>Markdown → Const/AnnTerm</strong>: Each Markdown file contains YAML frontmatter with <code>id</code>, <code>title</code>, optional <code>tags</code>, <code>ann</code> (annotation terms), and optional <code>same_as</code> declarations for ≈ transport.</li>
+<li><strong>Ann_X(k)</strong>: Annotation terms are parsed into the v0 AnnTerm language (<code>AtomTerm</code>, <code>KeyValTerm</code>, <code>RefTerm</code>). Unparseable terms become failure-marked.</li>
+<li><strong>T_{k,X}</strong>: Interpretations ⟦t⟧ generate the fragment seeds. Ref terms are transported through the ≈ groupoid.</li>
+<li><strong>F_{k,X}</strong>: The fragment contains generators; if any generator is ⊥_fail the fragment collapses to {⊥_fail}.</li>
+<li><strong>Sem_X(k) = S(F_{k,X})</strong>: v0 applies the conservative closure S (identity with trace) and records provenance.</li>
+<li><strong>HTML projection</strong>: The evaluated instance feeds projections (<code>site:static</code>, <code>single:html</code>). Failures and unresolved references surface in diagnostics. Concept pages also surface the interpreted generator set <code>T_{k,X}</code> and fragment elements <code>F_{k,X}</code> so readers can audit how annotations denoted into the partial structure.</li>
+</ol>
+<h2 id="modes-strict-vs-permissive">Modes: strict vs permissive</h2>
+<ul>
+<li><strong>Permissive (default)</strong>: unresolved references are rendered as broken links/diagnostics but do not stop the build.</li>
+<li><strong>Strict</strong>: unresolved references trigger a build error.</li>
+</ul>
+<p>HTML sanitization is enabled by default; set <code>html.sanitize: false</code> in <code>universe.yaml</code> to allow raw HTML from Markdown.</p>
+<p>Set <code>html.lang</code> to the BCP-47 language tag you want on emitted HTML roots (default <code>en</code>). Both projections and their manual
+fallbacks use this value for the <code>&lt;html lang=&quot;...&quot;&gt;</code> attribute so screen readers announce the correct language.</p>
+<p>Static-site styling defaults to inline CSS for simplicity. Set <code>html.assets.inline: false</code> to emit a hashed stylesheet under
+<code>assets/style-&lt;hash&gt;.css</code> (optionally with <code>html.assets.minify: true</code> to squeeze whitespace). Manifests record the asset hash and
 path, and tag pages rewrite the stylesheet link relative to their subdirectories so the CSS can be cached and audited alongside
 the HTML. The single-page projection always inlines the stylesheet but will honor <code>html.assets.minify: true</code> to match the
-minified static-site output.</p><h2 id=output-styling-and-accessibility>Output styling and accessibility</h2><p>Rendered HTML uses a minimal, high-contrast theme with semantic landmarks:</p><ul><li>skip link to jump to the main content, landmarked <code>&lt;main></code>/<code>&lt;header></code> regions, and accessible nav labels;</li><li>enlarged focus outlines and underline thickness for keyboard navigation;</li><li>tag badges and diagnostic panels with higher-contrast color tokens for failures/unresolved references;</li><li>adjacent-concept pager links so keyboard users can move sequentially between concept pages and anchors;</li><li>document-outline navigation on the index and single-page outputs so screen readers can jump straight to the concept list,
-delta summary, diagnostics, or a chosen concept anchor;</li><li>consistent heading hierarchy for content, math object details, backlinks, and unresolved references so screen readers can hop
-between sections via <code>h2</code> navigation;</li><li><code>role="region"</code>/<code>aria-labelledby</code> markers on concept panels (content, math object, backlinks, unresolved references, deltas,
-diagnostics) so assistive tech exposes named landmarks;</li><li>backlinks and unresolved-reference lists labeled with the target concept anchor so assistive tech can announce context before
-the link items;</li><li>responsive viewport metadata plus compact grid/pager layouts on small screens so mobile readers keep the same navigation cues;</li><li>a <code>prefers-color-scheme: dark</code> palette for readers using dark mode, applied to both Jinja-rendered pages and manual fallbacks
-so even template-less builds stay legible;</li><li>print-friendly styles that remove navigation chrome, expand the content area, and append link targets for paper/PDF exports.</li><li>concept lists on the index and tag pages surface interpreted generator counts (|T_{k,X}|), fragment sizes (|F_{k,X}|), and
-mark failure fragments so readers can triage inferred structure without opening each concept page.</li><li>the index includes a reference-graph panel with resolved-reference and backlink counts plus jump links into concept sections,
+minified static-site output.</p>
+<h2 id="output-styling-and-accessibility">Output styling and accessibility</h2>
+<p>Rendered HTML uses a minimal, high-contrast theme with semantic landmarks:</p>
+<ul>
+<li>skip link to jump to the main content, landmarked <code>&lt;main&gt;</code>/<code>&lt;header&gt;</code> regions, and accessible nav labels;</li>
+<li>enlarged focus outlines and underline thickness for keyboard navigation;</li>
+<li>tag badges and diagnostic panels with higher-contrast color tokens for failures/unresolved references;</li>
+<li>adjacent-concept pager links so keyboard users can move sequentially between concept pages and anchors;</li>
+<li>document-outline navigation on the index and single-page outputs so screen readers can jump straight to the concept list,
+delta summary, diagnostics, or a chosen concept anchor;</li>
+<li>consistent heading hierarchy for content, math object details, backlinks, and unresolved references so screen readers can hop
+between sections via <code>h2</code> navigation;</li>
+<li><code>role=&quot;region&quot;</code>/<code>aria-labelledby</code> markers on concept panels (content, math object, backlinks, unresolved references, deltas,
+diagnostics) so assistive tech exposes named landmarks;</li>
+<li>backlinks and unresolved-reference lists labeled with the target concept anchor so assistive tech can announce context before
+the link items;</li>
+<li>responsive viewport metadata plus compact grid/pager layouts on small screens so mobile readers keep the same navigation cues;</li>
+<li>a <code>prefers-color-scheme: dark</code> palette for readers using dark mode, applied to both Jinja-rendered pages and manual fallbacks
+so even template-less builds stay legible;</li>
+<li>print-friendly styles that remove navigation chrome, expand the content area, and append link targets for paper/PDF exports.</li>
+<li>concept lists on the index and tag pages surface interpreted generator counts (|T_{k,X}|), fragment sizes (|F_{k,X}|), and
+mark failure fragments so readers can triage inferred structure without opening each concept page.</li>
+<li>the index includes a reference-graph panel with resolved-reference and backlink counts plus jump links into concept sections,
 making inferred link structure visible without leaving the listing.
-These improvements apply to both the static-site pages and the consolidated single HTML output.</li></ul><h2 id=caching-deltas-and-manifests>Caching, deltas, and manifests</h2><ul><li>Evaluation results are cached by default using a content hash of the configured sources, the config hash, and the tool version.</li><li>Cache artifacts live under <code>$XDG_CACHE_HOME/ssc_universe</code> (or <code>~/.cache/ssc_universe</code>) unless <code>cache.location</code> in <code>universe.yaml</code> points elsewhere.</li><li>Disable caching with <code>--no-cache</code> or <code>cache.enabled: false</code>. Each emitted manifest records the cache status (<code>hit</code>, <code>miss</code>, or <code>disabled</code>), a repository fingerprint (Git HEAD plus dirty hash when available), the equivalence classes detected during evaluation, and a delta summary against the most recent cached evaluation (if present). Delta summaries highlight annotation changes, reference changes, and additions/removals in failures or unresolved references. Both projections surface the delta summary directly in the rendered HTML for quick audit.</li><li>Static-site builds link to <code>manifest.json</code> from the index and concept build panels; single-page builds do the same when the manifest is written alongside the HTML (directory/zip/file sinks) and label the manifest as inline when emitted only in the page.</li><li>Inspect cached evaluations with <code>sscu cache --config universe.yaml --list</code> (marking the requested signature). Add <code>--verbose</code> to include metadata such as last-modified time, size, constant count, and repository fingerprint when available. Clear cache artifacts for a configuration with <code>sscu cache --config universe.yaml</code> (current signature), <code>sscu cache --config universe.yaml --signature &lt;sig></code> (target a specific signature), or <code>sscu cache --config universe.yaml --all</code> (all entries in the cache directory).</li></ul><h2 id=identity-transport--groupoid>Identity transport (≈ groupoid)</h2><p>Declare equivalences in frontmatter using <code>same_as: [other-id]</code>. Reference interpretations transport targets to their canonical representatives, preserving provenance. When multiple concepts belong to the same equivalence class, annotations and tags are aggregated onto the canonical representative; projections emit a single page/anchor for the representative and show the equivalent IDs, and manifests include the equivalence-class membership for downstream auditing.</p><h2 id=running-the-tool>Running the tool</h2><ul><li>Evaluate without publishing to stdout: <code>sscu eval --config universe.yaml --format json</code></li><li>Write evaluation output to a file: <code>sscu eval --config universe.yaml --format json --out /tmp/ssc_eval.json</code></li><li>JSON evaluation output includes constants, fragments, closure traces, unresolved references, failures, and the delta summary so downstream tools can detect changes without re-diffing the entire state. Concept pages and single-page renders also surface per-constant delta callouts (annotation/reference status plus unresolved additions/removals) to keep inferred changes visible in context.</li><li>Console progress (configuration, cache hits/misses, evaluation counts, and build sinks) is written to stderr so stdout stays clean for manifests and JSON output.</li><li>Build static site: <code>sscu build --config universe.yaml --projection site:static --out dir:/tmp/site</code></li><li>Static-site builds now emit a hashed <code>search-index-*.json</code> alongside the index page; the index embeds a client-side search UI that filters concepts by id, title, tags, aliases, annotation terms, status, and publish targets without extra tooling.</li><li>Static-site builds also emit <code>sitemap.xml</code> with canonical concept, tag, index, and search-index URLs so downstream hosts can crawl the projection output.</li><li>Build single HTML: <code>sscu build --projection single:html --out file:/tmp/book.html</code></li><li>Override configured language: add <code>--lang fr</code> to build or eval commands to emit <code>&lt;html lang="fr"></code></li><li>List cached evaluations for a configuration: <code>sscu cache --config universe.yaml --list</code> (add <code>--verbose</code> for metadata)</li><li>Clear a cached evaluation: <code>sscu cache --config universe.yaml --all</code> or <code>--signature &lt;sig></code> for a specific artifact</li></ul><h3 id=publication-presets>Publication presets</h3><ul><li><strong>Full content site</strong>: <code>content-site.universe.yaml</code> builds the entire <code>content/</code> tree with the same hashed/minified asset defaults used for Pages without tying into CI/CD. Run <code>sscu build --config content-site.universe.yaml --projection site:static --out dir:/tmp/content-site</code> to publish everything that is not explicitly <code>publish: false</code>.</li><li><strong>emsenn-net (public)</strong>: <code>emsenn-net.universe.yaml</code> targets only concepts marked with <code>status: public</code> and <code>publish_to: [emsenn-net]</code>. Build with <code>sscu build --config emsenn-net.universe.yaml --projection site:static --out dir:/tmp/emsenn-net-site</code>.</li><li><strong>emsenn-net drafts</strong>: <code>emsenn-net-drafts.universe.yaml</code> includes both <code>public</code> and <code>draft</code> concepts tagged for <code>emsenn-net</code> publication. Build with <code>sscu build --config emsenn-net-drafts.universe.yaml --projection site:static --out dir:/tmp/emsenn-net-drafts-site</code> to review in-progress material. Each emitted manifest records the active filters so constants and diagnostics align with the selected scope.</li></ul><h2 id=publishing-to-github-pages>Publishing to GitHub Pages</h2><ul><li>A repository-level <code>universe.yaml</code> (checked in at the repo root) declares the build inputs for CI/CD. It uses the same defaults as the examples configuration but disables inline assets and enables minification so the hashed stylesheet and search index can be cached by Pages.</li><li>The GitHub Actions workflow in <code>.github/workflows/pages.yml</code> builds the static site with <code>sscu build --config universe.yaml --projection site:static --out dir:site-dist</code>, uploads the generated tree as a Pages artifact, and deploys it to the <code>github-pages</code> environment.</li><li>The workflow runs on pushes to <code>main</code> or <code>work</code> and can be triggered manually with “Run workflow.” Ensure repository Pages settings are set to “GitHub Actions” so the deployment job can publish the artifact to the <code>gh-pages</code> branch.</li><li>If you want to customize the build (different sources, mathjax enabled, or strict mode for CI), edit <code>universe.yaml</code> and re-run the workflow; the manifest produced during the build will still be written alongside the site output for auditability.</li></ul><h2 id=examples-and-tests>Examples and tests</h2><p>Example concepts live under <code>examples/content</code>. Run the test suite:</p><pre tabindex=0><code>python -m pip install -e .
+These improvements apply to both the static-site pages and the consolidated single HTML output.</li>
+</ul>
+<h2 id="caching-deltas-and-manifests">Caching, deltas, and manifests</h2>
+<ul>
+<li>Evaluation results are cached by default using a content hash of the configured sources, the config hash, and the tool version.</li>
+<li>Cache artifacts live under <code>$XDG_CACHE_HOME/ssc_universe</code> (or <code>~/.cache/ssc_universe</code>) unless <code>cache.location</code> in <code>universe.yaml</code> points elsewhere.</li>
+<li>Disable caching with <code>--no-cache</code> or <code>cache.enabled: false</code>. Each emitted manifest records the cache status (<code>hit</code>, <code>miss</code>, or <code>disabled</code>), a repository fingerprint (Git HEAD plus dirty hash when available), the equivalence classes detected during evaluation, and a delta summary against the most recent cached evaluation (if present). Delta summaries highlight annotation changes, reference changes, and additions/removals in failures or unresolved references. Both projections surface the delta summary directly in the rendered HTML for quick audit.</li>
+<li>Static-site builds link to <code>manifest.json</code> from the index and concept build panels; single-page builds do the same when the manifest is written alongside the HTML (directory/zip/file sinks) and label the manifest as inline when emitted only in the page.</li>
+<li>Inspect cached evaluations with <code>sscu cache --config universe.yaml --list</code> (marking the requested signature). Add <code>--verbose</code> to include metadata such as last-modified time, size, constant count, and repository fingerprint when available. Clear cache artifacts for a configuration with <code>sscu cache --config universe.yaml</code> (current signature), <code>sscu cache --config universe.yaml --signature &lt;sig&gt;</code> (target a specific signature), or <code>sscu cache --config universe.yaml --all</code> (all entries in the cache directory).</li>
+</ul>
+<h2 id="identity-transport--groupoid">Identity transport (≈ groupoid)</h2>
+<p>Declare equivalences in frontmatter using <code>same_as: [other-id]</code>. Reference interpretations transport targets to their canonical representatives, preserving provenance. When multiple concepts belong to the same equivalence class, annotations and tags are aggregated onto the canonical representative; projections emit a single page/anchor for the representative and show the equivalent IDs, and manifests include the equivalence-class membership for downstream auditing.</p>
+<h2 id="running-the-tool">Running the tool</h2>
+<ul>
+<li>Evaluate without publishing to stdout: <code>sscu eval --config universe.yaml --format json</code></li>
+<li>Write evaluation output to a file: <code>sscu eval --config universe.yaml --format json --out /tmp/ssc_eval.json</code></li>
+<li>JSON evaluation output includes constants, fragments, closure traces, unresolved references, failures, and the delta summary so downstream tools can detect changes without re-diffing the entire state. Concept pages and single-page renders also surface per-constant delta callouts (annotation/reference status plus unresolved additions/removals) to keep inferred changes visible in context.</li>
+<li>Console progress (configuration, cache hits/misses, evaluation counts, and build sinks) is written to stderr so stdout stays clean for manifests and JSON output.</li>
+<li>Build static site: <code>sscu build --config universe.yaml --projection site:static --out dir:/tmp/site</code></li>
+<li>Static-site builds now emit a hashed <code>search-index-*.json</code> alongside the index page; the index embeds a client-side search UI that filters concepts by id, title, tags, aliases, annotation terms, status, and publish targets without extra tooling.</li>
+<li>Static-site builds also emit <code>sitemap.xml</code> with canonical concept, tag, index, and search-index URLs so downstream hosts can crawl the projection output.</li>
+<li>Build single HTML: <code>sscu build --projection single:html --out file:/tmp/book.html</code></li>
+<li>Override configured language: add <code>--lang fr</code> to build or eval commands to emit <code>&lt;html lang=&quot;fr&quot;&gt;</code></li>
+<li>List cached evaluations for a configuration: <code>sscu cache --config universe.yaml --list</code> (add <code>--verbose</code> for metadata)</li>
+<li>Clear a cached evaluation: <code>sscu cache --config universe.yaml --all</code> or <code>--signature &lt;sig&gt;</code> for a specific artifact</li>
+</ul>
+<h3 id="publication-presets">Publication presets</h3>
+<ul>
+<li><strong>Full content site</strong>: <code>content-site.universe.yaml</code> builds the entire <code>content/</code> tree with the same hashed/minified asset defaults used for Pages without tying into CI/CD. Run <code>sscu build --config content-site.universe.yaml --projection site:static --out dir:/tmp/content-site</code> to publish everything that is not explicitly <code>publish: false</code>.</li>
+<li><strong>emsenn-net (public)</strong>: <code>emsenn-net.universe.yaml</code> targets only concepts marked with <code>status: public</code> and <code>publish_to: [emsenn-net]</code>. Build with <code>sscu build --config emsenn-net.universe.yaml --projection site:static --out dir:/tmp/emsenn-net-site</code>.</li>
+<li><strong>emsenn-net drafts</strong>: <code>emsenn-net-drafts.universe.yaml</code> includes both <code>public</code> and <code>draft</code> concepts tagged for <code>emsenn-net</code> publication. Build with <code>sscu build --config emsenn-net-drafts.universe.yaml --projection site:static --out dir:/tmp/emsenn-net-drafts-site</code> to review in-progress material. Each emitted manifest records the active filters so constants and diagnostics align with the selected scope.</li>
+</ul>
+<h2 id="publishing-to-github-pages">Publishing to GitHub Pages</h2>
+<ul>
+<li>A repository-level <code>universe.yaml</code> (checked in at the repo root) declares the build inputs for CI/CD. It uses the same defaults as the examples configuration but disables inline assets and enables minification so the hashed stylesheet and search index can be cached by Pages.</li>
+<li>The GitHub Actions workflow in <code>.github/workflows/pages.yml</code> builds the static site with <code>sscu build --config universe.yaml --projection site:static --out dir:site-dist</code>, uploads the generated tree as a Pages artifact, and deploys it to the <code>github-pages</code> environment.</li>
+<li>The workflow runs on pushes to <code>main</code> or <code>work</code> and can be triggered manually with “Run workflow.” Ensure repository Pages settings are set to “GitHub Actions” so the deployment job can publish the artifact to the <code>gh-pages</code> branch.</li>
+<li>If you want to customize the build (different sources, mathjax enabled, or strict mode for CI), edit <code>universe.yaml</code> and re-run the workflow; the manifest produced during the build will still be written alongside the site output for auditability.</li>
+</ul>
+<h2 id="examples-and-tests">Examples and tests</h2>
+<p>Example concepts live under <code>examples/content</code>. Run the test suite:</p>
+<pre tabindex="0"><code>python -m pip install -e .
 pytest
-</code></pre></div></article></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+</code></pre>
+  </div>
+  
+  
+</article>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,13 +1,235 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Mathematician Agents - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"claude-opus-4-6"},"dateModified":"2026-03-07","datePublished":"2026-03-07","description":"Mathematician Agents A mathematician agent is an agent whose skills include formal proof construction and whose tools include proof assistants (Lean, Agda, Coq, Isabelle). Within the agential semioverse framework, a mathematician agent is a triple (Sigma, K, Pi) where:\nSigma is bounded internal state (working memory of proof context, goals, hypotheses) K is a set of interaction operators (proof tactics, term construction, type-checking) Pi is a policy selecting admissible operators given the current state and universe The key structural insight: the proof checker neutralizes hallucination. Unlike natural-language generation where errors propagate silently, a proof assistant rejects invalid reasoning immediately. This makes the agent loop fundamentally different from open-ended text generation — every proposed step is verified or rejected by the tool.\n","keywords":"AgentialSemioverse, FormalVerification, ProofAssistant","name":"Mathematician Agents","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/mathematician-agents/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Mathematician Agents</h1><div class=meta><time class=dt-published datetime=2026-03-07T00:00:00Z>2026-03-07</time>
-<span>by <span class=p-author>claude-opus-4-6</span></span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#the-agent-loop>The agent loop</a></li><li><a href=#landscape-of-llm--proof-assistant-systems>Landscape of LLM + proof assistant systems</a><ul><li><a href=#lean-4-ecosystem-most-active>Lean 4 ecosystem (most active)</a></li><li><a href=#other-proof-assistants>Other proof assistants</a></li><li><a href=#key-findings-from-research>Key findings from research</a></li></ul></li><li><a href=#mathematician-agents-in-the-agential-semioverse>Mathematician agents in the agential semioverse</a></li><li><a href=#constructive-reasoning-and-ai>Constructive reasoning and AI</a></li><li><a href=#open-questions>Open questions</a></li><li><a href=#references>References</a></li></ul></nav></details><div class=e-content><h1 id=mathematician-agents>Mathematician Agents</h1><p>A mathematician agent is an <a href=./index.md class=link-internal>agent</a> whose skills include formal proof construction and whose tools include proof assistants (Lean, Agda, Coq, Isabelle). Within the <a href=../../../../../mathematics/objects/universes/agential-semioverse/agential-semioverse.md class=link-internal>agential semioverse</a> framework, a mathematician agent is a triple (Sigma, K, Pi) where:</p><ul><li>Sigma is bounded internal state (working memory of proof context, goals, hypotheses)</li><li>K is a set of interaction operators (proof tactics, term construction, type-checking)</li><li>Pi is a policy selecting admissible operators given the current state and universe</li></ul><p>The key structural insight: <strong>the proof checker neutralizes hallucination</strong>. Unlike natural-language generation where errors propagate silently, a proof assistant rejects invalid reasoning immediately. This makes the agent loop fundamentally different from open-ended text generation — every proposed step is verified or rejected by the tool.</p><h2 id=the-agent-loop>The agent loop</h2><p>The core workflow of a mathematician agent:</p><ol><li><strong>Read the specification</strong> — understand what needs to be proved and why</li><li><strong>State the theorem</strong> — write a type signature that precisely captures the claim</li><li><strong>Propose proof steps</strong> — generate tactic applications or term constructions</li><li><strong>Verify with the checker</strong> — <code>lake build</code> or <code>agda --check</code> provides ground truth</li><li><strong>Interpret errors</strong> — compiler feedback is the primary learning signal</li><li><strong>Iterate</strong> — fix errors, decompose goals, search for lemmas</li></ol><p>This loop is a semiotic process: each proof attempt is a sign, the compiler&rsquo;s response is an interpretant, and the agent&rsquo;s revised attempt is the next sign in the chain. The trace comonad G records this provenance — each proved theorem carries the history of its construction.</p><h2 id=landscape-of-llm--proof-assistant-systems>Landscape of LLM + proof assistant systems</h2><h3 id=lean-4-ecosystem-most-active>Lean 4 ecosystem (most active)</h3><ul><li><strong>LeanDojo</strong> — gym-like environment for ML-driven proving; extracts training data from Mathlib4</li><li><strong>ReProver</strong> — retrieval-augmented tactic generation; searches Mathlib for relevant premises</li><li><strong>LeanCopilot</strong> — native LLM integration in the Lean editor; suggests tactics in real-time</li><li><strong>DeepSeek-Prover-V2</strong> — achieved 88.9% on miniF2F-test benchmark</li><li><strong>LeanAide</strong> — autoformalization from natural language to Lean 4</li><li><strong>leanprover/skills</strong> — official Lean 4 skills for Claude Code</li></ul><h3 id=other-proof-assistants>Other proof assistants</h3><ul><li><strong>LEGO-Prover</strong> (Isabelle) — grows a skill library of verified lemmas; each proved lemma becomes available for future proofs</li><li><strong>Prover Agent</strong> — agent-based framework for formal proofs with reflection and iterative repair</li><li><strong>AGDA2TRAIN</strong> (NeurIPS 2024) — first large-scale Agda dataset for ML, extracting intermediate proof states</li></ul><h3 id=key-findings-from-research>Key findings from research</h3><ol><li><strong>Agent architectures beat single-shot generation</strong> — decomposition, reflection, and iterative repair are standard practice</li><li><strong>Bottom-up construction works best</strong> — prove helper lemmas first, main theorem last (LEGO-Prover validates this)</li><li><strong>The compiler feedback loop is the core mechanism</strong> — <code>lake build</code> → read errors → fix → retry</li><li><strong>Bite-sized goals</strong> — fill one <code>sorry</code> at a time, compile after each</li><li><strong>Benchmark progress is dramatic</strong> — miniF2F went from ~50% to ~99% in roughly two years</li></ol><h2 id=mathematician-agents-in-the-agential-semioverse>Mathematician agents in the agential semioverse</h2><p>Within the <a href=../../../../../mathematics/objects/universes/agential-semioverse/agential-semioverse.md class=link-internal>agential semioverse</a> framework, a mathematician agent&rsquo;s proof-writing skills are <a href=../../../../../mathematics/objects/universes/semiotic-universe/formalization/lean/SemioticUniverse/Fusion.lean class=link-internal>admissible behaviors</a> in the fusion-theoretic sense:</p><ul><li><strong>Fragment-preserving</strong>: proofs operate within bounded contexts (fragments); a proof about Heyting algebras does not require understanding all of mathematics</li><li><strong>Modal-compatible</strong>: proved theorems are habitual — once verified, they settle into stable knowledge (j(theorem) = theorem)</li><li><strong>Trace-compatible</strong>: proofs carry provenance of their construction; the chain of proof attempts, compiler errors, and fixes is itself semiotic data</li></ul><p>The fusion principle applies: if two proof strategies agree on all fragments (produce the same theorems from the same hypotheses), they are congruent and may be identified. The agent&rsquo;s skill library is the syntactic component; the verified theorems are the semantic component; fusion ensures coherence between them.</p><h2 id=constructive-reasoning-and-ai>Constructive reasoning and AI</h2><p>Most LLM training data uses classical mathematics. This creates a systematic bias: models tend to reach for proof by contradiction, the law of excluded middle, and case splits on <code>P ∨ ¬P</code> — none of which are available in intuitionistic logic.</p><p>For the semiotic universe formalization, this means:</p><ul><li>The agent must be explicitly constrained to avoid classical axioms</li><li><code>#print axioms</code> in Lean and the absence of LEM postulates in Agda serve as verification</li><li>The gap between <code>a</code> and <code>¬¬a</code> in a Heyting algebra is not a deficiency — it represents genuine indeterminacy, meanings not yet determined by relational activity</li></ul><p>This is an underserved area in the AI + formal verification landscape. The AGDA2TRAIN dataset (NeurIPS 2024) and &ldquo;Learn from Failure&rdquo; (arXiv 2024) represent early steps toward training models specifically for constructive reasoning.</p><h2 id=open-questions>Open questions</h2><ul><li>Can an agent learn constructive proof patterns from classical training data, guided only by the proof checker&rsquo;s rejections?</li><li>How does the agent&rsquo;s proof search strategy relate to the fragment structure of the semiotic universe?</li><li>Is there a natural notion of &ldquo;proof complexity&rdquo; that corresponds to the ordering on partial semiotic structures?</li><li>Can the fusion principle be used to identify equivalent proof strategies and simplify the agent&rsquo;s skill library?</li></ul><h2 id=references>References</h2><ul><li><a href=https://arxiv.org/html/2412.16075v1 class=link-external>Formal Mathematical Reasoning: A New Frontier in AI</a> — ICML 2025 position paper</li><li><a href=https://martin.kleppmann.com/2025/12/08/ai-formal-verification.html class=link-external>AI will make formal verification go mainstream</a> — Martin Kleppmann</li><li><a href=https://papers.nips.cc/paper_files/paper/2024/file/77c87a15bbf0aad017c53995b832cf84-Paper-Conference.pdf class=link-external>AGDA2TRAIN</a> — NeurIPS 2024</li><li><a href=https://leandojo.org/ class=link-external>LeanDojo</a> — Lean 4 ML environment</li><li><a href=https://github.com/zhaoyu-li/DL4TP class=link-external>Survey on Deep Learning for Theorem Proving</a> — COLM 2024</li></ul></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>claude-opus-4-6. (2026, March 7). Mathematician Agents. <i>emsenn.net</i>. https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/mathematician-agents/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@article{claude-opus-4-62026-mathematician-agents,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mathematician Agents - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "claude-opus-4-6"
+  },
+  "dateModified": "2026-03-07",
+  "datePublished": "2026-03-07",
+  "description": "Mathematician Agents A mathematician agent is an agent whose skills include formal proof construction and whose tools include proof assistants (Lean, Agda, Coq, Isabelle). Within the agential semioverse framework, a mathematician agent is a triple (Sigma, K, Pi) where:\nSigma is bounded internal state (working memory of proof context, goals, hypotheses) K is a set of interaction operators (proof tactics, term construction, type-checking) Pi is a policy selecting admissible operators given the current state and universe The key structural insight: the proof checker neutralizes hallucination. Unlike natural-language generation where errors propagate silently, a proof assistant rejects invalid reasoning immediately. This makes the agent loop fundamentally different from open-ended text generation — every proposed step is verified or rejected by the tool.\n",
+  "keywords": "AgentialSemioverse, FormalVerification, ProofAssistant",
+  "name": "Mathematician Agents",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/mathematician-agents/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="text">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/">Universes</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/">Semiotic universe</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/">Interactive semioverse</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/">Agential semioverse</a></nav>
+  <h1 class="p-name">Mathematician Agents</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-07T00:00:00Z">2026-03-07</time>
+    <span>by <span class="p-author">claude-opus-4-6</span></span>
+    
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-agent-loop">The agent loop</a></li>
+    <li><a href="#landscape-of-llm--proof-assistant-systems">Landscape of LLM + proof assistant systems</a>
+      <ul>
+        <li><a href="#lean-4-ecosystem-most-active">Lean 4 ecosystem (most active)</a></li>
+        <li><a href="#other-proof-assistants">Other proof assistants</a></li>
+        <li><a href="#key-findings-from-research">Key findings from research</a></li>
+      </ul>
+    </li>
+    <li><a href="#mathematician-agents-in-the-agential-semioverse">Mathematician agents in the agential semioverse</a></li>
+    <li><a href="#constructive-reasoning-and-ai">Constructive reasoning and AI</a></li>
+    <li><a href="#open-questions">Open questions</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="mathematician-agents">Mathematician Agents</h1>
+<p>A mathematician agent is an <a href="./index.md" class="link-internal">agent</a> whose skills include formal proof construction and whose tools include proof assistants (Lean, Agda, Coq, Isabelle). Within the <a href="../../../../../mathematics/objects/universes/agential-semioverse/agential-semioverse.md" class="link-internal">agential semioverse</a> framework, a mathematician agent is a triple (Sigma, K, Pi) where:</p>
+<ul>
+<li>Sigma is bounded internal state (working memory of proof context, goals, hypotheses)</li>
+<li>K is a set of interaction operators (proof tactics, term construction, type-checking)</li>
+<li>Pi is a policy selecting admissible operators given the current state and universe</li>
+</ul>
+<p>The key structural insight: <strong>the proof checker neutralizes hallucination</strong>. Unlike natural-language generation where errors propagate silently, a proof assistant rejects invalid reasoning immediately. This makes the agent loop fundamentally different from open-ended text generation — every proposed step is verified or rejected by the tool.</p>
+<h2 id="the-agent-loop">The agent loop</h2>
+<p>The core workflow of a mathematician agent:</p>
+<ol>
+<li><strong>Read the specification</strong> — understand what needs to be proved and why</li>
+<li><strong>State the theorem</strong> — write a type signature that precisely captures the claim</li>
+<li><strong>Propose proof steps</strong> — generate tactic applications or term constructions</li>
+<li><strong>Verify with the checker</strong> — <code>lake build</code> or <code>agda --check</code> provides ground truth</li>
+<li><strong>Interpret errors</strong> — compiler feedback is the primary learning signal</li>
+<li><strong>Iterate</strong> — fix errors, decompose goals, search for lemmas</li>
+</ol>
+<p>This loop is a semiotic process: each proof attempt is a sign, the compiler&rsquo;s response is an interpretant, and the agent&rsquo;s revised attempt is the next sign in the chain. The trace comonad G records this provenance — each proved theorem carries the history of its construction.</p>
+<h2 id="landscape-of-llm--proof-assistant-systems">Landscape of LLM + proof assistant systems</h2>
+<h3 id="lean-4-ecosystem-most-active">Lean 4 ecosystem (most active)</h3>
+<ul>
+<li><strong>LeanDojo</strong> — gym-like environment for ML-driven proving; extracts training data from Mathlib4</li>
+<li><strong>ReProver</strong> — retrieval-augmented tactic generation; searches Mathlib for relevant premises</li>
+<li><strong>LeanCopilot</strong> — native LLM integration in the Lean editor; suggests tactics in real-time</li>
+<li><strong>DeepSeek-Prover-V2</strong> — achieved 88.9% on miniF2F-test benchmark</li>
+<li><strong>LeanAide</strong> — autoformalization from natural language to Lean 4</li>
+<li><strong>leanprover/skills</strong> — official Lean 4 skills for Claude Code</li>
+</ul>
+<h3 id="other-proof-assistants">Other proof assistants</h3>
+<ul>
+<li><strong>LEGO-Prover</strong> (Isabelle) — grows a skill library of verified lemmas; each proved lemma becomes available for future proofs</li>
+<li><strong>Prover Agent</strong> — agent-based framework for formal proofs with reflection and iterative repair</li>
+<li><strong>AGDA2TRAIN</strong> (NeurIPS 2024) — first large-scale Agda dataset for ML, extracting intermediate proof states</li>
+</ul>
+<h3 id="key-findings-from-research">Key findings from research</h3>
+<ol>
+<li><strong>Agent architectures beat single-shot generation</strong> — decomposition, reflection, and iterative repair are standard practice</li>
+<li><strong>Bottom-up construction works best</strong> — prove helper lemmas first, main theorem last (LEGO-Prover validates this)</li>
+<li><strong>The compiler feedback loop is the core mechanism</strong> — <code>lake build</code> → read errors → fix → retry</li>
+<li><strong>Bite-sized goals</strong> — fill one <code>sorry</code> at a time, compile after each</li>
+<li><strong>Benchmark progress is dramatic</strong> — miniF2F went from ~50% to ~99% in roughly two years</li>
+</ol>
+<h2 id="mathematician-agents-in-the-agential-semioverse">Mathematician agents in the agential semioverse</h2>
+<p>Within the <a href="../../../../../mathematics/objects/universes/agential-semioverse/agential-semioverse.md" class="link-internal">agential semioverse</a> framework, a mathematician agent&rsquo;s proof-writing skills are <a href="../../../../../mathematics/objects/universes/semiotic-universe/formalization/lean/SemioticUniverse/Fusion.lean" class="link-internal">admissible behaviors</a> in the fusion-theoretic sense:</p>
+<ul>
+<li><strong>Fragment-preserving</strong>: proofs operate within bounded contexts (fragments); a proof about Heyting algebras does not require understanding all of mathematics</li>
+<li><strong>Modal-compatible</strong>: proved theorems are habitual — once verified, they settle into stable knowledge (j(theorem) = theorem)</li>
+<li><strong>Trace-compatible</strong>: proofs carry provenance of their construction; the chain of proof attempts, compiler errors, and fixes is itself semiotic data</li>
+</ul>
+<p>The fusion principle applies: if two proof strategies agree on all fragments (produce the same theorems from the same hypotheses), they are congruent and may be identified. The agent&rsquo;s skill library is the syntactic component; the verified theorems are the semantic component; fusion ensures coherence between them.</p>
+<h2 id="constructive-reasoning-and-ai">Constructive reasoning and AI</h2>
+<p>Most LLM training data uses classical mathematics. This creates a systematic bias: models tend to reach for proof by contradiction, the law of excluded middle, and case splits on <code>P ∨ ¬P</code> — none of which are available in intuitionistic logic.</p>
+<p>For the semiotic universe formalization, this means:</p>
+<ul>
+<li>The agent must be explicitly constrained to avoid classical axioms</li>
+<li><code>#print axioms</code> in Lean and the absence of LEM postulates in Agda serve as verification</li>
+<li>The gap between <code>a</code> and <code>¬¬a</code> in a Heyting algebra is not a deficiency — it represents genuine indeterminacy, meanings not yet determined by relational activity</li>
+</ul>
+<p>This is an underserved area in the AI + formal verification landscape. The AGDA2TRAIN dataset (NeurIPS 2024) and &ldquo;Learn from Failure&rdquo; (arXiv 2024) represent early steps toward training models specifically for constructive reasoning.</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Can an agent learn constructive proof patterns from classical training data, guided only by the proof checker&rsquo;s rejections?</li>
+<li>How does the agent&rsquo;s proof search strategy relate to the fragment structure of the semiotic universe?</li>
+<li>Is there a natural notion of &ldquo;proof complexity&rdquo; that corresponds to the ordering on partial semiotic structures?</li>
+<li>Can the fusion principle be used to identify equivalent proof strategies and simplify the agent&rsquo;s skill library?</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://arxiv.org/html/2412.16075v1" class="link-external">Formal Mathematical Reasoning: A New Frontier in AI</a> — ICML 2025 position paper</li>
+<li><a href="https://martin.kleppmann.com/2025/12/08/ai-formal-verification.html" class="link-external">AI will make formal verification go mainstream</a> — Martin Kleppmann</li>
+<li><a href="https://papers.nips.cc/paper_files/paper/2024/file/77c87a15bbf0aad017c53995b832cf84-Paper-Conference.pdf" class="link-external">AGDA2TRAIN</a> — NeurIPS 2024</li>
+<li><a href="https://leandojo.org/" class="link-external">LeanDojo</a> — Lean 4 ML environment</li>
+<li><a href="https://github.com/zhaoyu-li/DL4TP" class="link-external">Survey on Deep Learning for Theorem Proving</a> — COLM 2024</li>
+</ul>
+
+  </div>
+  
+  <section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <details>
+    <summary>APA</summary>
+    <pre class="cite-block"><code>claude-opus-4-6. (2026, March 7). Mathematician Agents. <i>emsenn.net</i>. http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/mathematician-agents/</code></pre>
+  </details>
+  <details>
+    <summary>BibTeX</summary>
+    <pre class="cite-block"><code>@article{claude-opus-4-62026-mathematician-agents,
   author    = {claude-opus-4-6},
   title     = {Mathematician Agents},
   year      = {2026},
-  url       = {https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/mathematician-agents/},
+  url       = {http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/mathematician-agents/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/mathematician-agents/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-07>2026-03-07</time></dd></div><div class=relation><dt>status</dt><dd property="emsenn:Status">draft</dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/agentialsemioverse/>AgentialSemioverse</a></li><li><a href=/tags/formalverification/>FormalVerification</a></li><li><a href=/tags/proofassistant/>ProofAssistant</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Mathematician Agents</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/text/>text</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+  </details>
+</section>
+</article>
+<section class="page-relations" resource="http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/mathematician-agents/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>date-created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-07">2026-03-07</time></dd>
+      </div><div class="relation">
+        <dt>status</dt>
+        <dd property="emsenn:Status">draft</dd>
+      </div><div class="relation">
+        <dt>tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/agentialsemioverse/">AgentialSemioverse</a></li><li><a href="/tags/formalverification/">FormalVerification</a></li><li><a href="/tags/proofassistant/">ProofAssistant</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>title</dt>
+        <dd property="schema:name">Mathematician Agents</dd>
+      </div><div class="relation">
+        <dt>type</dt>
+        <dd property="dc:type"><a href="/types/text/">text</a></dd>
+      </div>
+  </dl>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

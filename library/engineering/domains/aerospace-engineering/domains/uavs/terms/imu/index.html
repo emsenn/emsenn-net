@@ -1,10 +1,140 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>IMU - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"DefinedTerm","author":[{"@type":"Person","name":"emsenn"},{"@type":"Person","name":"claude-opus-4-6"}],"dateModified":"2026-03-06","datePublished":"2026-03-06","description":"A sensor package combining accelerometers and gyroscopes that measures an aircraft's linear acceleration and angular rate, the foundation of all UAV attitude estimation.","inDefinedTermSet":{"@type":"DefinedTermSet","name":"","url":"https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/"},"keywords":"ControlSystems, Navigation","name":"IMU","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"termCode":"IMU, inertial measurement unit","url":"https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/imu/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>IMU</h1><div class=meta><time class=dt-published datetime=2026-03-06T00:00:00Z>2026-03-06</time>
-<span>by <span class=p-author>emsenn</span>, <span class=p-author>claude-opus-4-6</span></span>
-<span class=p-summary>A sensor package combining accelerometers and gyroscopes that measures an aircraft's linear acceleration and angular rate, the foundation of all UAV attitude estimation.</span></div><div class=e-content><p>An inertial measurement unit (IMU) is a sensor package containing accelerometers (measuring linear acceleration along three axes) and gyroscopes (measuring angular rate around three axes). Together, these six measurements provide the raw data from which the <a href=./flight-controller.md class=link-internal>flight controller</a> estimates the aircraft&rsquo;s attitude (pitch, roll, yaw orientation) and, when fused with other sensors, its position and velocity.</p><p>A 6-axis IMU (3 accelerometers + 3 gyroscopes) is the minimum sensor set for stabilized flight. Many <a href=./flight-controller.md class=link-internal>flight controllers</a> include a 9-axis IMU (adding a 3-axis magnetometer for heading reference) or even a 10-axis unit (adding a barometric altimeter).</p><p><strong>MEMS IMUs</strong> (microelectromechanical systems) are the standard for small and medium UAVs. They are cheap ($1–50), light (&lt;1 g for the sensor chip), and small — but they drift. Gyroscope bias drift accumulates angular error at 0.5–10°/hour for consumer-grade MEMS, meaning that pure inertial navigation becomes useless within minutes. This is why UAVs fuse IMU data with GPS, magnetometer, barometer, and sometimes optical flow or visual odometry through estimation filters (typically extended Kalman filters or complementary filters).</p><p><strong>Fiber-optic gyroscopes (FOGs)</strong> and <strong>ring laser gyroscopes (RLGs)</strong> provide orders-of-magnitude lower drift (0.001–0.01°/hour) and are used in military and high-precision UAVs, including cruise missiles and advanced <a href=./loitering-munition.md class=link-internal>loitering munitions</a>. Their cost ($1,000–$100,000) and size restrict them to larger platforms.</p><p>The IMU&rsquo;s placement on the airframe matters: it should be as close to the center of gravity as possible to minimize the effect of rotational acceleration on the accelerometer readings, and it should be vibration-isolated (especially from propulsion sources) to prevent high-frequency noise from corrupting the measurements. On <a href=../concepts/additive-manufacturing-in-uav-airframes.md class=link-internal>3D-printed</a> airframes, the IMU mount&rsquo;s <a href=./infill-density.md class=link-internal>infill density</a> and damping characteristics directly affect sensor quality.</p><h2 id=related-terms>Related terms</h2><ul><li><a href=./flight-controller.md class=link-internal>Flight Controller</a> — the processing unit that reads and interprets IMU data</li><li><a href=./servo.md class=link-internal>Servo</a> — the actuator that responds to flight controller commands derived from IMU data</li></ul></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>emsenn and claude-opus-4-6. (2026, March 6). IMU. <i>emsenn.net</i>. https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/imu/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@misc{emsenn2026-imu,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IMU - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "emsenn"
+    },
+    {
+      "@type": "Person",
+      "name": "claude-opus-4-6"
+    }
+  ],
+  "dateModified": "2026-03-06",
+  "datePublished": "2026-03-06",
+  "description": "A sensor package combining accelerometers and gyroscopes that measures an aircraft's linear acceleration and angular rate, the foundation of all UAV attitude estimation.",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "",
+    "url": "https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/"
+  },
+  "keywords": "ControlSystems, Navigation",
+  "name": "IMU",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "termCode": "IMU, inertial measurement unit",
+  "url": "https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/imu/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="term">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/">Aerospace engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/domains/uavs/">Uavs</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/domains/uavs/terms/">Terms</a></nav>
+  <h1 class="p-name">IMU</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-06T00:00:00Z">2026-03-06</time>
+    <span>by <span class="p-author">emsenn</span>, <span class="p-author">claude-opus-4-6</span></span>
+    <span class="p-summary">A sensor package combining accelerometers and gyroscopes that measures an aircraft&#39;s linear acceleration and angular rate, the foundation of all UAV attitude estimation.</span>
+  </div>
+  
+  <div class="type-meta type-meta--definition">
+    <span class="type-meta-label">Defines</span>
+    <span class="type-meta-value">IMU, inertial measurement unit</span>
+  </div>
+  
+  
+  <div class="e-content">
+    <p>An inertial measurement unit (IMU) is a sensor package containing accelerometers (measuring linear acceleration along three axes) and gyroscopes (measuring angular rate around three axes). Together, these six measurements provide the raw data from which the <a href="./flight-controller.md" class="link-internal">flight controller</a> estimates the aircraft&rsquo;s attitude (pitch, roll, yaw orientation) and, when fused with other sensors, its position and velocity.</p>
+<p>A 6-axis IMU (3 accelerometers + 3 gyroscopes) is the minimum sensor set for stabilized flight. Many <a href="./flight-controller.md" class="link-internal">flight controllers</a> include a 9-axis IMU (adding a 3-axis magnetometer for heading reference) or even a 10-axis unit (adding a barometric altimeter).</p>
+<p><strong>MEMS IMUs</strong> (microelectromechanical systems) are the standard for small and medium UAVs. They are cheap ($1–50), light (&lt;1 g for the sensor chip), and small — but they drift. Gyroscope bias drift accumulates angular error at 0.5–10°/hour for consumer-grade MEMS, meaning that pure inertial navigation becomes useless within minutes. This is why UAVs fuse IMU data with GPS, magnetometer, barometer, and sometimes optical flow or visual odometry through estimation filters (typically extended Kalman filters or complementary filters).</p>
+<p><strong>Fiber-optic gyroscopes (FOGs)</strong> and <strong>ring laser gyroscopes (RLGs)</strong> provide orders-of-magnitude lower drift (0.001–0.01°/hour) and are used in military and high-precision UAVs, including cruise missiles and advanced <a href="./loitering-munition.md" class="link-internal">loitering munitions</a>. Their cost ($1,000–$100,000) and size restrict them to larger platforms.</p>
+<p>The IMU&rsquo;s placement on the airframe matters: it should be as close to the center of gravity as possible to minimize the effect of rotational acceleration on the accelerometer readings, and it should be vibration-isolated (especially from propulsion sources) to prevent high-frequency noise from corrupting the measurements. On <a href="../concepts/additive-manufacturing-in-uav-airframes.md" class="link-internal">3D-printed</a> airframes, the IMU mount&rsquo;s <a href="./infill-density.md" class="link-internal">infill density</a> and damping characteristics directly affect sensor quality.</p>
+<h2 id="related-terms">Related terms</h2>
+<ul>
+<li><a href="./flight-controller.md" class="link-internal">Flight Controller</a> — the processing unit that reads and interprets IMU data</li>
+<li><a href="./servo.md" class="link-internal">Servo</a> — the actuator that responds to flight controller commands derived from IMU data</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/imu/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-06">2026-03-06</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><ul><li><a href="/library/engineering/domains/aerospace-engineering/domains/uavs/terms/imu/">Imu</a></li><li><a href="/library/engineering/domains/aerospace-engineering/domains/uavs/terms/imu/">Inertial measurement unit</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/controlsystems/">ControlSystems</a></li><li><a href="/tags/navigation/">Navigation</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-imu,
   author    = {emsenn and claude-opus-4-6},
   title     = {IMU},
   year      = {2026},
@@ -12,4 +142,17 @@
   url       = {https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/imu/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/imu/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-06>2026-03-06</time></dd></div><div class=relation><dt>defines</dt><dd property="emsenn:Defines"><ul><li><a href=/library/engineering/domains/aerospace-engineering/domains/uavs/terms/imu/>IMU</a></li><li><a href=/library/engineering/domains/aerospace-engineering/domains/uavs/terms/imu/>inertial measurement unit</a></li></ul></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">A sensor package combining accelerometers and gyroscopes that measures an aircraft's linear acceleration and angular rate, the foundation of all UAV attitude estimation.</dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/controlsystems/>ControlSystems</a></li><li><a href=/tags/navigation/>Navigation</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">IMU</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/term/>term</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

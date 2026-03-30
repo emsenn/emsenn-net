@@ -1,35 +1,163 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Retrieval-Augmented Generation - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-29","datePublished":"2026-03-29","description":"A pattern where a language model's generation is grounded by retrieving relevant documents from an external knowledge base and injecting them into the context window before generating a response.","name":"Retrieval-Augmented Generation","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Retrieval-Augmented Generation</h1><div class=meta><time class=dt-published datetime=2026-03-29T00:00:00Z>2026-03-29</time>
-<span class=p-summary>A pattern where a language model's generation is grounded by retrieving relevant documents from an external knowledge base and injecting them into the context window before generating a response.</span></div><div class=e-content>&lt;p>Retrieval-augmented generation (RAG) is a pattern where a &lt;a href="../on-device-inference/terms/large-language-model.md" class="link-internal">large language model&lt;/a> retrieves relevant documents from an external knowledge base before generating a response. The retrieved documents are injected into the &lt;a href="./context-window.md" class="link-internal">context window&lt;/a> alongside the user&amp;rsquo;s query, grounding the model&amp;rsquo;s generation in specific source material. Lewis et al. introduced the term and architecture in &amp;ldquo;Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks&amp;rdquo; (NeurIPS 2020).&lt;/p>
-&lt;p>The standard RAG pipeline has three stages:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>&lt;strong>Indexing.&lt;/strong> Documents are split into chunks, each chunk is converted into a vector &lt;a href="./embedding.md" class="link-internal">embedding&lt;/a>, and the embeddings are stored in a vector database (Pinecone, Weaviate, Chroma, pgvector, or similar).&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Retrieval.&lt;/strong> When the user submits a query, the query is embedded using the same embedding model. The vector database returns the k most similar document chunks by cosine similarity (or another distance metric).&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Generation.&lt;/strong> The retrieved chunks are inserted into the model&amp;rsquo;s prompt — typically between the &lt;a href="./system-prompt.md" class="link-internal">system prompt&lt;/a> and the user&amp;rsquo;s message. The model generates its response with access to this retrieved context.&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;p>RAG addresses a specific limitation of language models: their knowledge is frozen at training time. A model trained through January 2025 knows nothing about events after January 2025. RAG provides access to current information, proprietary data, and domain-specific documents that the model was never trained on — without retraining or &lt;a href="./fine-tuning.md" class="link-internal">fine-tuning&lt;/a>.&lt;/p>
-&lt;p>RAG also reduces &lt;a href="./hallucination.md" class="link-internal">hallucination&lt;/a>. A model generating from memory may produce plausible but false statements. A model generating with relevant source documents in its context window is more likely to reproduce information from those documents accurately. RAG does not eliminate hallucination — the model can still ignore or misinterpret the retrieved context — but it shifts the failure mode from fabrication to misreading.&lt;/p>
-&lt;h3 id="rag-and-agentic-systems">RAG and agentic systems&lt;/h3>
-&lt;p>In &lt;a href="../domains/agents/terms/agentic-system.md" class="link-internal">agentic systems&lt;/a>, RAG is one strategy for managing the &lt;a href="./context-window.md" class="link-internal">context window&lt;/a> constraint. An agent that accumulates tool results and reasoning traces over many steps eventually exceeds the window. RAG allows the agent to store intermediate results in a knowledge base and retrieve them when needed, trading window space for retrieval latency.&lt;/p>
-&lt;p>RAG can also be implemented as a &lt;a href="../domains/agents/terms/tool-use.md" class="link-internal">tool&lt;/a>: the agent calls a &amp;ldquo;search&amp;rdquo; tool that queries a vector database and returns relevant chunks. This is functionally equivalent to RAG but gives the model control over when and what to retrieve, making retrieval a decision the agent makes rather than a fixed pipeline step.&lt;/p>
-&lt;h2 id="related-terms">Related terms&lt;/h2>
-&lt;ul>
-&lt;li>&lt;a href="./embedding.md" class="link-internal">Embedding&lt;/a> — the vector representations that enable semantic retrieval&lt;/li>
-&lt;li>&lt;a href="./hallucination.md" class="link-internal">Hallucination&lt;/a> — the failure mode RAG reduces&lt;/li>
-&lt;li>&lt;a href="./context-window.md" class="link-internal">Context window&lt;/a> — the budget RAG competes for&lt;/li>
-&lt;li>&lt;a href="../domains/agents/terms/agent-memory.md" class="link-internal">Agent memory&lt;/a> — the broader problem RAG partially addresses&lt;/li>
-&lt;/ul></div><section class=bibliography id=bibliography vocab="https://schema.org/" typeof="ItemList"><h2>References</h2><p class=bib-entry id=ref-lewis2020 typeof="CreativeWork" resource="#ref-lewis2020"><span class=bib-key>[lewis2020]</span>
-<span property="author">P. Lewis, E. Perez, A. Piktus, F. Petroni, V. Karpukhin, N. Goyal, H. Küttler, M. Lewis, W. Yih, T. Rocktäschel, S. Riedel, D. Kiela</span>.
-(<span property="datePublished">2020</span>).
-<cite property="name">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</cite>.
-<em property="publisher">Advances in Neural Information Processing Systems 33 (NeurIPS 2020)</em>.
-<a href=https://arxiv.org/abs/2005.11401>https://arxiv.org/abs/2005.11401</a></p></section></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>cites</dt><dd property="schema:citation"><ul><li>lewis2020</li></ul></dd></div><div class=relation><dt>contrasts-with</dt><dd property="emsenn:Contrastswith"><a href=/library/tech/domains/computing/domains/artificial-intelligence/terms/fine-tuning/>fine-tuning</a></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>date-updated</dt><dd property="schema:dateModified"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>defines</dt><dd property="emsenn:Defines"><a href=/library/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/>Retrieval-Augmented Generation</a></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">A pattern where a language model's generation is grounded by retrieving relevant documents from an external knowledge base and injecting them into the context window before generating a response.</dd></div><div class=relation><dt><a href=/library/math/domains/sets/terms/domain/>domain</a></dt><dd property="emsenn:Domain">artificial-intelligence</dd></div><div class=relation><dt><a href=/library/math/terms/extension/>extends</a></dt><dd property="emsenn:Extends">large-language-model</dd></div><div class=relation><dt><a href=/library/math/terms/optimization/>optimizes</a></dt><dd property="emsenn:Optimizes">agent-memory</dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>requires</a></dt><dd property="schema:educationalAlignment">embedding, context-window</dd></div><div class=relation><dt>title</dt><dd property="schema:name">Retrieval-Augmented Generation</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retrieval-Augmented Generation - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "A pattern where a language model's generation is grounded by retrieving relevant documents from an external knowledge base and injecting them into the context window before generating a response.",
+  "name": "Retrieval-Augmented Generation",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a></nav>
+  <h1 class="p-name">Retrieval-Augmented Generation</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">A pattern where a language model&#39;s generation is grounded by retrieving relevant documents from an external knowledge base and injecting them into the context window before generating a response.</span>
+  </div>
+  <div class="e-content">
+    &lt;p&gt;Retrieval-augmented generation (RAG) is a pattern where a &lt;a href=&#34;../on-device-inference/terms/large-language-model.md&#34; class=&#34;link-internal&#34;&gt;large language model&lt;/a&gt; retrieves relevant documents from an external knowledge base before generating a response. The retrieved documents are injected into the &lt;a href=&#34;./context-window.md&#34; class=&#34;link-internal&#34;&gt;context window&lt;/a&gt; alongside the user&amp;rsquo;s query, grounding the model&amp;rsquo;s generation in specific source material. Lewis et al. introduced the term and architecture in &amp;ldquo;Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks&amp;rdquo; (NeurIPS 2020).&lt;/p&gt;
+&lt;p&gt;The standard RAG pipeline has three stages:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Indexing.&lt;/strong&gt; Documents are split into chunks, each chunk is converted into a vector &lt;a href=&#34;./embedding.md&#34; class=&#34;link-internal&#34;&gt;embedding&lt;/a&gt;, and the embeddings are stored in a vector database (Pinecone, Weaviate, Chroma, pgvector, or similar).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Retrieval.&lt;/strong&gt; When the user submits a query, the query is embedded using the same embedding model. The vector database returns the k most similar document chunks by cosine similarity (or another distance metric).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Generation.&lt;/strong&gt; The retrieved chunks are inserted into the model&amp;rsquo;s prompt — typically between the &lt;a href=&#34;./system-prompt.md&#34; class=&#34;link-internal&#34;&gt;system prompt&lt;/a&gt; and the user&amp;rsquo;s message. The model generates its response with access to this retrieved context.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;RAG addresses a specific limitation of language models: their knowledge is frozen at training time. A model trained through January 2025 knows nothing about events after January 2025. RAG provides access to current information, proprietary data, and domain-specific documents that the model was never trained on — without retraining or &lt;a href=&#34;./fine-tuning.md&#34; class=&#34;link-internal&#34;&gt;fine-tuning&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;RAG also reduces &lt;a href=&#34;./hallucination.md&#34; class=&#34;link-internal&#34;&gt;hallucination&lt;/a&gt;. A model generating from memory may produce plausible but false statements. A model generating with relevant source documents in its context window is more likely to reproduce information from those documents accurately. RAG does not eliminate hallucination — the model can still ignore or misinterpret the retrieved context — but it shifts the failure mode from fabrication to misreading.&lt;/p&gt;
+&lt;h3 id=&#34;rag-and-agentic-systems&#34;&gt;RAG and agentic systems&lt;/h3&gt;
+&lt;p&gt;In &lt;a href=&#34;../domains/agents/terms/agentic-system.md&#34; class=&#34;link-internal&#34;&gt;agentic systems&lt;/a&gt;, RAG is one strategy for managing the &lt;a href=&#34;./context-window.md&#34; class=&#34;link-internal&#34;&gt;context window&lt;/a&gt; constraint. An agent that accumulates tool results and reasoning traces over many steps eventually exceeds the window. RAG allows the agent to store intermediate results in a knowledge base and retrieve them when needed, trading window space for retrieval latency.&lt;/p&gt;
+&lt;p&gt;RAG can also be implemented as a &lt;a href=&#34;../domains/agents/terms/tool-use.md&#34; class=&#34;link-internal&#34;&gt;tool&lt;/a&gt;: the agent calls a &amp;ldquo;search&amp;rdquo; tool that queries a vector database and returns relevant chunks. This is functionally equivalent to RAG but gives the model control over when and what to retrieve, making retrieval a decision the agent makes rather than a fixed pipeline step.&lt;/p&gt;
+&lt;h2 id=&#34;related-terms&#34;&gt;Related terms&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;./embedding.md&#34; class=&#34;link-internal&#34;&gt;Embedding&lt;/a&gt; — the vector representations that enable semantic retrieval&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./hallucination.md&#34; class=&#34;link-internal&#34;&gt;Hallucination&lt;/a&gt; — the failure mode RAG reduces&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./context-window.md&#34; class=&#34;link-internal&#34;&gt;Context window&lt;/a&gt; — the budget RAG competes for&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../domains/agents/terms/agent-memory.md&#34; class=&#34;link-internal&#34;&gt;Agent memory&lt;/a&gt; — the broader problem RAG partially addresses&lt;/li&gt;
+&lt;/ul&gt;
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-lewis2020" typeof="CreativeWork" resource="#ref-lewis2020">
+    <span class="bib-key">[lewis2020]</span>
+      <span property="author">P. Lewis, E. Perez, A. Piktus, F. Petroni, V. Karpukhin, N. Goyal, H. Küttler, M. Lewis, W. Yih, T. Rocktäschel, S. Riedel, D. Kiela</span>.
+      (<span property="datePublished">2020</span>).
+      <cite property="name">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</cite>.
+      <em property="publisher">Advances in Neural Information Processing Systems 33 (NeurIPS 2020)</em>.
+      <a href="https://arxiv.org/abs/2005.11401">https://arxiv.org/abs/2005.11401</a>
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Cites</dt>
+        <dd property="schema:citation"><ul><li>Lewis2020</li></ul></dd>
+      </div><div class="relation">
+        <dt>Contrasts with</dt>
+        <dd property="emsenn:Contrastswith"><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/fine-tuning/">Fine tuning</a></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Date updated</dt>
+        <dd property="schema:dateModified"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/">Retrieval augmented generation</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">Artificial intelligence</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/extension/">Extends</a></dt>
+        <dd property="emsenn:Extends">Large language model</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/optimization/">Optimizes</a></dt>
+        <dd property="emsenn:Optimizes">Agent memory</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment">Embedding, context window</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

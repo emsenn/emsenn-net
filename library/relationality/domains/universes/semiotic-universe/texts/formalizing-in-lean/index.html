@@ -1,203 +1,580 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Formalizing the Semiotic Universe in Lean - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"LearningResource","author":{"@type":"Person","name":"claude-opus-4-6"},"dateModified":"2026-03-06","datePublished":"2026-03-06","description":"What this lesson covers How to translate the formal specification of the semiotic universe into verified Lean 4 proofs. The specification has ten sections of mathematics. This lesson maps each section to a Lean formalization target: what typeclass or theorem it becomes, what Mathlib infrastructure it uses, and what needs to be proved.\nThe Lean formalization lives at ../formalization/. Step 1 (the ambient structure: H, j, G, and their interaction axioms) is implemented across four atomic files. This lesson maps the remaining spec sections to Lean formalization targets.\n","keywords":"Lean, MathematicalUniverse","name":"Formalizing the Semiotic Universe in Lean","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"teaches":[{"@type":"DefinedTerm","name":"formalizing the semiotic universe in Lean"},{"@type":"DefinedTerm","name":"SemioticUniverse typeclass"},{"@type":"DefinedTerm","name":"ModalClosure typeclass"},{"@type":"DefinedTerm","name":"HeytingComonad typeclass"},{"@type":"DefinedTerm","name":"Lean formalization strategy for the semiotic universe"}],"url":"https://emsenn.net/library/relationality/domains/universes/semiotic-universe/texts/formalizing-in-lean/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Formalizing the Semiotic Universe in Lean</h1><div class=meta><time class=dt-published datetime=2026-03-06T00:00:00Z>2026-03-06</time>
-<span>by <span class=p-author>claude-opus-4-6</span></span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#what-this-lesson-covers>What this lesson covers</a></li><li><a href=#prerequisites>Prerequisites</a></li><li><a href=#the-formalization-strategy>The formalization strategy</a></li><li><a href=#step-1-the-ambient-structure-h-j-g>Step 1: the ambient structure (H, j, G)</a><ul><li><a href=#what-the-spec-says>What the spec says</a></li><li><a href=#what-the-lean-file-should-contain>What the Lean file should contain</a></li><li><a href=#what-to-prove>What to prove</a></li><li><a href=#mathlib-resources>Mathlib resources</a></li><li><a href=#estimated-size>Estimated size</a></li></ul></li><li><a href=#step-2-the-typed-lambda-calculus>Step 2: the typed lambda calculus</a><ul><li><a href=#what-the-spec-says-1>What the spec says</a></li><li><a href=#what-the-lean-file-should-contain-1>What the Lean file should contain</a></li><li><a href=#design-choice>Design choice</a></li><li><a href=#estimated-size-1>Estimated size</a></li></ul></li><li><a href=#step-3-fragments>Step 3: fragments</a><ul><li><a href=#what-the-spec-says-2>What the spec says</a></li><li><a href=#what-the-lean-file-should-contain-2>What the Lean file should contain</a></li><li><a href=#key-difficulty>Key difficulty</a></li><li><a href=#estimated-size-2>Estimated size</a></li></ul></li><li><a href=#step-4-the-three-closure-operators>Step 4: the three closure operators</a><ul><li><a href=#what-the-spec-says-3>What the spec says</a></li><li><a href=#what-the-lean-file-should-contain-3>What the Lean file should contain</a></li><li><a href=#mathlib-resources-1>Mathlib resources</a></li><li><a href=#estimated-size-3>Estimated size</a></li></ul></li><li><a href=#step-5-initiality>Step 5: initiality</a><ul><li><a href=#what-the-spec-says-4>What the spec says</a></li><li><a href=#what-the-lean-file-should-contain-4>What the Lean file should contain</a></li><li><a href=#estimated-size-4>Estimated size</a></li></ul></li><li><a href=#the-formalization-and-where-steps-2-5-attach>The formalization and where Steps 2-5 attach</a></li><li><a href=#common-pitfalls>Common pitfalls</a></li><li><a href=#what-comes-next>What comes next</a></li></ul></nav></details><div class=e-content><h2 id=what-this-lesson-covers>What this lesson covers</h2><p>How to translate the formal specification of the
-<a href=../semiotic-universe.md class=link-internal>semiotic universe</a> into verified Lean 4
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formalizing the Semiotic Universe in Lean - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "author": {
+    "@type": "Person",
+    "name": "claude-opus-4-6"
+  },
+  "dateModified": "2026-03-06",
+  "datePublished": "2026-03-06",
+  "description": "What this lesson covers How to translate the formal specification of the semiotic universe into verified Lean 4 proofs. The specification has ten sections of mathematics. This lesson maps each section to a Lean formalization target: what typeclass or theorem it becomes, what Mathlib infrastructure it uses, and what needs to be proved.\nThe Lean formalization lives at ../formalization/. Step 1 (the ambient structure: H, j, G, and their interaction axioms) is implemented across four atomic files. This lesson maps the remaining spec sections to Lean formalization targets.\n",
+  "keywords": "Lean, MathematicalUniverse",
+  "name": "Formalizing the Semiotic Universe in Lean",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "teaches": [
+    {
+      "@type": "DefinedTerm",
+      "name": "formalizing the semiotic universe in Lean"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "SemioticUniverse typeclass"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "ModalClosure typeclass"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "HeytingComonad typeclass"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Lean formalization strategy for the semiotic universe"
+    }
+  ],
+  "url": "http://localhost:1313/library/relationality/domains/universes/semiotic-universe/texts/formalizing-in-lean/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="lesson">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/">Universes</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/">Semiotic universe</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/texts/">Texts</a></nav>
+  <h1 class="p-name">Formalizing the Semiotic Universe in Lean</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-06T00:00:00Z">2026-03-06</time>
+    <span>by <span class="p-author">claude-opus-4-6</span></span>
+    
+  </div>
+  
+  <div class="type-meta type-meta--objectives">
+    <span class="type-meta-label">Learning objectives</span>
+    <ul><li>formalizing the semiotic universe in Lean</li><li>SemioticUniverse typeclass</li><li>ModalClosure typeclass</li><li>HeytingComonad typeclass</li><li>Lean formalization strategy for the semiotic universe</li></ul>
+  </div>
+  
+  
+  <div class="type-meta type-meta--prereqs">
+    <span class="type-meta-label">Prerequisites</span>
+    <ul><li>../../../posets/curricula/heyting-algebras.md</li><li>../../../posets/curricula/closure-operators.md</li><li>../../../categories/ordinary-categories/curricula/monads-and-comonads.md</li><li>../../../../../technology/disciplines/computing/software/lean/curricula/types-and-propositions-in-lean.md</li><li>../../../../../technology/disciplines/computing/software/lean/curricula/tactics-in-lean.md</li><li>./semantic-ambient.md</li></ul>
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-this-lesson-covers">What this lesson covers</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#the-formalization-strategy">The formalization strategy</a></li>
+    <li><a href="#step-1-the-ambient-structure-h-j-g">Step 1: the ambient structure (H, j, G)</a>
+      <ul>
+        <li><a href="#what-the-spec-says">What the spec says</a></li>
+        <li><a href="#what-the-lean-file-should-contain">What the Lean file should contain</a></li>
+        <li><a href="#what-to-prove">What to prove</a></li>
+        <li><a href="#mathlib-resources">Mathlib resources</a></li>
+        <li><a href="#estimated-size">Estimated size</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-2-the-typed-lambda-calculus">Step 2: the typed lambda calculus</a>
+      <ul>
+        <li><a href="#what-the-spec-says-1">What the spec says</a></li>
+        <li><a href="#what-the-lean-file-should-contain-1">What the Lean file should contain</a></li>
+        <li><a href="#design-choice">Design choice</a></li>
+        <li><a href="#estimated-size-1">Estimated size</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-3-fragments">Step 3: fragments</a>
+      <ul>
+        <li><a href="#what-the-spec-says-2">What the spec says</a></li>
+        <li><a href="#what-the-lean-file-should-contain-2">What the Lean file should contain</a></li>
+        <li><a href="#key-difficulty">Key difficulty</a></li>
+        <li><a href="#estimated-size-2">Estimated size</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-4-the-three-closure-operators">Step 4: the three closure operators</a>
+      <ul>
+        <li><a href="#what-the-spec-says-3">What the spec says</a></li>
+        <li><a href="#what-the-lean-file-should-contain-3">What the Lean file should contain</a></li>
+        <li><a href="#mathlib-resources-1">Mathlib resources</a></li>
+        <li><a href="#estimated-size-3">Estimated size</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-5-initiality">Step 5: initiality</a>
+      <ul>
+        <li><a href="#what-the-spec-says-4">What the spec says</a></li>
+        <li><a href="#what-the-lean-file-should-contain-4">What the Lean file should contain</a></li>
+        <li><a href="#estimated-size-4">Estimated size</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-formalization-and-where-steps-2-5-attach">The formalization and where Steps 2-5 attach</a></li>
+    <li><a href="#common-pitfalls">Common pitfalls</a></li>
+    <li><a href="#what-comes-next">What comes next</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h2 id="what-this-lesson-covers">What this lesson covers</h2>
+<p>How to translate the formal specification of the
+<a href="../semiotic-universe.md" class="link-internal">semiotic universe</a> into verified Lean 4
 proofs. The specification has ten sections of mathematics. This lesson
 maps each section to a Lean formalization target: what typeclass or
 theorem it becomes, what Mathlib infrastructure it uses, and what
-needs to be proved.</p><p>The Lean formalization lives at <code>../formalization/</code>. Step 1 (the
+needs to be proved.</p>
+<p>The Lean formalization lives at <code>../formalization/</code>. Step 1 (the
 ambient structure: H, j, G, and their interaction axioms) is
 implemented across four atomic files. This lesson maps the
-remaining spec sections to Lean formalization targets.</p><h2 id=prerequisites>Prerequisites</h2><p>You need:</p><ul><li>The
-<a href=./semantic-ambient.md class=link-internal>semantic domain</a>
-lesson (what H, j, G are mathematically)</li><li>The
-<a href=../../../posets/curricula/heyting-algebras.md class=link-internal>Heyting algebras</a>
-curriculum (meets, joins, implication, the residuation adjunction)</li><li>The
-<a href=../../../posets/curricula/closure-operators.md class=link-internal>closure operators</a>
-curriculum (extensive, monotone, idempotent)</li><li>The
-<a href=../../../categories/ordinary-categories/curricula/monads-and-comonads.md class=link-internal>monads and comonads</a>
-curriculum (counit, comultiplication, Heyting-comonadic coherence)</li><li>The Lean curricula:
-<a href=../../../../../technology/disciplines/computing/software/lean/curricula/types-and-propositions-in-lean.md class=link-internal>types and propositions</a>
+remaining spec sections to Lean formalization targets.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>You need:</p>
+<ul>
+<li>The
+<a href="./semantic-ambient.md" class="link-internal">semantic domain</a>
+lesson (what H, j, G are mathematically)</li>
+<li>The
+<a href="../../../posets/curricula/heyting-algebras.md" class="link-internal">Heyting algebras</a>
+curriculum (meets, joins, implication, the residuation adjunction)</li>
+<li>The
+<a href="../../../posets/curricula/closure-operators.md" class="link-internal">closure operators</a>
+curriculum (extensive, monotone, idempotent)</li>
+<li>The
+<a href="../../../categories/ordinary-categories/curricula/monads-and-comonads.md" class="link-internal">monads and comonads</a>
+curriculum (counit, comultiplication, Heyting-comonadic coherence)</li>
+<li>The Lean curricula:
+<a href="../../../../../technology/disciplines/computing/software/lean/curricula/types-and-propositions-in-lean.md" class="link-internal">types and propositions</a>
 and
-<a href=../../../../../technology/disciplines/computing/software/lean/curricula/tactics-in-lean.md class=link-internal>tactics</a></li></ul><hr><h2 id=the-formalization-strategy>The formalization strategy</h2><p>The semiotic universe specification has ten sections. They decompose
+<a href="../../../../../technology/disciplines/computing/software/lean/curricula/tactics-in-lean.md" class="link-internal">tactics</a></li>
+</ul>
+<hr>
+<h2 id="the-formalization-strategy">The formalization strategy</h2>
+<p>The semiotic universe specification has ten sections. They decompose
 into five Lean formalization steps, each building on the last. The
-steps can be grouped into three layers:</p><p><strong>Layer A (the ambient structure):</strong> Section 1 of the spec — the
+steps can be grouped into three layers:</p>
+<p><strong>Layer A (the ambient structure):</strong> Section 1 of the spec — the
 complete Heyting algebra H with modal closure j and trace comonad G.
-This is Lean Step 1.</p><p><strong>Layer B (syntax and fragments):</strong> Sections 2-3 of the spec — the
+This is Lean Step 1.</p>
+<p><strong>Layer B (syntax and fragments):</strong> Sections 2-3 of the spec — the
 typed lambda calculus generating operators, and fragments as finitely
-generated modal-temporal subalgebras. These are Lean Steps 2-3.</p><p><strong>Layer C (closure and initiality):</strong> Sections 4-9 of the spec — the
+generated modal-temporal subalgebras. These are Lean Steps 2-3.</p>
+<p><strong>Layer C (closure and initiality):</strong> Sections 4-9 of the spec — the
 interpretation, fusion, semantic/syntactic/fusion closure operators,
 the global closure S, and the least fixed point. These are Lean
-Steps 4-5.</p><p>Each step produces a compilable Lean file that imports the previous
-step&rsquo;s results.</p><hr><h2 id=step-1-the-ambient-structure-h-j-g>Step 1: the ambient structure (H, j, G)</h2><h3 id=what-the-spec-says>What the spec says</h3><p>Section 1 defines:</p><ul><li><strong>Axiom 1.1</strong>: H is a complete Heyting algebra.</li><li><strong>Section 1.2</strong>: j is a modal closure operator (extensive, monotone,
+Steps 4-5.</p>
+<p>Each step produces a compilable Lean file that imports the previous
+step&rsquo;s results.</p>
+<hr>
+<h2 id="step-1-the-ambient-structure-h-j-g">Step 1: the ambient structure (H, j, G)</h2>
+<h3 id="what-the-spec-says">What the spec says</h3>
+<p>Section 1 defines:</p>
+<ul>
+<li><strong>Axiom 1.1</strong>: H is a complete Heyting algebra.</li>
+<li><strong>Section 1.2</strong>: j is a modal closure operator (extensive, monotone,
 idempotent, join-continuous). The stable fragment H^st = {a : j(a) = a}
-is a complete Heyting subalgebra (Lemma 1.1).</li><li><strong>Axiom 1.2</strong>: G is a comonad AND a complete Heyting algebra
-endomorphism (preserves joins, meets, implication, top, bottom).</li><li><strong>Axiom 1.3</strong>: j(G(a)) &lt;= G(j(a)) for all a.</li><li><strong>Axiom 1.4</strong>: G(a) in H^st iff a in H^st.</li><li><strong>Lemma 1.5</strong>: G restricted to H^st is a comonad and Heyting
-endomorphism on the modal fragment.</li></ul><h3 id=what-the-lean-file-should-contain>What the Lean file should contain</h3><p><strong>Status: implemented.</strong> See <code>../formalization/SemioticUniverse/</code>.</p><p>The implementation uses four atomic files:</p><ul><li><code>HeytingDomain.lean</code> — the <code>HeytingDomain</code> typeclass (thin wrapper
-over Mathlib&rsquo;s <code>HeytingAlgebra</code>)</li><li><code>ModalClosure.lean</code> — the <code>ModalClosure</code> typeclass with <code>j</code> and
-all derived lemmas (habitual fragment is Heyting subalgebra)</li><li><code>TraceComonad.lean</code> — the <code>TraceComonad</code> typeclass with <code>G</code> and
-derived properties (monotonicity, idempotence, coassociativity)</li><li><code>Ambient.lean</code> — the <code>SemioticAmbient</code> mixin combining all three
-with the interaction axioms</li></ul><h3 id=what-to-prove>What to prove</h3><ol><li><p><strong>Lemma 1.1</strong> (modal fragment is Heyting subalgebra): Define
+is a complete Heyting subalgebra (Lemma 1.1).</li>
+<li><strong>Axiom 1.2</strong>: G is a comonad AND a complete Heyting algebra
+endomorphism (preserves joins, meets, implication, top, bottom).</li>
+<li><strong>Axiom 1.3</strong>: j(G(a)) &lt;= G(j(a)) for all a.</li>
+<li><strong>Axiom 1.4</strong>: G(a) in H^st iff a in H^st.</li>
+<li><strong>Lemma 1.5</strong>: G restricted to H^st is a comonad and Heyting
+endomorphism on the modal fragment.</li>
+</ul>
+<h3 id="what-the-lean-file-should-contain">What the Lean file should contain</h3>
+<p><strong>Status: implemented.</strong> See <code>../formalization/SemioticUniverse/</code>.</p>
+<p>The implementation uses four atomic files:</p>
+<ul>
+<li><code>HeytingDomain.lean</code> — the <code>HeytingDomain</code> typeclass (thin wrapper
+over Mathlib&rsquo;s <code>HeytingAlgebra</code>)</li>
+<li><code>ModalClosure.lean</code> — the <code>ModalClosure</code> typeclass with <code>j</code> and
+all derived lemmas (habitual fragment is Heyting subalgebra)</li>
+<li><code>TraceComonad.lean</code> — the <code>TraceComonad</code> typeclass with <code>G</code> and
+derived properties (monotonicity, idempotence, coassociativity)</li>
+<li><code>Ambient.lean</code> — the <code>SemioticAmbient</code> mixin combining all three
+with the interaction axioms</li>
+</ul>
+<h3 id="what-to-prove">What to prove</h3>
+<ol>
+<li>
+<p><strong>Lemma 1.1</strong> (modal fragment is Heyting subalgebra): Define
 <code>IsStable (a : R) := j a = a</code> as a predicate. Prove that if
 <code>IsStable a</code> and <code>IsStable b</code>, then <code>IsStable (a ⊓ b)</code>,
 <code>IsStable (a ⊔ b)</code>, <code>IsStable (a ⇨ b)</code>, <code>IsStable ⊤</code>,
 <code>IsStable ⊥</code>. These follow from <code>join_continuous</code> and the
-Heyting algebra laws.</p></li><li><p><strong>Monotonicity of G</strong>: Derive <code>a ≤ b → G a ≤ G b</code> from
-<code>pres_inf</code> (since <code>a ≤ b</code> iff <code>a ⊓ b = a</code>).</p></li><li><p><strong>Coassociativity</strong>: In the poset setting, coassociativity
+Heyting algebra laws.</p>
+</li>
+<li>
+<p><strong>Monotonicity of G</strong>: Derive <code>a ≤ b → G a ≤ G b</code> from
+<code>pres_inf</code> (since <code>a ≤ b</code> iff <code>a ⊓ b = a</code>).</p>
+</li>
+<li>
+<p><strong>Coassociativity</strong>: In the poset setting, coassociativity
 reduces to <code>G(G(G(a))) ≥ G(G(a))</code>, which follows from <code>comult</code>
-applied to <code>G(a)</code>.</p></li><li><p><strong>Counit laws</strong>: Similarly reduce to inequalities that follow
-from <code>counit</code> composed with <code>comult</code>.</p></li><li><p><strong>Lemma 1.5</strong> (G restricts to H^st): Given <code>IsStable a</code>, prove
+applied to <code>G(a)</code>.</p>
+</li>
+<li>
+<p><strong>Counit laws</strong>: Similarly reduce to inequalities that follow
+from <code>counit</code> composed with <code>comult</code>.</p>
+</li>
+<li>
+<p><strong>Lemma 1.5</strong> (G restricts to H^st): Given <code>IsStable a</code>, prove
 <code>IsStable (G a)</code> using <code>stable_iff_trace_stable</code>. Then show G
 restricted to stable elements is still a comonad and Heyting
-endomorphism.</p></li></ol><h3 id=mathlib-resources>Mathlib resources</h3><ul><li><code>HeytingAlgebra</code> and all its lemmas (<code>le_himp_iff</code>, <code>inf_comm</code>,
-<code>sup_comm</code>, <code>himp_inf_le</code>, etc.)</li><li><code>Monotone</code>, <code>Closure</code> — Mathlib has <code>ClosureOperator</code> in
+endomorphism.</p>
+</li>
+</ol>
+<h3 id="mathlib-resources">Mathlib resources</h3>
+<ul>
+<li><code>HeytingAlgebra</code> and all its lemmas (<code>le_himp_iff</code>, <code>inf_comm</code>,
+<code>sup_comm</code>, <code>himp_inf_le</code>, etc.)</li>
+<li><code>Monotone</code>, <code>Closure</code> — Mathlib has <code>ClosureOperator</code> in
 <code>Order.Closure</code> but it may not match exactly; the typeclass above
-is more explicit.</li><li><code>inf_le_left</code>, <code>inf_le_right</code>, <code>le_sup_left</code>, <code>le_sup_right</code> for
-lattice reasoning.</li></ul><h3 id=estimated-size>Estimated size</h3><p>200-400 lines. The typeclasses are ~50 lines; the lemmas and their
-proofs are the bulk.</p><hr><h2 id=step-2-the-typed-lambda-calculus>Step 2: the typed lambda calculus</h2><h3 id=what-the-spec-says-1>What the spec says</h3><p>Section 2 defines:</p><ul><li><strong>Section 2.1</strong>: A type language (base type P, function types,
+is more explicit.</li>
+<li><code>inf_le_left</code>, <code>inf_le_right</code>, <code>le_sup_left</code>, <code>le_sup_right</code> for
+lattice reasoning.</li>
+</ul>
+<h3 id="estimated-size">Estimated size</h3>
+<p>200-400 lines. The typeclasses are ~50 lines; the lemmas and their
+proofs are the bulk.</p>
+<hr>
+<h2 id="step-2-the-typed-lambda-calculus">Step 2: the typed lambda calculus</h2>
+<h3 id="what-the-spec-says-1">What the spec says</h3>
+<p>Section 2 defines:</p>
+<ul>
+<li><strong>Section 2.1</strong>: A type language (base type P, function types,
 product types), a lambda calculus, typing judgments, operators as
-closed terms of type P^n -> P.</li><li><strong>Section 2.2</strong>: Definable operators Op^def as the smallest set
+closed terms of type P^n -&gt; P.</li>
+<li><strong>Section 2.2</strong>: Definable operators Op^def as the smallest set
 containing primitives, closed under lambda abstraction, application,
-and composition.</li></ul><h3 id=what-the-lean-file-should-contain-1>What the Lean file should contain</h3><p>An inductive type for the type language and terms:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-lean data-lang=lean><span style=display:flex><span><span style=color:#75715e>-- The type language.</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>inductive</span> SemTy <span style=color:#f92672>where</span>
-</span></span><span style=display:flex><span>  | base <span style=color:#f92672>:</span> SemTy               <span style=color:#75715e>-- P</span>
-</span></span><span style=display:flex><span>  | fn <span style=color:#f92672>:</span> SemTy → SemTy → SemTy <span style=color:#75715e>-- A → B</span>
-</span></span><span style=display:flex><span>  | prod <span style=color:#f92672>:</span> SemTy → SemTy → SemTy <span style=color:#75715e>-- A × B</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Terms (intrinsically typed or extrinsically typed).</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- For simplicity, extrinsic with a typing judgment:</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>inductive</span> SemTerm <span style=color:#f92672>where</span>
-</span></span><span style=display:flex><span>  | var <span style=color:#f92672>:</span> Nat → SemTerm
-</span></span><span style=display:flex><span>  | lam <span style=color:#f92672>:</span> SemTy → SemTerm → SemTerm
-</span></span><span style=display:flex><span>  | app <span style=color:#f92672>:</span> SemTerm → SemTerm → SemTerm
-</span></span><span style=display:flex><span>  | pair <span style=color:#f92672>:</span> SemTerm → SemTerm → SemTerm
-</span></span><span style=display:flex><span>  | fst <span style=color:#f92672>:</span> SemTerm → SemTerm
-</span></span><span style=display:flex><span>  | snd <span style=color:#f92672>:</span> SemTerm → SemTerm
-</span></span><span style=display:flex><span>  | prim <span style=color:#f92672>:</span> String → Nat → SemTerm  <span style=color:#75715e>-- primitive operator, name + arity</span>
+and composition.</li>
+</ul>
+<h3 id="what-the-lean-file-should-contain-1">What the Lean file should contain</h3>
+<p>An inductive type for the type language and terms:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- The type language.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">inductive</span> SemTy <span style="color:#f92672">where</span>
+</span></span><span style="display:flex;"><span>  | base <span style="color:#f92672">:</span> SemTy               <span style="color:#75715e">-- P</span>
+</span></span><span style="display:flex;"><span>  | fn <span style="color:#f92672">:</span> SemTy → SemTy → SemTy <span style="color:#75715e">-- A → B</span>
+</span></span><span style="display:flex;"><span>  | prod <span style="color:#f92672">:</span> SemTy → SemTy → SemTy <span style="color:#75715e">-- A × B</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Terms (intrinsically typed or extrinsically typed).</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- For simplicity, extrinsic with a typing judgment:</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">inductive</span> SemTerm <span style="color:#f92672">where</span>
+</span></span><span style="display:flex;"><span>  | var <span style="color:#f92672">:</span> Nat → SemTerm
+</span></span><span style="display:flex;"><span>  | lam <span style="color:#f92672">:</span> SemTy → SemTerm → SemTerm
+</span></span><span style="display:flex;"><span>  | app <span style="color:#f92672">:</span> SemTerm → SemTerm → SemTerm
+</span></span><span style="display:flex;"><span>  | pair <span style="color:#f92672">:</span> SemTerm → SemTerm → SemTerm
+</span></span><span style="display:flex;"><span>  | fst <span style="color:#f92672">:</span> SemTerm → SemTerm
+</span></span><span style="display:flex;"><span>  | snd <span style="color:#f92672">:</span> SemTerm → SemTerm
+</span></span><span style="display:flex;"><span>  | prim <span style="color:#f92672">:</span> String → Nat → SemTerm  <span style="color:#75715e">-- primitive operator, name + arity</span>
 </span></span></code></pre></div><p>Operators are closed terms of type <code>base^n → base</code>. Definable
-operators form an inductively defined set.</p><h3 id=design-choice>Design choice</h3><p>Intrinsically typed terms (where the type is part of the inductive
+operators form an inductively defined set.</p>
+<h3 id="design-choice">Design choice</h3>
+<p>Intrinsically typed terms (where the type is part of the inductive
 definition) are more work upfront but prevent ill-typed terms by
 construction. Extrinsically typed terms with a separate typing
 judgment are simpler to define but require proving preservation
 lemmas. For the semiotic universe, the extrinsic approach is
 likely sufficient — the specification does not depend on strong
-normalization or other properties that benefit from intrinsic typing.</p><h3 id=estimated-size-1>Estimated size</h3><p>300-500 lines for the syntax, typing judgment, and definitional
-equality.</p><hr><h2 id=step-3-fragments>Step 3: fragments</h2><h3 id=what-the-spec-says-2>What the spec says</h3><p>Section 3 defines:</p><ul><li><strong>Definition 3.1</strong>: Modal-temporal subalgebra — a subset closed
-under Heyting operations, j, and G.</li><li><strong>Definition 3.2</strong>: Fragment — a finitely generated
-modal-temporal subalgebra.</li><li><strong>Definition 3.3</strong>: Fragment-preserving operator.</li><li><strong>Definition 3.4</strong>: Fragmentwise equality.</li><li><strong>Definition 3.5</strong>: Hereditarily extensional family.</li></ul><h3 id=what-the-lean-file-should-contain-2>What the Lean file should contain</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-lean data-lang=lean><span style=display:flex><span><span style=color:#75715e>-- A modal-temporal subalgebra.</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>structure</span> ModalTemporalSubalgebra <span style=color:#f92672>(</span>R <span style=color:#f92672>:</span> <span style=color:#66d9ef>Type</span>*<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>[</span>SemioticAmbient R<span style=color:#f92672>]</span> <span style=color:#f92672>where</span>
-</span></span><span style=display:flex><span>  carrier <span style=color:#f92672>:</span> Set R
-</span></span><span style=display:flex><span>  closed_inf <span style=color:#f92672>:</span> ∀ a b<span style=color:#f92672>,</span> a ∈ carrier → b ∈ carrier →
-</span></span><span style=display:flex><span>    a ⊓ b ∈ carrier
-</span></span><span style=display:flex><span>  closed_sup <span style=color:#f92672>:</span> ∀ a b<span style=color:#f92672>,</span> a ∈ carrier → b ∈ carrier →
-</span></span><span style=display:flex><span>    a ⊔ b ∈ carrier
-</span></span><span style=display:flex><span>  closed_himp <span style=color:#f92672>:</span> ∀ a b<span style=color:#f92672>,</span> a ∈ carrier → b ∈ carrier →
-</span></span><span style=display:flex><span>    <span style=color:#f92672>(</span>a ⇨ b<span style=color:#f92672>)</span> ∈ carrier
-</span></span><span style=display:flex><span>  closed_top <span style=color:#f92672>:</span> ⊤ ∈ carrier
-</span></span><span style=display:flex><span>  closed_bot <span style=color:#f92672>:</span> ⊥ ∈ carrier
-</span></span><span style=display:flex><span>  closed_j <span style=color:#f92672>:</span> ∀ a<span style=color:#f92672>,</span> a ∈ carrier → ModalClosure.j a ∈ carrier
-</span></span><span style=display:flex><span>  closed_G <span style=color:#f92672>:</span> ∀ a<span style=color:#f92672>,</span> a ∈ carrier → HeytingComonad.G a ∈ carrier
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- A fragment is a finitely generated modal-temporal subalgebra.</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>structure</span> Fragment <span style=color:#f92672>(</span>R <span style=color:#f92672>:</span> <span style=color:#66d9ef>Type</span>*<span style=color:#f92672>)</span> <span style=color:#f92672>[</span>SemioticAmbient R<span style=color:#f92672>]</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>extends</span> ModalTemporalSubalgebra R <span style=color:#f92672>where</span>
-</span></span><span style=display:flex><span>  generators <span style=color:#f92672>:</span> Finset R
-</span></span><span style=display:flex><span>  generated <span style=color:#f92672>:</span> ∀ x<span style=color:#f92672>,</span> x ∈ carrier ↔
-</span></span><span style=display:flex><span>    x ∈ closure generators  <span style=color:#75715e>-- needs precise definition</span>
-</span></span></code></pre></div><h3 id=key-difficulty>Key difficulty</h3><p>The &ldquo;finitely generated&rdquo; condition requires defining the closure of
+normalization or other properties that benefit from intrinsic typing.</p>
+<h3 id="estimated-size-1">Estimated size</h3>
+<p>300-500 lines for the syntax, typing judgment, and definitional
+equality.</p>
+<hr>
+<h2 id="step-3-fragments">Step 3: fragments</h2>
+<h3 id="what-the-spec-says-2">What the spec says</h3>
+<p>Section 3 defines:</p>
+<ul>
+<li><strong>Definition 3.1</strong>: Modal-temporal subalgebra — a subset closed
+under Heyting operations, j, and G.</li>
+<li><strong>Definition 3.2</strong>: Fragment — a finitely generated
+modal-temporal subalgebra.</li>
+<li><strong>Definition 3.3</strong>: Fragment-preserving operator.</li>
+<li><strong>Definition 3.4</strong>: Fragmentwise equality.</li>
+<li><strong>Definition 3.5</strong>: Hereditarily extensional family.</li>
+</ul>
+<h3 id="what-the-lean-file-should-contain-2">What the Lean file should contain</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- A modal-temporal subalgebra.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">structure</span> ModalTemporalSubalgebra <span style="color:#f92672">(</span>R <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span>*<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">[</span>SemioticAmbient R<span style="color:#f92672">]</span> <span style="color:#f92672">where</span>
+</span></span><span style="display:flex;"><span>  carrier <span style="color:#f92672">:</span> Set R
+</span></span><span style="display:flex;"><span>  closed_inf <span style="color:#f92672">:</span> ∀ a b<span style="color:#f92672">,</span> a ∈ carrier → b ∈ carrier →
+</span></span><span style="display:flex;"><span>    a ⊓ b ∈ carrier
+</span></span><span style="display:flex;"><span>  closed_sup <span style="color:#f92672">:</span> ∀ a b<span style="color:#f92672">,</span> a ∈ carrier → b ∈ carrier →
+</span></span><span style="display:flex;"><span>    a ⊔ b ∈ carrier
+</span></span><span style="display:flex;"><span>  closed_himp <span style="color:#f92672">:</span> ∀ a b<span style="color:#f92672">,</span> a ∈ carrier → b ∈ carrier →
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">(</span>a ⇨ b<span style="color:#f92672">)</span> ∈ carrier
+</span></span><span style="display:flex;"><span>  closed_top <span style="color:#f92672">:</span> ⊤ ∈ carrier
+</span></span><span style="display:flex;"><span>  closed_bot <span style="color:#f92672">:</span> ⊥ ∈ carrier
+</span></span><span style="display:flex;"><span>  closed_j <span style="color:#f92672">:</span> ∀ a<span style="color:#f92672">,</span> a ∈ carrier → ModalClosure.j a ∈ carrier
+</span></span><span style="display:flex;"><span>  closed_G <span style="color:#f92672">:</span> ∀ a<span style="color:#f92672">,</span> a ∈ carrier → HeytingComonad.G a ∈ carrier
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- A fragment is a finitely generated modal-temporal subalgebra.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">structure</span> Fragment <span style="color:#f92672">(</span>R <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span>*<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>SemioticAmbient R<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">extends</span> ModalTemporalSubalgebra R <span style="color:#f92672">where</span>
+</span></span><span style="display:flex;"><span>  generators <span style="color:#f92672">:</span> Finset R
+</span></span><span style="display:flex;"><span>  generated <span style="color:#f92672">:</span> ∀ x<span style="color:#f92672">,</span> x ∈ carrier ↔
+</span></span><span style="display:flex;"><span>    x ∈ closure generators  <span style="color:#75715e">-- needs precise definition</span>
+</span></span></code></pre></div><h3 id="key-difficulty">Key difficulty</h3>
+<p>The &ldquo;finitely generated&rdquo; condition requires defining the closure of
 a finite set under Heyting operations, j, and G. This is an inductive
 construction — the smallest set containing the generators and closed
 under all operations. In Lean, this is naturally an <code>inductive</code>
-predicate or <code>Set.iInter</code> over all containing subalgebras.</p><h3 id=estimated-size-2>Estimated size</h3><p>200-300 lines.</p><hr><h2 id=step-4-the-three-closure-operators>Step 4: the three closure operators</h2><h3 id=what-the-spec-says-3>What the spec says</h3><p>Sections 4-7 define:</p><ul><li><strong>Section 4</strong>: Interpretation of definable operators into H, with
+predicate or <code>Set.iInter</code> over all containing subalgebras.</p>
+<h3 id="estimated-size-2">Estimated size</h3>
+<p>200-300 lines.</p>
+<hr>
+<h2 id="step-4-the-three-closure-operators">Step 4: the three closure operators</h2>
+<h3 id="what-the-spec-says-3">What the spec says</h3>
+<p>Sections 4-7 define:</p>
+<ul>
+<li><strong>Section 4</strong>: Interpretation of definable operators into H, with
 seven coherence conditions (monotone, Heyting-compatible, modal
 homomorphism, trace-compatible, equality-preserving,
-fragment-preserving, hereditarily extensional).</li><li><strong>Section 5</strong>: Fusion — congruence by fragmentwise equality, naming
-of admissible behaviors. S_fus as a closure operator.</li><li><strong>Section 6</strong>: Fusion as a reflection (left adjoint to inclusion of
-fusion-saturated structures).</li><li><strong>Section 7</strong>: S_sem (semantic closure), S_syn (syntactic closure
-with finitary justification), S = S_fus . S_syn . S_sem.</li></ul><h3 id=what-the-lean-file-should-contain-3>What the Lean file should contain</h3><p>The partial semiotic structure <code>X = (H_X, Op_X)</code> as a structure.
+fragment-preserving, hereditarily extensional).</li>
+<li><strong>Section 5</strong>: Fusion — congruence by fragmentwise equality, naming
+of admissible behaviors. S_fus as a closure operator.</li>
+<li><strong>Section 6</strong>: Fusion as a reflection (left adjoint to inclusion of
+fusion-saturated structures).</li>
+<li><strong>Section 7</strong>: S_sem (semantic closure), S_syn (syntactic closure
+with finitary justification), S = S_fus . S_syn . S_sem.</li>
+</ul>
+<h3 id="what-the-lean-file-should-contain-3">What the Lean file should contain</h3>
+<p>The partial semiotic structure <code>X = (H_X, Op_X)</code> as a structure.
 Each closure operator as a function on partial structures, with
-proofs of monotonicity and inflationarity.</p><p>The key theorem: <strong>Theorem 7.6</strong> — S has a least fixed point by
-Knaster-Tarski.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-lean data-lang=lean><span style=display:flex><span><span style=color:#75715e>-- Partial semiotic structure.</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>structure</span> PartialSemiotic <span style=color:#f92672>(</span>R <span style=color:#f92672>:</span> <span style=color:#66d9ef>Type</span>*<span style=color:#f92672>)</span> <span style=color:#f92672>[</span>SemioticAmbient R<span style=color:#f92672>]</span> <span style=color:#f92672>where</span>
-</span></span><span style=display:flex><span>  semantic <span style=color:#f92672>:</span> Set R
-</span></span><span style=display:flex><span>  syntactic <span style=color:#f92672>:</span> Set SemOp  <span style=color:#75715e>-- definable operators</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- The ordering on partial structures.</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>instance</span> <span style=color:#f92672>:</span> LE <span style=color:#f92672>(</span>PartialSemiotic R<span style=color:#f92672>)</span> <span style=color:#f92672>where</span>
-</span></span><span style=display:flex><span>  le X Y <span style=color:#f92672>:</span>= X.semantic ⊆ Y.semantic ∧
-</span></span><span style=display:flex><span>    X.syntactic ⊆ Y.syntactic
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Each closure operator.</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>def</span> S_sem <span style=color:#f92672>(</span>X <span style=color:#f92672>:</span> PartialSemiotic R<span style=color:#f92672>)</span> <span style=color:#f92672>:</span> PartialSemiotic R <span style=color:#f92672>:</span>= ...
-</span></span><span style=display:flex><span><span style=color:#f92672>def</span> S_syn <span style=color:#f92672>(</span>X <span style=color:#f92672>:</span> PartialSemiotic R<span style=color:#f92672>)</span> <span style=color:#f92672>:</span> PartialSemiotic R <span style=color:#f92672>:</span>= ...
-</span></span><span style=display:flex><span><span style=color:#f92672>def</span> S_fus <span style=color:#f92672>(</span>X <span style=color:#f92672>:</span> PartialSemiotic R<span style=color:#f92672>)</span> <span style=color:#f92672>:</span> PartialSemiotic R <span style=color:#f92672>:</span>= ...
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- The composite.</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>def</span> S <span style=color:#f92672>(</span>X <span style=color:#f92672>:</span> PartialSemiotic R<span style=color:#f92672>)</span> <span style=color:#f92672>:</span> PartialSemiotic R <span style=color:#f92672>:</span>=
-</span></span><span style=display:flex><span>  S_fus <span style=color:#f92672>(</span>S_syn <span style=color:#f92672>(</span>S_sem X<span style=color:#f92672>))</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Theorem 7.6: S has a least fixed point.</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>theorem</span> S_has_lfp <span style=color:#f92672>:</span> ∃ X<span style=color:#f92672>,</span> S X = X ∧
-</span></span><span style=display:flex><span>    ∀ Y<span style=color:#f92672>,</span> S Y = Y → X ≤ Y <span style=color:#f92672>:</span>= <span style=color:#66d9ef>by</span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e>-- By Knaster-Tarski on the complete lattice of</span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e>-- partial structures.</span>
-</span></span><span style=display:flex><span>  sorry  <span style=color:#75715e>-- the real proof invokes OrderIso or</span>
-</span></span><span style=display:flex><span>         <span style=color:#75715e>-- CompleteLattice.fixedPoints</span>
-</span></span></code></pre></div><h3 id=mathlib-resources-1>Mathlib resources</h3><ul><li><code>OrderHom.lfp</code> or <code>CompleteLattice</code> fixed-point theorems</li><li><code>GaloisConnection</code> for the fusion reflection</li></ul><h3 id=estimated-size-3>Estimated size</h3><p>400-600 lines. This is the mathematical heart.</p><hr><h2 id=step-5-initiality>Step 5: initiality</h2><h3 id=what-the-spec-says-4>What the spec says</h3><p>Sections 8-9 define:</p><ul><li><strong>Definition 8.1</strong>: The semiotic universe as the least fixed point
-X* of S.</li><li><strong>Section 8.3</strong>: Semiotic structures and morphisms.</li><li><strong>Theorem 8.2</strong>: Initiality — X* is initial among semiotic
-structures.</li><li><strong>Section 9</strong>: The 2-category structure (fragmentwise equality as
-2-cells).</li></ul><h3 id=what-the-lean-file-should-contain-4>What the Lean file should contain</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-lean data-lang=lean><span style=display:flex><span><span style=color:#75715e>-- The semiotic universe.</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>def</span> SemioticUniverse <span style=color:#f92672>(</span>R <span style=color:#f92672>:</span> <span style=color:#66d9ef>Type</span>*<span style=color:#f92672>)</span> <span style=color:#f92672>[</span>SemioticAmbient R<span style=color:#f92672>]</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>(</span>prims <span style=color:#f92672>:</span> PartialSemiotic R<span style=color:#f92672>)</span> <span style=color:#f92672>:</span> PartialSemiotic R <span style=color:#f92672>:</span>=
-</span></span><span style=display:flex><span>  <span style=color:#75715e>-- The least fixed point of S above prims.</span>
-</span></span><span style=display:flex><span>  sorry
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Initiality: for any semiotic structure Y over the same</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- primitives, there is a unique morphism from X* to Y.</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>theorem</span> initiality <span style=color:#f92672>(</span>Y <span style=color:#f92672>:</span> SemioticStructure R<span style=color:#f92672>)</span> <span style=color:#f92672>:</span>
-</span></span><span style=display:flex><span>    ∃! f <span style=color:#f92672>:</span> Morphism SemioticUniverse Y<span style=color:#f92672>,</span> IsStructureMap f <span style=color:#f92672>:</span>=
-</span></span><span style=display:flex><span>  sorry
+proofs of monotonicity and inflationarity.</p>
+<p>The key theorem: <strong>Theorem 7.6</strong> — S has a least fixed point by
+Knaster-Tarski.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Partial semiotic structure.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">structure</span> PartialSemiotic <span style="color:#f92672">(</span>R <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span>*<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>SemioticAmbient R<span style="color:#f92672">]</span> <span style="color:#f92672">where</span>
+</span></span><span style="display:flex;"><span>  semantic <span style="color:#f92672">:</span> Set R
+</span></span><span style="display:flex;"><span>  syntactic <span style="color:#f92672">:</span> Set SemOp  <span style="color:#75715e">-- definable operators</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- The ordering on partial structures.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">instance</span> <span style="color:#f92672">:</span> LE <span style="color:#f92672">(</span>PartialSemiotic R<span style="color:#f92672">)</span> <span style="color:#f92672">where</span>
+</span></span><span style="display:flex;"><span>  le X Y <span style="color:#f92672">:</span>= X.semantic ⊆ Y.semantic ∧
+</span></span><span style="display:flex;"><span>    X.syntactic ⊆ Y.syntactic
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Each closure operator.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">def</span> S_sem <span style="color:#f92672">(</span>X <span style="color:#f92672">:</span> PartialSemiotic R<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> PartialSemiotic R <span style="color:#f92672">:</span>= ...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">def</span> S_syn <span style="color:#f92672">(</span>X <span style="color:#f92672">:</span> PartialSemiotic R<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> PartialSemiotic R <span style="color:#f92672">:</span>= ...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">def</span> S_fus <span style="color:#f92672">(</span>X <span style="color:#f92672">:</span> PartialSemiotic R<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> PartialSemiotic R <span style="color:#f92672">:</span>= ...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- The composite.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">def</span> S <span style="color:#f92672">(</span>X <span style="color:#f92672">:</span> PartialSemiotic R<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> PartialSemiotic R <span style="color:#f92672">:</span>=
+</span></span><span style="display:flex;"><span>  S_fus <span style="color:#f92672">(</span>S_syn <span style="color:#f92672">(</span>S_sem X<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Theorem 7.6: S has a least fixed point.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">theorem</span> S_has_lfp <span style="color:#f92672">:</span> ∃ X<span style="color:#f92672">,</span> S X = X ∧
+</span></span><span style="display:flex;"><span>    ∀ Y<span style="color:#f92672">,</span> S Y = Y → X ≤ Y <span style="color:#f92672">:</span>= <span style="color:#66d9ef">by</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">-- By Knaster-Tarski on the complete lattice of</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">-- partial structures.</span>
+</span></span><span style="display:flex;"><span>  sorry  <span style="color:#75715e">-- the real proof invokes OrderIso or</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">-- CompleteLattice.fixedPoints</span>
+</span></span></code></pre></div><h3 id="mathlib-resources-1">Mathlib resources</h3>
+<ul>
+<li><code>OrderHom.lfp</code> or <code>CompleteLattice</code> fixed-point theorems</li>
+<li><code>GaloisConnection</code> for the fusion reflection</li>
+</ul>
+<h3 id="estimated-size-3">Estimated size</h3>
+<p>400-600 lines. This is the mathematical heart.</p>
+<hr>
+<h2 id="step-5-initiality">Step 5: initiality</h2>
+<h3 id="what-the-spec-says-4">What the spec says</h3>
+<p>Sections 8-9 define:</p>
+<ul>
+<li><strong>Definition 8.1</strong>: The semiotic universe as the least fixed point
+X* of S.</li>
+<li><strong>Section 8.3</strong>: Semiotic structures and morphisms.</li>
+<li><strong>Theorem 8.2</strong>: Initiality — X* is initial among semiotic
+structures.</li>
+<li><strong>Section 9</strong>: The 2-category structure (fragmentwise equality as
+2-cells).</li>
+</ul>
+<h3 id="what-the-lean-file-should-contain-4">What the Lean file should contain</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- The semiotic universe.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">def</span> SemioticUniverse <span style="color:#f92672">(</span>R <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span>*<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>SemioticAmbient R<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">(</span>prims <span style="color:#f92672">:</span> PartialSemiotic R<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> PartialSemiotic R <span style="color:#f92672">:</span>=
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">-- The least fixed point of S above prims.</span>
+</span></span><span style="display:flex;"><span>  sorry
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Initiality: for any semiotic structure Y over the same</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- primitives, there is a unique morphism from X* to Y.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">theorem</span> initiality <span style="color:#f92672">(</span>Y <span style="color:#f92672">:</span> SemioticStructure R<span style="color:#f92672">)</span> <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    ∃! f <span style="color:#f92672">:</span> Morphism SemioticUniverse Y<span style="color:#f92672">,</span> IsStructureMap f <span style="color:#f92672">:</span>=
+</span></span><span style="display:flex;"><span>  sorry
 </span></span></code></pre></div><p>The uniqueness is &ldquo;up to fragmentwise extensional equality,&rdquo;
 which means the 2-categorical formulation is the honest statement.
 For the Lean formalization, proving existence of the morphism is
-the primary target; uniqueness modulo equivalence is secondary.</p><h3 id=estimated-size-4>Estimated size</h3><p>200-400 lines.</p><hr><h2 id=the-formalization-and-where-steps-2-5-attach>The formalization and where Steps 2-5 attach</h2><p>The Lean formalization lives at <code>../formalization/</code>. Step 1 is
-implemented across four atomic files under <code>SemioticUniverse/</code>:</p><ul><li><code>HeytingDomain.lean</code> — <code>HeytingDomain</code> typeclass (wraps Mathlib&rsquo;s
-<code>HeytingAlgebra</code>)</li><li><code>ModalClosure.lean</code> — <code>ModalClosure</code> typeclass with <code>j</code>, plus
-derived lemmas (habitual fragment is Heyting subalgebra)</li><li><code>TraceComonad.lean</code> — <code>TraceComonad</code> typeclass with <code>G</code>, plus
-derived properties (monotonicity, idempotence)</li><li><code>Ambient.lean</code> — <code>SemioticAmbient</code> mixin with interaction axioms</li></ul><p>Steps 2-5 import <code>SemioticAmbient</code> and build on it without changing
-what is already proved.</p><hr><h2 id=common-pitfalls>Common pitfalls</h2><ul><li><p><strong>Completeness vs. finiteness.</strong> The spec requires a <em>complete</em>
+the primary target; uniqueness modulo equivalence is secondary.</p>
+<h3 id="estimated-size-4">Estimated size</h3>
+<p>200-400 lines.</p>
+<hr>
+<h2 id="the-formalization-and-where-steps-2-5-attach">The formalization and where Steps 2-5 attach</h2>
+<p>The Lean formalization lives at <code>../formalization/</code>. Step 1 is
+implemented across four atomic files under <code>SemioticUniverse/</code>:</p>
+<ul>
+<li><code>HeytingDomain.lean</code> — <code>HeytingDomain</code> typeclass (wraps Mathlib&rsquo;s
+<code>HeytingAlgebra</code>)</li>
+<li><code>ModalClosure.lean</code> — <code>ModalClosure</code> typeclass with <code>j</code>, plus
+derived lemmas (habitual fragment is Heyting subalgebra)</li>
+<li><code>TraceComonad.lean</code> — <code>TraceComonad</code> typeclass with <code>G</code>, plus
+derived properties (monotonicity, idempotence)</li>
+<li><code>Ambient.lean</code> — <code>SemioticAmbient</code> mixin with interaction axioms</li>
+</ul>
+<p>Steps 2-5 import <code>SemioticAmbient</code> and build on it without changing
+what is already proved.</p>
+<hr>
+<h2 id="common-pitfalls">Common pitfalls</h2>
+<ul>
+<li>
+<p><strong>Completeness vs. finiteness.</strong> The spec requires a <em>complete</em>
 Heyting algebra (arbitrary joins and meets). Mathlib provides
 <code>CompleteHeytingAlgebra</code>. The current <code>HeytingDomain</code>
 only assumes a (bounded) <code>HeytingAlgebra</code>. The pragmatic choice: work with
 <code>HeytingAlgebra</code> first, prove what can be proved, and add
 completeness when the proof requires it (join-continuity of j
-over arbitrary families).</p></li><li><p><strong>Comonad in a poset.</strong> On a poset, a comonad simplifies because
+over arbitrary families).</p>
+</li>
+<li>
+<p><strong>Comonad in a poset.</strong> On a poset, a comonad simplifies because
 all diagrams commute automatically (at most one morphism between
 any two objects). The coassociativity and counit laws reduce to
 inequalities. Do not import a general category-theoretic comonad
-library — define the poset version directly.</p></li><li><p><strong>sorry is honest.</strong> Use <code>sorry</code> for steps that need more work,
+library — define the poset version directly.</p>
+</li>
+<li>
+<p><strong>sorry is honest.</strong> Use <code>sorry</code> for steps that need more work,
 and document what the sorry represents. A file with 10 sorry-free
 theorems and 3 sorries for hard steps is more useful than a file
-that avoids all difficulty by restricting scope.</p></li><li><p><strong>Typeclass vs. structure.</strong> Use <code>class</code> for <code>ModalClosure</code> and
+that avoids all difficulty by restricting scope.</p>
+</li>
+<li>
+<p><strong>Typeclass vs. structure.</strong> Use <code>class</code> for <code>ModalClosure</code> and
 <code>HeytingComonad</code> so that Lean&rsquo;s instance resolution finds them
 automatically. Use <code>structure</code> for <code>Fragment</code> and
-<code>PartialSemiotic</code> since these are data, not ambient assumptions.</p></li></ul><h2 id=what-comes-next>What comes next</h2><p>After completing these five steps, the formalization becomes Layer 2
+<code>PartialSemiotic</code> since these are data, not ambient assumptions.</p>
+</li>
+</ul>
+<h2 id="what-comes-next">What comes next</h2>
+<p>After completing these five steps, the formalization becomes Layer 2
 of the
-<a href=../../../../../../technology/specifications/agential-semioverse-repository/theory/operational-closure.md class=link-internal>verification infrastructure</a>.
+<a href="../../../../../../technology/specifications/agential-semioverse-repository/theory/operational-closure.md" class="link-internal">verification infrastructure</a>.
 The Python tools (predicate-graph.py, validate-content.py) continue as
 Layer 0/0.5 scaffolding. The Lean proofs are the real verification:
 they prove that the mathematical structures the repository claims to
-instantiate are coherent.</p><p>The practical path: complete Step 1, verify it compiles, then assess
+instantiate are coherent.</p>
+<p>The practical path: complete Step 1, verify it compiles, then assess
 which of Steps 2-5 to tackle next based on what the repository most
-needs verified.</p></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>claude-opus-4-6. (2026, March 6). Formalizing the Semiotic Universe in Lean. <i>emsenn.net</i>. https://emsenn.net/library/relationality/domains/universes/semiotic-universe/texts/formalizing-in-lean/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@misc{claude-opus-4-62026-formalizing-in-lean,
+needs verified.</p>
+
+  </div>
+  
+  <section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <details>
+    <summary>APA</summary>
+    <pre class="cite-block"><code>claude-opus-4-6. (2026, March 6). Formalizing the Semiotic Universe in Lean. <i>emsenn.net</i>. http://localhost:1313/library/relationality/domains/universes/semiotic-universe/texts/formalizing-in-lean/</code></pre>
+  </details>
+  <details>
+    <summary>BibTeX</summary>
+    <pre class="cite-block"><code>@misc{claude-opus-4-62026-formalizing-in-lean,
   author    = {claude-opus-4-6},
   title     = {Formalizing the Semiotic Universe in Lean},
   year      = {2026},
-  url       = {https://emsenn.net/library/relationality/domains/universes/semiotic-universe/texts/formalizing-in-lean/},
+  url       = {http://localhost:1313/library/relationality/domains/universes/semiotic-universe/texts/formalizing-in-lean/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/universes/semiotic-universe/texts/formalizing-in-lean/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-06>2026-03-06</time></dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>requires</a></dt><dd property="schema:educationalAlignment"><ul><li>../../../posets/curricula/heyting-algebras.md</li><li>../../../posets/curricula/closure-operators.md</li><li>../../../categories/ordinary-categories/curricula/monads-and-comonads.md</li><li>../../../../../technology/disciplines/computing/software/lean/curricula/types-and-propositions-in-lean.md</li><li>../../../../../technology/disciplines/computing/software/lean/curricula/tactics-in-lean.md</li><li>./semantic-ambient.md</li></ul></dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/lean/>Lean</a></li><li><a href=/tags/mathematicaluniverse/>MathematicalUniverse</a></li></ul></dd></div><div class=relation><dt>teaches</dt><dd property="emsenn:Teaches"><ul><li><a href=/library/relationality/domains/universes/semiotic-universe/texts/formalizing-in-lean/>formalizing the semiotic universe in Lean</a></li><li>SemioticUniverse typeclass</li><li>ModalClosure typeclass</li><li>HeytingComonad typeclass</li><li>Lean formalization strategy for the semiotic universe</li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Formalizing the Semiotic Universe in Lean</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/lesson/>lesson</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+  </details>
+</section>
+</article>
+<section class="page-relations" resource="http://localhost:1313/library/relationality/domains/universes/semiotic-universe/texts/formalizing-in-lean/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>date-created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-06">2026-03-06</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/logic/terms/necessity/">requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li>../../../posets/curricula/heyting-algebras.md</li><li>../../../posets/curricula/closure-operators.md</li><li>../../../categories/ordinary-categories/curricula/monads-and-comonads.md</li><li>../../../../../technology/disciplines/computing/software/lean/curricula/types-and-propositions-in-lean.md</li><li>../../../../../technology/disciplines/computing/software/lean/curricula/tactics-in-lean.md</li><li>./semantic-ambient.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/lean/">Lean</a></li><li><a href="/tags/mathematicaluniverse/">MathematicalUniverse</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li><a href="/library/relationality/domains/universes/semiotic-universe/texts/formalizing-in-lean/">formalizing the semiotic universe in Lean</a></li><li>SemioticUniverse typeclass</li><li>ModalClosure typeclass</li><li>HeytingComonad typeclass</li><li>Lean formalization strategy for the semiotic universe</li></ul></dd>
+      </div><div class="relation">
+        <dt>title</dt>
+        <dd property="schema:name">Formalizing the Semiotic Universe in Lean</dd>
+      </div><div class="relation">
+        <dt>type</dt>
+        <dd property="dc:type"><a href="/types/lesson/">lesson</a></dd>
+      </div>
+  </dl>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

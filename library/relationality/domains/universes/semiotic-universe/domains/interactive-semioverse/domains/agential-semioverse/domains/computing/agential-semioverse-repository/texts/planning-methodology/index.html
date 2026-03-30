@@ -1,86 +1,476 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ASR Planning Methodology - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":[{"@type":"Person","name":"emsenn"},{"@type":"Person","name":"claude"}],"dateModified":"2026-03-07","datePublished":"2026-03-07","description":"Specification for how strategic planning operates in the ASR: goals, cadence, gates, constraints, and outcome verification.","keywords":"ProjectManagement, Methodology, AgentialSemioverse, ProgressiveAutomation","name":"ASR Planning Methodology","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/planning-methodology/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>ASR Planning Methodology</h1><div class=meta><time class=dt-published datetime=2026-03-07T00:00:00Z>2026-03-07</time>
-<span>by <span class=p-author>emsenn</span>, <span class=p-author>claude</span></span>
-<span class=p-summary>Specification for how strategic planning operates in the ASR: goals, cadence, gates, constraints, and outcome verification.</span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#goals>Goals</a><ul><li><a href=#what-goals-are>What goals are</a></li><li><a href=#goal-format>Goal format</a></li><li><a href=#connecting-plans-to-goals>Connecting plans to goals</a></li></ul></li><li><a href=#gate-criteria>Gate criteria</a><ul><li><a href=#what-gates-are>What gates are</a></li><li><a href=#the-gates>The gates</a></li></ul></li><li><a href=#review-cadence>Review cadence</a><ul><li><a href=#what-cadence-is>What cadence is</a></li><li><a href=#the-cadences>The cadences</a></li><li><a href=#automated-review-support>Automated review support</a></li></ul></li><li><a href=#constraint-identification>Constraint identification</a><ul><li><a href=#what-constraint-identification-is>What constraint identification is</a></li><li><a href=#how-to-identify-the-constraint>How to identify the constraint</a></li><li><a href=#wip-limits>WIP limits</a></li></ul></li><li><a href=#outcome-verification>Outcome verification</a><ul><li><a href=#what-outcome-verification-is>What outcome verification is</a></li><li><a href=#how-to-verify-outcomes>How to verify outcomes</a></li></ul></li><li><a href=#relationship-to-existing-specifications>Relationship to existing specifications</a></li><li><a href=#relationship-to-cross-disciplinary-planning-practices>Relationship to cross-disciplinary planning practices</a></li><li><a href=#implementation>Implementation</a><ul><li><a href=#phase-1-goal-infrastructure>Phase 1: Goal infrastructure</a></li><li><a href=#phase-2-gate-enforcement>Phase 2: Gate enforcement</a></li><li><a href=#phase-3-cadence-support>Phase 3: Cadence support</a></li><li><a href=#phase-4-automation>Phase 4: Automation</a></li></ul></li></ul></nav></details><div class=e-content><p>This specification defines how strategic planning operates in the
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASR Planning Methodology - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "emsenn"
+    },
+    {
+      "@type": "Person",
+      "name": "claude"
+    }
+  ],
+  "dateModified": "2026-03-07",
+  "datePublished": "2026-03-07",
+  "description": "Specification for how strategic planning operates in the ASR: goals, cadence, gates, constraints, and outcome verification.",
+  "keywords": "ProjectManagement, Methodology, AgentialSemioverse, ProgressiveAutomation",
+  "name": "ASR Planning Methodology",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/planning-methodology/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="specification">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/">Universes</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/">Semiotic universe</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/">Interactive semioverse</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/">Agential semioverse</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/">Computing</a></nav>
+  <h1 class="p-name">ASR Planning Methodology</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-07T00:00:00Z">2026-03-07</time>
+    <span>by <span class="p-author">emsenn</span>, <span class="p-author">claude</span></span>
+    <span class="p-summary">Specification for how strategic planning operates in the ASR: goals, cadence, gates, constraints, and outcome verification.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#goals">Goals</a>
+      <ul>
+        <li><a href="#what-goals-are">What goals are</a></li>
+        <li><a href="#goal-format">Goal format</a></li>
+        <li><a href="#connecting-plans-to-goals">Connecting plans to goals</a></li>
+      </ul>
+    </li>
+    <li><a href="#gate-criteria">Gate criteria</a>
+      <ul>
+        <li><a href="#what-gates-are">What gates are</a></li>
+        <li><a href="#the-gates">The gates</a></li>
+      </ul>
+    </li>
+    <li><a href="#review-cadence">Review cadence</a>
+      <ul>
+        <li><a href="#what-cadence-is">What cadence is</a></li>
+        <li><a href="#the-cadences">The cadences</a></li>
+        <li><a href="#automated-review-support">Automated review support</a></li>
+      </ul>
+    </li>
+    <li><a href="#constraint-identification">Constraint identification</a>
+      <ul>
+        <li><a href="#what-constraint-identification-is">What constraint identification is</a></li>
+        <li><a href="#how-to-identify-the-constraint">How to identify the constraint</a></li>
+        <li><a href="#wip-limits">WIP limits</a></li>
+      </ul>
+    </li>
+    <li><a href="#outcome-verification">Outcome verification</a>
+      <ul>
+        <li><a href="#what-outcome-verification-is">What outcome verification is</a></li>
+        <li><a href="#how-to-verify-outcomes">How to verify outcomes</a></li>
+      </ul>
+    </li>
+    <li><a href="#relationship-to-existing-specifications">Relationship to existing specifications</a></li>
+    <li><a href="#relationship-to-cross-disciplinary-planning-practices">Relationship to cross-disciplinary planning practices</a></li>
+    <li><a href="#implementation">Implementation</a>
+      <ul>
+        <li><a href="#phase-1-goal-infrastructure">Phase 1: Goal infrastructure</a></li>
+        <li><a href="#phase-2-gate-enforcement">Phase 2: Gate enforcement</a></li>
+        <li><a href="#phase-3-cadence-support">Phase 3: Cadence support</a></li>
+        <li><a href="#phase-4-automation">Phase 4: Automation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>This specification defines how strategic planning operates in the
 Agential Semioverse Repository. It wraps around the existing plan
-format (see <a href=plans/index.md class=link-internal>plans/index.md</a>) to provide the
-methodology that connects plans to goals through defined processes.</p><p>The plan format tells you how to write a plan. This methodology tells
+format (see <a href="plans/index.md" class="link-internal">plans/index.md</a>) to provide the
+methodology that connects plans to goals through defined processes.</p>
+<p>The plan format tells you how to write a plan. This methodology tells
 you what to plan, when to plan, how to evaluate a plan, what to plan
 first, and whether planning worked. See
-<a href=texts/planning-without-methodology.md class=link-internal>planning without methodology</a>
-for the analysis that motivated this spec.</p><h2 id=goals>Goals</h2><h3 id=what-goals-are>What goals are</h3><p>A goal is a declared objective that plans serve. Goals answer &ldquo;where
+<a href="texts/planning-without-methodology.md" class="link-internal">planning without methodology</a>
+for the analysis that motivated this spec.</p>
+<h2 id="goals">Goals</h2>
+<h3 id="what-goals-are">What goals are</h3>
+<p>A goal is a declared objective that plans serve. Goals answer &ldquo;where
 is this project going?&rdquo; Plans answer &ldquo;what do we do next to get
-there?&rdquo;</p><p>Goals are not plans. A plan has steps and acceptance criteria. A goal
+there?&rdquo;</p>
+<p>Goals are not plans. A plan has steps and acceptance criteria. A goal
 has a direction and key results. Plans are completed when their tasks
 are done. Goals are achieved when their key results are met — which
 may require multiple plans, or different plans than originally
-anticipated.</p><h3 id=goal-format>Goal format</h3><p>Goals live at <code>plans/goals/</code> as markdown files.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span>---
-</span></span><span style=display:flex><span><span style=color:#f92672>title</span>: <span style=color:#e6db74>&#34;Goal title&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>date-created</span>: <span style=color:#e6db74>2026-01-01T00:00:00</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>authors</span>: [<span style=color:#ae81ff>emsenn]</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>type</span>: <span style=color:#ae81ff>text</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>status</span>: <span style=color:#ae81ff>active | achieved | abandoned | deferred</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>horizon</span>: <span style=color:#ae81ff>near | mid | far</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>tags</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>GoalTag</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;One sentence stating the objective.&#34;</span>
-</span></span><span style=display:flex><span>---
-</span></span></code></pre></div><p><strong>Horizons:</strong></p><ul><li><strong>near</strong> (1-3 sessions): what we&rsquo;re working on right now</li><li><strong>mid</strong> (1-4 weeks): what we&rsquo;re building toward</li><li><strong>far</strong> (months+): where the project is going</li></ul><p><strong>Sections:</strong></p><ul><li><strong>Objective</strong> — one sentence: what does achieving this look like?</li><li><strong>Key results</strong> — 2-5 measurable outcomes. Each is verifiable: you
-can answer &ldquo;is this done?&rdquo; with evidence, not judgment.</li><li><strong>Serving plans</strong> — list of plan numbers that contribute to this
-goal. Updated as plans are created and completed.</li><li><strong>Constraints</strong> — what is currently blocking progress toward this
-goal? Updated at each review.</li></ul><h3 id=connecting-plans-to-goals>Connecting plans to goals</h3><p>Every plan SHOULD have a <code>goal:</code> frontmatter field referencing the
+anticipated.</p>
+<h3 id="goal-format">Goal format</h3>
+<p>Goals live at <code>plans/goals/</code> as markdown files.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Goal title&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">date-created</span>: <span style="color:#e6db74">2026-01-01T00:00:00</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">authors</span>: [<span style="color:#ae81ff">emsenn]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">text</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">status</span>: <span style="color:#ae81ff">active | achieved | abandoned | deferred</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">horizon</span>: <span style="color:#ae81ff">near | mid | far</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tags</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">GoalTag</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;One sentence stating the objective.&#34;</span>
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><p><strong>Horizons:</strong></p>
+<ul>
+<li><strong>near</strong> (1-3 sessions): what we&rsquo;re working on right now</li>
+<li><strong>mid</strong> (1-4 weeks): what we&rsquo;re building toward</li>
+<li><strong>far</strong> (months+): where the project is going</li>
+</ul>
+<p><strong>Sections:</strong></p>
+<ul>
+<li><strong>Objective</strong> — one sentence: what does achieving this look like?</li>
+<li><strong>Key results</strong> — 2-5 measurable outcomes. Each is verifiable: you
+can answer &ldquo;is this done?&rdquo; with evidence, not judgment.</li>
+<li><strong>Serving plans</strong> — list of plan numbers that contribute to this
+goal. Updated as plans are created and completed.</li>
+<li><strong>Constraints</strong> — what is currently blocking progress toward this
+goal? Updated at each review.</li>
+</ul>
+<h3 id="connecting-plans-to-goals">Connecting plans to goals</h3>
+<p>Every plan SHOULD have a <code>goal:</code> frontmatter field referencing the
 goal it serves. Plans without goals are legitimate (tactical
 maintenance, opportunistic fixes) but should be the minority. If most
 plans have no goal, the planning system is reactive rather than
-strategic.</p><p>When creating a plan, the author identifies which goal it serves. If
-no existing goal fits, either:</p><ol><li>The plan addresses a gap — create a goal for it.</li><li>The plan is tactical — leave the goal field empty but note why.</li></ol><h2 id=gate-criteria>Gate criteria</h2><h3 id=what-gates-are>What gates are</h3><p>A gate is a set of conditions that must be met before a plan moves
+strategic.</p>
+<p>When creating a plan, the author identifies which goal it serves. If
+no existing goal fits, either:</p>
+<ol>
+<li>The plan addresses a gap — create a goal for it.</li>
+<li>The plan is tactical — leave the goal field empty but note why.</li>
+</ol>
+<h2 id="gate-criteria">Gate criteria</h2>
+<h3 id="what-gates-are">What gates are</h3>
+<p>A gate is a set of conditions that must be met before a plan moves
 to the next lifecycle state. Gates prevent plans from progressing
-without evidence that they&rsquo;re ready.</p><h3 id=the-gates>The gates</h3><p><strong>Draft → Proposed</strong> (agent gate):</p><ul><li><input disabled type=checkbox> Plan has all required sections (summary, motivation, steps,
-done-when, dependencies)</li><li><input disabled type=checkbox> Plan references a goal (or explicitly states why not)</li><li><input disabled type=checkbox> Dependencies are listed and their status is known</li><li><input disabled type=checkbox> Steps are concrete enough that another agent could execute them</li><li><input disabled type=checkbox> &ldquo;Done when&rdquo; criteria are verifiable (evidence-based, not
-judgment-based)</li></ul><p><strong>Proposed → Accepted</strong> (emsenn gate):</p><ul><li><input disabled type=checkbox> emsenn has read the plan</li><li><input disabled type=checkbox> emsenn agrees the goal is worth pursuing</li><li><input disabled type=checkbox> emsenn agrees the approach is reasonable</li><li><input disabled type=checkbox> No unresolved questions that would change the plan&rsquo;s direction</li></ul><p><strong>Accepted → Active</strong> (agent gate):</p><ul><li><input disabled type=checkbox> Dependencies are satisfied (depended-on plans are completed)</li><li><input disabled type=checkbox> No higher-priority active plans that would be displaced</li><li><input disabled type=checkbox> The agent has the context and tools to begin</li></ul><p><strong>Active → Completed</strong> (evidence gate):</p><ul><li><input disabled type=checkbox> All &ldquo;done when&rdquo; criteria are met with evidence</li><li><input disabled type=checkbox> A log entry records what was done and what was learned</li><li><input disabled type=checkbox> An outcome assessment is written (see outcome verification)</li></ul><h2 id=review-cadence>Review cadence</h2><h3 id=what-cadence-is>What cadence is</h3><p>A review cadence is a regular rhythm for assessing trajectory. Without
+without evidence that they&rsquo;re ready.</p>
+<h3 id="the-gates">The gates</h3>
+<p><strong>Draft → Proposed</strong> (agent gate):</p>
+<ul>
+<li><input disabled="" type="checkbox"> Plan has all required sections (summary, motivation, steps,
+done-when, dependencies)</li>
+<li><input disabled="" type="checkbox"> Plan references a goal (or explicitly states why not)</li>
+<li><input disabled="" type="checkbox"> Dependencies are listed and their status is known</li>
+<li><input disabled="" type="checkbox"> Steps are concrete enough that another agent could execute them</li>
+<li><input disabled="" type="checkbox"> &ldquo;Done when&rdquo; criteria are verifiable (evidence-based, not
+judgment-based)</li>
+</ul>
+<p><strong>Proposed → Accepted</strong> (emsenn gate):</p>
+<ul>
+<li><input disabled="" type="checkbox"> emsenn has read the plan</li>
+<li><input disabled="" type="checkbox"> emsenn agrees the goal is worth pursuing</li>
+<li><input disabled="" type="checkbox"> emsenn agrees the approach is reasonable</li>
+<li><input disabled="" type="checkbox"> No unresolved questions that would change the plan&rsquo;s direction</li>
+</ul>
+<p><strong>Accepted → Active</strong> (agent gate):</p>
+<ul>
+<li><input disabled="" type="checkbox"> Dependencies are satisfied (depended-on plans are completed)</li>
+<li><input disabled="" type="checkbox"> No higher-priority active plans that would be displaced</li>
+<li><input disabled="" type="checkbox"> The agent has the context and tools to begin</li>
+</ul>
+<p><strong>Active → Completed</strong> (evidence gate):</p>
+<ul>
+<li><input disabled="" type="checkbox"> All &ldquo;done when&rdquo; criteria are met with evidence</li>
+<li><input disabled="" type="checkbox"> A log entry records what was done and what was learned</li>
+<li><input disabled="" type="checkbox"> An outcome assessment is written (see outcome verification)</li>
+</ul>
+<h2 id="review-cadence">Review cadence</h2>
+<h3 id="what-cadence-is">What cadence is</h3>
+<p>A review cadence is a regular rhythm for assessing trajectory. Without
 cadence, planning is reactive — plans appear when someone thinks of
 work. With cadence, the system periodically asks: are we moving toward
-our goals? What should we be planning that we aren&rsquo;t?</p><h3 id=the-cadences>The cadences</h3><p><strong>Session start</strong> (every session):</p><ul><li>Run the review-plans skill</li><li>Check: is there an active plan? If so, continue it</li><li>Check: are any goals near-horizon and unserved by plans?</li></ul><p><strong>Weekly review</strong> (suggested, emsenn-driven):</p><ul><li>Assess each active goal: what progress was made? What&rsquo;s the
-current constraint?</li><li>Identify the bottleneck (Theory of Constraints): which single
-impediment, if removed, would unblock the most progress?</li><li>Adjust plan priorities based on constraint analysis</li><li>Update goal key results with current evidence</li></ul><p><strong>Monthly review</strong> (suggested, emsenn-driven):</p><ul><li>Assess mid-horizon goals: are they still the right goals?</li><li>Review completed plans: did they achieve their intended outcomes?
-(outcome verification)</li><li>Review the goal set: add, retire, or revise goals based on what
-was learned</li><li>Update far-horizon goals if the trajectory has shifted</li></ul><h3 id=automated-review-support>Automated review support</h3><p>The review-plans skill should be extended to:</p><ol><li>Check plans against gate criteria (mechanical check)</li><li>Report goal coverage (which goals have active plans, which don&rsquo;t)</li><li>Identify stale goals (no plan activity in 2+ weeks)</li><li>Compute basic progress metrics (plans completed / plans total per
-goal)</li></ol><h2 id=constraint-identification>Constraint identification</h2><h3 id=what-constraint-identification-is>What constraint identification is</h3><p>The Theory of Constraints (Goldratt, 1984) holds that every system
+our goals? What should we be planning that we aren&rsquo;t?</p>
+<h3 id="the-cadences">The cadences</h3>
+<p><strong>Session start</strong> (every session):</p>
+<ul>
+<li>Run the review-plans skill</li>
+<li>Check: is there an active plan? If so, continue it</li>
+<li>Check: are any goals near-horizon and unserved by plans?</li>
+</ul>
+<p><strong>Weekly review</strong> (suggested, emsenn-driven):</p>
+<ul>
+<li>Assess each active goal: what progress was made? What&rsquo;s the
+current constraint?</li>
+<li>Identify the bottleneck (Theory of Constraints): which single
+impediment, if removed, would unblock the most progress?</li>
+<li>Adjust plan priorities based on constraint analysis</li>
+<li>Update goal key results with current evidence</li>
+</ul>
+<p><strong>Monthly review</strong> (suggested, emsenn-driven):</p>
+<ul>
+<li>Assess mid-horizon goals: are they still the right goals?</li>
+<li>Review completed plans: did they achieve their intended outcomes?
+(outcome verification)</li>
+<li>Review the goal set: add, retire, or revise goals based on what
+was learned</li>
+<li>Update far-horizon goals if the trajectory has shifted</li>
+</ul>
+<h3 id="automated-review-support">Automated review support</h3>
+<p>The review-plans skill should be extended to:</p>
+<ol>
+<li>Check plans against gate criteria (mechanical check)</li>
+<li>Report goal coverage (which goals have active plans, which don&rsquo;t)</li>
+<li>Identify stale goals (no plan activity in 2+ weeks)</li>
+<li>Compute basic progress metrics (plans completed / plans total per
+goal)</li>
+</ol>
+<h2 id="constraint-identification">Constraint identification</h2>
+<h3 id="what-constraint-identification-is">What constraint identification is</h3>
+<p>The Theory of Constraints (Goldratt, 1984) holds that every system
 has exactly one constraint at any time that limits its throughput.
 Optimizing anything other than the constraint is waste. Constraint
-identification names the current bottleneck.</p><h3 id=how-to-identify-the-constraint>How to identify the constraint</h3><p>At each review, ask:</p><ol><li><strong>What goal has the most unmet key results?</strong> That goal is
-underprogressed.</li><li><strong>Why is it underprogressed?</strong> List the blocking factors:<ul><li>Missing infrastructure (tools, scripts, skills)</li><li>Missing knowledge (research not done, concepts not defined)</li><li>Missing capacity (too many active plans, WIP overload)</li><li>Missing clarity (goal poorly defined, approach uncertain)</li></ul></li><li><strong>Which blocking factor, if resolved, would unblock the most
-progress?</strong> That is the constraint.</li><li><strong>Is there a plan addressing the constraint?</strong> If not, create one
-and make it the highest priority.</li></ol><h3 id=wip-limits>WIP limits</h3><p>Per Kanban practice: limit the number of simultaneously active plans.
+identification names the current bottleneck.</p>
+<h3 id="how-to-identify-the-constraint">How to identify the constraint</h3>
+<p>At each review, ask:</p>
+<ol>
+<li><strong>What goal has the most unmet key results?</strong> That goal is
+underprogressed.</li>
+<li><strong>Why is it underprogressed?</strong> List the blocking factors:
+<ul>
+<li>Missing infrastructure (tools, scripts, skills)</li>
+<li>Missing knowledge (research not done, concepts not defined)</li>
+<li>Missing capacity (too many active plans, WIP overload)</li>
+<li>Missing clarity (goal poorly defined, approach uncertain)</li>
+</ul>
+</li>
+<li><strong>Which blocking factor, if resolved, would unblock the most
+progress?</strong> That is the constraint.</li>
+<li><strong>Is there a plan addressing the constraint?</strong> If not, create one
+and make it the highest priority.</li>
+</ol>
+<h3 id="wip-limits">WIP limits</h3>
+<p>Per Kanban practice: limit the number of simultaneously active plans.
 A single agent working with a single human should not have more than
 2-3 active plans at any time. If there are more, the system is
-thrashing rather than making progress.</p><h2 id=outcome-verification>Outcome verification</h2><h3 id=what-outcome-verification-is>What outcome verification is</h3><p>Outcome verification checks whether a completed plan achieved its
+thrashing rather than making progress.</p>
+<h2 id="outcome-verification">Outcome verification</h2>
+<h3 id="what-outcome-verification-is">What outcome verification is</h3>
+<p>Outcome verification checks whether a completed plan achieved its
 purpose — not just whether its tasks were done. This closes the
-learning loop: the system discovers whether its plans were effective.</p><h3 id=how-to-verify-outcomes>How to verify outcomes</h3><p>When a plan is completed, add an <strong>Outcome</strong> section:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#75715e>## Outcome
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=font-weight:700>**Goal served**</span>: [goal reference]
-</span></span><span style=display:flex><span><span style=font-weight:700>**Key results affected**</span>: [which key results this plan moved]
-</span></span><span style=display:flex><span><span style=font-weight:700>**Evidence**</span>: [what changed, measured against the goal]
-</span></span><span style=display:flex><span><span style=font-weight:700>**Lessons**</span>: [what would we do differently?]
+learning loop: the system discovers whether its plans were effective.</p>
+<h3 id="how-to-verify-outcomes">How to verify outcomes</h3>
+<p>When a plan is completed, add an <strong>Outcome</strong> section:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#75715e">## Outcome
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Goal served**</span>: [goal reference]
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Key results affected**</span>: [which key results this plan moved]
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Evidence**</span>: [what changed, measured against the goal]
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Lessons**</span>: [what would we do differently?]
 </span></span></code></pre></div><p>If a plan was completed but the goal did not advance, that is
 valuable information — it means the approach was wrong, not that the
-work was wasted. The lesson feeds into future planning.</p><h2 id=relationship-to-existing-specifications>Relationship to existing specifications</h2><p>This methodology wraps around existing infrastructure:</p><ul><li><strong>Plan format</strong> (<code>plans/index.md</code>): retained as-is. This spec adds
-goals, gates, cadence, and verification.</li><li><strong>Work-unit lifecycle</strong> (<code>theory/work-unit-lifecycle.md</code>): governs
+work was wasted. The lesson feeds into future planning.</p>
+<h2 id="relationship-to-existing-specifications">Relationship to existing specifications</h2>
+<p>This methodology wraps around existing infrastructure:</p>
+<ul>
+<li><strong>Plan format</strong> (<code>plans/index.md</code>): retained as-is. This spec adds
+goals, gates, cadence, and verification.</li>
+<li><strong>Work-unit lifecycle</strong> (<code>theory/work-unit-lifecycle.md</code>): governs
 individual atomic actions. This spec governs the strategic layer
-above work units.</li><li><strong>Skill manifests</strong> (<code>theory/skill-manifests.md</code>): skills execute
-plans. This spec determines which plans exist and in what order.</li><li><strong>Policies</strong> (<code>policies/</code>): standing commitments. Goals are
-directional; policies are behavioral. Both constrain planning.</li><li><strong>Closure pressure</strong> (<code>concepts/closure-pressure.md</code>): goals arise
+above work units.</li>
+<li><strong>Skill manifests</strong> (<code>theory/skill-manifests.md</code>): skills execute
+plans. This spec determines which plans exist and in what order.</li>
+<li><strong>Policies</strong> (<code>policies/</code>): standing commitments. Goals are
+directional; policies are behavioral. Both constrain planning.</li>
+<li><strong>Closure pressure</strong> (<code>concepts/closure-pressure.md</code>): goals arise
 from closure pressure — when the system&rsquo;s current state fails to
-satisfy its closures, the pressure generates goals.</li></ul><h2 id=relationship-to-cross-disciplinary-planning-practices>Relationship to cross-disciplinary planning practices</h2><p>This methodology draws on patterns identified in the
-<a href=../../../disciplines/computing/disciplines/software-engineering/topics/structured-work-paradigms/texts/cross-disciplinary-survey-2026.md class=link-internal>cross-disciplinary survey</a>:</p><table><thead><tr><th>Component</th><th>Source practice</th></tr></thead><tbody><tr><td>Goals + key results</td><td>OKRs (Grove, Intel, 1970s)</td></tr><tr><td>Gate criteria</td><td>TRLs (NASA), CMMI maturity levels, DoD milestones</td></tr><tr><td>Review cadence</td><td>PDCA (Deming), sprint retrospectives (Scrum)</td></tr><tr><td>Constraint identification</td><td>Theory of Constraints (Goldratt, 1984)</td></tr><tr><td>Outcome verification</td><td>Pre-registration (Chambers, 2013), DMAIC Control</td></tr><tr><td>Decision records</td><td>Architecture Decision Records (Nygard, 2011)</td></tr><tr><td>WIP limits</td><td>Kanban (Anderson, 2004)</td></tr><tr><td>Plan format</td><td>RFCs (IETF), PEPs (Python)</td></tr></tbody></table><h2 id=implementation>Implementation</h2><h3 id=phase-1-goal-infrastructure>Phase 1: Goal infrastructure</h3><ul><li>Create <code>plans/goals/</code> directory with index.md</li><li>Write 3-5 initial goals at near/mid/far horizons</li><li>Add <code>goal:</code> field to plan template</li><li>Retroactively tag existing plans with goals</li></ul><h3 id=phase-2-gate-enforcement>Phase 2: Gate enforcement</h3><ul><li>Add gate checklist to plan template</li><li>Extend review-plans skill to check gate criteria mechanically</li><li>Plans that pass the draft→proposed gate get auto-proposed</li></ul><h3 id=phase-3-cadence-support>Phase 3: Cadence support</h3><ul><li>Extend review-plans skill with goal coverage reporting</li><li>Build a constraint-identification prompt for weekly reviews</li><li>Add outcome section to plan template</li></ul><h3 id=phase-4-automation>Phase 4: Automation</h3><ul><li>Score goal progress mechanically (key results met / total)</li><li>Identify stale goals automatically</li><li>WIP limit enforcement (warn when >3 plans active)</li></ul></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>emsenn and claude. (2026, March 7). ASR Planning Methodology. <i>emsenn.net</i>. https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/planning-methodology/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@misc{emsenn2026-planning-methodology,
+satisfy its closures, the pressure generates goals.</li>
+</ul>
+<h2 id="relationship-to-cross-disciplinary-planning-practices">Relationship to cross-disciplinary planning practices</h2>
+<p>This methodology draws on patterns identified in the
+<a href="../../../disciplines/computing/disciplines/software-engineering/topics/structured-work-paradigms/texts/cross-disciplinary-survey-2026.md" class="link-internal">cross-disciplinary survey</a>:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Component</th>
+          <th>Source practice</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Goals + key results</td>
+          <td>OKRs (Grove, Intel, 1970s)</td>
+      </tr>
+      <tr>
+          <td>Gate criteria</td>
+          <td>TRLs (NASA), CMMI maturity levels, DoD milestones</td>
+      </tr>
+      <tr>
+          <td>Review cadence</td>
+          <td>PDCA (Deming), sprint retrospectives (Scrum)</td>
+      </tr>
+      <tr>
+          <td>Constraint identification</td>
+          <td>Theory of Constraints (Goldratt, 1984)</td>
+      </tr>
+      <tr>
+          <td>Outcome verification</td>
+          <td>Pre-registration (Chambers, 2013), DMAIC Control</td>
+      </tr>
+      <tr>
+          <td>Decision records</td>
+          <td>Architecture Decision Records (Nygard, 2011)</td>
+      </tr>
+      <tr>
+          <td>WIP limits</td>
+          <td>Kanban (Anderson, 2004)</td>
+      </tr>
+      <tr>
+          <td>Plan format</td>
+          <td>RFCs (IETF), PEPs (Python)</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="implementation">Implementation</h2>
+<h3 id="phase-1-goal-infrastructure">Phase 1: Goal infrastructure</h3>
+<ul>
+<li>Create <code>plans/goals/</code> directory with index.md</li>
+<li>Write 3-5 initial goals at near/mid/far horizons</li>
+<li>Add <code>goal:</code> field to plan template</li>
+<li>Retroactively tag existing plans with goals</li>
+</ul>
+<h3 id="phase-2-gate-enforcement">Phase 2: Gate enforcement</h3>
+<ul>
+<li>Add gate checklist to plan template</li>
+<li>Extend review-plans skill to check gate criteria mechanically</li>
+<li>Plans that pass the draft→proposed gate get auto-proposed</li>
+</ul>
+<h3 id="phase-3-cadence-support">Phase 3: Cadence support</h3>
+<ul>
+<li>Extend review-plans skill with goal coverage reporting</li>
+<li>Build a constraint-identification prompt for weekly reviews</li>
+<li>Add outcome section to plan template</li>
+</ul>
+<h3 id="phase-4-automation">Phase 4: Automation</h3>
+<ul>
+<li>Score goal progress mechanically (key results met / total)</li>
+<li>Identify stale goals automatically</li>
+<li>WIP limit enforcement (warn when &gt;3 plans active)</li>
+</ul>
+
+  </div>
+  
+  <section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <details>
+    <summary>APA</summary>
+    <pre class="cite-block"><code>emsenn and claude. (2026, March 7). ASR Planning Methodology. <i>emsenn.net</i>. http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/planning-methodology/</code></pre>
+  </details>
+  <details>
+    <summary>BibTeX</summary>
+    <pre class="cite-block"><code>@misc{emsenn2026-planning-methodology,
   author    = {emsenn and claude},
   title     = {ASR Planning Methodology},
   year      = {2026},
   note      = {Specification for how strategic planning operates in the ASR: goals, cadence, gates, constraints, and outcome verification.},
-  url       = {https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/planning-methodology/},
+  url       = {http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/planning-methodology/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/planning-methodology/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li><li><a href=/authors/claude/>claude</a></li></ul></dd></div><div class=relation><dt>cites</dt><dd property="schema:citation"><ul><li>PDCA (Shewhart/Deming)</li><li>Theory of Constraints (Goldratt, 1984)</li><li>OKRs (Andy Grove, Intel, 1970s)</li><li>Technology Readiness Levels (NASA, 1970s)</li><li>Pre-registration (Chambers, 2013)</li><li>Architecture Decision Records (Michael Nygard, 2011)</li><li>Shape Up (Ryan Singer, Basecamp, 2019)</li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-07>2026-03-07</time></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">Specification for how strategic planning operates in the ASR: goals, cadence, gates, constraints, and outcome verification.</dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>requires</a></dt><dd property="schema:educationalAlignment"><ul><li>plans/index.md</li></ul></dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/projectmanagement/>ProjectManagement</a></li><li><a href=/tags/methodology/>Methodology</a></li><li><a href=/tags/agentialsemioverse/>AgentialSemioverse</a></li><li><a href=/tags/progressiveautomation/>ProgressiveAutomation</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">ASR Planning Methodology</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/specification/>specification</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+  </details>
+</section>
+</article>
+<section class="page-relations" resource="http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/planning-methodology/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li><li><a href="/authors/claude/">claude</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>cites</dt>
+        <dd property="schema:citation"><ul><li>PDCA (Shewhart/Deming)</li><li>Theory of Constraints (Goldratt, 1984)</li><li>OKRs (Andy Grove, Intel, 1970s)</li><li>Technology Readiness Levels (NASA, 1970s)</li><li>Pre-registration (Chambers, 2013)</li><li>Architecture Decision Records (Michael Nygard, 2011)</li><li>Shape Up (Ryan Singer, Basecamp, 2019)</li></ul></dd>
+      </div><div class="relation">
+        <dt>date-created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-07">2026-03-07</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/information/terms/description/">description</a></dt>
+        <dd property="schema:description">Specification for how strategic planning operates in the ASR: goals, cadence, gates, constraints, and outcome verification.</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/logic/terms/necessity/">requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li>plans/index.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/projectmanagement/">ProjectManagement</a></li><li><a href="/tags/methodology/">Methodology</a></li><li><a href="/tags/agentialsemioverse/">AgentialSemioverse</a></li><li><a href="/tags/progressiveautomation/">ProgressiveAutomation</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>title</dt>
+        <dd property="schema:name">ASR Planning Methodology</dd>
+      </div><div class="relation">
+        <dt>type</dt>
+        <dd property="dc:type"><a href="/types/specification/">specification</a></dd>
+      </div>
+  <div class="relation">
+    <dt>referenced-by</dt>
+    <dd>
+      <ul><li><a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/domains/agential-semioverse-repository/texts/planning-methodology/">ASR Planning Methodology</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

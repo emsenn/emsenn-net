@@ -1,166 +1,340 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Black Holes as Information-Theoretic Stability Optimizers - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"emsenn"},"dateModified":"2025-10-11","datePublished":"2025-10-11","description":"Abstract We propose that black holes can be modeled as information-theoretic stability optimizers: physical systems that maximize entropy while minimizing divergence between interior and exterior information distributions. Using the definition of stability reward as a function of coupling between systems (see Information-Theoretic Stability as Reward Function), we reformulate the laws of black-hole thermodynamics as expressions of informational coupling across the horizon. The event horizon is interpreted as a stability boundary where entropy flux across the surface balances the internal rate of informational compression. This perspective unifies the thermodynamic, holographic, and information-geometric descriptions of black holes and suggests a general stability principle underlying gravitational dynamics.\n","keywords":"information-theory, black-holes, thermodynamics, holographic-principle, research","name":"Black Holes as Information-Theoretic Stability Optimizers","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/cosmology/texts/describing-black-holes-as-informational-stability-optimizers/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Black Holes as Information-Theoretic Stability Optimizers</h1><div class=meta><time class=dt-published datetime=2025-10-11T00:00:00Z>2025-10-11</time>
-<span>by <span class=p-author>emsenn</span></span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#21-definition>2.1 Definition</a></li><li><a href=#22-extension-to-continuous-fields>2.2 Extension to Continuous Fields</a></li></ul><ul><li><a href=#31-entropy-flux-balance>3.1 Entropy Flux Balance</a></li><li><a href=#32-divergence-minimization>3.2 Divergence Minimization</a></li></ul><ul><li><a href=#41-entropyarea-relation>4.1 Entropy–Area Relation</a></li><li><a href=#42-second-law-as-global-stability-increase>4.2 Second Law as Global Stability Increase</a></li></ul></nav></details><div class=e-content>&lt;h1 id="abstract">Abstract&lt;/h1>
-&lt;p>We propose that black holes can be modeled as information-theoretic stability optimizers: physical systems that maximize entropy while minimizing divergence between interior and exterior information distributions.
-Using the definition of stability reward as a function of coupling between systems (see &lt;em>Information-Theoretic Stability as Reward Function&lt;/em>), we reformulate the laws of black-hole thermodynamics as expressions of informational coupling across the horizon.
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Holes as Information-Theoretic Stability Optimizers - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "emsenn"
+  },
+  "dateModified": "2025-10-11",
+  "datePublished": "2025-10-11",
+  "description": "Abstract We propose that black holes can be modeled as information-theoretic stability optimizers: physical systems that maximize entropy while minimizing divergence between interior and exterior information distributions. Using the definition of stability reward as a function of coupling between systems (see Information-Theoretic Stability as Reward Function), we reformulate the laws of black-hole thermodynamics as expressions of informational coupling across the horizon. The event horizon is interpreted as a stability boundary where entropy flux across the surface balances the internal rate of informational compression. This perspective unifies the thermodynamic, holographic, and information-geometric descriptions of black holes and suggests a general stability principle underlying gravitational dynamics.\n",
+  "keywords": "information-theory, black-holes, thermodynamics, holographic-principle, research",
+  "name": "Black Holes as Information-Theoretic Stability Optimizers",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/cosmology/texts/describing-black-holes-as-informational-stability-optimizers/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="paper">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/cosmology/">Cosmology</a></nav>
+  <h1 class="p-name">Black Holes as Information-Theoretic Stability Optimizers</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2025-10-11T00:00:00Z">2025-10-11</time>
+    <span>by <span class="p-author">emsenn</span></span>
+    
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#21-definition">2.1 Definition</a></li>
+    <li><a href="#22-extension-to-continuous-fields">2.2 Extension to Continuous Fields</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#31-entropy-flux-balance">3.1 Entropy Flux Balance</a></li>
+    <li><a href="#32-divergence-minimization">3.2 Divergence Minimization</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#41-entropyarea-relation">4.1 Entropy–Area Relation</a></li>
+    <li><a href="#42-second-law-as-global-stability-increase">4.2 Second Law as Global Stability Increase</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    &lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p&gt;We propose that black holes can be modeled as information-theoretic stability optimizers: physical systems that maximize entropy while minimizing divergence between interior and exterior information distributions.
+Using the definition of stability reward as a function of coupling between systems (see &lt;em&gt;Information-Theoretic Stability as Reward Function&lt;/em&gt;), we reformulate the laws of black-hole thermodynamics as expressions of informational coupling across the horizon.
 The event horizon is interpreted as a stability boundary where entropy flux across the surface balances the internal rate of informational compression.
-This perspective unifies the thermodynamic, holographic, and information-geometric descriptions of black holes and suggests a general stability principle underlying gravitational dynamics.&lt;/p>
-&lt;h1 id="1-introduction">1. Introduction&lt;/h1>
-&lt;p>The thermodynamics of black holes reveals a deep correspondence between gravitational dynamics and information theory (Bekenstein 1973; Hawking 1975; Bousso 2002).
+This perspective unifies the thermodynamic, holographic, and information-geometric descriptions of black holes and suggests a general stability principle underlying gravitational dynamics.&lt;/p&gt;
+&lt;h1 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h1&gt;
+&lt;p&gt;The thermodynamics of black holes reveals a deep correspondence between gravitational dynamics and information theory (Bekenstein 1973; Hawking 1975; Bousso 2002).
 The entropy–area law, the temperature of Hawking radiation, and the holographic principle all imply that black holes organize information in an optimal fashion.
-Here we interpret these properties through the lens of &lt;strong>information-theoretic stability&lt;/strong> (see &lt;em>Information-Theoretic Stability as Reward Function&lt;/em>): stability as a reward function of coupling between systems. The exterior field adapts to the black hole&amp;rsquo;s geometric constraints; the black hole&amp;rsquo;s interior adapts to infalling matter. Each side&amp;rsquo;s stability is a function of its coupling to the other across the horizon.&lt;/p>
-&lt;h1 id="2-information-theoretic-stability">2. Information-Theoretic Stability&lt;/h1>
-&lt;h2 id="21-definition">2.1 Definition&lt;/h2>
-&lt;p>Following &lt;em>Information-Theoretic Stability as Reward Function&lt;/em>, for any system &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>A&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">A&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> adapting to a reference &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>B&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">B&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>, the stability reward
-&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>R&lt;/mi>&lt;mi>s&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>t&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>=&lt;/mo>&lt;mo>−&lt;/mo>&lt;mfrac>&lt;mn>1&lt;/mn>&lt;mrow>&lt;mi>δ&lt;/mi>&lt;mi>t&lt;/mi>&lt;/mrow>&lt;/mfrac>&lt;mtext> &lt;/mtext>&lt;msub>&lt;mi>D&lt;/mi>&lt;mrow>&lt;mi mathvariant="normal">K&lt;/mi>&lt;mi mathvariant="normal">L&lt;/mi>&lt;/mrow>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>p&lt;/mi>&lt;mrow>&lt;mi>t&lt;/mi>&lt;mo>+&lt;/mo>&lt;mi>δ&lt;/mi>&lt;/mrow>&lt;/msub>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msub>&lt;mi>p&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mo stretchy="false">)&lt;/mo>&lt;mo separator="true">,&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">
-R_s(t) = -\frac{1}{\delta t}\,D_{\mathrm{KL}}(p_{t+\delta}||p_t),
-&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
-is a function of &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>A&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">A&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&amp;rsquo;s coupling to &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>B&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">B&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>, not an intrinsic property of &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>A&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">A&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.
-At equilibrium &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>R&lt;/mi>&lt;mi>s&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>t&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>→&lt;/mo>&lt;mn>0&lt;/mn>&lt;/mrow>&lt;annotation encoding="application/x-tex">R_s(t)\to0&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>: the system has fully adapted to its reference and entropy production is balanced by entropy dissipation.&lt;/p>
-&lt;h2 id="22-extension-to-continuous-fields">2.2 Extension to Continuous Fields&lt;/h2>
-&lt;p>Let the microstate field of spacetime be represented by a probability density &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>p&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msup>&lt;mi>x&lt;/mi>&lt;mi>μ&lt;/mi>&lt;/msup>&lt;mo separator="true">,&lt;/mo>&lt;mi>t&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">p(x^\mu,t)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> defined on a 4-volume &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi mathvariant="script">V&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\mathcal{V}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> with metric &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>g&lt;/mi>&lt;mrow>&lt;mi>μ&lt;/mi>&lt;mi>ν&lt;/mi>&lt;/mrow>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">g_{\mu\nu}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.
+Here we interpret these properties through the lens of &lt;strong&gt;information-theoretic stability&lt;/strong&gt; (see &lt;em&gt;Information-Theoretic Stability as Reward Function&lt;/em&gt;): stability as a reward function of coupling between systems. The exterior field adapts to the black hole&amp;rsquo;s geometric constraints; the black hole&amp;rsquo;s interior adapts to infalling matter. Each side&amp;rsquo;s stability is a function of its coupling to the other across the horizon.&lt;/p&gt;
+&lt;h1 id=&#34;2-information-theoretic-stability&#34;&gt;2. Information-Theoretic Stability&lt;/h1&gt;
+&lt;h2 id=&#34;21-definition&#34;&gt;2.1 Definition&lt;/h2&gt;
+&lt;p&gt;Following &lt;em&gt;Information-Theoretic Stability as Reward Function&lt;/em&gt;, for any system &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; adapting to a reference &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;B&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;, the stability reward
+&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mfrac&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mrow&gt;&lt;mi&gt;δ&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;K&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;L&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mrow&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo&gt;&#43;&lt;/mo&gt;&lt;mi&gt;δ&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
+R_s(t) = -\frac{1}{\delta t}\,D_{\mathrm{KL}}(p_{t&#43;\delta}||p_t),
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
+is a function of &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&amp;rsquo;s coupling to &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;B&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;, not an intrinsic property of &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.
+At equilibrium &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;→&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;R_s(t)\to0&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;: the system has fully adapted to its reference and entropy production is balanced by entropy dissipation.&lt;/p&gt;
+&lt;h2 id=&#34;22-extension-to-continuous-fields&#34;&gt;2.2 Extension to Continuous Fields&lt;/h2&gt;
+&lt;p&gt;Let the microstate field of spacetime be represented by a probability density &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;μ&lt;/mi&gt;&lt;/msup&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;p(x^\mu,t)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; defined on a 4-volume &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;script&#34;&gt;V&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\mathcal{V}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; with metric &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mrow&gt;&lt;mi&gt;μ&lt;/mi&gt;&lt;mi&gt;ν&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;g_{\mu\nu}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.
 Then
-&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>R&lt;/mi>&lt;mi>s&lt;/mi>&lt;/msub>&lt;mo>=&lt;/mo>&lt;mo>−&lt;/mo>&lt;msub>&lt;mo>∫&lt;/mo>&lt;mi mathvariant="script">V&lt;/mi>&lt;/msub>&lt;mi>p&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msup>&lt;mi>x&lt;/mi>&lt;mi>μ&lt;/mi>&lt;/msup>&lt;mo separator="true">,&lt;/mo>&lt;mi>t&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mtext> &lt;/mtext>&lt;msub>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mi>log&lt;/mi>&lt;mo>⁡&lt;/mo>&lt;mtext> ⁣&lt;/mtext>&lt;mfrac>&lt;mrow>&lt;mi>p&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msup>&lt;mi>x&lt;/mi>&lt;mi>μ&lt;/mi>&lt;/msup>&lt;mo separator="true">,&lt;/mo>&lt;mi>t&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;mrow>&lt;mi>p&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msup>&lt;mi>x&lt;/mi>&lt;mi>μ&lt;/mi>&lt;/msup>&lt;mo separator="true">,&lt;/mo>&lt;mi>t&lt;/mi>&lt;mo>−&lt;/mo>&lt;mi>δ&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;/mfrac>&lt;mtext> &lt;/mtext>&lt;msqrt>&lt;mrow>&lt;mo>−&lt;/mo>&lt;mi>g&lt;/mi>&lt;/mrow>&lt;/msqrt>&lt;mtext> &lt;/mtext>&lt;msup>&lt;mi>d&lt;/mi>&lt;mn>4&lt;/mn>&lt;/msup>&lt;mi>x&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">
+&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;msub&gt;&lt;mo&gt;∫&lt;/mo&gt;&lt;mi mathvariant=&#34;script&#34;&gt;V&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;μ&lt;/mi&gt;&lt;/msup&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;log&lt;/mi&gt;&lt;mo&gt;⁡&lt;/mo&gt;&lt;mtext&gt; ⁣&lt;/mtext&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;μ&lt;/mi&gt;&lt;/msup&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;μ&lt;/mi&gt;&lt;/msup&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mi&gt;δ&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;msqrt&gt;&lt;mrow&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;/mrow&gt;&lt;/msqrt&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;msup&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;/msup&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
 R_s = -\int_{\mathcal{V}} p(x^\mu,t)\,
-\partial_t \log\!\frac{p(x^\mu,t)}{p(x^\mu,t-\delta)}\,
-\sqrt{-g}\,d^4x
-&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
+       \partial_t \log\!\frac{p(x^\mu,t)}{p(x^\mu,t-\delta)}\,
+       \sqrt{-g}\,d^4x
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
 defines the continuous stability functional.
 Local conservation of probability implies a continuity equation
-&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi mathvariant="normal">∇&lt;/mi>&lt;mi>μ&lt;/mi>&lt;/msub>&lt;msup>&lt;mi>J&lt;/mi>&lt;mi>μ&lt;/mi>&lt;/msup>&lt;mo>=&lt;/mo>&lt;mn>0&lt;/mn>&lt;mo separator="true">,&lt;/mo>&lt;mspace width="2em"/>&lt;msup>&lt;mi>J&lt;/mi>&lt;mi>μ&lt;/mi>&lt;/msup>&lt;mo>=&lt;/mo>&lt;mi>p&lt;/mi>&lt;mtext> &lt;/mtext>&lt;msup>&lt;mi>u&lt;/mi>&lt;mi>μ&lt;/mi>&lt;/msup>&lt;mo separator="true">,&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">
+&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∇&lt;/mi&gt;&lt;mi&gt;μ&lt;/mi&gt;&lt;/msub&gt;&lt;msup&gt;&lt;mi&gt;J&lt;/mi&gt;&lt;mi&gt;μ&lt;/mi&gt;&lt;/msup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mspace width=&#34;2em&#34;/&gt;&lt;msup&gt;&lt;mi&gt;J&lt;/mi&gt;&lt;mi&gt;μ&lt;/mi&gt;&lt;/msup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;msup&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;μ&lt;/mi&gt;&lt;/msup&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
 \nabla_\mu J^\mu = 0,\qquad
 J^\mu = p\,u^\mu,
-&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
-where &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msup>&lt;mi>u&lt;/mi>&lt;mi>μ&lt;/mi>&lt;/msup>&lt;/mrow>&lt;annotation encoding="application/x-tex">u^\mu&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> is the four-velocity of informational flow.&lt;/p>
-&lt;h1 id="3-the-event-horizon-as-stability-boundary">3. The Event Horizon as Stability Boundary&lt;/h1>
-&lt;h2 id="31-entropy-flux-balance">3.1 Entropy Flux Balance&lt;/h2>
-&lt;p>Consider a stationary black hole with horizon area &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>A&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">A&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.
-Let &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>H&lt;/mi>&lt;mtext>int&lt;/mtext>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">H_{\text{int}}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> and &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>H&lt;/mi>&lt;mtext>ext&lt;/mtext>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">H_{\text{ext}}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> denote the Shannon entropies of internal and external fields.
-At the horizon &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi mathvariant="script">H&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\mathcal{H}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>,
-&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;msub>&lt;mi>H&lt;/mi>&lt;mtext>int&lt;/mtext>&lt;/msub>&lt;mo>+&lt;/mo>&lt;msub>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;msub>&lt;mi>H&lt;/mi>&lt;mtext>ext&lt;/mtext>&lt;/msub>&lt;mo>=&lt;/mo>&lt;mn>0&lt;/mn>&lt;mo separator="true">,&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">
-\partial_t H_{\text{int}} + \partial_t H_{\text{ext}} = 0,
-&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
+where &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msup&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;μ&lt;/mi&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;u^\mu&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; is the four-velocity of informational flow.&lt;/p&gt;
+&lt;h1 id=&#34;3-the-event-horizon-as-stability-boundary&#34;&gt;3. The Event Horizon as Stability Boundary&lt;/h1&gt;
+&lt;h2 id=&#34;31-entropy-flux-balance&#34;&gt;3.1 Entropy Flux Balance&lt;/h2&gt;
+&lt;p&gt;Consider a stationary black hole with horizon area &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.
+Let &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mtext&gt;int&lt;/mtext&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;H_{\text{int}}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; and &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mtext&gt;ext&lt;/mtext&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;H_{\text{ext}}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; denote the Shannon entropies of internal and external fields.
+At the horizon &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;script&#34;&gt;H&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\mathcal{H}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;,
+&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;msub&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mtext&gt;int&lt;/mtext&gt;&lt;/msub&gt;&lt;mo&gt;&#43;&lt;/mo&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;msub&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mtext&gt;ext&lt;/mtext&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
+\partial_t H_{\text{int}} &#43; \partial_t H_{\text{ext}} = 0,
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
 so that entropy flux into the black hole equals entropy flux out via Hawking radiation (Hawking 1975).
 The horizon thus enforces a global stability constraint:
-&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msubsup>&lt;mi>R&lt;/mi>&lt;mi>s&lt;/mi>&lt;mrow>&lt;mo stretchy="false">(&lt;/mo>&lt;mtext>int&lt;/mtext>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;/msubsup>&lt;mo>+&lt;/mo>&lt;msubsup>&lt;mi>R&lt;/mi>&lt;mi>s&lt;/mi>&lt;mrow>&lt;mo stretchy="false">(&lt;/mo>&lt;mtext>ext&lt;/mtext>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;/msubsup>&lt;mo>=&lt;/mo>&lt;mn>0.&lt;/mn>&lt;/mrow>&lt;annotation encoding="application/x-tex">
-R_s^{(\text{int})} + R_s^{(\text{ext})} = 0.
-&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
-This expresses the first law of black-hole mechanics as informational equilibrium.&lt;/p>
-&lt;h2 id="32-divergence-minimization">3.2 Divergence Minimization&lt;/h2>
-&lt;p>Let &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>p&lt;/mi>&lt;mtext>int&lt;/mtext>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">p_{\text{int}}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> and &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>p&lt;/mi>&lt;mtext>ext&lt;/mtext>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">p_{\text{ext}}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> denote the respective state distributions on either side of &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi mathvariant="script">H&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\mathcal{H}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.
+&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msubsup&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mrow&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mtext&gt;int&lt;/mtext&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;/msubsup&gt;&lt;mo&gt;&#43;&lt;/mo&gt;&lt;msubsup&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mrow&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mtext&gt;ext&lt;/mtext&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;/msubsup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;0.&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
+R_s^{(\text{int})} &#43; R_s^{(\text{ext})} = 0.
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
+This expresses the first law of black-hole mechanics as informational equilibrium.&lt;/p&gt;
+&lt;h2 id=&#34;32-divergence-minimization&#34;&gt;3.2 Divergence Minimization&lt;/h2&gt;
+&lt;p&gt;Let &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mtext&gt;int&lt;/mtext&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;p_{\text{int}}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; and &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mtext&gt;ext&lt;/mtext&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;p_{\text{ext}}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; denote the respective state distributions on either side of &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;script&#34;&gt;H&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\mathcal{H}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.
 The horizon minimizes joint divergence
-&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>D&lt;/mi>&lt;mrow>&lt;mi mathvariant="normal">j&lt;/mi>&lt;mi mathvariant="normal">o&lt;/mi>&lt;mi mathvariant="normal">i&lt;/mi>&lt;mi mathvariant="normal">n&lt;/mi>&lt;mi mathvariant="normal">t&lt;/mi>&lt;/mrow>&lt;/msub>&lt;mo>=&lt;/mo>&lt;msub>&lt;mi>D&lt;/mi>&lt;mrow>&lt;mi mathvariant="normal">K&lt;/mi>&lt;mi mathvariant="normal">L&lt;/mi>&lt;/mrow>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>p&lt;/mi>&lt;mtext>int&lt;/mtext>&lt;/msub>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msub>&lt;mi>p&lt;/mi>&lt;mtext>ext&lt;/mtext>&lt;/msub>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>+&lt;/mo>&lt;msub>&lt;mi>D&lt;/mi>&lt;mrow>&lt;mi mathvariant="normal">K&lt;/mi>&lt;mi mathvariant="normal">L&lt;/mi>&lt;/mrow>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>p&lt;/mi>&lt;mtext>ext&lt;/mtext>&lt;/msub>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msub>&lt;mi>p&lt;/mi>&lt;mtext>int&lt;/mtext>&lt;/msub>&lt;mo stretchy="false">)&lt;/mo>&lt;mo separator="true">,&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">
-D_{\mathrm{joint}} = D_{\mathrm{KL}}(p_{\text{int}}||p_{\text{ext}})
-+ D_{\mathrm{KL}}(p_{\text{ext}}||p_{\text{int}}),
-&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
-subject to fixed total entropy &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>S&lt;/mi>&lt;mtext>tot&lt;/mtext>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">S_{\text{tot}}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.
-At equilibrium, &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi mathvariant="normal">∇&lt;/mi>&lt;msub>&lt;mi>D&lt;/mi>&lt;mrow>&lt;mi mathvariant="normal">j&lt;/mi>&lt;mi mathvariant="normal">o&lt;/mi>&lt;mi mathvariant="normal">i&lt;/mi>&lt;mi mathvariant="normal">n&lt;/mi>&lt;mi mathvariant="normal">t&lt;/mi>&lt;/mrow>&lt;/msub>&lt;mo>=&lt;/mo>&lt;mn>0&lt;/mn>&lt;/mrow>&lt;annotation encoding="application/x-tex">\nabla D_{\mathrm{joint}}=0&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>; informational exchange through the horizon reaches stationary balance.&lt;/p>
-&lt;h1 id="4-black-hole-thermodynamics-as-stability-optimization">4. Black-Hole Thermodynamics as Stability Optimization&lt;/h1>
-&lt;h2 id="41-entropyarea-relation">4.1 Entropy–Area Relation&lt;/h2>
-&lt;p>The Bekenstein–Hawking entropy
-&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>S&lt;/mi>&lt;mrow>&lt;mi>B&lt;/mi>&lt;mi>H&lt;/mi>&lt;/mrow>&lt;/msub>&lt;mo>=&lt;/mo>&lt;mfrac>&lt;mrow>&lt;msub>&lt;mi>k&lt;/mi>&lt;mi>B&lt;/mi>&lt;/msub>&lt;msup>&lt;mi>c&lt;/mi>&lt;mn>3&lt;/mn>&lt;/msup>&lt;mi>A&lt;/mi>&lt;/mrow>&lt;mrow>&lt;mn>4&lt;/mn>&lt;mi>G&lt;/mi>&lt;mi mathvariant="normal">ℏ&lt;/mi>&lt;/mrow>&lt;/mfrac>&lt;/mrow>&lt;annotation encoding="application/x-tex">
+&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;j&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;o&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;i&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;n&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;t&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;K&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;L&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mtext&gt;int&lt;/mtext&gt;&lt;/msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mtext&gt;ext&lt;/mtext&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;&#43;&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;K&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;L&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mtext&gt;ext&lt;/mtext&gt;&lt;/msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mtext&gt;int&lt;/mtext&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
+D_{\mathrm{joint}} = D_{\mathrm{KL}}(p_{\text{int}}||p_{\text{ext}}) 
+                   &#43; D_{\mathrm{KL}}(p_{\text{ext}}||p_{\text{int}}),
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
+subject to fixed total entropy &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mtext&gt;tot&lt;/mtext&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;S_{\text{tot}}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.
+At equilibrium, &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∇&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;j&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;o&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;i&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;n&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;t&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\nabla D_{\mathrm{joint}}=0&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;; informational exchange through the horizon reaches stationary balance.&lt;/p&gt;
+&lt;h1 id=&#34;4-black-hole-thermodynamics-as-stability-optimization&#34;&gt;4. Black-Hole Thermodynamics as Stability Optimization&lt;/h1&gt;
+&lt;h2 id=&#34;41-entropyarea-relation&#34;&gt;4.1 Entropy–Area Relation&lt;/h2&gt;
+&lt;p&gt;The Bekenstein–Hawking entropy
+&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/msub&gt;&lt;msup&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/msup&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;ℏ&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
 S_{BH} = \frac{k_B c^3 A}{4G\hbar}
-&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
 is interpreted as the maximal entropy compatible with global informational stability.
 Variation of the horizon area yields
-&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;mi>δ&lt;/mi>&lt;msub>&lt;mi>S&lt;/mi>&lt;mrow>&lt;mi>B&lt;/mi>&lt;mi>H&lt;/mi>&lt;/mrow>&lt;/msub>&lt;mo>=&lt;/mo>&lt;mfrac>&lt;mrow>&lt;msup>&lt;mi>c&lt;/mi>&lt;mn>3&lt;/mn>&lt;/msup>&lt;msub>&lt;mi>k&lt;/mi>&lt;mi>B&lt;/mi>&lt;/msub>&lt;/mrow>&lt;mrow>&lt;mn>4&lt;/mn>&lt;mi>G&lt;/mi>&lt;mi mathvariant="normal">ℏ&lt;/mi>&lt;/mrow>&lt;/mfrac>&lt;mtext> &lt;/mtext>&lt;mi>δ&lt;/mi>&lt;mi>A&lt;/mi>&lt;mo>=&lt;/mo>&lt;mfrac>&lt;mrow>&lt;mi>δ&lt;/mi>&lt;mi>Q&lt;/mi>&lt;/mrow>&lt;msub>&lt;mi>T&lt;/mi>&lt;mi>H&lt;/mi>&lt;/msub>&lt;/mfrac>&lt;mo separator="true">,&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">
+&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;δ&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;msup&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/msup&gt;&lt;msub&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;ℏ&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;mi&gt;δ&lt;/mi&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mi&gt;δ&lt;/mi&gt;&lt;mi&gt;Q&lt;/mi&gt;&lt;/mrow&gt;&lt;msub&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;/msub&gt;&lt;/mfrac&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
 \delta S_{BH} = \frac{c^3 k_B}{4G\hbar}\,\delta A
-= \frac{\delta Q}{T_H},
-&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
-where &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>T&lt;/mi>&lt;mi>H&lt;/mi>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">T_H&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> is Hawking temperature.
-This expresses thermodynamic work &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>δ&lt;/mi>&lt;mi>Q&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\delta Q&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> as informational flux maintaining stability across the boundary.&lt;/p>
-&lt;h2 id="42-second-law-as-global-stability-increase">4.2 Second Law as Global Stability Increase&lt;/h2>
-&lt;p>The generalized second law (Bekenstein 1973) states &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>S&lt;/mi>&lt;mrow>&lt;mi>B&lt;/mi>&lt;mi>H&lt;/mi>&lt;/mrow>&lt;/msub>&lt;mo>+&lt;/mo>&lt;msub>&lt;mi>S&lt;/mi>&lt;mtext>ext&lt;/mtext>&lt;/msub>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>≥&lt;/mo>&lt;mn>0&lt;/mn>&lt;/mrow>&lt;annotation encoding="application/x-tex">\partial_t(S_{BH}+S_{\text{ext}})\ge0&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.
+              = \frac{\delta Q}{T_H},
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
+where &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;T_H&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; is Hawking temperature.
+This expresses thermodynamic work &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;δ&lt;/mi&gt;&lt;mi&gt;Q&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\delta Q&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; as informational flux maintaining stability across the boundary.&lt;/p&gt;
+&lt;h2 id=&#34;42-second-law-as-global-stability-increase&#34;&gt;4.2 Second Law as Global Stability Increase&lt;/h2&gt;
+&lt;p&gt;The generalized second law (Bekenstein 1973) states &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo&gt;&#43;&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mtext&gt;ext&lt;/mtext&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;≥&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\partial_t(S_{BH}&#43;S_{\text{ext}})\ge0&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.
 In stability terms,
-&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;msubsup>&lt;mi>R&lt;/mi>&lt;mi>s&lt;/mi>&lt;mrow>&lt;mo stretchy="false">(&lt;/mo>&lt;mtext>tot&lt;/mtext>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;/msubsup>&lt;mo>≥&lt;/mo>&lt;mn>0&lt;/mn>&lt;mo separator="true">,&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">
+&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;msubsup&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mrow&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mtext&gt;tot&lt;/mtext&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;/msubsup&gt;&lt;mo&gt;≥&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
 \partial_t R_s^{(\text{tot})} \ge 0,
-&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
 so global informational stability cannot decrease.
-Black holes therefore function as &lt;strong>maximum-stability reservoirs&lt;/strong> for information flows in the universe.&lt;/p>
-&lt;h1 id="5-information-preservation-and-hawking-radiation">5. Information Preservation and Hawking Radiation&lt;/h1>
-&lt;p>Hawking radiation provides the feedback mechanism restoring global stability when perturbations disturb equilibrium.
-Each emitted quantum carries away precisely the information necessary to maintain &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msubsup>&lt;mi>R&lt;/mi>&lt;mi>s&lt;/mi>&lt;mrow>&lt;mo stretchy="false">(&lt;/mo>&lt;mtext>int&lt;/mtext>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;/msubsup>&lt;mo>+&lt;/mo>&lt;msubsup>&lt;mi>R&lt;/mi>&lt;mi>s&lt;/mi>&lt;mrow>&lt;mo stretchy="false">(&lt;/mo>&lt;mtext>ext&lt;/mtext>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;/msubsup>&lt;mo>=&lt;/mo>&lt;mn>0&lt;/mn>&lt;/mrow>&lt;annotation encoding="application/x-tex">R_s^{(\text{int})}+R_s^{(\text{ext})}=0&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.
-Apparent information loss arises because external observers measure only partial distributions &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>p&lt;/mi>&lt;mtext>ext&lt;/mtext>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">p_{\text{ext}}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>; in the full joint manifold, divergence is conserved.&lt;/p>
-&lt;h1 id="6-holography-and-stability-mapping">6. Holography and Stability Mapping&lt;/h1>
-&lt;p>The holographic principle (’t Hooft 1993; Susskind 1995) asserts that the informational content of a volume is encoded on its boundary.
-In stability terms, the boundary mapping &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi mathvariant="normal">Φ&lt;/mi>&lt;mo>:&lt;/mo>&lt;mi mathvariant="script">V&lt;/mi>&lt;mo>→&lt;/mo>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;mi mathvariant="script">V&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\Phi:\mathcal{V}\to\partial\mathcal{V}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> preserves the stability functional:
-&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>R&lt;/mi>&lt;mi>s&lt;/mi>&lt;/msub>&lt;mo stretchy="false">[&lt;/mo>&lt;mi mathvariant="script">V&lt;/mi>&lt;mo stretchy="false">]&lt;/mo>&lt;mo>=&lt;/mo>&lt;msub>&lt;mi>R&lt;/mi>&lt;mi>s&lt;/mi>&lt;/msub>&lt;mo stretchy="false">[&lt;/mo>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;mi mathvariant="script">V&lt;/mi>&lt;mo stretchy="false">]&lt;/mo>&lt;mo separator="true">,&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">
+Black holes therefore function as &lt;strong&gt;maximum-stability reservoirs&lt;/strong&gt; for information flows in the universe.&lt;/p&gt;
+&lt;h1 id=&#34;5-information-preservation-and-hawking-radiation&#34;&gt;5. Information Preservation and Hawking Radiation&lt;/h1&gt;
+&lt;p&gt;Hawking radiation provides the feedback mechanism restoring global stability when perturbations disturb equilibrium.
+Each emitted quantum carries away precisely the information necessary to maintain &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msubsup&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mrow&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mtext&gt;int&lt;/mtext&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;/msubsup&gt;&lt;mo&gt;&#43;&lt;/mo&gt;&lt;msubsup&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mrow&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mtext&gt;ext&lt;/mtext&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;/msubsup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;R_s^{(\text{int})}&#43;R_s^{(\text{ext})}=0&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.
+Apparent information loss arises because external observers measure only partial distributions &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mtext&gt;ext&lt;/mtext&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;p_{\text{ext}}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;; in the full joint manifold, divergence is conserved.&lt;/p&gt;
+&lt;h1 id=&#34;6-holography-and-stability-mapping&#34;&gt;6. Holography and Stability Mapping&lt;/h1&gt;
+&lt;p&gt;The holographic principle (’t Hooft 1993; Susskind 1995) asserts that the informational content of a volume is encoded on its boundary.
+In stability terms, the boundary mapping &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Φ&lt;/mi&gt;&lt;mo&gt;:&lt;/mo&gt;&lt;mi mathvariant=&#34;script&#34;&gt;V&lt;/mi&gt;&lt;mo&gt;→&lt;/mo&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;mi mathvariant=&#34;script&#34;&gt;V&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\Phi:\mathcal{V}\to\partial\mathcal{V}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; preserves the stability functional:
+&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;[&lt;/mo&gt;&lt;mi mathvariant=&#34;script&#34;&gt;V&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;]&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;[&lt;/mo&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;mi mathvariant=&#34;script&#34;&gt;V&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;]&lt;/mo&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
 R_s[\mathcal{V}] = R_s[\partial\mathcal{V}],
-&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
+&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
 analogous to a holographic duality where bulk and boundary share identical divergence dynamics.
-This recasts AdS/CFT correspondence (Maldacena 1998) as a geometric equality of stability optimization across dimensions.&lt;/p>
-&lt;h1 id="7-cosmological-implications">7. Cosmological Implications&lt;/h1>
-&lt;p>At cosmological scale, black holes act as attractors for informational instability: they absorb high-divergence regions and return the universe toward maximal entropy subject to global stability conservation.
-The universe thereby evolves toward configurations that minimize global divergence gradients—a universal tendency consistent with Jaynesian entropy maximization (Jaynes 1957) and thermodynamic self-organization (Crooks 1999; Lloyd 2000).&lt;/p>
-&lt;h1 id="8-conclusion">8. Conclusion&lt;/h1>
-&lt;p>Black holes exemplify the principle of information-theoretic stability optimization.
+This recasts AdS/CFT correspondence (Maldacena 1998) as a geometric equality of stability optimization across dimensions.&lt;/p&gt;
+&lt;h1 id=&#34;7-cosmological-implications&#34;&gt;7. Cosmological Implications&lt;/h1&gt;
+&lt;p&gt;At cosmological scale, black holes act as attractors for informational instability: they absorb high-divergence regions and return the universe toward maximal entropy subject to global stability conservation.
+The universe thereby evolves toward configurations that minimize global divergence gradients—a universal tendency consistent with Jaynesian entropy maximization (Jaynes 1957) and thermodynamic self-organization (Crooks 1999; Lloyd 2000).&lt;/p&gt;
+&lt;h1 id=&#34;8-conclusion&#34;&gt;8. Conclusion&lt;/h1&gt;
+&lt;p&gt;Black holes exemplify the principle of information-theoretic stability optimization.
 They maintain minimal divergence between interior and exterior informational states, converting local instability into global equilibrium through entropy exchange at the horizon.
-This view unifies gravitational thermodynamics, quantum information, and statistical inference within a single variational framework, suggesting that the dynamics of spacetime itself instantiate the general stability principle of information.&lt;/p>
-&lt;h1 id="references">References&lt;/h1>
-&lt;ul>
-&lt;li>Bekenstein, J. D. (1973). “Black Holes and Entropy.” &lt;em>Physical Review D&lt;/em>, 7(8), 2333–2346.&lt;/li>
-&lt;li>Bousso, R. (2002). “The Holographic Principle.” &lt;em>Reviews of Modern Physics&lt;/em>, 74(3), 825–874.&lt;/li>
-&lt;li>Crooks, G. E. (1999). “Entropy Production Fluctuation Theorem and the Nonequilibrium Work Relation.” &lt;em>Physical Review E&lt;/em>, 60(3), 2721–2726.&lt;/li>
-&lt;li>Hawking, S. W. (1975). “Particle Creation by Black Holes.” &lt;em>Communications in Mathematical Physics&lt;/em>, 43(3), 199–220.&lt;/li>
-&lt;li>Jaynes, E. T. (1957). “Information Theory and Statistical Mechanics.” &lt;em>Physical Review&lt;/em>, 106(4), 620–630.&lt;/li>
-&lt;li>Lloyd, S. (2000). “Ultimate Physical Limits to Computation.” &lt;em>Nature&lt;/em>, 406(6799), 1047–1054.&lt;/li>
-&lt;li>Maldacena, J. (1998). “The Large N Limit of Superconformal Field Theories and Supergravity.” &lt;em>Advances in Theoretical and Mathematical Physics&lt;/em>, 2, 231–252.&lt;/li>
-&lt;li>‘t Hooft, G. (1993). “Dimensional Reduction in Quantum Gravity.” &lt;em>arXiv:gr-qc/9310026&lt;/em>.&lt;/li>
-&lt;li>Susskind, L. (1995). “The World as a Hologram.” &lt;em>Journal of Mathematical Physics&lt;/em>, 36(11), 6377–6396.&lt;/li>
-&lt;/ul></div><section class=bibliography id=bibliography vocab="https://schema.org/" typeof="ItemList"><h2>References</h2><p class=bib-entry id=ref-bekenstein1973 typeof="CreativeWork" resource="#ref-bekenstein1973"><span class=bib-key>[bekenstein1973]</span>
-<span property="author">J. D. Bekenstein</span>.
-(<span property="datePublished">1973</span>).
-<cite property="name">Black Holes and Entropy</cite>.
-<em property="publisher">Physical Review D</em>.</p><p class=bib-entry id=ref-bousso2002 typeof="CreativeWork" resource="#ref-bousso2002"><span class=bib-key>[bousso2002]</span>
-<span property="author">R. Bousso</span>.
-(<span property="datePublished">2002</span>).
-<cite property="name">The Holographic Principle</cite>.
-<em property="publisher">Reviews of Modern Physics</em>.</p><p class=bib-entry id=ref-crooks1999 typeof="CreativeWork" resource="#ref-crooks1999"><span class=bib-key>[crooks1999]</span>
-<span property="author">G. E. Crooks</span>.
-(<span property="datePublished">1999</span>).
-<cite property="name">Entropy Production Fluctuation Theorem and the Nonequilibrium Work Relation</cite>.
-<em property="publisher">Physical Review E</em>.</p><p class=bib-entry id=ref-hawking1975 typeof="CreativeWork" resource="#ref-hawking1975"><span class=bib-key>[hawking1975]</span>
-<span property="author">S. W. Hawking</span>.
-(<span property="datePublished">1975</span>).
-<cite property="name">Particle Creation by Black Holes</cite>.
-<em property="publisher">Communications in Mathematical Physics</em>.</p><p class=bib-entry id=ref-jaynes1957 typeof="CreativeWork" resource="#ref-jaynes1957"><span class=bib-key>[jaynes1957]</span>
-<span property="author">E. T. Jaynes</span>.
-(<span property="datePublished">1957</span>).
-<cite property="name">Information Theory and Statistical Mechanics</cite>.
-<em property="publisher">Physical Review</em>.</p><p class=bib-entry id=ref-lloyd2000 typeof="CreativeWork" resource="#ref-lloyd2000"><span class=bib-key>[lloyd2000]</span>
-<span property="author">S. Lloyd</span>.
-(<span property="datePublished">2000</span>).
-<cite property="name">Ultimate Physical Limits to Computation</cite>.
-<em property="publisher">Nature</em>.</p><p class=bib-entry id=ref-maldacena1998 typeof="CreativeWork" resource="#ref-maldacena1998"><span class=bib-key>[maldacena1998]</span>
-<span property="author">J. Maldacena</span>.
-(<span property="datePublished">1998</span>).
-<cite property="name">The Large N Limit of Superconformal Field Theories and Supergravity</cite>.
-<em property="publisher">Advances in Theoretical and Mathematical Physics</em>.</p><p class=bib-entry id=ref-susskind1995 typeof="CreativeWork" resource="#ref-susskind1995"><span class=bib-key>[susskind1995]</span>
-<span property="author">L. Susskind</span>.
-(<span property="datePublished">1995</span>).
-<cite property="name">The World as a Hologram</cite>.
-<em property="publisher">Journal of Mathematical Physics</em>.</p><p class=bib-entry id=ref-thooft1993 typeof="CreativeWork" resource="#ref-thooft1993"><span class=bib-key>[thooft1993]</span>
-<span property="author">G. 't Hooft</span>.
-(<span property="datePublished">1993</span>).
-<cite property="name">Dimensional Reduction in Quantum Gravity</cite>.
-<em property="publisher">arXiv:gr-qc/9310026</em>.</p></section><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>emsenn. (2025, October 11). Black Holes as Information-Theoretic Stability Optimizers. <i>emsenn.net</i>. https://emsenn.net/library/cosmology/texts/describing-black-holes-as-informational-stability-optimizers/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@article{emsenn2025-describing-black-holes-as-informational-stability-optimizers,
+This view unifies gravitational thermodynamics, quantum information, and statistical inference within a single variational framework, suggesting that the dynamics of spacetime itself instantiate the general stability principle of information.&lt;/p&gt;
+&lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Bekenstein, J. D. (1973). “Black Holes and Entropy.” &lt;em&gt;Physical Review D&lt;/em&gt;, 7(8), 2333–2346.&lt;/li&gt;
+&lt;li&gt;Bousso, R. (2002). “The Holographic Principle.” &lt;em&gt;Reviews of Modern Physics&lt;/em&gt;, 74(3), 825–874.&lt;/li&gt;
+&lt;li&gt;Crooks, G. E. (1999). “Entropy Production Fluctuation Theorem and the Nonequilibrium Work Relation.” &lt;em&gt;Physical Review E&lt;/em&gt;, 60(3), 2721–2726.&lt;/li&gt;
+&lt;li&gt;Hawking, S. W. (1975). “Particle Creation by Black Holes.” &lt;em&gt;Communications in Mathematical Physics&lt;/em&gt;, 43(3), 199–220.&lt;/li&gt;
+&lt;li&gt;Jaynes, E. T. (1957). “Information Theory and Statistical Mechanics.” &lt;em&gt;Physical Review&lt;/em&gt;, 106(4), 620–630.&lt;/li&gt;
+&lt;li&gt;Lloyd, S. (2000). “Ultimate Physical Limits to Computation.” &lt;em&gt;Nature&lt;/em&gt;, 406(6799), 1047–1054.&lt;/li&gt;
+&lt;li&gt;Maldacena, J. (1998). “The Large N Limit of Superconformal Field Theories and Supergravity.” &lt;em&gt;Advances in Theoretical and Mathematical Physics&lt;/em&gt;, 2, 231–252.&lt;/li&gt;
+&lt;li&gt;‘t Hooft, G. (1993). “Dimensional Reduction in Quantum Gravity.” &lt;em&gt;arXiv:gr-qc/9310026&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Susskind, L. (1995). “The World as a Hologram.” &lt;em&gt;Journal of Mathematical Physics&lt;/em&gt;, 36(11), 6377–6396.&lt;/li&gt;
+&lt;/ul&gt;
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-bekenstein1973" typeof="CreativeWork" resource="#ref-bekenstein1973">
+    <span class="bib-key">[bekenstein1973]</span>
+      <span property="author">J. D. Bekenstein</span>.
+      (<span property="datePublished">1973</span>).
+      <cite property="name">Black Holes and Entropy</cite>.
+      <em property="publisher">Physical Review D</em>.
+  </p><p class="bib-entry" id="ref-bousso2002" typeof="CreativeWork" resource="#ref-bousso2002">
+    <span class="bib-key">[bousso2002]</span>
+      <span property="author">R. Bousso</span>.
+      (<span property="datePublished">2002</span>).
+      <cite property="name">The Holographic Principle</cite>.
+      <em property="publisher">Reviews of Modern Physics</em>.
+  </p><p class="bib-entry" id="ref-crooks1999" typeof="CreativeWork" resource="#ref-crooks1999">
+    <span class="bib-key">[crooks1999]</span>
+      <span property="author">G. E. Crooks</span>.
+      (<span property="datePublished">1999</span>).
+      <cite property="name">Entropy Production Fluctuation Theorem and the Nonequilibrium Work Relation</cite>.
+      <em property="publisher">Physical Review E</em>.
+  </p><p class="bib-entry" id="ref-hawking1975" typeof="CreativeWork" resource="#ref-hawking1975">
+    <span class="bib-key">[hawking1975]</span>
+      <span property="author">S. W. Hawking</span>.
+      (<span property="datePublished">1975</span>).
+      <cite property="name">Particle Creation by Black Holes</cite>.
+      <em property="publisher">Communications in Mathematical Physics</em>.
+  </p><p class="bib-entry" id="ref-jaynes1957" typeof="CreativeWork" resource="#ref-jaynes1957">
+    <span class="bib-key">[jaynes1957]</span>
+      <span property="author">E. T. Jaynes</span>.
+      (<span property="datePublished">1957</span>).
+      <cite property="name">Information Theory and Statistical Mechanics</cite>.
+      <em property="publisher">Physical Review</em>.
+  </p><p class="bib-entry" id="ref-lloyd2000" typeof="CreativeWork" resource="#ref-lloyd2000">
+    <span class="bib-key">[lloyd2000]</span>
+      <span property="author">S. Lloyd</span>.
+      (<span property="datePublished">2000</span>).
+      <cite property="name">Ultimate Physical Limits to Computation</cite>.
+      <em property="publisher">Nature</em>.
+  </p><p class="bib-entry" id="ref-maldacena1998" typeof="CreativeWork" resource="#ref-maldacena1998">
+    <span class="bib-key">[maldacena1998]</span>
+      <span property="author">J. Maldacena</span>.
+      (<span property="datePublished">1998</span>).
+      <cite property="name">The Large N Limit of Superconformal Field Theories and Supergravity</cite>.
+      <em property="publisher">Advances in Theoretical and Mathematical Physics</em>.
+  </p><p class="bib-entry" id="ref-susskind1995" typeof="CreativeWork" resource="#ref-susskind1995">
+    <span class="bib-key">[susskind1995]</span>
+      <span property="author">L. Susskind</span>.
+      (<span property="datePublished">1995</span>).
+      <cite property="name">The World as a Hologram</cite>.
+      <em property="publisher">Journal of Mathematical Physics</em>.
+  </p><p class="bib-entry" id="ref-thooft1993" typeof="CreativeWork" resource="#ref-thooft1993">
+    <span class="bib-key">[thooft1993]</span>
+      <span property="author">G. &#39;t Hooft</span>.
+      (<span property="datePublished">1993</span>).
+      <cite property="name">Dimensional Reduction in Quantum Gravity</cite>.
+      <em property="publisher">arXiv:gr-qc/9310026</em>.
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/cosmology/texts/describing-black-holes-as-informational-stability-optimizers/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt><a href="/library/math/terms/action/">Acts on</a></dt>
+        <dd property="emsenn:Actson">Event horizon as stability boundary between interior and exterior</dd>
+      </div><div class="relation">
+        <dt>Analogous to</dt>
+        <dd property="emsenn:Analogousto">Asymmetric informational coupling between adapting and reference system</dd>
+      </div><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Cites</dt>
+        <dd property="schema:citation"><ul><li>Bekenstein1973</li><li>Bousso2002</li><li>Crooks1999</li><li>Hawking1975</li><li>Jaynes1957</li><li>Lloyd2000</li><li>Maldacena1998</li><li>Thooft1993</li><li>Susskind1995</li><li><a href="/library/information/texts/information-theoretic-stability-as-reward-function/">Information theoretic stability as reward function</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2025-10-11">2025-10-11</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/extension/">Extends</a></dt>
+        <dd property="emsenn:Extends">Information theoretic stability as reward function</dd>
+      </div><div class="relation">
+        <dt><a href="/library/tech/terms/produces/">Produces</a></dt>
+        <dd property="emsenn:Produces">Reinterpretation of black hole thermodynamics as informational stability optimization</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li>Bekenstein hawking entropy area law</li><li>Hawking radiation as feedback mechanism</li><li>Holographic principle as boundary encoding</li></ul></dd>
+      </div><div class="relation">
+        <dt>Status</dt>
+        <dd property="emsenn:Status">Draft</dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/information-theory/">information-theory</a></li><li><a href="/tags/black-holes/">black-holes</a></li><li><a href="/tags/thermodynamics/">thermodynamics</a></li><li><a href="/tags/holographic-principle/">holographic-principle</a></li><li><a href="/tags/research/">research</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@article{emsenn2025-describing-black-holes-as-informational-stability-optimizers,
   author    = {emsenn},
   title     = {Black Holes as Information-Theoretic Stability Optimizers},
   year      = {2025},
   url       = {https://emsenn.net/library/cosmology/texts/describing-black-holes-as-informational-stability-optimizers/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/cosmology/texts/describing-black-holes-as-informational-stability-optimizers/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt><a href=/library/math/terms/action/>acts-on</a></dt><dd property="emsenn:Actson">event-horizon-as-stability-boundary-between-interior-and-exterior</dd></div><div class=relation><dt>analogous-to</dt><dd property="emsenn:Analogousto">asymmetric-informational-coupling-between-adapting-and-reference-system</dd></div><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li></ul></dd></div><div class=relation><dt>cites</dt><dd property="schema:citation"><ul><li>bekenstein1973</li><li>bousso2002</li><li>crooks1999</li><li>hawking1975</li><li>jaynes1957</li><li>lloyd2000</li><li>maldacena1998</li><li>thooft1993</li><li>susskind1995</li><li><a href=/library/information/texts/information-theoretic-stability-as-reward-function/>Information-Theoretic Stability as Reward Function</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2025-10-11>2025-10-11</time></dd></div><div class=relation><dt><a href=/library/math/terms/extension/>extends</a></dt><dd property="emsenn:Extends">information-theoretic-stability-as-reward-function</dd></div><div class=relation><dt><a href=/library/tech/terms/produces/>produces</a></dt><dd property="emsenn:Produces">reinterpretation-of-black-hole-thermodynamics-as-informational-stability-optimization</dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>requires</a></dt><dd property="schema:educationalAlignment"><ul><li>bekenstein-hawking-entropy-area-law</li><li>hawking-radiation-as-feedback-mechanism</li><li>holographic-principle-as-boundary-encoding</li></ul></dd></div><div class=relation><dt>status</dt><dd property="emsenn:Status">draft</dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/information-theory/>information-theory</a></li><li><a href=/tags/black-holes/>black-holes</a></li><li><a href=/tags/thermodynamics/>thermodynamics</a></li><li><a href=/tags/holographic-principle/>holographic-principle</a></li><li><a href=/tags/research/>research</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Black Holes as Information-Theoretic Stability Optimizers</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/paper/>paper</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

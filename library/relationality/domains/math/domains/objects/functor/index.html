@@ -1,6 +1,160 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-18","datePublished":"2026-03-18","description":"A Functor is a structure-preserving map between categories — assigning objects to objects and morphisms to morphisms while respecting identity and composition. A contravariant functor reverses morphism direction.","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/domains/math/domains/objects/functor/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name></h1><div class=meta><time class=dt-published datetime=2026-03-18T00:00:00Z>2026-03-18</time>
-<span class=p-summary>A Functor is a structure-preserving map between categories — assigning objects to objects and morphisms to morphisms while respecting identity and composition. A contravariant functor reverses morphism direction.</span></div><div class=e-content><h1 id=functor>Functor</h1><h2 id=what-this-is>What this is</h2><p>A <strong>Functor</strong> F: C → D is a structure-preserving map between categories.</p><p>The mathematical invariant comes from category theory (Mac Lane 1971). Given categories C and D, a functor F assigns:</p><ul><li>to each object c ∈ Ob(C), an object F(c) ∈ Ob(D)</li><li>to each morphism f: c → c′ in C, a morphism F(f): F(c) → F(c′) in D</li></ul><p>satisfying two laws:</p><ol><li><strong>Identity preservation</strong>: F(id_c) = id_{F(c)} for all objects c</li><li><strong>Composition preservation</strong>: F(g ∘ f) = F(g) ∘ F(f) for all composable f: c → c′, g: c′ → c″</li></ol><p>These two laws make F a homomorphism of category structure: it carries the algebraic structure of C into D without distortion.</p><h2 id=covariant-vs-contravariant>Covariant vs. contravariant</h2><p>A <strong>covariant</strong> functor preserves morphism direction: F(f: A → B) = F(f): F(A) → F(B).</p><p>A <strong>contravariant</strong> functor reverses it: F(f: A → B) = F(f): F(B) → F(A), with F(g ∘ f) = F(f) ∘ F(g). A contravariant functor on C is equivalently a covariant functor on the opposite category C^op — the category with the same objects but all arrows reversed.</p><p>The reversal is what makes composition and identity work: if arrows go backward, the composition order must also reverse to satisfy F(g ∘ f) = F(f) ∘ F(g).</p><h2 id=functor-vs-function>Functor vs. Function</h2><p>A <a href=function.md class=link-internal>Function</a> f: A → B maps between sets. A Functor maps between categories — it must account for not just objects (like a function on sets) but also morphisms between them, and it must preserve the categorical structure (composition and identity). A function has no morphism-level component; a functor does.</p><h2 id=in-this-system>In this system</h2><p>The central functor in the relational universe is the contravariant <strong>fiber doctrine</strong> H: T^op → HA_nucl, sending each history t to its fiber Heyting algebra H_t and each prefix morphism f: t → t′ to the restriction map H(f): H_{t′} → H_t. The contravariance is what makes <a href=relational-domain.md class=link-internal>RelationalDomain</a> and <a href=relational-source.md class=link-internal>RelationalSource</a> point in opposite directions: source is T-level (where f departs in T), domain is R-level (where H(f) departs in R — which is the target end of f, due to contravariance).</p><h2 id=open-questions>Open questions</h2><ul><li>Whether the spec-level concept of Functor needs to track the full (full, faithful, essentially surjective, equivalence) classification, or whether the basic definition suffices for spec-file purposes.</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/math/domains/objects/functor/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>ast</dt><dd property="emsenn:Ast"></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-18>2026-03-18</time></dd></div><div class=relation><dt>date-modified</dt><dd property="emsenn:Datemodified"><time datetime=2026-03-19>2026-03-19</time></dd></div><div class=relation><dt>defines</dt><dd property="emsenn:Defines"><a href=/library/relationality/domains/math/domains/objects/functor/>Functor</a></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">A Functor is a structure-preserving map between categories — assigning objects to objects and morphisms to morphisms while respecting identity and composition. A contravariant functor reverses morphism direction.</dd></div><div class=relation><dt>output</dt><dd property="emsenn:Output">relational-universe-morphism</dd></div><div class=relation><dt>source-category</dt><dd property="emsenn:Sourcecategory">relational-universe</dd></div><div class=relation><dt>target-category</dt><dd property="emsenn:Targetcategory">relational-universe</dd></div><div class=relation><dt><a href=/library/business/domains/accounting/terms/variance/>variance</a></dt><dd property="emsenn:Variance">relational-universe</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-18",
+  "datePublished": "2026-03-18",
+  "description": "A Functor is a structure-preserving map between categories — assigning objects to objects and morphisms to morphisms while respecting identity and composition. A contravariant functor reverses morphism direction.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/domains/math/domains/objects/functor/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/math/">Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/math/domains/objects/">Objects</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-18T00:00:00Z">2026-03-18</time>
+    
+    <span class="p-summary">A Functor is a structure-preserving map between categories — assigning objects to objects and morphisms to morphisms while respecting identity and composition. A contravariant functor reverses morphism direction.</span>
+  </div>
+  <div class="e-content">
+    <h1 id="functor">Functor</h1>
+<h2 id="what-this-is">What this is</h2>
+<p>A <strong>Functor</strong> F: C → D is a structure-preserving map between categories.</p>
+<p>The mathematical invariant comes from category theory (Mac Lane 1971). Given categories C and D, a functor F assigns:</p>
+<ul>
+<li>to each object c ∈ Ob(C), an object F(c) ∈ Ob(D)</li>
+<li>to each morphism f: c → c′ in C, a morphism F(f): F(c) → F(c′) in D</li>
+</ul>
+<p>satisfying two laws:</p>
+<ol>
+<li><strong>Identity preservation</strong>: F(id_c) = id_{F(c)} for all objects c</li>
+<li><strong>Composition preservation</strong>: F(g ∘ f) = F(g) ∘ F(f) for all composable f: c → c′, g: c′ → c″</li>
+</ol>
+<p>These two laws make F a homomorphism of category structure: it carries the algebraic structure of C into D without distortion.</p>
+<h2 id="covariant-vs-contravariant">Covariant vs. contravariant</h2>
+<p>A <strong>covariant</strong> functor preserves morphism direction: F(f: A → B) = F(f): F(A) → F(B).</p>
+<p>A <strong>contravariant</strong> functor reverses it: F(f: A → B) = F(f): F(B) → F(A), with F(g ∘ f) = F(f) ∘ F(g). A contravariant functor on C is equivalently a covariant functor on the opposite category C^op — the category with the same objects but all arrows reversed.</p>
+<p>The reversal is what makes composition and identity work: if arrows go backward, the composition order must also reverse to satisfy F(g ∘ f) = F(f) ∘ F(g).</p>
+<h2 id="functor-vs-function">Functor vs. Function</h2>
+<p>A <a href="function.md" class="link-internal">Function</a> f: A → B maps between sets. A Functor maps between categories — it must account for not just objects (like a function on sets) but also morphisms between them, and it must preserve the categorical structure (composition and identity). A function has no morphism-level component; a functor does.</p>
+<h2 id="in-this-system">In this system</h2>
+<p>The central functor in the relational universe is the contravariant <strong>fiber doctrine</strong> H: T^op → HA_nucl, sending each history t to its fiber Heyting algebra H_t and each prefix morphism f: t → t′ to the restriction map H(f): H_{t′} → H_t. The contravariance is what makes <a href="relational-domain.md" class="link-internal">RelationalDomain</a> and <a href="relational-source.md" class="link-internal">RelationalSource</a> point in opposite directions: source is T-level (where f departs in T), domain is R-level (where H(f) departs in R — which is the target end of f, due to contravariance).</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Whether the spec-level concept of Functor needs to track the full (full, faithful, essentially surjective, equivalence) classification, or whether the basic definition suffices for spec-file purposes.</li>
+</ul>
+
+  </div>
+  
+  
+</article>
+<section class="page-relations" resource="http://localhost:1313/library/relationality/domains/math/domains/objects/functor/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt>date-created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-18">2026-03-18</time></dd>
+      </div><div class="relation">
+        <dt>date-modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-19">2026-03-19</time></dd>
+      </div><div class="relation">
+        <dt>defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/relationality/domains/math/domains/objects/functor/">Functor</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/information/terms/description/">description</a></dt>
+        <dd property="schema:description">A Functor is a structure-preserving map between categories — assigning objects to objects and morphisms to morphisms while respecting identity and composition. A contravariant functor reverses morphism direction.</dd>
+      </div><div class="relation">
+        <dt>output</dt>
+        <dd property="emsenn:Output">relational-universe-morphism</dd>
+      </div><div class="relation">
+        <dt>source-category</dt>
+        <dd property="emsenn:Sourcecategory">relational-universe</dd>
+      </div><div class="relation">
+        <dt>target-category</dt>
+        <dd property="emsenn:Targetcategory">relational-universe</dd>
+      </div><div class="relation">
+        <dt><a href="/library/business/domains/accounting/terms/variance/">variance</a></dt>
+        <dd property="emsenn:Variance">relational-universe</dd>
+      </div>
+  <div class="relation">
+    <dt>referenced-by</dt>
+    <dd>
+      <ul><li><a href="/library/math/terms/duality/">Duality</a></li><li><a href="/library/math/terms/measure/">Measure</a></li><li><a href="/library/math/domains/categories/domains/ordinary-categories/terms/functor/"></a></li><li><a href="/library/math/terms/fiber-of/"></a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

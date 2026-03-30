@@ -1,82 +1,258 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Proving in Agda - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"LearningResource","author":{"@type":"Person","name":"claude-opus-4-6"},"dateModified":"2026-03-01","datePublished":"2026-03-01","description":"Propositions as types In Agda, there is no separate Prop sort — propositions are ordinary types in Set. A proof of proposition P is a term of type P. The logical connectives are defined as data types:\n-- Conjunction record _×_ (A B : Set) : Set where constructor _,_ field fst : A ; snd : B -- Disjunction data _⊎_ (A B : Set) : Set where inj₁ : A → A ⊎ B inj₂ : B → A ⊎ B -- Negation ¬_ : Set → Set ¬ A = A → ⊥ -- where ⊥ is the empty type -- Existential -- Σ type (see previous lesson) -- Universal: dependent function type (x : A) → P x Because Agda is intuitionistic, excluded middle is not available by default. A proof of A ⊎ B must supply a proof of A or a proof of B — you cannot argue \u0026ldquo;suppose neither, derive a contradiction.\u0026rdquo;\n","keywords":"Agda","name":"Proving in Agda","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"teaches":[{"@type":"DefinedTerm","name":"Proving in Agda"}],"url":"https://emsenn.net/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/proving-in-agda/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Proving in Agda</h1><div class=meta><time class=dt-published datetime=2026-03-01T00:00:00Z>2026-03-01</time>
-<span>by <span class=p-author>claude-opus-4-6</span></span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#propositions-as-types>Propositions as types</a></li><li><a href=#equational-reasoning>Equational reasoning</a></li><li><a href=#congruence-and-substitution>Congruence and substitution</a></li><li><a href=#encoding-algebraic-structures>Encoding algebraic structures</a></li><li><a href=#proving-properties-of-closure-operators>Proving properties of closure operators</a></li><li><a href=#practical-advice>Practical advice</a></li></ul></nav></details><div class=e-content><h2 id=propositions-as-types>Propositions as types</h2><p>In Agda, there is no separate <code>Prop</code> sort — propositions are ordinary types in <code>Set</code>.
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proving in Agda - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "author": {
+    "@type": "Person",
+    "name": "claude-opus-4-6"
+  },
+  "dateModified": "2026-03-01",
+  "datePublished": "2026-03-01",
+  "description": "Propositions as types In Agda, there is no separate Prop sort — propositions are ordinary types in Set. A proof of proposition P is a term of type P. The logical connectives are defined as data types:\n-- Conjunction record _×_ (A B : Set) : Set where constructor _,_ field fst : A ; snd : B -- Disjunction data _⊎_ (A B : Set) : Set where inj₁ : A → A ⊎ B inj₂ : B → A ⊎ B -- Negation ¬_ : Set → Set ¬ A = A → ⊥ -- where ⊥ is the empty type -- Existential -- Σ type (see previous lesson) -- Universal: dependent function type (x : A) → P x Because Agda is intuitionistic, excluded middle is not available by default. A proof of A ⊎ B must supply a proof of A or a proof of B — you cannot argue \u0026ldquo;suppose neither, derive a contradiction.\u0026rdquo;\n",
+  "keywords": "Agda",
+  "name": "Proving in Agda",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "teaches": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Proving in Agda"
+    }
+  ],
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/proving-in-agda/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="lesson">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/formal-math/">Formal math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/formal-math/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/">Agda</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/">Texts</a></nav>
+  <h1 class="p-name">Proving in Agda</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-01T00:00:00Z">2026-03-01</time>
+    <span>by <span class="p-author">claude-opus-4-6</span></span>
+    
+  </div>
+  
+  <div class="type-meta type-meta--objectives">
+    <span class="type-meta-label">Learning objectives</span>
+    <ul><li>Proving in Agda</li></ul>
+  </div>
+  
+  
+  <div class="type-meta type-meta--prereqs">
+    <span class="type-meta-label">Prerequisites</span>
+    <ul><li>/technology/disciplines/computing/software/agda/curricula/dependent-types-in-agda.md</li><li>/mathematics/disciplines/logic/curricula/intuitionistic-logic.md</li><li>/mathematics/objects/posets/curricula/heyting-algebras.md</li></ul>
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#propositions-as-types">Propositions as types</a></li>
+    <li><a href="#equational-reasoning">Equational reasoning</a></li>
+    <li><a href="#congruence-and-substitution">Congruence and substitution</a></li>
+    <li><a href="#encoding-algebraic-structures">Encoding algebraic structures</a></li>
+    <li><a href="#proving-properties-of-closure-operators">Proving properties of closure operators</a></li>
+    <li><a href="#practical-advice">Practical advice</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h2 id="propositions-as-types">Propositions as types</h2>
+<p>In Agda, there is no separate <code>Prop</code> sort — propositions are ordinary types in <code>Set</code>.
 A proof of proposition <code>P</code> is a term of type <code>P</code>. The logical connectives are defined as
-data types:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-agda data-lang=agda><span style=display:flex><span><span style=color:#75715e>-- Conjunction</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>record</span> _×_ <span style=color:#f92672>(</span>A B <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span><span style=color:#f92672>)</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span> <span style=color:#66d9ef>where</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>constructor</span> _,_
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>field</span> fst <span style=color:#f92672>:</span> A ; snd <span style=color:#f92672>:</span> B
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Disjunction</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>data</span> _⊎_ <span style=color:#f92672>(</span>A B <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span><span style=color:#f92672>)</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span> <span style=color:#66d9ef>where</span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>inj₁</span> <span style=color:#f92672>:</span> A <span style=color:#f92672>→</span> A ⊎ B
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>inj₂</span> <span style=color:#f92672>:</span> B <span style=color:#f92672>→</span> A ⊎ B
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Negation</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>¬_</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span> <span style=color:#f92672>→</span> <span style=color:#66d9ef>Set</span>
-</span></span><span style=display:flex><span>¬ A <span style=color:#f92672>=</span> A <span style=color:#f92672>→</span> ⊥    <span style=color:#75715e>-- where ⊥ is the empty type</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Existential</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Σ type (see previous lesson)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>-- Universal: dependent function type (x : A) → P x</span>
-</span></span></code></pre></div><p>Because Agda is <a href=../../../../../../mathematics/disciplines/logic/curricula/intuitionistic-logic.md class=link-internal>intuitionistic</a>, <a href=../../../../../../philosophy/terms/law-of-excluded-middle.md class=link-internal>excluded middle</a> is not available by default. A proof of <code>A ⊎ B</code> must supply a proof of <code>A</code> or a proof of <code>B</code> — you cannot argue &ldquo;suppose neither, derive a contradiction.&rdquo;</p><h2 id=equational-reasoning>Equational reasoning</h2><p>Agda&rsquo;s standard library provides a module for writing proofs as chains of equalities,
-mirroring the style of mathematical proofs on paper:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-agda data-lang=agda><span style=display:flex><span><span style=color:#66d9ef>open</span> <span style=color:#66d9ef>import</span> Relation.Binary.PropositionalEquality
-</span></span><span style=display:flex><span><span style=color:#66d9ef>open</span> ≡-Reasoning
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>+-comm</span> <span style=color:#f92672>:</span> <span style=color:#f92672>(</span>m n <span style=color:#f92672>:</span> Nat<span style=color:#f92672>)</span> <span style=color:#f92672>→</span> m + n ≡ n + m
-</span></span><span style=display:flex><span>+-comm zero    n <span style=color:#f92672>=</span> sym <span style=color:#f92672>(</span>+-zero n<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>+-comm <span style=color:#f92672>(</span>suc m<span style=color:#f92672>)</span> n <span style=color:#f92672>=</span>
-</span></span><span style=display:flex><span>  begin
-</span></span><span style=display:flex><span>    suc m + n
-</span></span><span style=display:flex><span>  ≡⟨⟩              <span style=color:#75715e>-- by definition of +</span>
-</span></span><span style=display:flex><span>    suc <span style=color:#f92672>(</span>m + n<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>  ≡⟨ cong suc <span style=color:#f92672>(</span>+-comm m n<span style=color:#f92672>)</span> ⟩
-</span></span><span style=display:flex><span>    suc <span style=color:#f92672>(</span>n + m<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>  ≡⟨ sym <span style=color:#f92672>(</span>+-suc n m<span style=color:#f92672>)</span> ⟩
-</span></span><span style=display:flex><span>    n + suc m
-</span></span><span style=display:flex><span>  ∎
+data types:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#75715e">-- Conjunction</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">record</span> _×_ <span style="color:#f92672">(</span>A B <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">)</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span> _,_
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">field</span> fst <span style="color:#f92672">:</span> A ; snd <span style="color:#f92672">:</span> B
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Disjunction</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">data</span> _⊎_ <span style="color:#f92672">(</span>A B <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">)</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">inj₁</span> <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> A ⊎ B
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">inj₂</span> <span style="color:#f92672">:</span> B <span style="color:#f92672">→</span> A ⊎ B
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Negation</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">¬_</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> <span style="color:#f92672">→</span> <span style="color:#66d9ef">Set</span>
+</span></span><span style="display:flex;"><span>¬ A <span style="color:#f92672">=</span> A <span style="color:#f92672">→</span> ⊥    <span style="color:#75715e">-- where ⊥ is the empty type</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Existential</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Σ type (see previous lesson)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Universal: dependent function type (x : A) → P x</span>
+</span></span></code></pre></div><p>Because Agda is <a href="../../../../../../mathematics/disciplines/logic/curricula/intuitionistic-logic.md" class="link-internal">intuitionistic</a>, <a href="../../../../../../philosophy/terms/law-of-excluded-middle.md" class="link-internal">excluded middle</a> is not available by default. A proof of <code>A ⊎ B</code> must supply a proof of <code>A</code> or a proof of <code>B</code> — you cannot argue &ldquo;suppose neither, derive a contradiction.&rdquo;</p>
+<h2 id="equational-reasoning">Equational reasoning</h2>
+<p>Agda&rsquo;s standard library provides a module for writing proofs as chains of equalities,
+mirroring the style of mathematical proofs on paper:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">open</span> <span style="color:#66d9ef">import</span> Relation.Binary.PropositionalEquality
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">open</span> ≡-Reasoning
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+-comm</span> <span style="color:#f92672">:</span> <span style="color:#f92672">(</span>m n <span style="color:#f92672">:</span> Nat<span style="color:#f92672">)</span> <span style="color:#f92672">→</span> m + n ≡ n + m
+</span></span><span style="display:flex;"><span>+-comm zero    n <span style="color:#f92672">=</span> sym <span style="color:#f92672">(</span>+-zero n<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>+-comm <span style="color:#f92672">(</span>suc m<span style="color:#f92672">)</span> n <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>  begin
+</span></span><span style="display:flex;"><span>    suc m + n
+</span></span><span style="display:flex;"><span>  ≡⟨⟩              <span style="color:#75715e">-- by definition of +</span>
+</span></span><span style="display:flex;"><span>    suc <span style="color:#f92672">(</span>m + n<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  ≡⟨ cong suc <span style="color:#f92672">(</span>+-comm m n<span style="color:#f92672">)</span> ⟩
+</span></span><span style="display:flex;"><span>    suc <span style="color:#f92672">(</span>n + m<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  ≡⟨ sym <span style="color:#f92672">(</span>+-suc n m<span style="color:#f92672">)</span> ⟩
+</span></span><span style="display:flex;"><span>    n + suc m
+</span></span><span style="display:flex;"><span>  ∎
 </span></span></code></pre></div><p>The <code>begin ... ∎</code> block chains steps. Each <code>≡⟨ proof ⟩</code> provides a justification for the
 equality between the line above and the line below. <code>≡⟨⟩</code> (no proof) means the equality
-holds by computation (definitional equality).</p><p>This style makes proofs self-documenting: each step records what changed and why.</p><h2 id=congruence-and-substitution>Congruence and substitution</h2><p>Two fundamental proof tools:</p><p><strong>Congruence</strong> (<code>cong</code>): if <code>a ≡ b</code>, then <code>f a ≡ f b</code> for any function <code>f</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-agda data-lang=agda><span style=display:flex><span><span style=color:#a6e22e>cong</span> <span style=color:#f92672>:</span> <span style=color:#f92672>{</span>A B <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span><span style=color:#f92672>}</span> <span style=color:#f92672>(</span>f <span style=color:#f92672>:</span> A <span style=color:#f92672>→</span> B<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>x y <span style=color:#f92672>:</span> A<span style=color:#f92672>}</span> <span style=color:#f92672>→</span> x ≡ y <span style=color:#f92672>→</span> f x ≡ f y
-</span></span><span style=display:flex><span>cong f refl <span style=color:#f92672>=</span> refl
-</span></span></code></pre></div><p><strong>Substitution</strong> (<code>subst</code>): if <code>a ≡ b</code> and <code>P a</code>, then <code>P b</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-agda data-lang=agda><span style=display:flex><span><span style=color:#a6e22e>subst</span> <span style=color:#f92672>:</span> <span style=color:#f92672>{</span>A <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span><span style=color:#f92672>}</span> <span style=color:#f92672>(</span>P <span style=color:#f92672>:</span> A <span style=color:#f92672>→</span> <span style=color:#66d9ef>Set</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>x y <span style=color:#f92672>:</span> A<span style=color:#f92672>}</span> <span style=color:#f92672>→</span> x ≡ y <span style=color:#f92672>→</span> P x <span style=color:#f92672>→</span> P y
-</span></span><span style=display:flex><span>subst P refl px <span style=color:#f92672>=</span> px
+holds by computation (definitional equality).</p>
+<p>This style makes proofs self-documenting: each step records what changed and why.</p>
+<h2 id="congruence-and-substitution">Congruence and substitution</h2>
+<p>Two fundamental proof tools:</p>
+<p><strong>Congruence</strong> (<code>cong</code>): if <code>a ≡ b</code>, then <code>f a ≡ f b</code> for any function <code>f</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">cong</span> <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>A B <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">(</span>f <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> B<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>x y <span style="color:#f92672">:</span> A<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> x ≡ y <span style="color:#f92672">→</span> f x ≡ f y
+</span></span><span style="display:flex;"><span>cong f refl <span style="color:#f92672">=</span> refl
+</span></span></code></pre></div><p><strong>Substitution</strong> (<code>subst</code>): if <code>a ≡ b</code> and <code>P a</code>, then <code>P b</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">subst</span> <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">(</span>P <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>x y <span style="color:#f92672">:</span> A<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> x ≡ y <span style="color:#f92672">→</span> P x <span style="color:#f92672">→</span> P y
+</span></span><span style="display:flex;"><span>subst P refl px <span style="color:#f92672">=</span> px
 </span></span></code></pre></div><p>Both follow from <code>refl</code> by pattern matching — when the equality proof is <code>refl</code>, the two
-sides are definitionally equal and the result is immediate.</p><h2 id=encoding-algebraic-structures>Encoding algebraic structures</h2><p>Mathematical structures in Agda are record types bundling data and proofs:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-agda data-lang=agda><span style=display:flex><span><span style=color:#66d9ef>record</span> IsPartialOrder <span style=color:#f92672>{</span>A <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span><span style=color:#f92672>}</span> <span style=color:#f92672>(</span>_≤_ <span style=color:#f92672>:</span> A <span style=color:#f92672>→</span> A <span style=color:#f92672>→</span> <span style=color:#66d9ef>Set</span><span style=color:#f92672>)</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span> <span style=color:#66d9ef>where</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>field</span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>refl</span>  <span style=color:#f92672>:</span> <span style=color:#f92672>∀</span> <span style=color:#f92672>{</span>a<span style=color:#f92672>}</span> <span style=color:#f92672>→</span> a ≤ a
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>trans</span> <span style=color:#f92672>:</span> <span style=color:#f92672>∀</span> <span style=color:#f92672>{</span>a b c<span style=color:#f92672>}</span> <span style=color:#f92672>→</span> a ≤ b <span style=color:#f92672>→</span> b ≤ c <span style=color:#f92672>→</span> a ≤ c
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>antisym</span> <span style=color:#f92672>:</span> <span style=color:#f92672>∀</span> <span style=color:#f92672>{</span>a b<span style=color:#f92672>}</span> <span style=color:#f92672>→</span> a ≤ b <span style=color:#f92672>→</span> b ≤ a <span style=color:#f92672>→</span> a ≡ b
-</span></span></code></pre></div><p>A <a href=../../../../../../mathematics/objects/posets/terms/lattice.md class=link-internal>lattice</a> adds meet and join with their axioms. A <a href=../../../../../../mathematics/objects/posets/curricula/heyting-algebras.md class=link-internal>Heyting algebra</a> adds implication with the defining <a href=../../../../../../mathematics/disciplines/higher-topos-theory/terms/adjunction.md class=link-internal>adjunction</a>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-agda data-lang=agda><span style=display:flex><span><span style=color:#66d9ef>record</span> IsHeytingAlgebra <span style=color:#f92672>{</span>A <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span><span style=color:#f92672>}</span> <span style=color:#f92672>(</span>_≤_ <span style=color:#f92672>:</span> A <span style=color:#f92672>→</span> A <span style=color:#f92672>→</span> <span style=color:#66d9ef>Set</span><span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>       <span style=color:#f92672>(</span>_∧_ _∨_ <span style=color:#f92672>:</span> A <span style=color:#f92672>→</span> A <span style=color:#f92672>→</span> A<span style=color:#f92672>)</span> <span style=color:#f92672>(</span>_⇒_ <span style=color:#f92672>:</span> A <span style=color:#f92672>→</span> A <span style=color:#f92672>→</span> A<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>       <span style=color:#f92672>(</span>⊤ ⊥ <span style=color:#f92672>:</span> A<span style=color:#f92672>)</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span> <span style=color:#66d9ef>where</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>field</span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>isLattice</span> <span style=color:#f92672>:</span> IsLattice _≤_ _∧_ _∨_ ⊤ ⊥
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>himp-adjoint</span> <span style=color:#f92672>:</span> <span style=color:#f92672>∀</span> <span style=color:#f92672>{</span>a b c<span style=color:#f92672>}</span> <span style=color:#f92672>→</span> c ≤ <span style=color:#f92672>(</span>a ⇒ b<span style=color:#f92672>)</span> ↔ <span style=color:#f92672>(</span>c ∧ a<span style=color:#f92672>)</span> ≤ b
+sides are definitionally equal and the result is immediate.</p>
+<h2 id="encoding-algebraic-structures">Encoding algebraic structures</h2>
+<p>Mathematical structures in Agda are record types bundling data and proofs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">record</span> IsPartialOrder <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">(</span>_≤_ <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">)</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">field</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">refl</span>  <span style="color:#f92672">:</span> <span style="color:#f92672">∀</span> <span style="color:#f92672">{</span>a<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> a ≤ a
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">trans</span> <span style="color:#f92672">:</span> <span style="color:#f92672">∀</span> <span style="color:#f92672">{</span>a b c<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> a ≤ b <span style="color:#f92672">→</span> b ≤ c <span style="color:#f92672">→</span> a ≤ c
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">antisym</span> <span style="color:#f92672">:</span> <span style="color:#f92672">∀</span> <span style="color:#f92672">{</span>a b<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> a ≤ b <span style="color:#f92672">→</span> b ≤ a <span style="color:#f92672">→</span> a ≡ b
+</span></span></code></pre></div><p>A <a href="../../../../../../mathematics/objects/posets/terms/lattice.md" class="link-internal">lattice</a> adds meet and join with their axioms. A <a href="../../../../../../mathematics/objects/posets/curricula/heyting-algebras.md" class="link-internal">Heyting algebra</a> adds implication with the defining <a href="../../../../../../mathematics/disciplines/higher-topos-theory/terms/adjunction.md" class="link-internal">adjunction</a>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">record</span> IsHeytingAlgebra <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">(</span>_≤_ <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">(</span>_∧_ _∨_ <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> A<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>_⇒_ <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> A<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">(</span>⊤ ⊥ <span style="color:#f92672">:</span> A<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">field</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">isLattice</span> <span style="color:#f92672">:</span> IsLattice _≤_ _∧_ _∨_ ⊤ ⊥
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">himp-adjoint</span> <span style="color:#f92672">:</span> <span style="color:#f92672">∀</span> <span style="color:#f92672">{</span>a b c<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> c ≤ <span style="color:#f92672">(</span>a ⇒ b<span style="color:#f92672">)</span> ↔ <span style="color:#f92672">(</span>c ∧ a<span style="color:#f92672">)</span> ≤ b
 </span></span></code></pre></div><p>Constructing an instance of <code>IsHeytingAlgebra</code> for a specific algebra requires supplying
-proofs of every field — the type checker verifies them all.</p><h2 id=proving-properties-of-closure-operators>Proving properties of <a href=../../../../../../mathematics/concepts/closure-operator/index.md class=link-internal>closure operators</a></h2><p>The <a href=../../../../../../mathematics/objects/posets/curricula/closure-operators.md class=link-internal>closure operators</a> that build the Semiotic Universe can be formalized as record types:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-agda data-lang=agda><span style=display:flex><span><span style=color:#66d9ef>record</span> IsClosureOp <span style=color:#f92672>{</span>A <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span><span style=color:#f92672>}</span> <span style=color:#f92672>(</span>_≤_ <span style=color:#f92672>:</span> A <span style=color:#f92672>→</span> A <span style=color:#f92672>→</span> <span style=color:#66d9ef>Set</span><span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>       <span style=color:#f92672>(</span>cl <span style=color:#f92672>:</span> A <span style=color:#f92672>→</span> A<span style=color:#f92672>)</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span> <span style=color:#66d9ef>where</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>field</span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>extensive</span>  <span style=color:#f92672>:</span> <span style=color:#f92672>∀</span> <span style=color:#f92672>{</span>a<span style=color:#f92672>}</span> <span style=color:#f92672>→</span> a ≤ cl a
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>monotone</span>   <span style=color:#f92672>:</span> <span style=color:#f92672>∀</span> <span style=color:#f92672>{</span>a b<span style=color:#f92672>}</span> <span style=color:#f92672>→</span> a ≤ b <span style=color:#f92672>→</span> cl a ≤ cl b
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>idempotent</span> <span style=color:#f92672>:</span> <span style=color:#f92672>∀</span> <span style=color:#f92672>{</span>a<span style=color:#f92672>}</span> <span style=color:#f92672>→</span> cl <span style=color:#f92672>(</span>cl a<span style=color:#f92672>)</span> ≡ cl a
-</span></span></code></pre></div><p>Proving that a specific function is a <a href=../../../../../../mathematics/concepts/closure-operator/index.md class=link-internal>closure operator</a> means constructing a term of type
-<code>IsClosureOp _≤_ f</code> — providing proofs of extensiveness, monotonicity, and idempotence.</p><p>The Knaster-Tarski fixed-point theorem can also be stated and proved in Agda, though the
-proof requires careful handling of complete <a href=../../../../../../mathematics/objects/posets/terms/lattice.md class=link-internal>lattice</a> structure and well-founded recursion.</p><h2 id=practical-advice>Practical advice</h2><ul><li><strong>Work with holes.</strong> Write <code>?</code> for any part you are unsure of. Load the file (C-c C-l)
-and inspect the hole&rsquo;s type. Let the type guide the next step.</li><li><strong>Use case splitting.</strong> Place the cursor in a hole, type a variable name, and press
-C-c C-c. Agda generates one clause per constructor.</li><li><strong>Read the goal type.</strong> The goal type tells you what you need to construct. If the goal
-is <code>a ≡ b</code>, you need an equality proof. If the goal is <code>A × B</code>, you need a pair.</li><li><strong>Name things.</strong> Agda allows unicode identifiers — use <code>≤</code>, <code>∧</code>, <code>⊎</code>, <code>≡</code> for
+proofs of every field — the type checker verifies them all.</p>
+<h2 id="proving-properties-of-closure-operators">Proving properties of <a href="../../../../../../mathematics/concepts/closure-operator/index.md" class="link-internal">closure operators</a></h2>
+<p>The <a href="../../../../../../mathematics/objects/posets/curricula/closure-operators.md" class="link-internal">closure operators</a> that build the Semiotic Universe can be formalized as record types:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">record</span> IsClosureOp <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">(</span>_≤_ <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">(</span>cl <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> A<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">field</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">extensive</span>  <span style="color:#f92672">:</span> <span style="color:#f92672">∀</span> <span style="color:#f92672">{</span>a<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> a ≤ cl a
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">monotone</span>   <span style="color:#f92672">:</span> <span style="color:#f92672">∀</span> <span style="color:#f92672">{</span>a b<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> a ≤ b <span style="color:#f92672">→</span> cl a ≤ cl b
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">idempotent</span> <span style="color:#f92672">:</span> <span style="color:#f92672">∀</span> <span style="color:#f92672">{</span>a<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> cl <span style="color:#f92672">(</span>cl a<span style="color:#f92672">)</span> ≡ cl a
+</span></span></code></pre></div><p>Proving that a specific function is a <a href="../../../../../../mathematics/concepts/closure-operator/index.md" class="link-internal">closure operator</a> means constructing a term of type
+<code>IsClosureOp _≤_ f</code> — providing proofs of extensiveness, monotonicity, and idempotence.</p>
+<p>The Knaster-Tarski fixed-point theorem can also be stated and proved in Agda, though the
+proof requires careful handling of complete <a href="../../../../../../mathematics/objects/posets/terms/lattice.md" class="link-internal">lattice</a> structure and well-founded recursion.</p>
+<h2 id="practical-advice">Practical advice</h2>
+<ul>
+<li><strong>Work with holes.</strong> Write <code>?</code> for any part you are unsure of. Load the file (C-c C-l)
+and inspect the hole&rsquo;s type. Let the type guide the next step.</li>
+<li><strong>Use case splitting.</strong> Place the cursor in a hole, type a variable name, and press
+C-c C-c. Agda generates one clause per constructor.</li>
+<li><strong>Read the goal type.</strong> The goal type tells you what you need to construct. If the goal
+is <code>a ≡ b</code>, you need an equality proof. If the goal is <code>A × B</code>, you need a pair.</li>
+<li><strong>Name things.</strong> Agda allows unicode identifiers — use <code>≤</code>, <code>∧</code>, <code>⊎</code>, <code>≡</code> for
 readability. Mathematical notation in code makes proofs easier to cross-reference with
-their informal counterparts.</li><li><strong>Start small.</strong> Prove simple properties first (reflexivity, symmetry) before attempting
-complex theorems. Each proved lemma becomes a building block for the next proof.</li></ul></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>claude-opus-4-6. (2026, March 1). Proving in Agda. <i>emsenn.net</i>. https://emsenn.net/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/proving-in-agda/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@misc{claude-opus-4-62026-proving-in-agda,
+their informal counterparts.</li>
+<li><strong>Start small.</strong> Prove simple properties first (reflexivity, symmetry) before attempting
+complex theorems. Each proved lemma becomes a building block for the next proof.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/proving-in-agda/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li>Technology disciplines computing software agda curricula dependent types in agda.md</li><li>Mathematics disciplines logic curricula intuitionistic logic.md</li><li>Mathematics objects posets curricula heyting algebras.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/agda/">Agda</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li><a href="/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/proving-in-agda/">Proving in agda</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{claude-opus-4-62026-proving-in-agda,
   author    = {claude-opus-4-6},
   title     = {Proving in Agda},
   year      = {2026},
   url       = {https://emsenn.net/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/proving-in-agda/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/proving-in-agda/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-01>2026-03-01</time></dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>requires</a></dt><dd property="schema:educationalAlignment"><ul><li>/technology/disciplines/computing/software/agda/curricula/dependent-types-in-agda.md</li><li>/mathematics/disciplines/logic/curricula/intuitionistic-logic.md</li><li>/mathematics/objects/posets/curricula/heyting-algebras.md</li></ul></dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/agda/>Agda</a></li></ul></dd></div><div class=relation><dt>teaches</dt><dd property="emsenn:Teaches"><ul><li><a href=/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/proving-in-agda/>Proving in Agda</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Proving in Agda</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/lesson/>lesson</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

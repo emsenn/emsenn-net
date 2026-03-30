@@ -1,17 +1,145 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Header Bidding - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-29","datePublished":"2026-03-29","description":"A programmatic advertising technique where multiple ad exchanges bid simultaneously on each impression before the ad server makes its decision — replacing the sequential waterfall with a parallel auction.","name":"Header Bidding","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/business/domains/web/terms/header-bidding/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Header Bidding</h1><div class=meta><time class=dt-published datetime=2026-03-29T00:00:00Z>2026-03-29</time>
-<span class=p-summary>A programmatic advertising technique where multiple ad exchanges bid simultaneously on each impression before the ad server makes its decision — replacing the sequential waterfall with a parallel auction.</span></div><div class=e-content>&lt;p>Header bidding is a &lt;a href="./programmatic-advertising.md" class="link-internal">programmatic advertising&lt;/a> technique in which a publisher solicits bids from multiple ad exchanges and supply-side platforms (SSPs) simultaneously, before the publisher&amp;rsquo;s primary ad server (typically Google Ad Manager) makes its allocation decision. The name comes from the technique&amp;rsquo;s original implementation: a JavaScript snippet placed in the page&amp;rsquo;s HTML &lt;code>&amp;lt;head&amp;gt;&lt;/code> section that fires bid requests to multiple demand sources as the page loads.&lt;/p>
-&lt;p>Header bidding replaced the &lt;strong>waterfall&lt;/strong> model that dominated programmatic advertising before roughly 2015. In a waterfall, the publisher&amp;rsquo;s ad server offered each impression to demand sources sequentially, in a predetermined priority order — typically Google AdX first, then the next-highest-priority exchange, then the next, and so on. Each source had a floor price; if it didn&amp;rsquo;t bid above the floor, the impression cascaded to the next source. The problem: the waterfall was based on historical average prices, not real-time competition. A demand source ranked fifth might have been willing to pay more for a specific impression than the source ranked first, but never got the chance to bid because the first source cleared its floor price.&lt;/p>
-&lt;p>Header bidding solved this by making the auction parallel rather than sequential. All demand sources see every impression simultaneously and bid in real time. The highest bid wins, regardless of the source&amp;rsquo;s priority ranking. The result: more competition per impression, which increases &lt;a href="./revenue-per-mille.md" class="link-internal">RPMs&lt;/a> for publishers.&lt;/p>
-&lt;p>Industry reports from 2016-2018 showed 20-50% RPM increases when publishers switched from waterfall to header bidding, with some seeing larger gains depending on their demand partner mix. The improvement comes from two sources: higher clearing prices (competition raises bids) and reduced passback waste (in the waterfall, impressions that cascaded through all sources without a qualifying bid were often sold at remnant prices or went unfilled entirely).&lt;/p>
-&lt;p>&lt;strong>Prebid.js&lt;/strong>, released as open source by AppNexus in 2015 &lt;a href="#ref-prebid2015" class="citation">[prebid2015]&lt;/a>, became the dominant header bidding wrapper. It standardized how publishers integrate multiple demand partners, manage timeouts (how long to wait for bids before the page loads the ad server&amp;rsquo;s fallback), and configure auction rules. As of 2025, Prebid.js is used by over 70% of the top 10,000 websites running header bidding. Premium ad networks like Mediavine and Raptive run proprietary header bidding stacks built on similar principles but optimized for their specific publisher portfolios.&lt;/p>
-&lt;p>&lt;strong>Server-side header bidding&lt;/strong> moved the auction from the user&amp;rsquo;s browser to a server, reducing page load impact. Client-side header bidding (the original approach) adds JavaScript to the page that fires bid requests from the user&amp;rsquo;s browser — each demand partner adds latency. With dozens of partners, this could add 1-3 seconds to page load time, degrading user experience and &lt;a href="./impression.md" class="link-internal">viewability&lt;/a>. Server-side bidding runs the auction on a server, sending a single consolidated request from the browser and receiving a single response. The tradeoff: server-side bidding reduces latency but also reduces cookie access (the server doesn&amp;rsquo;t have the user&amp;rsquo;s browser cookies), which can lower bid prices because advertisers have less targeting data.&lt;/p>
-&lt;p>&lt;strong>For publishers evaluating ad networks&lt;/strong>, header bidding capability is now table stakes. A network that runs header bidding (Mediavine, Raptive, Playwire) will outperform one that doesn&amp;rsquo;t (basic AdSense) on the same traffic, because the competitive auction mechanics extract more value per &lt;a href="./impression.md" class="link-internal">impression&lt;/a>. The publisher&amp;rsquo;s decision is whether to implement header bidding independently (using Prebid.js, requiring technical sophistication) or to outsource it to a managed network (sacrificing 25-35% of revenue in exchange for turnkey optimization).&lt;/p></div><section class=bibliography id=bibliography vocab="https://schema.org/" typeof="ItemList"><h2>References</h2><p class=bib-entry id=ref-prebid2015 typeof="CreativeWork" resource="#ref-prebid2015"><span class=bib-key>[prebid2015]</span>
-<span property="author">AppNexus</span>.
-(<span property="datePublished">2015</span>).
-<cite property="name">Prebid.js: An Open-Source Header Bidding Solution</cite>.
-<em property="publisher">Prebid.org</em>.
-<a href=https://prebid.org>https://prebid.org</a></p></section></article><section class=page-relations resource="https://emsenn.net/library/business/domains/web/terms/header-bidding/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt><a href=/library/math/terms/action/>acts-on</a></dt><dd property="emsenn:Actson"><a href=/library/business/domains/web/terms/impression/>impression</a></dd></div><div class=relation><dt>cites</dt><dd property="schema:citation"><ul><li>prebid2015</li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>date-updated</dt><dd property="schema:dateModified"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>defines</dt><dd property="emsenn:Defines"><a href=/library/business/domains/web/terms/header-bidding/>Header Bidding</a></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">A programmatic advertising technique where multiple ad exchanges bid simultaneously on each impression before the ad server makes its decision — replacing the sequential waterfall with a parallel auction.</dd></div><div class=relation><dt><a href=/library/math/domains/sets/terms/domain/>domain</a></dt><dd property="emsenn:Domain">web-business</dd></div><div class=relation><dt><a href=/library/math/terms/measure/>measured-by</a></dt><dd property="emsenn:Measuredby">revenue-per-mille</dd></div><div class=relation><dt><a href=/library/math/terms/optimization/>optimizes</a></dt><dd property="emsenn:Optimizes">programmatic-advertising</dd></div><div class=relation><dt><a href=/library/math/domains/topology/terms/restriction/>restricts</a></dt><dd property="emsenn:Restricts">programmatic-advertising</dd></div><div class=relation><dt>title</dt><dd property="schema:name">Header Bidding</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Header Bidding - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "A programmatic advertising technique where multiple ad exchanges bid simultaneously on each impression before the ad server makes its decision — replacing the sequential waterfall with a parallel auction.",
+  "name": "Header Bidding",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/business/domains/web/terms/header-bidding/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/business/">Business</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/business/domains/web/">Web Business</a></nav>
+  <h1 class="p-name">Header Bidding</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">A programmatic advertising technique where multiple ad exchanges bid simultaneously on each impression before the ad server makes its decision — replacing the sequential waterfall with a parallel auction.</span>
+  </div>
+  <div class="e-content">
+    &lt;p&gt;Header bidding is a &lt;a href=&#34;./programmatic-advertising.md&#34; class=&#34;link-internal&#34;&gt;programmatic advertising&lt;/a&gt; technique in which a publisher solicits bids from multiple ad exchanges and supply-side platforms (SSPs) simultaneously, before the publisher&amp;rsquo;s primary ad server (typically Google Ad Manager) makes its allocation decision. The name comes from the technique&amp;rsquo;s original implementation: a JavaScript snippet placed in the page&amp;rsquo;s HTML &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; section that fires bid requests to multiple demand sources as the page loads.&lt;/p&gt;
+&lt;p&gt;Header bidding replaced the &lt;strong&gt;waterfall&lt;/strong&gt; model that dominated programmatic advertising before roughly 2015. In a waterfall, the publisher&amp;rsquo;s ad server offered each impression to demand sources sequentially, in a predetermined priority order — typically Google AdX first, then the next-highest-priority exchange, then the next, and so on. Each source had a floor price; if it didn&amp;rsquo;t bid above the floor, the impression cascaded to the next source. The problem: the waterfall was based on historical average prices, not real-time competition. A demand source ranked fifth might have been willing to pay more for a specific impression than the source ranked first, but never got the chance to bid because the first source cleared its floor price.&lt;/p&gt;
+&lt;p&gt;Header bidding solved this by making the auction parallel rather than sequential. All demand sources see every impression simultaneously and bid in real time. The highest bid wins, regardless of the source&amp;rsquo;s priority ranking. The result: more competition per impression, which increases &lt;a href=&#34;./revenue-per-mille.md&#34; class=&#34;link-internal&#34;&gt;RPMs&lt;/a&gt; for publishers.&lt;/p&gt;
+&lt;p&gt;Industry reports from 2016-2018 showed 20-50% RPM increases when publishers switched from waterfall to header bidding, with some seeing larger gains depending on their demand partner mix. The improvement comes from two sources: higher clearing prices (competition raises bids) and reduced passback waste (in the waterfall, impressions that cascaded through all sources without a qualifying bid were often sold at remnant prices or went unfilled entirely).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Prebid.js&lt;/strong&gt;, released as open source by AppNexus in 2015 &lt;a href=&#34;#ref-prebid2015&#34; class=&#34;citation&#34;&gt;[prebid2015]&lt;/a&gt;, became the dominant header bidding wrapper. It standardized how publishers integrate multiple demand partners, manage timeouts (how long to wait for bids before the page loads the ad server&amp;rsquo;s fallback), and configure auction rules. As of 2025, Prebid.js is used by over 70% of the top 10,000 websites running header bidding. Premium ad networks like Mediavine and Raptive run proprietary header bidding stacks built on similar principles but optimized for their specific publisher portfolios.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Server-side header bidding&lt;/strong&gt; moved the auction from the user&amp;rsquo;s browser to a server, reducing page load impact. Client-side header bidding (the original approach) adds JavaScript to the page that fires bid requests from the user&amp;rsquo;s browser — each demand partner adds latency. With dozens of partners, this could add 1-3 seconds to page load time, degrading user experience and &lt;a href=&#34;./impression.md&#34; class=&#34;link-internal&#34;&gt;viewability&lt;/a&gt;. Server-side bidding runs the auction on a server, sending a single consolidated request from the browser and receiving a single response. The tradeoff: server-side bidding reduces latency but also reduces cookie access (the server doesn&amp;rsquo;t have the user&amp;rsquo;s browser cookies), which can lower bid prices because advertisers have less targeting data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For publishers evaluating ad networks&lt;/strong&gt;, header bidding capability is now table stakes. A network that runs header bidding (Mediavine, Raptive, Playwire) will outperform one that doesn&amp;rsquo;t (basic AdSense) on the same traffic, because the competitive auction mechanics extract more value per &lt;a href=&#34;./impression.md&#34; class=&#34;link-internal&#34;&gt;impression&lt;/a&gt;. The publisher&amp;rsquo;s decision is whether to implement header bidding independently (using Prebid.js, requiring technical sophistication) or to outsource it to a managed network (sacrificing 25-35% of revenue in exchange for turnkey optimization).&lt;/p&gt;
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-prebid2015" typeof="CreativeWork" resource="#ref-prebid2015">
+    <span class="bib-key">[prebid2015]</span>
+      <span property="author">AppNexus</span>.
+      (<span property="datePublished">2015</span>).
+      <cite property="name">Prebid.js: An Open-Source Header Bidding Solution</cite>.
+      <em property="publisher">Prebid.org</em>.
+      <a href="https://prebid.org">https://prebid.org</a>
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/business/domains/web/terms/header-bidding/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt><a href="/library/math/terms/action/">Acts on</a></dt>
+        <dd property="emsenn:Actson"><a href="/library/business/domains/web/terms/impression/">Impression</a></dd>
+      </div><div class="relation">
+        <dt>Cites</dt>
+        <dd property="schema:citation"><ul><li>Prebid2015</li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Date updated</dt>
+        <dd property="schema:dateModified"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/business/domains/web/terms/header-bidding/">Header bidding</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">Web business</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/measure/">Measured by</a></dt>
+        <dd property="emsenn:Measuredby">Revenue per mille</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/optimization/">Optimizes</a></dt>
+        <dd property="emsenn:Optimizes">Programmatic advertising</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/topology/terms/restriction/">Restricts</a></dt>
+        <dd property="emsenn:Restricts">Programmatic advertising</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

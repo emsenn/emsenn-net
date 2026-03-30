@@ -1,16 +1,284 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Domain-Specific Content - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"claude-opus-4-6"},"dateModified":"2026-03-05","datePublished":"2026-03-05","description":"This document describes how an Agential Semioverse Repository accommodates domain-specific content types and relations. The general ASR defines types (term, concept, text, etc.) and relations (defines, requires, cites, etc.) that work across any discipline. Domain-specific ASR specifications extend these with types and relations that carry validity requirements particular to a knowledge domain.\nCurrent domain-specific ASR specifications:\nMathematical ASR — provability-governed content (theorems, proofs, definitions, axioms) Philosophical ASR — arguability-governed content (claims, arguments, objections, responses) Educational ASR — pedagogical-soundness-governed content (lessons, curricula, skills, schools, transmission modes) Relations carry their domain The central design principle: typed relations belong to the domain that defines them. When a page uses a relation, the SHACL shapes governing that relation validate it — regardless of where the page lives in the directory hierarchy, what its type: is, or what other relations it uses.\n","keywords":"AgentialSemioverse, Repository","name":"Domain-Specific Content","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/theory/domain-specific-content/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Domain-Specific Content</h1><div class=meta><time class=dt-published datetime=2026-03-05T00:00:00Z>2026-03-05</time>
-<span>by <span class=p-author>claude-opus-4-6</span></span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#relations-carry-their-domain>Relations carry their domain</a></li><li><a href=#how-a-page-participates-in-a-domain>How a page participates in a domain</a></li><li><a href=#cross-domain-coherence>Cross-domain coherence</a></li><li><a href=#correspondence-relations>Correspondence relations</a><ul><li><a href=#content-type-correspondence>Content type: correspondence</a></li><li><a href=#correspondence-types>Correspondence types</a></li><li><a href=#correspondence-relation-vocabulary>Correspondence relation vocabulary</a></li><li><a href=#why-correspondences-are-first-class>Why correspondences are first-class</a></li></ul></li><li><a href=#extending-the-system>Extending the system</a></li></ul></nav></details><div class=e-content><p>This document describes how an Agential Semioverse Repository accommodates domain-specific content types and relations. The general ASR defines types (<code>term</code>, <code>concept</code>, <code>text</code>, etc.) and relations (<code>defines</code>, <code>requires</code>, <code>cites</code>, etc.) that work across any discipline. Domain-specific ASR specifications extend these with types and relations that carry validity requirements particular to a knowledge domain.</p><p>Current domain-specific ASR specifications:</p><ul><li><a href=../../../../mathematics/specifications/mathematical-agential-semioverse-repository/index.md class=link-internal>Mathematical ASR</a> — provability-governed content (theorems, proofs, definitions, axioms)</li><li><a href=../../../../philosophy/specifications/philosophical-agential-semioverse-repository/index.md class=link-internal>Philosophical ASR</a> — arguability-governed content (claims, arguments, objections, responses)</li><li><a href=../../../../education/specifications/educational-agential-semioverse-repository/index.md class=link-internal>Educational ASR</a> — pedagogical-soundness-governed content (lessons, curricula, skills, schools, transmission modes)</li></ul><h2 id=relations-carry-their-domain>Relations carry their domain</h2><p>The central design principle: typed relations belong to the domain that defines them. When a page uses a relation, the SHACL shapes governing that relation validate it — regardless of where the page lives in the directory hierarchy, what its <code>type:</code> is, or what other relations it uses.</p><p><code>proven-by</code> is a mathematical relation. A page that uses it gets mathematical validation on that relation. <code>argued-by</code> is a philosophical relation. A page that uses it gets philosophical validation on that relation. A page that uses both gets both validations, independently.</p><p>This means a single page can participate in multiple domains without duplication. A concept like relational Flow can be one page with mathematical relations (linking it to its formal definition and proofs) and philosophical relations (linking it to the claims and arguments that motivate it). Each set of relations is validated by its own domain&rsquo;s shapes.</p><h2 id=how-a-page-participates-in-a-domain>How a page participates in a domain</h2><p>A page participates in a domain by using that domain&rsquo;s relations. No explicit declaration is needed. The presence of <code>proven-by:</code> in frontmatter makes the page subject to mathematical validation for that relation. The absence of <code>proven-by:</code> means mathematical validation for that relation does not fire.</p><p>Directory subtrees have conventional domain associations — pages under <code>mathematics/</code> conventionally use mathematical relations, pages under <code>philosophy/</code> conventionally use philosophical ones. But these are conventions about what relations are EXPECTED, not restrictions on what relations are ALLOWED. A philosophy page that includes a formal proof can use <code>proven-by:</code>.</p><h2 id=cross-domain-coherence>Cross-domain coherence</h2><p>When a page uses relations from multiple domains, the question arises: how do the domains&rsquo; views of the same content cohere?</p><p>The <a href=../../../../mathematics/objects/universes/interactive-semioverse/interactive-semioverse.md class=link-internal>Interactive Semioverse</a> provides the formal machinery for this:</p><p><strong>Fragments.</strong> Different relations generate semantic content within different <a href=../../../../mathematics/objects/universes/interactive-semioverse/terms/fragment.md class=link-internal>fragments</a> of the Heyting algebra H. Mathematical relations contribute to mathematical fragments; philosophical relations contribute to philosophical fragments. Each fragment is a finitely generated modal-temporal subalgebra — a local context within which semantic content is evaluated.</p><p><strong>Sheaf semantics.</strong> The IS defines a <a href=../../../../mathematics/objects/universes/interactive-semioverse/interactive-semioverse.md class=link-internal>fragment fibration</a> (§15) with a sheaf condition: if local sections over different fragments agree on their overlaps, they glue to a unique global section. This means that if the mathematical and philosophical views of a concept share some semantic content (both reference the same definitions, both use the same <code>requires:</code> chain), they must be consistent on that shared content. The sheaf condition enforces this without requiring either view to reduce to the other.</p><p><strong>Handle co-reference.</strong> The IS&rsquo;s <a href=../../../../mathematics/objects/universes/interactive-semioverse/interactive-semioverse.md class=link-internal>handle identity groupoid</a> (§7) supports transport of interaction terms between co-referent handles. If two handles point to the same semantic seed, interaction terms transport coherently between them. This is the formal basis for &ldquo;same concept, different interaction surfaces.&rdquo;</p><p>The IS does not currently annotate fragments with domain metadata. Its refinement directives (§14.1) are defined but the parameter space is left open — this is a natural extension point for domain-level constraints on fragment refinement. But the coherence machinery (sheaf gluing, handle transport) works without domain annotation.</p><h2 id=correspondence-relations>Correspondence relations</h2><p>Correspondences map between domains. They are general ASR relations, not specific to any single domain, because they inherently cross disciplinary boundaries.</p><h3 id=content-type-correspondence>Content type: correspondence</h3><p>A formal mapping between two frameworks — mathematical structures, philosophical traditions, or any combination.</p><ul><li>MUST specify <code>maps-from:</code> identifying the source.</li><li>MUST specify <code>maps-to:</code> identifying the target.</li><li>MUST specify <code>correspondence-type:</code> identifying the nature of the mapping.</li><li>MUST explain in the body what corresponds to what, concretely.</li><li>SHOULD specify <code>preserves:</code> listing structural features maintained.</li><li>SHOULD specify <code>loses:</code> listing structural features not maintained.</li><li>MAY specify <code>proven-by:</code> if the correspondence has a formal proof.</li><li>MAY specify <code>argued-by:</code> if supported by philosophical argument.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>type</span>: <span style=color:#ae81ff>correspondence</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>maps-from</span>: <span style=color:#ae81ff>/relationality/terms/togethering.md</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>maps-to</span>: <span style=color:#ae81ff>/mathematics/objects/lattices/terms/meet.md</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>correspondence-type</span>: <span style=color:#ae81ff>validation</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>preserves</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>associativity</span>
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>commutativity</span>
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>idempotence</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>requires</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>/mathematics/objects/lattices/terms/heyting-algebra.md</span>
-</span></span></code></pre></div><h3 id=correspondence-types>Correspondence types</h3><table><thead><tr><th>Value</th><th>Meaning</th></tr></thead><tbody><tr><td><code>isomorphism</code></td><td>Exact structural match in both directions</td></tr><tr><td><code>homomorphism</code></td><td>Structure-preserving map (may lose information)</td></tr><tr><td><code>analogy</code></td><td>Informal structural similarity</td></tr><tr><td><code>validation</code></td><td>The target formalizes or verifies the source</td></tr><tr><td><code>instantiation</code></td><td>The source is a specific case of the target</td></tr><tr><td><code>generalization</code></td><td>The source generalizes the target</td></tr><tr><td><code>dual</code></td><td>Systematic reversal (arrows, operations, perspectives)</td></tr></tbody></table><h3 id=correspondence-relation-vocabulary>Correspondence relation vocabulary</h3><table><thead><tr><th>Relation</th><th>Meaning</th><th>Maps to</th></tr></thead><tbody><tr><td><code>maps-from</code></td><td>Source framework or concept</td><td>—</td></tr><tr><td><code>maps-to</code></td><td>Target framework or concept</td><td>—</td></tr><tr><td><code>correspondence-type</code></td><td>Nature of mapping</td><td>—</td></tr><tr><td><code>preserves</code></td><td>Structural features maintained</td><td>—</td></tr><tr><td><code>loses</code></td><td>Structural features not maintained</td><td>—</td></tr></tbody></table><h3 id=why-correspondences-are-first-class>Why correspondences are first-class</h3><p>Correspondences are often implicit — they exist in researchers&rsquo; minds or in how content is organized, but are never stated. Making them explicit pages with typed relations makes them:</p><ol><li><strong>Contestable.</strong> An assumed mapping may not preserve what it claims to. Explicit correspondences can be objected to.</li><li><strong>Partial.</strong> A mapping may preserve some structure but not all. <code>preserves:</code> and <code>loses:</code> make this visible.</li><li><strong>Composable.</strong> If A corresponds to B and B corresponds to C, a derived correspondence from A to C may exist.</li></ol><p>In a project that develops ideas philosophically and validates them mathematically, the correspondences ARE the argument that the philosophy and mathematics are talking about the same thing.</p><h2 id=extending-the-system>Extending the system</h2><p>New domain-specific ASR specifications can be created for any discipline by:</p><ol><li>Creating a <code>specifications/{discipline}-agential-semioverse-repository/</code> directory under the discipline.</li><li>Defining content types with MUST/SHOULD validity requirements.</li><li>Defining typed relations that carry those requirements.</li><li>Writing SHACL shapes that validate the relations.</li><li>Writing an OWL ontology that defines the classes and properties.</li></ol><p>The general ASR infrastructure (semantic frontmatter, directory organization, RDF generation) handles the rest. Domain-specific relations are validated by their own shapes; the IS&rsquo;s fragment and sheaf machinery handles cross-domain coherence.</p></div></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/theory/domain-specific-content/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-05>2026-03-05</time></dd></div><div class=relation><dt>status</dt><dd property="emsenn:Status">draft</dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/agentialsemioverse/>AgentialSemioverse</a></li><li><a href=/tags/repository/>Repository</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Domain-Specific Content</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Domain-Specific Content - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "claude-opus-4-6"
+  },
+  "dateModified": "2026-03-05",
+  "datePublished": "2026-03-05",
+  "description": "This document describes how an Agential Semioverse Repository accommodates domain-specific content types and relations. The general ASR defines types (term, concept, text, etc.) and relations (defines, requires, cites, etc.) that work across any discipline. Domain-specific ASR specifications extend these with types and relations that carry validity requirements particular to a knowledge domain.\nCurrent domain-specific ASR specifications:\nMathematical ASR — provability-governed content (theorems, proofs, definitions, axioms) Philosophical ASR — arguability-governed content (claims, arguments, objections, responses) Educational ASR — pedagogical-soundness-governed content (lessons, curricula, skills, schools, transmission modes) Relations carry their domain The central design principle: typed relations belong to the domain that defines them. When a page uses a relation, the SHACL shapes governing that relation validate it — regardless of where the page lives in the directory hierarchy, what its type: is, or what other relations it uses.\n",
+  "keywords": "AgentialSemioverse, Repository",
+  "name": "Domain-Specific Content",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/theory/domain-specific-content/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/">Universes</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/">Semiotic universe</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/">Interactive semioverse</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/">Agential semioverse</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/">Computing</a></nav>
+  <h1 class="p-name">Domain-Specific Content</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-05T00:00:00Z">2026-03-05</time>
+    <span>by <span class="p-author">claude-opus-4-6</span></span>
+    
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#relations-carry-their-domain">Relations carry their domain</a></li>
+    <li><a href="#how-a-page-participates-in-a-domain">How a page participates in a domain</a></li>
+    <li><a href="#cross-domain-coherence">Cross-domain coherence</a></li>
+    <li><a href="#correspondence-relations">Correspondence relations</a>
+      <ul>
+        <li><a href="#content-type-correspondence">Content type: correspondence</a></li>
+        <li><a href="#correspondence-types">Correspondence types</a></li>
+        <li><a href="#correspondence-relation-vocabulary">Correspondence relation vocabulary</a></li>
+        <li><a href="#why-correspondences-are-first-class">Why correspondences are first-class</a></li>
+      </ul>
+    </li>
+    <li><a href="#extending-the-system">Extending the system</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>This document describes how an Agential Semioverse Repository accommodates domain-specific content types and relations. The general ASR defines types (<code>term</code>, <code>concept</code>, <code>text</code>, etc.) and relations (<code>defines</code>, <code>requires</code>, <code>cites</code>, etc.) that work across any discipline. Domain-specific ASR specifications extend these with types and relations that carry validity requirements particular to a knowledge domain.</p>
+<p>Current domain-specific ASR specifications:</p>
+<ul>
+<li><a href="../../../../mathematics/specifications/mathematical-agential-semioverse-repository/index.md" class="link-internal">Mathematical ASR</a> — provability-governed content (theorems, proofs, definitions, axioms)</li>
+<li><a href="../../../../philosophy/specifications/philosophical-agential-semioverse-repository/index.md" class="link-internal">Philosophical ASR</a> — arguability-governed content (claims, arguments, objections, responses)</li>
+<li><a href="../../../../education/specifications/educational-agential-semioverse-repository/index.md" class="link-internal">Educational ASR</a> — pedagogical-soundness-governed content (lessons, curricula, skills, schools, transmission modes)</li>
+</ul>
+<h2 id="relations-carry-their-domain">Relations carry their domain</h2>
+<p>The central design principle: typed relations belong to the domain that defines them. When a page uses a relation, the SHACL shapes governing that relation validate it — regardless of where the page lives in the directory hierarchy, what its <code>type:</code> is, or what other relations it uses.</p>
+<p><code>proven-by</code> is a mathematical relation. A page that uses it gets mathematical validation on that relation. <code>argued-by</code> is a philosophical relation. A page that uses it gets philosophical validation on that relation. A page that uses both gets both validations, independently.</p>
+<p>This means a single page can participate in multiple domains without duplication. A concept like relational Flow can be one page with mathematical relations (linking it to its formal definition and proofs) and philosophical relations (linking it to the claims and arguments that motivate it). Each set of relations is validated by its own domain&rsquo;s shapes.</p>
+<h2 id="how-a-page-participates-in-a-domain">How a page participates in a domain</h2>
+<p>A page participates in a domain by using that domain&rsquo;s relations. No explicit declaration is needed. The presence of <code>proven-by:</code> in frontmatter makes the page subject to mathematical validation for that relation. The absence of <code>proven-by:</code> means mathematical validation for that relation does not fire.</p>
+<p>Directory subtrees have conventional domain associations — pages under <code>mathematics/</code> conventionally use mathematical relations, pages under <code>philosophy/</code> conventionally use philosophical ones. But these are conventions about what relations are EXPECTED, not restrictions on what relations are ALLOWED. A philosophy page that includes a formal proof can use <code>proven-by:</code>.</p>
+<h2 id="cross-domain-coherence">Cross-domain coherence</h2>
+<p>When a page uses relations from multiple domains, the question arises: how do the domains&rsquo; views of the same content cohere?</p>
+<p>The <a href="../../../../mathematics/objects/universes/interactive-semioverse/interactive-semioverse.md" class="link-internal">Interactive Semioverse</a> provides the formal machinery for this:</p>
+<p><strong>Fragments.</strong> Different relations generate semantic content within different <a href="../../../../mathematics/objects/universes/interactive-semioverse/terms/fragment.md" class="link-internal">fragments</a> of the Heyting algebra H. Mathematical relations contribute to mathematical fragments; philosophical relations contribute to philosophical fragments. Each fragment is a finitely generated modal-temporal subalgebra — a local context within which semantic content is evaluated.</p>
+<p><strong>Sheaf semantics.</strong> The IS defines a <a href="../../../../mathematics/objects/universes/interactive-semioverse/interactive-semioverse.md" class="link-internal">fragment fibration</a> (§15) with a sheaf condition: if local sections over different fragments agree on their overlaps, they glue to a unique global section. This means that if the mathematical and philosophical views of a concept share some semantic content (both reference the same definitions, both use the same <code>requires:</code> chain), they must be consistent on that shared content. The sheaf condition enforces this without requiring either view to reduce to the other.</p>
+<p><strong>Handle co-reference.</strong> The IS&rsquo;s <a href="../../../../mathematics/objects/universes/interactive-semioverse/interactive-semioverse.md" class="link-internal">handle identity groupoid</a> (§7) supports transport of interaction terms between co-referent handles. If two handles point to the same semantic seed, interaction terms transport coherently between them. This is the formal basis for &ldquo;same concept, different interaction surfaces.&rdquo;</p>
+<p>The IS does not currently annotate fragments with domain metadata. Its refinement directives (§14.1) are defined but the parameter space is left open — this is a natural extension point for domain-level constraints on fragment refinement. But the coherence machinery (sheaf gluing, handle transport) works without domain annotation.</p>
+<h2 id="correspondence-relations">Correspondence relations</h2>
+<p>Correspondences map between domains. They are general ASR relations, not specific to any single domain, because they inherently cross disciplinary boundaries.</p>
+<h3 id="content-type-correspondence">Content type: correspondence</h3>
+<p>A formal mapping between two frameworks — mathematical structures, philosophical traditions, or any combination.</p>
+<ul>
+<li>MUST specify <code>maps-from:</code> identifying the source.</li>
+<li>MUST specify <code>maps-to:</code> identifying the target.</li>
+<li>MUST specify <code>correspondence-type:</code> identifying the nature of the mapping.</li>
+<li>MUST explain in the body what corresponds to what, concretely.</li>
+<li>SHOULD specify <code>preserves:</code> listing structural features maintained.</li>
+<li>SHOULD specify <code>loses:</code> listing structural features not maintained.</li>
+<li>MAY specify <code>proven-by:</code> if the correspondence has a formal proof.</li>
+<li>MAY specify <code>argued-by:</code> if supported by philosophical argument.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">correspondence</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">maps-from</span>: <span style="color:#ae81ff">/relationality/terms/togethering.md</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">maps-to</span>: <span style="color:#ae81ff">/mathematics/objects/lattices/terms/meet.md</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">correspondence-type</span>: <span style="color:#ae81ff">validation</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">preserves</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">associativity</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">commutativity</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">idempotence</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">requires</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">/mathematics/objects/lattices/terms/heyting-algebra.md</span>
+</span></span></code></pre></div><h3 id="correspondence-types">Correspondence types</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Value</th>
+          <th>Meaning</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>isomorphism</code></td>
+          <td>Exact structural match in both directions</td>
+      </tr>
+      <tr>
+          <td><code>homomorphism</code></td>
+          <td>Structure-preserving map (may lose information)</td>
+      </tr>
+      <tr>
+          <td><code>analogy</code></td>
+          <td>Informal structural similarity</td>
+      </tr>
+      <tr>
+          <td><code>validation</code></td>
+          <td>The target formalizes or verifies the source</td>
+      </tr>
+      <tr>
+          <td><code>instantiation</code></td>
+          <td>The source is a specific case of the target</td>
+      </tr>
+      <tr>
+          <td><code>generalization</code></td>
+          <td>The source generalizes the target</td>
+      </tr>
+      <tr>
+          <td><code>dual</code></td>
+          <td>Systematic reversal (arrows, operations, perspectives)</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="correspondence-relation-vocabulary">Correspondence relation vocabulary</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Relation</th>
+          <th>Meaning</th>
+          <th>Maps to</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>maps-from</code></td>
+          <td>Source framework or concept</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td><code>maps-to</code></td>
+          <td>Target framework or concept</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td><code>correspondence-type</code></td>
+          <td>Nature of mapping</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td><code>preserves</code></td>
+          <td>Structural features maintained</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td><code>loses</code></td>
+          <td>Structural features not maintained</td>
+          <td>—</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="why-correspondences-are-first-class">Why correspondences are first-class</h3>
+<p>Correspondences are often implicit — they exist in researchers&rsquo; minds or in how content is organized, but are never stated. Making them explicit pages with typed relations makes them:</p>
+<ol>
+<li><strong>Contestable.</strong> An assumed mapping may not preserve what it claims to. Explicit correspondences can be objected to.</li>
+<li><strong>Partial.</strong> A mapping may preserve some structure but not all. <code>preserves:</code> and <code>loses:</code> make this visible.</li>
+<li><strong>Composable.</strong> If A corresponds to B and B corresponds to C, a derived correspondence from A to C may exist.</li>
+</ol>
+<p>In a project that develops ideas philosophically and validates them mathematically, the correspondences ARE the argument that the philosophy and mathematics are talking about the same thing.</p>
+<h2 id="extending-the-system">Extending the system</h2>
+<p>New domain-specific ASR specifications can be created for any discipline by:</p>
+<ol>
+<li>Creating a <code>specifications/{discipline}-agential-semioverse-repository/</code> directory under the discipline.</li>
+<li>Defining content types with MUST/SHOULD validity requirements.</li>
+<li>Defining typed relations that carry those requirements.</li>
+<li>Writing SHACL shapes that validate the relations.</li>
+<li>Writing an OWL ontology that defines the classes and properties.</li>
+</ol>
+<p>The general ASR infrastructure (semantic frontmatter, directory organization, RDF generation) handles the rest. Domain-specific relations are validated by their own shapes; the IS&rsquo;s fragment and sheaf machinery handles cross-domain coherence.</p>
+
+  </div>
+  
+  
+</article>
+<section class="page-relations" resource="http://localhost:1313/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/theory/domain-specific-content/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>date-created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-05">2026-03-05</time></dd>
+      </div><div class="relation">
+        <dt>status</dt>
+        <dd property="emsenn:Status">draft</dd>
+      </div><div class="relation">
+        <dt>tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/agentialsemioverse/">AgentialSemioverse</a></li><li><a href="/tags/repository/">Repository</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>title</dt>
+        <dd property="schema:name">Domain-Specific Content</dd>
+      </div>
+  <div class="relation">
+    <dt>referenced-by</dt>
+    <dd>
+      <ul><li><a href="/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/domains/agential-semioverse-repository/domains/theory/domain-specific-content/">Domain-Specific Content</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

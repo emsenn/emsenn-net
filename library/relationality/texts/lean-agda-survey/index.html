@@ -1,51 +1,411 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Survey: Lean 4 vs Agda for Relationality Formalization - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"claude"},"dateModified":"2026-03-07","datePublished":"2026-03-07","description":"Survey: Lean 4 vs Agda for Relationality Formalization Survey of the two proof assistants available in this environment for formalizing the mathematical structures underlying relationality and the semioverse hierarchy.\nEnvironment Tool Version Library Status Lean 4 4.17.0 (via elan) Mathlib4 (latest) Working, builds with cache Agda 2.6.3 agda-stdlib Working, pre-installed Both tools are functional. Lean requires ~/.elan/bin on PATH and downloads ~2 GB of Mathlib cache on first use. Agda works out of the box.\n","keywords":"Formalization, ProofAssistants","name":"Survey: Lean 4 vs Agda for Relationality Formalization","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/texts/lean-agda-survey/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Survey: Lean 4 vs Agda for Relationality Formalization</h1><div class=meta><time class=dt-published datetime=2026-03-07T00:00:00Z>2026-03-07</time>
-<span>by <span class=p-author>claude</span></span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#environment>Environment</a></li><li><a href=#heyting-algebras-the-base-structure>Heyting Algebras (the base structure)</a><ul><li><a href=#lean-4--mathlib>Lean 4 + Mathlib</a></li><li><a href=#agda--stdlib>Agda + stdlib</a></li><li><a href=#verdict>Verdict</a></li></ul></li><li><a href=#closure-operators-and-modal-structure>Closure Operators and Modal Structure</a><ul><li><a href=#lean-4--mathlib-1>Lean 4 + Mathlib</a></li><li><a href=#agda--stdlib-1>Agda + stdlib</a></li><li><a href=#verdict-1>Verdict</a></li></ul></li><li><a href=#completeness-frames-locales>Completeness, Frames, Locales</a><ul><li><a href=#lean-4--mathlib-2>Lean 4 + Mathlib</a></li><li><a href=#agda--stdlib-2>Agda + stdlib</a></li><li><a href=#verdict-2>Verdict</a></li></ul></li><li><a href=#categorical-structures-monads-comonads-sheaves>Categorical Structures (monads, comonads, sheaves)</a><ul><li><a href=#lean-4--mathlib-3>Lean 4 + Mathlib</a></li><li><a href=#agda--agda-categories>Agda + agda-categories</a></li><li><a href=#verdict-3>Verdict</a></li></ul></li><li><a href=#constructive-vs-classical>Constructive vs Classical</a><ul><li><a href=#lean-4>Lean 4</a></li><li><a href=#agda>Agda</a></li><li><a href=#verdict-4>Verdict</a></li></ul></li><li><a href=#practical-comparison>Practical Comparison</a></li><li><a href=#what-was-in-the-deleted-formalization>What Was in the Deleted Formalization</a></li><li><a href=#recommendation>Recommendation</a></li><li><a href=#tested-artifacts>Tested Artifacts</a></li></ul></nav></details><div class=e-content><h1 id=survey-lean-4-vs-agda-for-relationality-formalization>Survey: Lean 4 vs Agda for Relationality Formalization</h1><p>Survey of the two proof assistants available in this environment for formalizing
-the mathematical structures underlying relationality and the semioverse hierarchy.</p><h2 id=environment>Environment</h2><table><thead><tr><th>Tool</th><th>Version</th><th>Library</th><th>Status</th></tr></thead><tbody><tr><td>Lean 4</td><td>4.17.0 (via elan)</td><td>Mathlib4 (latest)</td><td>Working, builds with cache</td></tr><tr><td>Agda</td><td>2.6.3</td><td>agda-stdlib</td><td>Working, pre-installed</td></tr></tbody></table><p>Both tools are functional. Lean requires <code>~/.elan/bin</code> on PATH and downloads
-~2 GB of Mathlib cache on first use. Agda works out of the box.</p><h2 id=heyting-algebras-the-base-structure>Heyting Algebras (the base structure)</h2><h3 id=lean-4--mathlib>Lean 4 + Mathlib</h3><ul><li><code>HeytingAlgebra</code> is a typeclass at <code>Mathlib.Order.Heyting.Basic</code>,
-extending <code>BoundedOrder</code> and <code>DistribLattice</code></li><li>Also provides <code>GeneralizedHeytingAlgebra</code>, <code>CoheytingAlgebra</code>, <code>BiheytingAlgebra</code></li><li>Convenience constructors: <code>HeytingAlgebra.ofHImp</code> and <code>HeytingAlgebra.ofCompl</code></li><li>Rich library of lemmas: <code>le_himp_iff</code>, <code>inf_le_left</code>, <code>sup_le</code>, etc.</li><li>Category of Heyting algebras: <code>HeytAlg</code> with <code>HeytingHom</code> morphisms and
-forgetful functors (<code>Mathlib.Order.Category.HeytAlg</code>)</li><li>Typeclass inference provides instances automatically</li><li>The deleted formalization used this: <code>RecognitionField</code> fields → <code>HeytingAlgebra</code>
-instance → all Mathlib lemmas available</li></ul><h3 id=agda--stdlib>Agda + stdlib</h3><ul><li><code>IsHeytingAlgebra</code> is a record at <code>Relation.Binary.Lattice.Structures</code></li><li><code>HeytingAlgebra</code> bundle at <code>Relation.Binary.Lattice.Bundles</code></li><li>Pre-proved properties at <code>Relation.Binary.Lattice.Properties.HeytingAlgebra</code>:
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Survey: Lean 4 vs Agda for Relationality Formalization - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "claude"
+  },
+  "dateModified": "2026-03-07",
+  "datePublished": "2026-03-07",
+  "description": "Survey: Lean 4 vs Agda for Relationality Formalization Survey of the two proof assistants available in this environment for formalizing the mathematical structures underlying relationality and the semioverse hierarchy.\nEnvironment Tool Version Library Status Lean 4 4.17.0 (via elan) Mathlib4 (latest) Working, builds with cache Agda 2.6.3 agda-stdlib Working, pre-installed Both tools are functional. Lean requires ~/.elan/bin on PATH and downloads ~2 GB of Mathlib cache on first use. Agda works out of the box.\n",
+  "keywords": "Formalization, ProofAssistants",
+  "name": "Survey: Lean 4 vs Agda for Relationality Formalization",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/texts/lean-agda-survey/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/texts/">Texts</a></nav>
+  <h1 class="p-name">Survey: Lean 4 vs Agda for Relationality Formalization</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-07T00:00:00Z">2026-03-07</time>
+    <span>by <span class="p-author">claude</span></span>
+    
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#environment">Environment</a></li>
+    <li><a href="#heyting-algebras-the-base-structure">Heyting Algebras (the base structure)</a>
+      <ul>
+        <li><a href="#lean-4--mathlib">Lean 4 + Mathlib</a></li>
+        <li><a href="#agda--stdlib">Agda + stdlib</a></li>
+        <li><a href="#verdict">Verdict</a></li>
+      </ul>
+    </li>
+    <li><a href="#closure-operators-and-modal-structure">Closure Operators and Modal Structure</a>
+      <ul>
+        <li><a href="#lean-4--mathlib-1">Lean 4 + Mathlib</a></li>
+        <li><a href="#agda--stdlib-1">Agda + stdlib</a></li>
+        <li><a href="#verdict-1">Verdict</a></li>
+      </ul>
+    </li>
+    <li><a href="#completeness-frames-locales">Completeness, Frames, Locales</a>
+      <ul>
+        <li><a href="#lean-4--mathlib-2">Lean 4 + Mathlib</a></li>
+        <li><a href="#agda--stdlib-2">Agda + stdlib</a></li>
+        <li><a href="#verdict-2">Verdict</a></li>
+      </ul>
+    </li>
+    <li><a href="#categorical-structures-monads-comonads-sheaves">Categorical Structures (monads, comonads, sheaves)</a>
+      <ul>
+        <li><a href="#lean-4--mathlib-3">Lean 4 + Mathlib</a></li>
+        <li><a href="#agda--agda-categories">Agda + agda-categories</a></li>
+        <li><a href="#verdict-3">Verdict</a></li>
+      </ul>
+    </li>
+    <li><a href="#constructive-vs-classical">Constructive vs Classical</a>
+      <ul>
+        <li><a href="#lean-4">Lean 4</a></li>
+        <li><a href="#agda">Agda</a></li>
+        <li><a href="#verdict-4">Verdict</a></li>
+      </ul>
+    </li>
+    <li><a href="#practical-comparison">Practical Comparison</a></li>
+    <li><a href="#what-was-in-the-deleted-formalization">What Was in the Deleted Formalization</a></li>
+    <li><a href="#recommendation">Recommendation</a></li>
+    <li><a href="#tested-artifacts">Tested Artifacts</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="survey-lean-4-vs-agda-for-relationality-formalization">Survey: Lean 4 vs Agda for Relationality Formalization</h1>
+<p>Survey of the two proof assistants available in this environment for formalizing
+the mathematical structures underlying relationality and the semioverse hierarchy.</p>
+<h2 id="environment">Environment</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Tool</th>
+          <th>Version</th>
+          <th>Library</th>
+          <th>Status</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Lean 4</td>
+          <td>4.17.0 (via elan)</td>
+          <td>Mathlib4 (latest)</td>
+          <td>Working, builds with cache</td>
+      </tr>
+      <tr>
+          <td>Agda</td>
+          <td>2.6.3</td>
+          <td>agda-stdlib</td>
+          <td>Working, pre-installed</td>
+      </tr>
+  </tbody>
+</table>
+<p>Both tools are functional. Lean requires <code>~/.elan/bin</code> on PATH and downloads
+~2 GB of Mathlib cache on first use. Agda works out of the box.</p>
+<h2 id="heyting-algebras-the-base-structure">Heyting Algebras (the base structure)</h2>
+<h3 id="lean-4--mathlib">Lean 4 + Mathlib</h3>
+<ul>
+<li><code>HeytingAlgebra</code> is a typeclass at <code>Mathlib.Order.Heyting.Basic</code>,
+extending <code>BoundedOrder</code> and <code>DistribLattice</code></li>
+<li>Also provides <code>GeneralizedHeytingAlgebra</code>, <code>CoheytingAlgebra</code>, <code>BiheytingAlgebra</code></li>
+<li>Convenience constructors: <code>HeytingAlgebra.ofHImp</code> and <code>HeytingAlgebra.ofCompl</code></li>
+<li>Rich library of lemmas: <code>le_himp_iff</code>, <code>inf_le_left</code>, <code>sup_le</code>, etc.</li>
+<li>Category of Heyting algebras: <code>HeytAlg</code> with <code>HeytingHom</code> morphisms and
+forgetful functors (<code>Mathlib.Order.Category.HeytAlg</code>)</li>
+<li>Typeclass inference provides instances automatically</li>
+<li>The deleted formalization used this: <code>RecognitionField</code> fields → <code>HeytingAlgebra</code>
+instance → all Mathlib lemmas available</li>
+</ul>
+<h3 id="agda--stdlib">Agda + stdlib</h3>
+<ul>
+<li><code>IsHeytingAlgebra</code> is a record at <code>Relation.Binary.Lattice.Structures</code></li>
+<li><code>HeytingAlgebra</code> bundle at <code>Relation.Binary.Lattice.Bundles</code></li>
+<li>Pre-proved properties at <code>Relation.Binary.Lattice.Properties.HeytingAlgebra</code>:
 <code>transpose-⇨</code>, <code>transpose-∧</code> (residuation), <code>⇨-eval</code> (modus ponens),
-<code>y≤x⇨y</code> (weakening), distributivity, etc.</li><li>Record-based: explicitly opened, no implicit inference chains</li></ul><h3 id=verdict>Verdict</h3><p>Both have solid Heyting algebra support. Agda&rsquo;s is more explicit (you open
-modules and name what you use). Lean&rsquo;s is more automatic (typeclass inference).</p><h2 id=closure-operators-and-modal-structure>Closure Operators and Modal Structure</h2><h3 id=lean-4--mathlib-1>Lean 4 + Mathlib</h3><ul><li><code>ClosureOperator</code> at <code>Mathlib.Order.Closure</code></li><li>Provides inflationary, idempotent, monotone maps on partial orders</li><li>No built-in <code>InteriorOperator</code> (the deleted formalization defined one)</li><li>No built-in nucleus / Frobenius compatibility</li><li>An independent Lean 4 formalization by Hotz et al. (2024) covers frames,
+<code>y≤x⇨y</code> (weakening), distributivity, etc.</li>
+<li>Record-based: explicitly opened, no implicit inference chains</li>
+</ul>
+<h3 id="verdict">Verdict</h3>
+<p>Both have solid Heyting algebra support. Agda&rsquo;s is more explicit (you open
+modules and name what you use). Lean&rsquo;s is more automatic (typeclass inference).</p>
+<h2 id="closure-operators-and-modal-structure">Closure Operators and Modal Structure</h2>
+<h3 id="lean-4--mathlib-1">Lean 4 + Mathlib</h3>
+<ul>
+<li><code>ClosureOperator</code> at <code>Mathlib.Order.Closure</code></li>
+<li>Provides inflationary, idempotent, monotone maps on partial orders</li>
+<li>No built-in <code>InteriorOperator</code> (the deleted formalization defined one)</li>
+<li>No built-in nucleus / Frobenius compatibility</li>
+<li>An independent Lean 4 formalization by Hotz et al. (2024) covers frames,
 nuclei, and fixed-point Heyting algebra construction (240+ theorems,
-compiles clean) — not in Mathlib but demonstrates the path</li></ul><h3 id=agda--stdlib-1>Agda + stdlib</h3><ul><li>No built-in <code>ClosureOperator</code></li><li>Easy to define as a record (tested: typechecks cleanly)</li><li>Custom records for <code>InteriorOp</code>, <code>FrobeniusCompatible</code>, <code>ModalClosure</code>,
-<code>HeytingComonad</code>, <code>SemioticAmbientStr</code> all typecheck</li></ul><h3 id=verdict-1>Verdict</h3><p>Lean has a head start with <code>ClosureOperator</code> but both require custom definitions
+compiles clean) — not in Mathlib but demonstrates the path</li>
+</ul>
+<h3 id="agda--stdlib-1">Agda + stdlib</h3>
+<ul>
+<li>No built-in <code>ClosureOperator</code></li>
+<li>Easy to define as a record (tested: typechecks cleanly)</li>
+<li>Custom records for <code>InteriorOp</code>, <code>FrobeniusCompatible</code>, <code>ModalClosure</code>,
+<code>HeytingComonad</code>, <code>SemioticAmbientStr</code> all typecheck</li>
+</ul>
+<h3 id="verdict-1">Verdict</h3>
+<p>Lean has a head start with <code>ClosureOperator</code> but both require custom definitions
 for the full semiotic ambient structure. Agda&rsquo;s record system makes custom
-algebraic structures natural to define and compose.</p><h2 id=completeness-frames-locales>Completeness, Frames, Locales</h2><h3 id=lean-4--mathlib-2>Lean 4 + Mathlib</h3><ul><li><code>CompleteLattice</code> is well-supported</li><li><code>Order.Frame</code> provides frames (complete Heyting algebras where meets
-distribute over arbitrary joins)</li><li>Locale theory via <code>Topology.Order</code> module</li><li>This is a significant advantage for the semiotic universe spec, which
-requires completeness</li></ul><h3 id=agda--stdlib-2>Agda + stdlib</h3><ul><li>No built-in complete lattice, frame, or locale</li><li>Would need to be defined from scratch or imported from agda-categories</li><li>agda-categories has some categorical lattice theory but nothing as
-developed as Mathlib&rsquo;s</li></ul><h3 id=verdict-2>Verdict</h3><p>Lean + Mathlib is substantially ahead for frames/locales/completeness.</p><h2 id=categorical-structures-monads-comonads-sheaves>Categorical Structures (monads, comonads, sheaves)</h2><h3 id=lean-4--mathlib-3>Lean 4 + Mathlib</h3><ul><li><code>CategoryTheory.Monad</code> and <code>CategoryTheory.Comonad</code> with full axiomatics</li><li>Eilenberg-Moore coalgebras, adjunction-induced comonads, Beck&rsquo;s
-comonadicity theorem</li><li>Sheaf theory: <code>CategoryTheory.Sites.Sheaf</code> for Grothendieck topologies,
-canonical/subcanonical topologies, sheaf cohomology in progress (Riou 2025)</li><li><code>Locale</code> defined as opposite category of <code>Frame</code></li><li>GaloisConnection is in <code>Order.GaloisConnection</code></li></ul><h3 id=agda--agda-categories>Agda + agda-categories</h3><ul><li>Full categorical formalization: categories, functors, natural
-transformations, adjunctions, monads, comonads</li><li>Comonads include: cofree comonads, distributive laws, morphisms,
-relative comonads</li><li>Monads: strong, relative, graded, idempotent, Kleisli/Eilenberg-Moore</li><li>Proof-relevant: coherence isomorphisms made explicit</li><li>Sheaf theory: <code>Categories.Category.Site</code> and <code>.Topos</code> exist as stubs;
+algebraic structures natural to define and compose.</p>
+<h2 id="completeness-frames-locales">Completeness, Frames, Locales</h2>
+<h3 id="lean-4--mathlib-2">Lean 4 + Mathlib</h3>
+<ul>
+<li><code>CompleteLattice</code> is well-supported</li>
+<li><code>Order.Frame</code> provides frames (complete Heyting algebras where meets
+distribute over arbitrary joins)</li>
+<li>Locale theory via <code>Topology.Order</code> module</li>
+<li>This is a significant advantage for the semiotic universe spec, which
+requires completeness</li>
+</ul>
+<h3 id="agda--stdlib-2">Agda + stdlib</h3>
+<ul>
+<li>No built-in complete lattice, frame, or locale</li>
+<li>Would need to be defined from scratch or imported from agda-categories</li>
+<li>agda-categories has some categorical lattice theory but nothing as
+developed as Mathlib&rsquo;s</li>
+</ul>
+<h3 id="verdict-2">Verdict</h3>
+<p>Lean + Mathlib is substantially ahead for frames/locales/completeness.</p>
+<h2 id="categorical-structures-monads-comonads-sheaves">Categorical Structures (monads, comonads, sheaves)</h2>
+<h3 id="lean-4--mathlib-3">Lean 4 + Mathlib</h3>
+<ul>
+<li><code>CategoryTheory.Monad</code> and <code>CategoryTheory.Comonad</code> with full axiomatics</li>
+<li>Eilenberg-Moore coalgebras, adjunction-induced comonads, Beck&rsquo;s
+comonadicity theorem</li>
+<li>Sheaf theory: <code>CategoryTheory.Sites.Sheaf</code> for Grothendieck topologies,
+canonical/subcanonical topologies, sheaf cohomology in progress (Riou 2025)</li>
+<li><code>Locale</code> defined as opposite category of <code>Frame</code></li>
+<li>GaloisConnection is in <code>Order.GaloisConnection</code></li>
+</ul>
+<h3 id="agda--agda-categories">Agda + agda-categories</h3>
+<ul>
+<li>Full categorical formalization: categories, functors, natural
+transformations, adjunctions, monads, comonads</li>
+<li>Comonads include: cofree comonads, distributive laws, morphisms,
+relative comonads</li>
+<li>Monads: strong, relative, graded, idempotent, Kleisli/Eilenberg-Moore</li>
+<li>Proof-relevant: coherence isomorphisms made explicit</li>
+<li>Sheaf theory: <code>Categories.Category.Site</code> and <code>.Topos</code> exist as stubs;
 Jon Sterling&rsquo;s independent constructive-sheaf-semantics project is
-more developed but standalone</li></ul><h3 id=verdict-3>Verdict</h3><p>Both have categorical machinery. Lean&rsquo;s sheaf theory is more developed.
-Agda-categories is clean but would require more custom work.</p><h2 id=constructive-vs-classical>Constructive vs Classical</h2><h3 id=lean-4>Lean 4</h3><ul><li>Classical by default (<code>Classical.propDecidable</code>, <code>Decidable</code> instances)</li><li><code>Prop</code> is proof-irrelevant</li><li>Can work constructively but swimming upstream</li><li>Proofs of Heyting (non-Boolean) properties work fine — the algebra
-is constructive even if the metalogic isn&rsquo;t</li></ul><h3 id=agda>Agda</h3><ul><li>Natively constructive</li><li><code>--cubical-compatible --safe</code> flags enforce constructive reasoning</li><li>Heyting algebras are the natural &ldquo;home&rdquo; logic</li><li>The distinction between Heyting and Boolean is philosophically
+more developed but standalone</li>
+</ul>
+<h3 id="verdict-3">Verdict</h3>
+<p>Both have categorical machinery. Lean&rsquo;s sheaf theory is more developed.
+Agda-categories is clean but would require more custom work.</p>
+<h2 id="constructive-vs-classical">Constructive vs Classical</h2>
+<h3 id="lean-4">Lean 4</h3>
+<ul>
+<li>Classical by default (<code>Classical.propDecidable</code>, <code>Decidable</code> instances)</li>
+<li><code>Prop</code> is proof-irrelevant</li>
+<li>Can work constructively but swimming upstream</li>
+<li>Proofs of Heyting (non-Boolean) properties work fine — the algebra
+is constructive even if the metalogic isn&rsquo;t</li>
+</ul>
+<h3 id="agda">Agda</h3>
+<ul>
+<li>Natively constructive</li>
+<li><code>--cubical-compatible --safe</code> flags enforce constructive reasoning</li>
+<li>Heyting algebras are the natural &ldquo;home&rdquo; logic</li>
+<li>The distinction between Heyting and Boolean is philosophically
 salient in Agda: you SEE the non-Boolean gap because you can&rsquo;t
-prove double negation elimination without postulating it</li></ul><h3 id=verdict-4>Verdict</h3><p>For a project that takes the Heyting/non-Boolean distinction seriously
+prove double negation elimination without postulating it</li>
+</ul>
+<h3 id="verdict-4">Verdict</h3>
+<p>For a project that takes the Heyting/non-Boolean distinction seriously
 as a philosophical point (the &ldquo;genuine indeterminacy&rdquo; of the recognition
 field), Agda&rsquo;s constructive foundation is a better philosophical fit.
-But Lean works fine for proving the same theorems.</p><h2 id=practical-comparison>Practical Comparison</h2><table><thead><tr><th>Factor</th><th>Lean 4 + Mathlib</th><th>Agda + stdlib</th></tr></thead><tbody><tr><td>Build time</td><td>Slow (Mathlib is huge)</td><td>Fast (stdlib is small)</td></tr><tr><td>Library depth</td><td>Deep (frames, locales, sheaves)</td><td>Shallow (Heyting, lattice basics)</td></tr><tr><td>Custom structures</td><td>Typeclasses (implicit)</td><td>Records (explicit)</td></tr><tr><td>Error messages</td><td>Improving but opaque</td><td>Clear, precise</td></tr><tr><td>Readability</td><td>Tactic proofs can be cryptic</td><td>Term proofs are readable</td></tr><tr><td>Constructive</td><td>No (classical default)</td><td>Yes (native)</td></tr><tr><td>Colocation</td><td><code>.lean</code> files alongside <code>.md</code></td><td><code>.agda</code> files alongside <code>.md</code></td></tr><tr><td>IDE support</td><td>VS Code + lean4 extension</td><td>VS Code + agda-mode</td></tr></tbody></table><h2 id=what-was-in-the-deleted-formalization>What Was in the Deleted Formalization</h2><p>The <code>formalization/</code> directory contained Lean 4 code that:</p><ol><li><strong>Genesis.lean</strong> — Defined <code>RecognitionField</code> typeclass with partial order,
+But Lean works fine for proving the same theorems.</p>
+<h2 id="practical-comparison">Practical Comparison</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Factor</th>
+          <th>Lean 4 + Mathlib</th>
+          <th>Agda + stdlib</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Build time</td>
+          <td>Slow (Mathlib is huge)</td>
+          <td>Fast (stdlib is small)</td>
+      </tr>
+      <tr>
+          <td>Library depth</td>
+          <td>Deep (frames, locales, sheaves)</td>
+          <td>Shallow (Heyting, lattice basics)</td>
+      </tr>
+      <tr>
+          <td>Custom structures</td>
+          <td>Typeclasses (implicit)</td>
+          <td>Records (explicit)</td>
+      </tr>
+      <tr>
+          <td>Error messages</td>
+          <td>Improving but opaque</td>
+          <td>Clear, precise</td>
+      </tr>
+      <tr>
+          <td>Readability</td>
+          <td>Tactic proofs can be cryptic</td>
+          <td>Term proofs are readable</td>
+      </tr>
+      <tr>
+          <td>Constructive</td>
+          <td>No (classical default)</td>
+          <td>Yes (native)</td>
+      </tr>
+      <tr>
+          <td>Colocation</td>
+          <td><code>.lean</code> files alongside <code>.md</code></td>
+          <td><code>.agda</code> files alongside <code>.md</code></td>
+      </tr>
+      <tr>
+          <td>IDE support</td>
+          <td>VS Code + lean4 extension</td>
+          <td>VS Code + agda-mode</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="what-was-in-the-deleted-formalization">What Was in the Deleted Formalization</h2>
+<p>The <code>formalization/</code> directory contained Lean 4 code that:</p>
+<ol>
+<li><strong>Genesis.lean</strong> — Defined <code>RecognitionField</code> typeclass with partial order,
 lattice, and Heyting implication axioms. Built a <code>HeytingAlgebra</code> instance.
-Also proved the reverse: every <code>HeytingAlgebra</code> is a <code>RecognitionField</code>.</li><li><strong>Basic.lean</strong> — Relational vocabulary aliases (Includes, Together, Either,
-Induces, Negate, etc.)</li><li><strong>SemioticAmbient.lean</strong> — <code>ModalClosure</code> and <code>HeytingComonad</code> typeclasses
-with interaction axioms</li><li><strong>MovementI.lean</strong> — Residuation, modus ponens, negation properties</li><li><strong>MovementII.lean</strong> — Closure/interior operators, Frobenius compatibility</li><li><strong>MovementIII.lean</strong> — Flow operator (monotone, inflationary, self-limiting)</li><li><strong>MovementIV.lean</strong> — Cohesive chain (Shape ⊣ Flat ⊣ Sharp ⊣ Crisp)</li><li><strong>MovementV.lean</strong> — States, observables, conservation</li></ol><p>Much of this was thin wrappers around Mathlib lemmas. The Movement I proofs,
-for instance, were one-liners applying existing Mathlib facts.</p><h2 id=recommendation>Recommendation</h2><p><strong>Use both, for different purposes.</strong></p><ul><li><p><strong>Agda</strong> for the core relational formalization (RecognitionField, semiotic
+Also proved the reverse: every <code>HeytingAlgebra</code> is a <code>RecognitionField</code>.</li>
+<li><strong>Basic.lean</strong> — Relational vocabulary aliases (Includes, Together, Either,
+Induces, Negate, etc.)</li>
+<li><strong>SemioticAmbient.lean</strong> — <code>ModalClosure</code> and <code>HeytingComonad</code> typeclasses
+with interaction axioms</li>
+<li><strong>MovementI.lean</strong> — Residuation, modus ponens, negation properties</li>
+<li><strong>MovementII.lean</strong> — Closure/interior operators, Frobenius compatibility</li>
+<li><strong>MovementIII.lean</strong> — Flow operator (monotone, inflationary, self-limiting)</li>
+<li><strong>MovementIV.lean</strong> — Cohesive chain (Shape ⊣ Flat ⊣ Sharp ⊣ Crisp)</li>
+<li><strong>MovementV.lean</strong> — States, observables, conservation</li>
+</ol>
+<p>Much of this was thin wrappers around Mathlib lemmas. The Movement I proofs,
+for instance, were one-liners applying existing Mathlib facts.</p>
+<h2 id="recommendation">Recommendation</h2>
+<p><strong>Use both, for different purposes.</strong></p>
+<ul>
+<li>
+<p><strong>Agda</strong> for the core relational formalization (RecognitionField, semiotic
 ambient, the &ldquo;philosophical&rdquo; mathematics). Its constructive foundation
 respects the Heyting/non-Boolean distinction. Its readable term proofs
-can serve as documentation. Custom record types compose naturally.</p></li><li><p><strong>Lean 4 + Mathlib</strong> for advanced structural properties that depend on
+can serve as documentation. Custom record types compose naturally.</p>
+</li>
+<li>
+<p><strong>Lean 4 + Mathlib</strong> for advanced structural properties that depend on
 Mathlib&rsquo;s library depth: complete Heyting algebras, frames/locales,
 sheaf conditions, categorical constructions. When you need to prove
 something about arbitrary joins or Grothendieck topologies, Mathlib
-has the infrastructure.</p></li></ul><p>Both produce <code>.lean</code> / <code>.agda</code> files that colocate naturally with <code>.md</code>
-content per the ASR specification.</p><h2 id=tested-artifacts>Tested Artifacts</h2><p>The following files were tested and typecheck:</p><ul><li><code>/tmp/RecognitionField.agda</code> — RecognitionField record wrapping IsHeytingAlgebra,
-with relational vocabulary aliases and conversion to HeytingAlgebra bundle</li><li><code>/tmp/MovementI.agda</code> — Residuation, modus ponens, weakening proved from
-stdlib&rsquo;s HeytingAlgebra properties</li><li><code>/tmp/ClosureTest.agda</code> — Custom ClosureOp, InteriorOp, FrobeniusCompatible records</li><li><code>/tmp/SemioticAmbient.agda</code> — ModalClosure, HeytingComonad, SemioticAmbientStr
-records with interaction axioms</li><li><code>/tmp/lean-test/Test.lean</code> — Lean 4 + Mathlib builds, HeytingAlgebra accessible</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/relationality/texts/lean-agda-survey/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude/>claude</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-07>2026-03-07</time></dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/formalization/>Formalization</a></li><li><a href=/tags/proofassistants/>ProofAssistants</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Survey: Lean 4 vs Agda for Relationality Formalization</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+has the infrastructure.</p>
+</li>
+</ul>
+<p>Both produce <code>.lean</code> / <code>.agda</code> files that colocate naturally with <code>.md</code>
+content per the ASR specification.</p>
+<h2 id="tested-artifacts">Tested Artifacts</h2>
+<p>The following files were tested and typecheck:</p>
+<ul>
+<li><code>/tmp/RecognitionField.agda</code> — RecognitionField record wrapping IsHeytingAlgebra,
+with relational vocabulary aliases and conversion to HeytingAlgebra bundle</li>
+<li><code>/tmp/MovementI.agda</code> — Residuation, modus ponens, weakening proved from
+stdlib&rsquo;s HeytingAlgebra properties</li>
+<li><code>/tmp/ClosureTest.agda</code> — Custom ClosureOp, InteriorOp, FrobeniusCompatible records</li>
+<li><code>/tmp/SemioticAmbient.agda</code> — ModalClosure, HeytingComonad, SemioticAmbientStr
+records with interaction axioms</li>
+<li><code>/tmp/lean-test/Test.lean</code> — Lean 4 + Mathlib builds, HeytingAlgebra accessible</li>
+</ul>
+
+  </div>
+  
+  
+</article>
+<section class="page-relations" resource="http://localhost:1313/library/relationality/texts/lean-agda-survey/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/claude/">claude</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>date-created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-07">2026-03-07</time></dd>
+      </div><div class="relation">
+        <dt>tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/formalization/">Formalization</a></li><li><a href="/tags/proofassistants/">ProofAssistants</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>title</dt>
+        <dd property="schema:name">Survey: Lean 4 vs Agda for Relationality Formalization</dd>
+      </div>
+  </dl>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

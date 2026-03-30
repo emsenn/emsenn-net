@@ -1,6 +1,184 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Context Window - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-29","datePublished":"2026-03-29","description":"The maximum number of tokens a language model can process in a single interaction — the hard constraint that shapes agent architecture, prompt design, and memory management.","name":"Context Window","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/context-window/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Context Window</h1><div class=meta><time class=dt-published datetime=2026-03-29T00:00:00Z>2026-03-29</time>
-<span class=p-summary>The maximum number of tokens a language model can process in a single interaction — the hard constraint that shapes agent architecture, prompt design, and memory management.</span></div><div class=e-content><p>The context window is the maximum number of <a href=./token.md class=link-internal>tokens</a> a <a href=../../on-device-inference/terms/large-language-model.md class=link-internal>large language model</a> can process in a single interaction. Everything the model reads and generates — the <a href=./system-prompt.md class=link-internal>system prompt</a>, the user&rsquo;s message, the conversation history, <a href=../domains/agents/terms/tool-use.md class=link-internal>tool</a> definitions, tool results, and the model&rsquo;s own output — must fit within this fixed budget. Once the context window is full, earlier content must be dropped or compressed to make room for new information.</p><p>The constraint is architectural. The <a href=./transformer.md class=link-internal>transformer</a>&rsquo;s self-attention mechanism computes pairwise attention scores between all tokens, requiring O(N²) compute and O(N) memory for a sequence of N tokens. Extending the context window requires proportionally more resources per forward pass. Research on efficient attention (sparse attention, sliding window, linear approximations) reduces the constant factor but does not eliminate the fundamental scaling relationship.</p><p>Context window sizes have grown rapidly:</p><table><thead><tr><th>Model</th><th>Year</th><th>Context window</th></tr></thead><tbody><tr><td>GPT-3</td><td>2020</td><td>4,096 tokens</td></tr><tr><td>GPT-4</td><td>2023</td><td>8,192 / 32,768 tokens</td></tr><tr><td>Claude 3</td><td>2024</td><td>200,000 tokens</td></tr><tr><td>Gemini 1.5 Pro</td><td>2024</td><td>1,000,000 tokens</td></tr><tr><td>Claude Opus 4.6</td><td>2025</td><td>200,000 / 1,000,000 tokens</td></tr></tbody></table><p>Even at one million tokens, the context window is finite and shapes the design of <a href=../domains/agents/terms/agentic-system.md class=link-internal>agentic systems</a> in three ways:</p><ol><li><p><strong>Memory management.</strong> An agent operating over many steps accumulates tool results and reasoning traces that eventually exceed the window. <a href=../domains/agents/terms/agent-orchestration.md class=link-internal>Agent orchestration</a> frameworks must implement strategies for summarizing, compacting, or selectively retaining context — a problem analogous to memory management in operating systems.</p></li><li><p><strong>Prompt budgeting.</strong> A system prompt, tool definitions, conversation history, and instruction files (<a href=../domains/agents/terms/agents-md.md class=link-internal>AGENTS.md</a>, <a href=../domains/agents/terms/soul-md.md class=link-internal>SOUL.md</a>) all compete for the same token budget. Longer instructions leave less room for the task itself.</p></li><li><p><strong>Retrieval vs. inclusion.</strong> When relevant information exceeds the context window, the system must retrieve it on demand (RAG, tool calls to databases) rather than including it wholesale. The context window determines the boundary between what the model can hold &ldquo;in mind&rdquo; and what it must look up.</p></li></ol><p>Context window size is a binding constraint on agent capability. A larger window allows more complex multi-step reasoning without information loss. A smaller window forces more aggressive summarization and more frequent tool calls to re-fetch information.</p><h2 id=related-terms>Related terms</h2><ul><li><a href=./token.md class=link-internal>Token</a> — the unit in which context windows are measured</li><li><a href=./transformer.md class=link-internal>Transformer</a> — the architecture whose attention mechanism creates the constraint</li><li><a href=./system-prompt.md class=link-internal>System prompt</a> — a major consumer of context window budget</li><li><a href=../domains/agents/terms/agentic-system.md class=link-internal>Agentic system</a> — systems whose architecture is shaped by context limits</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/context-window/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt><a href=/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/>contains</a></dt><dd property="emsenn:Contains">system-prompt</dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>date-updated</dt><dd property="schema:dateModified"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>defines</dt><dd property="emsenn:Defines"><a href=/library/tech/domains/computing/domains/artificial-intelligence/terms/context-window/>Context Window</a></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">The maximum number of tokens a language model can process in a single interaction — the hard constraint that shapes agent architecture, prompt design, and memory management.</dd></div><div class=relation><dt><a href=/library/math/terms/determination/>determined-by</a></dt><dd property="emsenn:Determinedby"><a href=/library/tech/domains/computing/domains/artificial-intelligence/terms/transformer/>transformer</a></dd></div><div class=relation><dt><a href=/library/math/domains/sets/terms/domain/>domain</a></dt><dd property="emsenn:Domain">artificial-intelligence</dd></div><div class=relation><dt><a href=/library/math/terms/measure/>measured-by</a></dt><dd property="emsenn:Measuredby"><a href=/library/tech/domains/computing/domains/artificial-intelligence/terms/token/>token</a></dd></div><div class=relation><dt><a href=/library/math/domains/topology/terms/restriction/>restricts</a></dt><dd property="emsenn:Restricts">agentic-system, retrieval-augmented-generation</dd></div><div class=relation><dt>title</dt><dd property="schema:name">Context Window</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Context Window - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "The maximum number of tokens a language model can process in a single interaction — the hard constraint that shapes agent architecture, prompt design, and memory management.",
+  "name": "Context Window",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/context-window/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a></nav>
+  <h1 class="p-name">Context Window</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">The maximum number of tokens a language model can process in a single interaction — the hard constraint that shapes agent architecture, prompt design, and memory management.</span>
+  </div>
+  <div class="e-content">
+    <p>The context window is the maximum number of <a href="./token.md" class="link-internal">tokens</a> a <a href="../../on-device-inference/terms/large-language-model.md" class="link-internal">large language model</a> can process in a single interaction. Everything the model reads and generates — the <a href="./system-prompt.md" class="link-internal">system prompt</a>, the user&rsquo;s message, the conversation history, <a href="../domains/agents/terms/tool-use.md" class="link-internal">tool</a> definitions, tool results, and the model&rsquo;s own output — must fit within this fixed budget. Once the context window is full, earlier content must be dropped or compressed to make room for new information.</p>
+<p>The constraint is architectural. The <a href="./transformer.md" class="link-internal">transformer</a>&rsquo;s self-attention mechanism computes pairwise attention scores between all tokens, requiring O(N²) compute and O(N) memory for a sequence of N tokens. Extending the context window requires proportionally more resources per forward pass. Research on efficient attention (sparse attention, sliding window, linear approximations) reduces the constant factor but does not eliminate the fundamental scaling relationship.</p>
+<p>Context window sizes have grown rapidly:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Model</th>
+          <th>Year</th>
+          <th>Context window</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>GPT-3</td>
+          <td>2020</td>
+          <td>4,096 tokens</td>
+      </tr>
+      <tr>
+          <td>GPT-4</td>
+          <td>2023</td>
+          <td>8,192 / 32,768 tokens</td>
+      </tr>
+      <tr>
+          <td>Claude 3</td>
+          <td>2024</td>
+          <td>200,000 tokens</td>
+      </tr>
+      <tr>
+          <td>Gemini 1.5 Pro</td>
+          <td>2024</td>
+          <td>1,000,000 tokens</td>
+      </tr>
+      <tr>
+          <td>Claude Opus 4.6</td>
+          <td>2025</td>
+          <td>200,000 / 1,000,000 tokens</td>
+      </tr>
+  </tbody>
+</table>
+<p>Even at one million tokens, the context window is finite and shapes the design of <a href="../domains/agents/terms/agentic-system.md" class="link-internal">agentic systems</a> in three ways:</p>
+<ol>
+<li>
+<p><strong>Memory management.</strong> An agent operating over many steps accumulates tool results and reasoning traces that eventually exceed the window. <a href="../domains/agents/terms/agent-orchestration.md" class="link-internal">Agent orchestration</a> frameworks must implement strategies for summarizing, compacting, or selectively retaining context — a problem analogous to memory management in operating systems.</p>
+</li>
+<li>
+<p><strong>Prompt budgeting.</strong> A system prompt, tool definitions, conversation history, and instruction files (<a href="../domains/agents/terms/agents-md.md" class="link-internal">AGENTS.md</a>, <a href="../domains/agents/terms/soul-md.md" class="link-internal">SOUL.md</a>) all compete for the same token budget. Longer instructions leave less room for the task itself.</p>
+</li>
+<li>
+<p><strong>Retrieval vs. inclusion.</strong> When relevant information exceeds the context window, the system must retrieve it on demand (RAG, tool calls to databases) rather than including it wholesale. The context window determines the boundary between what the model can hold &ldquo;in mind&rdquo; and what it must look up.</p>
+</li>
+</ol>
+<p>Context window size is a binding constraint on agent capability. A larger window allows more complex multi-step reasoning without information loss. A smaller window forces more aggressive summarization and more frequent tool calls to re-fetch information.</p>
+<h2 id="related-terms">Related terms</h2>
+<ul>
+<li><a href="./token.md" class="link-internal">Token</a> — the unit in which context windows are measured</li>
+<li><a href="./transformer.md" class="link-internal">Transformer</a> — the architecture whose attention mechanism creates the constraint</li>
+<li><a href="./system-prompt.md" class="link-internal">System prompt</a> — a major consumer of context window budget</li>
+<li><a href="../domains/agents/terms/agentic-system.md" class="link-internal">Agentic system</a> — systems whose architecture is shaped by context limits</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/context-window/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt><a href="/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Contains</a></dt>
+        <dd property="emsenn:Contains">System prompt</dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Date updated</dt>
+        <dd property="schema:dateModified"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/context-window/">Context window</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/determination/">Determined by</a></dt>
+        <dd property="emsenn:Determinedby"><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/transformer/">Transformer</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">Artificial intelligence</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/measure/">Measured by</a></dt>
+        <dd property="emsenn:Measuredby"><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/token/">Token</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/topology/terms/restriction/">Restricts</a></dt>
+        <dd property="emsenn:Restricts">Agentic system, retrieval augmented generation</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

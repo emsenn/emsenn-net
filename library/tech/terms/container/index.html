@@ -1,12 +1,211 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-18","datePublished":"2026-03-18","description":"A separately operable unit that instantiates the RelationalMachine structure: a RelationalMachineInterface, RelationalMachinePort, RelationalMachineSteppingMap, DataStore, Engine, and Observation Layer.","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/terms/container/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name></h1><div class=meta><time class=dt-published datetime=2026-03-18T00:00:00Z>2026-03-18</time>
-<span class=p-summary>A separately operable unit that instantiates the RelationalMachine structure: a RelationalMachineInterface, RelationalMachinePort, RelationalMachineSteppingMap, DataStore, Engine, and Observation Layer.</span></div><div class=e-content><h1 id=container>Container</h1><h2 id=what-this-is>What this is</h2><p>A <strong>Container</strong> is any entity that instantiates the component structure of the <a href=relational-machine.md class=link-internal>RelationalMachine</a>:</p><table><thead><tr><th>Component</th><th>Mathematical role</th><th>Container role</th></tr></thead><tbody><tr><td><a href=relational-machine-interface.md class=link-internal>RelationalMachineInterface</a></td><td>ι : U → T — patch inclusion foot</td><td>The exposed boundary where steps enter</td></tr><tr><td><a href=relational-machine-port.md class=link-internal>RelationalMachinePort</a></td><td>(Σ, I) — step set with independence</td><td>The typed vocabulary of accepted inputs</td></tr><tr><td><a href=relational-machine-stepping-map.md class=link-internal>RelationalMachineSteppingMap</a></td><td>γ_t : X(t) → X(s★t) — coalgebra map</td><td>The mechanism that advances carrier state</td></tr><tr><td>DataStore</td><td>H_t — fiber Heyting algebra at current history</td><td>Where state is held</td></tr><tr><td><a href=engine.md class=link-internal>Engine</a></td><td>π_t = σ_t ∘ Δ_t — nucleus retraction</td><td>The mechanism that transforms state</td></tr><tr><td>Observation Layer</td><td>Γ — global sections functor</td><td>Where settled output exits</td></tr></tbody></table><p>These components are what make something separately operable.
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-18",
+  "datePublished": "2026-03-18",
+  "description": "A separately operable unit that instantiates the RelationalMachine structure: a RelationalMachineInterface, RelationalMachinePort, RelationalMachineSteppingMap, DataStore, Engine, and Observation Layer.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/terms/container/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-18T00:00:00Z">2026-03-18</time>
+    
+    <span class="p-summary">A separately operable unit that instantiates the RelationalMachine structure: a RelationalMachineInterface, RelationalMachinePort, RelationalMachineSteppingMap, DataStore, Engine, and Observation Layer.</span>
+  </div>
+  <div class="e-content">
+    <h1 id="container">Container</h1>
+<h2 id="what-this-is">What this is</h2>
+<p>A <strong>Container</strong> is any entity that instantiates the component structure of the <a href="relational-machine.md" class="link-internal">RelationalMachine</a>:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Component</th>
+          <th>Mathematical role</th>
+          <th>Container role</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="relational-machine-interface.md" class="link-internal">RelationalMachineInterface</a></td>
+          <td>ι : U → T — patch inclusion foot</td>
+          <td>The exposed boundary where steps enter</td>
+      </tr>
+      <tr>
+          <td><a href="relational-machine-port.md" class="link-internal">RelationalMachinePort</a></td>
+          <td>(Σ, I) — step set with independence</td>
+          <td>The typed vocabulary of accepted inputs</td>
+      </tr>
+      <tr>
+          <td><a href="relational-machine-stepping-map.md" class="link-internal">RelationalMachineSteppingMap</a></td>
+          <td>γ_t : X(t) → X(s★t) — coalgebra map</td>
+          <td>The mechanism that advances carrier state</td>
+      </tr>
+      <tr>
+          <td>DataStore</td>
+          <td>H_t — fiber Heyting algebra at current history</td>
+          <td>Where state is held</td>
+      </tr>
+      <tr>
+          <td><a href="engine.md" class="link-internal">Engine</a></td>
+          <td>π_t = σ_t ∘ Δ_t — nucleus retraction</td>
+          <td>The mechanism that transforms state</td>
+      </tr>
+      <tr>
+          <td>Observation Layer</td>
+          <td>Γ — global sections functor</td>
+          <td>Where settled output exits</td>
+      </tr>
+  </tbody>
+</table>
+<p>These components are what make something separately operable.
 A unit with a defined interface, a typed port, a stepping map to advance state, internal state storage, a mechanism for transforming state, and a defined output layer can operate independently.
 A unit missing any of these components is not a Container — it is a component of one.
 A Container MUST instantiate all components.
-It MUST be separately operable — able to receive input, process it, and produce output without requiring another Container to complete the cycle.</p><h2 id=derivation>Derivation</h2><p>The component structure is derived from the <a href=relational-machine.md class=link-internal>RelationalMachine</a>, which is itself derived from the mathematical structure of the relational universe.</p><p>A Container does not need to implement these components with the same technology.
-It needs to instantiate the same structure: a typed input boundary, a way to advance state on arrival of a step, a place to hold state, a process to transform it, and a way out.</p><p>This is the basis for the C4 architecture diagram concept of &ldquo;container&rdquo; — a separately deployable/runnable unit — grounded in the relational machine rather than adopted as an external convention.</p><h2 id=instances-in-this-system>Instances in this system</h2><p><strong><a href=flatfile-agential-resource-system-locale.md class=link-internal>FlatfileAgentialResourceSystemLocale</a></strong> satisfies Container:</p><ul><li>Interface: <code>INBOX.md</code> — the exposed boundary; steps enter here as Messages</li><li>Port: message types {FixNeeded, GapFound, Discovery, Coordination}</li><li>SteppingMap: the improvement skill advancing locale state from t to s★t by writing files</li><li>DataStore: the entity files — all H_t content is held in markdown files</li><li>Engine: the improvement skill — applies the locale&rsquo;s nucleus operations (triage, derive, settle)</li><li>Observation Layer: outbound messages and skill outputs — settled sections exit here</li></ul><p><strong><a href=distributed-relational-machine-runtime.md class=link-internal>DistributedRelationalMachineRuntime</a></strong> satisfies Container at the service level:</p><ul><li>Interface: NATS JetStream — the exposed step intake boundary</li><li>Port: the step types the JetStream subjects accept</li><li>SteppingMap: the Dapr actor transition function advancing state on each message</li><li>DataStore: rqlite — the fiber algebra tables</li><li>Engine: Dapr virtual actors running LangGraph — the nucleus kernel</li><li>Observation Layer: FastMCP servers — the settled section emitters</li></ul><h2 id=in-c4-diagrams>In C4 diagrams</h2><p>When drawing a C4 container diagram of any system built on the relational machine, each Container node represents an entity that satisfies this spec.
-The components within each Container correspond to the mathematical roles above.</p><h2 id=open-questions>Open questions</h2></div></article><section class=page-relations resource="https://emsenn.net/library/tech/terms/container/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>ast</dt><dd property="emsenn:Ast"></dd></div><div class=relation><dt>data-store</dt><dd property="emsenn:Datastore">relational-universe</dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-18>2026-03-18</time></dd></div><div class=relation><dt>date-modified</dt><dd property="emsenn:Datemodified"><time datetime=2026-03-19>2026-03-19</time></dd></div><div class=relation><dt>defines</dt><dd property="emsenn:Defines"><a href=/library/general/terms/container/>Container</a></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">A separately operable unit that instantiates the RelationalMachine structure: a RelationalMachineInterface, RelationalMachinePort, RelationalMachineSteppingMap, DataStore, Engine, and Observation Layer.</dd></div><div class=relation><dt><a href=/library/tech/terms/engine/>engine</a></dt><dd property="emsenn:Engine">relational-universe-morphism</dd></div><div class=relation><dt>interface</dt><dd property="emsenn:Interface">relational-universe-morphism</dd></div><div class=relation><dt>observation-layer</dt><dd property="emsenn:Observationlayer">relational-universe-morphism</dd></div><div class=relation><dt>output</dt><dd property="emsenn:Output">relational-universe</dd></div><div class=relation><dt><a href=/library/tech/terms/port/>port</a></dt><dd property="emsenn:Port">relational-universe</dd></div><div class=relation><dt>stepping-map</dt><dd property="emsenn:Steppingmap">relational-universe-morphism</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+It MUST be separately operable — able to receive input, process it, and produce output without requiring another Container to complete the cycle.</p>
+<h2 id="derivation">Derivation</h2>
+<p>The component structure is derived from the <a href="relational-machine.md" class="link-internal">RelationalMachine</a>, which is itself derived from the mathematical structure of the relational universe.</p>
+<p>A Container does not need to implement these components with the same technology.
+It needs to instantiate the same structure: a typed input boundary, a way to advance state on arrival of a step, a place to hold state, a process to transform it, and a way out.</p>
+<p>This is the basis for the C4 architecture diagram concept of &ldquo;container&rdquo; — a separately deployable/runnable unit — grounded in the relational machine rather than adopted as an external convention.</p>
+<h2 id="instances-in-this-system">Instances in this system</h2>
+<p><strong><a href="flatfile-agential-resource-system-locale.md" class="link-internal">FlatfileAgentialResourceSystemLocale</a></strong> satisfies Container:</p>
+<ul>
+<li>Interface: <code>INBOX.md</code> — the exposed boundary; steps enter here as Messages</li>
+<li>Port: message types {FixNeeded, GapFound, Discovery, Coordination}</li>
+<li>SteppingMap: the improvement skill advancing locale state from t to s★t by writing files</li>
+<li>DataStore: the entity files — all H_t content is held in markdown files</li>
+<li>Engine: the improvement skill — applies the locale&rsquo;s nucleus operations (triage, derive, settle)</li>
+<li>Observation Layer: outbound messages and skill outputs — settled sections exit here</li>
+</ul>
+<p><strong><a href="distributed-relational-machine-runtime.md" class="link-internal">DistributedRelationalMachineRuntime</a></strong> satisfies Container at the service level:</p>
+<ul>
+<li>Interface: NATS JetStream — the exposed step intake boundary</li>
+<li>Port: the step types the JetStream subjects accept</li>
+<li>SteppingMap: the Dapr actor transition function advancing state on each message</li>
+<li>DataStore: rqlite — the fiber algebra tables</li>
+<li>Engine: Dapr virtual actors running LangGraph — the nucleus kernel</li>
+<li>Observation Layer: FastMCP servers — the settled section emitters</li>
+</ul>
+<h2 id="in-c4-diagrams">In C4 diagrams</h2>
+<p>When drawing a C4 container diagram of any system built on the relational machine, each Container node represents an entity that satisfies this spec.
+The components within each Container correspond to the mathematical roles above.</p>
+<h2 id="open-questions">Open questions</h2>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/terms/container/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt>Data store</dt>
+        <dd property="emsenn:Datastore">Relational universe</dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-18">2026-03-18</time></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-19">2026-03-19</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/general/terms/container/">Container</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/tech/terms/engine/">Engine</a></dt>
+        <dd property="emsenn:Engine">Relational universe morphism</dd>
+      </div><div class="relation">
+        <dt>Interface</dt>
+        <dd property="emsenn:Interface">Relational universe morphism</dd>
+      </div><div class="relation">
+        <dt>Observation layer</dt>
+        <dd property="emsenn:Observationlayer">Relational universe morphism</dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">Relational universe</dd>
+      </div><div class="relation">
+        <dt><a href="/library/tech/terms/port/">Port</a></dt>
+        <dd property="emsenn:Port">Relational universe</dd>
+      </div><div class="relation">
+        <dt>Stepping map</dt>
+        <dd property="emsenn:Steppingmap">Relational universe morphism</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

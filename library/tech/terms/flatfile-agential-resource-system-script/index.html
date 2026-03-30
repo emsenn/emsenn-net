@@ -1,12 +1,139 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"A FARS Script is a Python file colocated with a runbook YAML, implementing one or more of its steps: invoked directly by the agent executing the runbook.","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-script/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name></h1><div class=meta><span class=p-summary>A FARS Script is a Python file colocated with a runbook YAML, implementing one or more of its steps: invoked directly by the agent executing the runbook.</span></div><div class=e-content><h1 id=fars-script>FARS Script</h1><h2 id=what-it-is>What it is</h2><p>A <strong>FARS Script</strong> is one stepping map <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>γ</mi><mi>t</mi></msub><mo>:</mo><mi>X</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>→</mo><mi>X</mi><mo stretchy="false">(</mo><mi>s</mi><mo>⋆</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\gamma_t : X(t) \to X(s \star t)</annotation></semantics></math></span> for one step <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">s \in \Sigma</annotation></semantics></math></span> — a Python file that implements exactly one atomic step of a <a href=flatfile-agential-resource-system-runbook.md class=link-internal>FARS Runbook</a>.</p><p>The mathematical constraint: the function must satisfy the <strong>counit law</strong> — inputs must be recoverable from the output. The stepping map adds content from step <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span> without destroying content from history <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span>. If the function fails, no state is changed. The stepping map either completes or does not fire.</p><p>A FARS Script carries no composition metadata. No <code>id</code>, no <code>description</code>, no <code>closure-kind</code> in the file body. Those fields describe morphisms in <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span> (the YAML&rsquo;s job), not atomic steps. The Python file&rsquo;s function name is its identity; its typed signature is its interface.</p><p>A FARS Script MUST contain exactly one function.
-Its typed signature MUST use <code>typing.Annotated[T, Field(description="...")]</code> — the single source of truth for this step&rsquo;s input and output types.
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "A FARS Script is a Python file colocated with a runbook YAML, implementing one or more of its steps: invoked directly by the agent executing the runbook.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-script/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    <span class="p-summary">A FARS Script is a Python file colocated with a runbook YAML, implementing one or more of its steps: invoked directly by the agent executing the runbook.</span>
+  </div>
+  <div class="e-content">
+    <h1 id="fars-script">FARS Script</h1>
+<h2 id="what-it-is">What it is</h2>
+<p>A <strong>FARS Script</strong> is one stepping map <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>γ</mi><mi>t</mi></msub><mo>:</mo><mi>X</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>→</mo><mi>X</mi><mo stretchy="false">(</mo><mi>s</mi><mo>⋆</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\gamma_t : X(t) \to X(s \star t)</annotation></semantics></math></span> for one step <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">s \in \Sigma</annotation></semantics></math></span> — a Python file that implements exactly one atomic step of a <a href="flatfile-agential-resource-system-runbook.md" class="link-internal">FARS Runbook</a>.</p>
+<p>The mathematical constraint: the function must satisfy the <strong>counit law</strong> — inputs must be recoverable from the output. The stepping map adds content from step <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span> without destroying content from history <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span>. If the function fails, no state is changed. The stepping map either completes or does not fire.</p>
+<p>A FARS Script carries no composition metadata. No <code>id</code>, no <code>description</code>, no <code>closure-kind</code> in the file body. Those fields describe morphisms in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span> (the YAML&rsquo;s job), not atomic steps. The Python file&rsquo;s function name is its identity; its typed signature is its interface.</p>
+<p>A FARS Script MUST contain exactly one function.
+Its typed signature MUST use <code>typing.Annotated[T, Field(description=&quot;...&quot;)]</code> — the single source of truth for this step&rsquo;s input and output types.
 It MUST accept only inputs recoverable from those types.
 It MUST produce outputs that preserve the inputs (counit law: no information destruction).
 All side effects MUST be traceable to named output entities.
-A FARS Script CANNOT read or write state not accessible through the system&rsquo;s own entities.</p><h2 id=encoding>Encoding</h2><p>A FARS Script is a Python file colocated with its runbook YAML in <code>runbooks/</code>.
+A FARS Script CANNOT read or write state not accessible through the system&rsquo;s own entities.</p>
+<h2 id="encoding">Encoding</h2>
+<p>A FARS Script is a Python file colocated with its runbook YAML in <code>runbooks/</code>.
 Inputs arrive as named command-line flags corresponding to the runbook&rsquo;s <code>inputs:</code> fields.
-Outputs are written as markdown files with valid frontmatter satisfying applicable <a href=flatfile-agential-resource-system-shape.md class=link-internal>flatfile-agential-resource-system-shape</a> constraints.</p><h2 id=open-questions>Open questions</h2><ul><li>Whether scripts can be shared across runbooks or whether each script belongs to exactly one runbook.</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-script/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>ast</dt><dd property="emsenn:Ast"></dd></div><div class=relation><dt><a href=/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/>component-of</a></dt><dd property="emsenn:Componentof"><a href=/library/tech/terms/flatfile-agential-resource-system-blueprint/>FlatfileAgentialResourceSystemBlueprint</a></dd></div><div class=relation><dt>defines</dt><dd property="emsenn:Defines"><a href=/library/tech/terms/flatfile-agential-resource-system-script/>FlatfileAgentialResourceSystemScript</a></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">A FARS Script is a Python file colocated with a runbook YAML, implementing one or more of its steps: invoked directly by the agent executing the runbook.</dd></div><div class=relation><dt>function-signature</dt><dd property="emsenn:Functionsignature">relational-universe</dd></div><div class=relation><dt>implements</dt><dd property="emsenn:Implements"><a href=/library/tech/terms/script/>Script</a></dd></div><div class=relation><dt>output</dt><dd property="emsenn:Output">relational-universe-morphism</dd></div><div class=relation><dt>step</dt><dd property="emsenn:Step">relational-universe</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+Outputs are written as markdown files with valid frontmatter satisfying applicable <a href="flatfile-agential-resource-system-shape.md" class="link-internal">flatfile-agential-resource-system-shape</a> constraints.</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Whether scripts can be shared across runbooks or whether each script belongs to exactly one runbook.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-script/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt><a href="/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Component of</a></dt>
+        <dd property="emsenn:Componentof"><a href="/library/tech/terms/flatfile-agential-resource-system-blueprint/">Flatfile agential resource system blueprint</a></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/tech/terms/flatfile-agential-resource-system-script/">Flatfile agential resource system script</a></dd>
+      </div><div class="relation">
+        <dt>Function signature</dt>
+        <dd property="emsenn:Functionsignature">Relational universe</dd>
+      </div><div class="relation">
+        <dt>Implements</dt>
+        <dd property="emsenn:Implements"><a href="/library/tech/terms/script/">Script</a></dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">Relational universe morphism</dd>
+      </div><div class="relation">
+        <dt>Step</dt>
+        <dd property="emsenn:Step">Relational universe</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

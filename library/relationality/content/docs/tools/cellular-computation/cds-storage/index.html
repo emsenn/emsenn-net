@@ -1,21 +1,502 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"Cellular Data Storage (CDS‑Storage) Specification – Version 0.x (normative)\nLayer Declaration — CDS‑Storage (Layer 2s: Storage Substrate) This document occupies Layer 2s (CDS‑Storage) of the GFRTU stack:\nRole: defines a canonical, content‑addressed, immutable storage substrate for CDS cells and related artifacts.\nDepends on: the CDS layer (cds.md) for the JSON shape of a cell, canonicalization rules, and hashing discipline.\nProvides to higher layers: a stable mapping from cell hashes to canonical CDS files for CCE (Layer 3), ABI (Layer 4), RPC (Layer 5), RDF/PKM/CMS projections, and other tools.\n","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/content/docs/tools/cellular-computation/cds-storage/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name></h1><div class=meta></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#layer-declaration--cdsstorage-layer-2s-storage-substrate>Layer Declaration — CDS‑Storage (Layer 2s: Storage Substrate)</a></li><li><a href=#1-purpose-and-scope>1. Purpose and Scope</a></li><li><a href=#2-terminology-and-conventions>2. Terminology and Conventions</a></li><li><a href=#3-design-overview-nonnormative>3. Design Overview (Non‑Normative)</a></li><li><a href=#4-storage-model-normative>4. Storage Model (Normative)</a><ul><li><a href=#41-canonical-cells>4.1 Canonical Cells</a></li><li><a href=#42-storage-root>4.2 Storage Root</a></li><li><a href=#43-filesystem-layout-for-cells>4.3 Filesystem Layout for Cells</a></li><li><a href=#44-file-content-and-identity>4.4 File Content and Identity</a></li><li><a href=#45-presence-and-completeness>4.5 Presence and Completeness</a></li></ul></li><li><a href=#5-core-operations-normative-semantics>5. Core Operations (Normative Semantics)</a><ul><li><a href=#51-putcellcds_bytes--cell-id--error>5.1 <code>PutCell(cds_bytes) → cell-id | error</code></a></li><li><a href=#52-getcellcell-id--canonical_cds_bytes--error>5.2 <code>GetCell(cell-id) → canonical_cds_bytes | error</code></a></li><li><a href=#53-hascellcell-id--bool>5.3 <code>HasCell(cell-id) → bool</code></a></li><li><a href=#54-listcells--iteratorcell-id-recommended>5.4 <code>ListCells() → iterator&lt;cell-id></code> (RECOMMENDED)</a></li></ul></li><li><a href=#6-optional-profiles>6. Optional Profiles</a><ul><li><a href=#61-judgment-store-profile>6.1 Judgment Store Profile</a></li><li><a href=#62-evidence-store-profile>6.2 Evidence Store Profile</a></li><li><a href=#63-alias-mapping-profile>6.3 Alias Mapping Profile</a></li></ul></li><li><a href=#7-error-model>7. Error Model</a></li><li><a href=#8-security-and-operational-considerations>8. Security and Operational Considerations</a><ul><li><a href=#81-hash-algorithm>8.1 Hash Algorithm</a></li><li><a href=#82-path-safety>8.2 Path Safety</a></li><li><a href=#83-atomicity-and-durability>8.3 Atomicity and Durability</a></li><li><a href=#84-concurrency>8.4 Concurrency</a></li><li><a href=#85-privacy>8.5 Privacy</a></li></ul></li><li><a href=#9-interaction-with-other-layers-nonnormative>9. Interaction with Other Layers (Non‑Normative)</a></li><li><a href=#10-conformance>10. Conformance</a></li></ul></nav></details><div class=e-content><h1 id=cellular-data-storage-cdsstorage>Cellular Data Storage (CDS‑Storage)</h1><p><strong>Specification – Version 0.x (normative)</strong></p><h2 id=layer-declaration--cdsstorage-layer-2s-storage-substrate>Layer Declaration — CDS‑Storage (Layer 2s: Storage Substrate)</h2><p>This document occupies Layer 2s (CDS‑Storage) of the GFRTU stack:</p><ul><li><p><strong>Role:</strong> defines a canonical, content‑addressed, immutable storage substrate for CDS cells and related artifacts.</p></li><li><p><strong>Depends on:</strong> the CDS layer (cds.md) for the JSON shape of a cell, canonicalization rules, and hashing discipline.</p></li><li><p><strong>Provides to higher layers:</strong> a stable mapping from cell hashes to canonical CDS files for CCE (Layer 3), ABI (Layer 4), RPC (Layer 5), RDF/PKM/CMS projections, and other tools.</p></li><li><p><strong>Must not do:</strong> introduce new mathematical laws beyond gfrtu.md, interpret RTL semantics from rtl.md, or redefine closure/repair behavior owned by cce.md.</p></li></ul><p>CDS‑Storage is purely infrastructural: it is concerned only with bytes, filenames, hashes, and persistence. All mathematical and operational semantics remain the responsibility of GFRTU, CDS, RTL, and CCE.</p><h2 id=1-purpose-and-scope>1. Purpose and Scope</h2><p>Cellular Data Serialization (CDS) defines a canonical JSON representation of a single GFRTU cell, whose identity is the SHA‑256 hash of its canonical byte sequence.</p><p>CDS‑Storage defines:</p><ul><li><p>how canonical CDS cells are persisted as files;</p></li><li><p>how those files are named and arranged on disk;</p></li><li><p>what invariants must hold between file content, filenames, and id fields;</p></li><li><p>a minimal set of conceptual operations (store, retrieve, test presence); and</p></li><li><p>a small number of OPTIONAL profiles for storing related artifacts (judgments, evidence, aliases).</p></li></ul><p>This specification does not define:</p><ul><li><p>database schemas;</p></li><li><p>networking protocols;</p></li><li><p>replication or distribution mechanisms;</p></li><li><p>closure algorithms or any semantics of RTL.</p></li></ul><p>Higher‑level systems (CCE, RPC, PKM/CMS, RDF projections) are expected to consume CDS‑Storage as a stable, content‑addressed cell store.</p><h2 id=2-terminology-and-conventions>2. Terminology and Conventions</h2><p>The key words MUST, MUST NOT, REQUIRED, SHOULD, and MAY in this document are to be interpreted as described in RFC 2119.</p><p>This document uses the following terms:</p><ul><li><p><strong>Cell</strong>
-A CDS JSON object conforming to cds.md whose canonical byte sequence hashes to its id field.</p></li><li><p><strong>Canonical CDS bytes</strong>
-A UTF‑8 encoded JSON serialization of a cell, after applying CDS canonicalization rules (see cds.md, §5 “Canonicalization and Hashing”).</p></li><li><p><strong>Cell identifier (cell-id)</strong>
-The lowercase hexadecimal SHA‑256 digest of a cell’s canonical CDS bytes. MUST be exactly 64 hexadecimal characters.</p></li><li><p><strong>Storage root ($ROOT)</strong>
-The filesystem directory that contains the entire CDS‑Storage instance.</p></li><li><p><strong>Implementation</strong>
-Any concrete system (library, CLI, service, daemon) claiming to conform to this specification.</p></li></ul><p>Rationale (non‑normative): using the same hash and canonicalization discipline as CDS eliminates the risk of “two slightly different cell identity regimes”. There is only one: the one defined in cds.md.</p><h2 id=3-design-overview-nonnormative>3. Design Overview (Non‑Normative)</h2><p>CDS‑Storage is a Git‑like object store for cells:</p><ul><li><p>Each cell is stored as a single JSON file.</p></li><li><p>The file’s stem (name without extension) equals the cell’s id.</p></li><li><p>Files are arranged under <code>$ROOT/cells/&lt;prefix>/&lt;cell-id>.json</code>, where <code>&lt;prefix></code> is a short hash prefix (two hex characters by default).</p></li><li><p>Files are immutable: once written, they are never modified in place.</p></li><li><p>Any index (SQLite, LMDB, key‑value store) is optional and must be reconstructible from the files.</p></li></ul><p>This design:</p><ul><li><p>respects CDS’s requirement that “the filename stem MUST equal the canonical hash in id”;</p></li><li><p>makes cells easy to inspect and version with standard tools (git, rsync, tar);</p></li><li><p>keeps the semantics of cells in higher layers while providing a simple, deterministic substrate.</p></li></ul><p>The remainder of this document states this behavior normatively.</p><h2 id=4-storage-model-normative>4. Storage Model (Normative)</h2><h3 id=41-canonical-cells>4.1 Canonical Cells</h3><p>A cell in the sense of CDS‑Storage is a pair
-(cell-id, canonical_cds_bytes) such that:</p><p>canonical_cds_bytes is valid UTF‑8 JSON;</p><p>parsing it yields a JSON object conforming to CDS; and</p><p>applying CDS canonicalization and hashing rules yields cell-id.</p><p>A CDS‑Storage implementation MUST ensure that any bytes it stores as a cell:</p><ul><li><p>are canonical according to CDS; and</p></li><li><p>hash to a cell-id equal to the id field in the JSON.</p></li></ul><p>An implementation MAY accept non‑canonical but structurally valid CDS JSON as input, provided it canonicalizes before storing. It MAY instead reject non‑canonical inputs and require pre‑canonicalized bytes. In all cases, on‑disk cell content MUST be canonical.</p><h3 id=42-storage-root>4.2 Storage Root</h3><p>Every CDS‑Storage instance MUST have a single storage root directory, denoted $ROOT.</p><p>All files and directories specified in this document MUST reside within $ROOT or its subdirectories.</p><p>Implementations MAY store auxiliary files in $ROOT besides those defined here, provided they do not conflict with paths reserved by this specification.</p><h3 id=43-filesystem-layout-for-cells>4.3 Filesystem Layout for Cells</h3><p>A conforming implementation MUST store all cells under:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>$ROOT/cells/
-</span></span><span style=display:flex><span>  &lt;pp&gt;/
-</span></span><span style=display:flex><span>    &lt;cell-id&gt;.json
-</span></span></code></pre></div><p>where:</p><p><code>&lt;pp></code> is a directory name derived from a prefix of cell-id; and</p><p><code>&lt;cell-id>.json</code> is a file whose stem is exactly cell-id.</p><p>Implementations MUST, at minimum, support a two‑character prefix: pp = cell-id[0:2]. They MAY use longer prefixes (e.g., 3 or 4 hex characters) for distribution across directories, but any such choice MUST be deterministic given cell-id.</p><p>The mapping from cell-id to path MUST be injective and MUST NOT depend on mutable state. Given a cell-id, any conforming implementation MUST be able to derive the same path.</p><p>The file extension MUST be .json. The extension is not part of the identity; it is a convenience for tooling.</p><p>Rationale (non‑normative): the prefix directory pattern matches Git, OCI, and many content‑addressed stores, avoiding huge directory fan‑out while keeping paths short and predictable.</p><h3 id=44-file-content-and-identity>4.4 File Content and Identity</h3><p>For any file $ROOT/cells/pp/<cell-id>.json:</p><p>The file’s content MUST be canonical CDS bytes.</p><p>The SHA‑256 hash of the file’s bytes MUST equal cell-id.</p><p>Parsing the file as JSON MUST yield an object whose &ldquo;id&rdquo; field is a string equal to cell-id.</p><p>The filename stem (<cell-id>) MUST equal the canonical hash in id, as already required by CDS.</p><p>Implementations MUST NOT modify the file’s content after successful creation (immutability). Any update MUST be modeled as the creation of a new cell with a different cell-id.</p><p>Implementations MAY add or update separate metadata files or indexes that reference cell-id, but those MUST NOT change the semantics of the cell or the bytes stored under its file.</p><h3 id=45-presence-and-completeness>4.5 Presence and Completeness</h3><p>A cell-id is considered present in the store if and only if a file exists at its computed path and satisfies the requirements of §4.4.</p><p>Implementations MUST treat the set of present cells as the complete inventory of stored cells. Any in‑memory or database indexes MUST be conservative with respect to the files: they MAY omit cells (e.g., during rebuilding) but MUST NOT invent cells that do not exist as valid files on disk.</p><h2 id=5-core-operations-normative-semantics>5. Core Operations (Normative Semantics)</h2><p>This section defines the conceptual operations that a CDS‑Storage implementation MUST support. Concrete APIs (functions, CLI commands, RPC methods) MAY vary, but they MUST preserve the described behavior.</p><h3 id=51-putcellcds_bytes--cell-id--error>5.1 <code>PutCell(cds_bytes) → cell-id | error</code></h3><p>5.1.1 Input</p><p>cds_bytes: a byte sequence supplied by a caller, intended to represent a CDS cell.</p><p>5.1.2 Required behavior</p><p>An implementation MUST:</p><p>Parse cds_bytes as UTF‑8 JSON.</p><p>On failure, it MUST reject the operation with an error equivalent to CS_ERR_JSON_PARSE.</p><p>Verify that the parsed JSON object satisfies the structural requirements of CDS (required top‑level keys, correct types, no unknown keys), as specified in cds.md.</p><p>On violation, it MUST reject the operation with an error indicating CDS structural invalidity. Implementations MAY surface the underlying CDS error code.</p><p>Obtain canonical CDS bytes for the parsed object using CDS canonicalization rules (sorting keys, numeric normalization, etc.).</p><p>If cds_bytes is already canonical, this step may be a no‑op.</p><p>If canonicalization fails for any reason, the implementation MUST reject the operation.</p><p>Compute h = SHA‑256(canonical_cds_bytes).</p><p>Compare h (encoded as lowercase hex) to the id field from the parsed JSON.</p><p>If they differ, the implementation MUST reject the operation with an error equivalent to CS_ERR_ID_MISMATCH.</p><p>Compute the storage path p for h as defined in §4.3.</p><p>If a file already exists at p:</p><p>Read its bytes.</p><p>Verify that those bytes hash to h.</p><p>If they do not, the implementation MUST treat the store as corrupted and return CS_ERR_CORRUPT_STORE or an equivalent fatal error.</p><p>Return cell-id = h without modifying the file.</p><p>If no file exists at p:</p><p>Create the parent directory if it does not already exist. Directory creation MUST be idempotent and safe for concurrent callers.</p><p>Write canonical_cds_bytes to a temporary file in the same directory (e.g., using a unique suffix or temporary name).</p><p>Verify that the written bytes hash to h.</p><p>Atomically rename the temporary file to <cell-id>.json at path p.</p><p>Ensure the write is durable with respect to the host filesystem (e.g., via fsync or equivalent).</p><p>Return cell-id = h on success.</p><p>5.1.3 Immutability</p><p>Once PutCell returns success for a given cell-id, the implementation MUST guarantee that future calls to GetCell(cell-id) will either:</p><p>return the canonical bytes originally stored; or</p><p>fail with a store‑level error indicating corruption or lower‑level I/O failure.</p><h3 id=52-getcellcell-id--canonical_cds_bytes--error>5.2 <code>GetCell(cell-id) → canonical_cds_bytes | error</code></h3><p>5.2.1 Input</p><p>cell-id: a string supplied by a caller.</p><p>5.2.2 Required behavior</p><p>An implementation MUST:</p><p>Validate that cell-id is a 64‑character lowercase hexadecimal string.</p><p>On failure, it MUST reject the operation with CS_ERR_INVALID_ID_FORMAT.</p><p>Derive the path p for cell-id as specified in §4.3.</p><p>If no file exists at p, return CS_ERR_NOT_FOUND.</p><p>Read the file’s bytes.</p><p>Verify that the bytes hash to cell-id. If they do not, the store MUST be treated as corrupted and CS_ERR_CORRUPT_STORE (or equivalent) MUST be returned.</p><p>Return the bytes exactly as read. Implementations MUST NOT reformat the JSON or change whitespace, ordering, or encoding at this boundary.</p><h3 id=53-hascellcell-id--bool>5.3 <code>HasCell(cell-id) → bool</code></h3><p>An implementation MUST:</p><p>Validate the format of cell-id as in §5.2.2(1). If invalid, it MAY return false or an error; for predictability, returning an error is RECOMMENDED.</p><p>Derive the path p as in §5.2.2(2).</p><p>Check whether a file exists at p and satisfies the hash check in §4.4.</p><p>If so, return true.</p><p>If no file exists, return false.</p><p>If the file exists but fails the hash check, the store MUST be treated as corrupted and an error returned.</p><h3 id=54-listcells--iteratorcell-id-recommended>5.4 <code>ListCells() → iterator&lt;cell-id></code> (RECOMMENDED)</h3><p>An implementation SHOULD provide an operation to enumerate all present cells by traversing $ROOT/cells.</p><p>Normative requirements:</p><p>The iterator MUST eventually yield each cell-id for which a valid file exists in the layout defined in §4.3 and §4.4.</p><p>The iterator MUST NOT invent cell-ids that lack corresponding valid files.</p><p>No ordering guarantees are required; implementations MAY provide arbitrary, lexicographic, or mtime‑based orderings.</p><p>Rationale (non‑normative): enumeration is not required for the correctness of higher layers, but is useful for tooling, maintenance, garbage collection, and replication.</p><h2 id=6-optional-profiles>6. Optional Profiles</h2><p>The following profiles define additional filesystem conventions. They are OPTIONAL and MUST NOT change the behavior of operations in §5 or the invariants in §4.</p><h3 id=61-judgment-store-profile>6.1 Judgment Store Profile</h3><p>Some systems may wish to persist RTL judgments as first‑class, content‑addressed files.</p><p>When this profile is enabled:</p><p>RTL judgments SHOULD be canonicalized according to rtl.md (if defined) and hashed with SHA‑256 to obtain a judgment identifier (judgment-id).</p><p>Implementations MAY store judgments as:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>$ROOT/judgments/
-</span></span><span style=display:flex><span>  &lt;jj&gt;/
-</span></span><span style=display:flex><span>    &lt;judgment-id&gt;.json
-</span></span></code></pre></div><p>where <code>&lt;jj></code> is a short prefix (e.g., first two hex characters).</p><p>Judgment files MUST be treated as immutable. Their internal structure is opaque to this specification; only their byte stability and hash relationship are relevant.</p><p>No specific operations are mandated; implementations MAY provide PutJudgment, GetJudgment, etc., following analogous semantics to §5.1 and §5.2.</p><h3 id=62-evidence-store-profile>6.2 Evidence Store Profile</h3><p>CCE executions, RPC calls, and other processes may produce evidence artifacts such as repair logs and transcripts.</p><p>When this profile is enabled:</p><p>Implementations MAY store evidence files under:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>$ROOT/evidence/
-</span></span><span style=display:flex><span>  &lt;exec-id&gt;.json
-</span></span></code></pre></div><p>where exec-id is an application‑level identifier (for example, the id field in a CCE‑RPC request or response).</p><p>The content and format of evidence files are not constrained by this specification. They SHOULD be canonical JSON where practical, but CDS‑Storage does not interpret them.</p><p>Evidence files MAY be mutable if the application requires it, but immutability is RECOMMENDED for provenance reasons.</p><h3 id=63-alias-mapping-profile>6.3 Alias Mapping Profile</h3><p>Human‑readable names (aliases) can be mapped to cell-ids for convenience.</p><p>When this profile is enabled:</p><p>Implementations MAY store alias mappings in an auxiliary index, such as:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>$ROOT/index/aliases.sqlite
-</span></span></code></pre></div><p>The alias mapping:</p><ul><li><p>MUST NOT affect which cells exist or how they are stored.</p></li><li><p>MAY be rebuilt or discarded without affecting store conformance.</p></li><li><p>MAY be many‑to‑one or one‑to‑many.</p></li></ul><p>Aliases SHOULD NOT be treated as stable identifiers at the same level as cell-id. Higher‑level protocols that need stability MUST use cell-id or URIs derived from it.</p><h2 id=7-error-model>7. Error Model</h2><p>Implementations SHOULD provide error codes or classes analogous to the following:</p><ul><li><p><code>CS_ERR_JSON_PARSE</code>: The input bytes could not be parsed as JSON.</p></li><li><p><code>CS_ERR_CDS_INVALID</code>: The JSON does not satisfy CDS structural requirements.</p></li><li><p><code>CS_ERR_ID_MISMATCH</code>: The computed hash does not match the id field in the JSON.</p></li><li><p><code>CS_ERR_INVALID_ID_FORMAT</code>: A supplied cell-id is not a 64‑character lowercase hex string.</p></li><li><p><code>CS_ERR_NOT_FOUND</code>: No cell exists for the requested cell-id.</p></li><li><p><code>CS_ERR_IO</code>: A filesystem or OS‑level error occurred while reading or writing.</p></li><li><p><code>CS_ERR_CORRUPT_STORE</code>: A file exists for a cell-id but its bytes do not hash to that cell-id.</p></li><li><p><code>CS_ERR_INTERNAL</code>: Any other implementation error not covered above.</p></li></ul><p>Rationale (non‑normative): distinguishing CORRUPT_STORE from NOT_FOUND allows higher‑level systems (e.g., CCE servers) to distinguish “perfectly valid absence” from “something is wrong with this host”.</p><h2 id=8-security-and-operational-considerations>8. Security and Operational Considerations</h2><h3 id=81-hash-algorithm>8.1 Hash Algorithm</h3><p>Implementations MUST use the same hash function as CDS canonicalization (SHA‑256 by default). They MUST NOT substitute a different hash algorithm for cell-id without a versioned extension to the CDS spec.</p><p>If future CDS versions introduce alternative hash algorithms, CDS‑Storage MAY be extended with versioned layouts (e.g., subdirectories per hash algorithm). This is out of scope for Version 0.x.</p><h3 id=82-path-safety>8.2 Path Safety</h3><p>Implementations MUST treat cell-ids as opaque hex strings and MUST NOT allow directory separators, .., or other path components in cell-id. Since this spec already constrains cell-id to hex, path traversal attacks are prevented if the format checks are correctly enforced.</p><h3 id=83-atomicity-and-durability>8.3 Atomicity and Durability</h3><p>Write operations (see §5.1) SHOULD:</p><ul><li><p>write to a temporary file in the target directory;</p></li><li><p>fsync the file and directory as appropriate;</p></li><li><p>atomically rename the temporary file to the final name.</p></li></ul><p>These practices reduce the risk of partially written cells being observed as valid.</p><h3 id=84-concurrency>8.4 Concurrency</h3><p>Implementations MUST tolerate concurrent PutCell calls for the same cell-id. At least one call MUST succeed, and all successful calls MUST result in the same bytes on disk.</p><p>Implementations MUST ensure that concurrent writes for different cell-ids do not corrupt each other.</p><h3 id=85-privacy>8.5 Privacy</h3><p>Because cell-id is derived from content, it can leak information about identical content appearing in different places. Implementations that handle sensitive data SHOULD treat $ROOT as a private namespace, and SHOULD NOT rely on cell-id alone as an access control mechanism.</p><h2 id=9-interaction-with-other-layers-nonnormative>9. Interaction with Other Layers (Non‑Normative)</h2><p>Although CDS‑Storage depends only on CDS, other layers depend on it.</p><p>CCE (Layer 3)<br>CCE implementations typically:</p><ul><li><p>read structural cells from CDS‑Storage (via <code>GetCell</code>);</p></li><li><p>produce refined CDS cells and write them (via <code>PutCell</code>);</p></li><li><p>optionally write repair logs to the evidence store.</p></li></ul><p>CCE‑ABI / CCE‑RPC (Layers 4–5)<br>Hosts and services use CDS‑Storage to persist inputs and outputs of closure runs, ensuring that:</p><ul><li><p>canonical bytes passed through ABI/RPC match what is stored;</p></li><li><p>traceability and repeatability are preserved.</p></li></ul><p>RDF / PKM / CMS / ActivityPub / etc.<br>These systems commonly derive URIs such as:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>https://example.org/cells/&lt;cell-id&gt;
-</span></span></code></pre></div><p>and treat <code>$ROOT/cells</code> as the canonical source of truth for cell content.</p><p>CDS‑Storage itself does not interpret these interactions; it only guarantees that cell-id → bytes is stable and deterministic.</p><h2 id=10-conformance>10. Conformance</h2><p>An implementation conforms to CDS‑Storage Version 0.x if and only if:</p><ul><li><p>It stores cells as files under <code>$ROOT/cells</code> with names and contents satisfying §4.</p></li><li><p>It enforces content‑addressed, immutable behavior as described in §4.4 and §5.1–§5.3.</p></li><li><p>It implements the conceptual operations <code>PutCell</code>, <code>GetCell</code>, and <code>HasCell</code> with the observable semantics specified in §5.</p></li><li><p>Any optional profiles it implements (judgments, evidence, aliases) do not alter or weaken the guarantees in §4 and §5.</p></li><li><p>It does not introduce hidden behaviors that contradict the CDS canonicalization and hashing rules defined in cds.md.</p></li></ul><p>Implementations MAY provide additional functionality (indexes, replication, garbage collection, metrics, etc.) as long as these conformance conditions are preserved.</p></div></article></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "Cellular Data Storage (CDS‑Storage) Specification – Version 0.x (normative)\nLayer Declaration — CDS‑Storage (Layer 2s: Storage Substrate) This document occupies Layer 2s (CDS‑Storage) of the GFRTU stack:\nRole: defines a canonical, content‑addressed, immutable storage substrate for CDS cells and related artifacts.\nDepends on: the CDS layer (cds.md) for the JSON shape of a cell, canonicalization rules, and hashing discipline.\nProvides to higher layers: a stable mapping from cell hashes to canonical CDS files for CCE (Layer 3), ABI (Layer 4), RPC (Layer 5), RDF/PKM/CMS projections, and other tools.\n",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/content/docs/tools/cellular-computation/cds-storage/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#layer-declaration--cdsstorage-layer-2s-storage-substrate">Layer Declaration — CDS‑Storage (Layer 2s: Storage Substrate)</a></li>
+    <li><a href="#1-purpose-and-scope">1. Purpose and Scope</a></li>
+    <li><a href="#2-terminology-and-conventions">2. Terminology and Conventions</a></li>
+    <li><a href="#3-design-overview-nonnormative">3. Design Overview (Non‑Normative)</a></li>
+    <li><a href="#4-storage-model-normative">4. Storage Model (Normative)</a>
+      <ul>
+        <li><a href="#41-canonical-cells">4.1 Canonical Cells</a></li>
+        <li><a href="#42-storage-root">4.2 Storage Root</a></li>
+        <li><a href="#43-filesystem-layout-for-cells">4.3 Filesystem Layout for Cells</a></li>
+        <li><a href="#44-file-content-and-identity">4.4 File Content and Identity</a></li>
+        <li><a href="#45-presence-and-completeness">4.5 Presence and Completeness</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-core-operations-normative-semantics">5. Core Operations (Normative Semantics)</a>
+      <ul>
+        <li><a href="#51-putcellcds_bytes--cell-id--error">5.1 <code>PutCell(cds_bytes) → cell-id | error</code></a></li>
+        <li><a href="#52-getcellcell-id--canonical_cds_bytes--error">5.2 <code>GetCell(cell-id) → canonical_cds_bytes | error</code></a></li>
+        <li><a href="#53-hascellcell-id--bool">5.3 <code>HasCell(cell-id) → bool</code></a></li>
+        <li><a href="#54-listcells--iteratorcell-id-recommended">5.4 <code>ListCells() → iterator&lt;cell-id&gt;</code> (RECOMMENDED)</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-optional-profiles">6. Optional Profiles</a>
+      <ul>
+        <li><a href="#61-judgment-store-profile">6.1 Judgment Store Profile</a></li>
+        <li><a href="#62-evidence-store-profile">6.2 Evidence Store Profile</a></li>
+        <li><a href="#63-alias-mapping-profile">6.3 Alias Mapping Profile</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-error-model">7. Error Model</a></li>
+    <li><a href="#8-security-and-operational-considerations">8. Security and Operational Considerations</a>
+      <ul>
+        <li><a href="#81-hash-algorithm">8.1 Hash Algorithm</a></li>
+        <li><a href="#82-path-safety">8.2 Path Safety</a></li>
+        <li><a href="#83-atomicity-and-durability">8.3 Atomicity and Durability</a></li>
+        <li><a href="#84-concurrency">8.4 Concurrency</a></li>
+        <li><a href="#85-privacy">8.5 Privacy</a></li>
+      </ul>
+    </li>
+    <li><a href="#9-interaction-with-other-layers-nonnormative">9. Interaction with Other Layers (Non‑Normative)</a></li>
+    <li><a href="#10-conformance">10. Conformance</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="cellular-data-storage-cdsstorage">Cellular Data Storage (CDS‑Storage)</h1>
+<p><strong>Specification – Version 0.x (normative)</strong></p>
+<h2 id="layer-declaration--cdsstorage-layer-2s-storage-substrate">Layer Declaration — CDS‑Storage (Layer 2s: Storage Substrate)</h2>
+<p>This document occupies Layer 2s (CDS‑Storage) of the GFRTU stack:</p>
+<ul>
+<li>
+<p><strong>Role:</strong> defines a canonical, content‑addressed, immutable storage substrate for CDS cells and related artifacts.</p>
+</li>
+<li>
+<p><strong>Depends on:</strong> the CDS layer (cds.md) for the JSON shape of a cell, canonicalization rules, and hashing discipline.</p>
+</li>
+<li>
+<p><strong>Provides to higher layers:</strong> a stable mapping from cell hashes to canonical CDS files for CCE (Layer 3), ABI (Layer 4), RPC (Layer 5), RDF/PKM/CMS projections, and other tools.</p>
+</li>
+<li>
+<p><strong>Must not do:</strong> introduce new mathematical laws beyond gfrtu.md, interpret RTL semantics from rtl.md, or redefine closure/repair behavior owned by cce.md.</p>
+</li>
+</ul>
+<p>CDS‑Storage is purely infrastructural: it is concerned only with bytes, filenames, hashes, and persistence. All mathematical and operational semantics remain the responsibility of GFRTU, CDS, RTL, and CCE.</p>
+<h2 id="1-purpose-and-scope">1. Purpose and Scope</h2>
+<p>Cellular Data Serialization (CDS) defines a canonical JSON representation of a single GFRTU cell, whose identity is the SHA‑256 hash of its canonical byte sequence.</p>
+<p>CDS‑Storage defines:</p>
+<ul>
+<li>
+<p>how canonical CDS cells are persisted as files;</p>
+</li>
+<li>
+<p>how those files are named and arranged on disk;</p>
+</li>
+<li>
+<p>what invariants must hold between file content, filenames, and id fields;</p>
+</li>
+<li>
+<p>a minimal set of conceptual operations (store, retrieve, test presence); and</p>
+</li>
+<li>
+<p>a small number of OPTIONAL profiles for storing related artifacts (judgments, evidence, aliases).</p>
+</li>
+</ul>
+<p>This specification does not define:</p>
+<ul>
+<li>
+<p>database schemas;</p>
+</li>
+<li>
+<p>networking protocols;</p>
+</li>
+<li>
+<p>replication or distribution mechanisms;</p>
+</li>
+<li>
+<p>closure algorithms or any semantics of RTL.</p>
+</li>
+</ul>
+<p>Higher‑level systems (CCE, RPC, PKM/CMS, RDF projections) are expected to consume CDS‑Storage as a stable, content‑addressed cell store.</p>
+<h2 id="2-terminology-and-conventions">2. Terminology and Conventions</h2>
+<p>The key words MUST, MUST NOT, REQUIRED, SHOULD, and MAY in this document are to be interpreted as described in RFC 2119.</p>
+<p>This document uses the following terms:</p>
+<ul>
+<li>
+<p><strong>Cell</strong>
+A CDS JSON object conforming to cds.md whose canonical byte sequence hashes to its id field.</p>
+</li>
+<li>
+<p><strong>Canonical CDS bytes</strong>
+A UTF‑8 encoded JSON serialization of a cell, after applying CDS canonicalization rules (see cds.md, §5 “Canonicalization and Hashing”).</p>
+</li>
+<li>
+<p><strong>Cell identifier (cell-id)</strong>
+The lowercase hexadecimal SHA‑256 digest of a cell’s canonical CDS bytes. MUST be exactly 64 hexadecimal characters.</p>
+</li>
+<li>
+<p><strong>Storage root ($ROOT)</strong>
+The filesystem directory that contains the entire CDS‑Storage instance.</p>
+</li>
+<li>
+<p><strong>Implementation</strong>
+Any concrete system (library, CLI, service, daemon) claiming to conform to this specification.</p>
+</li>
+</ul>
+<p>Rationale (non‑normative): using the same hash and canonicalization discipline as CDS eliminates the risk of “two slightly different cell identity regimes”. There is only one: the one defined in cds.md.</p>
+<h2 id="3-design-overview-nonnormative">3. Design Overview (Non‑Normative)</h2>
+<p>CDS‑Storage is a Git‑like object store for cells:</p>
+<ul>
+<li>
+<p>Each cell is stored as a single JSON file.</p>
+</li>
+<li>
+<p>The file’s stem (name without extension) equals the cell’s id.</p>
+</li>
+<li>
+<p>Files are arranged under <code>$ROOT/cells/&lt;prefix&gt;/&lt;cell-id&gt;.json</code>, where <code>&lt;prefix&gt;</code> is a short hash prefix (two hex characters by default).</p>
+</li>
+<li>
+<p>Files are immutable: once written, they are never modified in place.</p>
+</li>
+<li>
+<p>Any index (SQLite, LMDB, key‑value store) is optional and must be reconstructible from the files.</p>
+</li>
+</ul>
+<p>This design:</p>
+<ul>
+<li>
+<p>respects CDS’s requirement that “the filename stem MUST equal the canonical hash in id”;</p>
+</li>
+<li>
+<p>makes cells easy to inspect and version with standard tools (git, rsync, tar);</p>
+</li>
+<li>
+<p>keeps the semantics of cells in higher layers while providing a simple, deterministic substrate.</p>
+</li>
+</ul>
+<p>The remainder of this document states this behavior normatively.</p>
+<h2 id="4-storage-model-normative">4. Storage Model (Normative)</h2>
+<h3 id="41-canonical-cells">4.1 Canonical Cells</h3>
+<p>A cell in the sense of CDS‑Storage is a pair
+(cell-id, canonical_cds_bytes) such that:</p>
+<p>canonical_cds_bytes is valid UTF‑8 JSON;</p>
+<p>parsing it yields a JSON object conforming to CDS; and</p>
+<p>applying CDS canonicalization and hashing rules yields cell-id.</p>
+<p>A CDS‑Storage implementation MUST ensure that any bytes it stores as a cell:</p>
+<ul>
+<li>
+<p>are canonical according to CDS; and</p>
+</li>
+<li>
+<p>hash to a cell-id equal to the id field in the JSON.</p>
+</li>
+</ul>
+<p>An implementation MAY accept non‑canonical but structurally valid CDS JSON as input, provided it canonicalizes before storing. It MAY instead reject non‑canonical inputs and require pre‑canonicalized bytes. In all cases, on‑disk cell content MUST be canonical.</p>
+<h3 id="42-storage-root">4.2 Storage Root</h3>
+<p>Every CDS‑Storage instance MUST have a single storage root directory, denoted $ROOT.</p>
+<p>All files and directories specified in this document MUST reside within $ROOT or its subdirectories.</p>
+<p>Implementations MAY store auxiliary files in $ROOT besides those defined here, provided they do not conflict with paths reserved by this specification.</p>
+<h3 id="43-filesystem-layout-for-cells">4.3 Filesystem Layout for Cells</h3>
+<p>A conforming implementation MUST store all cells under:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ROOT/cells/
+</span></span><span style="display:flex;"><span>  &lt;pp&gt;/
+</span></span><span style="display:flex;"><span>    &lt;cell-id&gt;.json
+</span></span></code></pre></div><p>where:</p>
+<p><code>&lt;pp&gt;</code> is a directory name derived from a prefix of cell-id; and</p>
+<p><code>&lt;cell-id&gt;.json</code> is a file whose stem is exactly cell-id.</p>
+<p>Implementations MUST, at minimum, support a two‑character prefix: pp = cell-id[0:2]. They MAY use longer prefixes (e.g., 3 or 4 hex characters) for distribution across directories, but any such choice MUST be deterministic given cell-id.</p>
+<p>The mapping from cell-id to path MUST be injective and MUST NOT depend on mutable state. Given a cell-id, any conforming implementation MUST be able to derive the same path.</p>
+<p>The file extension MUST be .json. The extension is not part of the identity; it is a convenience for tooling.</p>
+<p>Rationale (non‑normative): the prefix directory pattern matches Git, OCI, and many content‑addressed stores, avoiding huge directory fan‑out while keeping paths short and predictable.</p>
+<h3 id="44-file-content-and-identity">4.4 File Content and Identity</h3>
+<p>For any file $ROOT/cells/pp/<cell-id>.json:</p>
+<p>The file’s content MUST be canonical CDS bytes.</p>
+<p>The SHA‑256 hash of the file’s bytes MUST equal cell-id.</p>
+<p>Parsing the file as JSON MUST yield an object whose &ldquo;id&rdquo; field is a string equal to cell-id.</p>
+<p>The filename stem (<cell-id>) MUST equal the canonical hash in id, as already required by CDS.</p>
+<p>Implementations MUST NOT modify the file’s content after successful creation (immutability). Any update MUST be modeled as the creation of a new cell with a different cell-id.</p>
+<p>Implementations MAY add or update separate metadata files or indexes that reference cell-id, but those MUST NOT change the semantics of the cell or the bytes stored under its file.</p>
+<h3 id="45-presence-and-completeness">4.5 Presence and Completeness</h3>
+<p>A cell-id is considered present in the store if and only if a file exists at its computed path and satisfies the requirements of §4.4.</p>
+<p>Implementations MUST treat the set of present cells as the complete inventory of stored cells. Any in‑memory or database indexes MUST be conservative with respect to the files: they MAY omit cells (e.g., during rebuilding) but MUST NOT invent cells that do not exist as valid files on disk.</p>
+<h2 id="5-core-operations-normative-semantics">5. Core Operations (Normative Semantics)</h2>
+<p>This section defines the conceptual operations that a CDS‑Storage implementation MUST support. Concrete APIs (functions, CLI commands, RPC methods) MAY vary, but they MUST preserve the described behavior.</p>
+<h3 id="51-putcellcds_bytes--cell-id--error">5.1 <code>PutCell(cds_bytes) → cell-id | error</code></h3>
+<p>5.1.1 Input</p>
+<p>cds_bytes: a byte sequence supplied by a caller, intended to represent a CDS cell.</p>
+<p>5.1.2 Required behavior</p>
+<p>An implementation MUST:</p>
+<p>Parse cds_bytes as UTF‑8 JSON.</p>
+<p>On failure, it MUST reject the operation with an error equivalent to CS_ERR_JSON_PARSE.</p>
+<p>Verify that the parsed JSON object satisfies the structural requirements of CDS (required top‑level keys, correct types, no unknown keys), as specified in cds.md.</p>
+<p>On violation, it MUST reject the operation with an error indicating CDS structural invalidity. Implementations MAY surface the underlying CDS error code.</p>
+<p>Obtain canonical CDS bytes for the parsed object using CDS canonicalization rules (sorting keys, numeric normalization, etc.).</p>
+<p>If cds_bytes is already canonical, this step may be a no‑op.</p>
+<p>If canonicalization fails for any reason, the implementation MUST reject the operation.</p>
+<p>Compute h = SHA‑256(canonical_cds_bytes).</p>
+<p>Compare h (encoded as lowercase hex) to the id field from the parsed JSON.</p>
+<p>If they differ, the implementation MUST reject the operation with an error equivalent to CS_ERR_ID_MISMATCH.</p>
+<p>Compute the storage path p for h as defined in §4.3.</p>
+<p>If a file already exists at p:</p>
+<p>Read its bytes.</p>
+<p>Verify that those bytes hash to h.</p>
+<p>If they do not, the implementation MUST treat the store as corrupted and return CS_ERR_CORRUPT_STORE or an equivalent fatal error.</p>
+<p>Return cell-id = h without modifying the file.</p>
+<p>If no file exists at p:</p>
+<p>Create the parent directory if it does not already exist. Directory creation MUST be idempotent and safe for concurrent callers.</p>
+<p>Write canonical_cds_bytes to a temporary file in the same directory (e.g., using a unique suffix or temporary name).</p>
+<p>Verify that the written bytes hash to h.</p>
+<p>Atomically rename the temporary file to <cell-id>.json at path p.</p>
+<p>Ensure the write is durable with respect to the host filesystem (e.g., via fsync or equivalent).</p>
+<p>Return cell-id = h on success.</p>
+<p>5.1.3 Immutability</p>
+<p>Once PutCell returns success for a given cell-id, the implementation MUST guarantee that future calls to GetCell(cell-id) will either:</p>
+<p>return the canonical bytes originally stored; or</p>
+<p>fail with a store‑level error indicating corruption or lower‑level I/O failure.</p>
+<h3 id="52-getcellcell-id--canonical_cds_bytes--error">5.2 <code>GetCell(cell-id) → canonical_cds_bytes | error</code></h3>
+<p>5.2.1 Input</p>
+<p>cell-id: a string supplied by a caller.</p>
+<p>5.2.2 Required behavior</p>
+<p>An implementation MUST:</p>
+<p>Validate that cell-id is a 64‑character lowercase hexadecimal string.</p>
+<p>On failure, it MUST reject the operation with CS_ERR_INVALID_ID_FORMAT.</p>
+<p>Derive the path p for cell-id as specified in §4.3.</p>
+<p>If no file exists at p, return CS_ERR_NOT_FOUND.</p>
+<p>Read the file’s bytes.</p>
+<p>Verify that the bytes hash to cell-id. If they do not, the store MUST be treated as corrupted and CS_ERR_CORRUPT_STORE (or equivalent) MUST be returned.</p>
+<p>Return the bytes exactly as read. Implementations MUST NOT reformat the JSON or change whitespace, ordering, or encoding at this boundary.</p>
+<h3 id="53-hascellcell-id--bool">5.3 <code>HasCell(cell-id) → bool</code></h3>
+<p>An implementation MUST:</p>
+<p>Validate the format of cell-id as in §5.2.2(1). If invalid, it MAY return false or an error; for predictability, returning an error is RECOMMENDED.</p>
+<p>Derive the path p as in §5.2.2(2).</p>
+<p>Check whether a file exists at p and satisfies the hash check in §4.4.</p>
+<p>If so, return true.</p>
+<p>If no file exists, return false.</p>
+<p>If the file exists but fails the hash check, the store MUST be treated as corrupted and an error returned.</p>
+<h3 id="54-listcells--iteratorcell-id-recommended">5.4 <code>ListCells() → iterator&lt;cell-id&gt;</code> (RECOMMENDED)</h3>
+<p>An implementation SHOULD provide an operation to enumerate all present cells by traversing $ROOT/cells.</p>
+<p>Normative requirements:</p>
+<p>The iterator MUST eventually yield each cell-id for which a valid file exists in the layout defined in §4.3 and §4.4.</p>
+<p>The iterator MUST NOT invent cell-ids that lack corresponding valid files.</p>
+<p>No ordering guarantees are required; implementations MAY provide arbitrary, lexicographic, or mtime‑based orderings.</p>
+<p>Rationale (non‑normative): enumeration is not required for the correctness of higher layers, but is useful for tooling, maintenance, garbage collection, and replication.</p>
+<h2 id="6-optional-profiles">6. Optional Profiles</h2>
+<p>The following profiles define additional filesystem conventions. They are OPTIONAL and MUST NOT change the behavior of operations in §5 or the invariants in §4.</p>
+<h3 id="61-judgment-store-profile">6.1 Judgment Store Profile</h3>
+<p>Some systems may wish to persist RTL judgments as first‑class, content‑addressed files.</p>
+<p>When this profile is enabled:</p>
+<p>RTL judgments SHOULD be canonicalized according to rtl.md (if defined) and hashed with SHA‑256 to obtain a judgment identifier (judgment-id).</p>
+<p>Implementations MAY store judgments as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ROOT/judgments/
+</span></span><span style="display:flex;"><span>  &lt;jj&gt;/
+</span></span><span style="display:flex;"><span>    &lt;judgment-id&gt;.json
+</span></span></code></pre></div><p>where <code>&lt;jj&gt;</code> is a short prefix (e.g., first two hex characters).</p>
+<p>Judgment files MUST be treated as immutable. Their internal structure is opaque to this specification; only their byte stability and hash relationship are relevant.</p>
+<p>No specific operations are mandated; implementations MAY provide PutJudgment, GetJudgment, etc., following analogous semantics to §5.1 and §5.2.</p>
+<h3 id="62-evidence-store-profile">6.2 Evidence Store Profile</h3>
+<p>CCE executions, RPC calls, and other processes may produce evidence artifacts such as repair logs and transcripts.</p>
+<p>When this profile is enabled:</p>
+<p>Implementations MAY store evidence files under:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ROOT/evidence/
+</span></span><span style="display:flex;"><span>  &lt;exec-id&gt;.json
+</span></span></code></pre></div><p>where exec-id is an application‑level identifier (for example, the id field in a CCE‑RPC request or response).</p>
+<p>The content and format of evidence files are not constrained by this specification. They SHOULD be canonical JSON where practical, but CDS‑Storage does not interpret them.</p>
+<p>Evidence files MAY be mutable if the application requires it, but immutability is RECOMMENDED for provenance reasons.</p>
+<h3 id="63-alias-mapping-profile">6.3 Alias Mapping Profile</h3>
+<p>Human‑readable names (aliases) can be mapped to cell-ids for convenience.</p>
+<p>When this profile is enabled:</p>
+<p>Implementations MAY store alias mappings in an auxiliary index, such as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ROOT/index/aliases.sqlite
+</span></span></code></pre></div><p>The alias mapping:</p>
+<ul>
+<li>
+<p>MUST NOT affect which cells exist or how they are stored.</p>
+</li>
+<li>
+<p>MAY be rebuilt or discarded without affecting store conformance.</p>
+</li>
+<li>
+<p>MAY be many‑to‑one or one‑to‑many.</p>
+</li>
+</ul>
+<p>Aliases SHOULD NOT be treated as stable identifiers at the same level as cell-id. Higher‑level protocols that need stability MUST use cell-id or URIs derived from it.</p>
+<h2 id="7-error-model">7. Error Model</h2>
+<p>Implementations SHOULD provide error codes or classes analogous to the following:</p>
+<ul>
+<li>
+<p><code>CS_ERR_JSON_PARSE</code>: The input bytes could not be parsed as JSON.</p>
+</li>
+<li>
+<p><code>CS_ERR_CDS_INVALID</code>: The JSON does not satisfy CDS structural requirements.</p>
+</li>
+<li>
+<p><code>CS_ERR_ID_MISMATCH</code>: The computed hash does not match the id field in the JSON.</p>
+</li>
+<li>
+<p><code>CS_ERR_INVALID_ID_FORMAT</code>: A supplied cell-id is not a 64‑character lowercase hex string.</p>
+</li>
+<li>
+<p><code>CS_ERR_NOT_FOUND</code>: No cell exists for the requested cell-id.</p>
+</li>
+<li>
+<p><code>CS_ERR_IO</code>: A filesystem or OS‑level error occurred while reading or writing.</p>
+</li>
+<li>
+<p><code>CS_ERR_CORRUPT_STORE</code>: A file exists for a cell-id but its bytes do not hash to that cell-id.</p>
+</li>
+<li>
+<p><code>CS_ERR_INTERNAL</code>: Any other implementation error not covered above.</p>
+</li>
+</ul>
+<p>Rationale (non‑normative): distinguishing CORRUPT_STORE from NOT_FOUND allows higher‑level systems (e.g., CCE servers) to distinguish “perfectly valid absence” from “something is wrong with this host”.</p>
+<h2 id="8-security-and-operational-considerations">8. Security and Operational Considerations</h2>
+<h3 id="81-hash-algorithm">8.1 Hash Algorithm</h3>
+<p>Implementations MUST use the same hash function as CDS canonicalization (SHA‑256 by default). They MUST NOT substitute a different hash algorithm for cell-id without a versioned extension to the CDS spec.</p>
+<p>If future CDS versions introduce alternative hash algorithms, CDS‑Storage MAY be extended with versioned layouts (e.g., subdirectories per hash algorithm). This is out of scope for Version 0.x.</p>
+<h3 id="82-path-safety">8.2 Path Safety</h3>
+<p>Implementations MUST treat cell-ids as opaque hex strings and MUST NOT allow directory separators, .., or other path components in cell-id. Since this spec already constrains cell-id to hex, path traversal attacks are prevented if the format checks are correctly enforced.</p>
+<h3 id="83-atomicity-and-durability">8.3 Atomicity and Durability</h3>
+<p>Write operations (see §5.1) SHOULD:</p>
+<ul>
+<li>
+<p>write to a temporary file in the target directory;</p>
+</li>
+<li>
+<p>fsync the file and directory as appropriate;</p>
+</li>
+<li>
+<p>atomically rename the temporary file to the final name.</p>
+</li>
+</ul>
+<p>These practices reduce the risk of partially written cells being observed as valid.</p>
+<h3 id="84-concurrency">8.4 Concurrency</h3>
+<p>Implementations MUST tolerate concurrent PutCell calls for the same cell-id. At least one call MUST succeed, and all successful calls MUST result in the same bytes on disk.</p>
+<p>Implementations MUST ensure that concurrent writes for different cell-ids do not corrupt each other.</p>
+<h3 id="85-privacy">8.5 Privacy</h3>
+<p>Because cell-id is derived from content, it can leak information about identical content appearing in different places. Implementations that handle sensitive data SHOULD treat $ROOT as a private namespace, and SHOULD NOT rely on cell-id alone as an access control mechanism.</p>
+<h2 id="9-interaction-with-other-layers-nonnormative">9. Interaction with Other Layers (Non‑Normative)</h2>
+<p>Although CDS‑Storage depends only on CDS, other layers depend on it.</p>
+<p>CCE (Layer 3)<br>
+CCE implementations typically:</p>
+<ul>
+<li>
+<p>read structural cells from CDS‑Storage (via <code>GetCell</code>);</p>
+</li>
+<li>
+<p>produce refined CDS cells and write them (via <code>PutCell</code>);</p>
+</li>
+<li>
+<p>optionally write repair logs to the evidence store.</p>
+</li>
+</ul>
+<p>CCE‑ABI / CCE‑RPC (Layers 4–5)<br>
+Hosts and services use CDS‑Storage to persist inputs and outputs of closure runs, ensuring that:</p>
+<ul>
+<li>
+<p>canonical bytes passed through ABI/RPC match what is stored;</p>
+</li>
+<li>
+<p>traceability and repeatability are preserved.</p>
+</li>
+</ul>
+<p>RDF / PKM / CMS / ActivityPub / etc.<br>
+These systems commonly derive URIs such as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>https://example.org/cells/&lt;cell-id&gt;
+</span></span></code></pre></div><p>and treat <code>$ROOT/cells</code> as the canonical source of truth for cell content.</p>
+<p>CDS‑Storage itself does not interpret these interactions; it only guarantees that cell-id → bytes is stable and deterministic.</p>
+<h2 id="10-conformance">10. Conformance</h2>
+<p>An implementation conforms to CDS‑Storage Version 0.x if and only if:</p>
+<ul>
+<li>
+<p>It stores cells as files under <code>$ROOT/cells</code> with names and contents satisfying §4.</p>
+</li>
+<li>
+<p>It enforces content‑addressed, immutable behavior as described in §4.4 and §5.1–§5.3.</p>
+</li>
+<li>
+<p>It implements the conceptual operations <code>PutCell</code>, <code>GetCell</code>, and <code>HasCell</code> with the observable semantics specified in §5.</p>
+</li>
+<li>
+<p>Any optional profiles it implements (judgments, evidence, aliases) do not alter or weaken the guarantees in §4 and §5.</p>
+</li>
+<li>
+<p>It does not introduce hidden behaviors that contradict the CDS canonicalization and hashing rules defined in cds.md.</p>
+</li>
+</ul>
+<p>Implementations MAY provide additional functionality (indexes, replication, garbage collection, metrics, etc.) as long as these conformance conditions are preserved.</p>
+
+  </div>
+  
+  
+</article>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

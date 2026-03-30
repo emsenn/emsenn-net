@@ -1,13 +1,142 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>mutual information - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"DefinedTerm","dateModified":"2025-12-30","datePublished":"2025-12-30","description":"A technical introduction to mutual information.","inDefinedTermSet":{"@type":"DefinedTermSet","name":"","url":"https://emsenn.net/library/information/domains/information-theory/terms/"},"name":"mutual information","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"termCode":"mutual information","url":"https://emsenn.net/library/information/domains/information-theory/terms/mutual-information/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>mutual information</h1><div class=meta><time class=dt-published datetime=2025-12-30T00:00:00Z>2025-12-30</time>
-<span class=p-summary>A technical introduction to mutual information.</span></div><div class=e-content><h1 id=mutual-information-and-dependence>Mutual Information and Dependence</h1><h2 id=assumed-audience>Assumed audience</h2><ul><li>Reading level: technical.</li><li>Background: probability and basic entropy.</li><li>Goal: understand mutual information as shared uncertainty.</li></ul><h2 id=definition>Definition</h2><p>Mutual information measures how much knowing one variable reduces uncertainty
-about another:</p><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>I</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">;</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>H</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>+</mo><mi>H</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>−</mo><mi>H</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">,</mo><mi>Y</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mutual information - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "dateModified": "2025-12-30",
+  "datePublished": "2025-12-30",
+  "description": "A technical introduction to mutual information.",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "",
+    "url": "https://emsenn.net/library/information/domains/information-theory/terms/"
+  },
+  "name": "mutual information",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "termCode": "mutual information",
+  "url": "https://emsenn.net/library/information/domains/information-theory/terms/mutual-information/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="term">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/">Information</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/domains/information-theory/">Information theory</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/domains/information-theory/terms/">Terms</a></nav>
+  <h1 class="p-name">mutual information</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2025-12-30T00:00:00Z">2025-12-30</time>
+    
+    <span class="p-summary">A technical introduction to mutual information.</span>
+  </div>
+  
+  <div class="type-meta type-meta--definition">
+    <span class="type-meta-label">Defines</span>
+    <span class="type-meta-value">mutual information</span>
+  </div>
+  
+  
+  <div class="e-content">
+    <h1 id="mutual-information-and-dependence">Mutual Information and Dependence</h1>
+<h2 id="assumed-audience">Assumed audience</h2>
+<ul>
+<li>Reading level: technical.</li>
+<li>Background: probability and basic entropy.</li>
+<li>Goal: understand mutual information as shared uncertainty.</li>
+</ul>
+<h2 id="definition">Definition</h2>
+<p>Mutual information measures how much knowing one variable reduces uncertainty
+about another:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>I</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">;</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>H</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>+</mo><mi>H</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>−</mo><mi>H</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">,</mo><mi>Y</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 I(X;Y) = H(X) + H(Y) - H(X,Y).
-</annotation></semantics></math></span><h2 id=interpretation>Interpretation</h2><ul><li>If <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span> and <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span> are independent, <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">;</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">I(X;Y)=0</annotation></semantics></math></span>.</li><li>If <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span> determines <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span>, mutual information is high.</li></ul><h2 id=why-this-matters>Why this matters</h2><p>Mutual information is a core tool for dependency detection and feature
-selection.</p></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>emsenn. (2025, December 30). mutual information. <i>emsenn.net</i>. https://emsenn.net/library/information/domains/information-theory/terms/mutual-information/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@misc{emsenn2025-mutual-information,
+</annotation></semantics></math></span><h2 id="interpretation">Interpretation</h2>
+<ul>
+<li>If <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span> are independent, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">;</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">I(X;Y)=0</annotation></semantics></math></span>.</li>
+<li>If <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span> determines <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span>, mutual information is high.</li>
+</ul>
+<h2 id="why-this-matters">Why this matters</h2>
+<p>Mutual information is a core tool for dependency detection and feature
+selection.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/information/domains/information-theory/terms/mutual-information/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2025-12-30">2025-12-30</time></dd>
+      </div><div class="relation">
+        <dt>Date updated</dt>
+        <dd property="schema:dateModified"><time datetime="2026-03-09">2026-03-09</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><ul><li><a href="/library/information/domains/information-theory/terms/mutual-information/">Mutual information</a></li></ul></dd>
+      </div><div class="relation">
+        <dt><a href="/library/philosophy/domains/western/domains/ethics/domains/care-ethics/terms/dependency/">Dependencies</a></dt>
+        <dd property="emsenn:Dependencies"><ul><li>Information curricula entropy and surprise.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Part of</dt>
+        <dd property="schema:isPartOf">Information disciplines information theory terms</dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2025-mutual-information,
   author    = {emsenn},
   title     = {mutual information},
   year      = {2025},
@@ -15,4 +144,17 @@ selection.</p></div><section class=cite-this id=cite-this><h2>Cite</h2><details>
   url       = {https://emsenn.net/library/information/domains/information-theory/terms/mutual-information/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/information/domains/information-theory/terms/mutual-information/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2025-12-30>2025-12-30</time></dd></div><div class=relation><dt>date-updated</dt><dd property="schema:dateModified"><time datetime=2026-03-09>2026-03-09</time></dd></div><div class=relation><dt>defines</dt><dd property="emsenn:Defines"><ul><li><a href=/library/information/domains/information-theory/terms/mutual-information/>mutual information</a></li></ul></dd></div><div class=relation><dt><a href=/library/philosophy/domains/western/domains/ethics/domains/care-ethics/terms/dependency/>dependencies</a></dt><dd property="emsenn:Dependencies"><ul><li>/information/curricula/entropy-and-surprise.md</li></ul></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">A technical introduction to mutual information.</dd></div><div class=relation><dt>part-of</dt><dd property="schema:isPartOf">information/disciplines/information-theory/terms</dd></div><div class=relation><dt>title</dt><dd property="schema:name">mutual information</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/term/>term</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,27 +1,131 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>2020-05-03 Sunday - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2019-10-16","datePublished":"2019-10-16","description":"\u0026lt;2020-05-03 Sun 18:02\u0026gt;\n;; emsenn\u0026#39;s land management elisp ;; (elme) (require \u0026#39;ht) ;; data (setq elme-catalog (ht-create)) ;; functions (defun elme-add-specimen! (id info) (ht-set! elme-catalog id info)) (defun elme-get-specimen (id) (ht-get elme-catalog id)) (defun elme-get-specimen-attribute (id attr) (ht-get (ht-get elme-catalog id) attr)) (defun elme-get-specimen-species (id) (elme-get-specimen-attribute id \u0026#39;species)) ;; examples (elme-add-specimen! 1 (ht (\u0026#39;species \u0026#34;foobar\u0026#34;))) (elme-get-specimen 1) (elme-get-specimen-attribute 1 \u0026#39;species) (elme-get-specimen-species 1) ","keywords":"makhasa nursery","name":"2020-05-03 Sunday","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/ecology/domains/projects/domains/makha-sa-nursery-website-2020/domains/2020/domains/05/03/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>2020-05-03 Sunday</h1><div class=meta><time class=dt-published datetime=2019-10-16T00:00:00Z>2019-10-16</time></div><div class=e-content><p><span class=timestamp-wrapper><span class=timestamp>&lt;2020-05-03 Sun 18:02></span></span></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-elisp data-lang=elisp><span style=display:flex><span><span style=color:#75715e>;; emsenn&#39;s land management elisp</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>;; (elme)</span>
-</span></span><span style=display:flex><span>(require <span style=color:#e6db74>&#39;ht</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>;; data</span>
-</span></span><span style=display:flex><span>(setq elme-catalog (ht-create))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>;; functions</span>
-</span></span><span style=display:flex><span>(defun elme-add-specimen! (id info)
-</span></span><span style=display:flex><span>  (ht-set! elme-catalog id info))
-</span></span><span style=display:flex><span>(defun elme-get-specimen (id)
-</span></span><span style=display:flex><span>  (ht-get elme-catalog id))
-</span></span><span style=display:flex><span>(defun elme-get-specimen-attribute (id attr)
-</span></span><span style=display:flex><span>  (ht-get (ht-get elme-catalog id) attr))
-</span></span><span style=display:flex><span>(defun elme-get-specimen-species (id)
-</span></span><span style=display:flex><span>  (elme-get-specimen-attribute id <span style=color:#e6db74>&#39;species</span>))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>;; examples</span>
-</span></span><span style=display:flex><span>(elme-add-specimen! <span style=color:#ae81ff>1</span> (ht (<span style=color:#e6db74>&#39;species</span> <span style=color:#e6db74>&#34;foobar&#34;</span>)))
-</span></span><span style=display:flex><span>(elme-get-specimen <span style=color:#ae81ff>1</span>)
-</span></span><span style=display:flex><span>(elme-get-specimen-attribute <span style=color:#ae81ff>1</span> <span style=color:#e6db74>&#39;species</span>)
-</span></span><span style=display:flex><span>(elme-get-specimen-species <span style=color:#ae81ff>1</span>)
-</span></span></code></pre></div></div></article><section class=page-relations resource="https://emsenn.net/library/ecology/domains/projects/domains/makha-sa-nursery-website-2020/domains/2020/domains/05/03/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>author</dt><dd property="emsenn:Author"><ul><li>emsenn</li></ul></dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/makhasa-nursery/>makhasa nursery</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">2020-05-03 Sunday</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2020-05-03 Sunday - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2019-10-16",
+  "datePublished": "2019-10-16",
+  "description": "\u0026lt;2020-05-03 Sun 18:02\u0026gt;\n;; emsenn\u0026#39;s land management elisp ;; (elme) (require \u0026#39;ht) ;; data (setq elme-catalog (ht-create)) ;; functions (defun elme-add-specimen! (id info) (ht-set! elme-catalog id info)) (defun elme-get-specimen (id) (ht-get elme-catalog id)) (defun elme-get-specimen-attribute (id attr) (ht-get (ht-get elme-catalog id) attr)) (defun elme-get-specimen-species (id) (elme-get-specimen-attribute id \u0026#39;species)) ;; examples (elme-add-specimen! 1 (ht (\u0026#39;species \u0026#34;foobar\u0026#34;))) (elme-get-specimen 1) (elme-get-specimen-attribute 1 \u0026#39;species) (elme-get-specimen-species 1) ",
+  "keywords": "makhasa nursery",
+  "name": "2020-05-03 Sunday",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/ecology/domains/projects/domains/makha-sa-nursery-website-2020/domains/2020/domains/05/03/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/ecology/">Ecology</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/ecology/domains/projects/">Projects</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/ecology/domains/projects/domains/makha-sa-nursery-website-2020/">Makha sa nursery website 2020</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/ecology/domains/projects/domains/makha-sa-nursery-website-2020/domains/2020/">2020th</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/ecology/domains/projects/domains/makha-sa-nursery-website-2020/domains/2020/domains/05/">5th</a></nav>
+  <h1 class="p-name">2020-05-03 Sunday</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2019-10-16T00:00:00Z">2019-10-16</time>
+    
+    
+  </div>
+  <div class="e-content">
+    <p><span class="timestamp-wrapper"><span class="timestamp">&lt;2020-05-03 Sun 18:02&gt;</span></span></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span><span style="color:#75715e">;; emsenn&#39;s land management elisp</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; (elme)</span>
+</span></span><span style="display:flex;"><span>(require <span style="color:#e6db74">&#39;ht</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; data</span>
+</span></span><span style="display:flex;"><span>(setq elme-catalog (ht-create))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; functions</span>
+</span></span><span style="display:flex;"><span>(defun elme-add-specimen! (id info)
+</span></span><span style="display:flex;"><span>  (ht-set! elme-catalog id info))
+</span></span><span style="display:flex;"><span>(defun elme-get-specimen (id)
+</span></span><span style="display:flex;"><span>  (ht-get elme-catalog id))
+</span></span><span style="display:flex;"><span>(defun elme-get-specimen-attribute (id attr)
+</span></span><span style="display:flex;"><span>  (ht-get (ht-get elme-catalog id) attr))
+</span></span><span style="display:flex;"><span>(defun elme-get-specimen-species (id)
+</span></span><span style="display:flex;"><span>  (elme-get-specimen-attribute id <span style="color:#e6db74">&#39;species</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; examples</span>
+</span></span><span style="display:flex;"><span>(elme-add-specimen! <span style="color:#ae81ff">1</span> (ht (<span style="color:#e6db74">&#39;species</span> <span style="color:#e6db74">&#34;foobar&#34;</span>)))
+</span></span><span style="display:flex;"><span>(elme-get-specimen <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>(elme-get-specimen-attribute <span style="color:#ae81ff">1</span> <span style="color:#e6db74">&#39;species</span>)
+</span></span><span style="display:flex;"><span>(elme-get-specimen-species <span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div>
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/ecology/domains/projects/domains/makha-sa-nursery-website-2020/domains/2020/domains/05/03/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Author</dt>
+        <dd property="emsenn:Author"><ul><li>Emsenn</li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/makhasa-nursery/">makhasa nursery</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

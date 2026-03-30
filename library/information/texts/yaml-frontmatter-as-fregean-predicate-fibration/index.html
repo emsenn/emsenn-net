@@ -1,113 +1,291 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>YAML Frontmatter as Fregean Predicate Fibration - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"emsenn"},"dateModified":"2026-03-28","datePublished":"2026-03-28","description":"Markdown files with YAML frontmatter implement Fregean subject-predicate-object triples. Across a vault, predicates index fibers of values, forming a degenerate hyperdoctrine whose emergent structure can be examined without external schema.","name":"YAML Frontmatter as Fregean Predicate Fibration","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/information/texts/yaml-frontmatter-as-fregean-predicate-fibration/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>YAML Frontmatter as Fregean Predicate Fibration</h1><div class=meta><time class=dt-published datetime=2026-03-28T00:00:00Z>2026-03-28</time>
-<span>by <span class=p-author>emsenn</span></span>
-<span class=p-summary>Markdown files with YAML frontmatter implement Fregean subject-predicate-object triples. Across a vault, predicates index fibers of values, forming a degenerate hyperdoctrine whose emergent structure can be examined without external schema.</span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#abstract>Abstract</a></li><li><a href=#1-the-frontmatter-triple>1. The Frontmatter Triple</a><ul><li><a href=#11-freges-unsaturated-predicate>1.1 Frege&rsquo;s Unsaturated Predicate</a></li><li><a href=#12-yaml-frontmatter-as-function-application>1.2 YAML Frontmatter as Function Application</a></li><li><a href=#13-relation-to-rdf>1.3 Relation to RDF</a></li></ul></li><li><a href=#2-predicate-fibers>2. Predicate Fibers</a><ul><li><a href=#21-definition>2.1 Definition</a></li><li><a href=#22-what-the-fibration-contains>2.2 What the Fibration Contains</a></li><li><a href=#23-relation-to-categorical-logic>2.3 Relation to Categorical Logic</a></li></ul></li><li><a href=#3-emergent-schema>3. Emergent Schema</a><ul><li><a href=#31-schema-first-vs-schema-free>3.1 Schema-First vs. Schema-Free</a></li><li><a href=#32-divergence-detection>3.2 Divergence Detection</a></li><li><a href=#33-implicit-schema-recovery>3.3 Implicit Schema Recovery</a></li></ul></li><li><a href=#4-what-this-is-not>4. What This Is Not</a></li><li><a href=#5-practical-consequences>5. Practical Consequences</a><ul><li><a href=#51-for-knowledge-workers>5.1 For Knowledge Workers</a></li><li><a href=#52-for-ai-agents>5.2 For AI Agents</a></li><li><a href=#53-for-vault-design>5.3 For Vault Design</a></li></ul></li><li><a href=#6-conclusion>6. Conclusion</a></li><li><a href=#references>References</a></li></ul></nav></details><div class=e-content>&lt;h2 id="abstract">Abstract&lt;/h2>
-&lt;p>A markdown file with YAML frontmatter encodes a set of subject-predicate-object triples: the file is the subject, each key is a predicate, and each value is an object. This is not a metaphor. It is Frege&amp;rsquo;s function-argument structure (Frege 1879) implemented in a plain-text format now standard across millions of repositories.&lt;/p>
-&lt;p>When many files share the same predicate keys, each key generates a &lt;strong>fiber&lt;/strong>: the collection of all values that key takes across files. The fiber for &lt;code>authors&lt;/code> contains every author who appears in any file&amp;rsquo;s &lt;code>authors&lt;/code> field. The fiber for &lt;code>extends&lt;/code> contains every concept any file claims to extend. These fibers, indexed by predicate, form a structure that categorical logicians call a fibration (Jacobs 1999) — specifically, a degenerate hyperdoctrine where the base category is the set of predicate keys and each fiber is the set of values assigned to that key.&lt;/p>
-&lt;p>This paper makes three claims. First, the Fregean reading is precise and literal, not analogical. Second, the fibration structure is already present in any vault with consistent frontmatter — it does not need to be imposed. Third, the emergent structure can be examined to detect divergence, identify implicit schema, and query relational configurations, all without external ontology or validation.&lt;/p>
-&lt;h2 id="1-the-frontmatter-triple">1. The Frontmatter Triple&lt;/h2>
-&lt;h3 id="11-freges-unsaturated-predicate">1.1 Frege&amp;rsquo;s Unsaturated Predicate&lt;/h3>
-&lt;p>Frege&amp;rsquo;s central insight in the &lt;em>Begriffsschrift&lt;/em> (1879) is that a predicate is not a label attached to a subject but an unsaturated function that takes an argument and returns a value. &amp;ldquo;Is red&amp;rdquo; is not a property sitting on a shelf; it is an incomplete expression that needs an object to become a complete thought. The expression &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>f&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>x&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">f(x)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> is &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>f&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">f&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> applied to &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>x&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">x&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>, where &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>f&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">f&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> is incomplete without &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>x&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">x&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> (Heck 2003).&lt;/p>
-&lt;p>This incompleteness is constitutive. A predicate with no argument is not a predicate in a weaker sense — it is not a predicate at all. It is a gap waiting to be filled.&lt;/p>
-&lt;h3 id="12-yaml-frontmatter-as-function-application">1.2 YAML Frontmatter as Function Application&lt;/h3>
-&lt;p>Consider a markdown file with frontmatter:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>---
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">authors&lt;/span>: &lt;span style="color:#ae81ff">emsenn&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">extends&lt;/span>: &lt;span style="color:#ae81ff">legibility&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>---
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The file itself is a resource — a saturated object with a path, a name, content. Each frontmatter key is an unsaturated predicate: &lt;code>authors&lt;/code> is incomplete until applied to both a subject (this file) and an object (emsenn). The frontmatter block is a set of function applications:&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;mtext mathvariant="monospace">authors&lt;/mtext>&lt;mo stretchy="false">(&lt;/mo>&lt;mtext>this-file&lt;/mtext>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>=&lt;/mo>&lt;mtext mathvariant="monospace">emsenn&lt;/mtext>&lt;/mrow>&lt;annotation encoding="application/x-tex">\texttt{authors}(\text{this-file}) = \texttt{emsenn}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
-&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;mtext mathvariant="monospace">extends&lt;/mtext>&lt;mo stretchy="false">(&lt;/mo>&lt;mtext>this-file&lt;/mtext>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>=&lt;/mo>&lt;mtext mathvariant="monospace">legibility&lt;/mtext>&lt;/mrow>&lt;annotation encoding="application/x-tex">\texttt{extends}(\text{this-file}) = \texttt{legibility}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>This is Frege&amp;rsquo;s structure, implemented. The file is the argument. The key is the function. The value is the output. There is no metaphor here — the YAML parser performs the function application when it reads the file.&lt;/p>
-&lt;h3 id="13-relation-to-rdf">1.3 Relation to RDF&lt;/h3>
-&lt;p>The Resource Description Framework (W3C 2024) structures knowledge as triples: (subject, predicate, object). RDF was designed to implement Berners-Lee&amp;rsquo;s vision of a machine-readable semantic web (Berners-Lee et al. 2001). The frontmatter triple is an RDF triple in which:&lt;/p>
-&lt;ul>
-&lt;li>The subject is always the file (identified by path or filename)&lt;/li>
-&lt;li>The predicate is always a YAML key&lt;/li>
-&lt;li>The object is always a YAML value&lt;/li>
-&lt;/ul>
-&lt;p>This is a restricted form of RDF — the subject is implicit (always the file) rather than explicitly named. But the restriction is a feature: it means every markdown file is automatically a set of triples without requiring the author to write RDF syntax. The frontmatter format is RDF for people who don&amp;rsquo;t know RDF.&lt;/p>
-&lt;h2 id="2-predicate-fibers">2. Predicate Fibers&lt;/h2>
-&lt;h3 id="21-definition">2.1 Definition&lt;/h3>
-&lt;p>Let &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>V&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">V&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> be a vault: a set of markdown files, each with YAML frontmatter. Let &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>K&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">K&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> be the set of all keys that appear in any file&amp;rsquo;s frontmatter. For each key &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>k&lt;/mi>&lt;mo>∈&lt;/mo>&lt;mi>K&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">k \in K&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>, define the &lt;strong>fiber&lt;/strong> &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>F&lt;/mi>&lt;mi>k&lt;/mi>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">F_k&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> as the set of all values that &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>k&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">k&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> takes across all files in &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>V&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">V&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>:&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>F&lt;/mi>&lt;mi>k&lt;/mi>&lt;/msub>&lt;mo>=&lt;/mo>&lt;mo stretchy="false">{&lt;/mo>&lt;mi>v&lt;/mi>&lt;mo>:&lt;/mo>&lt;mi mathvariant="normal">∃&lt;/mi>&lt;mi>f&lt;/mi>&lt;mo>∈&lt;/mo>&lt;mi>V&lt;/mi>&lt;mtext> such that &lt;/mtext>&lt;mi>k&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>f&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>=&lt;/mo>&lt;mi>v&lt;/mi>&lt;mo stretchy="false">}&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">F_k = \{ v : \exists f \in V \text{ such that } k(f) = v \}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>For example, if 200 files have &lt;code>authors: emsenn&lt;/code> and 3 files have &lt;code>authors: claude&lt;/code>, then:&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>F&lt;/mi>&lt;mtext mathvariant="monospace">authors&lt;/mtext>&lt;/msub>&lt;mo>=&lt;/mo>&lt;mo stretchy="false">{&lt;/mo>&lt;mtext mathvariant="monospace">emsenn&lt;/mtext>&lt;mo separator="true">,&lt;/mo>&lt;mtext mathvariant="monospace">claude&lt;/mtext>&lt;mo stretchy="false">}&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">F_{\texttt{authors}} = \{\texttt{emsenn}, \texttt{claude}\}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>If 15 files use &lt;code>extends:&lt;/code> with various values:&lt;/p>
-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>F&lt;/mi>&lt;mtext mathvariant="monospace">extends&lt;/mtext>&lt;/msub>&lt;mo>=&lt;/mo>&lt;mo stretchy="false">{&lt;/mo>&lt;mtext mathvariant="monospace">legibility&lt;/mtext>&lt;mo separator="true">,&lt;/mo>&lt;mtext mathvariant="monospace">rate-distortion-theory&lt;/mtext>&lt;mo separator="true">,&lt;/mo>&lt;mtext mathvariant="monospace">frege-predicate-logic&lt;/mtext>&lt;mo separator="true">,&lt;/mo>&lt;mo>…&lt;/mo>&lt;mo stretchy="false">}&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">F_{\texttt{extends}} = \{\texttt{legibility}, \texttt{rate-distortion-theory}, \texttt{frege-predicate-logic}, \ldots\}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>Each fiber is a set of tokens. The fibers are indexed by predicate keys. The total structure — all fibers, indexed by all keys — is the vault&amp;rsquo;s &lt;strong>predicate fibration&lt;/strong>.&lt;/p>
-&lt;h3 id="22-what-the-fibration-contains">2.2 What the Fibration Contains&lt;/h3>
-&lt;p>The predicate fibration contains exactly the relational structure that the vault&amp;rsquo;s authors have asserted through frontmatter. No more, no less. It does not contain the content of the files, only the claims their frontmatter makes. It does not impose a schema — it reports what schema has emerged from practice.&lt;/p>
-&lt;p>For a vault with rich, consistent frontmatter, the fibration is dense: many keys, many shared values, many files connected through common tokens in the same fibers. For a vault with sparse or inconsistent frontmatter, the fibration is thin: few connections, many singletons.&lt;/p>
-&lt;h3 id="23-relation-to-categorical-logic">2.3 Relation to Categorical Logic&lt;/h3>
-&lt;p>In Lawvere&amp;rsquo;s hyperdoctrine framework (Lawvere 1969), a predicate logic over a base category &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi mathvariant="script">C&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\mathcal{C}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> assigns to each context &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>c&lt;/mi>&lt;mo>∈&lt;/mo>&lt;mi mathvariant="script">C&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">c \in \mathcal{C}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> a lattice of propositions &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>P&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>c&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">P(c)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>. The assignment &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>P&lt;/mi>&lt;mo>:&lt;/mo>&lt;msup>&lt;mi mathvariant="script">C&lt;/mi>&lt;mrow>&lt;mi>o&lt;/mi>&lt;mi>p&lt;/mi>&lt;/mrow>&lt;/msup>&lt;mo>→&lt;/mo>&lt;mrow>&lt;mi mathvariant="bold">H&lt;/mi>&lt;mi mathvariant="bold">e&lt;/mi>&lt;mi mathvariant="bold">y&lt;/mi>&lt;mi mathvariant="bold">t&lt;/mi>&lt;mi mathvariant="bold">A&lt;/mi>&lt;mi mathvariant="bold">l&lt;/mi>&lt;mi mathvariant="bold">g&lt;/mi>&lt;/mrow>&lt;/mrow>&lt;annotation encoding="application/x-tex">P: \mathcal{C}^{op} \to \mathbf{HeytAlg}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> is a functor from contexts to Heyting algebras. This is a fibration: each context gets its own fiber of predicates, and these fibers are connected by reindexing maps (substitution).&lt;/p>
-&lt;p>The predicate fibration of a vault is a degenerate case. The base category is the discrete set &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>K&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">K&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> of predicate keys (no morphisms between keys). Each fiber &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>F&lt;/mi>&lt;mi>k&lt;/mi>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">F_k&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> is a set (not a Heyting algebra — there is no implication structure within a fiber). There are no reindexing maps because the base is discrete.&lt;/p>
-&lt;p>This is the simplest possible fibration. It is worth naming precisely because it already exists in every vault with frontmatter, and because the degenerate structure can be enriched:&lt;/p>
-&lt;ul>
-&lt;li>If values within a fiber are partially ordered (e.g., &lt;code>status: draft&lt;/code> &amp;lt; &lt;code>status: review&lt;/code> &amp;lt; &lt;code>status: published&lt;/code>), the fiber becomes a poset, and with it a Heyting algebra.&lt;/li>
-&lt;li>If keys are related (e.g., &lt;code>extends&lt;/code> and &lt;code>extended-by&lt;/code> are dual), morphisms appear in the base, and the fibration acquires reindexing maps.&lt;/li>
-&lt;li>If files are organized into directories that provide context, the base category gains hierarchical structure.&lt;/li>
-&lt;/ul>
-&lt;p>Each enrichment moves the vault closer to a full hyperdoctrine without requiring the vault&amp;rsquo;s author to know what a hyperdoctrine is.&lt;/p>
-&lt;h2 id="3-emergent-schema">3. Emergent Schema&lt;/h2>
-&lt;h3 id="31-schema-first-vs-schema-free">3.1 Schema-First vs. Schema-Free&lt;/h3>
-&lt;p>Traditional knowledge representation is schema-first: define an ontology, then populate it with instances. RDF/OWL works this way — you define classes and properties, then assert triples that conform to the schema. Violations are errors.&lt;/p>
-&lt;p>The predicate fibration inverts this. The vault&amp;rsquo;s authors write frontmatter as they see fit. The fibration reports what has emerged. If 800 files assert &lt;code>authors: emsenn&lt;/code> and one file asserts &lt;code>authors: emsen&lt;/code>, the fibration does not call this an error. It reports a divergence: one value in the &lt;code>authors&lt;/code> fiber that appears once where another appears 800 times.&lt;/p>
-&lt;h3 id="32-divergence-detection">3.2 Divergence Detection&lt;/h3>
-&lt;p>A &lt;strong>divergence&lt;/strong> in a fiber is a value that appears rarely relative to the fiber&amp;rsquo;s dominant values. Divergences may indicate:&lt;/p>
-&lt;ul>
-&lt;li>Typos (&lt;code>emsen&lt;/code> for &lt;code>emsenn&lt;/code>)&lt;/li>
-&lt;li>Legitimate exceptions (a file with a different author)&lt;/li>
-&lt;li>Evolving conventions (an old key being replaced by a new one)&lt;/li>
-&lt;/ul>
-&lt;p>The fibration cannot distinguish between these. A human or agent must interpret the divergence. But the fibration makes the divergence &lt;em>visible&lt;/em> — it surfaces the question &amp;ldquo;is this intentional?&amp;rdquo; without needing a schema to enforce an answer.&lt;/p>
-&lt;h3 id="33-implicit-schema-recovery">3.3 Implicit Schema Recovery&lt;/h3>
-&lt;p>The dominant patterns within fibers constitute the vault&amp;rsquo;s implicit schema. If every file with &lt;code>type: paper&lt;/code> also has &lt;code>authors:&lt;/code> and &lt;code>status:&lt;/code>, then &lt;code>paper&lt;/code> implicitly requires &lt;code>authors&lt;/code> and &lt;code>status&lt;/code> — not because a schema says so, but because practice has determined it. This implicit schema can be extracted, examined, and formalized after the fact, or it can remain implicit and serve as a soft constraint.&lt;/p>
-&lt;h2 id="4-what-this-is-not">4. What This Is Not&lt;/h2>
-&lt;p>This paper does not claim that YAML frontmatter is a replacement for RDF, OWL, or formal ontology engineering. Those systems provide inference, constraint checking, and reasoning that the predicate fibration does not. The claim is narrower: the Fregean structure is already there in frontmatter, the fibration is already there in any vault, and examining the emergent structure is useful even without external tooling.&lt;/p>
-&lt;p>This paper also does not claim novelty for the Fregean reading of subject-predicate-object triples — that connection is well-established in the RDF literature. The contribution is recognizing that YAML frontmatter in markdown vaults is a concrete, widespread, practical instantiation of this structure, and that the fibration it generates can be examined as a mathematical object.&lt;/p>
-&lt;h2 id="5-practical-consequences">5. Practical Consequences&lt;/h2>
-&lt;h3 id="51-for-knowledge-workers">5.1 For Knowledge Workers&lt;/h3>
-&lt;p>Any vault with consistent frontmatter already has a queryable knowledge graph. The graph does not need to be extracted into a database — it can be read directly from the YAML. The predicate fibration tells you: what predicates exist, what values each predicate takes, which files share values, and where conventions diverge.&lt;/p>
-&lt;h3 id="52-for-ai-agents">5.2 For AI Agents&lt;/h3>
-&lt;p>AI agents that read vaults (via CLAUDE.md, AGENTS.md, or Model Context Protocol) already consume frontmatter. The fibration gives them a way to understand the vault&amp;rsquo;s structure without reading every file: examine the fibers, identify the dominant patterns, and use those patterns to navigate the vault&amp;rsquo;s content.&lt;/p>
-&lt;h3 id="53-for-vault-design">5.3 For Vault Design&lt;/h3>
-&lt;p>If you design frontmatter with the fibration in mind — using short, reusable tokens as values, using predicate keys that carry relational weight (defines, extends, requires, acts-on, produces, contrasts-with) rather than flat labels (tags) — you build a denser, more traversable graph. Each value becomes a node that connects every file that uses it. Each predicate becomes a typed edge. The vault becomes a knowledge base, not by importing an external ontology, but by writing careful frontmatter.&lt;/p>
-&lt;h2 id="6-conclusion">6. Conclusion&lt;/h2>
-&lt;p>YAML frontmatter is Fregean predicate logic implemented in plain text. Each key is an unsaturated function. Each file is an argument. Each value is the output. Across a vault, shared keys generate fibers of values that constitute a predicate fibration — a degenerate hyperdoctrine whose structure emerges from practice rather than being imposed by schema. This structure is already present in every vault with frontmatter. Examining it yields knowledge about the vault&amp;rsquo;s implicit conventions, its divergences, and its relational topology, without requiring any formalism the author did not already use.&lt;/p>
-&lt;h2 id="references">References&lt;/h2>
-&lt;ul>
-&lt;li>Berners-Lee, T., Hendler, J., &amp;amp; Lassila, O. (2001). &amp;ldquo;The Semantic Web.&amp;rdquo; &lt;em>Scientific American&lt;/em>, 284(5), 34–43.&lt;/li>
-&lt;li>Frege, G. (1879). &lt;em>Begriffsschrift&lt;/em>. Louis Nebert.&lt;/li>
-&lt;li>Heck, R. K. (2003). &amp;ldquo;The Function Is Unsaturated.&amp;rdquo; In &lt;em>The Cambridge Companion to Frege&lt;/em>. Oxford University Press.&lt;/li>
-&lt;li>Jacobs, B. (1999). &lt;em>Categorical Logic and Type Theory&lt;/em>. Elsevier.&lt;/li>
-&lt;li>Lawvere, F. W. (1969). &amp;ldquo;Adjointness in Foundations.&amp;rdquo; &lt;em>Dialectica&lt;/em>, 23(3-4), 281–296.&lt;/li>
-&lt;li>W3C. (2024). &lt;em>RDF 1.2 Concepts and Abstract Data Model&lt;/em>. W3C Recommendation.&lt;/li>
-&lt;/ul></div><section class=bibliography id=bibliography vocab="https://schema.org/" typeof="ItemList"><h2>References</h2><p class=bib-entry id=ref-bernerslee2001 typeof="CreativeWork" resource="#ref-bernerslee2001"><span class=bib-key>[bernerslee2001]</span>
-<span property="author">T. Berners-Lee, J. Hendler, O. Lassila</span>.
-(<span property="datePublished">2001</span>).
-<cite property="name">The Semantic Web</cite>.
-<em property="publisher">Scientific American</em>.</p><p class=bib-entry id=ref-frege1879 typeof="CreativeWork" resource="#ref-frege1879"><span class=bib-key>[frege1879]</span>
-<span property="author">G. Frege</span>.
-(<span property="datePublished">1879</span>).
-<cite property="name">Begriffsschrift</cite>.
-<em property="publisher">Louis Nebert</em>.</p><p class=bib-entry id=ref-heck2003 typeof="CreativeWork" resource="#ref-heck2003"><span class=bib-key>[heck2003]</span>
-<span property="author">R. K. Heck</span>.
-(<span property="datePublished">2003</span>).
-<cite property="name">The Function Is Unsaturated</cite>.
-<em property="publisher">Oxford University Press</em>.</p><p class=bib-entry id=ref-jacobs1999 typeof="CreativeWork" resource="#ref-jacobs1999"><span class=bib-key>[jacobs1999]</span>
-<span property="author">B. Jacobs</span>.
-(<span property="datePublished">1999</span>).
-<cite property="name">Categorical Logic and Type Theory</cite>.
-<em property="publisher">Elsevier</em>.</p><p class=bib-entry id=ref-lawvere1969 typeof="CreativeWork" resource="#ref-lawvere1969"><span class=bib-key>[lawvere1969]</span>
-<span property="author">F. W. Lawvere</span>.
-(<span property="datePublished">1969</span>).
-<cite property="name">Adjointness in Foundations</cite>.
-<em property="publisher">Dialectica</em>.</p><p class=bib-entry id=ref-w3c2024 typeof="CreativeWork" resource="#ref-w3c2024"><span class=bib-key>[w3c2024]</span>
-<span property="author">W3C</span>.
-(<span property="datePublished">2024</span>).
-<cite property="name">RDF 1.2 Concepts and Abstract Data Model</cite>.
-<em property="publisher">W3C</em>.</p></section><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>emsenn. (2026, March 28). YAML Frontmatter as Fregean Predicate Fibration. <i>emsenn.net</i>. https://emsenn.net/library/information/texts/yaml-frontmatter-as-fregean-predicate-fibration/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@article{emsenn2026-yaml-frontmatter-as-fregean-predicate-fibration,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YAML Frontmatter as Fregean Predicate Fibration - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "emsenn"
+  },
+  "dateModified": "2026-03-28",
+  "datePublished": "2026-03-28",
+  "description": "Markdown files with YAML frontmatter implement Fregean subject-predicate-object triples. Across a vault, predicates index fibers of values, forming a degenerate hyperdoctrine whose emergent structure can be examined without external schema.",
+  "name": "YAML Frontmatter as Fregean Predicate Fibration",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/information/texts/yaml-frontmatter-as-fregean-predicate-fibration/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="paper">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/">Information</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/texts/">Texts</a></nav>
+  <h1 class="p-name">YAML Frontmatter as Fregean Predicate Fibration</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-28T00:00:00Z">2026-03-28</time>
+    <span>by <span class="p-author">emsenn</span></span>
+    
+  </div>
+  
+  <div class="type-meta type-meta--abstract">
+    <span class="type-meta-label">Abstract</span>
+    <p>Markdown files with YAML frontmatter implement Fregean subject-predicate-object triples. Across a vault, predicates index fibers of values, forming a degenerate hyperdoctrine whose emergent structure can be examined without external schema.</p>
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#1-the-frontmatter-triple">1. The Frontmatter Triple</a>
+      <ul>
+        <li><a href="#11-freges-unsaturated-predicate">1.1 Frege&rsquo;s Unsaturated Predicate</a></li>
+        <li><a href="#12-yaml-frontmatter-as-function-application">1.2 YAML Frontmatter as Function Application</a></li>
+        <li><a href="#13-relation-to-rdf">1.3 Relation to RDF</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-predicate-fibers">2. Predicate Fibers</a>
+      <ul>
+        <li><a href="#21-definition">2.1 Definition</a></li>
+        <li><a href="#22-what-the-fibration-contains">2.2 What the Fibration Contains</a></li>
+        <li><a href="#23-relation-to-categorical-logic">2.3 Relation to Categorical Logic</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-emergent-schema">3. Emergent Schema</a>
+      <ul>
+        <li><a href="#31-schema-first-vs-schema-free">3.1 Schema-First vs. Schema-Free</a></li>
+        <li><a href="#32-divergence-detection">3.2 Divergence Detection</a></li>
+        <li><a href="#33-implicit-schema-recovery">3.3 Implicit Schema Recovery</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-what-this-is-not">4. What This Is Not</a></li>
+    <li><a href="#5-practical-consequences">5. Practical Consequences</a>
+      <ul>
+        <li><a href="#51-for-knowledge-workers">5.1 For Knowledge Workers</a></li>
+        <li><a href="#52-for-ai-agents">5.2 For AI Agents</a></li>
+        <li><a href="#53-for-vault-design">5.3 For Vault Design</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-conclusion">6. Conclusion</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    &lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;
+&lt;p&gt;A markdown file with YAML frontmatter encodes a set of subject-predicate-object triples: the file is the subject, each key is a predicate, and each value is an object. This is not a metaphor. It is Frege&amp;rsquo;s function-argument structure (Frege 1879) implemented in a plain-text format now standard across millions of repositories.&lt;/p&gt;
+&lt;p&gt;When many files share the same predicate keys, each key generates a &lt;strong&gt;fiber&lt;/strong&gt;: the collection of all values that key takes across files. The fiber for &lt;code&gt;authors&lt;/code&gt; contains every author who appears in any file&amp;rsquo;s &lt;code&gt;authors&lt;/code&gt; field. The fiber for &lt;code&gt;extends&lt;/code&gt; contains every concept any file claims to extend. These fibers, indexed by predicate, form a structure that categorical logicians call a fibration (Jacobs 1999) — specifically, a degenerate hyperdoctrine where the base category is the set of predicate keys and each fiber is the set of values assigned to that key.&lt;/p&gt;
+&lt;p&gt;This paper makes three claims. First, the Fregean reading is precise and literal, not analogical. Second, the fibration structure is already present in any vault with consistent frontmatter — it does not need to be imposed. Third, the emergent structure can be examined to detect divergence, identify implicit schema, and query relational configurations, all without external ontology or validation.&lt;/p&gt;
+&lt;h2 id=&#34;1-the-frontmatter-triple&#34;&gt;1. The Frontmatter Triple&lt;/h2&gt;
+&lt;h3 id=&#34;11-freges-unsaturated-predicate&#34;&gt;1.1 Frege&amp;rsquo;s Unsaturated Predicate&lt;/h3&gt;
+&lt;p&gt;Frege&amp;rsquo;s central insight in the &lt;em&gt;Begriffsschrift&lt;/em&gt; (1879) is that a predicate is not a label attached to a subject but an unsaturated function that takes an argument and returns a value. &amp;ldquo;Is red&amp;rdquo; is not a property sitting on a shelf; it is an incomplete expression that needs an object to become a complete thought. The expression &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;f(x)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; is &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;f&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; applied to &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;x&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;, where &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;f&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; is incomplete without &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;x&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; (Heck 2003).&lt;/p&gt;
+&lt;p&gt;This incompleteness is constitutive. A predicate with no argument is not a predicate in a weaker sense — it is not a predicate at all. It is a gap waiting to be filled.&lt;/p&gt;
+&lt;h3 id=&#34;12-yaml-frontmatter-as-function-application&#34;&gt;1.2 YAML Frontmatter as Function Application&lt;/h3&gt;
+&lt;p&gt;Consider a markdown file with frontmatter:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;authors&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;emsenn&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;extends&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;legibility&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;---
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The file itself is a resource — a saturated object with a path, a name, content. Each frontmatter key is an unsaturated predicate: &lt;code&gt;authors&lt;/code&gt; is incomplete until applied to both a subject (this file) and an object (emsenn). The frontmatter block is a set of function applications:&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mtext mathvariant=&#34;monospace&#34;&gt;authors&lt;/mtext&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mtext&gt;this-file&lt;/mtext&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mtext mathvariant=&#34;monospace&#34;&gt;emsenn&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\texttt{authors}(\text{this-file}) = \texttt{emsenn}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
+&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mtext mathvariant=&#34;monospace&#34;&gt;extends&lt;/mtext&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mtext&gt;this-file&lt;/mtext&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mtext mathvariant=&#34;monospace&#34;&gt;legibility&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\texttt{extends}(\text{this-file}) = \texttt{legibility}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;This is Frege&amp;rsquo;s structure, implemented. The file is the argument. The key is the function. The value is the output. There is no metaphor here — the YAML parser performs the function application when it reads the file.&lt;/p&gt;
+&lt;h3 id=&#34;13-relation-to-rdf&#34;&gt;1.3 Relation to RDF&lt;/h3&gt;
+&lt;p&gt;The Resource Description Framework (W3C 2024) structures knowledge as triples: (subject, predicate, object). RDF was designed to implement Berners-Lee&amp;rsquo;s vision of a machine-readable semantic web (Berners-Lee et al. 2001). The frontmatter triple is an RDF triple in which:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The subject is always the file (identified by path or filename)&lt;/li&gt;
+&lt;li&gt;The predicate is always a YAML key&lt;/li&gt;
+&lt;li&gt;The object is always a YAML value&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is a restricted form of RDF — the subject is implicit (always the file) rather than explicitly named. But the restriction is a feature: it means every markdown file is automatically a set of triples without requiring the author to write RDF syntax. The frontmatter format is RDF for people who don&amp;rsquo;t know RDF.&lt;/p&gt;
+&lt;h2 id=&#34;2-predicate-fibers&#34;&gt;2. Predicate Fibers&lt;/h2&gt;
+&lt;h3 id=&#34;21-definition&#34;&gt;2.1 Definition&lt;/h3&gt;
+&lt;p&gt;Let &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;V&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;V&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; be a vault: a set of markdown files, each with YAML frontmatter. Let &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;K&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;K&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; be the set of all keys that appear in any file&amp;rsquo;s frontmatter. For each key &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mo&gt;∈&lt;/mo&gt;&lt;mi&gt;K&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;k \in K&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;, define the &lt;strong&gt;fiber&lt;/strong&gt; &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;F&lt;/mi&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;F_k&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; as the set of all values that &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;k&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; takes across all files in &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;V&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;V&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;:&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;F&lt;/mi&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo stretchy=&#34;false&#34;&gt;{&lt;/mo&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mo&gt;:&lt;/mo&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∃&lt;/mi&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mo&gt;∈&lt;/mo&gt;&lt;mi&gt;V&lt;/mi&gt;&lt;mtext&gt; such that &lt;/mtext&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;}&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;F_k = \{ v : \exists f \in V \text{ such that } k(f) = v \}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;For example, if 200 files have &lt;code&gt;authors: emsenn&lt;/code&gt; and 3 files have &lt;code&gt;authors: claude&lt;/code&gt;, then:&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;F&lt;/mi&gt;&lt;mtext mathvariant=&#34;monospace&#34;&gt;authors&lt;/mtext&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo stretchy=&#34;false&#34;&gt;{&lt;/mo&gt;&lt;mtext mathvariant=&#34;monospace&#34;&gt;emsenn&lt;/mtext&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mtext mathvariant=&#34;monospace&#34;&gt;claude&lt;/mtext&gt;&lt;mo stretchy=&#34;false&#34;&gt;}&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;F_{\texttt{authors}} = \{\texttt{emsenn}, \texttt{claude}\}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;If 15 files use &lt;code&gt;extends:&lt;/code&gt; with various values:&lt;/p&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;F&lt;/mi&gt;&lt;mtext mathvariant=&#34;monospace&#34;&gt;extends&lt;/mtext&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo stretchy=&#34;false&#34;&gt;{&lt;/mo&gt;&lt;mtext mathvariant=&#34;monospace&#34;&gt;legibility&lt;/mtext&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mtext mathvariant=&#34;monospace&#34;&gt;rate-distortion-theory&lt;/mtext&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mtext mathvariant=&#34;monospace&#34;&gt;frege-predicate-logic&lt;/mtext&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mo&gt;…&lt;/mo&gt;&lt;mo stretchy=&#34;false&#34;&gt;}&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;F_{\texttt{extends}} = \{\texttt{legibility}, \texttt{rate-distortion-theory}, \texttt{frege-predicate-logic}, \ldots\}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;Each fiber is a set of tokens. The fibers are indexed by predicate keys. The total structure — all fibers, indexed by all keys — is the vault&amp;rsquo;s &lt;strong&gt;predicate fibration&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;22-what-the-fibration-contains&#34;&gt;2.2 What the Fibration Contains&lt;/h3&gt;
+&lt;p&gt;The predicate fibration contains exactly the relational structure that the vault&amp;rsquo;s authors have asserted through frontmatter. No more, no less. It does not contain the content of the files, only the claims their frontmatter makes. It does not impose a schema — it reports what schema has emerged from practice.&lt;/p&gt;
+&lt;p&gt;For a vault with rich, consistent frontmatter, the fibration is dense: many keys, many shared values, many files connected through common tokens in the same fibers. For a vault with sparse or inconsistent frontmatter, the fibration is thin: few connections, many singletons.&lt;/p&gt;
+&lt;h3 id=&#34;23-relation-to-categorical-logic&#34;&gt;2.3 Relation to Categorical Logic&lt;/h3&gt;
+&lt;p&gt;In Lawvere&amp;rsquo;s hyperdoctrine framework (Lawvere 1969), a predicate logic over a base category &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;script&#34;&gt;C&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\mathcal{C}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; assigns to each context &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mo&gt;∈&lt;/mo&gt;&lt;mi mathvariant=&#34;script&#34;&gt;C&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;c \in \mathcal{C}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; a lattice of propositions &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;P&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;P(c)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;. The assignment &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;P&lt;/mi&gt;&lt;mo&gt;:&lt;/mo&gt;&lt;msup&gt;&lt;mi mathvariant=&#34;script&#34;&gt;C&lt;/mi&gt;&lt;mrow&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;mo&gt;→&lt;/mo&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;bold&#34;&gt;H&lt;/mi&gt;&lt;mi mathvariant=&#34;bold&#34;&gt;e&lt;/mi&gt;&lt;mi mathvariant=&#34;bold&#34;&gt;y&lt;/mi&gt;&lt;mi mathvariant=&#34;bold&#34;&gt;t&lt;/mi&gt;&lt;mi mathvariant=&#34;bold&#34;&gt;A&lt;/mi&gt;&lt;mi mathvariant=&#34;bold&#34;&gt;l&lt;/mi&gt;&lt;mi mathvariant=&#34;bold&#34;&gt;g&lt;/mi&gt;&lt;/mrow&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;P: \mathcal{C}^{op} \to \mathbf{HeytAlg}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; is a functor from contexts to Heyting algebras. This is a fibration: each context gets its own fiber of predicates, and these fibers are connected by reindexing maps (substitution).&lt;/p&gt;
+&lt;p&gt;The predicate fibration of a vault is a degenerate case. The base category is the discrete set &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;K&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;K&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; of predicate keys (no morphisms between keys). Each fiber &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;F&lt;/mi&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;F_k&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; is a set (not a Heyting algebra — there is no implication structure within a fiber). There are no reindexing maps because the base is discrete.&lt;/p&gt;
+&lt;p&gt;This is the simplest possible fibration. It is worth naming precisely because it already exists in every vault with frontmatter, and because the degenerate structure can be enriched:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If values within a fiber are partially ordered (e.g., &lt;code&gt;status: draft&lt;/code&gt; &amp;lt; &lt;code&gt;status: review&lt;/code&gt; &amp;lt; &lt;code&gt;status: published&lt;/code&gt;), the fiber becomes a poset, and with it a Heyting algebra.&lt;/li&gt;
+&lt;li&gt;If keys are related (e.g., &lt;code&gt;extends&lt;/code&gt; and &lt;code&gt;extended-by&lt;/code&gt; are dual), morphisms appear in the base, and the fibration acquires reindexing maps.&lt;/li&gt;
+&lt;li&gt;If files are organized into directories that provide context, the base category gains hierarchical structure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each enrichment moves the vault closer to a full hyperdoctrine without requiring the vault&amp;rsquo;s author to know what a hyperdoctrine is.&lt;/p&gt;
+&lt;h2 id=&#34;3-emergent-schema&#34;&gt;3. Emergent Schema&lt;/h2&gt;
+&lt;h3 id=&#34;31-schema-first-vs-schema-free&#34;&gt;3.1 Schema-First vs. Schema-Free&lt;/h3&gt;
+&lt;p&gt;Traditional knowledge representation is schema-first: define an ontology, then populate it with instances. RDF/OWL works this way — you define classes and properties, then assert triples that conform to the schema. Violations are errors.&lt;/p&gt;
+&lt;p&gt;The predicate fibration inverts this. The vault&amp;rsquo;s authors write frontmatter as they see fit. The fibration reports what has emerged. If 800 files assert &lt;code&gt;authors: emsenn&lt;/code&gt; and one file asserts &lt;code&gt;authors: emsen&lt;/code&gt;, the fibration does not call this an error. It reports a divergence: one value in the &lt;code&gt;authors&lt;/code&gt; fiber that appears once where another appears 800 times.&lt;/p&gt;
+&lt;h3 id=&#34;32-divergence-detection&#34;&gt;3.2 Divergence Detection&lt;/h3&gt;
+&lt;p&gt;A &lt;strong&gt;divergence&lt;/strong&gt; in a fiber is a value that appears rarely relative to the fiber&amp;rsquo;s dominant values. Divergences may indicate:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Typos (&lt;code&gt;emsen&lt;/code&gt; for &lt;code&gt;emsenn&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Legitimate exceptions (a file with a different author)&lt;/li&gt;
+&lt;li&gt;Evolving conventions (an old key being replaced by a new one)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The fibration cannot distinguish between these. A human or agent must interpret the divergence. But the fibration makes the divergence &lt;em&gt;visible&lt;/em&gt; — it surfaces the question &amp;ldquo;is this intentional?&amp;rdquo; without needing a schema to enforce an answer.&lt;/p&gt;
+&lt;h3 id=&#34;33-implicit-schema-recovery&#34;&gt;3.3 Implicit Schema Recovery&lt;/h3&gt;
+&lt;p&gt;The dominant patterns within fibers constitute the vault&amp;rsquo;s implicit schema. If every file with &lt;code&gt;type: paper&lt;/code&gt; also has &lt;code&gt;authors:&lt;/code&gt; and &lt;code&gt;status:&lt;/code&gt;, then &lt;code&gt;paper&lt;/code&gt; implicitly requires &lt;code&gt;authors&lt;/code&gt; and &lt;code&gt;status&lt;/code&gt; — not because a schema says so, but because practice has determined it. This implicit schema can be extracted, examined, and formalized after the fact, or it can remain implicit and serve as a soft constraint.&lt;/p&gt;
+&lt;h2 id=&#34;4-what-this-is-not&#34;&gt;4. What This Is Not&lt;/h2&gt;
+&lt;p&gt;This paper does not claim that YAML frontmatter is a replacement for RDF, OWL, or formal ontology engineering. Those systems provide inference, constraint checking, and reasoning that the predicate fibration does not. The claim is narrower: the Fregean structure is already there in frontmatter, the fibration is already there in any vault, and examining the emergent structure is useful even without external tooling.&lt;/p&gt;
+&lt;p&gt;This paper also does not claim novelty for the Fregean reading of subject-predicate-object triples — that connection is well-established in the RDF literature. The contribution is recognizing that YAML frontmatter in markdown vaults is a concrete, widespread, practical instantiation of this structure, and that the fibration it generates can be examined as a mathematical object.&lt;/p&gt;
+&lt;h2 id=&#34;5-practical-consequences&#34;&gt;5. Practical Consequences&lt;/h2&gt;
+&lt;h3 id=&#34;51-for-knowledge-workers&#34;&gt;5.1 For Knowledge Workers&lt;/h3&gt;
+&lt;p&gt;Any vault with consistent frontmatter already has a queryable knowledge graph. The graph does not need to be extracted into a database — it can be read directly from the YAML. The predicate fibration tells you: what predicates exist, what values each predicate takes, which files share values, and where conventions diverge.&lt;/p&gt;
+&lt;h3 id=&#34;52-for-ai-agents&#34;&gt;5.2 For AI Agents&lt;/h3&gt;
+&lt;p&gt;AI agents that read vaults (via CLAUDE.md, AGENTS.md, or Model Context Protocol) already consume frontmatter. The fibration gives them a way to understand the vault&amp;rsquo;s structure without reading every file: examine the fibers, identify the dominant patterns, and use those patterns to navigate the vault&amp;rsquo;s content.&lt;/p&gt;
+&lt;h3 id=&#34;53-for-vault-design&#34;&gt;5.3 For Vault Design&lt;/h3&gt;
+&lt;p&gt;If you design frontmatter with the fibration in mind — using short, reusable tokens as values, using predicate keys that carry relational weight (defines, extends, requires, acts-on, produces, contrasts-with) rather than flat labels (tags) — you build a denser, more traversable graph. Each value becomes a node that connects every file that uses it. Each predicate becomes a typed edge. The vault becomes a knowledge base, not by importing an external ontology, but by writing careful frontmatter.&lt;/p&gt;
+&lt;h2 id=&#34;6-conclusion&#34;&gt;6. Conclusion&lt;/h2&gt;
+&lt;p&gt;YAML frontmatter is Fregean predicate logic implemented in plain text. Each key is an unsaturated function. Each file is an argument. Each value is the output. Across a vault, shared keys generate fibers of values that constitute a predicate fibration — a degenerate hyperdoctrine whose structure emerges from practice rather than being imposed by schema. This structure is already present in every vault with frontmatter. Examining it yields knowledge about the vault&amp;rsquo;s implicit conventions, its divergences, and its relational topology, without requiring any formalism the author did not already use.&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Berners-Lee, T., Hendler, J., &amp;amp; Lassila, O. (2001). &amp;ldquo;The Semantic Web.&amp;rdquo; &lt;em&gt;Scientific American&lt;/em&gt;, 284(5), 34–43.&lt;/li&gt;
+&lt;li&gt;Frege, G. (1879). &lt;em&gt;Begriffsschrift&lt;/em&gt;. Louis Nebert.&lt;/li&gt;
+&lt;li&gt;Heck, R. K. (2003). &amp;ldquo;The Function Is Unsaturated.&amp;rdquo; In &lt;em&gt;The Cambridge Companion to Frege&lt;/em&gt;. Oxford University Press.&lt;/li&gt;
+&lt;li&gt;Jacobs, B. (1999). &lt;em&gt;Categorical Logic and Type Theory&lt;/em&gt;. Elsevier.&lt;/li&gt;
+&lt;li&gt;Lawvere, F. W. (1969). &amp;ldquo;Adjointness in Foundations.&amp;rdquo; &lt;em&gt;Dialectica&lt;/em&gt;, 23(3-4), 281–296.&lt;/li&gt;
+&lt;li&gt;W3C. (2024). &lt;em&gt;RDF 1.2 Concepts and Abstract Data Model&lt;/em&gt;. W3C Recommendation.&lt;/li&gt;
+&lt;/ul&gt;
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-bernerslee2001" typeof="CreativeWork" resource="#ref-bernerslee2001">
+    <span class="bib-key">[bernerslee2001]</span>
+      <span property="author">T. Berners-Lee, J. Hendler, O. Lassila</span>.
+      (<span property="datePublished">2001</span>).
+      <cite property="name">The Semantic Web</cite>.
+      <em property="publisher">Scientific American</em>.
+  </p><p class="bib-entry" id="ref-frege1879" typeof="CreativeWork" resource="#ref-frege1879">
+    <span class="bib-key">[frege1879]</span>
+      <span property="author">G. Frege</span>.
+      (<span property="datePublished">1879</span>).
+      <cite property="name">Begriffsschrift</cite>.
+      <em property="publisher">Louis Nebert</em>.
+  </p><p class="bib-entry" id="ref-heck2003" typeof="CreativeWork" resource="#ref-heck2003">
+    <span class="bib-key">[heck2003]</span>
+      <span property="author">R. K. Heck</span>.
+      (<span property="datePublished">2003</span>).
+      <cite property="name">The Function Is Unsaturated</cite>.
+      <em property="publisher">Oxford University Press</em>.
+  </p><p class="bib-entry" id="ref-jacobs1999" typeof="CreativeWork" resource="#ref-jacobs1999">
+    <span class="bib-key">[jacobs1999]</span>
+      <span property="author">B. Jacobs</span>.
+      (<span property="datePublished">1999</span>).
+      <cite property="name">Categorical Logic and Type Theory</cite>.
+      <em property="publisher">Elsevier</em>.
+  </p><p class="bib-entry" id="ref-lawvere1969" typeof="CreativeWork" resource="#ref-lawvere1969">
+    <span class="bib-key">[lawvere1969]</span>
+      <span property="author">F. W. Lawvere</span>.
+      (<span property="datePublished">1969</span>).
+      <cite property="name">Adjointness in Foundations</cite>.
+      <em property="publisher">Dialectica</em>.
+  </p><p class="bib-entry" id="ref-w3c2024" typeof="CreativeWork" resource="#ref-w3c2024">
+    <span class="bib-key">[w3c2024]</span>
+      <span property="author">W3C</span>.
+      (<span property="datePublished">2024</span>).
+      <cite property="name">RDF 1.2 Concepts and Abstract Data Model</cite>.
+      <em property="publisher">W3C</em>.
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/information/texts/yaml-frontmatter-as-fregean-predicate-fibration/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt><a href="/library/math/terms/action/">Acts on</a></dt>
+        <dd property="emsenn:Actson">Knowledge representation in plain text</dd>
+      </div><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Cites</dt>
+        <dd property="schema:citation"><ul><li>Frege1879</li><li>Heck2003</li><li>Jacobs1999</li><li>Bernerslee2001</li><li>W3c2024</li><li>Lawvere1969</li></ul></dd>
+      </div><div class="relation">
+        <dt>Contrasts with</dt>
+        <dd property="emsenn:Contrastswith">Schema first knowledge representation</dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-28">2026-03-28</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><ul><li><a href="/library/information/texts/yaml-frontmatter-as-fregean-predicate-fibration/">Frontmatter triple</a></li><li><a href="/library/information/texts/yaml-frontmatter-as-fregean-predicate-fibration/">Predicate fiber</a></li><li><a href="/library/information/texts/yaml-frontmatter-as-fregean-predicate-fibration/">Emergent schema</a></li></ul></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/extension/">Extends</a></dt>
+        <dd property="emsenn:Extends"><ul><li>Frege predicate logic</li><li>Rdf triple</li><li>Lawvere hyperdoctrine</li></ul></dd>
+      </div><div class="relation">
+        <dt><a href="/library/tech/terms/produces/">Produces</a></dt>
+        <dd property="emsenn:Produces"><ul><li>Schema free knowledge graph from existing frontmatter</li><li>Divergence detection without external validation</li></ul></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li>Yaml frontmatter</li><li>Markdown file vault</li></ul></dd>
+      </div><div class="relation">
+        <dt>Status</dt>
+        <dd property="emsenn:Status">Draft</dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@article{emsenn2026-yaml-frontmatter-as-fregean-predicate-fibration,
   author    = {emsenn},
   title     = {YAML Frontmatter as Fregean Predicate Fibration},
   year      = {2026},
@@ -115,4 +293,17 @@
   url       = {https://emsenn.net/library/information/texts/yaml-frontmatter-as-fregean-predicate-fibration/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/information/texts/yaml-frontmatter-as-fregean-predicate-fibration/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt><a href=/library/math/terms/action/>acts-on</a></dt><dd property="emsenn:Actson">knowledge-representation-in-plain-text</dd></div><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li></ul></dd></div><div class=relation><dt>cites</dt><dd property="schema:citation"><ul><li>frege1879</li><li>heck2003</li><li>jacobs1999</li><li>bernerslee2001</li><li>w3c2024</li><li>lawvere1969</li></ul></dd></div><div class=relation><dt>contrasts-with</dt><dd property="emsenn:Contrastswith">schema-first-knowledge-representation</dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-28>2026-03-28</time></dd></div><div class=relation><dt>defines</dt><dd property="emsenn:Defines"><ul><li><a href=/library/information/texts/yaml-frontmatter-as-fregean-predicate-fibration/>frontmatter-triple</a></li><li><a href=/library/information/texts/yaml-frontmatter-as-fregean-predicate-fibration/>predicate-fiber</a></li><li><a href=/library/information/texts/yaml-frontmatter-as-fregean-predicate-fibration/>emergent-schema</a></li></ul></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">Markdown files with YAML frontmatter implement Fregean subject-predicate-object triples. Across a vault, predicates index fibers of values, forming a degenerate hyperdoctrine whose emergent structure can be examined without external schema.</dd></div><div class=relation><dt><a href=/library/math/terms/extension/>extends</a></dt><dd property="emsenn:Extends"><ul><li>frege-predicate-logic</li><li>rdf-triple</li><li>lawvere-hyperdoctrine</li></ul></dd></div><div class=relation><dt><a href=/library/tech/terms/produces/>produces</a></dt><dd property="emsenn:Produces"><ul><li>schema-free-knowledge-graph-from-existing-frontmatter</li><li>divergence-detection-without-external-validation</li></ul></dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>requires</a></dt><dd property="schema:educationalAlignment"><ul><li>yaml-frontmatter</li><li>markdown-file-vault</li></ul></dd></div><div class=relation><dt>status</dt><dd property="emsenn:Status">draft</dd></div><div class=relation><dt>title</dt><dd property="schema:name">YAML Frontmatter as Fregean Predicate Fibration</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/paper/>paper</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

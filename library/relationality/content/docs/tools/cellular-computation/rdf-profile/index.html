@@ -1,299 +1,779 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"RDF Profile for GFRTU Cells and Closure Evidence Specification – Version 0.x (normative)\nLayer Declaration — RDF Profile (Layer 6: External Semantic Projection) This document occupies Layer 6 (RDF projection) of the GFRTU stack:\nRole: defines how canonical JSON artifacts from CDS/RTL/CCE/ABI/RPC are projected into RDF/JSON‑LD for identification, provenance, and federation. Depends on: structural encodings (Layer 2), operational semantics and evidence logs (Layer 3), ABI/RPC envelopes (Layers 4–5), and indirectly on GFRTU mathematics via those lower layers. Provides to external ecosystems: URIs, vocabularies, JSON‑LD contexts, and optional SHACL shapes that describe but never alter canonical artifacts. Must not do: introduce new closure rules, canonicalization logic, or mathematical constraints; all such semantics remain in gfrtu.md, cds.md, rtl.md, and cce*.md. Any determinism or provenance requirements mentioned here are reflections of lower‑layer obligations and MUST NOT be treated as an alternative or competing source of semantics.\n","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/content/docs/tools/cellular-computation/rdf-profile/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name></h1><div class=meta></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#layer-declaration--rdf-profile-layer-6-external-semantic-projection>Layer Declaration — RDF Profile (Layer 6: External Semantic Projection)</a></li><li><a href=#0-status-purpose-and-nongoals>0. Status, Purpose, and Non‑Goals</a></li><li><a href=#1-conformance-and-dependencies>1. Conformance and Dependencies</a></li><li><a href=#2-namespaces-and-prefixes>2. Namespaces and Prefixes</a></li><li><a href=#3-resource-identification>3. Resource Identification</a><ul><li><a href=#31-base-resource-categories>3.1 Base resource categories</a></li><li><a href=#32-uri-templates-informative-but-recommended>3.2 URI templates (informative, but recommended)</a></li><li><a href=#33-identity-relationship-between-hashes-and-uris>3.3 Identity relationship between hashes and URIs</a></li></ul></li><li><a href=#4-jsonld-contexts>4. JSON‑LD Contexts</a><ul><li><a href=#41-general-requirements>4.1 General requirements</a></li><li><a href=#42-minimal-combined-context>4.2 Minimal combined context</a></li><li><a href=#43-context-usage-patterns>4.3 Context usage patterns</a></li></ul></li><li><a href=#5-rdf-vocabulary>5. RDF Vocabulary</a><ul><li><a href=#51-core-classes>5.1 Core classes</a></li><li><a href=#52-key-properties>5.2 Key properties</a></li></ul></li><li><a href=#6-shapes-and-validation-shacl>6. Shapes and Validation (SHACL)</a><ul><li><a href=#61-cdscell-shape>6.1 cds:Cell shape</a></li><li><a href=#62-cdsrepairlogentry-shape>6.2 cds:RepairLogEntry shape</a></li><li><a href=#63-rtljudgment-shape>6.3 rtl:Judgment shape</a></li><li><a href=#64-cceclosureexecution-shape>6.4 cce:ClosureExecution shape</a></li></ul></li><li><a href=#7-provenance-and-evidence-graphs>7. Provenance and Evidence Graphs</a><ul><li><a href=#71-basic-mapping>7.1 Basic mapping</a></li><li><a href=#72-rpc-transcript-mapping>7.2 RPC transcript mapping</a></li><li><a href=#73-replay-and-audit>7.3 Replay and audit</a></li></ul></li><li><a href=#8-application-profiles-informative>8. Application Profiles (Informative)</a><ul><li><a href=#81-activitypub-and-activitystreams>8.1 ActivityPub and ActivityStreams</a></li><li><a href=#82-indieweb--microformats>8.2 IndieWeb / Microformats</a></li><li><a href=#83-openapi-and-jsonfirst-apis>8.3 OpenAPI and JSON‑first APIs</a></li></ul></li><li><a href=#9-determinism-and-canonicalization-obligations>9. Determinism and Canonicalization Obligations</a></li><li><a href=#10-implementation-checklist>10. Implementation Checklist</a></li></ul></nav></details><div class=e-content><h1 id=rdf-profile-for-gfrtu-cells-and-closure-evidence>RDF Profile for GFRTU Cells and Closure Evidence</h1><p><strong>Specification – Version 0.x (normative)</strong></p><hr><h2 id=layer-declaration--rdf-profile-layer-6-external-semantic-projection>Layer Declaration — RDF Profile (Layer 6: External Semantic Projection)</h2><p>This document occupies <strong>Layer 6 (RDF projection)</strong> of the GFRTU stack:</p><ul><li><strong>Role:</strong> defines how canonical JSON artifacts from CDS/RTL/CCE/ABI/RPC are projected into RDF/JSON‑LD for identification, provenance, and federation.</li><li><strong>Depends on:</strong> structural encodings (Layer 2), operational semantics and evidence logs (Layer 3), ABI/RPC envelopes (Layers 4–5), and <em>indirectly</em> on GFRTU mathematics via those lower layers.</li><li><strong>Provides to external ecosystems:</strong> URIs, vocabularies, JSON‑LD contexts, and optional SHACL shapes that <em>describe</em> but never alter canonical artifacts.</li><li><strong>Must not do:</strong> introduce new closure rules, canonicalization logic, or mathematical constraints; all such semantics remain in <code>gfrtu.md</code>, <code>cds.md</code>, <code>rtl.md</code>, and <code>cce*.md</code>.</li></ul><p>Any determinism or provenance requirements mentioned here are <strong>reflections of lower‑layer obligations</strong> and MUST NOT be treated as an alternative or competing source of semantics.</p><h2 id=0-status-purpose-and-nongoals>0. Status, Purpose, and Non‑Goals</h2><p>This document defines an RDF and JSON‑LD profile for the artifacts introduced in:</p><p>CDS (Cellular Data Serialization)</p><p>cds</p><p>CCE (Cellular Closure Engine)</p><p>cce</p><p>CCE‑ABI</p><p>cce-abi</p><p>CCE‑RPC</p><p>cce-rpc</p><p>RTL (Recognition Term Language)</p><p>rtl</p><p>GFRTU (Generative Fibered Relational Trace Universe)</p><p>gfrtu</p><p>The RDF profile answers the narrow question:</p><p>Given canonical JSON artifacts (CDS cells, RTL judgments, CCE apply/merge results, RPC envelopes, repair logs), how are they represented as Linked Data (RDF/JSON‑LD), validated, and connected into provenance graphs?</p><p>This profile is:</p><p>Normative about:</p><p>URI patterns for identifying artifacts.</p><p>RDF classes and properties.</p><p>JSON‑LD context(s) for embedding canonical JSON.</p><p>Minimal validation constraints expressed as RDF shapes (e.g., SHACL).</p><p>How closure evidence and repair logs are exposed as RDF provenance.</p><p>Non‑normative about:</p><p>The mathematics of GFRTUs.</p><p>The operational semantics of CCE or RTL.</p><p>The binary ABI layout or transport details of RPC.</p><p>Semantics are fully determined by the base specifications; this profile MUST NOT redefine them or introduce new behavior.</p><p>Canonical JSON and hashes remain the authoritative witness of structure and closure. RDF is a secondary projection, not a new canonical form.</p><h2 id=1-conformance-and-dependencies>1. Conformance and Dependencies</h2><p>The key words <strong>MUST</strong>, <strong>MUST NOT</strong>, <strong>SHOULD</strong>, and <strong>MAY</strong> follow RFC 2119 usage.</p><p>A conforming implementation of this profile:</p><p>Consumes and/or emits canonical JSON artifacts obeying:</p><p>CDS §3–§6 for cells and structural state.</p><p>cds</p><p>RTL §2–§4 for judgments.</p><p>rtl</p><p>CCE §2–§8 for closure behavior and repair logs.</p><p>cce</p><p>CCE‑RPC §2–§6 for envelopes.</p><p>cce-rpc</p><p>Maps those artifacts to RDF using:</p><p>The namespace and URI rules in §2–§3.</p><p>The JSON‑LD context(s) in §4.</p><p>The vocabulary in §5.</p><p>Optionally validates RDF graphs using the shapes in §6.</p><p>Optionally exposes provenance using PROV‑O as described in §7.</p><p>This profile depends on the canonicalization and hashing discipline of CDS, RTL, and CCE; any RDF view that would change the canonical JSON bytes or the associated hashes is non‑conformant.</p><h2 id=2-namespaces-and-prefixes>2. Namespaces and Prefixes</h2><p>This profile uses the following RDF namespaces (example host; deployments MAY substitute their own base URIs but MUST preserve local names):</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-turtle data-lang=turtle><span style=display:flex><span><span style=color:#66d9ef>@prefix</span> cds:   &lt;https://relationality.dev/ns/cds#&gt; .
-</span></span><span style=display:flex><span><span style=color:#66d9ef>@prefix</span> rtl:   &lt;https://relationality.dev/ns/rtl#&gt; .
-</span></span><span style=display:flex><span><span style=color:#66d9ef>@prefix</span> cce:   &lt;https://relationality.dev/ns/cce#&gt; .
-</span></span><span style=display:flex><span><span style=color:#66d9ef>@prefix</span> rpc:   &lt;https://relationality.dev/ns/cce/rpc#&gt; .
-</span></span><span style=display:flex><span><span style=color:#66d9ef>@prefix</span> gfrtu: &lt;https://relationality.dev/ns/gfrtu#&gt; .
-</span></span><span style=display:flex><span><span style=color:#66d9ef>@prefix</span> prov:  &lt;http://www.w3.org/ns/prov#&gt; .
-</span></span><span style=display:flex><span><span style=color:#66d9ef>@prefix</span> xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-</span></span></code></pre></div><p>Implementations SHOULD use these prefixes in human‑authored Turtle or SHACL, but the IRIs themselves are authoritative.</p><h2 id=3-resource-identification>3. Resource Identification</h2><h3 id=31-base-resource-categories>3.1 Base resource categories</h3><p>This profile assigns URIs to the following categories:</p><p>Cells and structural state</p><p>CDS cells (structural or closure‑complete).</p><p>Cell sites, objects, morphisms, sieves.</p><p>Logical artifacts</p><p>RTL judgments (canonicalized).</p><p>rtl</p><p>Closure executions and evidence</p><p>CCE apply and merge results (RPC or ABI surface).</p><p>Repair log entries.</p><p>Transport envelopes</p><p>RPC requests and responses.</p><p>cce-rpc</p><h3 id=32-uri-templates-informative-but-recommended>3.2 URI templates (informative, but recommended)</h3><p>Given a deployment base URI <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> (e.g., <a href=https://relationality.dev/%29 class=link-external>https://relationality.dev/)</a>, the following URI templates SHOULD be used:</p><p>CDS cells</p><p>Bcell/{cds-id}</p><p>where {cds-id} is the canonical SHA‑256 hex digest in cds.id and the filename stem.</p><p>cds</p><p>RTL judgments</p><p>Brtl/{judgment-hash}</p><p>where {judgment-hash} is the canonical SHA‑256 of the normalized RTL judgment.</p><p>rtl</p><p>CCE apply executions</p><p>Bcce/apply/{rpc-id}</p><p>where {rpc-id} is the id field in the RPC request/response pair.</p><p>cce-rpc</p><p>CCE merge executions</p><p>Bcce/merge/{rpc-id}</p><p>Repair log entries</p><p>Bcce/apply/{rpc-id}/repair/{index}
-Bcce/merge/{rpc-id}/repair/{index}</p><p>where {index} is the 0‑based index into the canonical JSON repair_log array for that execution.</p><p>cce</p><p>RPC requests and responses</p><p>Brpc/request/{rpc-id}
-Brpc/response/{rpc-id}</p><p>Deployments MAY choose different paths, but they MUST:</p><p>use URIs that are stable over time, and</p><p>maintain a deterministic mapping from the canonical JSON’s identifying hash(es) to the resource URI.</p><h3 id=33-identity-relationship-between-hashes-and-uris>3.3 Identity relationship between hashes and URIs</h3><p>For any CDS cell resource C:</p><p>The subject URI of C MUST embed the same hash as cds:id.</p><p>cds</p><p>The RDF graph MUST include:</p><p>C a cds:Cell ;
-cds:hash &ldquo;f44702&mldr;"^^xsd:hexBinary .</p><p>For RTL judgments and CCE executions, an analogous property (rtl:hash, cce:executionHash) MUST be present and match the underlying canonical JSON.</p><p>These hash properties are the RDF‑visible witness of the canonical JSON identity.</p><h2 id=4-jsonld-contexts>4. JSON‑LD Contexts</h2><h3 id=41-general-requirements>4.1 General requirements</h3><p>A JSON‑LD context for this profile:</p><p>MUST NOT change the underlying JSON key set or value order required by CDS, RTL, or CCE.</p><p>MUST NOT introduce new keys into canonical JSON objects.</p><p>MAY be applied by:</p><p>wrapping the canonical JSON as a value of rdf:value or</p><p>serving the canonical JSON with HTTP Link: rel=&ldquo;<a href=http://www.w3.org/ns/json-ld#context%22 class=link-external>http://www.w3.org/ns/json-ld#context"</a> headers.</p><p>Implementations SHOULD keep a strict separation between:</p><p>canonical JSON (for hashing and CCE admission), and</p><p>JSON‑LD views (for RDF tooling and federation).</p><h3 id=42-minimal-combined-context>4.2 Minimal combined context</h3><p>The following context is a minimal normative mapping for the main artifacts. It is RECOMMENDED as <a href=https://relationality.dev/ns/gfrtu.context.jsonld class=link-external>https://relationality.dev/ns/gfrtu.context.jsonld</a> (or equivalent host).</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-jsonc data-lang=jsonc><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;@context&#34;</span>: {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;@version&#34;</span>: <span style=color:#ae81ff>1.1</span>,
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;cds&#34;</span>:   <span style=color:#e6db74>&#34;https://relationality.dev/ns/cds#&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;rtl&#34;</span>:   <span style=color:#e6db74>&#34;https://relationality.dev/ns/rtl#&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;cce&#34;</span>:   <span style=color:#e6db74>&#34;https://relationality.dev/ns/cce#&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;rpc&#34;</span>:   <span style=color:#e6db74>&#34;https://relationality.dev/ns/cce/rpc#&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;prov&#34;</span>:  <span style=color:#e6db74>&#34;http://www.w3.org/ns/prov#&#34;</span>,
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#960050;background-color:#1e0010>/*</span> <span style=color:#960050;background-color:#1e0010>Generic</span> <span style=color:#960050;background-color:#1e0010>identity</span> <span style=color:#960050;background-color:#1e0010>*/</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;id&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;cds:hash&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;xsd:hexBinary&#34;</span>
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#960050;background-color:#1e0010>/*</span> <span style=color:#960050;background-color:#1e0010>CDS</span> <span style=color:#960050;background-color:#1e0010>top-level</span> <span style=color:#960050;background-color:#1e0010>*/</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;kind&#34;</span>:           <span style=color:#e6db74>&#34;cds:kind&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;site&#34;</span>:           <span style=color:#e6db74>&#34;cds:hasSite&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;fibers&#34;</span>:         <span style=color:#e6db74>&#34;cds:hasFibers&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;fixed_layer&#34;</span>:    <span style=color:#e6db74>&#34;cds:hasFixedLayer&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;rtl_signature&#34;</span>:  <span style=color:#e6db74>&#34;rtl:signature&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;structural_vocabulary&#34;</span>: <span style=color:#e6db74>&#34;cds:hasStructuralVocabulary&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;constructors&#34;</span>:   <span style=color:#e6db74>&#34;cds:hasConstructor&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;laws&#34;</span>:           <span style=color:#e6db74>&#34;cds:hasLaw&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;defining_expression&#34;</span>: <span style=color:#e6db74>&#34;cds:hasDefiningExpression&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;examples&#34;</span>:       <span style=color:#e6db74>&#34;cds:hasExample&#34;</span>,
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#960050;background-color:#1e0010>/*</span> <span style=color:#960050;background-color:#1e0010>CDS</span> <span style=color:#960050;background-color:#1e0010>site</span> <span style=color:#960050;background-color:#1e0010>*/</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;objects&#34;</span>:        <span style=color:#e6db74>&#34;cds:hasObject&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;morphisms&#34;</span>:      <span style=color:#e6db74>&#34;cds:hasMorphism&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;topology&#34;</span>:       <span style=color:#e6db74>&#34;cds:hasSieve&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;heyting_table&#34;</span>:  <span style=color:#e6db74>&#34;cds:heytingTable&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;carrier&#34;</span>:        <span style=color:#e6db74>&#34;cds:carrier&#34;</span>,
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#960050;background-color:#1e0010>/*</span> <span style=color:#960050;background-color:#1e0010>RTL</span> <span style=color:#960050;background-color:#1e0010>*/</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;context&#34;</span>:        <span style=color:#e6db74>&#34;rtl:context&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;term&#34;</span>:           <span style=color:#e6db74>&#34;rtl:term&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;type&#34;</span>:           <span style=color:#e6db74>&#34;rtl:type&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;op&#34;</span>:             <span style=color:#e6db74>&#34;rtl:operator&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;args&#34;</span>:           <span style=color:#e6db74>&#34;rtl:arg&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;variance&#34;</span>:       <span style=color:#e6db74>&#34;rtl:variance&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;admissible&#34;</span>:     <span style=color:#e6db74>&#34;rtl:admissible&#34;</span>,
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#960050;background-color:#1e0010>/*</span> <span style=color:#960050;background-color:#1e0010>CCE</span> <span style=color:#960050;background-color:#1e0010>/</span> <span style=color:#960050;background-color:#1e0010>repair</span> <span style=color:#960050;background-color:#1e0010>logs</span> <span style=color:#960050;background-color:#1e0010>*/</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;repair_log&#34;</span>:     <span style=color:#e6db74>&#34;cce:repairLog&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;code&#34;</span>:           <span style=color:#e6db74>&#34;cce:errorCode&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;before_hash&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;cce:beforeHash&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;xsd:hexBinary&#34;</span>
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;after_hash&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;cce:afterHash&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;xsd:hexBinary&#34;</span>
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;fuel_used&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;cce:fuelUsed&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;xsd:integer&#34;</span>
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#960050;background-color:#1e0010>/*</span> <span style=color:#960050;background-color:#1e0010>RPC</span> <span style=color:#960050;background-color:#1e0010>envelope</span> <span style=color:#960050;background-color:#1e0010>*/</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;method&#34;</span>:         <span style=color:#e6db74>&#34;rpc:method&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;version&#34;</span>:        <span style=color:#e6db74>&#34;rpc:version&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;status&#34;</span>:         <span style=color:#e6db74>&#34;rpc:status&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;refined_cds&#34;</span>:    <span style=color:#e6db74>&#34;rpc:refinedCdsPayload&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;canonical_judgment&#34;</span>: <span style=color:#e6db74>&#34;rpc:canonicalJudgmentPayload&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;refined_cds_hash&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;cce:refinedCdsHash&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;xsd:hexBinary&#34;</span>
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;rtl_judgment&#34;</span>:   <span style=color:#e6db74>&#34;rpc:rtlJudgmentPayload&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;fuel&#34;</span>:           <span style=color:#e6db74>&#34;cce:fuelBudget&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;prior_refined_cds&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;cce:priorHash&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;xsd:hexBinary&#34;</span>
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;evidence&#34;</span>:       <span style=color:#e6db74>&#34;cce:evidenceHash&#34;</span>
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=43-context-usage-patterns>4.3 Context usage patterns</h3><p>Implementations SHOULD use one of:</p><p>Header‑driven context
-Serve canonical JSON as‑is and attach this context via HTTP Link headers.</p><p>Envelope context
-Wrap canonical JSON under an RDF resource that has both:</p><p>rdf:value containing the canonical JSON as a string, and</p><p>JSON‑LD keys mapped by this context.</p><p>The second pattern is suitable when you need RDF triples and raw canonical JSON in the same representation.</p><h2 id=5-rdf-vocabulary>5. RDF Vocabulary</h2><p>This section defines the core classes and properties used in this profile. All definitions are interpretive projections of the base specs, not new semantics.</p><h3 id=51-core-classes>5.1 Core classes</h3><h4 id=511-cds-classes>5.1.1 CDS classes</h4><p>cds:Cell</p><p>A CDS serialization representing the structural state of a single local universe (cell) in a GFRTU. Corresponds to the JSON top‑level object with &ldquo;kind&rdquo;: &ldquo;cds&rdquo;.</p><p>cds</p><p>cds:Site</p><p>The site component of a cell (cds:hasSite), encoding objects, morphisms, topology, and Heyting table.</p><p>cds</p><p>cds:Object</p><p>A site object as it appears in site.objects[*].id.</p><p>cds:Morphism</p><p>A site morphism as it appears in site.morphisms[*].</p><p>cds:Sieve</p><p>A topology sieve, representing a covering family of morphisms.</p><p>cds:RecognitionFiber</p><p>The recognition fiber component under fibers.recognition.</p><p>cds:FixedLayer</p><p>The stabilized fixed layer under fixed_layer, interpreted as a subsheaf of the recognition sheaf.</p><p>cds:Invariant</p><p>An entry in laws.invariants[*], with severity and code.</p><p>cds</p><p>cds:Law</p><p>The laws object as a whole.</p><p>cds:RepairLogEntry</p><p>A structural repair entry inside laws.repair_log. CCE also produces operational repair logs; both project to this class.</p><h4 id=512-rtl-classes>5.1.2 RTL classes</h4><p>rtl:Judgment</p><p>A canonical RTL typing judgment (context, term, type).</p><p>rtl</p><p>rtl:Context</p><p>The ordered list of bindings in a judgment context.</p><p>rtl:Term</p><p>The syntactic term component of a judgment.</p><p>rtl:Type</p><p>The type component of a judgment.</p><p>rtl:Operator</p><p>An operator declared in rtl_signature.constructors[*].</p><h4 id=513-cce-and-rpc-classes>5.1.3 CCE and RPC classes</h4><p>cce:ClosureExecution</p><p>A single execution of the CCE closure operator (either apply or merge), paired with its input CDS/RTL and resulting refined CDS. This abstracts over ABI and RPC layers.</p><p>cce:ApplyExecution</p><p>A cce:ClosureExecution corresponding to an apply call.</p><p>cce:MergeExecution</p><p>A cce:ClosureExecution corresponding to a merge call.</p><p>cce:RepairLogEntry</p><p>A single step in the closure repair log, matching the JSON shape specified by CCE §8.</p><p>cce</p><p>cce:ErrorCode</p><p>An error code from the CCE error surface (CCE_<em>, CDS_</em>, RTL_*).</p><p>rpc:Request</p><p>A CCE‑RPC request envelope.</p><p>cce-rpc</p><p>rpc:Response</p><p>A CCE‑RPC response envelope.</p><h3 id=52-key-properties>5.2 Key properties</h3><h4 id=521-identity-and-typing>5.2.1 Identity and typing</h4><p>cds:hash
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "RDF Profile for GFRTU Cells and Closure Evidence Specification – Version 0.x (normative)\nLayer Declaration — RDF Profile (Layer 6: External Semantic Projection) This document occupies Layer 6 (RDF projection) of the GFRTU stack:\nRole: defines how canonical JSON artifacts from CDS/RTL/CCE/ABI/RPC are projected into RDF/JSON‑LD for identification, provenance, and federation. Depends on: structural encodings (Layer 2), operational semantics and evidence logs (Layer 3), ABI/RPC envelopes (Layers 4–5), and indirectly on GFRTU mathematics via those lower layers. Provides to external ecosystems: URIs, vocabularies, JSON‑LD contexts, and optional SHACL shapes that describe but never alter canonical artifacts. Must not do: introduce new closure rules, canonicalization logic, or mathematical constraints; all such semantics remain in gfrtu.md, cds.md, rtl.md, and cce*.md. Any determinism or provenance requirements mentioned here are reflections of lower‑layer obligations and MUST NOT be treated as an alternative or competing source of semantics.\n",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/content/docs/tools/cellular-computation/rdf-profile/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#layer-declaration--rdf-profile-layer-6-external-semantic-projection">Layer Declaration — RDF Profile (Layer 6: External Semantic Projection)</a></li>
+    <li><a href="#0-status-purpose-and-nongoals">0. Status, Purpose, and Non‑Goals</a></li>
+    <li><a href="#1-conformance-and-dependencies">1. Conformance and Dependencies</a></li>
+    <li><a href="#2-namespaces-and-prefixes">2. Namespaces and Prefixes</a></li>
+    <li><a href="#3-resource-identification">3. Resource Identification</a>
+      <ul>
+        <li><a href="#31-base-resource-categories">3.1 Base resource categories</a></li>
+        <li><a href="#32-uri-templates-informative-but-recommended">3.2 URI templates (informative, but recommended)</a></li>
+        <li><a href="#33-identity-relationship-between-hashes-and-uris">3.3 Identity relationship between hashes and URIs</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-jsonld-contexts">4. JSON‑LD Contexts</a>
+      <ul>
+        <li><a href="#41-general-requirements">4.1 General requirements</a></li>
+        <li><a href="#42-minimal-combined-context">4.2 Minimal combined context</a></li>
+        <li><a href="#43-context-usage-patterns">4.3 Context usage patterns</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-rdf-vocabulary">5. RDF Vocabulary</a>
+      <ul>
+        <li><a href="#51-core-classes">5.1 Core classes</a></li>
+        <li><a href="#52-key-properties">5.2 Key properties</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-shapes-and-validation-shacl">6. Shapes and Validation (SHACL)</a>
+      <ul>
+        <li><a href="#61-cdscell-shape">6.1 cds:Cell shape</a></li>
+        <li><a href="#62-cdsrepairlogentry-shape">6.2 cds:RepairLogEntry shape</a></li>
+        <li><a href="#63-rtljudgment-shape">6.3 rtl:Judgment shape</a></li>
+        <li><a href="#64-cceclosureexecution-shape">6.4 cce:ClosureExecution shape</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-provenance-and-evidence-graphs">7. Provenance and Evidence Graphs</a>
+      <ul>
+        <li><a href="#71-basic-mapping">7.1 Basic mapping</a></li>
+        <li><a href="#72-rpc-transcript-mapping">7.2 RPC transcript mapping</a></li>
+        <li><a href="#73-replay-and-audit">7.3 Replay and audit</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-application-profiles-informative">8. Application Profiles (Informative)</a>
+      <ul>
+        <li><a href="#81-activitypub-and-activitystreams">8.1 ActivityPub and ActivityStreams</a></li>
+        <li><a href="#82-indieweb--microformats">8.2 IndieWeb / Microformats</a></li>
+        <li><a href="#83-openapi-and-jsonfirst-apis">8.3 OpenAPI and JSON‑first APIs</a></li>
+      </ul>
+    </li>
+    <li><a href="#9-determinism-and-canonicalization-obligations">9. Determinism and Canonicalization Obligations</a></li>
+    <li><a href="#10-implementation-checklist">10. Implementation Checklist</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="rdf-profile-for-gfrtu-cells-and-closure-evidence">RDF Profile for GFRTU Cells and Closure Evidence</h1>
+<p><strong>Specification – Version 0.x (normative)</strong></p>
+<hr>
+<h2 id="layer-declaration--rdf-profile-layer-6-external-semantic-projection">Layer Declaration — RDF Profile (Layer 6: External Semantic Projection)</h2>
+<p>This document occupies <strong>Layer 6 (RDF projection)</strong> of the GFRTU stack:</p>
+<ul>
+<li><strong>Role:</strong> defines how canonical JSON artifacts from CDS/RTL/CCE/ABI/RPC are projected into RDF/JSON‑LD for identification, provenance, and federation.</li>
+<li><strong>Depends on:</strong> structural encodings (Layer 2), operational semantics and evidence logs (Layer 3), ABI/RPC envelopes (Layers 4–5), and <em>indirectly</em> on GFRTU mathematics via those lower layers.</li>
+<li><strong>Provides to external ecosystems:</strong> URIs, vocabularies, JSON‑LD contexts, and optional SHACL shapes that <em>describe</em> but never alter canonical artifacts.</li>
+<li><strong>Must not do:</strong> introduce new closure rules, canonicalization logic, or mathematical constraints; all such semantics remain in <code>gfrtu.md</code>, <code>cds.md</code>, <code>rtl.md</code>, and <code>cce*.md</code>.</li>
+</ul>
+<p>Any determinism or provenance requirements mentioned here are <strong>reflections of lower‑layer obligations</strong> and MUST NOT be treated as an alternative or competing source of semantics.</p>
+<h2 id="0-status-purpose-and-nongoals">0. Status, Purpose, and Non‑Goals</h2>
+<p>This document defines an RDF and JSON‑LD profile for the artifacts introduced in:</p>
+<p>CDS (Cellular Data Serialization)</p>
+<p>cds</p>
+<p>CCE (Cellular Closure Engine)</p>
+<p>cce</p>
+<p>CCE‑ABI</p>
+<p>cce-abi</p>
+<p>CCE‑RPC</p>
+<p>cce-rpc</p>
+<p>RTL (Recognition Term Language)</p>
+<p>rtl</p>
+<p>GFRTU (Generative Fibered Relational Trace Universe)</p>
+<p>gfrtu</p>
+<p>The RDF profile answers the narrow question:</p>
+<p>Given canonical JSON artifacts (CDS cells, RTL judgments, CCE apply/merge results, RPC envelopes, repair logs), how are they represented as Linked Data (RDF/JSON‑LD), validated, and connected into provenance graphs?</p>
+<p>This profile is:</p>
+<p>Normative about:</p>
+<p>URI patterns for identifying artifacts.</p>
+<p>RDF classes and properties.</p>
+<p>JSON‑LD context(s) for embedding canonical JSON.</p>
+<p>Minimal validation constraints expressed as RDF shapes (e.g., SHACL).</p>
+<p>How closure evidence and repair logs are exposed as RDF provenance.</p>
+<p>Non‑normative about:</p>
+<p>The mathematics of GFRTUs.</p>
+<p>The operational semantics of CCE or RTL.</p>
+<p>The binary ABI layout or transport details of RPC.</p>
+<p>Semantics are fully determined by the base specifications; this profile MUST NOT redefine them or introduce new behavior.</p>
+<p>Canonical JSON and hashes remain the authoritative witness of structure and closure. RDF is a secondary projection, not a new canonical form.</p>
+<h2 id="1-conformance-and-dependencies">1. Conformance and Dependencies</h2>
+<p>The key words <strong>MUST</strong>, <strong>MUST NOT</strong>, <strong>SHOULD</strong>, and <strong>MAY</strong> follow RFC 2119 usage.</p>
+<p>A conforming implementation of this profile:</p>
+<p>Consumes and/or emits canonical JSON artifacts obeying:</p>
+<p>CDS §3–§6 for cells and structural state.</p>
+<p>cds</p>
+<p>RTL §2–§4 for judgments.</p>
+<p>rtl</p>
+<p>CCE §2–§8 for closure behavior and repair logs.</p>
+<p>cce</p>
+<p>CCE‑RPC §2–§6 for envelopes.</p>
+<p>cce-rpc</p>
+<p>Maps those artifacts to RDF using:</p>
+<p>The namespace and URI rules in §2–§3.</p>
+<p>The JSON‑LD context(s) in §4.</p>
+<p>The vocabulary in §5.</p>
+<p>Optionally validates RDF graphs using the shapes in §6.</p>
+<p>Optionally exposes provenance using PROV‑O as described in §7.</p>
+<p>This profile depends on the canonicalization and hashing discipline of CDS, RTL, and CCE; any RDF view that would change the canonical JSON bytes or the associated hashes is non‑conformant.</p>
+<h2 id="2-namespaces-and-prefixes">2. Namespaces and Prefixes</h2>
+<p>This profile uses the following RDF namespaces (example host; deployments MAY substitute their own base URIs but MUST preserve local names):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-turtle" data-lang="turtle"><span style="display:flex;"><span><span style="color:#66d9ef">@prefix</span> cds:   &lt;https://relationality.dev/ns/cds#&gt; .
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@prefix</span> rtl:   &lt;https://relationality.dev/ns/rtl#&gt; .
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@prefix</span> cce:   &lt;https://relationality.dev/ns/cce#&gt; .
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@prefix</span> rpc:   &lt;https://relationality.dev/ns/cce/rpc#&gt; .
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@prefix</span> gfrtu: &lt;https://relationality.dev/ns/gfrtu#&gt; .
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@prefix</span> prov:  &lt;http://www.w3.org/ns/prov#&gt; .
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@prefix</span> xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+</span></span></code></pre></div><p>Implementations SHOULD use these prefixes in human‑authored Turtle or SHACL, but the IRIs themselves are authoritative.</p>
+<h2 id="3-resource-identification">3. Resource Identification</h2>
+<h3 id="31-base-resource-categories">3.1 Base resource categories</h3>
+<p>This profile assigns URIs to the following categories:</p>
+<p>Cells and structural state</p>
+<p>CDS cells (structural or closure‑complete).</p>
+<p>Cell sites, objects, morphisms, sieves.</p>
+<p>Logical artifacts</p>
+<p>RTL judgments (canonicalized).</p>
+<p>rtl</p>
+<p>Closure executions and evidence</p>
+<p>CCE apply and merge results (RPC or ABI surface).</p>
+<p>Repair log entries.</p>
+<p>Transport envelopes</p>
+<p>RPC requests and responses.</p>
+<p>cce-rpc</p>
+<h3 id="32-uri-templates-informative-but-recommended">3.2 URI templates (informative, but recommended)</h3>
+<p>Given a deployment base URI <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> (e.g., <a href="https://relationality.dev/%29" class="link-external">https://relationality.dev/)</a>, the following URI templates SHOULD be used:</p>
+<p>CDS cells</p>
+<p>Bcell/{cds-id}</p>
+<p>where {cds-id} is the canonical SHA‑256 hex digest in cds.id and the filename stem.</p>
+<p>cds</p>
+<p>RTL judgments</p>
+<p>Brtl/{judgment-hash}</p>
+<p>where {judgment-hash} is the canonical SHA‑256 of the normalized RTL judgment.</p>
+<p>rtl</p>
+<p>CCE apply executions</p>
+<p>Bcce/apply/{rpc-id}</p>
+<p>where {rpc-id} is the id field in the RPC request/response pair.</p>
+<p>cce-rpc</p>
+<p>CCE merge executions</p>
+<p>Bcce/merge/{rpc-id}</p>
+<p>Repair log entries</p>
+<p>Bcce/apply/{rpc-id}/repair/{index}
+Bcce/merge/{rpc-id}/repair/{index}</p>
+<p>where {index} is the 0‑based index into the canonical JSON repair_log array for that execution.</p>
+<p>cce</p>
+<p>RPC requests and responses</p>
+<p>Brpc/request/{rpc-id}
+Brpc/response/{rpc-id}</p>
+<p>Deployments MAY choose different paths, but they MUST:</p>
+<p>use URIs that are stable over time, and</p>
+<p>maintain a deterministic mapping from the canonical JSON’s identifying hash(es) to the resource URI.</p>
+<h3 id="33-identity-relationship-between-hashes-and-uris">3.3 Identity relationship between hashes and URIs</h3>
+<p>For any CDS cell resource C:</p>
+<p>The subject URI of C MUST embed the same hash as cds:id.</p>
+<p>cds</p>
+<p>The RDF graph MUST include:</p>
+<p>C a cds:Cell ;
+cds:hash  &ldquo;f44702&hellip;&quot;^^xsd:hexBinary .</p>
+<p>For RTL judgments and CCE executions, an analogous property (rtl:hash, cce:executionHash) MUST be present and match the underlying canonical JSON.</p>
+<p>These hash properties are the RDF‑visible witness of the canonical JSON identity.</p>
+<h2 id="4-jsonld-contexts">4. JSON‑LD Contexts</h2>
+<h3 id="41-general-requirements">4.1 General requirements</h3>
+<p>A JSON‑LD context for this profile:</p>
+<p>MUST NOT change the underlying JSON key set or value order required by CDS, RTL, or CCE.</p>
+<p>MUST NOT introduce new keys into canonical JSON objects.</p>
+<p>MAY be applied by:</p>
+<p>wrapping the canonical JSON as a value of rdf:value or</p>
+<p>serving the canonical JSON with HTTP Link: rel=&ldquo;<a href="http://www.w3.org/ns/json-ld#context%22" class="link-external">http://www.w3.org/ns/json-ld#context"</a> headers.</p>
+<p>Implementations SHOULD keep a strict separation between:</p>
+<p>canonical JSON (for hashing and CCE admission), and</p>
+<p>JSON‑LD views (for RDF tooling and federation).</p>
+<h3 id="42-minimal-combined-context">4.2 Minimal combined context</h3>
+<p>The following context is a minimal normative mapping for the main artifacts. It is RECOMMENDED as <a href="https://relationality.dev/ns/gfrtu.context.jsonld" class="link-external">https://relationality.dev/ns/gfrtu.context.jsonld</a> (or equivalent host).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-jsonc" data-lang="jsonc"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;@context&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@version&#34;</span>: <span style="color:#ae81ff">1.1</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cds&#34;</span>:   <span style="color:#e6db74">&#34;https://relationality.dev/ns/cds#&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;rtl&#34;</span>:   <span style="color:#e6db74">&#34;https://relationality.dev/ns/rtl#&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cce&#34;</span>:   <span style="color:#e6db74">&#34;https://relationality.dev/ns/cce#&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;rpc&#34;</span>:   <span style="color:#e6db74">&#34;https://relationality.dev/ns/cce/rpc#&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;prov&#34;</span>:  <span style="color:#e6db74">&#34;http://www.w3.org/ns/prov#&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">/*</span> <span style="color:#960050;background-color:#1e0010">Generic</span> <span style="color:#960050;background-color:#1e0010">identity</span> <span style="color:#960050;background-color:#1e0010">*/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;id&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;cds:hash&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;xsd:hexBinary&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">/*</span> <span style="color:#960050;background-color:#1e0010">CDS</span> <span style="color:#960050;background-color:#1e0010">top-level</span> <span style="color:#960050;background-color:#1e0010">*/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;kind&#34;</span>:           <span style="color:#e6db74">&#34;cds:kind&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;site&#34;</span>:           <span style="color:#e6db74">&#34;cds:hasSite&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;fibers&#34;</span>:         <span style="color:#e6db74">&#34;cds:hasFibers&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;fixed_layer&#34;</span>:    <span style="color:#e6db74">&#34;cds:hasFixedLayer&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;rtl_signature&#34;</span>:  <span style="color:#e6db74">&#34;rtl:signature&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;structural_vocabulary&#34;</span>: <span style="color:#e6db74">&#34;cds:hasStructuralVocabulary&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;constructors&#34;</span>:   <span style="color:#e6db74">&#34;cds:hasConstructor&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;laws&#34;</span>:           <span style="color:#e6db74">&#34;cds:hasLaw&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;defining_expression&#34;</span>: <span style="color:#e6db74">&#34;cds:hasDefiningExpression&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;examples&#34;</span>:       <span style="color:#e6db74">&#34;cds:hasExample&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">/*</span> <span style="color:#960050;background-color:#1e0010">CDS</span> <span style="color:#960050;background-color:#1e0010">site</span> <span style="color:#960050;background-color:#1e0010">*/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;objects&#34;</span>:        <span style="color:#e6db74">&#34;cds:hasObject&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;morphisms&#34;</span>:      <span style="color:#e6db74">&#34;cds:hasMorphism&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;topology&#34;</span>:       <span style="color:#e6db74">&#34;cds:hasSieve&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;heyting_table&#34;</span>:  <span style="color:#e6db74">&#34;cds:heytingTable&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;carrier&#34;</span>:        <span style="color:#e6db74">&#34;cds:carrier&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">/*</span> <span style="color:#960050;background-color:#1e0010">RTL</span> <span style="color:#960050;background-color:#1e0010">*/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;context&#34;</span>:        <span style="color:#e6db74">&#34;rtl:context&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;term&#34;</span>:           <span style="color:#e6db74">&#34;rtl:term&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;type&#34;</span>:           <span style="color:#e6db74">&#34;rtl:type&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;op&#34;</span>:             <span style="color:#e6db74">&#34;rtl:operator&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;args&#34;</span>:           <span style="color:#e6db74">&#34;rtl:arg&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;variance&#34;</span>:       <span style="color:#e6db74">&#34;rtl:variance&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;admissible&#34;</span>:     <span style="color:#e6db74">&#34;rtl:admissible&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">/*</span> <span style="color:#960050;background-color:#1e0010">CCE</span> <span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">repair</span> <span style="color:#960050;background-color:#1e0010">logs</span> <span style="color:#960050;background-color:#1e0010">*/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;repair_log&#34;</span>:     <span style="color:#e6db74">&#34;cce:repairLog&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;code&#34;</span>:           <span style="color:#e6db74">&#34;cce:errorCode&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;before_hash&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;cce:beforeHash&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;xsd:hexBinary&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;after_hash&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;cce:afterHash&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;xsd:hexBinary&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;fuel_used&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;cce:fuelUsed&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;xsd:integer&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">/*</span> <span style="color:#960050;background-color:#1e0010">RPC</span> <span style="color:#960050;background-color:#1e0010">envelope</span> <span style="color:#960050;background-color:#1e0010">*/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;method&#34;</span>:         <span style="color:#e6db74">&#34;rpc:method&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;version&#34;</span>:        <span style="color:#e6db74">&#34;rpc:version&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;status&#34;</span>:         <span style="color:#e6db74">&#34;rpc:status&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;refined_cds&#34;</span>:    <span style="color:#e6db74">&#34;rpc:refinedCdsPayload&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;canonical_judgment&#34;</span>: <span style="color:#e6db74">&#34;rpc:canonicalJudgmentPayload&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;refined_cds_hash&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;cce:refinedCdsHash&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;xsd:hexBinary&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;rtl_judgment&#34;</span>:   <span style="color:#e6db74">&#34;rpc:rtlJudgmentPayload&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;fuel&#34;</span>:           <span style="color:#e6db74">&#34;cce:fuelBudget&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;prior_refined_cds&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;cce:priorHash&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;xsd:hexBinary&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;evidence&#34;</span>:       <span style="color:#e6db74">&#34;cce:evidenceHash&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="43-context-usage-patterns">4.3 Context usage patterns</h3>
+<p>Implementations SHOULD use one of:</p>
+<p>Header‑driven context
+Serve canonical JSON as‑is and attach this context via HTTP Link headers.</p>
+<p>Envelope context
+Wrap canonical JSON under an RDF resource that has both:</p>
+<p>rdf:value containing the canonical JSON as a string, and</p>
+<p>JSON‑LD keys mapped by this context.</p>
+<p>The second pattern is suitable when you need RDF triples and raw canonical JSON in the same representation.</p>
+<h2 id="5-rdf-vocabulary">5. RDF Vocabulary</h2>
+<p>This section defines the core classes and properties used in this profile. All definitions are interpretive projections of the base specs, not new semantics.</p>
+<h3 id="51-core-classes">5.1 Core classes</h3>
+<h4 id="511-cds-classes">5.1.1 CDS classes</h4>
+<p>cds:Cell</p>
+<p>A CDS serialization representing the structural state of a single local universe (cell) in a GFRTU. Corresponds to the JSON top‑level object with &ldquo;kind&rdquo;: &ldquo;cds&rdquo;.</p>
+<p>cds</p>
+<p>cds:Site</p>
+<p>The site component of a cell (cds:hasSite), encoding objects, morphisms, topology, and Heyting table.</p>
+<p>cds</p>
+<p>cds:Object</p>
+<p>A site object as it appears in site.objects[*].id.</p>
+<p>cds:Morphism</p>
+<p>A site morphism as it appears in site.morphisms[*].</p>
+<p>cds:Sieve</p>
+<p>A topology sieve, representing a covering family of morphisms.</p>
+<p>cds:RecognitionFiber</p>
+<p>The recognition fiber component under fibers.recognition.</p>
+<p>cds:FixedLayer</p>
+<p>The stabilized fixed layer under fixed_layer, interpreted as a subsheaf of the recognition sheaf.</p>
+<p>cds:Invariant</p>
+<p>An entry in laws.invariants[*], with severity and code.</p>
+<p>cds</p>
+<p>cds:Law</p>
+<p>The laws object as a whole.</p>
+<p>cds:RepairLogEntry</p>
+<p>A structural repair entry inside laws.repair_log. CCE also produces operational repair logs; both project to this class.</p>
+<h4 id="512-rtl-classes">5.1.2 RTL classes</h4>
+<p>rtl:Judgment</p>
+<p>A canonical RTL typing judgment (context, term, type).</p>
+<p>rtl</p>
+<p>rtl:Context</p>
+<p>The ordered list of bindings in a judgment context.</p>
+<p>rtl:Term</p>
+<p>The syntactic term component of a judgment.</p>
+<p>rtl:Type</p>
+<p>The type component of a judgment.</p>
+<p>rtl:Operator</p>
+<p>An operator declared in rtl_signature.constructors[*].</p>
+<h4 id="513-cce-and-rpc-classes">5.1.3 CCE and RPC classes</h4>
+<p>cce:ClosureExecution</p>
+<p>A single execution of the CCE closure operator (either apply or merge), paired with its input CDS/RTL and resulting refined CDS. This abstracts over ABI and RPC layers.</p>
+<p>cce:ApplyExecution</p>
+<p>A cce:ClosureExecution corresponding to an apply call.</p>
+<p>cce:MergeExecution</p>
+<p>A cce:ClosureExecution corresponding to a merge call.</p>
+<p>cce:RepairLogEntry</p>
+<p>A single step in the closure repair log, matching the JSON shape specified by CCE §8.</p>
+<p>cce</p>
+<p>cce:ErrorCode</p>
+<p>An error code from the CCE error surface (CCE_<em>, CDS_</em>, RTL_*).</p>
+<p>rpc:Request</p>
+<p>A CCE‑RPC request envelope.</p>
+<p>cce-rpc</p>
+<p>rpc:Response</p>
+<p>A CCE‑RPC response envelope.</p>
+<h3 id="52-key-properties">5.2 Key properties</h3>
+<h4 id="521-identity-and-typing">5.2.1 Identity and typing</h4>
+<p>cds:hash
 Datatype: xsd:hexBinary
-The canonical SHA‑256 hash of a CDS cell’s canonical JSON, equal to cds.id and the filename stem.</p><p>cds</p><p>rtl:hash
+The canonical SHA‑256 hash of a CDS cell’s canonical JSON, equal to cds.id and the filename stem.</p>
+<p>cds</p>
+<p>rtl:hash
 Datatype: xsd:hexBinary
-The canonical SHA‑256 hash of a normalized RTL judgment.</p><p>rtl</p><p>cce:executionHash
+The canonical SHA‑256 hash of a normalized RTL judgment.</p>
+<p>rtl</p>
+<p>cce:executionHash
 Datatype: xsd:hexBinary
-A hash for a particular CCE execution (e.g., over the canonical RPC request/response pair).</p><p>cds:kind
-Range values include &ldquo;cds&rdquo;. Mirrors the JSON &ldquo;kind&rdquo; field.</p><h4 id=522-structural-containment>5.2.2 Structural containment</h4><p>cds:hasSite
+A hash for a particular CCE execution (e.g., over the canonical RPC request/response pair).</p>
+<p>cds:kind
+Range values include &ldquo;cds&rdquo;. Mirrors the JSON &ldquo;kind&rdquo; field.</p>
+<h4 id="522-structural-containment">5.2.2 Structural containment</h4>
+<p>cds:hasSite
 Domain: cds:Cell
-Range: cds:Site</p><p>cds:hasFibers
+Range: cds:Site</p>
+<p>cds:hasFibers
 Domain: cds:Cell
-Range: cds:RecognitionFiber</p><p>cds:hasFixedLayer
+Range: cds:RecognitionFiber</p>
+<p>cds:hasFixedLayer
 Domain: cds:Cell
-Range: cds:FixedLayer</p><p>cds:hasStructuralVocabulary
-Domain: cds:Cell</p><p>cds:hasConstructor
-Domain: cds:Cell</p><p>cds:hasLaw
-Domain: cds:Cell</p><p>cds:hasDefiningExpression
-Domain: cds:Cell</p><p>cds:hasExample
-Domain: cds:Cell</p><h4 id=523-site-internals>5.2.3 Site internals</h4><p>cds:hasObject
+Range: cds:FixedLayer</p>
+<p>cds:hasStructuralVocabulary
+Domain: cds:Cell</p>
+<p>cds:hasConstructor
+Domain: cds:Cell</p>
+<p>cds:hasLaw
+Domain: cds:Cell</p>
+<p>cds:hasDefiningExpression
+Domain: cds:Cell</p>
+<p>cds:hasExample
+Domain: cds:Cell</p>
+<h4 id="523-site-internals">5.2.3 Site internals</h4>
+<p>cds:hasObject
 Domain: cds:Site
-Range: cds:Object</p><p>cds:hasMorphism
+Range: cds:Object</p>
+<p>cds:hasMorphism
 Domain: cds:Site
-Range: cds:Morphism</p><p>cds:hasSieve
+Range: cds:Morphism</p>
+<p>cds:hasSieve
 Domain: cds:Site
-Range: cds:Sieve</p><p>cds:heytingTable
-Domain: cds:Site</p><p>The heyting table entries themselves remain as canonical JSON and are not decomposed into triples unless a deployment chooses to.</p><h4 id=524-invariants-and-repairs>5.2.4 Invariants and repairs</h4><p>cds:hasInvariant
+Range: cds:Sieve</p>
+<p>cds:heytingTable
+Domain: cds:Site</p>
+<p>The heyting table entries themselves remain as canonical JSON and are not decomposed into triples unless a deployment chooses to.</p>
+<h4 id="524-invariants-and-repairs">5.2.4 Invariants and repairs</h4>
+<p>cds:hasInvariant
 Domain: cds:Cell
-Range: cds:Invariant</p><p>cds:severity
-Range: literals &ldquo;hard&rdquo;, &ldquo;repairable&rdquo;, etc.</p><p>cds:invariantCode
-Range: literal error code string.</p><p>cds:hasRepairLogEntry
+Range: cds:Invariant</p>
+<p>cds:severity
+Range: literals &ldquo;hard&rdquo;, &ldquo;repairable&rdquo;, etc.</p>
+<p>cds:invariantCode
+Range: literal error code string.</p>
+<p>cds:hasRepairLogEntry
 Domain: cds:Cell or cce:ClosureExecution
-Range: cds:RepairLogEntry / cce:RepairLogEntry</p><p>cce:errorCode
-Range: the textual error code string (CCE_<em>, CDS_</em>, RTL_*).</p><p>cce:beforeHash, cce:afterHash
+Range: cds:RepairLogEntry / cce:RepairLogEntry</p>
+<p>cce:errorCode
+Range: the textual error code string (CCE_<em>, CDS_</em>, RTL_*).</p>
+<p>cce:beforeHash, cce:afterHash
 Datatype: xsd:hexBinary
-The hashes before and after the repair step.</p><p>cce:fuelUsed
+The hashes before and after the repair step.</p>
+<p>cce:fuelUsed
 Datatype: xsd:integer
-Remaining fuel at the point of repair.</p><p>cce</p><h4 id=525-rtl-judgments>5.2.5 RTL judgments</h4><p>rtl:context
+Remaining fuel at the point of repair.</p>
+<p>cce</p>
+<h4 id="525-rtl-judgments">5.2.5 RTL judgments</h4>
+<p>rtl:context
 Domain: rtl:Judgment
-Range: list/collection of rtl:Context entries, preserving declaration order.</p><p>rtl</p><p>rtl:term
+Range: list/collection of rtl:Context entries, preserving declaration order.</p>
+<p>rtl</p>
+<p>rtl:term
 Domain: rtl:Judgment
-Range: rtl:Term</p><p>rtl:type
+Range: rtl:Term</p>
+<p>rtl:type
 Domain: rtl:Judgment
-Range: rtl:Type</p><p>rtl:operator, rtl:arg, rtl:variance, rtl:admissible
-Project operator declarations and applications from JSON.</p><h4 id=526-cce-executions-and-rpc-envelopes>5.2.6 CCE executions and RPC envelopes</h4><p>cce:hasInputCell
+Range: rtl:Type</p>
+<p>rtl:operator, rtl:arg, rtl:variance, rtl:admissible
+Project operator declarations and applications from JSON.</p>
+<h4 id="526-cce-executions-and-rpc-envelopes">5.2.6 CCE executions and RPC envelopes</h4>
+<p>cce:hasInputCell
 Domain: cce:ClosureExecution
-Range: cds:Cell (structural input).</p><p>cce:hasInputJudgment
+Range: cds:Cell (structural input).</p>
+<p>cce:hasInputJudgment
 Domain: cce:ApplyExecution
-Range: rtl:Judgment</p><p>cce:hasOutputCell
+Range: rtl:Judgment</p>
+<p>cce:hasOutputCell
 Domain: cce:ClosureExecution
-Range: cds:Cell (refined CDS).</p><p>cce:repairLog
+Range: cds:Cell (refined CDS).</p>
+<p>cce:repairLog
 Domain: cce:ClosureExecution
-Range: list of cce:RepairLogEntry.</p><p>cce:fuelBudget
+Range: list of cce:RepairLogEntry.</p>
+<p>cce:fuelBudget
 Domain: cce:ClosureExecution
-Datatype: xsd:integer (fuel bound actually used).</p><p>cce:priorHash
+Datatype: xsd:integer (fuel bound actually used).</p>
+<p>cce:priorHash
 Domain: cce:ClosureExecution
-Datatype: xsd:hexBinary; corresponds to prior_refined_cds in RPC.</p><p>cce-rpc</p><p>rpc:method, rpc:status, rpc:version
-Properties echoing RPC envelope fields.</p><p>rpc:refinedCdsPayload, rpc:canonicalJudgmentPayload, rpc:rtlJudgmentPayload
-These properties hold canonical JSON payloads (or base64 encodings) as RDF literal values; they are not re‑serialized JSON from RDF.</p><h2 id=6-shapes-and-validation-shacl>6. Shapes and Validation (SHACL)</h2><p>This section sketches minimal SHACL shapes that reflect MUST‑level constraints from the base specs at the RDF level. Implementations MAY extend these shapes.</p><h3 id=61-cdscell-shape>6.1 cds:Cell shape</h3><p>Intent: Every cell must have a site, fibers, fixed layer, RTL signature, structural vocabulary, constructors, and laws.</p><p>cds</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-turtle data-lang=turtle><span style=display:flex><span>cds:<span style=color:#f92672>CellShape</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>a</span> sh:<span style=color:#f92672>NodeShape</span> ;
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>targetClass</span> cds:<span style=color:#f92672>Cell</span> ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cds:<span style=color:#f92672>hash</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>datatype</span> xsd:<span style=color:#f92672>hexBinary</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cds:<span style=color:#f92672>hasSite</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>class</span> cds:<span style=color:#f92672>Site</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cds:<span style=color:#f92672>hasFibers</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cds:<span style=color:#f92672>hasFixedLayer</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>class</span> cds:<span style=color:#f92672>FixedLayer</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cds:<span style=color:#f92672>hasLaw</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cds:<span style=color:#f92672>hasConstructor</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>0</span> ;
-</span></span><span style=display:flex><span>  ] .
-</span></span></code></pre></div><h3 id=62-cdsrepairlogentry-shape>6.2 cds:RepairLogEntry shape</h3><p>Intent: Every repair log entry must carry code, before/after hashes, and fuel.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-turtle data-lang=turtle><span style=display:flex><span>cce:<span style=color:#f92672>RepairLogEntryShape</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>a</span> sh:<span style=color:#f92672>NodeShape</span> ;
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>targetClass</span> cce:<span style=color:#f92672>RepairLogEntry</span> ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cce:<span style=color:#f92672>errorCode</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>datatype</span> xsd:<span style=color:#f92672>string</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cce:<span style=color:#f92672>beforeHash</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>datatype</span> xsd:<span style=color:#f92672>hexBinary</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cce:<span style=color:#f92672>afterHash</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>datatype</span> xsd:<span style=color:#f92672>hexBinary</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>differentValues</span> ( cce:<span style=color:#f92672>beforeHash</span> ) ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cce:<span style=color:#f92672>fuelUsed</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>datatype</span> xsd:<span style=color:#f92672>integer</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] .
-</span></span></code></pre></div><h3 id=63-rtljudgment-shape>6.3 rtl:Judgment shape</h3><p>Intent: Canonical judgments must have context, term, type, and no unknown fields.</p><p>rtl</p><p>At the RDF level we enforce presence; JSON‑level unknown‑field rejection remains in the RTL spec.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-turtle data-lang=turtle><span style=display:flex><span>rtl:<span style=color:#f92672>JudgmentShape</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>a</span> sh:<span style=color:#f92672>NodeShape</span> ;
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>targetClass</span> rtl:<span style=color:#f92672>Judgment</span> ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> rtl:<span style=color:#f92672>context</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> rtl:<span style=color:#f92672>term</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> rtl:<span style=color:#f92672>type</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] .
-</span></span></code></pre></div><h3 id=64-cceclosureexecution-shape>6.4 cce:ClosureExecution shape</h3><p>Intent: Each closure execution must link input(s), output (on success), error code (if any), and repair log.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-turtle data-lang=turtle><span style=display:flex><span>cce:<span style=color:#f92672>ClosureExecutionShape</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>a</span> sh:<span style=color:#f92672>NodeShape</span> ;
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>targetClass</span> cce:<span style=color:#f92672>ClosureExecution</span> ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cce:<span style=color:#f92672>hasInputCell</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>class</span> cds:<span style=color:#f92672>Cell</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cce:<span style=color:#f92672>hasOutputCell</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>class</span> cds:<span style=color:#f92672>Cell</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>0</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cce:<span style=color:#f92672>errorCode</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>0</span> ; sh:<span style=color:#f92672>maxCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  sh:<span style=color:#f92672>property</span> [
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>path</span> cce:<span style=color:#f92672>repairLog</span> ;
-</span></span><span style=display:flex><span>    sh:<span style=color:#f92672>minCount</span> <span style=color:#ae81ff>1</span> ;
-</span></span><span style=display:flex><span>  ] .
-</span></span></code></pre></div><p>Deployments SHOULD apply these shapes in CI or ingestion pipelines to ensure RDF graphs remain consistent with the underlying canonical JSON artifacts.</p><h2 id=7-provenance-and-evidence-graphs>7. Provenance and Evidence Graphs</h2><p>CCE and CCE‑RPC already define transcripts and repair logs as evidence for closure. This section specifies how to project them into the PROV‑O vocabulary.</p><h3 id=71-basic-mapping>7.1 Basic mapping</h3><p>For each closure execution:</p><p>Let <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span> be the cce:ClosureExecution resource.</p><p>Let <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext>in</mtext></msub></mrow><annotation encoding="application/x-tex">C_{\text{in}}</annotation></semantics></math></span> be the input cds:Cell.</p><p>Let <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext>out</mtext></msub></mrow><annotation encoding="application/x-tex">C_{\text{out}}</annotation></semantics></math></span> be the refined output cds:Cell (when present).</p><p>We define:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-turtle data-lang=turtle><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>E</span> <span style=color:#66d9ef>a</span> cce:<span style=color:#f92672>ClosureExecution</span>, prov:<span style=color:#f92672>Activity</span> ;
-</span></span><span style=display:flex><span>  prov:<span style=color:#f92672>used</span> <span style=color:#960050;background-color:#1e0010>C_in</span> ;
-</span></span><span style=display:flex><span>  prov:<span style=color:#f92672>generated</span> <span style=color:#960050;background-color:#1e0010>C_out</span> .
-</span></span></code></pre></div><p>For each repair log entry <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">R_i</annotation></semantics></math></span> related to <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-turtle data-lang=turtle><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>R_i</span> <span style=color:#66d9ef>a</span> cce:<span style=color:#f92672>RepairLogEntry</span>, prov:<span style=color:#f92672>Entity</span> ;
-</span></span><span style=display:flex><span>  cce:<span style=color:#f92672>errorCode</span>  <span style=color:#e6db74>&#34;CCE_INV_SIGMA_DELTA_CLOSED&#34;</span> ;
-</span></span><span style=display:flex><span>  cce:<span style=color:#f92672>beforeHash</span> <span style=color:#e6db74>&#34;abcd...&#34;</span><span style=color:#f92672>^^</span><span style=font-style:italic>xsd:hexBinary</span> ;
-</span></span><span style=display:flex><span>  cce:<span style=color:#f92672>afterHash</span>  <span style=color:#e6db74>&#34;ef01...&#34;</span><span style=color:#f92672>^^</span><span style=font-style:italic>xsd:hexBinary</span> ;
-</span></span><span style=display:flex><span>  cce:<span style=color:#f92672>fuelUsed</span>   <span style=color:#ae81ff>12</span> ;
-</span></span><span style=display:flex><span>  prov:<span style=color:#f92672>wasGeneratedBy</span> <span style=color:#960050;background-color:#1e0010>E</span> ;
-</span></span><span style=display:flex><span>  prov:<span style=color:#f92672>specializationOf</span> <span style=color:#960050;background-color:#1e0010>C_out</span> .
-</span></span></code></pre></div><p>If the execution ended in error:</p><p>E still exists as a prov:Activity.</p><p><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext>out</mtext></msub></mrow><annotation encoding="application/x-tex">C_{\text{out}}</annotation></semantics></math></span> may be absent; repair log entries are still prov:Entity instances linking back to <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span>.</p><h3 id=72-rpc-transcript-mapping>7.2 RPC transcript mapping</h3><p>CCE‑RPC requires logging canonical request/response pairs and their hashes.</p><p>cce-rpc</p><p>For each RPC request Req and response Res:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-turtle data-lang=turtle><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>Req</span> <span style=color:#66d9ef>a</span> rpc:<span style=color:#f92672>Request</span>, prov:<span style=color:#f92672>Entity</span> ;
-</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>Res</span> <span style=color:#66d9ef>a</span> rpc:<span style=color:#f92672>Response</span>, prov:<span style=color:#f92672>Entity</span> ;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>E</span>  prov:<span style=color:#f92672>used</span> <span style=color:#960050;background-color:#1e0010>Req</span> ;
-</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>E</span>  prov:<span style=color:#f92672>generated</span> <span style=color:#960050;background-color:#1e0010>Res</span> .
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>Req</span> rpc:<span style=color:#f92672>method</span> <span style=color:#e6db74>&#34;apply&#34;</span> ;
-</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>Res</span> cce:<span style=color:#f92672>refinedCdsHash</span> <span style=color:#e6db74>&#34;f447...&#34;</span><span style=color:#f92672>^^</span><span style=font-style:italic>xsd:hexBinary</span> .
-</span></span></code></pre></div><p>An implementation MAY also:</p><ul><li>attach transport‑level status (HTTP 400, gRPC codes) via PROV attributes,</li><li>treat the ABI‑level CceResult as an intermediate prov:Entity.</li></ul><h3 id=73-replay-and-audit>7.3 Replay and audit</h3><p>A provenance‑aware auditor MUST be able to:</p><ul><li>Start from a cce:ClosureExecution resource <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span>.</li><li>Follow prov:used to obtain the input cell and judgment.</li><li>Follow prov:generated and cce:hasOutputCell to obtain the result cell.</li><li>Enumerate cce:repairLog entries and reconstruct the same sequence of hashes and fuel counters.</li></ul><p>If any reconstructed canonical JSON differs from the hash values recorded in RDF, the evidence is invalid.</p><h2 id=8-application-profiles-informative>8. Application Profiles (Informative)</h2><p>This section is non‑normative and sketches how this profile plugs into external ecosystems.</p><h3 id=81-activitypub-and-activitystreams>8.1 ActivityPub and ActivityStreams</h3><p>For federated systems (e.g., Mastodon‑like servers):</p><ul><li>Treat cds:Cell, rtl:Judgment, and cce:ClosureExecution as as:Object instances.</li><li>Include <code>@context</code> referencing this profile alongside the ActivityStreams context.</li><li>Use the URI templates in §3.2 for <code>id</code> fields.</li></ul><p>Example (simplified):</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-jsonc data-lang=jsonc><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;@context&#34;</span>: [
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://www.w3.org/ns/activitystreams&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://relationality.dev/ns/gfrtu.context.jsonld&#34;</span>
-</span></span><span style=display:flex><span>  ],
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;https://relationality.dev/cell/f44702...&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;type&#34;</span>: [<span style=color:#e6db74>&#34;Object&#34;</span>, <span style=color:#e6db74>&#34;cds:Cell&#34;</span>],
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;site&#34;</span>: { <span style=color:#f92672>&#34;... canonical CDS site JSON ...&#34;</span> },
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;fixed_layer&#34;</span>: { <span style=color:#f92672>&#34;... &#34;</span> }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=82-indieweb--microformats>8.2 IndieWeb / Microformats</h3><p>Deployments MAY embed canonical JSON (with the RDF context) in HTML pages, using:</p><ul><li><code>&lt;script type="application/ld+json"></code> blocks for the CDS/CCE artifacts.</li><li>Microformats or h‑entry markup for human‑centric metadata.</li></ul><h3 id=83-openapi-and-jsonfirst-apis>8.3 OpenAPI and JSON‑first APIs</h3><p>REST or OpenAPI APIs SHOULD:</p><ul><li>describe CDS, RTL, and CCE‑RPC request/response bodies as canonical JSON schemas; and</li><li>refer to the JSON‑LD context URI in descriptions, enabling clients to turn responses into RDF when needed.</li></ul><p>An endpoint returning a CCE‑RPC response could advertise:</p><ul><li>Response content type: <code>application/json</code></li><li>Optional <code>Link</code> header: <code>rel="http://www.w3.org/ns/json-ld#context"</code> pointing to the profile context.</li></ul><h2 id=9-determinism-and-canonicalization-obligations>9. Determinism and Canonicalization Obligations</h2><p>To remain faithful to the base specifications, any RDF‑aware implementation MUST obey the following constraints:</p><p><strong>Canonical JSON is primary.</strong>
-The canonical JSON defined by CDS, RTL, CCE, and CCE‑RPC remains the single source of truth for structure and hashing. RDF graphs are projections; they are not re‑canonicalizations.</p><p><strong>No JSON rewriting.</strong>
-When producing RDF, implementations MUST NOT:</p><ul><li>pretty‑print canonical JSON,</li><li>re‑order keys,</li><li>drop fields, or</li><li>otherwise mutate the bytes whose hash is recorded in cds:hash, rtl:hash, or cce:refinedCdsHash.</li></ul><p><strong>Hash consistency.</strong>
-If an RDF graph exposes a cds:hash or cce:refinedCdsHash, the implementation MUST be able to reconstruct the underlying canonical JSON whose SHA‑256 is that hash.</p><p><strong>Order preservation where required.</strong>
-Arrays that are semantically ordered in the base specs (e.g., context bindings, constructor lists, repair logs) MUST maintain that order in any RDF list/collection representation.</p><p><strong>No new semantics.</strong>
-RDF inference (e.g., RDFS/OWL reasoning) MUST NOT introduce new closure behavior. Any inferred triples are purely descriptive and MUST NOT feed back into CCE admission or closure algorithms.</p><p><strong>Interoperability with transcripts.</strong>
-Transcript and provenance obligations from CCE‑ABI and CCE‑RPC remain in force; RDF projections are an additional, not alternative, way to expose them.</p><h2 id=10-implementation-checklist>10. Implementation Checklist</h2><p>A binding claiming conformance to this RDF profile MUST provide:</p><p><strong>Namespace support</strong>
-IRIs for the cds:, rtl:, cce:, and rpc: vocabularies.</p><p><strong>JSON‑LD support</strong>
-Ability to:</p><ul><li>attach the provided context(s) to canonical JSON, and</li><li>obtain RDF triples consistent with this spec.</li></ul><p><strong>Hash consistency checks</strong>
-A test verifying that cds:hash, rtl:hash, cce:refinedCdsHash, and related properties match the canonical JSON.</p><p><strong>Shape validation (optional but recommended)</strong>
-SHACL or equivalent validation for:</p><ul><li>cds:CellShape,</li><li>cce:RepairLogEntryShape,</li><li>rtl:JudgmentShape,</li><li>cce:ClosureExecutionShape.</li></ul><p><strong>Provenance exposure (optional but recommended)</strong>
-Projection of closure executions and repair logs into PROV‑O according to §7, with a demonstration that transcripts can be replayed.</p></div></article></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+Datatype: xsd:hexBinary; corresponds to prior_refined_cds in RPC.</p>
+<p>cce-rpc</p>
+<p>rpc:method, rpc:status, rpc:version
+Properties echoing RPC envelope fields.</p>
+<p>rpc:refinedCdsPayload, rpc:canonicalJudgmentPayload, rpc:rtlJudgmentPayload
+These properties hold canonical JSON payloads (or base64 encodings) as RDF literal values; they are not re‑serialized JSON from RDF.</p>
+<h2 id="6-shapes-and-validation-shacl">6. Shapes and Validation (SHACL)</h2>
+<p>This section sketches minimal SHACL shapes that reflect MUST‑level constraints from the base specs at the RDF level. Implementations MAY extend these shapes.</p>
+<h3 id="61-cdscell-shape">6.1 cds:Cell shape</h3>
+<p>Intent: Every cell must have a site, fibers, fixed layer, RTL signature, structural vocabulary, constructors, and laws.</p>
+<p>cds</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-turtle" data-lang="turtle"><span style="display:flex;"><span>cds:<span style="color:#f92672">CellShape</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">a</span> sh:<span style="color:#f92672">NodeShape</span> ;
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">targetClass</span> cds:<span style="color:#f92672">Cell</span> ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cds:<span style="color:#f92672">hash</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">datatype</span> xsd:<span style="color:#f92672">hexBinary</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cds:<span style="color:#f92672">hasSite</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">class</span> cds:<span style="color:#f92672">Site</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cds:<span style="color:#f92672">hasFibers</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cds:<span style="color:#f92672">hasFixedLayer</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">class</span> cds:<span style="color:#f92672">FixedLayer</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cds:<span style="color:#f92672">hasLaw</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cds:<span style="color:#f92672">hasConstructor</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">0</span> ;
+</span></span><span style="display:flex;"><span>  ] .
+</span></span></code></pre></div><h3 id="62-cdsrepairlogentry-shape">6.2 cds:RepairLogEntry shape</h3>
+<p>Intent: Every repair log entry must carry code, before/after hashes, and fuel.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-turtle" data-lang="turtle"><span style="display:flex;"><span>cce:<span style="color:#f92672">RepairLogEntryShape</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">a</span> sh:<span style="color:#f92672">NodeShape</span> ;
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">targetClass</span> cce:<span style="color:#f92672">RepairLogEntry</span> ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cce:<span style="color:#f92672">errorCode</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">datatype</span> xsd:<span style="color:#f92672">string</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cce:<span style="color:#f92672">beforeHash</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">datatype</span> xsd:<span style="color:#f92672">hexBinary</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cce:<span style="color:#f92672">afterHash</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">datatype</span> xsd:<span style="color:#f92672">hexBinary</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">differentValues</span> ( cce:<span style="color:#f92672">beforeHash</span> ) ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cce:<span style="color:#f92672">fuelUsed</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">datatype</span> xsd:<span style="color:#f92672">integer</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] .
+</span></span></code></pre></div><h3 id="63-rtljudgment-shape">6.3 rtl:Judgment shape</h3>
+<p>Intent: Canonical judgments must have context, term, type, and no unknown fields.</p>
+<p>rtl</p>
+<p>At the RDF level we enforce presence; JSON‑level unknown‑field rejection remains in the RTL spec.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-turtle" data-lang="turtle"><span style="display:flex;"><span>rtl:<span style="color:#f92672">JudgmentShape</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">a</span> sh:<span style="color:#f92672">NodeShape</span> ;
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">targetClass</span> rtl:<span style="color:#f92672">Judgment</span> ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> rtl:<span style="color:#f92672">context</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> rtl:<span style="color:#f92672">term</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> rtl:<span style="color:#f92672">type</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] .
+</span></span></code></pre></div><h3 id="64-cceclosureexecution-shape">6.4 cce:ClosureExecution shape</h3>
+<p>Intent: Each closure execution must link input(s), output (on success), error code (if any), and repair log.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-turtle" data-lang="turtle"><span style="display:flex;"><span>cce:<span style="color:#f92672">ClosureExecutionShape</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">a</span> sh:<span style="color:#f92672">NodeShape</span> ;
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">targetClass</span> cce:<span style="color:#f92672">ClosureExecution</span> ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cce:<span style="color:#f92672">hasInputCell</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">class</span> cds:<span style="color:#f92672">Cell</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cce:<span style="color:#f92672">hasOutputCell</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">class</span> cds:<span style="color:#f92672">Cell</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">0</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cce:<span style="color:#f92672">errorCode</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">0</span> ; sh:<span style="color:#f92672">maxCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sh:<span style="color:#f92672">property</span> [
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">path</span> cce:<span style="color:#f92672">repairLog</span> ;
+</span></span><span style="display:flex;"><span>    sh:<span style="color:#f92672">minCount</span> <span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  ] .
+</span></span></code></pre></div><p>Deployments SHOULD apply these shapes in CI or ingestion pipelines to ensure RDF graphs remain consistent with the underlying canonical JSON artifacts.</p>
+<h2 id="7-provenance-and-evidence-graphs">7. Provenance and Evidence Graphs</h2>
+<p>CCE and CCE‑RPC already define transcripts and repair logs as evidence for closure. This section specifies how to project them into the PROV‑O vocabulary.</p>
+<h3 id="71-basic-mapping">7.1 Basic mapping</h3>
+<p>For each closure execution:</p>
+<p>Let <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span> be the cce:ClosureExecution resource.</p>
+<p>Let <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext>in</mtext></msub></mrow><annotation encoding="application/x-tex">C_{\text{in}}</annotation></semantics></math></span> be the input cds:Cell.</p>
+<p>Let <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext>out</mtext></msub></mrow><annotation encoding="application/x-tex">C_{\text{out}}</annotation></semantics></math></span> be the refined output cds:Cell (when present).</p>
+<p>We define:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-turtle" data-lang="turtle"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">E</span> <span style="color:#66d9ef">a</span> cce:<span style="color:#f92672">ClosureExecution</span>, prov:<span style="color:#f92672">Activity</span> ;
+</span></span><span style="display:flex;"><span>  prov:<span style="color:#f92672">used</span> <span style="color:#960050;background-color:#1e0010">C_in</span> ;
+</span></span><span style="display:flex;"><span>  prov:<span style="color:#f92672">generated</span> <span style="color:#960050;background-color:#1e0010">C_out</span> .
+</span></span></code></pre></div><p>For each repair log entry <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">R_i</annotation></semantics></math></span> related to <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-turtle" data-lang="turtle"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">R_i</span> <span style="color:#66d9ef">a</span> cce:<span style="color:#f92672">RepairLogEntry</span>, prov:<span style="color:#f92672">Entity</span> ;
+</span></span><span style="display:flex;"><span>  cce:<span style="color:#f92672">errorCode</span>  <span style="color:#e6db74">&#34;CCE_INV_SIGMA_DELTA_CLOSED&#34;</span> ;
+</span></span><span style="display:flex;"><span>  cce:<span style="color:#f92672">beforeHash</span> <span style="color:#e6db74">&#34;abcd...&#34;</span><span style="color:#f92672">^^</span><span style="font-style:italic">xsd:hexBinary</span> ;
+</span></span><span style="display:flex;"><span>  cce:<span style="color:#f92672">afterHash</span>  <span style="color:#e6db74">&#34;ef01...&#34;</span><span style="color:#f92672">^^</span><span style="font-style:italic">xsd:hexBinary</span> ;
+</span></span><span style="display:flex;"><span>  cce:<span style="color:#f92672">fuelUsed</span>   <span style="color:#ae81ff">12</span> ;
+</span></span><span style="display:flex;"><span>  prov:<span style="color:#f92672">wasGeneratedBy</span> <span style="color:#960050;background-color:#1e0010">E</span> ;
+</span></span><span style="display:flex;"><span>  prov:<span style="color:#f92672">specializationOf</span> <span style="color:#960050;background-color:#1e0010">C_out</span> .
+</span></span></code></pre></div><p>If the execution ended in error:</p>
+<p>E still exists as a prov:Activity.</p>
+<p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext>out</mtext></msub></mrow><annotation encoding="application/x-tex">C_{\text{out}}</annotation></semantics></math></span> may be absent; repair log entries are still prov:Entity instances linking back to <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span>.</p>
+<h3 id="72-rpc-transcript-mapping">7.2 RPC transcript mapping</h3>
+<p>CCE‑RPC requires logging canonical request/response pairs and their hashes.</p>
+<p>cce-rpc</p>
+<p>For each RPC request Req and response Res:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-turtle" data-lang="turtle"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Req</span> <span style="color:#66d9ef">a</span> rpc:<span style="color:#f92672">Request</span>, prov:<span style="color:#f92672">Entity</span> ;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Res</span> <span style="color:#66d9ef">a</span> rpc:<span style="color:#f92672">Response</span>, prov:<span style="color:#f92672">Entity</span> ;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">E</span>  prov:<span style="color:#f92672">used</span> <span style="color:#960050;background-color:#1e0010">Req</span> ;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">E</span>  prov:<span style="color:#f92672">generated</span> <span style="color:#960050;background-color:#1e0010">Res</span> .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Req</span> rpc:<span style="color:#f92672">method</span> <span style="color:#e6db74">&#34;apply&#34;</span> ;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Res</span> cce:<span style="color:#f92672">refinedCdsHash</span> <span style="color:#e6db74">&#34;f447...&#34;</span><span style="color:#f92672">^^</span><span style="font-style:italic">xsd:hexBinary</span> .
+</span></span></code></pre></div><p>An implementation MAY also:</p>
+<ul>
+<li>attach transport‑level status (HTTP 400, gRPC codes) via PROV attributes,</li>
+<li>treat the ABI‑level CceResult as an intermediate prov:Entity.</li>
+</ul>
+<h3 id="73-replay-and-audit">7.3 Replay and audit</h3>
+<p>A provenance‑aware auditor MUST be able to:</p>
+<ul>
+<li>Start from a cce:ClosureExecution resource <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span>.</li>
+<li>Follow prov:used to obtain the input cell and judgment.</li>
+<li>Follow prov:generated and cce:hasOutputCell to obtain the result cell.</li>
+<li>Enumerate cce:repairLog entries and reconstruct the same sequence of hashes and fuel counters.</li>
+</ul>
+<p>If any reconstructed canonical JSON differs from the hash values recorded in RDF, the evidence is invalid.</p>
+<h2 id="8-application-profiles-informative">8. Application Profiles (Informative)</h2>
+<p>This section is non‑normative and sketches how this profile plugs into external ecosystems.</p>
+<h3 id="81-activitypub-and-activitystreams">8.1 ActivityPub and ActivityStreams</h3>
+<p>For federated systems (e.g., Mastodon‑like servers):</p>
+<ul>
+<li>Treat cds:Cell, rtl:Judgment, and cce:ClosureExecution as as:Object instances.</li>
+<li>Include <code>@context</code> referencing this profile alongside the ActivityStreams context.</li>
+<li>Use the URI templates in §3.2 for <code>id</code> fields.</li>
+</ul>
+<p>Example (simplified):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-jsonc" data-lang="jsonc"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;@context&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;https://www.w3.org/ns/activitystreams&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;https://relationality.dev/ns/gfrtu.context.jsonld&#34;</span>
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;https://relationality.dev/cell/f44702...&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;type&#34;</span>: [<span style="color:#e6db74">&#34;Object&#34;</span>, <span style="color:#e6db74">&#34;cds:Cell&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;site&#34;</span>: { <span style="color:#f92672">&#34;... canonical CDS site JSON ...&#34;</span> },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;fixed_layer&#34;</span>: { <span style="color:#f92672">&#34;... &#34;</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="82-indieweb--microformats">8.2 IndieWeb / Microformats</h3>
+<p>Deployments MAY embed canonical JSON (with the RDF context) in HTML pages, using:</p>
+<ul>
+<li><code>&lt;script type=&quot;application/ld+json&quot;&gt;</code> blocks for the CDS/CCE artifacts.</li>
+<li>Microformats or h‑entry markup for human‑centric metadata.</li>
+</ul>
+<h3 id="83-openapi-and-jsonfirst-apis">8.3 OpenAPI and JSON‑first APIs</h3>
+<p>REST or OpenAPI APIs SHOULD:</p>
+<ul>
+<li>describe CDS, RTL, and CCE‑RPC request/response bodies as canonical JSON schemas; and</li>
+<li>refer to the JSON‑LD context URI in descriptions, enabling clients to turn responses into RDF when needed.</li>
+</ul>
+<p>An endpoint returning a CCE‑RPC response could advertise:</p>
+<ul>
+<li>Response content type: <code>application/json</code></li>
+<li>Optional <code>Link</code> header: <code>rel=&quot;http://www.w3.org/ns/json-ld#context&quot;</code> pointing to the profile context.</li>
+</ul>
+<h2 id="9-determinism-and-canonicalization-obligations">9. Determinism and Canonicalization Obligations</h2>
+<p>To remain faithful to the base specifications, any RDF‑aware implementation MUST obey the following constraints:</p>
+<p><strong>Canonical JSON is primary.</strong>
+The canonical JSON defined by CDS, RTL, CCE, and CCE‑RPC remains the single source of truth for structure and hashing. RDF graphs are projections; they are not re‑canonicalizations.</p>
+<p><strong>No JSON rewriting.</strong>
+When producing RDF, implementations MUST NOT:</p>
+<ul>
+<li>pretty‑print canonical JSON,</li>
+<li>re‑order keys,</li>
+<li>drop fields, or</li>
+<li>otherwise mutate the bytes whose hash is recorded in cds:hash, rtl:hash, or cce:refinedCdsHash.</li>
+</ul>
+<p><strong>Hash consistency.</strong>
+If an RDF graph exposes a cds:hash or cce:refinedCdsHash, the implementation MUST be able to reconstruct the underlying canonical JSON whose SHA‑256 is that hash.</p>
+<p><strong>Order preservation where required.</strong>
+Arrays that are semantically ordered in the base specs (e.g., context bindings, constructor lists, repair logs) MUST maintain that order in any RDF list/collection representation.</p>
+<p><strong>No new semantics.</strong>
+RDF inference (e.g., RDFS/OWL reasoning) MUST NOT introduce new closure behavior. Any inferred triples are purely descriptive and MUST NOT feed back into CCE admission or closure algorithms.</p>
+<p><strong>Interoperability with transcripts.</strong>
+Transcript and provenance obligations from CCE‑ABI and CCE‑RPC remain in force; RDF projections are an additional, not alternative, way to expose them.</p>
+<h2 id="10-implementation-checklist">10. Implementation Checklist</h2>
+<p>A binding claiming conformance to this RDF profile MUST provide:</p>
+<p><strong>Namespace support</strong>
+IRIs for the cds:, rtl:, cce:, and rpc: vocabularies.</p>
+<p><strong>JSON‑LD support</strong>
+Ability to:</p>
+<ul>
+<li>attach the provided context(s) to canonical JSON, and</li>
+<li>obtain RDF triples consistent with this spec.</li>
+</ul>
+<p><strong>Hash consistency checks</strong>
+A test verifying that cds:hash, rtl:hash, cce:refinedCdsHash, and related properties match the canonical JSON.</p>
+<p><strong>Shape validation (optional but recommended)</strong>
+SHACL or equivalent validation for:</p>
+<ul>
+<li>cds:CellShape,</li>
+<li>cce:RepairLogEntryShape,</li>
+<li>rtl:JudgmentShape,</li>
+<li>cce:ClosureExecutionShape.</li>
+</ul>
+<p><strong>Provenance exposure (optional but recommended)</strong>
+Projection of closure executions and repair logs into PROV‑O according to §7, with a demonstration that transcripts can be replayed.</p>
+
+  </div>
+  
+  
+</article>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,16 +1,243 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Git as Provenance Structure - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"LearningResource","author":{"@type":"Person","name":"claude-opus-4-6"},"dateModified":"2026-03-01","datePublished":"2026-03-01","description":"Git is a version control system. It is also, read differently, a provenance structure: an immutable record of what was done, when, by whom, and building on what prior work. This lesson reads git\u0026rsquo;s data model through that lens, connecting its design to the formal concept of provenance in the Interactive Semioverse.\nGit\u0026rsquo;s data model Git stores four kinds of objects, all content-addressed (identified by cryptographic hash) [@chacon_ProGit_2014]:\nBlob: the contents of a single file at a single point in time. Tree: a directory listing — maps names to blobs or other trees. Commit: a snapshot of the entire repository (a tree), plus metadata: author, timestamp, message, and pointers to parent commits. Tag: a named reference to a specific commit. Every commit points to one or more parent commits, forming a directed acyclic graph (DAG) [@spinellis_GitVersion_2012]. The DAG is append-only: you can add new commits, but existing commits are immutable. Their hashes depend on their content, their parents\u0026rsquo; hashes, and their metadata — change any of these and you get a different object.\n","keywords":"VersionControl, Semiotics","name":"Git as Provenance Structure","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"teaches":[{"@type":"DefinedTerm","name":"Git as Provenance Structure"}],"url":"https://emsenn.net/library/tech/domains/computing/domains/software/domains/git/texts/git-as-provenance-structure/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Git as Provenance Structure</h1><div class=meta><time class=dt-published datetime=2026-03-01T00:00:00Z>2026-03-01</time>
-<span>by <span class=p-author>claude-opus-4-6</span></span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#gits-data-model>Git&rsquo;s data model</a></li><li><a href=#commits-as-work-units>Commits as work units</a></li><li><a href=#the-dag-as-provenance-graph>The DAG as provenance graph</a></li><li><a href=#distributed-repositories>Distributed repositories</a></li><li><a href=#why-provenance-matters-for-knowledge-work>Why provenance matters for knowledge work</a></li><li><a href=#summary>Summary</a></li></ul></nav></details><div class=e-content><p>Git is a version control system. It is also, read differently, a provenance structure: an
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git as Provenance Structure - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "author": {
+    "@type": "Person",
+    "name": "claude-opus-4-6"
+  },
+  "dateModified": "2026-03-01",
+  "datePublished": "2026-03-01",
+  "description": "Git is a version control system. It is also, read differently, a provenance structure: an immutable record of what was done, when, by whom, and building on what prior work. This lesson reads git\u0026rsquo;s data model through that lens, connecting its design to the formal concept of provenance in the Interactive Semioverse.\nGit\u0026rsquo;s data model Git stores four kinds of objects, all content-addressed (identified by cryptographic hash) [@chacon_ProGit_2014]:\nBlob: the contents of a single file at a single point in time. Tree: a directory listing — maps names to blobs or other trees. Commit: a snapshot of the entire repository (a tree), plus metadata: author, timestamp, message, and pointers to parent commits. Tag: a named reference to a specific commit. Every commit points to one or more parent commits, forming a directed acyclic graph (DAG) [@spinellis_GitVersion_2012]. The DAG is append-only: you can add new commits, but existing commits are immutable. Their hashes depend on their content, their parents\u0026rsquo; hashes, and their metadata — change any of these and you get a different object.\n",
+  "keywords": "VersionControl, Semiotics",
+  "name": "Git as Provenance Structure",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "teaches": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Git as Provenance Structure"
+    }
+  ],
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/software/domains/git/texts/git-as-provenance-structure/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="lesson">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software/domains/git/">Git</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software/domains/git/texts/">Texts</a></nav>
+  <h1 class="p-name">Git as Provenance Structure</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-01T00:00:00Z">2026-03-01</time>
+    <span>by <span class="p-author">claude-opus-4-6</span></span>
+    
+  </div>
+  
+  <div class="type-meta type-meta--objectives">
+    <span class="type-meta-label">Learning objectives</span>
+    <ul><li>Git as Provenance Structure</li></ul>
+  </div>
+  
+  
+  <div class="type-meta type-meta--prereqs">
+    <span class="type-meta-label">Prerequisites</span>
+    <ul><li>/technology/disciplines/computing/software/git/curricula/what-is-git.md</li><li>/technology/disciplines/computing/software/git/curricula/branching-and-merging.md</li></ul>
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#gits-data-model">Git&rsquo;s data model</a></li>
+    <li><a href="#commits-as-work-units">Commits as work units</a></li>
+    <li><a href="#the-dag-as-provenance-graph">The DAG as provenance graph</a></li>
+    <li><a href="#distributed-repositories">Distributed repositories</a></li>
+    <li><a href="#why-provenance-matters-for-knowledge-work">Why provenance matters for knowledge work</a></li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>Git is a version control system. It is also, read differently, a provenance structure: an
 immutable record of what was done, when, by whom, and building on what prior work. This
 lesson reads git&rsquo;s data model through that lens, connecting its design to the formal
-concept of provenance in the <a href=../../../../../../mathematics/objects/universes/interactive-semioverse/index.md class=link-internal>Interactive Semioverse</a>.</p><h2 id=gits-data-model>Git&rsquo;s data model</h2><p>Git stores four kinds of objects, all content-addressed (identified by cryptographic hash) [@chacon_ProGit_2014]:</p><ul><li><strong>Blob</strong>: the contents of a single file at a single point in time.</li><li><strong>Tree</strong>: a directory listing — maps names to blobs or other trees.</li><li><strong>Commit</strong>: a snapshot of the entire repository (a tree), plus metadata: author, timestamp, message, and pointers to parent commits.</li><li><strong>Tag</strong>: a named reference to a specific commit.</li></ul><p>Every commit points to one or more parent commits, forming a <strong>directed acyclic graph (DAG)</strong> [@spinellis_GitVersion_2012]. The DAG is append-only: you can add new commits, but existing commits are immutable. Their hashes depend on their content, their parents&rsquo; hashes, and their metadata — change any of these and you get a different object.</p><h2 id=commits-as-work-units>Commits as work units</h2><p>A commit records a discrete unit of work: <a href=../../../../../../sociology/terms/the-state.md class=link-internal>the state</a> of every file after the work, <a href=../../../../../../sociology/terms/the-state.md class=link-internal>the state</a> before (via the parent commit), the identity of the author, and a natural-language description of what was done and why. This is a concrete instance of what the Interactive Semioverse formalizes as a <strong>provenance history</strong> — a finite sequence of construction steps, each recording what operation was applied, to what inputs, producing what result.</p><p>The parallel is direct:</p><table><thead><tr><th>Git concept</th><th>Interactive Semioverse concept</th></tr></thead><tbody><tr><td>Commit</td><td>Construction step in a provenance history</td></tr><tr><td>Parent pointer</td><td>Dependency link between steps</td></tr><tr><td>Commit DAG</td><td>Provenance category (objects = histories, <a href=../../../../../../mathematics/objects/categories/ordinary-categories/terms/morphism.md class=link-internal>morphisms</a> = refinements)</td></tr><tr><td>Diff (parent → child)</td><td>The operation applied at that step</td></tr><tr><td>Author + timestamp</td><td>Agent and temporal metadata</td></tr><tr><td>Commit message</td><td>Natural-language annotation of the step</td></tr></tbody></table><p>A chain of commits from the initial commit to the current HEAD is a complete provenance history of the repository&rsquo;s current state. Every line of every file can be traced back through the DAG to the commit that introduced it (<code>git blame</code> does this mechanically).</p><h2 id=the-dag-as-provenance-graph>The DAG as provenance graph</h2><p>The commit DAG is not a linear history — it branches and merges:</p><ul><li><p><strong>Branching</strong> creates divergent lines of work from a common ancestor. Two agents (or the same agent pursuing two directions) produce independent sequences of commits. In the Interactive Semioverse, this corresponds to two interaction sequences operating on the same initial state, producing distinct <a href=../../../../../../mathematics/objects/universes/interactive-semioverse/terms/footprint.md class=link-internal>footprints</a>.</p></li><li><p><strong>Merging</strong> combines divergent lines into a single commit with multiple parents. The merge commit records the resolution: how two independent histories were reconciled into one state. This parallels the Interactive Semioverse&rsquo;s treatment of concurrent interactions — when two interaction sequences affect overlapping fragments, their results must be composed coherently.</p></li><li><p><strong>Rebasing</strong> rewrites history by replaying commits onto a different base. This produces new commits (with different hashes) that represent the same logical work in a different provenance context. The original commits remain in the object store until garbage-collected. The Interactive Semioverse&rsquo;s provenance categories have a similar structure: refinement <a href=../../../../../../mathematics/objects/categories/ordinary-categories/terms/morphism.md class=link-internal>morphisms</a> between histories that preserve the logical content while changing the construction path.</p></li></ul><h2 id=distributed-repositories>Distributed repositories</h2><p>Git is distributed: every clone is a complete copy of the repository, including the full commit DAG. Multiple agents maintain their own local histories and synchronize through push and pull operations that transfer commits between repositories.</p><p>This distribution has structural significance. Each local repository is a local view of a shared semioverse — a fragment with its own interaction history. Synchronization (push/pull/fetch) transfers provenance records between views, and merge resolution ensures coherence. There is no privileged central copy; any clone can reconstruct the full history.</p><p>In the Interactive Semioverse&rsquo;s terms, each local repository is an agent&rsquo;s working state, and synchronization operations are <a href=../../../../../../mathematics/objects/universes/interactive-semioverse/terms/interaction-term.md class=link-internal>interaction terms</a> that transport fragments between agents while preserving provenance.</p><h2 id=why-provenance-matters-for-knowledge-work>Why provenance matters for knowledge work</h2><p>Any collaborative knowledge project benefits from provenance — the ability to trace every change to who made it, when, and why. Git provides this without requiring infrastructure beyond the repository itself. The provenance is intrinsic: it is the data structure, not an annotation added afterward.</p><p>Properties that make git effective as a provenance system:</p><ul><li><strong>Immutability</strong>: past commits cannot be silently altered. If someone force-pushes, the original commits still exist locally in every clone that fetched them. Provenance records are structurally durable.</li><li><strong>Content addressing</strong>: identical content produces identical hashes regardless of where or when it is created. Two people independently writing the same file get the same blob. This provides a natural notion of equality for content.</li><li><strong>Branching as parallel exploration</strong>: a contributor can branch to explore an idea without affecting the shared state. If the exploration succeeds, it merges; if it fails, the branch is abandoned. The exploration&rsquo;s history is preserved either way.</li><li><strong>Merge as documented decision</strong>: a merge commit records how two lines of work were reconciled. The merge itself is a provenance step — it documents a decision, not just a combination.</li></ul><h2 id=summary>Summary</h2><p>Git is a provenance structure implemented as a content-addressed DAG of immutable snapshots. Its design choices — content addressing, immutable commits, directed acyclic history, distributed clones — make it well suited to any project where knowing the history of how knowledge was produced is as important as the knowledge itself.</p></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>claude-opus-4-6. (2026, March 1). Git as Provenance Structure. <i>emsenn.net</i>. https://emsenn.net/library/tech/domains/computing/domains/software/domains/git/texts/git-as-provenance-structure/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@misc{claude-opus-4-62026-git-as-provenance-structure,
+concept of provenance in the <a href="../../../../../../mathematics/objects/universes/interactive-semioverse/index.md" class="link-internal">Interactive Semioverse</a>.</p>
+<h2 id="gits-data-model">Git&rsquo;s data model</h2>
+<p>Git stores four kinds of objects, all content-addressed (identified by cryptographic hash) [@chacon_ProGit_2014]:</p>
+<ul>
+<li><strong>Blob</strong>: the contents of a single file at a single point in time.</li>
+<li><strong>Tree</strong>: a directory listing — maps names to blobs or other trees.</li>
+<li><strong>Commit</strong>: a snapshot of the entire repository (a tree), plus metadata: author, timestamp, message, and pointers to parent commits.</li>
+<li><strong>Tag</strong>: a named reference to a specific commit.</li>
+</ul>
+<p>Every commit points to one or more parent commits, forming a <strong>directed acyclic graph (DAG)</strong> [@spinellis_GitVersion_2012]. The DAG is append-only: you can add new commits, but existing commits are immutable. Their hashes depend on their content, their parents&rsquo; hashes, and their metadata — change any of these and you get a different object.</p>
+<h2 id="commits-as-work-units">Commits as work units</h2>
+<p>A commit records a discrete unit of work: <a href="../../../../../../sociology/terms/the-state.md" class="link-internal">the state</a> of every file after the work, <a href="../../../../../../sociology/terms/the-state.md" class="link-internal">the state</a> before (via the parent commit), the identity of the author, and a natural-language description of what was done and why. This is a concrete instance of what the Interactive Semioverse formalizes as a <strong>provenance history</strong> — a finite sequence of construction steps, each recording what operation was applied, to what inputs, producing what result.</p>
+<p>The parallel is direct:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Git concept</th>
+          <th>Interactive Semioverse concept</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Commit</td>
+          <td>Construction step in a provenance history</td>
+      </tr>
+      <tr>
+          <td>Parent pointer</td>
+          <td>Dependency link between steps</td>
+      </tr>
+      <tr>
+          <td>Commit DAG</td>
+          <td>Provenance category (objects = histories, <a href="../../../../../../mathematics/objects/categories/ordinary-categories/terms/morphism.md" class="link-internal">morphisms</a> = refinements)</td>
+      </tr>
+      <tr>
+          <td>Diff (parent → child)</td>
+          <td>The operation applied at that step</td>
+      </tr>
+      <tr>
+          <td>Author + timestamp</td>
+          <td>Agent and temporal metadata</td>
+      </tr>
+      <tr>
+          <td>Commit message</td>
+          <td>Natural-language annotation of the step</td>
+      </tr>
+  </tbody>
+</table>
+<p>A chain of commits from the initial commit to the current HEAD is a complete provenance history of the repository&rsquo;s current state. Every line of every file can be traced back through the DAG to the commit that introduced it (<code>git blame</code> does this mechanically).</p>
+<h2 id="the-dag-as-provenance-graph">The DAG as provenance graph</h2>
+<p>The commit DAG is not a linear history — it branches and merges:</p>
+<ul>
+<li>
+<p><strong>Branching</strong> creates divergent lines of work from a common ancestor. Two agents (or the same agent pursuing two directions) produce independent sequences of commits. In the Interactive Semioverse, this corresponds to two interaction sequences operating on the same initial state, producing distinct <a href="../../../../../../mathematics/objects/universes/interactive-semioverse/terms/footprint.md" class="link-internal">footprints</a>.</p>
+</li>
+<li>
+<p><strong>Merging</strong> combines divergent lines into a single commit with multiple parents. The merge commit records the resolution: how two independent histories were reconciled into one state. This parallels the Interactive Semioverse&rsquo;s treatment of concurrent interactions — when two interaction sequences affect overlapping fragments, their results must be composed coherently.</p>
+</li>
+<li>
+<p><strong>Rebasing</strong> rewrites history by replaying commits onto a different base. This produces new commits (with different hashes) that represent the same logical work in a different provenance context. The original commits remain in the object store until garbage-collected. The Interactive Semioverse&rsquo;s provenance categories have a similar structure: refinement <a href="../../../../../../mathematics/objects/categories/ordinary-categories/terms/morphism.md" class="link-internal">morphisms</a> between histories that preserve the logical content while changing the construction path.</p>
+</li>
+</ul>
+<h2 id="distributed-repositories">Distributed repositories</h2>
+<p>Git is distributed: every clone is a complete copy of the repository, including the full commit DAG. Multiple agents maintain their own local histories and synchronize through push and pull operations that transfer commits between repositories.</p>
+<p>This distribution has structural significance. Each local repository is a local view of a shared semioverse — a fragment with its own interaction history. Synchronization (push/pull/fetch) transfers provenance records between views, and merge resolution ensures coherence. There is no privileged central copy; any clone can reconstruct the full history.</p>
+<p>In the Interactive Semioverse&rsquo;s terms, each local repository is an agent&rsquo;s working state, and synchronization operations are <a href="../../../../../../mathematics/objects/universes/interactive-semioverse/terms/interaction-term.md" class="link-internal">interaction terms</a> that transport fragments between agents while preserving provenance.</p>
+<h2 id="why-provenance-matters-for-knowledge-work">Why provenance matters for knowledge work</h2>
+<p>Any collaborative knowledge project benefits from provenance — the ability to trace every change to who made it, when, and why. Git provides this without requiring infrastructure beyond the repository itself. The provenance is intrinsic: it is the data structure, not an annotation added afterward.</p>
+<p>Properties that make git effective as a provenance system:</p>
+<ul>
+<li><strong>Immutability</strong>: past commits cannot be silently altered. If someone force-pushes, the original commits still exist locally in every clone that fetched them. Provenance records are structurally durable.</li>
+<li><strong>Content addressing</strong>: identical content produces identical hashes regardless of where or when it is created. Two people independently writing the same file get the same blob. This provides a natural notion of equality for content.</li>
+<li><strong>Branching as parallel exploration</strong>: a contributor can branch to explore an idea without affecting the shared state. If the exploration succeeds, it merges; if it fails, the branch is abandoned. The exploration&rsquo;s history is preserved either way.</li>
+<li><strong>Merge as documented decision</strong>: a merge commit records how two lines of work were reconciled. The merge itself is a provenance step — it documents a decision, not just a combination.</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>Git is a provenance structure implemented as a content-addressed DAG of immutable snapshots. Its design choices — content addressing, immutable commits, directed acyclic history, distributed clones — make it well suited to any project where knowing the history of how knowledge was produced is as important as the knowledge itself.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/software/domains/git/texts/git-as-provenance-structure/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Cites</dt>
+        <dd property="schema:citation"><ul><li>Git</li><li>Pro git</li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li>Technology disciplines computing software git curricula what is git.md</li><li>Technology disciplines computing software git curricula branching and merging.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/versioncontrol/">VersionControl</a></li><li><a href="/tags/semiotics/">Semiotics</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li><a href="/library/tech/domains/computing/domains/software/domains/git/texts/git-as-provenance-structure/">Git as provenance structure</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{claude-opus-4-62026-git-as-provenance-structure,
   author    = {claude-opus-4-6},
   title     = {Git as Provenance Structure},
   year      = {2026},
   url       = {https://emsenn.net/library/tech/domains/computing/domains/software/domains/git/texts/git-as-provenance-structure/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/software/domains/git/texts/git-as-provenance-structure/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>cites</dt><dd property="schema:citation"><ul><li>Git</li><li>Pro Git</li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-01>2026-03-01</time></dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>requires</a></dt><dd property="schema:educationalAlignment"><ul><li>/technology/disciplines/computing/software/git/curricula/what-is-git.md</li><li>/technology/disciplines/computing/software/git/curricula/branching-and-merging.md</li></ul></dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/versioncontrol/>VersionControl</a></li><li><a href=/tags/semiotics/>Semiotics</a></li></ul></dd></div><div class=relation><dt>teaches</dt><dd property="emsenn:Teaches"><ul><li><a href=/library/tech/domains/computing/domains/software/domains/git/texts/git-as-provenance-structure/>Git as Provenance Structure</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Git as Provenance Structure</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/lesson/>lesson</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

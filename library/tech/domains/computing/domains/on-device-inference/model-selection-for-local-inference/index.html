@@ -1,12 +1,135 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Model Selection for Local Inference Tasks - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-08","datePublished":"2026-03-08","description":"Running multiple local large language models on heterogeneous hardware — CPU via Ollama and NPU via Foundry Local — requires a strategy for which model handles which task. The wrong choice wastes either time (running a large model on a simple classification) or quality (running a tiny model on a nuanced generation task).\nTask categories Local inference tasks in a repository management context fall into three categories:\nClassification tasks assign labels, scores, or categories to content. Examples: scoring triage file relevance (0-3), tagging content type (term/concept/text), identifying target discipline. These tasks have constrained output (a label or short JSON), benefit from low latency, and tolerate lower model capability. A 3B-parameter model performs comparably to a 7B model on well-prompted classification.\n","keywords":"ModelSelection, OnDeviceInference, TaskRouting","name":"Model Selection for Local Inference Tasks","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/on-device-inference/model-selection-for-local-inference/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Model Selection for Local Inference Tasks</h1><div class=meta><time class=dt-published datetime=2026-03-08T00:00:00Z>2026-03-08</time></div><div class=e-content><p>Running multiple local <a href=terms/large-language-model.md class=link-internal>large language models</a> on heterogeneous hardware — CPU via <a href=../../software/ollama/index.md class=link-internal>Ollama</a> and <a href=../../terms/neural-processing-unit.md class=link-internal>NPU</a> via Foundry Local — requires a strategy for which model handles which task. The wrong choice wastes either time (running a large model on a simple classification) or quality (running a tiny model on a nuanced generation task).</p><h2 id=task-categories>Task categories</h2><p>Local inference tasks in a repository management context fall into three categories:</p><p><strong>Classification</strong> tasks assign labels, scores, or categories to content. Examples: scoring triage file relevance (0-3), tagging content type (term/concept/text), identifying target discipline. These tasks have constrained output (a label or short JSON), benefit from low latency, and tolerate lower model capability. A 3B-parameter model performs comparably to a 7B model on well-prompted classification.</p><p><strong>Extraction</strong> tasks produce structured output from unstructured text. Examples: extracting formal definitions as JSON, parsing frontmatter fields from content, identifying named entities. These need the model to follow output format instructions reliably. Mid-size models (3B-7B) handle this well; very small models (&lt; 2B) tend to produce malformed output.</p><p><strong>Generation</strong> tasks produce prose, definitions, or summaries. Examples: writing a term definition, generating a one-paragraph description, producing enriched frontmatter. Quality matters more than speed — a 7B model writes noticeably better prose than a 3B model. For initial drafts that a human or higher-trust model will review, smaller models may suffice.</p><h2 id=hardware-routing>Hardware routing</h2><p>When an NPU is available, it should be preferred for all task categories because it is faster (3-8 seconds versus 15-40 seconds on CPU for equivalent models) and operates at a fraction of the power draw (~2W versus 30-50W). This frees the CPU for other work, including running a second model concurrently.</p><p>The practical routing on a system with both Ollama (CPU) and Foundry (NPU):</p><ul><li><strong>NPU (Foundry)</strong>: preferred for everything it can run. Current NPU-optimized models tend to be in the 4B range (phi-4-mini, etc.), which covers classification and extraction well and provides acceptable generation quality.</li><li><strong>CPU (Ollama)</strong>: fallback for models not available on NPU, and for running concurrent workloads alongside NPU tasks. Also handles larger models (7B-12B) that may not have NPU-optimized variants.</li></ul><h2 id=model-trust-ordering>Model trust ordering</h2><p>When multiple models can enrich the same content, a trust ordering prevents lower-quality models from overwriting higher-quality results. Trust is determined empirically: run the same enrichment task across models and compare output quality. The ordering is not purely by parameter count — a well-tuned 3B model may outperform a poorly-prompted 7B model on a specific task.</p><p>Trust levels matter for provenance: each enriched file records which model produced its metadata. A file enriched by a higher-trust model is not re-enriched by a lower-trust model; a file enriched by a lower-trust model is re-enriched when a higher-trust model becomes available.</p></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>emsenn. (2026, March 8). Model Selection for Local Inference Tasks. <i>emsenn.net</i>. https://emsenn.net/library/tech/domains/computing/domains/on-device-inference/model-selection-for-local-inference/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@article{emsenn2026-model-selection-for-local-inference,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model Selection for Local Inference Tasks - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-08",
+  "datePublished": "2026-03-08",
+  "description": "Running multiple local large language models on heterogeneous hardware — CPU via Ollama and NPU via Foundry Local — requires a strategy for which model handles which task. The wrong choice wastes either time (running a large model on a simple classification) or quality (running a tiny model on a nuanced generation task).\nTask categories Local inference tasks in a repository management context fall into three categories:\nClassification tasks assign labels, scores, or categories to content. Examples: scoring triage file relevance (0-3), tagging content type (term/concept/text), identifying target discipline. These tasks have constrained output (a label or short JSON), benefit from low latency, and tolerate lower model capability. A 3B-parameter model performs comparably to a 7B model on well-prompted classification.\n",
+  "keywords": "ModelSelection, OnDeviceInference, TaskRouting",
+  "name": "Model Selection for Local Inference Tasks",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/on-device-inference/model-selection-for-local-inference/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="text">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/on-device-inference/">On device inference</a></nav>
+  <h1 class="p-name">Model Selection for Local Inference Tasks</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-08T00:00:00Z">2026-03-08</time>
+    
+    
+  </div>
+  
+  <div class="e-content">
+    <p>Running multiple local <a href="terms/large-language-model.md" class="link-internal">large language models</a> on heterogeneous hardware — CPU via <a href="../../software/ollama/index.md" class="link-internal">Ollama</a> and <a href="../../terms/neural-processing-unit.md" class="link-internal">NPU</a> via Foundry Local — requires a strategy for which model handles which task. The wrong choice wastes either time (running a large model on a simple classification) or quality (running a tiny model on a nuanced generation task).</p>
+<h2 id="task-categories">Task categories</h2>
+<p>Local inference tasks in a repository management context fall into three categories:</p>
+<p><strong>Classification</strong> tasks assign labels, scores, or categories to content. Examples: scoring triage file relevance (0-3), tagging content type (term/concept/text), identifying target discipline. These tasks have constrained output (a label or short JSON), benefit from low latency, and tolerate lower model capability. A 3B-parameter model performs comparably to a 7B model on well-prompted classification.</p>
+<p><strong>Extraction</strong> tasks produce structured output from unstructured text. Examples: extracting formal definitions as JSON, parsing frontmatter fields from content, identifying named entities. These need the model to follow output format instructions reliably. Mid-size models (3B-7B) handle this well; very small models (&lt; 2B) tend to produce malformed output.</p>
+<p><strong>Generation</strong> tasks produce prose, definitions, or summaries. Examples: writing a term definition, generating a one-paragraph description, producing enriched frontmatter. Quality matters more than speed — a 7B model writes noticeably better prose than a 3B model. For initial drafts that a human or higher-trust model will review, smaller models may suffice.</p>
+<h2 id="hardware-routing">Hardware routing</h2>
+<p>When an NPU is available, it should be preferred for all task categories because it is faster (3-8 seconds versus 15-40 seconds on CPU for equivalent models) and operates at a fraction of the power draw (~2W versus 30-50W). This frees the CPU for other work, including running a second model concurrently.</p>
+<p>The practical routing on a system with both Ollama (CPU) and Foundry (NPU):</p>
+<ul>
+<li><strong>NPU (Foundry)</strong>: preferred for everything it can run. Current NPU-optimized models tend to be in the 4B range (phi-4-mini, etc.), which covers classification and extraction well and provides acceptable generation quality.</li>
+<li><strong>CPU (Ollama)</strong>: fallback for models not available on NPU, and for running concurrent workloads alongside NPU tasks. Also handles larger models (7B-12B) that may not have NPU-optimized variants.</li>
+</ul>
+<h2 id="model-trust-ordering">Model trust ordering</h2>
+<p>When multiple models can enrich the same content, a trust ordering prevents lower-quality models from overwriting higher-quality results. Trust is determined empirically: run the same enrichment task across models and compare output quality. The ordering is not purely by parameter count — a well-tuned 3B model may outperform a poorly-prompted 7B model on a specific task.</p>
+<p>Trust levels matter for provenance: each enriched file records which model produced its metadata. A file enriched by a higher-trust model is not re-enriched by a lower-trust model; a file enriched by a lower-trust model is re-enriched when a higher-trust model becomes available.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/on-device-inference/model-selection-for-local-inference/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-08">2026-03-08</time></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/modelselection/">ModelSelection</a></li><li><a href="/tags/ondeviceinference/">OnDeviceInference</a></li><li><a href="/tags/taskrouting/">TaskRouting</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@article{emsenn2026-model-selection-for-local-inference,
   author    = {emsenn},
   title     = {Model Selection for Local Inference Tasks},
   year      = {2026},
   url       = {https://emsenn.net/library/tech/domains/computing/domains/on-device-inference/model-selection-for-local-inference/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/on-device-inference/model-selection-for-local-inference/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-08>2026-03-08</time></dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/modelselection/>ModelSelection</a></li><li><a href=/tags/ondeviceinference/>OnDeviceInference</a></li><li><a href=/tags/taskrouting/>TaskRouting</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Model Selection for Local Inference Tasks</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/text/>text</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

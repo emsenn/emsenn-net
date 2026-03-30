@@ -1,26 +1,157 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Embedding - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-29","datePublished":"2026-03-29","description":"A fixed-length vector of floating-point numbers that represents a piece of text (or image, or audio) in a continuous space where semantic similarity corresponds to geometric proximity.","name":"Embedding","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/embedding/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Embedding</h1><div class=meta><time class=dt-published datetime=2026-03-29T00:00:00Z>2026-03-29</time>
-<span class=p-summary>A fixed-length vector of floating-point numbers that represents a piece of text (or image, or audio) in a continuous space where semantic similarity corresponds to geometric proximity.</span></div><div class=e-content>&lt;p>An embedding is a fixed-length vector of floating-point numbers that represents a piece of text (or image, or audio) in a continuous space where semantic similarity corresponds to geometric proximity. Two sentences about the same topic produce vectors that are close together (high cosine similarity); two sentences about unrelated topics produce vectors that are far apart.&lt;/p>
-&lt;p>Mikolov et al. introduced the foundational word embedding models (Word2Vec) in &amp;ldquo;Efficient Estimation of Word Representations in Vector Space&amp;rdquo; (2013), demonstrating that &lt;a href="./neural-network.md" class="link-internal">neural networks&lt;/a> trained on word co-occurrence patterns produce vector spaces with algebraic structure — the famous example: vector(&amp;ldquo;king&amp;rdquo;) - vector(&amp;ldquo;man&amp;rdquo;) + vector(&amp;ldquo;woman&amp;rdquo;) ≈ vector(&amp;ldquo;queen&amp;rdquo;).&lt;/p>
-&lt;p>Modern embedding models (OpenAI &lt;code>text-embedding-3&lt;/code>, Cohere Embed, Google Gecko, open-source models like &lt;code>bge&lt;/code> and &lt;code>e5&lt;/code>) produce embeddings for entire sentences or documents, not just individual words. These models are &lt;a href="./transformer.md" class="link-internal">transformers&lt;/a> trained specifically for the embedding task — they process a text input and output a single vector (typically 768–3072 dimensions) that captures the text&amp;rsquo;s semantic content.&lt;/p>
-&lt;h3 id="how-embeddings-work">How embeddings work&lt;/h3>
-&lt;p>The embedding model processes input text through its &lt;a href="./transformer.md" class="link-internal">transformer&lt;/a> layers and produces a vector from the final layer&amp;rsquo;s output — typically by averaging &lt;a href="./token.md" class="link-internal">token&lt;/a> representations (mean pooling) or using a dedicated [CLS] token. The model is trained so that texts with similar meaning produce similar vectors: training pairs texts that are semantically related (from paraphrases, search queries and their results, or question-answer pairs) and pushes their embeddings closer together while pushing unrelated pairs apart (contrastive learning).&lt;/p>
-&lt;p>The resulting vector space has structure: similarity search (finding the k nearest vectors to a query vector) functions as semantic search. A query about &amp;ldquo;how to fix a broken pipe&amp;rdquo; retrieves documents about plumbing repair, even if those documents never use the exact phrase &amp;ldquo;broken pipe.&amp;rdquo;&lt;/p>
-&lt;h3 id="role-in-agentic-systems">Role in agentic systems&lt;/h3>
-&lt;p>Embeddings are the enabling technology for &lt;a href="./retrieval-augmented-generation.md" class="link-internal">retrieval-augmented generation&lt;/a> and vector-based &lt;a href="../domains/agents/terms/agent-memory.md" class="link-internal">agent memory&lt;/a>. The standard pipeline: chunk documents into passages, embed each passage, store the vectors in a vector database, and retrieve the most relevant passages for a given query by comparing query and passage embeddings.&lt;/p>
-&lt;p>In &lt;a href="../domains/agents/terms/agentic-system.md" class="link-internal">agentic systems&lt;/a>, embeddings provide the search layer that lets an agent find relevant information in large knowledge bases without scanning every document. The agent calls a search tool, the tool embeds the query, the vector database returns the nearest matches, and the agent reads the retrieved documents in its &lt;a href="./context-window.md" class="link-internal">context window&lt;/a>.&lt;/p>
-&lt;h2 id="related-terms">Related terms&lt;/h2>
-&lt;ul>
-&lt;li>&lt;a href="./retrieval-augmented-generation.md" class="link-internal">Retrieval-augmented generation&lt;/a> — the primary application of embeddings in agent architectures&lt;/li>
-&lt;li>&lt;a href="../domains/agents/terms/agent-memory.md" class="link-internal">Agent memory&lt;/a> — vector-based memory relies on embeddings&lt;/li>
-&lt;li>&lt;a href="./neural-network.md" class="link-internal">Neural network&lt;/a> — the model architecture that produces embeddings&lt;/li>
-&lt;li>&lt;a href="./transformer.md" class="link-internal">Transformer&lt;/a> — the specific architecture used by modern embedding models&lt;/li>
-&lt;/ul></div><section class=bibliography id=bibliography vocab="https://schema.org/" typeof="ItemList"><h2>References</h2><p class=bib-entry id=ref-mikolov2013 typeof="CreativeWork" resource="#ref-mikolov2013"><span class=bib-key>[mikolov2013]</span>
-<span property="author">T. Mikolov, K. Chen, G. Corrado, J. Dean</span>.
-(<span property="datePublished">2013</span>).
-<cite property="name">Efficient Estimation of Word Representations in Vector Space</cite>.
-<em property="publisher">Proceedings of Workshop at ICLR 2013</em>.
-<a href=https://arxiv.org/abs/1301.3781>https://arxiv.org/abs/1301.3781</a></p></section></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/embedding/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>cites</dt><dd property="schema:citation"><ul><li>mikolov2013</li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>date-updated</dt><dd property="schema:dateModified"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>defines</dt><dd property="emsenn:Defines"><a href=/library/tech/domains/computing/domains/artificial-intelligence/terms/embedding/>Embedding</a></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">A fixed-length vector of floating-point numbers that represents a piece of text (or image, or audio) in a continuous space where semantic similarity corresponds to geometric proximity.</dd></div><div class=relation><dt><a href=/library/math/domains/sets/terms/domain/>domain</a></dt><dd property="emsenn:Domain">artificial-intelligence</dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/possibility/>enables</a></dt><dd property="emsenn:Enables">retrieval-augmented-generation, agent-memory</dd></div><div class=relation><dt><a href=/library/math/terms/measure/>measures</a></dt><dd property="emsenn:Measures">semantic-similarity</dd></div><div class=relation><dt>produced-by</dt><dd property="emsenn:Producedby">neural-network, transformer</dd></div><div class=relation><dt>title</dt><dd property="schema:name">Embedding</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Embedding - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "A fixed-length vector of floating-point numbers that represents a piece of text (or image, or audio) in a continuous space where semantic similarity corresponds to geometric proximity.",
+  "name": "Embedding",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/embedding/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a></nav>
+  <h1 class="p-name">Embedding</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">A fixed-length vector of floating-point numbers that represents a piece of text (or image, or audio) in a continuous space where semantic similarity corresponds to geometric proximity.</span>
+  </div>
+  <div class="e-content">
+    &lt;p&gt;An embedding is a fixed-length vector of floating-point numbers that represents a piece of text (or image, or audio) in a continuous space where semantic similarity corresponds to geometric proximity. Two sentences about the same topic produce vectors that are close together (high cosine similarity); two sentences about unrelated topics produce vectors that are far apart.&lt;/p&gt;
+&lt;p&gt;Mikolov et al. introduced the foundational word embedding models (Word2Vec) in &amp;ldquo;Efficient Estimation of Word Representations in Vector Space&amp;rdquo; (2013), demonstrating that &lt;a href=&#34;./neural-network.md&#34; class=&#34;link-internal&#34;&gt;neural networks&lt;/a&gt; trained on word co-occurrence patterns produce vector spaces with algebraic structure — the famous example: vector(&amp;ldquo;king&amp;rdquo;) - vector(&amp;ldquo;man&amp;rdquo;) &#43; vector(&amp;ldquo;woman&amp;rdquo;) ≈ vector(&amp;ldquo;queen&amp;rdquo;).&lt;/p&gt;
+&lt;p&gt;Modern embedding models (OpenAI &lt;code&gt;text-embedding-3&lt;/code&gt;, Cohere Embed, Google Gecko, open-source models like &lt;code&gt;bge&lt;/code&gt; and &lt;code&gt;e5&lt;/code&gt;) produce embeddings for entire sentences or documents, not just individual words. These models are &lt;a href=&#34;./transformer.md&#34; class=&#34;link-internal&#34;&gt;transformers&lt;/a&gt; trained specifically for the embedding task — they process a text input and output a single vector (typically 768–3072 dimensions) that captures the text&amp;rsquo;s semantic content.&lt;/p&gt;
+&lt;h3 id=&#34;how-embeddings-work&#34;&gt;How embeddings work&lt;/h3&gt;
+&lt;p&gt;The embedding model processes input text through its &lt;a href=&#34;./transformer.md&#34; class=&#34;link-internal&#34;&gt;transformer&lt;/a&gt; layers and produces a vector from the final layer&amp;rsquo;s output — typically by averaging &lt;a href=&#34;./token.md&#34; class=&#34;link-internal&#34;&gt;token&lt;/a&gt; representations (mean pooling) or using a dedicated [CLS] token. The model is trained so that texts with similar meaning produce similar vectors: training pairs texts that are semantically related (from paraphrases, search queries and their results, or question-answer pairs) and pushes their embeddings closer together while pushing unrelated pairs apart (contrastive learning).&lt;/p&gt;
+&lt;p&gt;The resulting vector space has structure: similarity search (finding the k nearest vectors to a query vector) functions as semantic search. A query about &amp;ldquo;how to fix a broken pipe&amp;rdquo; retrieves documents about plumbing repair, even if those documents never use the exact phrase &amp;ldquo;broken pipe.&amp;rdquo;&lt;/p&gt;
+&lt;h3 id=&#34;role-in-agentic-systems&#34;&gt;Role in agentic systems&lt;/h3&gt;
+&lt;p&gt;Embeddings are the enabling technology for &lt;a href=&#34;./retrieval-augmented-generation.md&#34; class=&#34;link-internal&#34;&gt;retrieval-augmented generation&lt;/a&gt; and vector-based &lt;a href=&#34;../domains/agents/terms/agent-memory.md&#34; class=&#34;link-internal&#34;&gt;agent memory&lt;/a&gt;. The standard pipeline: chunk documents into passages, embed each passage, store the vectors in a vector database, and retrieve the most relevant passages for a given query by comparing query and passage embeddings.&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&#34;../domains/agents/terms/agentic-system.md&#34; class=&#34;link-internal&#34;&gt;agentic systems&lt;/a&gt;, embeddings provide the search layer that lets an agent find relevant information in large knowledge bases without scanning every document. The agent calls a search tool, the tool embeds the query, the vector database returns the nearest matches, and the agent reads the retrieved documents in its &lt;a href=&#34;./context-window.md&#34; class=&#34;link-internal&#34;&gt;context window&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;related-terms&#34;&gt;Related terms&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;./retrieval-augmented-generation.md&#34; class=&#34;link-internal&#34;&gt;Retrieval-augmented generation&lt;/a&gt; — the primary application of embeddings in agent architectures&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../domains/agents/terms/agent-memory.md&#34; class=&#34;link-internal&#34;&gt;Agent memory&lt;/a&gt; — vector-based memory relies on embeddings&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./neural-network.md&#34; class=&#34;link-internal&#34;&gt;Neural network&lt;/a&gt; — the model architecture that produces embeddings&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./transformer.md&#34; class=&#34;link-internal&#34;&gt;Transformer&lt;/a&gt; — the specific architecture used by modern embedding models&lt;/li&gt;
+&lt;/ul&gt;
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-mikolov2013" typeof="CreativeWork" resource="#ref-mikolov2013">
+    <span class="bib-key">[mikolov2013]</span>
+      <span property="author">T. Mikolov, K. Chen, G. Corrado, J. Dean</span>.
+      (<span property="datePublished">2013</span>).
+      <cite property="name">Efficient Estimation of Word Representations in Vector Space</cite>.
+      <em property="publisher">Proceedings of Workshop at ICLR 2013</em>.
+      <a href="https://arxiv.org/abs/1301.3781">https://arxiv.org/abs/1301.3781</a>
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/embedding/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Cites</dt>
+        <dd property="schema:citation"><ul><li>Mikolov2013</li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Date updated</dt>
+        <dd property="schema:dateModified"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/embedding/">Embedding</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">Artificial intelligence</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/logic/terms/possibility/">Enables</a></dt>
+        <dd property="emsenn:Enables">Retrieval augmented generation, agent memory</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/measure/">Measures</a></dt>
+        <dd property="emsenn:Measures">Semantic similarity</dd>
+      </div><div class="relation">
+        <dt>Produced by</dt>
+        <dd property="emsenn:Producedby">Neural network, transformer</dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/">GraphRAG</a></li><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/neural-network/">Neural Network</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

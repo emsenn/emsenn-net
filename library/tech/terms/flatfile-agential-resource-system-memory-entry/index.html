@@ -1,6 +1,167 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-18","datePublished":"2026-03-18","description":"A FlatfileAgentialResourceSystemMemoryEntry is a timestamped fact in a monotonically expansive knowledge base — a dated ground atom that was learned and must inform future agent behavior until explicitly superseded.","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-memory-entry/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name></h1><div class=meta><time class=dt-published datetime=2026-03-18T00:00:00Z>2026-03-18</time>
-<span class=p-summary>A FlatfileAgentialResourceSystemMemoryEntry is a timestamped fact in a monotonically expansive knowledge base — a dated ground atom that was learned and must inform future agent behavior until explicitly superseded.</span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#what-this-is>What this is</a></li><li><a href=#test-for-inclusion>Test for inclusion</a></li><li><a href=#required-fields>Required fields</a></li><li><a href=#lifecycle>Lifecycle</a></li><li><a href=#open-questions>Open questions</a></li></ul></nav></details><div class=e-content><h1 id=flatfile-agential-resource-system-memory-entry>Flatfile Agential Resource System Memory Entry</h1><h2 id=what-this-is>What this is</h2><p>A <strong>FlatfileAgentialResourceSystemMemoryEntry</strong> is a timestamped fact in a monotonically expansive knowledge base.</p><p>The mathematical invariant comes from Datalog and knowledge base theory. In <strong>Datalog</strong>, a knowledge base is a set of <strong>ground atoms</strong> — predicate applications to constants, with no variables. The database is the minimal Herbrand model: the least set of ground atoms closed under the rules. A <strong>fact</strong> (an unconditional ground atom) is added directly to the database without deriving it.</p><p>A FlatfileAgentialResourceSystemMemoryEntry is a fact in this sense: a pair <strong>(t, α)</strong> where t is an ISO 8601 date (when the fact was recorded) and α is a ground atom — a proposition about the system, its collaborators, or its behavior that has no free variables and no pending derivation. It states what is, not what might be or what to do.</p><p>The knowledge base is <strong>monotonically expansive</strong>: facts are only added, never retracted. This is monotonic accumulation — the database grows over time. This is distinct from non-monotonic reasoning (where conclusions can be withdrawn when new information arrives). FlatfileAgentialResourceSystemMemoryEntries do not participate in non-monotonic inference; they are unconditional baseline facts.</p><p><strong>Supersession</strong> is the limited exception: when a fact α becomes false, a new entry asserting α′ (the correction) is added, and the old entry α is deleted. This is not retraction — it is <strong>revision</strong> (in the sense of AGM belief revision: Alchourrón, Gärdenfors, Makinson 1985): add the stronger fact and remove the now-false weaker one. The superseding entry carries a note of what it replaces.</p><p>This distinguishes a FlatfileAgentialResourceSystemMemoryEntry from:</p><ul><li>A <strong>plan</strong> (an OperationItem) — a plan records what to do; a fact records what is</li><li>An <strong>idea</strong> — an idea is an open term awaiting elaboration; a fact is a closed assertion</li><li>A <strong>message</strong> — a message is incoming communication awaiting triage; a fact is settled knowledge</li><li>A <strong>principle</strong> — a principle is a safety invariant □φ over all reachable states; a fact is a contingent assertion that may be revised as the world changes</li></ul><h2 id=test-for-inclusion>Test for inclusion</h2><p>A FlatfileAgentialResourceSystemMemoryEntry is worth writing iff the ground atom α would cause a future agent to <strong>behave differently</strong> than it would by default. If the fact is derivable from git history, from spec files, or from AGENTS.md or SOUL.md, it does not need to be asserted in MEMORY.md — it is already in the knowledge base elsewhere.</p><p>Appropriate: behavioral observations about collaborators, non-obvious interaction constraints, terminology decisions, constraints not yet captured in any spec.</p><p>Not appropriate: session summaries (in git), pending work (in PLANS), completed work (in git), anything that belongs in a spec file.</p><h2 id=required-fields>Required fields</h2><p>Every FlatfileAgentialResourceSystemMemoryEntry MUST have:</p><ul><li><strong>Date</strong>: ISO 8601 date (YYYY-MM-DD) — the transaction time t</li><li><strong>Topic</strong>: short noun phrase naming what the entry is about</li><li><strong>Fact</strong>: one to four sentences stating α and what it implies for future behavior</li></ul><h2 id=lifecycle>Lifecycle</h2><p>When α becomes false: write a new entry α′ with a note of what it replaces, then delete the old entry. Do not accumulate stale facts — MEMORY.md is a live knowledge base, not an archive. Session summaries and task logs are NOT ground atoms about the system&rsquo;s behavior; they belong in git.</p><h2 id=open-questions>Open questions</h2><ul><li>Whether the revision operation (supersession) should be recorded explicitly in the new entry (citing the old entry&rsquo;s topic), or whether the note in the Fact field is sufficient.</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-memory-entry/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>ast</dt><dd property="emsenn:Ast"></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-18>2026-03-18</time></dd></div><div class=relation><dt>date-modified</dt><dd property="emsenn:Datemodified"><time datetime=2026-03-19>2026-03-19</time></dd></div><div class=relation><dt>defines</dt><dd property="emsenn:Defines"><a href=/library/tech/terms/flatfile-agential-resource-system-memory-entry/>FlatfileAgentialResourceSystemMemoryEntry</a></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">A FlatfileAgentialResourceSystemMemoryEntry is a timestamped fact in a monotonically expansive knowledge base — a dated ground atom that was learned and must inform future agent behavior until explicitly superseded.</dd></div><div class=relation><dt>ground-atom</dt><dd property="emsenn:Groundatom">relational-universe</dd></div><div class=relation><dt>output</dt><dd property="emsenn:Output">relational-universe</dd></div><div class=relation><dt>related</dt><dd property="emsenn:Related"><a href=/library/general/terms/observing/>Observation</a></dd></div><div class=relation><dt>timestamp</dt><dd property="emsenn:Timestamp">relational-universe</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-18",
+  "datePublished": "2026-03-18",
+  "description": "A FlatfileAgentialResourceSystemMemoryEntry is a timestamped fact in a monotonically expansive knowledge base — a dated ground atom that was learned and must inform future agent behavior until explicitly superseded.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-memory-entry/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-18T00:00:00Z">2026-03-18</time>
+    
+    <span class="p-summary">A FlatfileAgentialResourceSystemMemoryEntry is a timestamped fact in a monotonically expansive knowledge base — a dated ground atom that was learned and must inform future agent behavior until explicitly superseded.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-this-is">What this is</a></li>
+    <li><a href="#test-for-inclusion">Test for inclusion</a></li>
+    <li><a href="#required-fields">Required fields</a></li>
+    <li><a href="#lifecycle">Lifecycle</a></li>
+    <li><a href="#open-questions">Open questions</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="flatfile-agential-resource-system-memory-entry">Flatfile Agential Resource System Memory Entry</h1>
+<h2 id="what-this-is">What this is</h2>
+<p>A <strong>FlatfileAgentialResourceSystemMemoryEntry</strong> is a timestamped fact in a monotonically expansive knowledge base.</p>
+<p>The mathematical invariant comes from Datalog and knowledge base theory. In <strong>Datalog</strong>, a knowledge base is a set of <strong>ground atoms</strong> — predicate applications to constants, with no variables. The database is the minimal Herbrand model: the least set of ground atoms closed under the rules. A <strong>fact</strong> (an unconditional ground atom) is added directly to the database without deriving it.</p>
+<p>A FlatfileAgentialResourceSystemMemoryEntry is a fact in this sense: a pair <strong>(t, α)</strong> where t is an ISO 8601 date (when the fact was recorded) and α is a ground atom — a proposition about the system, its collaborators, or its behavior that has no free variables and no pending derivation. It states what is, not what might be or what to do.</p>
+<p>The knowledge base is <strong>monotonically expansive</strong>: facts are only added, never retracted. This is monotonic accumulation — the database grows over time. This is distinct from non-monotonic reasoning (where conclusions can be withdrawn when new information arrives). FlatfileAgentialResourceSystemMemoryEntries do not participate in non-monotonic inference; they are unconditional baseline facts.</p>
+<p><strong>Supersession</strong> is the limited exception: when a fact α becomes false, a new entry asserting α′ (the correction) is added, and the old entry α is deleted. This is not retraction — it is <strong>revision</strong> (in the sense of AGM belief revision: Alchourrón, Gärdenfors, Makinson 1985): add the stronger fact and remove the now-false weaker one. The superseding entry carries a note of what it replaces.</p>
+<p>This distinguishes a FlatfileAgentialResourceSystemMemoryEntry from:</p>
+<ul>
+<li>A <strong>plan</strong> (an OperationItem) — a plan records what to do; a fact records what is</li>
+<li>An <strong>idea</strong> — an idea is an open term awaiting elaboration; a fact is a closed assertion</li>
+<li>A <strong>message</strong> — a message is incoming communication awaiting triage; a fact is settled knowledge</li>
+<li>A <strong>principle</strong> — a principle is a safety invariant □φ over all reachable states; a fact is a contingent assertion that may be revised as the world changes</li>
+</ul>
+<h2 id="test-for-inclusion">Test for inclusion</h2>
+<p>A FlatfileAgentialResourceSystemMemoryEntry is worth writing iff the ground atom α would cause a future agent to <strong>behave differently</strong> than it would by default. If the fact is derivable from git history, from spec files, or from AGENTS.md or SOUL.md, it does not need to be asserted in MEMORY.md — it is already in the knowledge base elsewhere.</p>
+<p>Appropriate: behavioral observations about collaborators, non-obvious interaction constraints, terminology decisions, constraints not yet captured in any spec.</p>
+<p>Not appropriate: session summaries (in git), pending work (in PLANS), completed work (in git), anything that belongs in a spec file.</p>
+<h2 id="required-fields">Required fields</h2>
+<p>Every FlatfileAgentialResourceSystemMemoryEntry MUST have:</p>
+<ul>
+<li><strong>Date</strong>: ISO 8601 date (YYYY-MM-DD) — the transaction time t</li>
+<li><strong>Topic</strong>: short noun phrase naming what the entry is about</li>
+<li><strong>Fact</strong>: one to four sentences stating α and what it implies for future behavior</li>
+</ul>
+<h2 id="lifecycle">Lifecycle</h2>
+<p>When α becomes false: write a new entry α′ with a note of what it replaces, then delete the old entry. Do not accumulate stale facts — MEMORY.md is a live knowledge base, not an archive. Session summaries and task logs are NOT ground atoms about the system&rsquo;s behavior; they belong in git.</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Whether the revision operation (supersession) should be recorded explicitly in the new entry (citing the old entry&rsquo;s topic), or whether the note in the Fact field is sufficient.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-memory-entry/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-18">2026-03-18</time></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-19">2026-03-19</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/tech/terms/flatfile-agential-resource-system-memory-entry/">Flatfile agential resource system memory entry</a></dd>
+      </div><div class="relation">
+        <dt>Ground atom</dt>
+        <dd property="emsenn:Groundatom">Relational universe</dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">Relational universe</dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related"><a href="/library/general/terms/observing/">Observation</a></dd>
+      </div><div class="relation">
+        <dt>Timestamp</dt>
+        <dd property="emsenn:Timestamp">Relational universe</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

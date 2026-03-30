@@ -1,10 +1,196 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>UAV Propulsion Systems - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"DefinedTerm","author":[{"@type":"Person","name":"emsenn"},{"@type":"Person","name":"claude-opus-4-6"}],"dateModified":"2026-03-06","datePublished":"2026-03-06","description":"Electric, piston, turbine, and hybrid powerplants across the UAV spectrum, with attention to the engineering trade-offs that drive selection.","inDefinedTermSet":{"@type":"DefinedTermSet","name":"","url":"https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/"},"keywords":"Propulsion, Aerodynamics","name":"UAV Propulsion Systems","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-propulsion-systems/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>UAV Propulsion Systems</h1><div class=meta><time class=dt-published datetime=2026-03-06T00:00:00Z>2026-03-06</time>
-<span>by <span class=p-author>emsenn</span>, <span class=p-author>claude-opus-4-6</span></span>
-<span class=p-summary>Electric, piston, turbine, and hybrid powerplants across the UAV spectrum, with attention to the engineering trade-offs that drive selection.</span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#electric-brushless-dc-motor--battery>Electric (brushless DC motor + battery)</a></li><li><a href=#internal-combustion-piston-engines>Internal combustion (piston engines)</a></li><li><a href=#turbine-micro-turbojets-and-turbofans>Turbine (micro turbojets and turbofans)</a></li><li><a href=#hybrid-electric>Hybrid electric</a></li><li><a href=#propulsion-configuration-and-airframe-interaction>Propulsion configuration and airframe interaction</a></li><li><a href=#related-concepts>Related concepts</a></li></ul></nav></details><div class=e-content><p>Propulsion selection is one of the earliest and most consequential decisions in UAV design. The powerplant determines not just thrust and speed, but the acoustic signature, vibration environment, fuel/energy logistics, endurance, and a large fraction of the airframe weight and cost. Across the UAV spectrum, four powerplant families dominate.</p><h2 id=electric-brushless-dc-motor--battery>Electric (brushless DC motor + battery)</h2><p>Electric propulsion is the standard for multirotors and small fixed-wing UAVs up to roughly 25 kg. A brushless DC motor (BLDC) driven by an <a href=../terms/esc.md class=link-internal>ESC</a> and powered by lithium polymer (LiPo) batteries provides:</p><ul><li><strong>Mechanical simplicity.</strong> No fuel system, no ignition, no carburetor, no cooling system. The motor has one moving part (the rotor). Reliability is limited only by bearings and ESC electronics.</li><li><strong>Instant throttle response.</strong> BLDC motors reach commanded RPM in milliseconds, essential for multirotor stability where attitude control depends on rapid thrust changes.</li><li><strong>Low vibration.</strong> Electric motors produce negligible vibration compared to piston engines, reducing structural fatigue and simplifying <a href=../terms/imu.md class=link-internal>IMU</a> mounting.</li><li><strong>Low noise.</strong> Propeller noise dominates; the motor itself is nearly silent. Valuable for surveillance and inspection missions.</li></ul><p>The limiting factor is energy density. Lithium polymer batteries provide 150–250 Wh/kg — roughly 1/40th the energy density of gasoline (12,000 Wh/kg). Even accounting for the piston engine&rsquo;s thermal efficiency (~25%) and electric motor&rsquo;s high efficiency (~85%), the effective energy density gap is roughly 10:1. This is why electric multirotors endure 20–40 minutes while piston-powered fixed wings fly for hours.</p><p><strong>Motor sizing</strong> is driven by <a href=../terms/thrust-to-weight-ratio.md class=link-internal>thrust-to-weight ratio</a> requirements. The motor&rsquo;s KV rating (RPM per volt unloaded) interacts with battery voltage and <a href=../terms/propeller-pitch.md class=link-internal>propeller pitch</a>/diameter to determine the operating point. For a given thrust requirement, the designer must balance:</p><ul><li>Motor KV × battery voltage = no-load RPM</li><li>Prop diameter and pitch at that RPM = thrust and current draw</li><li>Current draw × flight time = battery capacity required = battery weight</li><li>Battery weight feeds back into total weight, requiring more thrust, requiring more current&mldr;</li></ul><p>This circular dependency converges to an optimal motor/prop/battery combination for any given airframe weight and performance target.</p><h2 id=internal-combustion-piston-engines>Internal combustion (piston engines)</h2><p>Small piston engines — typically two-stroke gasoline engines of 10–200 cc displacement — power most fixed-wing UAVs in the 10–200 kg range. They offer:</p><ul><li><strong>High energy density.</strong> Gasoline&rsquo;s energy content enables flight times of 5–24+ hours, depending on airframe efficiency and fuel fraction.</li><li><strong>Established supply chains.</strong> Many UAV piston engines are adapted from commercial sources: chainsaw engines, model aircraft engines, generator engines. The Shahed-136 uses a modified Limbach L550E, a commercially available two-stroke.</li><li><strong>Simple maintenance.</strong> Two-stroke engines have few moving parts (piston, crankshaft, connecting rod). Four-stroke engines add valve trains but offer better fuel efficiency.</li></ul><p>The penalties are vibration (requiring damped mounts and complicating <a href=../terms/imu.md class=link-internal>IMU</a> integration), noise (detectable at long range), exhaust heat (thermal management), and fuel system complexity (tank, lines, carburetor or fuel injection, priming). Vibration is the most consequential for airframe design — propeller and engine harmonics can excite <a href=../terms/flutter.md class=link-internal>flutter</a> or crack <a href=./additive-manufacturing-in-uav-airframes.md class=link-internal>3D-printed</a> components along inter-layer boundaries.</p><p><strong>Configuration:</strong></p><ul><li><strong>Pusher</strong> (engine at rear, propeller behind the wing) — standard for expendable and reconnaissance UAVs. Keeps the propeller out of the forward sensor/seeker field and simplifies fuselage nose design for payload integration.</li><li><strong>Tractor</strong> (engine at front, propeller pulling) — common for traditional fixed-wing designs. Better propeller efficiency (clean airflow) but creates turbulent wake over the fuselage and wing root.</li><li><strong>Twin-engine</strong> — rare for small UAVs due to complexity, but used on some larger platforms for redundancy.</li></ul><h2 id=turbine-micro-turbojets-and-turbofans>Turbine (micro turbojets and turbofans)</h2><p>Small turbine engines (5–50 kg thrust class) provide:</p><ul><li><strong>High speed.</strong> Jet propulsion enables flight at 300–700+ km/h, impractical for propeller-driven platforms.</li><li><strong>High power-to-weight ratio.</strong> A 10 kg microturbojet can produce 100+ N of thrust — T/W ratios of 10:1 for the engine alone.</li><li><strong>Altitude capability.</strong> Turbines maintain performance at altitude better than normally aspirated piston engines.</li></ul><p>Micro turbojets in the 20–200 N thrust class are available commercially ($1,000–$10,000), derived from model aviation. They power high-speed target drones, some military UAVs, and experimental platforms. Fuel consumption is high (specific fuel consumption 1.0–1.5 kg/kgf/hr), limiting endurance.</p><p>Small turbofans are emerging for the 50–500 N thrust class, offering 20–30% better fuel economy than turbojets at subsonic speeds. The USAF&rsquo;s Collaborative Combat Aircraft (CCA) concepts envision turbojet or turbofan power for <a href=../terms/attritable-aircraft.md class=link-internal>attritable</a> wingmen in the 500–2,000 kg class.</p><h2 id=hybrid-electric>Hybrid electric</h2><p>Hybrid propulsion combines an internal combustion engine (or turbine) driving a generator with electric motors driving the propellers. The engine runs at a constant, efficient RPM; the generator charges a battery buffer; the electric motors provide variable thrust. Benefits:</p><ul><li><strong>Decoupled engine and propeller.</strong> The engine can be optimized for a single operating point, improving fuel efficiency.</li><li><strong>Instant thrust response.</strong> Electric motors provide the fast transients needed for maneuvers, while the engine provides sustained power.</li><li><strong>Fuel energy density with electric simplicity.</strong> Range and endurance approach piston-powered platforms without the vibration and noise penalties at the propeller.</li></ul><p>Drawbacks are weight (engine + generator + battery + motors), system complexity, and the engineering challenge of managing power flow between generator, battery, and motors. Hybrid systems are emerging in the 10–100 kg UAV class for long-endurance ISR missions.</p><h2 id=propulsion-configuration-and-airframe-interaction>Propulsion configuration and airframe interaction</h2><p>Propulsion is not independent of airframe design:</p><ul><li><strong><a href=../terms/wing-loading.md class=link-internal>Wing loading</a></strong> determines the thrust required for a given climb rate and cruise speed.</li><li><strong>Propeller diameter</strong> is constrained by ground clearance (multirotors), wing/fuselage interference (fixed-wing), and <a href=./additive-manufacturing-in-uav-airframes.md class=link-internal>3D-printer build volume</a> for integrated prop guards.</li><li><strong>Engine vibration spectra</strong> interact with wing resonant frequencies — if a propeller harmonic matches a wing bending or torsion mode, <a href=../terms/flutter.md class=link-internal>flutter</a> can result. This is especially critical for <a href=./additive-manufacturing-in-uav-airframes.md class=link-internal>printed airframes</a> where stiffness depends on <a href=../terms/infill-density.md class=link-internal>infill</a> parameters.</li><li><strong>Thermal management</strong> of piston engines or batteries affects fuselage design — cooling ducts, battery bay ventilation, and exhaust routing all consume internal volume and add <a href=../terms/parasitic-drag.md class=link-internal>parasitic drag</a>.</li></ul><h2 id=related-concepts>Related concepts</h2><ul><li><a href=./wing-planform-selection-for-uavs.md class=link-internal>Wing Planform Selection for UAVs</a> — planform choice interacts with propulsion through thrust line, vibration, and weight distribution</li><li><a href=./expendable-airframe-design.md class=link-internal>Expendable Airframe Design</a> — expendable platforms favor the cheapest adequate powerplant</li><li><a href=./uav-guidance-navigation-and-control.md class=link-internal>UAV Guidance, Navigation, and Control</a> — propulsion vibration affects sensor quality for navigation</li></ul></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>emsenn and claude-opus-4-6. (2026, March 6). UAV Propulsion Systems. <i>emsenn.net</i>. https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-propulsion-systems/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@misc{emsenn2026-uav-propulsion-systems,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UAV Propulsion Systems - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "emsenn"
+    },
+    {
+      "@type": "Person",
+      "name": "claude-opus-4-6"
+    }
+  ],
+  "dateModified": "2026-03-06",
+  "datePublished": "2026-03-06",
+  "description": "Electric, piston, turbine, and hybrid powerplants across the UAV spectrum, with attention to the engineering trade-offs that drive selection.",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "",
+    "url": "https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/"
+  },
+  "keywords": "Propulsion, Aerodynamics",
+  "name": "UAV Propulsion Systems",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-propulsion-systems/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="concept">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/">Aerospace engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/domains/uavs/">Uavs</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/domains/uavs/terms/">Terms</a></nav>
+  <h1 class="p-name">UAV Propulsion Systems</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-06T00:00:00Z">2026-03-06</time>
+    <span>by <span class="p-author">emsenn</span>, <span class="p-author">claude-opus-4-6</span></span>
+    <span class="p-summary">Electric, piston, turbine, and hybrid powerplants across the UAV spectrum, with attention to the engineering trade-offs that drive selection.</span>
+  </div>
+  
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#electric-brushless-dc-motor--battery">Electric (brushless DC motor + battery)</a></li>
+    <li><a href="#internal-combustion-piston-engines">Internal combustion (piston engines)</a></li>
+    <li><a href="#turbine-micro-turbojets-and-turbofans">Turbine (micro turbojets and turbofans)</a></li>
+    <li><a href="#hybrid-electric">Hybrid electric</a></li>
+    <li><a href="#propulsion-configuration-and-airframe-interaction">Propulsion configuration and airframe interaction</a></li>
+    <li><a href="#related-concepts">Related concepts</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>Propulsion selection is one of the earliest and most consequential decisions in UAV design. The powerplant determines not just thrust and speed, but the acoustic signature, vibration environment, fuel/energy logistics, endurance, and a large fraction of the airframe weight and cost. Across the UAV spectrum, four powerplant families dominate.</p>
+<h2 id="electric-brushless-dc-motor--battery">Electric (brushless DC motor + battery)</h2>
+<p>Electric propulsion is the standard for multirotors and small fixed-wing UAVs up to roughly 25 kg. A brushless DC motor (BLDC) driven by an <a href="../terms/esc.md" class="link-internal">ESC</a> and powered by lithium polymer (LiPo) batteries provides:</p>
+<ul>
+<li><strong>Mechanical simplicity.</strong> No fuel system, no ignition, no carburetor, no cooling system. The motor has one moving part (the rotor). Reliability is limited only by bearings and ESC electronics.</li>
+<li><strong>Instant throttle response.</strong> BLDC motors reach commanded RPM in milliseconds, essential for multirotor stability where attitude control depends on rapid thrust changes.</li>
+<li><strong>Low vibration.</strong> Electric motors produce negligible vibration compared to piston engines, reducing structural fatigue and simplifying <a href="../terms/imu.md" class="link-internal">IMU</a> mounting.</li>
+<li><strong>Low noise.</strong> Propeller noise dominates; the motor itself is nearly silent. Valuable for surveillance and inspection missions.</li>
+</ul>
+<p>The limiting factor is energy density. Lithium polymer batteries provide 150–250 Wh/kg — roughly 1/40th the energy density of gasoline (12,000 Wh/kg). Even accounting for the piston engine&rsquo;s thermal efficiency (~25%) and electric motor&rsquo;s high efficiency (~85%), the effective energy density gap is roughly 10:1. This is why electric multirotors endure 20–40 minutes while piston-powered fixed wings fly for hours.</p>
+<p><strong>Motor sizing</strong> is driven by <a href="../terms/thrust-to-weight-ratio.md" class="link-internal">thrust-to-weight ratio</a> requirements. The motor&rsquo;s KV rating (RPM per volt unloaded) interacts with battery voltage and <a href="../terms/propeller-pitch.md" class="link-internal">propeller pitch</a>/diameter to determine the operating point. For a given thrust requirement, the designer must balance:</p>
+<ul>
+<li>Motor KV × battery voltage = no-load RPM</li>
+<li>Prop diameter and pitch at that RPM = thrust and current draw</li>
+<li>Current draw × flight time = battery capacity required = battery weight</li>
+<li>Battery weight feeds back into total weight, requiring more thrust, requiring more current&hellip;</li>
+</ul>
+<p>This circular dependency converges to an optimal motor/prop/battery combination for any given airframe weight and performance target.</p>
+<h2 id="internal-combustion-piston-engines">Internal combustion (piston engines)</h2>
+<p>Small piston engines — typically two-stroke gasoline engines of 10–200 cc displacement — power most fixed-wing UAVs in the 10–200 kg range. They offer:</p>
+<ul>
+<li><strong>High energy density.</strong> Gasoline&rsquo;s energy content enables flight times of 5–24+ hours, depending on airframe efficiency and fuel fraction.</li>
+<li><strong>Established supply chains.</strong> Many UAV piston engines are adapted from commercial sources: chainsaw engines, model aircraft engines, generator engines. The Shahed-136 uses a modified Limbach L550E, a commercially available two-stroke.</li>
+<li><strong>Simple maintenance.</strong> Two-stroke engines have few moving parts (piston, crankshaft, connecting rod). Four-stroke engines add valve trains but offer better fuel efficiency.</li>
+</ul>
+<p>The penalties are vibration (requiring damped mounts and complicating <a href="../terms/imu.md" class="link-internal">IMU</a> integration), noise (detectable at long range), exhaust heat (thermal management), and fuel system complexity (tank, lines, carburetor or fuel injection, priming). Vibration is the most consequential for airframe design — propeller and engine harmonics can excite <a href="../terms/flutter.md" class="link-internal">flutter</a> or crack <a href="./additive-manufacturing-in-uav-airframes.md" class="link-internal">3D-printed</a> components along inter-layer boundaries.</p>
+<p><strong>Configuration:</strong></p>
+<ul>
+<li><strong>Pusher</strong> (engine at rear, propeller behind the wing) — standard for expendable and reconnaissance UAVs. Keeps the propeller out of the forward sensor/seeker field and simplifies fuselage nose design for payload integration.</li>
+<li><strong>Tractor</strong> (engine at front, propeller pulling) — common for traditional fixed-wing designs. Better propeller efficiency (clean airflow) but creates turbulent wake over the fuselage and wing root.</li>
+<li><strong>Twin-engine</strong> — rare for small UAVs due to complexity, but used on some larger platforms for redundancy.</li>
+</ul>
+<h2 id="turbine-micro-turbojets-and-turbofans">Turbine (micro turbojets and turbofans)</h2>
+<p>Small turbine engines (5–50 kg thrust class) provide:</p>
+<ul>
+<li><strong>High speed.</strong> Jet propulsion enables flight at 300–700+ km/h, impractical for propeller-driven platforms.</li>
+<li><strong>High power-to-weight ratio.</strong> A 10 kg microturbojet can produce 100+ N of thrust — T/W ratios of 10:1 for the engine alone.</li>
+<li><strong>Altitude capability.</strong> Turbines maintain performance at altitude better than normally aspirated piston engines.</li>
+</ul>
+<p>Micro turbojets in the 20–200 N thrust class are available commercially ($1,000–$10,000), derived from model aviation. They power high-speed target drones, some military UAVs, and experimental platforms. Fuel consumption is high (specific fuel consumption 1.0–1.5 kg/kgf/hr), limiting endurance.</p>
+<p>Small turbofans are emerging for the 50–500 N thrust class, offering 20–30% better fuel economy than turbojets at subsonic speeds. The USAF&rsquo;s Collaborative Combat Aircraft (CCA) concepts envision turbojet or turbofan power for <a href="../terms/attritable-aircraft.md" class="link-internal">attritable</a> wingmen in the 500–2,000 kg class.</p>
+<h2 id="hybrid-electric">Hybrid electric</h2>
+<p>Hybrid propulsion combines an internal combustion engine (or turbine) driving a generator with electric motors driving the propellers. The engine runs at a constant, efficient RPM; the generator charges a battery buffer; the electric motors provide variable thrust. Benefits:</p>
+<ul>
+<li><strong>Decoupled engine and propeller.</strong> The engine can be optimized for a single operating point, improving fuel efficiency.</li>
+<li><strong>Instant thrust response.</strong> Electric motors provide the fast transients needed for maneuvers, while the engine provides sustained power.</li>
+<li><strong>Fuel energy density with electric simplicity.</strong> Range and endurance approach piston-powered platforms without the vibration and noise penalties at the propeller.</li>
+</ul>
+<p>Drawbacks are weight (engine + generator + battery + motors), system complexity, and the engineering challenge of managing power flow between generator, battery, and motors. Hybrid systems are emerging in the 10–100 kg UAV class for long-endurance ISR missions.</p>
+<h2 id="propulsion-configuration-and-airframe-interaction">Propulsion configuration and airframe interaction</h2>
+<p>Propulsion is not independent of airframe design:</p>
+<ul>
+<li><strong><a href="../terms/wing-loading.md" class="link-internal">Wing loading</a></strong> determines the thrust required for a given climb rate and cruise speed.</li>
+<li><strong>Propeller diameter</strong> is constrained by ground clearance (multirotors), wing/fuselage interference (fixed-wing), and <a href="./additive-manufacturing-in-uav-airframes.md" class="link-internal">3D-printer build volume</a> for integrated prop guards.</li>
+<li><strong>Engine vibration spectra</strong> interact with wing resonant frequencies — if a propeller harmonic matches a wing bending or torsion mode, <a href="../terms/flutter.md" class="link-internal">flutter</a> can result. This is especially critical for <a href="./additive-manufacturing-in-uav-airframes.md" class="link-internal">printed airframes</a> where stiffness depends on <a href="../terms/infill-density.md" class="link-internal">infill</a> parameters.</li>
+<li><strong>Thermal management</strong> of piston engines or batteries affects fuselage design — cooling ducts, battery bay ventilation, and exhaust routing all consume internal volume and add <a href="../terms/parasitic-drag.md" class="link-internal">parasitic drag</a>.</li>
+</ul>
+<h2 id="related-concepts">Related concepts</h2>
+<ul>
+<li><a href="./wing-planform-selection-for-uavs.md" class="link-internal">Wing Planform Selection for UAVs</a> — planform choice interacts with propulsion through thrust line, vibration, and weight distribution</li>
+<li><a href="./expendable-airframe-design.md" class="link-internal">Expendable Airframe Design</a> — expendable platforms favor the cheapest adequate powerplant</li>
+<li><a href="./uav-guidance-navigation-and-control.md" class="link-internal">UAV Guidance, Navigation, and Control</a> — propulsion vibration affects sensor quality for navigation</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-propulsion-systems/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-06">2026-03-06</time></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/propulsion/">Propulsion</a></li><li><a href="/tags/aerodynamics/">Aerodynamics</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-uav-propulsion-systems,
   author    = {emsenn and claude-opus-4-6},
   title     = {UAV Propulsion Systems},
   year      = {2026},
@@ -12,4 +198,17 @@
   url       = {https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-propulsion-systems/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-propulsion-systems/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-06>2026-03-06</time></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">Electric, piston, turbine, and hybrid powerplants across the UAV spectrum, with attention to the engineering trade-offs that drive selection.</dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/propulsion/>Propulsion</a></li><li><a href=/tags/aerodynamics/>Aerodynamics</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">UAV Propulsion Systems</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/concept/>concept</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

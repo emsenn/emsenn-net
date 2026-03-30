@@ -1,26 +1,553 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Semiotic Publishing Script - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"Semiotic Publishing Script This is the documentation for the \u0026ldquo;semiotic publishing script,\u0026rdquo; the thing I use to make my website and other documents.\nIt works by treating a Markdown file as a [Stewardable Semiotic Concept Universe](Stewardable Semiotic Concept Universe), or combining a bunch of them into one universe.\n1. High‑Level Overview At a high level, the publisher does the following:\nScan a vault of Markdown files with YAML frontmatter. Parse concepts: each file becomes a Concept with metadata, body, links, and annotations. Interpret annotations into atoms (tags, folders, links, status, type, facts, temporal markers). Configure j‑relations: a graph of implications between atoms (folder→tag, synonyms, status/type→tag). Compute fragments and semantics by iterated closure under j and G (trace). Evaluate concepts with a simple quantitative score based on semantic features. Build indices (tag, folder, type, status) over the universe. Export one or more targets: html: a static site with an index and concept pages, json: a static JSON API, rdf: an RDF graph of concepts and atoms, openapi: a static OpenAPI description of the JSON API, pandoc: Markdown suitable for Pandoc (single concept or combined “book”). The pipeline is driven from the CLI entrypoint and configured via a YAML file (semiotic.config.yml) plus command‑line overrides.\n","keywords":"semiotics, static site generator, document publishing","name":"Semiotic Publishing Script","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/content/docs/tools/semiotic-publisher-script/semiotic-publisher/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Semiotic Publishing Script</h1><div class=meta></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#1-highlevel-overview>1. High‑Level Overview</a></li><li><a href=#2-concepts-atoms-and-the-universe>2. Concepts, Atoms, and the Universe</a><ul><li><a href=#21-concepts>2.1 Concepts</a></li><li><a href=#22-atoms>2.2 Atoms</a></li><li><a href=#23-universe>2.3 Universe</a></li></ul></li><li><a href=#3-from-frontmatter-to-annotations-and-features>3. From Frontmatter to Annotations and Features</a><ul><li><a href=#31-annotation-terms>3.1 Annotation Terms</a></li><li><a href=#32-annotation-interpreters>3.2 Annotation Interpreters</a></li><li><a href=#33-temporal-features-and-gtrace>3.3 Temporal Features and G‑Trace</a></li></ul></li><li><a href=#4-modal-closure-fragments-and-semantics>4. Modal Closure, Fragments, and Semantics</a><ul><li><a href=#41-jclosure-as-graph-reachability>4.1 j‑Closure as Graph Reachability</a></li><li><a href=#42-fragments-via-jg-fixed-point>4.2 Fragments via j∘G Fixed Point</a></li><li><a href=#43-semantic-contribution>4.3 Semantic Contribution</a></li><li><a href=#44-evaluation>4.4 Evaluation</a></li></ul></li><li><a href=#5-indices-and-relatedness>5. Indices and Relatedness</a><ul><li><a href=#51-indices>5.1 Indices</a></li><li><a href=#52-related-concepts>5.2 Related Concepts</a></li></ul></li><li><a href=#6-configuration>6. Configuration</a></li><li><a href=#7-cli-usage>7. CLI Usage</a><ul><li><a href=#71-commands>7.1 Commands</a></li><li><a href=#72-arguments-and-options>7.2 Arguments and Options</a></li><li><a href=#73-example-invocations>7.3 Example Invocations</a></li></ul></li><li><a href=#8-exported-targets>8. Exported Targets</a><ul><li><a href=#81-html-site>8.1 HTML Site</a></li><li><a href=#82-json-api>8.2 JSON API</a></li><li><a href=#83-rdf>8.3 RDF</a></li><li><a href=#84-openapi>8.4 OpenAPI</a></li><li><a href=#85-pandoc>8.5 Pandoc</a></li></ul></li><li><a href=#9-extending-the-publisher>9. Extending the Publisher</a></li><li><a href=#10-relationship-to-the-theoretical-docs>10. Relationship to the Theoretical Docs</a></li></ul></nav></details><div class=e-content><h1 id=semiotic-publishing-script>Semiotic Publishing Script</h1><p>This is the documentation for the &ldquo;semiotic publishing script,&rdquo; the thing I use to make my website and other documents.</p><p>It works by treating a Markdown file as a [Stewardable Semiotic Concept Universe](Stewardable Semiotic Concept Universe), or combining a bunch of them into one universe.</p><hr><h2 id=1-highlevel-overview>1. High‑Level Overview</h2><p>At a high level, the publisher does the following:</p><ol><li><strong>Scan a vault</strong> of Markdown files with YAML frontmatter.</li><li><strong>Parse concepts</strong>: each file becomes a <code>Concept</code> with metadata, body, links, and annotations.</li><li><strong>Interpret annotations</strong> into <strong>atoms</strong> (tags, folders, links, status, type, facts, temporal markers).</li><li><strong>Configure j‑relations</strong>: a graph of implications between atoms (folder→tag, synonyms, status/type→tag).</li><li><strong>Compute fragments and semantics</strong> by iterated closure under <code>j</code> and <code>G</code> (trace).</li><li><strong>Evaluate concepts</strong> with a simple quantitative score based on semantic features.</li><li><strong>Build indices</strong> (tag, folder, type, status) over the universe.</li><li><strong>Export</strong> one or more targets:<ul><li><code>html</code>: a static site with an index and concept pages,</li><li><code>json</code>: a static JSON API,</li><li><code>rdf</code>: an RDF graph of concepts and atoms,</li><li><code>openapi</code>: a static OpenAPI description of the JSON API,</li><li><code>pandoc</code>: Markdown suitable for Pandoc (single concept or combined “book”).</li></ul></li></ol><p>The pipeline is driven from the CLI entrypoint and configured via a YAML file (<code>semiotic.config.yml</code>) plus command‑line overrides.</p><hr><h2 id=2-concepts-atoms-and-the-universe>2. Concepts, Atoms, and the Universe</h2><h3 id=21-concepts>2.1 Concepts</h3><p>Each Markdown file in the vault corresponds to a <code>Concept</code>:</p><ul><li><strong>ID</strong>: derived from frontmatter <code>id</code>, or the relative path (slugified).</li><li><strong>Title</strong>: <code>title</code> from frontmatter, or the file stem.</li><li><strong>Body</strong>: the Markdown content (later rendered to HTML for the site and to Pandoc Markdown for documents).</li><li><strong>Metadata</strong>:<ul><li><code>tags</code>: list of free‑form tags;</li><li><code>type</code>: concept type;</li><li><code>status</code>: lifecycle or quality status;</li><li><code>aliases</code>: alternative names;</li><li><code>subjects</code> / <code>facts</code>: structured subject–predicate–object assertions;</li><li><code>created</code>, <code>updated</code>: temporal metadata.</li></ul></li><li><strong>Structural context</strong>:<ul><li><code>folders</code>: path segments from the vault root;</li><li><code>links</code>: internal links from Markdown links and <code>[wikilinks](wikilinks)</code>.</li></ul></li></ul><p>All of this is assembled by <code>load_markdown_concept</code>, which uses an internal YAML frontmatter parser and a small wiki/Markdown link parser.</p><h3 id=22-atoms>2.2 Atoms</h3><p>Atoms are the finite <strong>feature vocabulary</strong> of the publisher:</p><ul><li><code>tag:foo</code></li><li><code>folder:research</code></li><li><code>link:some-concept-id</code></li><li><code>status:draft</code>, <code>type:definition</code></li><li><code>alias:alternate-name</code></li><li><code>fact:predicate:subject->object</code></li><li><code>created:2025-01-01</code>, <code>created_year:2025</code>, <code>updated:…</code>, <code>updated_year:…</code></li></ul><p>Each <code>(kind, value)</code> pair is interned as a unique <code>Atom</code> with an integer ID.<br>The universe maintains:</p><ul><li>a map from <code>(kind, value)</code> to atom ID,</li><li>the reverse map from ID to <code>Atom</code>, and</li><li>relations between atoms (for <code>j</code>‑closure).</li></ul><h3 id=23-universe>2.3 Universe</h3><p>The <code>Universe</code> is the finite structure over which the publisher computes:</p><ul><li><code>atoms</code>: all atoms that appear in any concept;</li><li><code>concepts</code>: mapping from concept ID to <code>Concept</code>;</li><li><code>j_relations</code>: adjacency information for the modal closure;</li><li><code>indices</code>: derived indices (<code>tag</code>, <code>folder</code>, <code>type</code>, <code>status</code>) built from semantic features;</li><li><code>config</code>: the configuration used to build this universe.</li></ul><p>Although the theoretical universe is an infinite Heyting structure, this implementation uses a <strong>finite feature set</strong> (atoms) and a <strong>graph closure</strong> as an approximation.</p><hr><h2 id=3-from-frontmatter-to-annotations-and-features>3. From Frontmatter to Annotations and Features</h2><h3 id=31-annotation-terms>3.1 Annotation Terms</h3><p>The publisher treats frontmatter and structure as a tiny <strong>annotation calculus</strong>:</p><ul><li><code>HasTag(tag)</code> for each frontmatter <code>tags</code> entry,</li><li><code>HasStatus(status)</code> for frontmatter <code>status</code>,</li><li><code>HasType(type)</code> for frontmatter <code>type</code>,</li><li><code>AliasFor(alias)</code> for frontmatter <code>aliases</code>,</li><li><code>InFolder(folder)</code> for each folder segment,</li><li><code>LinksTo(target)</code> for each internal link,</li><li><code>Fact(predicate, subject, object)</code> for frontmatter <code>facts</code>.</li></ul><p>These are stored as <code>AnnotationTerm</code> values on each concept.</p><h3 id=32-annotation-interpreters>3.2 Annotation Interpreters</h3><p>The global registry <code>ANNOTATION_INTERPRETERS</code> maps annotation operators to small functions:</p><ul><li><code>HasTag</code> → creates a <code>tag</code> atom;</li><li><code>InFolder</code> → creates a <code>folder</code> atom;</li><li><code>LinksTo</code> → creates a <code>link</code> atom;</li><li><code>HasStatus</code> → creates a <code>status</code> atom;</li><li><code>HasType</code> → creates a <code>type</code> atom;</li><li><code>AliasFor</code> → creates an <code>alias</code> atom;</li><li><code>Fact</code> → creates a <code>fact</code> atom of the form <code>predicate:subject->object</code>.</li></ul><p><code>interpret_annotations</code> runs all interpreters for a concept and produces its <strong>base feature set</strong>.</p><h3 id=33-temporal-features-and-gtrace>3.3 Temporal Features and G‑Trace</h3><p>Temporal metadata (<code>created</code>, <code>updated</code>) is turned into atoms:</p><ul><li><code>created:YYYY-MM-DD</code>, <code>created_year:YYYY</code>,</li><li><code>updated:YYYY-MM-DD</code>, <code>updated_year:YYYY</code>.</li></ul><p>The <code>G_trace</code> operation enriches any feature set with these temporal atoms, providing a minimal approximation to the comonadic trace from the theory.</p><hr><h2 id=4-modal-closure-fragments-and-semantics>4. Modal Closure, Fragments, and Semantics</h2><h3 id=41-jclosure-as-graph-reachability>4.1 j‑Closure as Graph Reachability</h3><p>The modal operator <code>j</code> is implemented as a graph closure on atoms:</p><ul><li><code>j_relations</code> is a directed graph whose nodes are atoms;</li><li><code>j_closure</code> takes a feature set and returns all atoms reachable via this graph;</li><li>this satisfies the usual closure properties (extensive, monotone, idempotent) in the finite setting.</li></ul><p>Configuration (see §6) determines many of these relations (folder→tag, tag synonyms, type/status→tag).</p><h3 id=42-fragments-via-jg-fixed-point>4.2 Fragments via j∘G Fixed Point</h3><p>For each concept:</p><ol><li>Start from its <strong>base features</strong> (from annotations).</li><li>Apply <code>G_trace</code> to add temporal atoms.</li><li>Apply <code>j_closure</code> to propagate along the graph.</li><li>Iterate until a fixed point is reached.</li></ol><p>This fixed point is the concept’s <strong>fragment</strong>: the least j,G‑closed feature set containing the seed.</p><h3 id=43-semantic-contribution>4.3 Semantic Contribution</h3><p>The <strong>semantic feature set</strong> of a concept is built by one more iteration of the same closure process starting from its fragment. This provides a slight “semantic halo” around the fragment, in line with the theoretical notion of semantic contribution.</p><h3 id=44-evaluation>4.4 Evaluation</h3><p>Each concept receives a simple <strong>evaluation score</strong> based on its semantic features:</p><ul><li>+1 for each <code>tag</code> atom,</li><li>+0.5 for each <code>link</code> atom,</li><li>+0.3 for each <code>fact</code> atom,</li><li>+0.1 for each temporal year atom (<code>created_year</code>, <code>updated_year</code>).</li></ul><p>This is a deliberately simple monoid‑like score; in the future it can be replaced by more sophisticated stewardship‑informed metrics.</p><hr><h2 id=5-indices-and-relatedness>5. Indices and Relatedness</h2><h3 id=51-indices>5.1 Indices</h3><p>Once all concepts have semantic features, the publisher builds indices:</p><ul><li><strong>Tag index</strong>: <code>tag → {concept IDs}</code>,</li><li><strong>Folder index</strong>: <code>folder → {concept IDs}</code>,</li><li><strong>Type index</strong>: <code>type → {concept IDs}</code>,</li><li><strong>Status index</strong>: <code>status → {concept IDs}</code>.</li></ul><p>These indices support:</p><ul><li>the HTML index page (displaying tag and folder counts, top tags, top concepts), and</li><li>the JSON API and RDF exports (structured access to the same information).</li></ul><h3 id=52-related-concepts>5.2 Related Concepts</h3><p>Relatedness between concepts uses <strong>Jaccard similarity</strong> over semantic feature sets:</p><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi></mrow><mo stretchy="false">(</mo><mi>k</mi><mo separator="true">,</mo><msup><mi>k</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi mathvariant="normal">∣</mi><mi>S</mi><mi>e</mi><mi>m</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo>∩</mo><mi>S</mi><mi>e</mi><mi>m</mi><mo stretchy="false">(</mo><msup><mi>k</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi></mrow><mrow><mi mathvariant="normal">∣</mi><mi>S</mi><mi>e</mi><mi>m</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo>∪</mo><mi>S</mi><mi>e</mi><mi>m</mi><mo stretchy="false">(</mo><msup><mi>k</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semiotic Publishing Script - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "Semiotic Publishing Script This is the documentation for the \u0026ldquo;semiotic publishing script,\u0026rdquo; the thing I use to make my website and other documents.\nIt works by treating a Markdown file as a [Stewardable Semiotic Concept Universe](Stewardable Semiotic Concept Universe), or combining a bunch of them into one universe.\n1. High‑Level Overview At a high level, the publisher does the following:\nScan a vault of Markdown files with YAML frontmatter. Parse concepts: each file becomes a Concept with metadata, body, links, and annotations. Interpret annotations into atoms (tags, folders, links, status, type, facts, temporal markers). Configure j‑relations: a graph of implications between atoms (folder→tag, synonyms, status/type→tag). Compute fragments and semantics by iterated closure under j and G (trace). Evaluate concepts with a simple quantitative score based on semantic features. Build indices (tag, folder, type, status) over the universe. Export one or more targets: html: a static site with an index and concept pages, json: a static JSON API, rdf: an RDF graph of concepts and atoms, openapi: a static OpenAPI description of the JSON API, pandoc: Markdown suitable for Pandoc (single concept or combined “book”). The pipeline is driven from the CLI entrypoint and configured via a YAML file (semiotic.config.yml) plus command‑line overrides.\n",
+  "keywords": "semiotics, static site generator, document publishing",
+  "name": "Semiotic Publishing Script",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "http://localhost:1313/library/relationality/content/docs/tools/semiotic-publisher-script/semiotic-publisher/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="doc">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/relationality/">Relationality</a></nav>
+  <h1 class="p-name">Semiotic Publishing Script</h1>
+  <div class="meta">
+    
+    
+    
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-highlevel-overview">1. High‑Level Overview</a></li>
+    <li><a href="#2-concepts-atoms-and-the-universe">2. Concepts, Atoms, and the Universe</a>
+      <ul>
+        <li><a href="#21-concepts">2.1 Concepts</a></li>
+        <li><a href="#22-atoms">2.2 Atoms</a></li>
+        <li><a href="#23-universe">2.3 Universe</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-from-frontmatter-to-annotations-and-features">3. From Frontmatter to Annotations and Features</a>
+      <ul>
+        <li><a href="#31-annotation-terms">3.1 Annotation Terms</a></li>
+        <li><a href="#32-annotation-interpreters">3.2 Annotation Interpreters</a></li>
+        <li><a href="#33-temporal-features-and-gtrace">3.3 Temporal Features and G‑Trace</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-modal-closure-fragments-and-semantics">4. Modal Closure, Fragments, and Semantics</a>
+      <ul>
+        <li><a href="#41-jclosure-as-graph-reachability">4.1 j‑Closure as Graph Reachability</a></li>
+        <li><a href="#42-fragments-via-jg-fixed-point">4.2 Fragments via j∘G Fixed Point</a></li>
+        <li><a href="#43-semantic-contribution">4.3 Semantic Contribution</a></li>
+        <li><a href="#44-evaluation">4.4 Evaluation</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-indices-and-relatedness">5. Indices and Relatedness</a>
+      <ul>
+        <li><a href="#51-indices">5.1 Indices</a></li>
+        <li><a href="#52-related-concepts">5.2 Related Concepts</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-configuration">6. Configuration</a></li>
+    <li><a href="#7-cli-usage">7. CLI Usage</a>
+      <ul>
+        <li><a href="#71-commands">7.1 Commands</a></li>
+        <li><a href="#72-arguments-and-options">7.2 Arguments and Options</a></li>
+        <li><a href="#73-example-invocations">7.3 Example Invocations</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-exported-targets">8. Exported Targets</a>
+      <ul>
+        <li><a href="#81-html-site">8.1 HTML Site</a></li>
+        <li><a href="#82-json-api">8.2 JSON API</a></li>
+        <li><a href="#83-rdf">8.3 RDF</a></li>
+        <li><a href="#84-openapi">8.4 OpenAPI</a></li>
+        <li><a href="#85-pandoc">8.5 Pandoc</a></li>
+      </ul>
+    </li>
+    <li><a href="#9-extending-the-publisher">9. Extending the Publisher</a></li>
+    <li><a href="#10-relationship-to-the-theoretical-docs">10. Relationship to the Theoretical Docs</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="semiotic-publishing-script">Semiotic Publishing Script</h1>
+<p>This is the documentation for the &ldquo;semiotic publishing script,&rdquo; the thing I use to make my website and other documents.</p>
+<p>It works by treating a Markdown file as a [Stewardable Semiotic Concept Universe](Stewardable Semiotic Concept Universe), or combining a bunch of them into one universe.</p>
+<hr>
+<h2 id="1-highlevel-overview">1. High‑Level Overview</h2>
+<p>At a high level, the publisher does the following:</p>
+<ol>
+<li><strong>Scan a vault</strong> of Markdown files with YAML frontmatter.</li>
+<li><strong>Parse concepts</strong>: each file becomes a <code>Concept</code> with metadata, body, links, and annotations.</li>
+<li><strong>Interpret annotations</strong> into <strong>atoms</strong> (tags, folders, links, status, type, facts, temporal markers).</li>
+<li><strong>Configure j‑relations</strong>: a graph of implications between atoms (folder→tag, synonyms, status/type→tag).</li>
+<li><strong>Compute fragments and semantics</strong> by iterated closure under <code>j</code> and <code>G</code> (trace).</li>
+<li><strong>Evaluate concepts</strong> with a simple quantitative score based on semantic features.</li>
+<li><strong>Build indices</strong> (tag, folder, type, status) over the universe.</li>
+<li><strong>Export</strong> one or more targets:
+<ul>
+<li><code>html</code>: a static site with an index and concept pages,</li>
+<li><code>json</code>: a static JSON API,</li>
+<li><code>rdf</code>: an RDF graph of concepts and atoms,</li>
+<li><code>openapi</code>: a static OpenAPI description of the JSON API,</li>
+<li><code>pandoc</code>: Markdown suitable for Pandoc (single concept or combined “book”).</li>
+</ul>
+</li>
+</ol>
+<p>The pipeline is driven from the CLI entrypoint and configured via a YAML file (<code>semiotic.config.yml</code>) plus command‑line overrides.</p>
+<hr>
+<h2 id="2-concepts-atoms-and-the-universe">2. Concepts, Atoms, and the Universe</h2>
+<h3 id="21-concepts">2.1 Concepts</h3>
+<p>Each Markdown file in the vault corresponds to a <code>Concept</code>:</p>
+<ul>
+<li><strong>ID</strong>: derived from frontmatter <code>id</code>, or the relative path (slugified).</li>
+<li><strong>Title</strong>: <code>title</code> from frontmatter, or the file stem.</li>
+<li><strong>Body</strong>: the Markdown content (later rendered to HTML for the site and to Pandoc Markdown for documents).</li>
+<li><strong>Metadata</strong>:
+<ul>
+<li><code>tags</code>: list of free‑form tags;</li>
+<li><code>type</code>: concept type;</li>
+<li><code>status</code>: lifecycle or quality status;</li>
+<li><code>aliases</code>: alternative names;</li>
+<li><code>subjects</code> / <code>facts</code>: structured subject–predicate–object assertions;</li>
+<li><code>created</code>, <code>updated</code>: temporal metadata.</li>
+</ul>
+</li>
+<li><strong>Structural context</strong>:
+<ul>
+<li><code>folders</code>: path segments from the vault root;</li>
+<li><code>links</code>: internal links from Markdown links and <code>[wikilinks](wikilinks)</code>.</li>
+</ul>
+</li>
+</ul>
+<p>All of this is assembled by <code>load_markdown_concept</code>, which uses an internal YAML frontmatter parser and a small wiki/Markdown link parser.</p>
+<h3 id="22-atoms">2.2 Atoms</h3>
+<p>Atoms are the finite <strong>feature vocabulary</strong> of the publisher:</p>
+<ul>
+<li><code>tag:foo</code></li>
+<li><code>folder:research</code></li>
+<li><code>link:some-concept-id</code></li>
+<li><code>status:draft</code>, <code>type:definition</code></li>
+<li><code>alias:alternate-name</code></li>
+<li><code>fact:predicate:subject-&gt;object</code></li>
+<li><code>created:2025-01-01</code>, <code>created_year:2025</code>, <code>updated:…</code>, <code>updated_year:…</code></li>
+</ul>
+<p>Each <code>(kind, value)</code> pair is interned as a unique <code>Atom</code> with an integer ID.<br>
+The universe maintains:</p>
+<ul>
+<li>a map from <code>(kind, value)</code> to atom ID,</li>
+<li>the reverse map from ID to <code>Atom</code>, and</li>
+<li>relations between atoms (for <code>j</code>‑closure).</li>
+</ul>
+<h3 id="23-universe">2.3 Universe</h3>
+<p>The <code>Universe</code> is the finite structure over which the publisher computes:</p>
+<ul>
+<li><code>atoms</code>: all atoms that appear in any concept;</li>
+<li><code>concepts</code>: mapping from concept ID to <code>Concept</code>;</li>
+<li><code>j_relations</code>: adjacency information for the modal closure;</li>
+<li><code>indices</code>: derived indices (<code>tag</code>, <code>folder</code>, <code>type</code>, <code>status</code>) built from semantic features;</li>
+<li><code>config</code>: the configuration used to build this universe.</li>
+</ul>
+<p>Although the theoretical universe is an infinite Heyting structure, this implementation uses a <strong>finite feature set</strong> (atoms) and a <strong>graph closure</strong> as an approximation.</p>
+<hr>
+<h2 id="3-from-frontmatter-to-annotations-and-features">3. From Frontmatter to Annotations and Features</h2>
+<h3 id="31-annotation-terms">3.1 Annotation Terms</h3>
+<p>The publisher treats frontmatter and structure as a tiny <strong>annotation calculus</strong>:</p>
+<ul>
+<li><code>HasTag(tag)</code> for each frontmatter <code>tags</code> entry,</li>
+<li><code>HasStatus(status)</code> for frontmatter <code>status</code>,</li>
+<li><code>HasType(type)</code> for frontmatter <code>type</code>,</li>
+<li><code>AliasFor(alias)</code> for frontmatter <code>aliases</code>,</li>
+<li><code>InFolder(folder)</code> for each folder segment,</li>
+<li><code>LinksTo(target)</code> for each internal link,</li>
+<li><code>Fact(predicate, subject, object)</code> for frontmatter <code>facts</code>.</li>
+</ul>
+<p>These are stored as <code>AnnotationTerm</code> values on each concept.</p>
+<h3 id="32-annotation-interpreters">3.2 Annotation Interpreters</h3>
+<p>The global registry <code>ANNOTATION_INTERPRETERS</code> maps annotation operators to small functions:</p>
+<ul>
+<li><code>HasTag</code> → creates a <code>tag</code> atom;</li>
+<li><code>InFolder</code> → creates a <code>folder</code> atom;</li>
+<li><code>LinksTo</code> → creates a <code>link</code> atom;</li>
+<li><code>HasStatus</code> → creates a <code>status</code> atom;</li>
+<li><code>HasType</code> → creates a <code>type</code> atom;</li>
+<li><code>AliasFor</code> → creates an <code>alias</code> atom;</li>
+<li><code>Fact</code> → creates a <code>fact</code> atom of the form <code>predicate:subject-&gt;object</code>.</li>
+</ul>
+<p><code>interpret_annotations</code> runs all interpreters for a concept and produces its <strong>base feature set</strong>.</p>
+<h3 id="33-temporal-features-and-gtrace">3.3 Temporal Features and G‑Trace</h3>
+<p>Temporal metadata (<code>created</code>, <code>updated</code>) is turned into atoms:</p>
+<ul>
+<li><code>created:YYYY-MM-DD</code>, <code>created_year:YYYY</code>,</li>
+<li><code>updated:YYYY-MM-DD</code>, <code>updated_year:YYYY</code>.</li>
+</ul>
+<p>The <code>G_trace</code> operation enriches any feature set with these temporal atoms, providing a minimal approximation to the comonadic trace from the theory.</p>
+<hr>
+<h2 id="4-modal-closure-fragments-and-semantics">4. Modal Closure, Fragments, and Semantics</h2>
+<h3 id="41-jclosure-as-graph-reachability">4.1 j‑Closure as Graph Reachability</h3>
+<p>The modal operator <code>j</code> is implemented as a graph closure on atoms:</p>
+<ul>
+<li><code>j_relations</code> is a directed graph whose nodes are atoms;</li>
+<li><code>j_closure</code> takes a feature set and returns all atoms reachable via this graph;</li>
+<li>this satisfies the usual closure properties (extensive, monotone, idempotent) in the finite setting.</li>
+</ul>
+<p>Configuration (see §6) determines many of these relations (folder→tag, tag synonyms, type/status→tag).</p>
+<h3 id="42-fragments-via-jg-fixed-point">4.2 Fragments via j∘G Fixed Point</h3>
+<p>For each concept:</p>
+<ol>
+<li>Start from its <strong>base features</strong> (from annotations).</li>
+<li>Apply <code>G_trace</code> to add temporal atoms.</li>
+<li>Apply <code>j_closure</code> to propagate along the graph.</li>
+<li>Iterate until a fixed point is reached.</li>
+</ol>
+<p>This fixed point is the concept’s <strong>fragment</strong>: the least j,G‑closed feature set containing the seed.</p>
+<h3 id="43-semantic-contribution">4.3 Semantic Contribution</h3>
+<p>The <strong>semantic feature set</strong> of a concept is built by one more iteration of the same closure process starting from its fragment. This provides a slight “semantic halo” around the fragment, in line with the theoretical notion of semantic contribution.</p>
+<h3 id="44-evaluation">4.4 Evaluation</h3>
+<p>Each concept receives a simple <strong>evaluation score</strong> based on its semantic features:</p>
+<ul>
+<li>+1 for each <code>tag</code> atom,</li>
+<li>+0.5 for each <code>link</code> atom,</li>
+<li>+0.3 for each <code>fact</code> atom,</li>
+<li>+0.1 for each temporal year atom (<code>created_year</code>, <code>updated_year</code>).</li>
+</ul>
+<p>This is a deliberately simple monoid‑like score; in the future it can be replaced by more sophisticated stewardship‑informed metrics.</p>
+<hr>
+<h2 id="5-indices-and-relatedness">5. Indices and Relatedness</h2>
+<h3 id="51-indices">5.1 Indices</h3>
+<p>Once all concepts have semantic features, the publisher builds indices:</p>
+<ul>
+<li><strong>Tag index</strong>: <code>tag → {concept IDs}</code>,</li>
+<li><strong>Folder index</strong>: <code>folder → {concept IDs}</code>,</li>
+<li><strong>Type index</strong>: <code>type → {concept IDs}</code>,</li>
+<li><strong>Status index</strong>: <code>status → {concept IDs}</code>.</li>
+</ul>
+<p>These indices support:</p>
+<ul>
+<li>the HTML index page (displaying tag and folder counts, top tags, top concepts), and</li>
+<li>the JSON API and RDF exports (structured access to the same information).</li>
+</ul>
+<h3 id="52-related-concepts">5.2 Related Concepts</h3>
+<p>Relatedness between concepts uses <strong>Jaccard similarity</strong> over semantic feature sets:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi></mrow><mo stretchy="false">(</mo><mi>k</mi><mo separator="true">,</mo><msup><mi>k</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi mathvariant="normal">∣</mi><mi>S</mi><mi>e</mi><mi>m</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo>∩</mo><mi>S</mi><mi>e</mi><mi>m</mi><mo stretchy="false">(</mo><msup><mi>k</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi></mrow><mrow><mi mathvariant="normal">∣</mi><mi>S</mi><mi>e</mi><mi>m</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo>∪</mo><mi>S</mi><mi>e</mi><mi>m</mi><mo stretchy="false">(</mo><msup><mi>k</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
   \mathrm{rel}(k, k&#x27;) = 
   \frac{|Sem(k) \cap Sem(k&#x27;)|}
        {|Sem(k) \cup Sem(k&#x27;)|}.
-</annotation></semantics></math></span><p>For each concept, the publisher:</p><ul><li>computes related concepts with positive similarity,</li><li>sorts them by decreasing similarity,</li><li>keeps the top few, and</li><li>displays them on the HTML concept page as a “related concepts” mini‑index.</li></ul><hr><h2 id=6-configuration>6. Configuration</h2><p>Configuration is loaded from a YAML file (e.g. <code>semiotic.config.yml</code>) into <code>Config</code>. Key fields:</p><ul><li><p><strong>Identity and routing</strong></p><ul><li><code>base_url</code>: base URL for API and RDF URIs;</li><li><code>site_title</code>: title displayed in the HTML site header.</li></ul></li><li><p><strong>Vault and output</strong></p><ul><li><code>vault_dir</code>: path to the Markdown vault;</li><li><code>output_dir</code>: where generated files are written.</li></ul></li><li><p><strong>Mode and targets</strong></p><ul><li><code>mode</code>: <code>"site"</code> or <code>"doc"</code>;</li><li><code>targets</code>: list of enabled exporters (<code>html</code>, <code>json</code>, <code>rdf</code>, <code>openapi</code>, <code>pandoc</code>).</li></ul></li><li><p><strong>Pandoc</strong></p><ul><li><code>pandoc_enabled</code>: gate for Pandoc exports;</li><li><code>pandoc_formats</code>: e.g. <code>["pdf", "epub"]</code>;</li><li><code>pandoc_template</code>: optional Pandoc template;</li><li><code>pandoc_filters</code>: list of Pandoc filters;</li><li><code>pandoc_output_single</code>: override output filename for single‑concept export;</li><li><code>pandoc_book_title</code>: title for combined documents.</li></ul></li><li><p><strong>Vault filtering and semantic rules</strong></p><ul><li><code>ignore</code>: glob patterns for files to skip;</li><li><code>folder_tag_rules</code>: map <code>folder → tag</code>, used to configure j‑relations;</li><li><code>tag_synonyms</code>: symmetric tag synonym relations;</li><li><code>type_tag_rules</code>: map <code>type → tag</code>;</li><li><code>status_tag_rules</code>: map <code>status → tag</code>.</li></ul></li></ul><p>These rules are applied when configuring <code>j_relations</code> and therefore affect fragments, semantics, evaluation, and indices.</p><hr><h2 id=7-cli-usage>7. CLI Usage</h2><p>The publisher exposes a small CLI with subcommands. The primary entrypoint is:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python -m src.cli publish <span style=color:#f92672>[</span>VAULT_DIR<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>OUTPUT_DIR<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>options<span style=color:#f92672>]</span>
-</span></span></code></pre></div><h3 id=71-commands>7.1 Commands</h3><ul><li><code>publish</code>: main command (also aliased as <code>build</code>).</li></ul><h3 id=72-arguments-and-options>7.2 Arguments and Options</h3><ul><li><p><code>vault_dir</code> (positional, optional):<br>path to the Markdown vault. If omitted, the config’s <code>vault_dir</code> is used.</p></li><li><p><code>output_dir</code> (positional, optional):<br>output directory. If omitted, the config’s <code>output_dir</code> is used.</p></li><li><p><code>--config PATH</code>:<br>path to the YAML config file (e.g. <code>semiotic.config.yml</code>).</p></li><li><p><code>--dry-run</code>:<br>run the full pipeline but do not write any files.</p></li><li><p><code>--targets "html,json,rdf,openapi,pandoc"</code>:<br>override the list of export targets for this run.</p></li><li><p><code>--mode site|doc</code>:<br>override <code>mode</code> from the config (<code>site</code> = static site & APIs, <code>doc</code> = Pandoc‑focused).</p></li><li><p><code>--allow-pandoc</code>:<br>allow invoking Pandoc for <code>pandoc</code> targets (otherwise the publisher will print a message and skip).</p></li><li><p><code>--concept ID</code>:<br>when using <code>pandoc</code> targets, restrict export to a single concept ID.</p></li></ul><h3 id=73-example-invocations>7.3 Example Invocations</h3><p><strong>Build a full site and APIs using config defaults:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python -m src.cli publish --config semiotic.config.yml
-</span></span></code></pre></div><p><strong>Build only HTML and JSON to a specific directory:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python -m src.cli publish ./vault ./public <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --targets html,json <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --config semiotic.config.yml
-</span></span></code></pre></div><p><strong>Produce a single‑concept PDF via Pandoc:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python -m src.cli publish ./vault ./pub <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --mode doc <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --targets pandoc <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --allow-pandoc <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --concept some-concept-id <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --config semiotic.config.yml
-</span></span></code></pre></div><hr><h2 id=8-exported-targets>8. Exported Targets</h2><h3 id=81-html-site>8.1 HTML Site</h3><p>When <code>html</code> is in <code>targets</code>, the publisher writes:</p><ul><li><p><code>site/index.html</code>:<br>overview metrics, top tags, top concepts, concept list, tag list.</p></li><li><p><code>site/concepts/&lt;id>.html</code>:<br>one page per concept, with:</p><ul><li>title and evaluation meter,</li><li>metadata and tags in a left margin column,</li><li>rendered Markdown body,</li><li>related concepts based on Jaccard similarity.</li></ul></li></ul><p>Templates are small Jinja2 strings embedded in the script; CSS is inline for fully static, self‑contained pages.</p><h3 id=82-json-api>8.2 JSON API</h3><p>When <code>json</code> is in <code>targets</code>, the publisher writes:</p><ul><li><p><code>api/concepts/index.json</code>:<br>summary information for all concepts.</p></li><li><p><code>api/concepts/&lt;id>.json</code>:<br>detailed information for each concept, including fragment and semantic features rendered as atom lists.</p></li></ul><p>These JSON payloads can serve lightweight clients or be used for downstream processing.</p><h3 id=83-rdf>8.3 RDF</h3><p>When <code>rdf</code> is in <code>targets</code>, the publisher writes an RDF graph (typically <code>api/graph.ttl</code> or similar) encoding:</p><ul><li>concepts as RDF resources,</li><li>atoms as resources or literals,</li><li>relations induced by semantic features (tags, folders, links, facts, temporal markers).</li></ul><p>The exact vocabulary is simple and pragmatic, aimed at making the semiotic universe queryable with SPARQL.</p><h3 id=84-openapi>8.4 OpenAPI</h3><p>When <code>openapi</code> is in <code>targets</code>, the publisher emits:</p><ul><li><code>api/openapi.json</code>: an OpenAPI 3 specification describing the JSON API.</li></ul><p>This makes it easy to generate clients or explore the API using standard tools.</p><h3 id=85-pandoc>8.5 Pandoc</h3><p>When <code>pandoc</code> is in <code>targets</code> and <code>pandoc_enabled</code> is true:</p><ul><li>Each selected concept (or a combined set of concepts) is converted to Markdown with:<ul><li>YAML frontmatter capturing key metadata,</li><li>the concept body,</li><li>an optional appendix listing semantic features.</li></ul></li></ul><p>The publisher then invokes <code>pandoc</code> with configured formats, templates, and filters to produce documents such as PDF or EPUB.</p><hr><h2 id=9-extending-the-publisher>9. Extending the Publisher</h2><p>Some common extension points:</p><ul><li><p><strong>New annotation operators</strong>:<br>add a new <code>@register_annotation("OpName")</code> function mapping frontmatter or structural patterns to atoms.</p></li><li><p><strong>New j‑relations</strong>:<br>extend <code>folder_tag_rules</code>, <code>tag_synonyms</code>, <code>type_tag_rules</code>, or <code>status_tag_rules</code> in the config to change how fragment closure behaves.</p></li><li><p><strong>Alternative evaluation metrics</strong>:<br>modify <code>evaluate_concept</code> to incorporate new signals (e.g. length of body, stewardship status, or user‑provided weights).</p></li><li><p><strong>Additional exporters</strong>:<br>add new <code>export_*</code> functions and register them in <code>export_all</code> and <code>targets</code> handling.</p></li></ul><p>These extensions stay within the same finite‐feature and closure framework, preserving alignment with the underlying theoretical universe.</p><hr><h2 id=10-relationship-to-the-theoretical-docs>10. Relationship to the Theoretical Docs</h2><ul><li><code>semiotic-universe.md</code> describes the <strong>idealized</strong>, infinite Heyting–modal–comonadic universe and its fusion mechanism.</li><li><code>stewardable-semiotic-concept-universe.md</code> describes a stewardship‑oriented extension with failure semantics, deltas, and sheaf‑like behavior.</li><li><strong>This document</strong> explains the <strong>concrete publisher implementation</strong> that:<ul><li>approximates the universe using finite atoms and graph closure,</li><li>treats concepts as vault documents,</li><li>and exports multiple static views (site, API, RDF, documents) suitable for stewardship and analysis.</li></ul></li></ul><p>In short, the Semiotic Publisher is the bridge between <strong>vault practice</strong> and <strong>semiotic theory</strong>: it turns annotated Markdown into a working, inspectable instance of the semiotic universe.</p></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>emsenn. (). Semiotic Publishing Script. <i>emsenn.net</i>. https://emsenn.net/library/relationality/content/docs/tools/semiotic-publisher-script/semiotic-publisher/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@misc{emsenn-semiotic-publisher,
+</annotation></semantics></math></span><p>For each concept, the publisher:</p>
+<ul>
+<li>computes related concepts with positive similarity,</li>
+<li>sorts them by decreasing similarity,</li>
+<li>keeps the top few, and</li>
+<li>displays them on the HTML concept page as a “related concepts” mini‑index.</li>
+</ul>
+<hr>
+<h2 id="6-configuration">6. Configuration</h2>
+<p>Configuration is loaded from a YAML file (e.g. <code>semiotic.config.yml</code>) into <code>Config</code>. Key fields:</p>
+<ul>
+<li>
+<p><strong>Identity and routing</strong></p>
+<ul>
+<li><code>base_url</code>: base URL for API and RDF URIs;</li>
+<li><code>site_title</code>: title displayed in the HTML site header.</li>
+</ul>
+</li>
+<li>
+<p><strong>Vault and output</strong></p>
+<ul>
+<li><code>vault_dir</code>: path to the Markdown vault;</li>
+<li><code>output_dir</code>: where generated files are written.</li>
+</ul>
+</li>
+<li>
+<p><strong>Mode and targets</strong></p>
+<ul>
+<li><code>mode</code>: <code>&quot;site&quot;</code> or <code>&quot;doc&quot;</code>;</li>
+<li><code>targets</code>: list of enabled exporters (<code>html</code>, <code>json</code>, <code>rdf</code>, <code>openapi</code>, <code>pandoc</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Pandoc</strong></p>
+<ul>
+<li><code>pandoc_enabled</code>: gate for Pandoc exports;</li>
+<li><code>pandoc_formats</code>: e.g. <code>[&quot;pdf&quot;, &quot;epub&quot;]</code>;</li>
+<li><code>pandoc_template</code>: optional Pandoc template;</li>
+<li><code>pandoc_filters</code>: list of Pandoc filters;</li>
+<li><code>pandoc_output_single</code>: override output filename for single‑concept export;</li>
+<li><code>pandoc_book_title</code>: title for combined documents.</li>
+</ul>
+</li>
+<li>
+<p><strong>Vault filtering and semantic rules</strong></p>
+<ul>
+<li><code>ignore</code>: glob patterns for files to skip;</li>
+<li><code>folder_tag_rules</code>: map <code>folder → tag</code>, used to configure j‑relations;</li>
+<li><code>tag_synonyms</code>: symmetric tag synonym relations;</li>
+<li><code>type_tag_rules</code>: map <code>type → tag</code>;</li>
+<li><code>status_tag_rules</code>: map <code>status → tag</code>.</li>
+</ul>
+</li>
+</ul>
+<p>These rules are applied when configuring <code>j_relations</code> and therefore affect fragments, semantics, evaluation, and indices.</p>
+<hr>
+<h2 id="7-cli-usage">7. CLI Usage</h2>
+<p>The publisher exposes a small CLI with subcommands. The primary entrypoint is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m src.cli publish <span style="color:#f92672">[</span>VAULT_DIR<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>OUTPUT_DIR<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h3 id="71-commands">7.1 Commands</h3>
+<ul>
+<li><code>publish</code>: main command (also aliased as <code>build</code>).</li>
+</ul>
+<h3 id="72-arguments-and-options">7.2 Arguments and Options</h3>
+<ul>
+<li>
+<p><code>vault_dir</code> (positional, optional):<br>
+path to the Markdown vault. If omitted, the config’s <code>vault_dir</code> is used.</p>
+</li>
+<li>
+<p><code>output_dir</code> (positional, optional):<br>
+output directory. If omitted, the config’s <code>output_dir</code> is used.</p>
+</li>
+<li>
+<p><code>--config PATH</code>:<br>
+path to the YAML config file (e.g. <code>semiotic.config.yml</code>).</p>
+</li>
+<li>
+<p><code>--dry-run</code>:<br>
+run the full pipeline but do not write any files.</p>
+</li>
+<li>
+<p><code>--targets &quot;html,json,rdf,openapi,pandoc&quot;</code>:<br>
+override the list of export targets for this run.</p>
+</li>
+<li>
+<p><code>--mode site|doc</code>:<br>
+override <code>mode</code> from the config (<code>site</code> = static site &amp; APIs, <code>doc</code> = Pandoc‑focused).</p>
+</li>
+<li>
+<p><code>--allow-pandoc</code>:<br>
+allow invoking Pandoc for <code>pandoc</code> targets (otherwise the publisher will print a message and skip).</p>
+</li>
+<li>
+<p><code>--concept ID</code>:<br>
+when using <code>pandoc</code> targets, restrict export to a single concept ID.</p>
+</li>
+</ul>
+<h3 id="73-example-invocations">7.3 Example Invocations</h3>
+<p><strong>Build a full site and APIs using config defaults:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m src.cli publish --config semiotic.config.yml
+</span></span></code></pre></div><p><strong>Build only HTML and JSON to a specific directory:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m src.cli publish ./vault ./public <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --targets html,json <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --config semiotic.config.yml
+</span></span></code></pre></div><p><strong>Produce a single‑concept PDF via Pandoc:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m src.cli publish ./vault ./pub <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --mode doc <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --targets pandoc <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --allow-pandoc <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --concept some-concept-id <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --config semiotic.config.yml
+</span></span></code></pre></div><hr>
+<h2 id="8-exported-targets">8. Exported Targets</h2>
+<h3 id="81-html-site">8.1 HTML Site</h3>
+<p>When <code>html</code> is in <code>targets</code>, the publisher writes:</p>
+<ul>
+<li>
+<p><code>site/index.html</code>:<br>
+overview metrics, top tags, top concepts, concept list, tag list.</p>
+</li>
+<li>
+<p><code>site/concepts/&lt;id&gt;.html</code>:<br>
+one page per concept, with:</p>
+<ul>
+<li>title and evaluation meter,</li>
+<li>metadata and tags in a left margin column,</li>
+<li>rendered Markdown body,</li>
+<li>related concepts based on Jaccard similarity.</li>
+</ul>
+</li>
+</ul>
+<p>Templates are small Jinja2 strings embedded in the script; CSS is inline for fully static, self‑contained pages.</p>
+<h3 id="82-json-api">8.2 JSON API</h3>
+<p>When <code>json</code> is in <code>targets</code>, the publisher writes:</p>
+<ul>
+<li>
+<p><code>api/concepts/index.json</code>:<br>
+summary information for all concepts.</p>
+</li>
+<li>
+<p><code>api/concepts/&lt;id&gt;.json</code>:<br>
+detailed information for each concept, including fragment and semantic features rendered as atom lists.</p>
+</li>
+</ul>
+<p>These JSON payloads can serve lightweight clients or be used for downstream processing.</p>
+<h3 id="83-rdf">8.3 RDF</h3>
+<p>When <code>rdf</code> is in <code>targets</code>, the publisher writes an RDF graph (typically <code>api/graph.ttl</code> or similar) encoding:</p>
+<ul>
+<li>concepts as RDF resources,</li>
+<li>atoms as resources or literals,</li>
+<li>relations induced by semantic features (tags, folders, links, facts, temporal markers).</li>
+</ul>
+<p>The exact vocabulary is simple and pragmatic, aimed at making the semiotic universe queryable with SPARQL.</p>
+<h3 id="84-openapi">8.4 OpenAPI</h3>
+<p>When <code>openapi</code> is in <code>targets</code>, the publisher emits:</p>
+<ul>
+<li><code>api/openapi.json</code>: an OpenAPI 3 specification describing the JSON API.</li>
+</ul>
+<p>This makes it easy to generate clients or explore the API using standard tools.</p>
+<h3 id="85-pandoc">8.5 Pandoc</h3>
+<p>When <code>pandoc</code> is in <code>targets</code> and <code>pandoc_enabled</code> is true:</p>
+<ul>
+<li>Each selected concept (or a combined set of concepts) is converted to Markdown with:
+<ul>
+<li>YAML frontmatter capturing key metadata,</li>
+<li>the concept body,</li>
+<li>an optional appendix listing semantic features.</li>
+</ul>
+</li>
+</ul>
+<p>The publisher then invokes <code>pandoc</code> with configured formats, templates, and filters to produce documents such as PDF or EPUB.</p>
+<hr>
+<h2 id="9-extending-the-publisher">9. Extending the Publisher</h2>
+<p>Some common extension points:</p>
+<ul>
+<li>
+<p><strong>New annotation operators</strong>:<br>
+add a new <code>@register_annotation(&quot;OpName&quot;)</code> function mapping frontmatter or structural patterns to atoms.</p>
+</li>
+<li>
+<p><strong>New j‑relations</strong>:<br>
+extend <code>folder_tag_rules</code>, <code>tag_synonyms</code>, <code>type_tag_rules</code>, or <code>status_tag_rules</code> in the config to change how fragment closure behaves.</p>
+</li>
+<li>
+<p><strong>Alternative evaluation metrics</strong>:<br>
+modify <code>evaluate_concept</code> to incorporate new signals (e.g. length of body, stewardship status, or user‑provided weights).</p>
+</li>
+<li>
+<p><strong>Additional exporters</strong>:<br>
+add new <code>export_*</code> functions and register them in <code>export_all</code> and <code>targets</code> handling.</p>
+</li>
+</ul>
+<p>These extensions stay within the same finite‐feature and closure framework, preserving alignment with the underlying theoretical universe.</p>
+<hr>
+<h2 id="10-relationship-to-the-theoretical-docs">10. Relationship to the Theoretical Docs</h2>
+<ul>
+<li><code>semiotic-universe.md</code> describes the <strong>idealized</strong>, infinite Heyting–modal–comonadic universe and its fusion mechanism.</li>
+<li><code>stewardable-semiotic-concept-universe.md</code> describes a stewardship‑oriented extension with failure semantics, deltas, and sheaf‑like behavior.</li>
+<li><strong>This document</strong> explains the <strong>concrete publisher implementation</strong> that:
+<ul>
+<li>approximates the universe using finite atoms and graph closure,</li>
+<li>treats concepts as vault documents,</li>
+<li>and exports multiple static views (site, API, RDF, documents) suitable for stewardship and analysis.</li>
+</ul>
+</li>
+</ul>
+<p>In short, the Semiotic Publisher is the bridge between <strong>vault practice</strong> and <strong>semiotic theory</strong>: it turns annotated Markdown into a working, inspectable instance of the semiotic universe.</p>
+
+  </div>
+  
+  <section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <details>
+    <summary>APA</summary>
+    <pre class="cite-block"><code>emsenn. (). Semiotic Publishing Script. <i>emsenn.net</i>. http://localhost:1313/library/relationality/content/docs/tools/semiotic-publisher-script/semiotic-publisher/</code></pre>
+  </details>
+  <details>
+    <summary>BibTeX</summary>
+    <pre class="cite-block"><code>@misc{emsenn-semiotic-publisher,
   author    = {emsenn},
   title     = {Semiotic Publishing Script},
-  url       = {https://emsenn.net/library/relationality/content/docs/tools/semiotic-publisher-script/semiotic-publisher/},
+  url       = {http://localhost:1313/library/relationality/content/docs/tools/semiotic-publisher-script/semiotic-publisher/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/relationality/content/docs/tools/semiotic-publisher-script/semiotic-publisher/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>status</dt><dd property="emsenn:Status">draft</dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/semiotics/>semiotics</a></li><li><a href=/tags/static-site-generator/>static site generator</a></li><li><a href=/tags/document-publishing/>document publishing</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Semiotic Publishing Script</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/doc/>doc</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+  </details>
+</section>
+</article>
+<section class="page-relations" resource="http://localhost:1313/library/relationality/content/docs/tools/semiotic-publisher-script/semiotic-publisher/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>status</dt>
+        <dd property="emsenn:Status">draft</dd>
+      </div><div class="relation">
+        <dt>tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/semiotics/">semiotics</a></li><li><a href="/tags/static-site-generator/">static site generator</a></li><li><a href="/tags/document-publishing/">document publishing</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>title</dt>
+        <dd property="schema:name">Semiotic Publishing Script</dd>
+      </div><div class="relation">
+        <dt>type</dt>
+        <dd property="dc:type"><a href="/types/doc/">doc</a></dd>
+      </div>
+  </dl>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>
