@@ -17,16 +17,22 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "DefinedTerm",
   "dateModified": "2026-03-29",
   "datePublished": "2026-03-29",
   "description": "The maximum number of tokens a language model can process in a single interaction — the hard constraint that shapes agent architecture, prompt design, and memory management.",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "",
+    "url": "https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/"
+  },
   "name": "Context Window",
   "publisher": {
     "@type": "Person",
     "name": "emsenn",
     "url": "https://emsenn.net"
   },
+  "termCode": "Context Window",
   "url": "https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/context-window/"
 }
 </script>
@@ -66,7 +72,7 @@
 
   <main id="content" data-pagefind-body>
     
-<article class="h-entry" data-type="page">
+<article class="h-entry" data-type="term">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a></nav>
   <h1 class="p-name">Context Window</h1>
   <div class="meta">
@@ -74,6 +80,13 @@
     
     <span class="p-summary">The maximum number of tokens a language model can process in a single interaction — the hard constraint that shapes agent architecture, prompt design, and memory management.</span>
   </div>
+  
+  <div class="type-meta type-meta--definition">
+    <span class="type-meta-label">Defines</span>
+    <span class="type-meta-value">Context Window</span>
+  </div>
+  
+  
   <div class="e-content">
     <p>The context window is the maximum number of <a href="./token.md" class="link-internal">tokens</a> a <a href="../../on-device-inference/terms/large-language-model.md" class="link-internal">large language model</a> can process in a single interaction. Everything the model reads and generates — the <a href="./system-prompt.md" class="link-internal">system prompt</a>, the user&rsquo;s message, the conversation history, <a href="../domains/agents/terms/tool-use.md" class="link-internal">tool</a> definitions, tool results, and the model&rsquo;s own output — must fit within this fixed budget. Once the context window is full, earlier content must be dropped or compressed to make room for new information.</p>
 <p>The constraint is architectural. The <a href="./transformer.md" class="link-internal">transformer</a>&rsquo;s self-attention mechanism computes pairwise attention scores between all tokens, requiring O(N²) compute and O(N) memory for a sequence of N tokens. Extending the context window requires proportionally more resources per forward pass. Research on efficient attention (sparse attention, sliding window, linear approximations) reduces the constant factor but does not eliminate the fundamental scaling relationship.</p>
@@ -168,7 +181,18 @@
       </div>
   </dl>
 </section>
-
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-context-window,
+  author    = {emsenn},
+  title     = {Context Window},
+  year      = {2026},
+  note      = {The maximum number of tokens a language model can process in a single interaction — the hard constraint that shapes agent architecture, prompt design, and memory management.},
+  url       = {https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/context-window/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
 
   
 

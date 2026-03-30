@@ -17,16 +17,22 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "DefinedTerm",
   "dateModified": "2026-03-29",
   "datePublished": "2026-03-29",
   "description": "A neural network architecture based on self-attention mechanisms that processes input sequences in parallel — introduced by Vaswani et al. (2017) and the basis for all current large language models.",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "",
+    "url": "https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/"
+  },
   "name": "Transformer",
   "publisher": {
     "@type": "Person",
     "name": "emsenn",
     "url": "https://emsenn.net"
   },
+  "termCode": "Transformer",
   "url": "https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/transformer/"
 }
 </script>
@@ -66,7 +72,7 @@
 
   <main id="content" data-pagefind-body>
     
-<article class="h-entry" data-type="page">
+<article class="h-entry" data-type="term">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a></nav>
   <h1 class="p-name">Transformer</h1>
   <div class="meta">
@@ -74,6 +80,18 @@
     
     <span class="p-summary">A neural network architecture based on self-attention mechanisms that processes input sequences in parallel — introduced by Vaswani et al. (2017) and the basis for all current large language models.</span>
   </div>
+  
+  <div class="type-meta type-meta--definition">
+    <span class="type-meta-label">Defines</span>
+    <span class="type-meta-value">Transformer</span>
+  </div>
+  
+  
+  <div class="type-meta type-meta--prereqs">
+    <span class="type-meta-label">Requires</span>
+    <span class="type-meta-value">token</span>
+  </div>
+  
   <div class="e-content">
     <p>The transformer is a <a href="./neural-network.md" class="link-internal">neural network</a> architecture introduced by Vaswani et al. in &ldquo;Attention Is All You Need&rdquo; (2017). It processes input sequences using <strong>self-attention</strong> — a mechanism that allows every element in a sequence to attend to every other element, computing relevance weights dynamically rather than relying on fixed-distance connections. This replaced the recurrent architectures (LSTMs, GRUs) that previously dominated sequence modeling, which processed inputs one step at a time and struggled with long-range dependencies.</p>
 <p>The attention mechanism works as follows. Given a sequence of <a href="./token.md" class="link-internal">tokens</a>, the transformer computes three vectors for each token: a query (what am I looking for?), a key (what do I contain?), and a value (what do I contribute?). Attention scores are computed by comparing each query against all keys; these scores determine how much each token&rsquo;s value contributes to the output at each position. The operation is a weighted sum, where the weights are learned through training. Every token attends to every other token, capturing long-range dependencies in a single operation.</p>
@@ -94,12 +112,24 @@
 </ul>
 
   </div>
-  
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-vaswani2017" typeof="CreativeWork" resource="#ref-vaswani2017">
+    <span class="bib-key">[vaswani2017]</span>
+      <span property="author">Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin</span>.
+      (<span property="datePublished">2017</span>).
+      <cite property="name">Attention Is All You Need</cite>.
+      <em property="publisher">Advances in Neural Information Processing Systems</em>.
+  </p>
+</section>
 </article>
 <section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/transformer/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
   <h2>Relations</h2>
   <dl><div class="relation">
+        <dt>Cites</dt>
+        <dd property="schema:citation"><ul><li>Vaswani2017</li></ul></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
       </div><div class="relation">
@@ -127,12 +157,23 @@
   <div class="relation">
     <dt>Referenced by</dt>
     <dd>
-      <ul><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/context-window/">Context Window</a></li><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/neural-network/">Neural Network</a></li></ul>
+      <ul><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/claude/">Claude</a></li><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/texts/claude-model-releases/">Claude Model Releases</a></li><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/context-window/">Context Window</a></li><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/neural-network/">Neural Network</a></li></ul>
     </dd>
   </div>
   </dl>
 </section>
-
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-transformer,
+  author    = {emsenn},
+  title     = {Transformer},
+  year      = {2026},
+  note      = {A neural network architecture based on self-attention mechanisms that processes input sequences in parallel — introduced by Vaswani et al. (2017) and the basis for all current large language models.},
+  url       = {https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/transformer/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
 
   
 
