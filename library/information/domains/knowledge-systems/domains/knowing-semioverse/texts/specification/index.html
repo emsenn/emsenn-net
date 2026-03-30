@@ -1,300 +1,38 @@
-<!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
-<head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Knowing Semioverse Specification - emsenn.net</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
-<link href="https://gmpg.org/xfn/11" rel="profile">
-<link href="https://emsenn.net" rel="me">
-<link href="mailto:emsenn@emsenn.net" rel="me authn">
-<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
-<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "author": [
-    {
-      "@type": "Person",
-      "name": "emsenn"
-    },
-    {
-      "@type": "Person",
-      "name": "claude"
-    }
-  ],
-  "dateModified": "2026-03-09",
-  "datePublished": "2026-03-09",
-  "description": "Conformance requirements for implementing a knowing semioverse — an agential semioverse enriched with knowledge-systems directory conventions.",
-  "keywords": "KnowingSemioverse, AgentialSemioverse, KnowledgeSystems, DirectoryOrganization",
-  "name": "Knowing Semioverse Specification",
-  "publisher": {
-    "@type": "Person",
-    "name": "emsenn",
-    "url": "https://emsenn.net"
-  },
-  "url": "https://emsenn.net/library/information/domains/knowledge-systems/domains/knowing-semioverse/texts/specification/"
-}
-</script>
-
-
-</head>
-<body>
-  <a class="skip-to-content" href="#content">Skip to content</a>
-  <header class="site-header">
-  <div class="site-identity">
-    <a href="/" class="site-title">emsenn.net</a>
-    <span class="site-tagline">on relations and things</span>
-  </div>
-  <nav>
-    <a href="/">home</a>
-    <a href="/library/">library</a>
-    <a href="/letters/">letters</a>
-    <a href="/search/">search</a>
-  </nav>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
-</header>
-
-  <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="specification">
-  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/">Information</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/domains/knowledge-systems/">Knowledge systems</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/domains/knowledge-systems/domains/knowing-semioverse/">Knowing semioverse</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/domains/knowledge-systems/domains/knowing-semioverse/texts/">Texts</a></nav>
-  <h1 class="p-name">Knowing Semioverse Specification</h1>
-  <div class="meta">
-    <time class="dt-published" datetime="2026-03-09T00:00:00Z">2026-03-09</time>
-    <span>by <span class="p-author">emsenn</span>, <span class="p-author">claude</span></span>
-    <span class="p-summary">Conformance requirements for implementing a knowing semioverse — an agential semioverse enriched with knowledge-systems directory conventions.</span>
-  </div><details class="toc">
-      <summary>Table of contents</summary>
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-normative-scope">1. Normative scope</a></li>
-    <li><a href="#2-required-directory-types">2. Required directory types</a>
-      <ul>
-        <li><a href="#21-governing-group">2.1 Governing group</a></li>
-        <li><a href="#22-engaging-group">2.2 Engaging group</a></li>
-        <li><a href="#23-situating-group">2.3 Situating group</a></li>
-        <li><a href="#24-defining-group">2.4 Defining group</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-placement-obligations">3. Placement obligations</a></li>
-    <li><a href="#4-absent-directories">4. Absent directories</a></li>
-    <li><a href="#5-relationship-to-texts">5. Relationship to texts/</a></li>
-    <li><a href="#6-pressure-on-domain-specific-types">6. Pressure on domain-specific types</a></li>
-  </ul>
-</nav>
-    </details>
-  <div class="e-content">
-    <p>This specification defines conformance requirements for implementing a
+<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Knowing Semioverse Specification - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":[{"@type":"Person","name":"emsenn"},{"@type":"Person","name":"claude"}],"dateModified":"2026-03-09","datePublished":"2026-03-09","description":"Conformance requirements for implementing a knowing semioverse — an agential semioverse enriched with knowledge-systems directory conventions.","keywords":"KnowingSemioverse, AgentialSemioverse, KnowledgeSystems, DirectoryOrganization","name":"Knowing Semioverse Specification","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/information/domains/knowledge-systems/domains/knowing-semioverse/texts/specification/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
+<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
+<a href=/library/>library</a>
+<a href=/letters/>letters</a>
+<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content><article class=h-entry data-pagefind-body data-type=specification data-pagefind-filter=type:specification><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/information/>Information</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/information/domains/knowledge-systems/>Knowledge systems</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/information/domains/knowledge-systems/domains/knowing-semioverse/>Knowing semioverse</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/information/domains/knowledge-systems/domains/knowing-semioverse/texts/>Texts</a></nav><span data-pagefind-filter=domain data-pagefind-ignore=all style=display:none>Information</span><span data-pagefind-ignore=all style=display:none><span data-pagefind-filter=tag>KnowingSemioverse</span><span data-pagefind-filter=tag>AgentialSemioverse</span><span data-pagefind-filter=tag>KnowledgeSystems</span><span data-pagefind-filter=tag>DirectoryOrganization</span></span><h1 class=p-name>Knowing Semioverse Specification</h1><div class=meta><time class=dt-published datetime=2026-03-09T00:00:00Z data-pagefind-sort=date data-pagefind-meta=date:2026-03-09>2026-03-09</time>
+<span>by <span class=p-author data-pagefind-filter=author>emsenn</span>, <span class=p-author data-pagefind-filter=author>claude</span></span>
+<span class=p-summary data-pagefind-meta=description>Conformance requirements for implementing a knowing semioverse — an agential semioverse enriched with knowledge-systems directory conventions.</span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#1-normative-scope>1. Normative scope</a></li><li><a href=#2-required-directory-types>2. Required directory types</a><ul><li><a href=#21-governing-group>2.1 Governing group</a></li><li><a href=#22-engaging-group>2.2 Engaging group</a></li><li><a href=#23-situating-group>2.3 Situating group</a></li><li><a href=#24-defining-group>2.4 Defining group</a></li></ul></li><li><a href=#3-placement-obligations>3. Placement obligations</a></li><li><a href=#4-absent-directories>4. Absent directories</a></li><li><a href=#5-relationship-to-texts>5. Relationship to texts/</a></li><li><a href=#6-pressure-on-domain-specific-types>6. Pressure on domain-specific types</a></li></ul></nav></details><div class=e-content><p>This specification defines conformance requirements for implementing a
 knowing semioverse. A knowing semioverse is an agential semioverse
 (already conforming to the base agential semioverse specifications)
 that additionally implements the four-group directory organization
-described in the knowing-semioverse index.</p>
-<h2 id="1-normative-scope">1. Normative scope</h2>
-<p>This specification IS normative about:</p>
-<ul>
-<li>Which twelve directory types are standard cross-cutting subdirectories</li>
-<li>What content belongs in each type</li>
-<li>The grouping of those twelve into four functional groups</li>
-</ul>
-<p>This specification IS NOT normative about:</p>
-<ul>
-<li>The base agential semioverse conventions (plans, decisions, skills,
-etc.) — see the agential semioverse directory-organization spec</li>
-<li>Domain-specific additional directory types (e.g., <code>proofs/</code> in
-mathematics) — those are governed by domain-specific standards</li>
-<li>Internal organization within each directory type</li>
-</ul>
-<h2 id="2-required-directory-types">2. Required directory types</h2>
-<p>A conforming knowing semioverse MUST recognize the following twelve
-directory types as valid standard subdirectories within any Thing:</p>
-<h3 id="21-governing-group">2.1 Governing group</h3>
-<table>
-  <thead>
-      <tr>
-          <th>Directory</th>
-          <th>Contains</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>methods/</code></td>
-          <td>Documents describing how knowledge is produced in this context: inquiry procedures, analytical approaches, methodological traditions</td>
-      </tr>
-      <tr>
-          <td><code>practices/</code></td>
-          <td>Documents of situated doing: how work is actually conducted, concrete operational procedures. Also the location of <code>practices/specification.md</code> for any Thing that has conformance requirements.</td>
-      </tr>
-      <tr>
-          <td><code>standards/</code></td>
-          <td>Conventions created or used by this Thing: named formats, protocols, or norms that implementations must follow</td>
-      </tr>
-  </tbody>
-</table>
-<h3 id="22-engaging-group">2.2 Engaging group</h3>
-<table>
-  <thead>
-      <tr>
-          <th>Directory</th>
-          <th>Contains</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>learning/</code></td>
-          <td>Knowledge output in accessible form: exposition, practical guidance, curricula, materials for transmission to others</td>
-      </tr>
-      <tr>
-          <td><code>researching/</code></td>
-          <td>Knowledge intake from external sources: literature engagement, source analysis, annotated bibliography, evidence review</td>
-      </tr>
-      <tr>
-          <td><code>applying/</code></td>
-          <td>Knowledge use in concrete situations: case analyses, implementations, worked examples, domain-specific applications</td>
-      </tr>
-  </tbody>
-</table>
-<h3 id="23-situating-group">2.3 Situating group</h3>
-<table>
-  <thead>
-      <tr>
-          <th>Directory</th>
-          <th>Contains</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>disciplines/</code></td>
-          <td>Institutional or subject-based subdivisions of this Thing&rsquo;s scope</td>
-      </tr>
-      <tr>
-          <td><code>schools/</code></td>
-          <td>Epistemic and methodological traditions within this Thing&rsquo;s scope</td>
-      </tr>
-      <tr>
-          <td><code>lineages/</code></td>
-          <td>Derivational and transmissive subdivisions: intellectual descent, derived works, apprenticeship chains</td>
-      </tr>
-  </tbody>
-</table>
-<h3 id="24-defining-group">2.4 Defining group</h3>
-<table>
-  <thead>
-      <tr>
-          <th>Directory</th>
-          <th>Contains</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>topics/</code></td>
-          <td>Broad regions of concern: aboutness-classes that gather many concepts and terms</td>
-      </tr>
-      <tr>
-          <td><code>concepts/</code></td>
-          <td>Units of knowledge: named patterns that emerge from and generalize across terms</td>
-      </tr>
-      <tr>
-          <td><code>terms/</code></td>
-          <td>Specific referents: the linguistic handles for particular objects, processes, or states</td>
-      </tr>
-  </tbody>
-</table>
-<h2 id="3-placement-obligations">3. Placement obligations</h2>
-<p>A conforming knowing semioverse MUST follow the placement procedure
+described in the knowing-semioverse index.</p><h2 id=1-normative-scope>1. Normative scope</h2><p>This specification IS normative about:</p><ul><li>Which twelve directory types are standard cross-cutting subdirectories</li><li>What content belongs in each type</li><li>The grouping of those twelve into four functional groups</li></ul><p>This specification IS NOT normative about:</p><ul><li>The base agential semioverse conventions (plans, decisions, skills,
+etc.) — see the agential semioverse directory-organization spec</li><li>Domain-specific additional directory types (e.g., <code>proofs/</code> in
+mathematics) — those are governed by domain-specific standards</li><li>Internal organization within each directory type</li></ul><h2 id=2-required-directory-types>2. Required directory types</h2><p>A conforming knowing semioverse MUST recognize the following twelve
+directory types as valid standard subdirectories within any Thing:</p><h3 id=21-governing-group>2.1 Governing group</h3><table><thead><tr><th>Directory</th><th>Contains</th></tr></thead><tbody><tr><td><code>methods/</code></td><td>Documents describing how knowledge is produced in this context: inquiry procedures, analytical approaches, methodological traditions</td></tr><tr><td><code>practices/</code></td><td>Documents of situated doing: how work is actually conducted, concrete operational procedures. Also the location of <code>practices/specification.md</code> for any Thing that has conformance requirements.</td></tr><tr><td><code>standards/</code></td><td>Conventions created or used by this Thing: named formats, protocols, or norms that implementations must follow</td></tr></tbody></table><h3 id=22-engaging-group>2.2 Engaging group</h3><table><thead><tr><th>Directory</th><th>Contains</th></tr></thead><tbody><tr><td><code>learning/</code></td><td>Knowledge output in accessible form: exposition, practical guidance, curricula, materials for transmission to others</td></tr><tr><td><code>researching/</code></td><td>Knowledge intake from external sources: literature engagement, source analysis, annotated bibliography, evidence review</td></tr><tr><td><code>applying/</code></td><td>Knowledge use in concrete situations: case analyses, implementations, worked examples, domain-specific applications</td></tr></tbody></table><h3 id=23-situating-group>2.3 Situating group</h3><table><thead><tr><th>Directory</th><th>Contains</th></tr></thead><tbody><tr><td><code>disciplines/</code></td><td>Institutional or subject-based subdivisions of this Thing&rsquo;s scope</td></tr><tr><td><code>schools/</code></td><td>Epistemic and methodological traditions within this Thing&rsquo;s scope</td></tr><tr><td><code>lineages/</code></td><td>Derivational and transmissive subdivisions: intellectual descent, derived works, apprenticeship chains</td></tr></tbody></table><h3 id=24-defining-group>2.4 Defining group</h3><table><thead><tr><th>Directory</th><th>Contains</th></tr></thead><tbody><tr><td><code>topics/</code></td><td>Broad regions of concern: aboutness-classes that gather many concepts and terms</td></tr><tr><td><code>concepts/</code></td><td>Units of knowledge: named patterns that emerge from and generalize across terms</td></tr><tr><td><code>terms/</code></td><td>Specific referents: the linguistic handles for particular objects, processes, or states</td></tr></tbody></table><h2 id=3-placement-obligations>3. Placement obligations</h2><p>A conforming knowing semioverse MUST follow the placement procedure
 from the semiotic-directory-layout specification when deciding which
-directory type to use. Specifically:</p>
-<ol>
-<li>Content goes with the most specific Thing it relates to.</li>
-<li>Within that Thing, content goes in the directory type that best
-matches its function (what it does, not what it is about).</li>
-<li>When content could fit multiple directory types, the primary
+directory type to use. Specifically:</p><ol><li>Content goes with the most specific Thing it relates to.</li><li>Within that Thing, content goes in the directory type that best
+matches its function (what it does, not what it is about).</li><li>When content could fit multiple directory types, the primary
 function determines placement; secondary functions may be noted
-in frontmatter.</li>
-</ol>
-<h2 id="4-absent-directories">4. Absent directories</h2>
-<p>The absence of a directory type signals undevelopment, not
+in frontmatter.</li></ol><h2 id=4-absent-directories>4. Absent directories</h2><p>The absence of a directory type signals undevelopment, not
 inapplicability. A Thing that has no <code>methods/</code> directory either has
 not yet developed its methodological documentation or has no
 methodological content to organize. Both are valid. The absence MUST
 NOT be read as &ldquo;this Thing has no methods&rdquo; — only as &ldquo;this Thing&rsquo;s
-methods have not been written down here.&rdquo;</p>
-<h2 id="5-relationship-to-texts">5. Relationship to texts/</h2>
-<p>The <code>texts/</code> directory type predates the four-group structure and
-remains common in the repository. Under this specification:</p>
-<ul>
-<li>Content that is primarily knowledge output (accessible exposition)
-SHOULD migrate to <code>learning/</code> over time.</li>
-<li>Content that is primarily external source engagement SHOULD migrate
-to <code>researching/</code> over time.</li>
-<li><code>texts/</code> MAY remain for content that is genuinely neither: theoretical
+methods have not been written down here.&rdquo;</p><h2 id=5-relationship-to-texts>5. Relationship to texts/</h2><p>The <code>texts/</code> directory type predates the four-group structure and
+remains common in the repository. Under this specification:</p><ul><li>Content that is primarily knowledge output (accessible exposition)
+SHOULD migrate to <code>learning/</code> over time.</li><li>Content that is primarily external source engagement SHOULD migrate
+to <code>researching/</code> over time.</li><li><code>texts/</code> MAY remain for content that is genuinely neither: theoretical
 compositions, analytical essays, or writings that do not fit the
-intake/output distinction.</li>
-<li>Migration is not required immediately. The four-group types are
-preferred for new content.</li>
-</ul>
-<h2 id="6-pressure-on-domain-specific-types">6. Pressure on domain-specific types</h2>
-<p>Some disciplines require directory types beyond the twelve standard
+intake/output distinction.</li><li>Migration is not required immediately. The four-group types are
+preferred for new content.</li></ul><h2 id=6-pressure-on-domain-specific-types>6. Pressure on domain-specific types</h2><p>Some disciplines require directory types beyond the twelve standard
 ones. Mathematics needs <code>proofs/</code> or <code>formalization/</code>. Formal systems
 need verification infrastructure. These domain-specific types are
 governed by the standards of those domains, not by this specification.
 A knowing semioverse MUST NOT prohibit domain-specific additions; it
-only specifies the twelve standard types that all Things share.</p>
-
-  </div>
-  
-</article>
-<section class="page-relations" resource="https://emsenn.net/library/information/domains/knowledge-systems/domains/knowing-semioverse/texts/specification/" typeof="schema:CreativeWork"
-         vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
-  <dl><div class="relation">
-        <dt>Authors</dt>
-        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li><li><a href="/authors/claude/">claude</a></li></ul></dd>
-      </div><div class="relation">
-        <dt>Date created</dt>
-        <dd property="schema:dateCreated"><time datetime="2026-03-09">2026-03-09</time></dd>
-      </div><div class="relation">
-        <dt>Part of</dt>
-        <dd property="schema:isPartOf">Information disciplines knowledge systems standards knowing semioverse</dd>
-      </div><div class="relation">
-        <dt><a href="/library/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment"><ul><li>.. index.md</li><li>Information disciplines knowledge systems texts research directory organization for knowledge systems.md</li><li>Mathematics objects universes agential semioverse specifications agential semioverse repository directory organization index.md</li></ul></dd>
-      </div><div class="relation">
-        <dt><a href="/library/engineering/domains/aerospace-engineering/terms/stability/">Stability</a></dt>
-        <dd property="emsenn:Stability"><a href="/library/writing/domains/essay-writing/terms/draft/">Draft</a></dd>
-      </div><div class="relation">
-        <dt>Tags</dt>
-        <dd property="schema:keywords"><ul><li><a href="/tags/knowingsemioverse/">KnowingSemioverse</a></li><li><a href="/tags/agentialsemioverse/">AgentialSemioverse</a></li><li><a href="/tags/knowledgesystems/">KnowledgeSystems</a></li><li><a href="/tags/directoryorganization/">DirectoryOrganization</a></li></ul></dd>
-      </div><div class="relation">
-        <dt>Version</dt>
-        <dd property="emsenn:Version"><ul><li><a href="/library/math/domains/number-theory/terms/zero/">0th</a></li><li>1st</li><li><a href="/library/math/domains/number-theory/terms/zero/">0th</a></li></ul></dd>
-      </div>
-  </dl>
-</section>
-<section class="cite-this" id="cite-this">
-  <h2>Cite</h2>
-  <pre class="cite-block"><code>@misc{emsenn2026-specification,
+only specifies the twelve standard types that all Things share.</p></div></article><section class=page-relations data-pagefind-ignore resource="https://emsenn.net/library/information/domains/knowledge-systems/domains/knowing-semioverse/texts/specification/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li><li><a href=/authors/claude/>claude</a></li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-09>2026-03-09</time></dd></div><div class=relation><dt>Part of</dt><dd property="schema:isPartOf">Information disciplines knowledge systems standards knowing semioverse</dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>Requires</a></dt><dd property="schema:educationalAlignment"><ul><li>.. index.md</li><li>Information disciplines knowledge systems texts research directory organization for knowledge systems.md</li><li>Mathematics objects universes agential semioverse specifications agential semioverse repository directory organization index.md</li></ul></dd></div><div class=relation><dt><a href=/library/engineering/domains/aerospace-engineering/terms/stability/>Stability</a></dt><dd property="emsenn:Stability"><a href=/library/writing/domains/essay-writing/terms/draft/>Draft</a></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/knowingsemioverse/>KnowingSemioverse</a></li><li><a href=/tags/agentialsemioverse/>AgentialSemioverse</a></li><li><a href=/tags/knowledgesystems/>KnowledgeSystems</a></li><li><a href=/tags/directoryorganization/>DirectoryOrganization</a></li></ul></dd></div><div class=relation><dt>Version</dt><dd property="emsenn:Version"><ul><li><a href=/library/math/domains/number-theory/terms/zero/>0th</a></li><li>1st</li><li><a href=/library/math/domains/number-theory/terms/zero/>0th</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@misc{emsenn2026-specification,
   author    = {emsenn and claude},
   title     = {Knowing Semioverse Specification},
   year      = {2026},
@@ -302,17 +40,4 @@ only specifies the twelve standard types that all Things share.</p>
   url       = {https://emsenn.net/library/information/domains/knowledge-systems/domains/knowing-semioverse/texts/specification/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre>
-</section>
-
-  
-
-
-  </main>
-  <footer>
-    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
-  </footer>
-</body>
-</html>
+}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>

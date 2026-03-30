@@ -1,313 +1,59 @@
-<!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
-<head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Monads and Comonads - emsenn.net</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
-<link href="https://gmpg.org/xfn/11" rel="profile">
-<link href="https://emsenn.net" rel="me">
-<link href="mailto:emsenn@emsenn.net" rel="me authn">
-<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
-<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LearningResource",
-  "author": {
-    "@type": "Person",
-    "name": "claude-opus-4-6"
-  },
-  "dateModified": "2026-03-06",
-  "datePublished": "2026-03-06",
-  "description": "Entry conditions Use monads and comonads when you can:\nStart from a category (or a poset viewed as a thin category). Identify an endofunctor T : C -\u0026gt; C that \u0026ldquo;wraps\u0026rdquo; or \u0026ldquo;annotates\u0026rdquo; objects. Ask whether the wrapping is coherent: can it be applied once, twice, or unwrapped, in ways that compose consistently? Definitions A monad on a category C is a triple (T, eta, mu) where:\nT : C -\u0026gt; C is an endofunctor, eta : id -\u0026gt; T is a natural transformation called the unit (wrapping), mu : T . T -\u0026gt; T is a natural transformation called the multiplication (flattening), satisfying:\n",
-  "keywords": "CategoryTheory, OrderTheory",
-  "name": "Monads and Comonads",
-  "publisher": {
-    "@type": "Person",
-    "name": "emsenn",
-    "url": "https://emsenn.net"
-  },
-  "teaches": [
-    {
-      "@type": "DefinedTerm",
-      "name": "monads"
-    },
-    {
-      "@type": "DefinedTerm",
-      "name": "comonads"
-    },
-    {
-      "@type": "DefinedTerm",
-      "name": "counit"
-    },
-    {
-      "@type": "DefinedTerm",
-      "name": "comultiplication"
-    },
-    {
-      "@type": "DefinedTerm",
-      "name": "Heyting-comonadic coherence"
-    }
-  ],
-  "url": "https://emsenn.net/library/math/domains/categories/domains/ordinary-categories/texts/monads-and-comonads/"
-}
-</script>
-
-
-</head>
-<body>
-  <a class="skip-to-content" href="#content">Skip to content</a>
-  <header class="site-header">
-  <div class="site-identity">
-    <a href="/" class="site-title">emsenn.net</a>
-    <span class="site-tagline">on relations and things</span>
-  </div>
-  <nav>
-    <a href="/">home</a>
-    <a href="/library/">library</a>
-    <a href="/letters/">letters</a>
-    <a href="/search/">search</a>
-  </nav>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
-</header>
-
-  <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="lesson">
-  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/math/">Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/math/domains/categories/">Categories</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/math/domains/categories/domains/ordinary-categories/">Ordinary categories</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/math/domains/categories/domains/ordinary-categories/texts/">Texts</a></nav>
-  <h1 class="p-name">Monads and Comonads</h1>
-  <div class="meta">
-    <time class="dt-published" datetime="2026-03-06T00:00:00Z">2026-03-06</time>
-    <span>by <span class="p-author">claude-opus-4-6</span></span>
-    
-  </div>
-  
-  <div class="type-meta type-meta--objectives">
-    <span class="type-meta-label">Learning objectives</span>
-    <ul><li>monads</li><li>comonads</li><li>counit</li><li>comultiplication</li><li>Heyting-comonadic coherence</li></ul>
-  </div>
-  
-  
-  <div class="type-meta type-meta--prereqs">
-    <span class="type-meta-label">Prerequisites</span>
-    <ul><li>./functors.md</li><li>./natural-transformations.md</li></ul>
-  </div>
-  <details class="toc">
-      <summary>Table of contents</summary>
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#entry-conditions">Entry conditions</a></li>
-    <li><a href="#definitions">Definitions</a></li>
-    <li><a href="#vocabulary-plain-language">Vocabulary (plain language)</a></li>
-    <li><a href="#intuition">Intuition</a></li>
-    <li><a href="#heyting-comonadic-coherence">Heyting-comonadic coherence</a></li>
-    <li><a href="#worked-example">Worked example</a></li>
-    <li><a href="#common-mistakes">Common mistakes</a></li>
-    <li><a href="#minimal-data">Minimal data</a></li>
-  </ul>
-</nav>
-    </details>
-  <div class="e-content">
-    <h2 id="entry-conditions">Entry conditions</h2>
-<p>Use monads and comonads when you can:</p>
-<ul>
-<li>Start from a <a href="../terms/category.md" class="link-internal">category</a> (or a poset viewed as
-a thin category).</li>
-<li>Identify an endofunctor T : C -&gt; C that &ldquo;wraps&rdquo; or &ldquo;annotates&rdquo;
-objects.</li>
-<li>Ask whether the wrapping is coherent: can it be applied once, twice,
-or unwrapped, in ways that compose consistently?</li>
-</ul>
-<h2 id="definitions">Definitions</h2>
-<p>A <strong>monad</strong> on a category C is a triple (T, eta, mu) where:</p>
-<ul>
-<li>T : C -&gt; C is an endofunctor,</li>
-<li>eta : id -&gt; T is a <a href="../terms/natural-transformation.md" class="link-internal">natural transformation</a>
-called the <strong>unit</strong> (wrapping),</li>
-<li>mu : T . T -&gt; T is a natural transformation called the
-<strong>multiplication</strong> (flattening),</li>
-</ul>
-<p>satisfying:</p>
-<ul>
-<li><strong>Associativity</strong>: mu . T(mu) = mu . mu_T</li>
-<li><strong>Unit laws</strong>: mu . T(eta) = id = mu . eta_T</li>
-</ul>
-<p>A <strong>comonad</strong> on C is the dual: a triple (G, epsilon, delta) where:</p>
-<ul>
-<li>G : C -&gt; C is an endofunctor,</li>
-<li>epsilon : G -&gt; id is a natural transformation called the <strong>counit</strong>
-(extraction),</li>
-<li>delta : G -&gt; G . G is a natural transformation called the
-<strong>comultiplication</strong> (duplication),</li>
-</ul>
-<p>satisfying:</p>
-<ul>
-<li><strong>Coassociativity</strong>: G(delta) . delta = delta_G . delta</li>
-<li><strong>Counit laws</strong>: G(epsilon) . delta = id = epsilon_G . delta</li>
-</ul>
-<p>On a poset (H, &lt;=) viewed as a thin category, a comonad simplifies to:</p>
-<ul>
-<li>G : H -&gt; H monotone,</li>
-<li>epsilon: G(a) &lt;= a for all a (extraction is deflating),</li>
-<li>delta: G(a) &lt;= G(G(a)) for all a (duplication is inflating within G),</li>
-</ul>
-<p>with coassociativity and counit laws holding as inequalities.</p>
-<h2 id="vocabulary-plain-language">Vocabulary (plain language)</h2>
-<ul>
-<li><strong>Monad</strong>: wraps objects and flattens double-wrapping. Think of it as
-a notion of computation or context that can be composed.</li>
-<li><strong>Comonad</strong>: extracts values from context and duplicates context. The
-dual of a monad — where a monad adds structure, a comonad reads it.</li>
-<li><strong>Counit (epsilon)</strong>: extracts the underlying value from a comonadic
-context. &ldquo;What is the thing, ignoring its annotation?&rdquo;</li>
-<li><strong>Comultiplication (delta)</strong>: duplicates the annotation. &ldquo;The traced
+<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Monads and Comonads - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"LearningResource","author":{"@type":"Person","name":"claude-opus-4-6"},"dateModified":"2026-03-06","datePublished":"2026-03-06","description":"Entry conditions Use monads and comonads when you can:\nStart from a category (or a poset viewed as a thin category). Identify an endofunctor T : C -\u0026gt; C that \u0026ldquo;wraps\u0026rdquo; or \u0026ldquo;annotates\u0026rdquo; objects. Ask whether the wrapping is coherent: can it be applied once, twice, or unwrapped, in ways that compose consistently? Definitions A monad on a category C is a triple (T, eta, mu) where:\nT : C -\u0026gt; C is an endofunctor, eta : id -\u0026gt; T is a natural transformation called the unit (wrapping), mu : T . T -\u0026gt; T is a natural transformation called the multiplication (flattening), satisfying:\n","keywords":"CategoryTheory, OrderTheory","name":"Monads and Comonads","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"teaches":[{"@type":"DefinedTerm","name":"monads"},{"@type":"DefinedTerm","name":"comonads"},{"@type":"DefinedTerm","name":"counit"},{"@type":"DefinedTerm","name":"comultiplication"},{"@type":"DefinedTerm","name":"Heyting-comonadic coherence"}],"url":"https://emsenn.net/library/math/domains/categories/domains/ordinary-categories/texts/monads-and-comonads/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
+<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
+<a href=/library/>library</a>
+<a href=/letters/>letters</a>
+<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content><article class=h-entry data-pagefind-body data-type=lesson data-pagefind-filter=type:lesson><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/math/>Math</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/math/domains/categories/>Categories</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/math/domains/categories/domains/ordinary-categories/>Ordinary categories</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/math/domains/categories/domains/ordinary-categories/texts/>Texts</a></nav><span data-pagefind-filter=domain data-pagefind-ignore=all style=display:none>Math</span><span data-pagefind-ignore=all style=display:none><span data-pagefind-filter=tag>CategoryTheory</span><span data-pagefind-filter=tag>OrderTheory</span></span><h1 class=p-name>Monads and Comonads</h1><div class=meta><time class=dt-published datetime=2026-03-06T00:00:00Z data-pagefind-sort=date data-pagefind-meta=date:2026-03-06>2026-03-06</time>
+<span>by <span class=p-author data-pagefind-filter=author>claude-opus-4-6</span></span></div><div class="type-meta type-meta--objectives"><span class=type-meta-label>Learning objectives</span><ul><li>monads</li><li>comonads</li><li>counit</li><li>comultiplication</li><li>Heyting-comonadic coherence</li></ul></div><div class="type-meta type-meta--prereqs"><span class=type-meta-label>Prerequisites</span><ul><li>./functors.md</li><li>./natural-transformations.md</li></ul></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#entry-conditions>Entry conditions</a></li><li><a href=#definitions>Definitions</a></li><li><a href=#vocabulary-plain-language>Vocabulary (plain language)</a></li><li><a href=#intuition>Intuition</a></li><li><a href=#heyting-comonadic-coherence>Heyting-comonadic coherence</a></li><li><a href=#worked-example>Worked example</a></li><li><a href=#common-mistakes>Common mistakes</a></li><li><a href=#minimal-data>Minimal data</a></li></ul></nav></details><div class=e-content><h2 id=entry-conditions>Entry conditions</h2><p>Use monads and comonads when you can:</p><ul><li>Start from a <a href=../terms/category.md class=link-internal>category</a> (or a poset viewed as
+a thin category).</li><li>Identify an endofunctor T : C -> C that &ldquo;wraps&rdquo; or &ldquo;annotates&rdquo;
+objects.</li><li>Ask whether the wrapping is coherent: can it be applied once, twice,
+or unwrapped, in ways that compose consistently?</li></ul><h2 id=definitions>Definitions</h2><p>A <strong>monad</strong> on a category C is a triple (T, eta, mu) where:</p><ul><li>T : C -> C is an endofunctor,</li><li>eta : id -> T is a <a href=../terms/natural-transformation.md class=link-internal>natural transformation</a>
+called the <strong>unit</strong> (wrapping),</li><li>mu : T . T -> T is a natural transformation called the
+<strong>multiplication</strong> (flattening),</li></ul><p>satisfying:</p><ul><li><strong>Associativity</strong>: mu . T(mu) = mu . mu_T</li><li><strong>Unit laws</strong>: mu . T(eta) = id = mu . eta_T</li></ul><p>A <strong>comonad</strong> on C is the dual: a triple (G, epsilon, delta) where:</p><ul><li>G : C -> C is an endofunctor,</li><li>epsilon : G -> id is a natural transformation called the <strong>counit</strong>
+(extraction),</li><li>delta : G -> G . G is a natural transformation called the
+<strong>comultiplication</strong> (duplication),</li></ul><p>satisfying:</p><ul><li><strong>Coassociativity</strong>: G(delta) . delta = delta_G . delta</li><li><strong>Counit laws</strong>: G(epsilon) . delta = id = epsilon_G . delta</li></ul><p>On a poset (H, &lt;=) viewed as a thin category, a comonad simplifies to:</p><ul><li>G : H -> H monotone,</li><li>epsilon: G(a) &lt;= a for all a (extraction is deflating),</li><li>delta: G(a) &lt;= G(G(a)) for all a (duplication is inflating within G),</li></ul><p>with coassociativity and counit laws holding as inequalities.</p><h2 id=vocabulary-plain-language>Vocabulary (plain language)</h2><ul><li><strong>Monad</strong>: wraps objects and flattens double-wrapping. Think of it as
+a notion of computation or context that can be composed.</li><li><strong>Comonad</strong>: extracts values from context and duplicates context. The
+dual of a monad — where a monad adds structure, a comonad reads it.</li><li><strong>Counit (epsilon)</strong>: extracts the underlying value from a comonadic
+context. &ldquo;What is the thing, ignoring its annotation?&rdquo;</li><li><strong>Comultiplication (delta)</strong>: duplicates the annotation. &ldquo;The traced
 version of a trace is itself traced.&rdquo; This enables iterable
-annotation.</li>
-</ul>
-<h2 id="intuition">Intuition</h2>
-<p>A monad wraps things and lets you flatten nested wrapping. The
+annotation.</li></ul><h2 id=intuition>Intuition</h2><p>A monad wraps things and lets you flatten nested wrapping. The
 canonical example: lists. Wrapping a value gives a singleton list;
-flattening a list of lists concatenates them.</p>
-<p>A comonad extracts things and lets you duplicate context. The canonical
+flattening a list of lists concatenates them.</p><p>A comonad extracts things and lets you duplicate context. The canonical
 example on a poset: a closure operator&rsquo;s dual. If G(a) is &ldquo;the part of
 a that is directly observable,&rdquo; then epsilon(a) says &ldquo;what you observe
 is less than what is there,&rdquo; and delta(a) says &ldquo;observing the
-observation is still observation.&rdquo;</p>
-<p>In the
-<a href="../../../universes/semiotic-universe/semiotic-universe.md" class="link-internal">semiotic universe</a>,
-the <a href="../../../universes/semiotic-universe/terms/trace-comonad.md" class="link-internal">trace comonad</a>
+observation is still observation.&rdquo;</p><p>In the
+<a href=../../../universes/semiotic-universe/semiotic-universe.md class=link-internal>semiotic universe</a>,
+the <a href=../../../universes/semiotic-universe/terms/trace-comonad.md class=link-internal>trace comonad</a>
 G records interpretive history. The counit extracts the current
 semantic value. The comultiplication records that the tracing itself has
 been traced — the self-referential structure that semiotic
-interpretation requires.</p>
-<h2 id="heyting-comonadic-coherence">Heyting-comonadic coherence</h2>
-<p>When G is a comonad on a
-<a href="../../../../mathematics/concepts/heyting-algebra/index.md" class="link-internal">Heyting algebra</a>
+interpretation requires.</p><h2 id=heyting-comonadic-coherence>Heyting-comonadic coherence</h2><p>When G is a comonad on a
+<a href=../../../../mathematics/concepts/heyting-algebra/index.md class=link-internal>Heyting algebra</a>
 H, additional structure becomes possible. G is <strong>Heyting-comonadic</strong> if
-it preserves all Heyting operations:</p>
-<ol>
-<li>G(a meet b) = G(a) meet G(b)</li>
-<li>G(a join b) = G(a) join G(b)</li>
-<li>G(a =&gt; b) = G(a) =&gt; G(b)</li>
-<li>G(top) = top, G(bot) = bot</li>
-</ol>
-<p>This means tracing does not distort logical structure. The traced
+it preserves all Heyting operations:</p><ol><li>G(a meet b) = G(a) meet G(b)</li><li>G(a join b) = G(a) join G(b)</li><li>G(a => b) = G(a) => G(b)</li><li>G(top) = top, G(bot) = bot</li></ol><p>This means tracing does not distort logical structure. The traced
 version of a conjunction is the conjunction of the traces; the traced
-version of an implication is the implication of the traces.</p>
-<p>This coherence axiom (Axiom 1.2 of the semiotic universe specification)
+version of an implication is the implication of the traces.</p><p>This coherence axiom (Axiom 1.2 of the semiotic universe specification)
 is what makes the trace comonad more than an arbitrary annotation — it
-ensures that temporal unfolding respects the logic of meaning.</p>
-<h2 id="worked-example">Worked example</h2>
-<p>Let H = {bot, a, b, top} be the diamond lattice where a and b are
-incomparable, with the Heyting implication defined by the adjunction.</p>
-<p>Define G : H -&gt; H as:</p>
-<ul>
-<li>G(bot) = bot</li>
-<li>G(a) = bot</li>
-<li>G(b) = bot</li>
-<li>G(top) = top</li>
-</ul>
-<p>Then:</p>
-<ul>
-<li><strong>Counit</strong>: G(x) &lt;= x for all x. Check: bot &lt;= bot, bot &lt;= a,
-bot &lt;= b, top &lt;= top. Holds.</li>
-<li><strong>Comultiplication</strong>: G(x) &lt;= G(G(x)) for all x. G(G(bot)) =
+ensures that temporal unfolding respects the logic of meaning.</p><h2 id=worked-example>Worked example</h2><p>Let H = {bot, a, b, top} be the diamond lattice where a and b are
+incomparable, with the Heyting implication defined by the adjunction.</p><p>Define G : H -> H as:</p><ul><li>G(bot) = bot</li><li>G(a) = bot</li><li>G(b) = bot</li><li>G(top) = top</li></ul><p>Then:</p><ul><li><strong>Counit</strong>: G(x) &lt;= x for all x. Check: bot &lt;= bot, bot &lt;= a,
+bot &lt;= b, top &lt;= top. Holds.</li><li><strong>Comultiplication</strong>: G(x) &lt;= G(G(x)) for all x. G(G(bot)) =
 G(bot) = bot, so bot &lt;= bot. G(G(a)) = G(bot) = bot, so bot &lt;= bot.
-G(G(top)) = G(top) = top, so top &lt;= top. Holds.</li>
-<li><strong>Heyting preservation</strong>: G(a meet b) = G(bot) = bot = bot meet bot
-= G(a) meet G(b). G(a join b) = G(top) = top = bot join top&hellip; wait,
+G(G(top)) = G(top) = top, so top &lt;= top. Holds.</li><li><strong>Heyting preservation</strong>: G(a meet b) = G(bot) = bot = bot meet bot
+= G(a) meet G(b). G(a join b) = G(top) = top = bot join top&mldr; wait,
 bot join bot = bot, but G(a join b) = G(top) = top. So top != bot.
-<strong>Fails.</strong></li>
-</ul>
-<p>This G is a comonad but NOT Heyting-comonadic. The preservation of
+<strong>Fails.</strong></li></ul><p>This G is a comonad but NOT Heyting-comonadic. The preservation of
 joins requires G to distribute, which this G does not. The constraint
 is real: not every comonad on a Heyting algebra preserves the Heyting
-structure.</p>
-<h2 id="common-mistakes">Common mistakes</h2>
-<ul>
-<li>Confusing monads with comonads. The arrows reverse: unit vs. counit,
-multiplication vs. comultiplication. Monads wrap; comonads extract.</li>
-<li>Assuming every comonad on a Heyting algebra preserves Heyting
+structure.</p><h2 id=common-mistakes>Common mistakes</h2><ul><li>Confusing monads with comonads. The arrows reverse: unit vs. counit,
+multiplication vs. comultiplication. Monads wrap; comonads extract.</li><li>Assuming every comonad on a Heyting algebra preserves Heyting
 operations. The worked example shows this fails in general.
-Heyting-comonadic coherence is an additional axiom.</li>
-<li>Forgetting the counit laws. Coassociativity alone is not enough; the
-counit laws ensure extraction is well-behaved.</li>
-</ul>
-<h2 id="minimal-data">Minimal data</h2>
-<ul>
-<li>A category C (or a poset viewed as a thin category).</li>
-<li>An endofunctor G : C -&gt; C.</li>
-<li>Natural transformations epsilon : G -&gt; id and delta : G -&gt; G . G.</li>
-<li>The coassociativity and counit diagrams commute.</li>
-<li>For Heyting-comonadic coherence: G preserves meets, joins,
-implication, top, and bottom.</li>
-</ul>
-
-  </div>
-  
-</article>
-<section class="page-relations" resource="https://emsenn.net/library/math/domains/categories/domains/ordinary-categories/texts/monads-and-comonads/" typeof="schema:CreativeWork"
-         vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
-  <dl><div class="relation">
-        <dt>Authors</dt>
-        <dd property="schema:author"><ul><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
-      </div><div class="relation">
-        <dt>Date created</dt>
-        <dd property="schema:dateCreated"><time datetime="2026-03-06">2026-03-06</time></dd>
-      </div><div class="relation">
-        <dt><a href="/library/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment"><ul><li>. functors.md</li><li>. natural transformations.md</li></ul></dd>
-      </div><div class="relation">
-        <dt>Tags</dt>
-        <dd property="schema:keywords"><ul><li><a href="/tags/categorytheory/">CategoryTheory</a></li><li><a href="/tags/ordertheory/">OrderTheory</a></li></ul></dd>
-      </div><div class="relation">
-        <dt>Teaches</dt>
-        <dd property="emsenn:Teaches"><ul><li>Monads</li><li>Comonads</li><li>Counit</li><li>Comultiplication</li><li>Heyting comonadic coherence</li></ul></dd>
-      </div>
-  </dl>
-</section>
-<section class="cite-this" id="cite-this">
-  <h2>Cite</h2>
-  <pre class="cite-block"><code>@misc{claude-opus-4-62026-monads-and-comonads,
+Heyting-comonadic coherence is an additional axiom.</li><li>Forgetting the counit laws. Coassociativity alone is not enough; the
+counit laws ensure extraction is well-behaved.</li></ul><h2 id=minimal-data>Minimal data</h2><ul><li>A category C (or a poset viewed as a thin category).</li><li>An endofunctor G : C -> C.</li><li>Natural transformations epsilon : G -> id and delta : G -> G . G.</li><li>The coassociativity and counit diagrams commute.</li><li>For Heyting-comonadic coherence: G preserves meets, joins,
+implication, top, and bottom.</li></ul></div></article><section class=page-relations data-pagefind-ignore resource="https://emsenn.net/library/math/domains/categories/domains/ordinary-categories/texts/monads-and-comonads/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-06>2026-03-06</time></dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>Requires</a></dt><dd property="schema:educationalAlignment"><ul><li>. functors.md</li><li>. natural transformations.md</li></ul></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/categorytheory/>CategoryTheory</a></li><li><a href=/tags/ordertheory/>OrderTheory</a></li></ul></dd></div><div class=relation><dt>Teaches</dt><dd property="emsenn:Teaches"><ul><li>Monads</li><li>Comonads</li><li>Counit</li><li>Comultiplication</li><li>Heyting comonadic coherence</li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@misc{claude-opus-4-62026-monads-and-comonads,
   author    = {claude-opus-4-6},
   title     = {Monads and Comonads},
   year      = {2026},
   url       = {https://emsenn.net/library/math/domains/categories/domains/ordinary-categories/texts/monads-and-comonads/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre>
-</section>
-
-  
-
-
-  </main>
-  <footer>
-    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
-  </footer>
-</body>
-</html>
+}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>

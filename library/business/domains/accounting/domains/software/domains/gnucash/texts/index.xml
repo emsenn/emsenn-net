@@ -1,33 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>emsenn.net</title>
-    <link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/</link>
-    <description>Recent content on emsenn.net</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 06 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Import Transactions from a Bank in GnuCash</title>
-      <link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/import-bank-transactions/</link>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/import-bank-transactions/</guid>
-      <description>&lt;p&gt;GnuCash can import transactions from bank downloads in OFX, QFX, QIF, and CSV formats. OFX/QFX is the most reliable format because it includes structured metadata (dates, payees, amounts, transaction IDs) that GnuCash can parse unambiguously.&lt;/p&gt;&#xA;&lt;h2 id=&#34;steps&#34;&gt;Steps&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Download a transaction file from the bank&amp;rsquo;s website. Prefer OFX or QFX format if available.&lt;/li&gt;&#xA;&lt;li&gt;In GnuCash, go to File &amp;gt; Import &amp;gt; Import OFX/QFX (or the appropriate format).&lt;/li&gt;&#xA;&lt;li&gt;GnuCash&amp;rsquo;s import matcher shows each imported transaction alongside potential matches in existing records. It uses transaction IDs and dates to detect duplicates.&lt;/li&gt;&#xA;&lt;li&gt;For each transaction, choose: match to an existing transaction (if it&amp;rsquo;s a duplicate), add as new, or skip.&lt;/li&gt;&#xA;&lt;li&gt;Assign destination accounts for new transactions. GnuCash learns from previous assignments and will suggest accounts based on payee names (Bayesian matching).&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;The Bayesian matching improves over time — the more transactions you categorize, the better the suggestions become.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Reconcile a Bank Account in GnuCash</title>
-      <link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/reconcile-bank-account/</link>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/reconcile-bank-account/</guid>
-      <description>&lt;p&gt;Reconciliation in GnuCash matches the transactions in the &lt;a href=&#34;../terms/register.md&#34; class=&#34;link-internal&#34;&gt;register&lt;/a&gt; against a bank statement to confirm that the book balance agrees with the bank&amp;rsquo;s records. This process catches errors, duplicates, and missing transactions — it&amp;rsquo;s the primary way to verify that the books are accurate.&lt;/p&gt;&#xA;&lt;h2 id=&#34;steps&#34;&gt;Steps&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Open the account register for the bank account.&lt;/li&gt;&#xA;&lt;li&gt;Go to Actions &amp;gt; Reconcile.&lt;/li&gt;&#xA;&lt;li&gt;Enter the statement date and ending balance from the bank statement.&lt;/li&gt;&#xA;&lt;li&gt;GnuCash shows all unreconciled transactions. Check off each transaction that appears on the statement.&lt;/li&gt;&#xA;&lt;li&gt;The reconcile window shows the difference between the checked transactions and the statement balance. When the difference reaches zero, the account is reconciled.&lt;/li&gt;&#xA;&lt;li&gt;Click Finish. Reconciled transactions are marked with &amp;ldquo;y&amp;rdquo; in the register.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;If the difference isn&amp;rsquo;t zero, it means either the book has transactions the bank doesn&amp;rsquo;t, the bank has transactions the book doesn&amp;rsquo;t, or amounts don&amp;rsquo;t match. Investigate before forcing a reconciliation — the discrepancy is the point of the exercise.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Set Up a Chart of Accounts in GnuCash</title>
-      <link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/set-up-chart-of-accounts/</link>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/set-up-chart-of-accounts/</guid>
-      <description>&lt;p&gt;GnuCash ships with predefined &lt;a href=&#34;../../terms/account.md&#34; class=&#34;link-internal&#34;&gt;account&lt;/a&gt; hierarchies (personal, business, etc.) that users can select when creating a new file. These templates provide a reasonable starting &lt;a href=&#34;../../terms/chart-of-accounts.md&#34; class=&#34;link-internal&#34;&gt;chart of accounts&lt;/a&gt; based on common accounting needs.&lt;/p&gt;&#xA;&lt;p&gt;To set one up:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Create a new GnuCash file (File &amp;gt; New).&lt;/li&gt;&#xA;&lt;li&gt;Select a currency for the book.&lt;/li&gt;&#xA;&lt;li&gt;Choose one or more account templates (Personal Accounts, Business Accounts, etc.). GnuCash will create the full hierarchy.&lt;/li&gt;&#xA;&lt;li&gt;Review and prune — delete accounts that don&amp;rsquo;t apply. It&amp;rsquo;s easier to delete unused accounts than to create missing ones later.&lt;/li&gt;&#xA;&lt;li&gt;Add any accounts specific to the situation. Follow the five top-level types: Assets, Liabilities, Equity, Income, Expenses. Each can have arbitrary sub-accounts.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: The chart of accounts can be restructured later by dragging accounts in the account tree, but transactions already posted to an account will follow it. Plan the structure before entering significant data.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>emsenn.net</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/</link><description>Recent content on emsenn.net</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 06 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/index.xml" rel="self" type="application/rss+xml"/><item><title>Import Transactions from a Bank in GnuCash</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/import-bank-transactions/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/import-bank-transactions/</guid><description>&lt;p&gt;GnuCash can import transactions from bank downloads in OFX, QFX, QIF, and CSV formats. OFX/QFX is the most reliable format because it includes structured metadata (dates, payees, amounts, transaction IDs) that GnuCash can parse unambiguously.&lt;/p&gt;
+&lt;h2 id="steps"&gt;Steps&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Download a transaction file from the bank&amp;rsquo;s website. Prefer OFX or QFX format if available.&lt;/li&gt;
+&lt;li&gt;In GnuCash, go to File &amp;gt; Import &amp;gt; Import OFX/QFX (or the appropriate format).&lt;/li&gt;
+&lt;li&gt;GnuCash&amp;rsquo;s import matcher shows each imported transaction alongside potential matches in existing records. It uses transaction IDs and dates to detect duplicates.&lt;/li&gt;
+&lt;li&gt;For each transaction, choose: match to an existing transaction (if it&amp;rsquo;s a duplicate), add as new, or skip.&lt;/li&gt;
+&lt;li&gt;Assign destination accounts for new transactions. GnuCash learns from previous assignments and will suggest accounts based on payee names (Bayesian matching).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The Bayesian matching improves over time — the more transactions you categorize, the better the suggestions become.&lt;/p&gt;</description></item><item><title>Reconcile a Bank Account in GnuCash</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/reconcile-bank-account/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/reconcile-bank-account/</guid><description>&lt;p&gt;Reconciliation in GnuCash matches the transactions in the &lt;a href="../terms/register.md" class="link-internal"&gt;register&lt;/a&gt; against a bank statement to confirm that the book balance agrees with the bank&amp;rsquo;s records. This process catches errors, duplicates, and missing transactions — it&amp;rsquo;s the primary way to verify that the books are accurate.&lt;/p&gt;
+&lt;h2 id="steps"&gt;Steps&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Open the account register for the bank account.&lt;/li&gt;
+&lt;li&gt;Go to Actions &amp;gt; Reconcile.&lt;/li&gt;
+&lt;li&gt;Enter the statement date and ending balance from the bank statement.&lt;/li&gt;
+&lt;li&gt;GnuCash shows all unreconciled transactions. Check off each transaction that appears on the statement.&lt;/li&gt;
+&lt;li&gt;The reconcile window shows the difference between the checked transactions and the statement balance. When the difference reaches zero, the account is reconciled.&lt;/li&gt;
+&lt;li&gt;Click Finish. Reconciled transactions are marked with &amp;ldquo;y&amp;rdquo; in the register.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If the difference isn&amp;rsquo;t zero, it means either the book has transactions the bank doesn&amp;rsquo;t, the bank has transactions the book doesn&amp;rsquo;t, or amounts don&amp;rsquo;t match. Investigate before forcing a reconciliation — the discrepancy is the point of the exercise.&lt;/p&gt;</description></item><item><title>Set Up a Chart of Accounts in GnuCash</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/set-up-chart-of-accounts/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/gnucash/texts/set-up-chart-of-accounts/</guid><description>&lt;p&gt;GnuCash ships with predefined &lt;a href="../../terms/account.md" class="link-internal"&gt;account&lt;/a&gt; hierarchies (personal, business, etc.) that users can select when creating a new file. These templates provide a reasonable starting &lt;a href="../../terms/chart-of-accounts.md" class="link-internal"&gt;chart of accounts&lt;/a&gt; based on common accounting needs.&lt;/p&gt;
+&lt;p&gt;To set one up:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a new GnuCash file (File &amp;gt; New).&lt;/li&gt;
+&lt;li&gt;Select a currency for the book.&lt;/li&gt;
+&lt;li&gt;Choose one or more account templates (Personal Accounts, Business Accounts, etc.). GnuCash will create the full hierarchy.&lt;/li&gt;
+&lt;li&gt;Review and prune — delete accounts that don&amp;rsquo;t apply. It&amp;rsquo;s easier to delete unused accounts than to create missing ones later.&lt;/li&gt;
+&lt;li&gt;Add any accounts specific to the situation. Follow the five top-level types: Assets, Liabilities, Equity, Income, Expenses. Each can have arbitrary sub-accounts.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: The chart of accounts can be restructured later by dragging accounts in the account tree, but transactions already posted to an account will follow it. Plan the structure before entering significant data.&lt;/p&gt;</description></item></channel></rss>

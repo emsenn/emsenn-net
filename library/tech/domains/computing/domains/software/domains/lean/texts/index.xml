@@ -1,33 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>emsenn.net</title>
-    <link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/</link>
-    <description>Recent content on emsenn.net</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 01 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Introduction to Lean</title>
-      <link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/introduction-to-lean/</link>
-      <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/introduction-to-lean/</guid>
-      <description>&lt;h2 id=&#34;what-lean-is&#34;&gt;What Lean is&lt;/h2&gt;&#xA;&lt;p&gt;Lean 4 is a dependently typed functional programming language and interactive theorem&#xA;prover. It serves two purposes at once: you can write executable programs in it, and you&#xA;can state and prove mathematical theorems in it. These are the same activity — a proof is&#xA;a program whose type is the proposition it proves.&lt;/p&gt;&#xA;&lt;p&gt;Lean&amp;rsquo;s architecture has two layers:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The &lt;strong&gt;kernel&lt;/strong&gt;: a small, trusted type checker that verifies proof terms. The kernel&#xA;implements the Calculus of Inductive Constructions. If the kernel accepts a term, the&#xA;proof is correct — there is no appeal to external authority.&lt;/li&gt;&#xA;&lt;li&gt;The &lt;strong&gt;elaborator&lt;/strong&gt;: a front-end that translates human-readable Lean code into the&#xA;kernel&amp;rsquo;s internal language. Tactics, implicit arguments, type inference, and&#xA;metaprogramming all live in the elaborator. They make proofs easier to write without&#xA;enlarging the trusted base.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;&#xA;&lt;p&gt;Lean 4 is installed through &lt;code&gt;elan&lt;/code&gt;, a toolchain manager (analogous to &lt;code&gt;rustup&lt;/code&gt; for Rust):&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Tactics in Lean</title>
-      <link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/</link>
-      <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/</guid>
-      <description>&lt;h2 id=&#34;what-tactics-do&#34;&gt;What tactics do&lt;/h2&gt;&#xA;&lt;p&gt;A &lt;a href=&#34;../terms/tactic.md&#34; class=&#34;link-internal&#34;&gt;tactic&lt;/a&gt; transforms a proof goal into simpler subgoals. The proof&#xA;state consists of:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Context&lt;/strong&gt;: named hypotheses and local definitions.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Goal&lt;/strong&gt;: the type (proposition) that remains to be proved.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Each tactic inspects the goal and context, then either closes the goal (producing a proof&#xA;term) or splits it into subgoals. When all goals are closed, the proof is complete and&#xA;Lean&amp;rsquo;s kernel checks the assembled proof term.&lt;/p&gt;&#xA;&lt;h2 id=&#34;core-tactics&#34;&gt;Core tactics&lt;/h2&gt;&#xA;&lt;h3 id=&#34;introducing-hypotheses&#34;&gt;Introducing hypotheses&lt;/h3&gt;&#xA;&lt;p&gt;&lt;code&gt;intro&lt;/code&gt; moves a universally quantified variable or implication antecedent from the goal&#xA;into the context:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Types and Propositions in Lean</title>
-      <link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/types-and-propositions-in-lean/</link>
-      <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/types-and-propositions-in-lean/</guid>
-      <description>&lt;h2 id=&#34;prop-and-type&#34;&gt;Prop and Type&lt;/h2&gt;&#xA;&lt;p&gt;Lean distinguishes two sorts:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;Type&lt;/code&gt; (actually &lt;code&gt;Type u&lt;/code&gt; for universe level &lt;code&gt;u&lt;/code&gt;) — the sort of computational types.&#xA;&lt;code&gt;Nat : Type&lt;/code&gt;, &lt;code&gt;String : Type&lt;/code&gt;, &lt;code&gt;List Nat : Type&lt;/code&gt;.&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;Prop&lt;/code&gt; — the sort of propositions. &lt;code&gt;2 + 2 = 4 : Prop&lt;/code&gt;, &lt;code&gt;∀ n, n + 0 = n : Prop&lt;/code&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The distinction matters for erasure: values of type &lt;code&gt;Prop&lt;/code&gt; are erased at runtime because&#xA;they carry no computational content — a proof that &lt;code&gt;2 + 2 = 4&lt;/code&gt; does not affect program&#xA;execution. This separation lets Lean be both a programming language and a proof assistant&#xA;without proofs slowing down compiled code.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>emsenn.net</title><link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/</link><description>Recent content on emsenn.net</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 01 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/index.xml" rel="self" type="application/rss+xml"/><item><title>Introduction to Lean</title><link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/introduction-to-lean/</link><pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/introduction-to-lean/</guid><description>&lt;h2 id="what-lean-is"&gt;What Lean is&lt;/h2&gt;
+&lt;p&gt;Lean 4 is a dependently typed functional programming language and interactive theorem
+prover. It serves two purposes at once: you can write executable programs in it, and you
+can state and prove mathematical theorems in it. These are the same activity — a proof is
+a program whose type is the proposition it proves.&lt;/p&gt;
+&lt;p&gt;Lean&amp;rsquo;s architecture has two layers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;kernel&lt;/strong&gt;: a small, trusted type checker that verifies proof terms. The kernel
+implements the Calculus of Inductive Constructions. If the kernel accepts a term, the
+proof is correct — there is no appeal to external authority.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;elaborator&lt;/strong&gt;: a front-end that translates human-readable Lean code into the
+kernel&amp;rsquo;s internal language. Tactics, implicit arguments, type inference, and
+metaprogramming all live in the elaborator. They make proofs easier to write without
+enlarging the trusted base.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation"&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Lean 4 is installed through &lt;code&gt;elan&lt;/code&gt;, a toolchain manager (analogous to &lt;code&gt;rustup&lt;/code&gt; for Rust):&lt;/p&gt;</description></item><item><title>Tactics in Lean</title><link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/</link><pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/</guid><description>&lt;h2 id="what-tactics-do"&gt;What tactics do&lt;/h2&gt;
+&lt;p&gt;A &lt;a href="../terms/tactic.md" class="link-internal"&gt;tactic&lt;/a&gt; transforms a proof goal into simpler subgoals. The proof
+state consists of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Context&lt;/strong&gt;: named hypotheses and local definitions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Goal&lt;/strong&gt;: the type (proposition) that remains to be proved.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each tactic inspects the goal and context, then either closes the goal (producing a proof
+term) or splits it into subgoals. When all goals are closed, the proof is complete and
+Lean&amp;rsquo;s kernel checks the assembled proof term.&lt;/p&gt;
+&lt;h2 id="core-tactics"&gt;Core tactics&lt;/h2&gt;
+&lt;h3 id="introducing-hypotheses"&gt;Introducing hypotheses&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;intro&lt;/code&gt; moves a universally quantified variable or implication antecedent from the goal
+into the context:&lt;/p&gt;</description></item><item><title>Types and Propositions in Lean</title><link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/types-and-propositions-in-lean/</link><pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/lean/texts/types-and-propositions-in-lean/</guid><description>&lt;h2 id="prop-and-type"&gt;Prop and Type&lt;/h2&gt;
+&lt;p&gt;Lean distinguishes two sorts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Type&lt;/code&gt; (actually &lt;code&gt;Type u&lt;/code&gt; for universe level &lt;code&gt;u&lt;/code&gt;) — the sort of computational types.
+&lt;code&gt;Nat : Type&lt;/code&gt;, &lt;code&gt;String : Type&lt;/code&gt;, &lt;code&gt;List Nat : Type&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Prop&lt;/code&gt; — the sort of propositions. &lt;code&gt;2 + 2 = 4 : Prop&lt;/code&gt;, &lt;code&gt;∀ n, n + 0 = n : Prop&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The distinction matters for erasure: values of type &lt;code&gt;Prop&lt;/code&gt; are erased at runtime because
+they carry no computational content — a proof that &lt;code&gt;2 + 2 = 4&lt;/code&gt; does not affect program
+execution. This separation lets Lean be both a programming language and a proof assistant
+without proofs slowing down compiled code.&lt;/p&gt;</description></item></channel></rss>

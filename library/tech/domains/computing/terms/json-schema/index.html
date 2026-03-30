@@ -1,154 +1,21 @@
-<!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
-<head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JSON Schema - emsenn.net</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
-<link href="https://gmpg.org/xfn/11" rel="profile">
-<link href="https://emsenn.net" rel="me">
-<link href="mailto:emsenn@emsenn.net" rel="me authn">
-<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
-<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "dateModified": "2026-03-29",
-  "datePublished": "2026-03-29",
-  "description": "A declarative language for describing the structure, constraints, and validation rules of JSON data — the standard contract format for defining tool interfaces in agentic systems.",
-  "name": "JSON Schema",
-  "publisher": {
-    "@type": "Person",
-    "name": "emsenn",
-    "url": "https://emsenn.net"
-  },
-  "url": "https://emsenn.net/library/tech/domains/computing/terms/json-schema/"
-}
-</script>
-
-
-</head>
-<body>
-  <a class="skip-to-content" href="#content">Skip to content</a>
-  <header class="site-header">
-  <div class="site-identity">
-    <a href="/" class="site-title">emsenn.net</a>
-    <span class="site-tagline">on relations and things</span>
-  </div>
-  <nav>
-    <a href="/">home</a>
-    <a href="/library/">library</a>
-    <a href="/letters/">letters</a>
-    <a href="/search/">search</a>
-  </nav>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
-</header>
-
-  <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
-  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/terms/">Terms</a></nav>
-  <h1 class="p-name">JSON Schema</h1>
-  <div class="meta">
-    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
-    
-    <span class="p-summary">A declarative language for describing the structure, constraints, and validation rules of JSON data — the standard contract format for defining tool interfaces in agentic systems.</span>
-  </div>
-  <div class="e-content">
-    <p>JSON Schema is a declarative language for describing the structure of JSON data. A schema specifies what properties an object must have, what types those properties must be, which are required, what values are permitted, and how nested structures are composed. It is defined as an Internet Engineering Task Force (IETF) draft specification, with the 2020-12 release being the current stable version.</p>
-<p>A JSON Schema document is itself JSON. A simple example describing a function call:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;properties&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span> },
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;arguments&#34;</span>: {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;properties&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;query&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span> },
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;max_results&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;integer&#34;</span>, <span style="color:#f92672">&#34;minimum&#34;</span>: <span style="color:#ae81ff">1</span> }
-</span></span><span style="display:flex;"><span>      },
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;required&#34;</span>: [<span style="color:#e6db74">&#34;query&#34;</span>]
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;required&#34;</span>: [<span style="color:#e6db74">&#34;name&#34;</span>, <span style="color:#e6db74">&#34;arguments&#34;</span>]
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>This schema declares that a valid object must have a <code>name</code> (string) and <code>arguments</code> (object with a required <code>query</code> string and an optional <code>max_results</code> integer that must be at least 1).</p>
-<p>JSON Schema&rsquo;s relevance to <a href="../domains/artificial-intelligence/domains/agents/terms/agentic-system.md" class="link-internal">agentic systems</a> is structural. When a language model performs <a href="../domains/artificial-intelligence/domains/agents/terms/tool-use.md" class="link-internal">tool use</a>, the developer provides tool definitions as JSON Schema documents. The schema tells the model what arguments the tool expects, and the model produces a JSON object conforming to that schema. This is the contract that makes tool use reliable: the schema constrains the model&rsquo;s output to valid function calls, and the host application can validate the output before executing it.</p>
-<p>The same mechanism underpins:</p>
-<ul>
-<li><strong>Structured output.</strong> Providers allow developers to specify a JSON Schema for the model&rsquo;s entire response, ensuring outputs conform to a predefined structure regardless of the natural language content.</li>
-<li><strong><a href="../domains/artificial-intelligence/domains/agents/domains/model-context-protocol/index.md" class="link-internal">MCP</a> tool definitions.</strong> MCP tools declare their input schemas as JSON Schema, making tool capabilities machine-discoverable.</li>
-<li><strong><a href="../domains/artificial-intelligence/domains/agents/terms/agent-to-agent-protocol.md" class="link-internal">A2A</a> Agent Cards.</strong> Agent capabilities are described using structured JSON documents that follow schema conventions.</li>
-<li><strong><a href="../domains/artificial-intelligence/domains/agents/terms/pydantic-ai.md" class="link-internal">PydanticAI</a> models.</strong> Pydantic models generate JSON Schema automatically, creating tool contracts from Python type annotations.</li>
-</ul>
-<p>JSON Schema is not the only schema language (Protocol Buffers, Avro, and XML Schema serve similar purposes in different ecosystems), but it has become the de facto standard for LLM tool interfaces because JSON is the native interchange format of web APIs and LLM providers adopted it first.</p>
-<h2 id="related-terms">Related terms</h2>
-<ul>
-<li><a href="../domains/artificial-intelligence/domains/agents/terms/tool-use.md" class="link-internal">Tool use</a> — the mechanism that uses JSON Schema as its contract format</li>
-<li><a href="./type-safety.md" class="link-internal">Type safety</a> — the broader concept JSON Schema enables at runtime</li>
-</ul>
-
-  </div>
-  
-</article>
-<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/terms/json-schema/" typeof="schema:CreativeWork"
-         vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
-  <dl><div class="relation">
-        <dt>Date created</dt>
-        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
-      </div><div class="relation">
-        <dt>Date updated</dt>
-        <dd property="schema:dateModified"><time datetime="2026-03-29">2026-03-29</time></dd>
-      </div><div class="relation">
-        <dt>Defines</dt>
-        <dd property="emsenn:Defines"><a href="/library/tech/domains/computing/terms/json-schema/">JSON schema</a></dd>
-      </div><div class="relation">
-        <dt><a href="/library/math/domains/sets/terms/domain/">Domain</a></dt>
-        <dd property="emsenn:Domain">Computing</dd>
-      </div><div class="relation">
-        <dt><a href="/library/math/domains/logic/terms/possibility/">Enables</a></dt>
-        <dd property="emsenn:Enables">Tool use, structured output</dd>
-      </div><div class="relation">
-        <dt>Governs</dt>
-        <dd property="emsenn:Governs">Structured output</dd>
-      </div><div class="relation">
-        <dt>Instance of</dt>
-        <dd property="emsenn:Instanceof">Type safety</dd>
-      </div>
-  </dl>
-</section>
-
-
-  
-
-
-  </main>
-  <footer>
-    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
-  </footer>
-</body>
-</html>
+<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>JSON Schema - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-29","datePublished":"2026-03-29","description":"A declarative language for describing the structure, constraints, and validation rules of JSON data — the standard contract format for defining tool interfaces in agentic systems.","name":"JSON Schema","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/terms/json-schema/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
+<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
+<a href=/library/>library</a>
+<a href=/letters/>letters</a>
+<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content><article class=h-entry data-pagefind-body data-type=page data-pagefind-filter=type:page><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/>Computing</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/terms/>Terms</a></nav><span data-pagefind-filter=domain data-pagefind-ignore=all style=display:none>Tech</span><h1 class=p-name>JSON Schema</h1><div class=meta><time class=dt-published datetime=2026-03-29T00:00:00Z data-pagefind-sort=date data-pagefind-meta=date:2026-03-29>2026-03-29</time>
+<span class=p-summary data-pagefind-meta=description>A declarative language for describing the structure, constraints, and validation rules of JSON data — the standard contract format for defining tool interfaces in agentic systems.</span></div><div class=e-content><p>JSON Schema is a declarative language for describing the structure of JSON data. A schema specifies what properties an object must have, what types those properties must be, which are required, what values are permitted, and how nested structures are composed. It is defined as an Internet Engineering Task Force (IETF) draft specification, with the 2020-12 release being the current stable version.</p><p>A JSON Schema document is itself JSON. A simple example describing a function call:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;name&#34;</span>: { <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span> },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;arguments&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;properties&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;query&#34;</span>: { <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span> },
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;max_results&#34;</span>: { <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;integer&#34;</span>, <span style=color:#f92672>&#34;minimum&#34;</span>: <span style=color:#ae81ff>1</span> }
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;query&#34;</span>]
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;name&#34;</span>, <span style=color:#e6db74>&#34;arguments&#34;</span>]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>This schema declares that a valid object must have a <code>name</code> (string) and <code>arguments</code> (object with a required <code>query</code> string and an optional <code>max_results</code> integer that must be at least 1).</p><p>JSON Schema&rsquo;s relevance to <a href=../domains/artificial-intelligence/domains/agents/terms/agentic-system.md class=link-internal>agentic systems</a> is structural. When a language model performs <a href=../domains/artificial-intelligence/domains/agents/terms/tool-use.md class=link-internal>tool use</a>, the developer provides tool definitions as JSON Schema documents. The schema tells the model what arguments the tool expects, and the model produces a JSON object conforming to that schema. This is the contract that makes tool use reliable: the schema constrains the model&rsquo;s output to valid function calls, and the host application can validate the output before executing it.</p><p>The same mechanism underpins:</p><ul><li><strong>Structured output.</strong> Providers allow developers to specify a JSON Schema for the model&rsquo;s entire response, ensuring outputs conform to a predefined structure regardless of the natural language content.</li><li><strong><a href=../domains/artificial-intelligence/domains/agents/domains/model-context-protocol/index.md class=link-internal>MCP</a> tool definitions.</strong> MCP tools declare their input schemas as JSON Schema, making tool capabilities machine-discoverable.</li><li><strong><a href=../domains/artificial-intelligence/domains/agents/terms/agent-to-agent-protocol.md class=link-internal>A2A</a> Agent Cards.</strong> Agent capabilities are described using structured JSON documents that follow schema conventions.</li><li><strong><a href=../domains/artificial-intelligence/domains/agents/terms/pydantic-ai.md class=link-internal>PydanticAI</a> models.</strong> Pydantic models generate JSON Schema automatically, creating tool contracts from Python type annotations.</li></ul><p>JSON Schema is not the only schema language (Protocol Buffers, Avro, and XML Schema serve similar purposes in different ecosystems), but it has become the de facto standard for LLM tool interfaces because JSON is the native interchange format of web APIs and LLM providers adopted it first.</p><h2 id=related-terms>Related terms</h2><ul><li><a href=../domains/artificial-intelligence/domains/agents/terms/tool-use.md class=link-internal>Tool use</a> — the mechanism that uses JSON Schema as its contract format</li><li><a href=./type-safety.md class=link-internal>Type safety</a> — the broader concept JSON Schema enables at runtime</li></ul></div></article><section class=page-relations data-pagefind-ignore resource="https://emsenn.net/library/tech/domains/computing/terms/json-schema/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>Date updated</dt><dd property="schema:dateModified"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><a href=/library/tech/domains/computing/terms/json-schema/>JSON schema</a></dd></div><div class=relation><dt><a href=/library/math/domains/sets/terms/domain/>Domain</a></dt><dd property="emsenn:Domain">Computing</dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/possibility/>Enables</a></dt><dd property="emsenn:Enables">Tool use, structured output</dd></div><div class=relation><dt>Governs</dt><dd property="emsenn:Governs">Structured output</dd></div><div class=relation><dt>Instance of</dt><dd property="emsenn:Instanceof">Type safety</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
