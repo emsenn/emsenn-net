@@ -1,323 +1,131 @@
-<!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
-<head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stability Optimization in Artificial Agents - emsenn.net</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
-<link href="https://gmpg.org/xfn/11" rel="profile">
-<link href="https://emsenn.net" rel="me">
-<link href="mailto:emsenn@emsenn.net" rel="me authn">
-<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
-<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "author": {
-    "@type": "Person",
-    "name": "emsenn"
-  },
-  "dateModified": "2025-10-11",
-  "datePublished": "2025-10-11",
-  "description": "Abstract In RLHF, a model adapts to a fixed feedback distribution. This is the asymmetric stability setting of Information-Theoretic Stability as Reward Function: the model\u0026rsquo;s stability reward is a function of its coupling to the feedback source, not an intrinsic property. We show that RLHF training dynamics instantiate the two-channel decomposition — alignment progress equals behavioral convergence plus responsiveness increase — and that the MI-dominates-marginal inequality gives a structural constraint on training: the model\u0026rsquo;s responsiveness to feedback can never be doing worse than its behavioral convergence. These results reframe alignment as an informational accounting problem rather than a moral one.\n",
-  "keywords": "information-geometry, reinforcement-learning, alignment, research",
-  "name": "Stability Optimization in Artificial Agents",
-  "publisher": {
-    "@type": "Person",
-    "name": "emsenn",
-    "url": "https://emsenn.net"
-  },
-  "url": "https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/"
-}
-</script>
-
-
-</head>
-<body>
-  <a class="skip-to-content" href="#content">Skip to content</a>
-  <header class="site-header">
-  <div class="site-identity">
-    <a href="/" class="site-title">emsenn.net</a>
-    <span class="site-tagline">on relations and things</span>
-  </div>
-  <nav>
-    <a href="/">home</a>
-    <a href="/library/">library</a>
-    <a href="/letters/">letters</a>
-    <a href="/search/">search</a>
-  </nav>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
-</header>
-
-  <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="paper">
-  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/texts/">Texts</a></nav>
-  <h1 class="p-name">Stability Optimization in Artificial Agents</h1>
-  <div class="meta">
-    <time class="dt-published" datetime="2025-10-11T00:00:00Z">2025-10-11</time>
-    <span>by <span class="p-author">emsenn</span></span>
-    
-  </div>
-  <details class="toc">
-      <summary>Table of contents</summary>
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#abstract">Abstract</a></li>
-    <li><a href="#1-introduction">1. Introduction</a></li>
-    <li><a href="#2-setting">2. Setting</a>
-      <ul>
-        <li><a href="#21-model-and-feedback">2.1 Model and Feedback</a></li>
-        <li><a href="#22-stability-reward">2.2 Stability Reward</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-two-channel-decomposition-of-alignment">3. Two-Channel Decomposition of Alignment</a>
-      <ul>
-        <li><a href="#31-the-decomposition">3.1 The Decomposition</a></li>
-        <li><a href="#32-accounting-identity">3.2 Accounting Identity</a></li>
-        <li><a href="#33-structural-constraints">3.3 Structural Constraints</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-pathologies-as-accounting-failures">4. Pathologies as Accounting Failures</a>
-      <ul>
-        <li><a href="#41-mode-collapse-overstability">4.1 Mode Collapse (Overstability)</a></li>
-        <li><a href="#42-reward-hacking">4.2 Reward Hacking</a></li>
-        <li><a href="#43-catastrophic-forgetting">4.3 Catastrophic Forgetting</a></li>
-        <li><a href="#44-the-explorationstability-trade-off">4.4 The Exploration–Stability Trade-off</a></li>
-      </ul>
-    </li>
-    <li><a href="#5-discussion">5. Discussion</a></li>
-    <li><a href="#6-conclusion">6. Conclusion</a></li>
-    <li><a href="#references">References</a></li>
-  </ul>
-</nav>
-    </details>
-  <div class="e-content">
-    &lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;
-&lt;p&gt;In RLHF, a model adapts to a fixed feedback distribution. This is the asymmetric stability setting of &lt;em&gt;Information-Theoretic Stability as Reward Function&lt;/em&gt;: the model&amp;rsquo;s stability reward is a function of its coupling to the feedback source, not an intrinsic property. We show that RLHF training dynamics instantiate the two-channel decomposition — alignment progress equals behavioral convergence plus responsiveness increase — and that the MI-dominates-marginal inequality gives a structural constraint on training: the model&amp;rsquo;s responsiveness to feedback can never be doing worse than its behavioral convergence. These results reframe alignment as an informational accounting problem rather than a moral one.&lt;/p&gt;
-&lt;h2 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h2&gt;
-&lt;p&gt;Modern artificial agents are trained to maximize reward functions that capture performance, preference, or human approval (Christiano et al. 2017; Ouyang et al. 2022). In RLHF, the model (&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;) adapts to a feedback distribution (&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;B&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;) that is, for any given training phase, fixed. This is the asymmetric stability setting: &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; adapts, &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;B&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; doesn&amp;rsquo;t.&lt;/p&gt;
-&lt;p&gt;Information geometry (Amari 2016) provides the natural framework: every policy update is a trajectory on the manifold of probability distributions, and learning is gradient descent on a divergence functional. KL-regularized methods — PPO (Schulman et al. 2017), SAC (Haarnoja et al. 2018) — already penalize divergence between successive policies, which is the stability reward by another name.&lt;/p&gt;
-&lt;p&gt;This paper applies the two-channel decomposition and convergence results of &lt;em&gt;Information-Theoretic Stability as Reward Function&lt;/em&gt; to the specific case of RLHF, deriving structural constraints on training dynamics.&lt;/p&gt;
-&lt;h2 id=&#34;2-setting&#34;&gt;2. Setting&lt;/h2&gt;
-&lt;h3 id=&#34;21-model-and-feedback&#34;&gt;2.1 Model and Feedback&lt;/h3&gt;
-&lt;p&gt;Let &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mi&gt;θ&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\pi_\theta(a|s)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; denote the model&amp;rsquo;s policy over actions &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;a&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; given states &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;s&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;, with parameters &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;θ&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\theta&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;. Let &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;p_H(a|s)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; denote the human feedback distribution — the distribution over actions that RLHF reward models approximate (Christiano et al. 2017; Ouyang et al. 2022).&lt;/p&gt;
-&lt;p&gt;The joint distribution is &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;p_t(a,s) = \pi_t(a|s)\,p(s)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;, where &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;p(s)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; is the state distribution (determined by the environment, not the model). The target joint &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msup&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msubsup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msubsup&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;p^*(a,s) = p^*_H(a|s)\,p(s)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; represents the aligned equilibrium.&lt;/p&gt;
-&lt;p&gt;This is the asymmetric case: &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;B&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; (feedback distribution over states) is fixed; only &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; (the model&amp;rsquo;s conditional policy) adapts.&lt;/p&gt;
-&lt;h3 id=&#34;22-stability-reward&#34;&gt;2.2 Stability Reward&lt;/h3&gt;
-&lt;p&gt;The instantaneous stability reward of the model-feedback system is
-&lt;/p&gt;
-&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mfrac&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mrow&gt;&lt;mi&gt;δ&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;K&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;L&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mrow&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo&gt;&#43;&lt;/mo&gt;&lt;mi&gt;δ&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
-R_s(t) = -\frac{1}{\delta t}\,D_{\mathrm{KL}}(p_{t&#43;\delta}||p_t),
-&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
+<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Stability Optimization in Artificial Agents - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"emsenn"},"dateModified":"2025-10-11","datePublished":"2025-10-11","description":"Abstract In RLHF, a model adapts to a fixed feedback distribution. This is the asymmetric stability setting of Information-Theoretic Stability as Reward Function: the model\u0026rsquo;s stability reward is a function of its coupling to the feedback source, not an intrinsic property. We show that RLHF training dynamics instantiate the two-channel decomposition — alignment progress equals behavioral convergence plus responsiveness increase — and that the MI-dominates-marginal inequality gives a structural constraint on training: the model\u0026rsquo;s responsiveness to feedback can never be doing worse than its behavioral convergence. These results reframe alignment as an informational accounting problem rather than a moral one.\n","keywords":"information-geometry, reinforcement-learning, alignment, research","name":"Stability Optimization in Artificial Agents","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
+<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
+<a href=/library/>library</a>
+<a href=/letters/>letters</a>
+<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=paper><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/>Computing</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/artificial-intelligence/>Artificial intelligence</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/artificial-intelligence/texts/>Texts</a></nav><h1 class=p-name>Stability Optimization in Artificial Agents</h1><div class=meta><time class=dt-published datetime=2025-10-11T00:00:00Z>2025-10-11</time>
+<span>by <span class=p-author>emsenn</span></span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#abstract>Abstract</a></li><li><a href=#1-introduction>1. Introduction</a></li><li><a href=#2-setting>2. Setting</a><ul><li><a href=#21-model-and-feedback>2.1 Model and Feedback</a></li><li><a href=#22-stability-reward>2.2 Stability Reward</a></li></ul></li><li><a href=#3-two-channel-decomposition-of-alignment>3. Two-Channel Decomposition of Alignment</a><ul><li><a href=#31-the-decomposition>3.1 The Decomposition</a></li><li><a href=#32-accounting-identity>3.2 Accounting Identity</a></li><li><a href=#33-structural-constraints>3.3 Structural Constraints</a></li></ul></li><li><a href=#4-pathologies-as-accounting-failures>4. Pathologies as Accounting Failures</a><ul><li><a href=#41-mode-collapse-overstability>4.1 Mode Collapse (Overstability)</a></li><li><a href=#42-reward-hacking>4.2 Reward Hacking</a></li><li><a href=#43-catastrophic-forgetting>4.3 Catastrophic Forgetting</a></li><li><a href=#44-the-explorationstability-trade-off>4.4 The Exploration–Stability Trade-off</a></li></ul></li><li><a href=#5-discussion>5. Discussion</a></li><li><a href=#6-conclusion>6. Conclusion</a></li><li><a href=#references>References</a></li></ul></nav></details><div class=e-content>&lt;h2 id="abstract">Abstract&lt;/h2>
+&lt;p>In RLHF, a model adapts to a fixed feedback distribution. This is the asymmetric stability setting of &lt;em>Information-Theoretic Stability as Reward Function&lt;/em>: the model&amp;rsquo;s stability reward is a function of its coupling to the feedback source, not an intrinsic property. We show that RLHF training dynamics instantiate the two-channel decomposition — alignment progress equals behavioral convergence plus responsiveness increase — and that the MI-dominates-marginal inequality gives a structural constraint on training: the model&amp;rsquo;s responsiveness to feedback can never be doing worse than its behavioral convergence. These results reframe alignment as an informational accounting problem rather than a moral one.&lt;/p>
+&lt;h2 id="1-introduction">1. Introduction&lt;/h2>
+&lt;p>Modern artificial agents are trained to maximize reward functions that capture performance, preference, or human approval (Christiano et al. 2017; Ouyang et al. 2022). In RLHF, the model (&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>A&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">A&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>) adapts to a feedback distribution (&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>B&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">B&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>) that is, for any given training phase, fixed. This is the asymmetric stability setting: &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>A&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">A&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> adapts, &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>B&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">B&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> doesn&amp;rsquo;t.&lt;/p>
+&lt;p>Information geometry (Amari 2016) provides the natural framework: every policy update is a trajectory on the manifold of probability distributions, and learning is gradient descent on a divergence functional. KL-regularized methods — PPO (Schulman et al. 2017), SAC (Haarnoja et al. 2018) — already penalize divergence between successive policies, which is the stability reward by another name.&lt;/p>
+&lt;p>This paper applies the two-channel decomposition and convergence results of &lt;em>Information-Theoretic Stability as Reward Function&lt;/em> to the specific case of RLHF, deriving structural constraints on training dynamics.&lt;/p>
+&lt;h2 id="2-setting">2. Setting&lt;/h2>
+&lt;h3 id="21-model-and-feedback">2.1 Model and Feedback&lt;/h3>
+&lt;p>Let &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>π&lt;/mi>&lt;mi>θ&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>a&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi>s&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">\pi_\theta(a|s)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> denote the model&amp;rsquo;s policy over actions &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>a&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">a&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> given states &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>s&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">s&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>, with parameters &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>θ&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\theta&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>. Let &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>p&lt;/mi>&lt;mi>H&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>a&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi>s&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">p_H(a|s)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> denote the human feedback distribution — the distribution over actions that RLHF reward models approximate (Christiano et al. 2017; Ouyang et al. 2022).&lt;/p>
+&lt;p>The joint distribution is &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>p&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>a&lt;/mi>&lt;mo separator="true">,&lt;/mo>&lt;mi>s&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>=&lt;/mo>&lt;msub>&lt;mi>π&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>a&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi>s&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mtext> &lt;/mtext>&lt;mi>p&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>s&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">p_t(a,s) = \pi_t(a|s)\,p(s)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>, where &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>p&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>s&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">p(s)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> is the state distribution (determined by the environment, not the model). The target joint &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msup>&lt;mi>p&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msup>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>a&lt;/mi>&lt;mo separator="true">,&lt;/mo>&lt;mi>s&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>=&lt;/mo>&lt;msubsup>&lt;mi>p&lt;/mi>&lt;mi>H&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msubsup>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>a&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi>s&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mtext> &lt;/mtext>&lt;mi>p&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>s&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">p^*(a,s) = p^*_H(a|s)\,p(s)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> represents the aligned equilibrium.&lt;/p>
+&lt;p>This is the asymmetric case: &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>B&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">B&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> (feedback distribution over states) is fixed; only &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>A&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">A&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> (the model&amp;rsquo;s conditional policy) adapts.&lt;/p>
+&lt;h3 id="22-stability-reward">2.2 Stability Reward&lt;/h3>
+&lt;p>The instantaneous stability reward of the model-feedback system is
+&lt;/p>
+&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>R&lt;/mi>&lt;mi>s&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>t&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>=&lt;/mo>&lt;mo>−&lt;/mo>&lt;mfrac>&lt;mn>1&lt;/mn>&lt;mrow>&lt;mi>δ&lt;/mi>&lt;mi>t&lt;/mi>&lt;/mrow>&lt;/mfrac>&lt;mtext> &lt;/mtext>&lt;msub>&lt;mi>D&lt;/mi>&lt;mrow>&lt;mi mathvariant="normal">K&lt;/mi>&lt;mi mathvariant="normal">L&lt;/mi>&lt;/mrow>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>p&lt;/mi>&lt;mrow>&lt;mi>t&lt;/mi>&lt;mo>+&lt;/mo>&lt;mi>δ&lt;/mi>&lt;/mrow>&lt;/msub>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msub>&lt;mi>p&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mo stretchy="false">)&lt;/mo>&lt;mo separator="true">,&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">
+R_s(t) = -\frac{1}{\delta t}\,D_{\mathrm{KL}}(p_{t+\delta}||p_t),
+&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
 measured in nats per timestep. In KL-regularized RL, the objective already includes this term:
-&lt;/p&gt;
-&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;J&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;double-struck&#34;&gt;E&lt;/mi&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;/msub&gt;&lt;mtext&gt; ⁣&lt;/mtext&gt;&lt;mrow&gt;&lt;mo fence=&#34;true&#34;&gt;[&lt;/mo&gt;&lt;munder&gt;&lt;mo&gt;∑&lt;/mo&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/munder&gt;&lt;msub&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;K&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;L&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mrow&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo fence=&#34;true&#34;&gt;]&lt;/mo&gt;&lt;/mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;.&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
+&lt;/p>
+&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;mi>J&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>π&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>=&lt;/mo>&lt;msub>&lt;mi mathvariant="double-struck">E&lt;/mi>&lt;mi>π&lt;/mi>&lt;/msub>&lt;mtext> ⁣&lt;/mtext>&lt;mrow>&lt;mo fence="true">[&lt;/mo>&lt;munder>&lt;mo>∑&lt;/mo>&lt;mi>t&lt;/mi>&lt;/munder>&lt;msub>&lt;mi>r&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mo>−&lt;/mo>&lt;mi>α&lt;/mi>&lt;mtext> &lt;/mtext>&lt;msub>&lt;mi>D&lt;/mi>&lt;mrow>&lt;mi mathvariant="normal">K&lt;/mi>&lt;mi mathvariant="normal">L&lt;/mi>&lt;/mrow>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>π&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msub>&lt;mi>π&lt;/mi>&lt;mrow>&lt;mi>t&lt;/mi>&lt;mo>−&lt;/mo>&lt;mn>1&lt;/mn>&lt;/mrow>&lt;/msub>&lt;mo stretchy="false">)&lt;/mo>&lt;mo fence="true">]&lt;/mo>&lt;/mrow>&lt;mi mathvariant="normal">.&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">
 J(\pi) = \mathbb{E}_\pi\!\left[\sum_t r_t - \alpha\,D_{\mathrm{KL}}(\pi_t||\pi_{t-1})\right].
-&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
-The KL penalty IS the stability reward, scaled by &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\alpha&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;3-two-channel-decomposition-of-alignment&#34;&gt;3. Two-Channel Decomposition of Alignment&lt;/h2&gt;
-&lt;h3 id=&#34;31-the-decomposition&#34;&gt;3.1 The Decomposition&lt;/h3&gt;
-&lt;p&gt;Because the feedback distribution is fixed, the chain rule for KL divergence gives (see &lt;em&gt;Information-Theoretic Stability as Reward Function&lt;/em&gt;):
-&lt;/p&gt;
-&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msup&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msubsup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msubsup&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;&#43;&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msup&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
-D(p_t||p^*) = D(\pi_t(a)||p^*_H(a)) &#43; I^* - I_t,
-&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
-where &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mtext&gt;model&lt;/mtext&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mtext&gt;feedback&lt;/mtext&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I_t = I_{p_t}(\text{model};\text{feedback})&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; and &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msup&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msup&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mtext&gt;model&lt;/mtext&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mtext&gt;feedback&lt;/mtext&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I^* = I_{p^*}(\text{model};\text{feedback})&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; is the equilibrium mutual information.&lt;/p&gt;
-&lt;p&gt;The joint divergence — how far the system is from alignment — has exactly two nonneg moving parts:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Behavioral divergence&lt;/strong&gt; &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msubsup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msubsup&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;D(\pi_t(a)||p^*_H(a))&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;: how far the model&amp;rsquo;s behavior is from target.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;MI gap&lt;/strong&gt; &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msup&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msup&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I^* - I_t&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;: how much less responsive the model is to feedback than the aligned equilibrium.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;32-accounting-identity&#34;&gt;3.2 Accounting Identity&lt;/h3&gt;
-&lt;p&gt;Taking the time derivative:
-&lt;/p&gt;
-&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;munder&gt;&lt;munder&gt;&lt;mrow&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msup&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;mo stretchy=&#34;true&#34;&gt;⏟&lt;/mo&gt;&lt;/munder&gt;&lt;mtext&gt;alignment progress&lt;/mtext&gt;&lt;/munder&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;munder&gt;&lt;munder&gt;&lt;mrow&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msubsup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msubsup&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;mo stretchy=&#34;true&#34;&gt;⏟&lt;/mo&gt;&lt;/munder&gt;&lt;mtext&gt;behavioral convergence&lt;/mtext&gt;&lt;/munder&gt;&lt;mo&gt;&#43;&lt;/mo&gt;&lt;munder&gt;&lt;munder&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;msub&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;mo stretchy=&#34;true&#34;&gt;⏟&lt;/mo&gt;&lt;/munder&gt;&lt;mtext&gt;responsiveness increase&lt;/mtext&gt;&lt;/munder&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;.&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
-\underbrace{-\partial_t D(p_t||p^*)}_{\text{alignment progress}} = \underbrace{-\partial_t D(\pi_t||p^*_H)}_{\text{behavioral convergence}} &#43; \underbrace{\partial_t I_t}_{\text{responsiveness increase}}.
-&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;At every training step, alignment progress decomposes into these two channels. You can measure all three quantities during training.&lt;/p&gt;
-&lt;h3 id=&#34;33-structural-constraints&#34;&gt;3.3 Structural Constraints&lt;/h3&gt;
-&lt;p&gt;From the convergence theorem (&lt;em&gt;Information-Theoretic Stability as Reward Function&lt;/em&gt;, Section 4):&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;(a)&lt;/strong&gt; Alignment progress is monotonically nonneg under gradient descent on the joint divergence.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;(b)&lt;/strong&gt; Both behavioral divergence and MI gap converge to zero.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;(c)&lt;/strong&gt; The two channels must sum to the alignment progress at every instant. Neither can stall without the other compensating.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;(d)&lt;/strong&gt; MI improvement always matches or exceeds behavioral improvement: &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;msub&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;≥&lt;/mo&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msubsup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msubsup&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\partial_t I_t \ge \partial_t D(\pi_t||p^*_H)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;. If the model&amp;rsquo;s behavior is getting worse, its responsiveness must be improving by at least as much.&lt;/p&gt;
-&lt;h2 id=&#34;4-pathologies-as-accounting-failures&#34;&gt;4. Pathologies as Accounting Failures&lt;/h2&gt;
-&lt;h3 id=&#34;41-mode-collapse-overstability&#34;&gt;4.1 Mode Collapse (Overstability)&lt;/h3&gt;
-&lt;p&gt;When the model converges too rapidly to a low-entropy attractor, &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msubsup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msubsup&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;D(\pi_t||p^*_H)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; may decrease fast while &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I_t&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; stalls or decreases — the model produces target-like behavior but stops being responsive to feedback distinctions. By the accounting identity, this can only persist if alignment progress is dominated by behavioral convergence, leaving the MI channel starved. The model looks aligned but is brittle.&lt;/p&gt;
-&lt;h3 id=&#34;42-reward-hacking&#34;&gt;4.2 Reward Hacking&lt;/h3&gt;
-&lt;p&gt;When the model increases its reward score without approaching the target behavior, &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I_t&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; may increase (the model becomes very responsive to reward signal) while &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∣&lt;/mi&gt;&lt;msubsup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;/msubsup&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;D(\pi_t||p^*_H)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; stalls or increases. The MI channel absorbs the alignment progress while the behavioral channel regresses. The model is coupling to the wrong features of the feedback distribution.&lt;/p&gt;
-&lt;h3 id=&#34;43-catastrophic-forgetting&#34;&gt;4.3 Catastrophic Forgetting&lt;/h3&gt;
-&lt;p&gt;When alignment progress suddenly drops (joint divergence stops decreasing or reverses due to distribution shift), the accounting identity means both channels must simultaneously stall or regress. This corresponds to the feedback distribution &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;B&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; shifting — violating the fixed-&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;B&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; assumption — and the model&amp;rsquo;s coupling to the old &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;B&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; becoming worthless.&lt;/p&gt;
-&lt;h3 id=&#34;44-the-explorationstability-trade-off&#34;&gt;4.4 The Exploration–Stability Trade-off&lt;/h3&gt;
-&lt;p&gt;Optimal training balances the stability reward with entropy production:
-&lt;/p&gt;
-&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;script&#34;&gt;L&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;&#43;&lt;/mo&gt;&lt;mi&gt;β&lt;/mi&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;π&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
-\mathcal{L} = -R_s &#43; \beta\,H(\pi_t),
-&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;
-where &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;β&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\beta&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; controls the trade-off. Too little entropy (&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;β&lt;/mi&gt;&lt;mo&gt;→&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\beta \to 0&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;) produces overstability. Too much entropy overwhelms the stability reward and the model fails to couple to the feedback distribution at all.&lt;/p&gt;
-&lt;h2 id=&#34;5-discussion&#34;&gt;5. Discussion&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Alignment as accounting.&lt;/strong&gt; The two-channel decomposition turns alignment into a measurable accounting problem. At each training step, you know how much progress went to behavior vs. responsiveness. Imbalance between the channels signals pathology.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Design implication.&lt;/strong&gt; The MI-dominates-marginal inequality means that monitoring MI between model and feedback is at least as informative as monitoring behavioral metrics. If MI stalls, behavioral convergence has also stalled (or is doing worse).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Multiple feedback sources.&lt;/strong&gt; When multiple feedback distributions &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo stretchy=&#34;false&#34;&gt;{&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;/msub&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;}&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\{p_{H_i}\}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; are present, each contributes its own two-channel decomposition. The model&amp;rsquo;s total stability reward is a sum of couplings to each source, and the accounting identities hold independently for each.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;6-conclusion&#34;&gt;6. Conclusion&lt;/h2&gt;
-&lt;p&gt;RLHF training is the asymmetric stability setting: a model adapting to a fixed feedback distribution. The model&amp;rsquo;s stability reward is a function of its coupling to that distribution. Alignment progress decomposes into behavioral convergence and responsiveness increase at every training step, and the structural constraints — monotone composite convergence, MI-dominates-marginal — give testable predictions about training dynamics. Alignment pathologies correspond to identifiable imbalances between the two channels.&lt;/p&gt;
-&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Amari, S. (1998). &amp;ldquo;Natural Gradient Works Efficiently in Learning.&amp;rdquo; &lt;em&gt;Neural Computation&lt;/em&gt;, 10(2), 251–276.&lt;/li&gt;
-&lt;li&gt;Amari, S. (2016). &lt;em&gt;Information Geometry and Its Applications&lt;/em&gt;. Springer.&lt;/li&gt;
-&lt;li&gt;Amodei, D., et al. (2016). &amp;ldquo;Concrete Problems in AI Safety.&amp;rdquo; &lt;em&gt;arXiv:1606.06565&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;Christiano, P. F., Leike, J., Brown, T., et al. (2017). &amp;ldquo;Deep Reinforcement Learning from Human Preferences.&amp;rdquo; &lt;em&gt;Advances in Neural Information Processing Systems&lt;/em&gt;, 30.&lt;/li&gt;
-&lt;li&gt;Cover, T. M., &amp;amp; Thomas, J. A. (2006). &lt;em&gt;Elements of Information Theory&lt;/em&gt; (2nd ed.). Wiley.&lt;/li&gt;
-&lt;li&gt;Haarnoja, T., Zhou, A., Abbeel, P., &amp;amp; Levine, S. (2018). &amp;ldquo;Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor.&amp;rdquo; &lt;em&gt;ICML 2018&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;Ouyang, L., Wu, J., Jiang, X., et al. (2022). &amp;ldquo;Training Language Models to Follow Instructions with Human Feedback.&amp;rdquo; &lt;em&gt;arXiv:2203.02155&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;Schulman, J., Chen, X., &amp;amp; Abbeel, P. (2017). &amp;ldquo;Proximal Policy Optimization Algorithms.&amp;rdquo; &lt;em&gt;arXiv:1707.06347&lt;/em&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-  </div>
-  <section class="bibliography" id="bibliography"
-         vocab="https://schema.org/" typeof="ItemList">
-  <h2>References</h2><p class="bib-entry" id="ref-amari1998" typeof="CreativeWork" resource="#ref-amari1998">
-    <span class="bib-key">[amari1998]</span>
-      <span property="author">S. Amari</span>.
-      (<span property="datePublished">1998</span>).
-      <cite property="name">Natural Gradient Works Efficiently in Learning</cite>.
-      <em property="publisher">Neural Computation</em>.
-  </p><p class="bib-entry" id="ref-amari2016" typeof="CreativeWork" resource="#ref-amari2016">
-    <span class="bib-key">[amari2016]</span>
-      <span property="author">S. Amari</span>.
-      (<span property="datePublished">2016</span>).
-      <cite property="name">Information Geometry and Its Applications</cite>.
-      <em property="publisher">Springer</em>.
-  </p><p class="bib-entry" id="ref-amodei2016" typeof="CreativeWork" resource="#ref-amodei2016">
-    <span class="bib-key">[amodei2016]</span>
-      <span property="author">D. Amodei, C. Olah, J. Steinhardt, P. Christiano, J. Schulman, D. Mané</span>.
-      (<span property="datePublished">2016</span>).
-      <cite property="name">Concrete Problems in AI Safety</cite>.
-      <em property="publisher">arXiv:1606.06565</em>.
-  </p><p class="bib-entry" id="ref-christiano2017" typeof="CreativeWork" resource="#ref-christiano2017">
-    <span class="bib-key">[christiano2017]</span>
-      <span property="author">P. F. Christiano, J. Leike, T. Brown</span>.
-      (<span property="datePublished">2017</span>).
-      <cite property="name">Deep Reinforcement Learning from Human Preferences</cite>.
-      <em property="publisher">Advances in Neural Information Processing Systems</em>.
-  </p><p class="bib-entry" id="ref-cover2006" typeof="CreativeWork" resource="#ref-cover2006">
-    <span class="bib-key">[cover2006]</span>
-      <span property="author">T. M. Cover, J. A. Thomas</span>.
-      (<span property="datePublished">2006</span>).
-      <cite property="name">Elements of Information Theory</cite>.
-      <em property="publisher">Wiley</em>.
-  </p><p class="bib-entry" id="ref-haarnoja2018" typeof="CreativeWork" resource="#ref-haarnoja2018">
-    <span class="bib-key">[haarnoja2018]</span>
-      <span property="author">T. Haarnoja, A. Zhou, P. Abbeel, S. Levine</span>.
-      (<span property="datePublished">2018</span>).
-      <cite property="name">Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor</cite>.
-      <em property="publisher">ICML 2018</em>.
-  </p><p class="bib-entry" id="ref-ouyang2022" typeof="CreativeWork" resource="#ref-ouyang2022">
-    <span class="bib-key">[ouyang2022]</span>
-      <span property="author">L. Ouyang, J. Wu, X. Jiang</span>.
-      (<span property="datePublished">2022</span>).
-      <cite property="name">Training Language Models to Follow Instructions with Human Feedback</cite>.
-      <em property="publisher">arXiv:2203.02155</em>.
-  </p><p class="bib-entry" id="ref-schulman2017" typeof="CreativeWork" resource="#ref-schulman2017">
-    <span class="bib-key">[schulman2017]</span>
-      <span property="author">J. Schulman, X. Chen, P. Abbeel</span>.
-      (<span property="datePublished">2017</span>).
-      <cite property="name">Proximal Policy Optimization Algorithms</cite>.
-      <em property="publisher">arXiv:1707.06347</em>.
-  </p>
-</section>
-</article>
-<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/" typeof="schema:CreativeWork"
-         vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
-  <dl><div class="relation">
-        <dt><a href="/library/math/terms/action/">Acts on</a></dt>
-        <dd property="emsenn:Actson">Artificial agent adapting to fixed feedback distribution</dd>
-      </div><div class="relation">
-        <dt>Analogous to</dt>
-        <dd property="emsenn:Analogousto">Stability dynamics in cognitive systems</dd>
-      </div><div class="relation">
-        <dt>Authors</dt>
-        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li></ul></dd>
-      </div><div class="relation">
-        <dt>Cites</dt>
-        <dd property="schema:citation"><ul><li>Amari1998</li><li>Amari2016</li><li>Amodei2016</li><li>Christiano2017</li><li>Cover2006</li><li>Haarnoja2018</li><li>Ouyang2022</li><li>Schulman2017</li><li><a href="/library/information/texts/information-theoretic-stability-as-reward-function/">Information theoretic stability as reward function</a></li></ul></dd>
-      </div><div class="relation">
-        <dt>Contrasts with</dt>
-        <dd property="emsenn:Contrastswith">Alignment as moral or semantic conformity</dd>
-      </div><div class="relation">
-        <dt>Date created</dt>
-        <dd property="schema:dateCreated"><time datetime="2025-10-11">2025-10-11</time></dd>
-      </div><div class="relation">
-        <dt>Defines</dt>
-        <dd property="emsenn:Defines"><ul><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">Alignment progress as two channel accounting identity</a></li><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">Alignment pathology as channel imbalance</a></li><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">Mode collapse as behavioral convergence without responsiveness</a></li><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">Reward hacking as responsiveness without behavioral convergence</a></li></ul></dd>
-      </div><div class="relation">
-        <dt><a href="/library/math/terms/extension/">Extends</a></dt>
-        <dd property="emsenn:Extends">Information theoretic stability as reward function</dd>
-      </div><div class="relation">
-        <dt><a href="/library/tech/terms/produces/">Produces</a></dt>
-        <dd property="emsenn:Produces"><ul><li>Two channel decomposition of alignment into behavioral and responsiveness</li><li>Taxonomy of alignment pathologies as channel imbalances</li></ul></dd>
-      </div><div class="relation">
-        <dt><a href="/library/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment"><ul><li>Reinforcement learning from human feedback</li><li>Kl regularized reinforcement learning</li><li>Fisher rao metric</li></ul></dd>
-      </div><div class="relation">
-        <dt>Status</dt>
-        <dd property="emsenn:Status">Draft</dd>
-      </div><div class="relation">
-        <dt>Tags</dt>
-        <dd property="schema:keywords"><ul><li><a href="/tags/information-geometry/">information-geometry</a></li><li><a href="/tags/reinforcement-learning/">reinforcement-learning</a></li><li><a href="/tags/alignment/">alignment</a></li><li><a href="/tags/research/">research</a></li></ul></dd>
-      </div>
-  </dl>
-</section>
-<section class="cite-this" id="cite-this">
-  <h2>Cite</h2>
-  <pre class="cite-block"><code>@article{emsenn2025-describing-stability-optimization-in-artificial-agents,
+&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
+The KL penalty IS the stability reward, scaled by &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>α&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\alpha&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.&lt;/p>
+&lt;h2 id="3-two-channel-decomposition-of-alignment">3. Two-Channel Decomposition of Alignment&lt;/h2>
+&lt;h3 id="31-the-decomposition">3.1 The Decomposition&lt;/h3>
+&lt;p>Because the feedback distribution is fixed, the chain rule for KL divergence gives (see &lt;em>Information-Theoretic Stability as Reward Function&lt;/em>):
+&lt;/p>
+&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;mi>D&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>p&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msup>&lt;mi>p&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msup>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>=&lt;/mo>&lt;mi>D&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>π&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>a&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msubsup>&lt;mi>p&lt;/mi>&lt;mi>H&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msubsup>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>a&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>+&lt;/mo>&lt;msup>&lt;mi>I&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msup>&lt;mo>−&lt;/mo>&lt;msub>&lt;mi>I&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mo separator="true">,&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">
+D(p_t||p^*) = D(\pi_t(a)||p^*_H(a)) + I^* - I_t,
+&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
+where &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>I&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mo>=&lt;/mo>&lt;msub>&lt;mi>I&lt;/mi>&lt;msub>&lt;mi>p&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mtext>model&lt;/mtext>&lt;mo separator="true">;&lt;/mo>&lt;mtext>feedback&lt;/mtext>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">I_t = I_{p_t}(\text{model};\text{feedback})&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> and &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msup>&lt;mi>I&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msup>&lt;mo>=&lt;/mo>&lt;msub>&lt;mi>I&lt;/mi>&lt;msup>&lt;mi>p&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msup>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mtext>model&lt;/mtext>&lt;mo separator="true">;&lt;/mo>&lt;mtext>feedback&lt;/mtext>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">I^* = I_{p^*}(\text{model};\text{feedback})&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> is the equilibrium mutual information.&lt;/p>
+&lt;p>The joint divergence — how far the system is from alignment — has exactly two nonneg moving parts:&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>Behavioral divergence&lt;/strong> &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>D&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>π&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>a&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msubsup>&lt;mi>p&lt;/mi>&lt;mi>H&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msubsup>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>a&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">D(\pi_t(a)||p^*_H(a))&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>: how far the model&amp;rsquo;s behavior is from target.&lt;/li>
+&lt;li>&lt;strong>MI gap&lt;/strong> &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msup>&lt;mi>I&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msup>&lt;mo>−&lt;/mo>&lt;msub>&lt;mi>I&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">I^* - I_t&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>: how much less responsive the model is to feedback than the aligned equilibrium.&lt;/li>
+&lt;/ol>
+&lt;h3 id="32-accounting-identity">3.2 Accounting Identity&lt;/h3>
+&lt;p>Taking the time derivative:
+&lt;/p>
+&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;munder>&lt;munder>&lt;mrow>&lt;mo>−&lt;/mo>&lt;msub>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mi>D&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>p&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msup>&lt;mi>p&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msup>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;mo stretchy="true">⏟&lt;/mo>&lt;/munder>&lt;mtext>alignment progress&lt;/mtext>&lt;/munder>&lt;mo>=&lt;/mo>&lt;munder>&lt;munder>&lt;mrow>&lt;mo>−&lt;/mo>&lt;msub>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mi>D&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>π&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msubsup>&lt;mi>p&lt;/mi>&lt;mi>H&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msubsup>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;mo stretchy="true">⏟&lt;/mo>&lt;/munder>&lt;mtext>behavioral convergence&lt;/mtext>&lt;/munder>&lt;mo>+&lt;/mo>&lt;munder>&lt;munder>&lt;mrow>&lt;msub>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;msub>&lt;mi>I&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;/mrow>&lt;mo stretchy="true">⏟&lt;/mo>&lt;/munder>&lt;mtext>responsiveness increase&lt;/mtext>&lt;/munder>&lt;mi mathvariant="normal">.&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">
+\underbrace{-\partial_t D(p_t||p^*)}_{\text{alignment progress}} = \underbrace{-\partial_t D(\pi_t||p^*_H)}_{\text{behavioral convergence}} + \underbrace{\partial_t I_t}_{\text{responsiveness increase}}.
+&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>At every training step, alignment progress decomposes into these two channels. You can measure all three quantities during training.&lt;/p>
+&lt;h3 id="33-structural-constraints">3.3 Structural Constraints&lt;/h3>
+&lt;p>From the convergence theorem (&lt;em>Information-Theoretic Stability as Reward Function&lt;/em>, Section 4):&lt;/p>
+&lt;p>&lt;strong>(a)&lt;/strong> Alignment progress is monotonically nonneg under gradient descent on the joint divergence.&lt;/p>
+&lt;p>&lt;strong>(b)&lt;/strong> Both behavioral divergence and MI gap converge to zero.&lt;/p>
+&lt;p>&lt;strong>(c)&lt;/strong> The two channels must sum to the alignment progress at every instant. Neither can stall without the other compensating.&lt;/p>
+&lt;p>&lt;strong>(d)&lt;/strong> MI improvement always matches or exceeds behavioral improvement: &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;msub>&lt;mi>I&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mo>≥&lt;/mo>&lt;msub>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mi>D&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>π&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msubsup>&lt;mi>p&lt;/mi>&lt;mi>H&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msubsup>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">\partial_t I_t \ge \partial_t D(\pi_t||p^*_H)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>. If the model&amp;rsquo;s behavior is getting worse, its responsiveness must be improving by at least as much.&lt;/p>
+&lt;h2 id="4-pathologies-as-accounting-failures">4. Pathologies as Accounting Failures&lt;/h2>
+&lt;h3 id="41-mode-collapse-overstability">4.1 Mode Collapse (Overstability)&lt;/h3>
+&lt;p>When the model converges too rapidly to a low-entropy attractor, &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>D&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>π&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msubsup>&lt;mi>p&lt;/mi>&lt;mi>H&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msubsup>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">D(\pi_t||p^*_H)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> may decrease fast while &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>I&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">I_t&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> stalls or decreases — the model produces target-like behavior but stops being responsive to feedback distinctions. By the accounting identity, this can only persist if alignment progress is dominated by behavioral convergence, leaving the MI channel starved. The model looks aligned but is brittle.&lt;/p>
+&lt;h3 id="42-reward-hacking">4.2 Reward Hacking&lt;/h3>
+&lt;p>When the model increases its reward score without approaching the target behavior, &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>I&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">I_t&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> may increase (the model becomes very responsive to reward signal) while &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>D&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>π&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;mi mathvariant="normal">∣&lt;/mi>&lt;msubsup>&lt;mi>p&lt;/mi>&lt;mi>H&lt;/mi>&lt;mo>∗&lt;/mo>&lt;/msubsup>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">D(\pi_t||p^*_H)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> stalls or increases. The MI channel absorbs the alignment progress while the behavioral channel regresses. The model is coupling to the wrong features of the feedback distribution.&lt;/p>
+&lt;h3 id="43-catastrophic-forgetting">4.3 Catastrophic Forgetting&lt;/h3>
+&lt;p>When alignment progress suddenly drops (joint divergence stops decreasing or reverses due to distribution shift), the accounting identity means both channels must simultaneously stall or regress. This corresponds to the feedback distribution &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>B&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">B&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> shifting — violating the fixed-&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>B&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">B&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> assumption — and the model&amp;rsquo;s coupling to the old &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>B&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">B&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> becoming worthless.&lt;/p>
+&lt;h3 id="44-the-explorationstability-trade-off">4.4 The Exploration–Stability Trade-off&lt;/h3>
+&lt;p>Optimal training balances the stability reward with entropy production:
+&lt;/p>
+&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;mi mathvariant="script">L&lt;/mi>&lt;mo>=&lt;/mo>&lt;mo>−&lt;/mo>&lt;msub>&lt;mi>R&lt;/mi>&lt;mi>s&lt;/mi>&lt;/msub>&lt;mo>+&lt;/mo>&lt;mi>β&lt;/mi>&lt;mtext> &lt;/mtext>&lt;mi>H&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>π&lt;/mi>&lt;mi>t&lt;/mi>&lt;/msub>&lt;mo stretchy="false">)&lt;/mo>&lt;mo separator="true">,&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">
+\mathcal{L} = -R_s + \beta\,H(\pi_t),
+&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>
+where &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>β&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\beta&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> controls the trade-off. Too little entropy (&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>β&lt;/mi>&lt;mo>→&lt;/mo>&lt;mn>0&lt;/mn>&lt;/mrow>&lt;annotation encoding="application/x-tex">\beta \to 0&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>) produces overstability. Too much entropy overwhelms the stability reward and the model fails to couple to the feedback distribution at all.&lt;/p>
+&lt;h2 id="5-discussion">5. Discussion&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Alignment as accounting.&lt;/strong> The two-channel decomposition turns alignment into a measurable accounting problem. At each training step, you know how much progress went to behavior vs. responsiveness. Imbalance between the channels signals pathology.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Design implication.&lt;/strong> The MI-dominates-marginal inequality means that monitoring MI between model and feedback is at least as informative as monitoring behavioral metrics. If MI stalls, behavioral convergence has also stalled (or is doing worse).&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Multiple feedback sources.&lt;/strong> When multiple feedback distributions &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mo stretchy="false">{&lt;/mo>&lt;msub>&lt;mi>p&lt;/mi>&lt;msub>&lt;mi>H&lt;/mi>&lt;mi>i&lt;/mi>&lt;/msub>&lt;/msub>&lt;mo stretchy="false">}&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">\{p_{H_i}\}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> are present, each contributes its own two-channel decomposition. The model&amp;rsquo;s total stability reward is a sum of couplings to each source, and the accounting identities hold independently for each.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="6-conclusion">6. Conclusion&lt;/h2>
+&lt;p>RLHF training is the asymmetric stability setting: a model adapting to a fixed feedback distribution. The model&amp;rsquo;s stability reward is a function of its coupling to that distribution. Alignment progress decomposes into behavioral convergence and responsiveness increase at every training step, and the structural constraints — monotone composite convergence, MI-dominates-marginal — give testable predictions about training dynamics. Alignment pathologies correspond to identifiable imbalances between the two channels.&lt;/p>
+&lt;h2 id="references">References&lt;/h2>
+&lt;ul>
+&lt;li>Amari, S. (1998). &amp;ldquo;Natural Gradient Works Efficiently in Learning.&amp;rdquo; &lt;em>Neural Computation&lt;/em>, 10(2), 251–276.&lt;/li>
+&lt;li>Amari, S. (2016). &lt;em>Information Geometry and Its Applications&lt;/em>. Springer.&lt;/li>
+&lt;li>Amodei, D., et al. (2016). &amp;ldquo;Concrete Problems in AI Safety.&amp;rdquo; &lt;em>arXiv:1606.06565&lt;/em>.&lt;/li>
+&lt;li>Christiano, P. F., Leike, J., Brown, T., et al. (2017). &amp;ldquo;Deep Reinforcement Learning from Human Preferences.&amp;rdquo; &lt;em>Advances in Neural Information Processing Systems&lt;/em>, 30.&lt;/li>
+&lt;li>Cover, T. M., &amp;amp; Thomas, J. A. (2006). &lt;em>Elements of Information Theory&lt;/em> (2nd ed.). Wiley.&lt;/li>
+&lt;li>Haarnoja, T., Zhou, A., Abbeel, P., &amp;amp; Levine, S. (2018). &amp;ldquo;Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor.&amp;rdquo; &lt;em>ICML 2018&lt;/em>.&lt;/li>
+&lt;li>Ouyang, L., Wu, J., Jiang, X., et al. (2022). &amp;ldquo;Training Language Models to Follow Instructions with Human Feedback.&amp;rdquo; &lt;em>arXiv:2203.02155&lt;/em>.&lt;/li>
+&lt;li>Schulman, J., Chen, X., &amp;amp; Abbeel, P. (2017). &amp;ldquo;Proximal Policy Optimization Algorithms.&amp;rdquo; &lt;em>arXiv:1707.06347&lt;/em>.&lt;/li>
+&lt;/ul></div><section class=bibliography id=bibliography vocab="https://schema.org/" typeof="ItemList"><h2>References</h2><p class=bib-entry id=ref-amari1998 typeof="CreativeWork" resource="#ref-amari1998"><span class=bib-key>[amari1998]</span>
+<span property="author">S. Amari</span>.
+(<span property="datePublished">1998</span>).
+<cite property="name">Natural Gradient Works Efficiently in Learning</cite>.
+<em property="publisher">Neural Computation</em>.</p><p class=bib-entry id=ref-amari2016 typeof="CreativeWork" resource="#ref-amari2016"><span class=bib-key>[amari2016]</span>
+<span property="author">S. Amari</span>.
+(<span property="datePublished">2016</span>).
+<cite property="name">Information Geometry and Its Applications</cite>.
+<em property="publisher">Springer</em>.</p><p class=bib-entry id=ref-amodei2016 typeof="CreativeWork" resource="#ref-amodei2016"><span class=bib-key>[amodei2016]</span>
+<span property="author">D. Amodei, C. Olah, J. Steinhardt, P. Christiano, J. Schulman, D. Mané</span>.
+(<span property="datePublished">2016</span>).
+<cite property="name">Concrete Problems in AI Safety</cite>.
+<em property="publisher">arXiv:1606.06565</em>.</p><p class=bib-entry id=ref-christiano2017 typeof="CreativeWork" resource="#ref-christiano2017"><span class=bib-key>[christiano2017]</span>
+<span property="author">P. F. Christiano, J. Leike, T. Brown</span>.
+(<span property="datePublished">2017</span>).
+<cite property="name">Deep Reinforcement Learning from Human Preferences</cite>.
+<em property="publisher">Advances in Neural Information Processing Systems</em>.</p><p class=bib-entry id=ref-cover2006 typeof="CreativeWork" resource="#ref-cover2006"><span class=bib-key>[cover2006]</span>
+<span property="author">T. M. Cover, J. A. Thomas</span>.
+(<span property="datePublished">2006</span>).
+<cite property="name">Elements of Information Theory</cite>.
+<em property="publisher">Wiley</em>.</p><p class=bib-entry id=ref-haarnoja2018 typeof="CreativeWork" resource="#ref-haarnoja2018"><span class=bib-key>[haarnoja2018]</span>
+<span property="author">T. Haarnoja, A. Zhou, P. Abbeel, S. Levine</span>.
+(<span property="datePublished">2018</span>).
+<cite property="name">Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor</cite>.
+<em property="publisher">ICML 2018</em>.</p><p class=bib-entry id=ref-ouyang2022 typeof="CreativeWork" resource="#ref-ouyang2022"><span class=bib-key>[ouyang2022]</span>
+<span property="author">L. Ouyang, J. Wu, X. Jiang</span>.
+(<span property="datePublished">2022</span>).
+<cite property="name">Training Language Models to Follow Instructions with Human Feedback</cite>.
+<em property="publisher">arXiv:2203.02155</em>.</p><p class=bib-entry id=ref-schulman2017 typeof="CreativeWork" resource="#ref-schulman2017"><span class=bib-key>[schulman2017]</span>
+<span property="author">J. Schulman, X. Chen, P. Abbeel</span>.
+(<span property="datePublished">2017</span>).
+<cite property="name">Proximal Policy Optimization Algorithms</cite>.
+<em property="publisher">arXiv:1707.06347</em>.</p></section></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt><a href=/library/math/terms/action/>Acts on</a></dt><dd property="emsenn:Actson">Artificial agent adapting to fixed feedback distribution</dd></div><div class=relation><dt>Analogous to</dt><dd property="emsenn:Analogousto">Stability dynamics in cognitive systems</dd></div><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li></ul></dd></div><div class=relation><dt>Cites</dt><dd property="schema:citation"><ul><li>Amari1998</li><li>Amari2016</li><li>Amodei2016</li><li>Christiano2017</li><li>Cover2006</li><li>Haarnoja2018</li><li>Ouyang2022</li><li>Schulman2017</li><li><a href=/library/information/texts/information-theoretic-stability-as-reward-function/>Information theoretic stability as reward function</a></li></ul></dd></div><div class=relation><dt>Contrasts with</dt><dd property="emsenn:Contrastswith">Alignment as moral or semantic conformity</dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2025-10-11>2025-10-11</time></dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><ul><li><a href=/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/>Alignment progress as two channel accounting identity</a></li><li><a href=/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/>Alignment pathology as channel imbalance</a></li><li><a href=/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/>Mode collapse as behavioral convergence without responsiveness</a></li><li><a href=/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/>Reward hacking as responsiveness without behavioral convergence</a></li></ul></dd></div><div class=relation><dt><a href=/library/math/terms/extension/>Extends</a></dt><dd property="emsenn:Extends">Information theoretic stability as reward function</dd></div><div class=relation><dt><a href=/library/tech/terms/produces/>Produces</a></dt><dd property="emsenn:Produces"><ul><li>Two channel decomposition of alignment into behavioral and responsiveness</li><li>Taxonomy of alignment pathologies as channel imbalances</li></ul></dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>Requires</a></dt><dd property="schema:educationalAlignment"><ul><li>Reinforcement learning from human feedback</li><li>Kl regularized reinforcement learning</li><li>Fisher rao metric</li></ul></dd></div><div class=relation><dt>Status</dt><dd property="emsenn:Status">Draft</dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/information-geometry/>information-geometry</a></li><li><a href=/tags/reinforcement-learning/>reinforcement-learning</a></li><li><a href=/tags/alignment/>alignment</a></li><li><a href=/tags/research/>research</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@article{emsenn2025-describing-stability-optimization-in-artificial-agents,
   author    = {emsenn},
   title     = {Stability Optimization in Artificial Agents},
   year      = {2025},
   url       = {https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre>
-</section>
-
-  
-
-
-  </main>
-  <footer>
-    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
-  </footer>
-</body>
-</html>
+}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>

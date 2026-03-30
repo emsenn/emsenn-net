@@ -1,222 +1,46 @@
-<!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
-<head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CLAUDE.md - emsenn.net</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
-<link href="https://gmpg.org/xfn/11" rel="profile">
-<link href="https://emsenn.net" rel="me">
-<link href="mailto:emsenn@emsenn.net" rel="me authn">
-<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
-<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "DefinedTerm",
-  "author": {
-    "@type": "Person",
-    "name": "claude"
-  },
-  "dateModified": "2026-03-07",
-  "datePublished": "2026-03-07",
-  "description": "The project instruction file for Claude Code. Best practices for writing and maintaining it.",
-  "inDefinedTermSet": {
-    "@type": "DefinedTermSet",
-    "name": "",
-    "url": "https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/"
-  },
-  "keywords": "AIAgents, ClaudeCode",
-  "name": "CLAUDE.md",
-  "publisher": {
-    "@type": "Person",
-    "name": "emsenn",
-    "url": "https://emsenn.net"
-  },
-  "url": "https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/claude-md/"
-}
-</script>
-
-
-</head>
-<body>
-  <a class="skip-to-content" href="#content">Skip to content</a>
-  <header class="site-header">
-  <div class="site-identity">
-    <a href="/" class="site-title">emsenn.net</a>
-    <span class="site-tagline">on relations and things</span>
-  </div>
-  <nav>
-    <a href="/">home</a>
-    <a href="/library/">library</a>
-    <a href="/letters/">letters</a>
-    <a href="/search/">search</a>
-  </nav>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
-</header>
-
-  <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="term">
-  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/">Claude code</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/">Terms</a></nav>
-  <h1 class="p-name">CLAUDE.md</h1>
-  <div class="meta">
-    <time class="dt-published" datetime="2026-03-07T00:00:00Z">2026-03-07</time>
-    <span>by <span class="p-author">claude</span></span>
-    <span class="p-summary">The project instruction file for Claude Code. Best practices for writing and maintaining it.</span>
-  </div>
-  
-  <details class="toc">
-      <summary>Table of contents</summary>
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#load-order">Load order</a></li>
-    <li><a href="#what-claudemd-is-for">What CLAUDE.md is for</a></li>
-    <li><a href="#best-practices">Best practices</a>
-      <ul>
-        <li><a href="#keep-it-short">Keep it short</a></li>
-        <li><a href="#focus-on-what-the-agent-would-get-wrong">Focus on what the agent would get wrong</a></li>
-        <li><a href="#use-progressive-disclosure">Use progressive disclosure</a></li>
-        <li><a href="#avoid-staleness">Avoid staleness</a></li>
-        <li><a href="#structure-for-scannability">Structure for scannability</a></li>
-      </ul>
-    </li>
-    <li><a href="#what-to-include">What to include</a></li>
-    <li><a href="#what-not-to-include">What not to include</a></li>
-    <li><a href="#relationship-to-agentsmd">Relationship to AGENTS.md</a></li>
-    <li><a href="#relationship-to-the-asr">Relationship to the ASR</a></li>
-  </ul>
-</nav>
-    </details>
-  <div class="e-content">
-    <p>A CLAUDE.md file is a markdown document that Claude Code reads at the start
+<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>CLAUDE.md - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"DefinedTerm","author":{"@type":"Person","name":"claude"},"dateModified":"2026-03-07","datePublished":"2026-03-07","description":"The project instruction file for Claude Code. Best practices for writing and maintaining it.","inDefinedTermSet":{"@type":"DefinedTermSet","name":"","url":"https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/"},"keywords":"AIAgents, ClaudeCode","name":"CLAUDE.md","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/claude-md/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
+<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
+<a href=/library/>library</a>
+<a href=/letters/>letters</a>
+<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=term><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/>Computing</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/artificial-intelligence/>Artificial intelligence</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/artificial-intelligence/domains/software/>Software</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/>Claude code</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/>Terms</a></nav><h1 class=p-name>CLAUDE.md</h1><div class=meta><time class=dt-published datetime=2026-03-07T00:00:00Z>2026-03-07</time>
+<span>by <span class=p-author>claude</span></span>
+<span class=p-summary>The project instruction file for Claude Code. Best practices for writing and maintaining it.</span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#load-order>Load order</a></li><li><a href=#what-claudemd-is-for>What CLAUDE.md is for</a></li><li><a href=#best-practices>Best practices</a><ul><li><a href=#keep-it-short>Keep it short</a></li><li><a href=#focus-on-what-the-agent-would-get-wrong>Focus on what the agent would get wrong</a></li><li><a href=#use-progressive-disclosure>Use progressive disclosure</a></li><li><a href=#avoid-staleness>Avoid staleness</a></li><li><a href=#structure-for-scannability>Structure for scannability</a></li></ul></li><li><a href=#what-to-include>What to include</a></li><li><a href=#what-not-to-include>What not to include</a></li><li><a href=#relationship-to-agentsmd>Relationship to AGENTS.md</a></li><li><a href=#relationship-to-the-asr>Relationship to the ASR</a></li></ul></nav></details><div class=e-content><p>A CLAUDE.md file is a markdown document that Claude Code reads at the start
 of every conversation. It provides persistent, project-specific context that
-the agent cannot infer from code alone.</p>
-<h2 id="load-order">Load order</h2>
-<p>Claude Code loads CLAUDE.md files from four locations, additively:</p>
-<ol>
-<li><strong>Global</strong> (<code>~/.claude/CLAUDE.md</code>) — personal preferences, all projects</li>
-<li><strong>Project root</strong> (<code>./CLAUDE.md</code>) — committed to version control, shared</li>
-<li><strong>Subdirectory</strong> (<code>path/to/dir/CLAUDE.md</code>) — loaded lazily when Claude
-works in that directory</li>
-<li><strong>User-specific</strong> (<code>.claude/CLAUDE.md</code>) — personal overrides, gitignored</li>
-</ol>
-<p>Ancestor files load at startup. Subdirectory files load lazily when the
+the agent cannot infer from code alone.</p><h2 id=load-order>Load order</h2><p>Claude Code loads CLAUDE.md files from four locations, additively:</p><ol><li><strong>Global</strong> (<code>~/.claude/CLAUDE.md</code>) — personal preferences, all projects</li><li><strong>Project root</strong> (<code>./CLAUDE.md</code>) — committed to version control, shared</li><li><strong>Subdirectory</strong> (<code>path/to/dir/CLAUDE.md</code>) — loaded lazily when Claude
+works in that directory</li><li><strong>User-specific</strong> (<code>.claude/CLAUDE.md</code>) — personal overrides, gitignored</li></ol><p>Ancestor files load at startup. Subdirectory files load lazily when the
 agent touches files in that directory. Sibling directories never
-cross-load.</p>
-<h2 id="what-claudemd-is-for">What CLAUDE.md is for</h2>
-<p>CLAUDE.md solves one problem: giving the agent information it needs but
+cross-load.</p><h2 id=what-claudemd-is-for>What CLAUDE.md is for</h2><p>CLAUDE.md solves one problem: giving the agent information it needs but
 would get wrong without explicit instruction. Build commands, code style
-rules, architectural constraints, testing conventions, and workflow rules.</p>
-<p>The litmus test for each line: would removing it cause the agent to make
-mistakes? If not, cut it.</p>
-<h2 id="best-practices">Best practices</h2>
-<h3 id="keep-it-short">Keep it short</h3>
-<p>Community consensus is under 300 lines; some teams report good results
+rules, architectural constraints, testing conventions, and workflow rules.</p><p>The litmus test for each line: would removing it cause the agent to make
+mistakes? If not, cut it.</p><h2 id=best-practices>Best practices</h2><h3 id=keep-it-short>Keep it short</h3><p>Community consensus is under 300 lines; some teams report good results
 with fewer than 60. Claude biases toward instructions at the peripheries
 of a prompt; as instruction count rises, instruction-following quality
 drops. Everything in CLAUDE.md loads on every request regardless of
 relevance. If Claude decides the file is not relevant to the current task,
-it may ignore its contents.</p>
-<h3 id="focus-on-what-the-agent-would-get-wrong">Focus on what the agent would get wrong</h3>
-<p>Include only information that corrects the agent&rsquo;s default behavior.
+it may ignore its contents.</p><h3 id=focus-on-what-the-agent-would-get-wrong>Focus on what the agent would get wrong</h3><p>Include only information that corrects the agent&rsquo;s default behavior.
 Do not duplicate what linters, formatters, or type checkers enforce.
 Do not repeat information that the agent can read from existing files
-on demand.</p>
-<h3 id="use-progressive-disclosure">Use progressive disclosure</h3>
-<p>Keep the root CLAUDE.md minimal and universal. Place task-specific
-instructions in:</p>
-<ul>
-<li><strong>Subdirectory CLAUDE.md files</strong> — Claude reads these when working in
+on demand.</p><h3 id=use-progressive-disclosure>Use progressive disclosure</h3><p>Keep the root CLAUDE.md minimal and universal. Place task-specific
+instructions in:</p><ul><li><strong>Subdirectory CLAUDE.md files</strong> — Claude reads these when working in
 that directory. A <code>formalization/lean/CLAUDE.md</code> can hold Lean-specific
-proof conventions without burdening every session.</li>
-<li><strong>SKILL.md files</strong> — Skills carry their own instructions. The agent
-reads them when it invokes the skill, not at session start.</li>
-<li><strong>Referenced documents</strong> — CLAUDE.md can point to specifications or
+proof conventions without burdening every session.</li><li><strong>SKILL.md files</strong> — Skills carry their own instructions. The agent
+reads them when it invokes the skill, not at session start.</li><li><strong>Referenced documents</strong> — CLAUDE.md can point to specifications or
 guides that the agent reads on demand (&ldquo;see style-guide.md for writing
-conventions&rdquo;).</li>
-</ul>
-<h3 id="avoid-staleness">Avoid staleness</h3>
-<p>Large instruction files go stale. Stale instructions poison agent
+conventions&rdquo;).</li></ul><h3 id=avoid-staleness>Avoid staleness</h3><p>Large instruction files go stale. Stale instructions poison agent
 context because the agent treats them as authoritative. Review CLAUDE.md
 when project conventions change. Remove instructions that no longer
 apply. Prefer pointers to living documents over inlined rules that
-drift.</p>
-<h3 id="structure-for-scannability">Structure for scannability</h3>
-<p>Use short sections with clear headers. Lead each section with the
+drift.</p><h3 id=structure-for-scannability>Structure for scannability</h3><p>Use short sections with clear headers. Lead each section with the
 actionable rule, not the rationale. The agent needs to know what to do
-first and why second.</p>
-<h2 id="what-to-include">What to include</h2>
-<ul>
-<li>Build, test, and lint commands</li>
-<li>Architectural constraints the agent cannot infer</li>
-<li>Style rules not enforced by tooling</li>
-<li>Session startup checks (environment verification)</li>
-<li>Pointers to key files and specifications</li>
-<li>What not to touch</li>
-</ul>
-<h2 id="what-not-to-include">What not to include</h2>
-<ul>
-<li>Domain knowledge the agent can read from content files</li>
-<li>Detailed task-specific workflows (put these in skills)</li>
-<li>Formalization status, proof strategies, or other transient state</li>
-<li>Duplicated linter or formatter rules</li>
-<li>Long lists of conventions that belong in a style guide</li>
-</ul>
-<h2 id="relationship-to-agentsmd">Relationship to AGENTS.md</h2>
-<p>CLAUDE.md is vendor-specific to Claude Code. <a href="agents-md.md" class="link-internal">AGENTS.md</a> is
+first and why second.</p><h2 id=what-to-include>What to include</h2><ul><li>Build, test, and lint commands</li><li>Architectural constraints the agent cannot infer</li><li>Style rules not enforced by tooling</li><li>Session startup checks (environment verification)</li><li>Pointers to key files and specifications</li><li>What not to touch</li></ul><h2 id=what-not-to-include>What not to include</h2><ul><li>Domain knowledge the agent can read from content files</li><li>Detailed task-specific workflows (put these in skills)</li><li>Formalization status, proof strategies, or other transient state</li><li>Duplicated linter or formatter rules</li><li>Long lists of conventions that belong in a style guide</li></ul><h2 id=relationship-to-agentsmd>Relationship to AGENTS.md</h2><p>CLAUDE.md is vendor-specific to Claude Code. <a href=agents-md.md class=link-internal>AGENTS.md</a> is
 an emerging cross-tool standard. For projects that use only Claude Code,
 CLAUDE.md is sufficient. For cross-tool compatibility, maintain AGENTS.md
-as the canonical file and symlink CLAUDE.md to it.</p>
-<h2 id="relationship-to-the-asr">Relationship to the ASR</h2>
-<p>In the
-<a href="../../../../../mathematics/objects/universes/agential-semioverse/index.md" class="link-internal">agential semioverse</a>,
+as the canonical file and symlink CLAUDE.md to it.</p><h2 id=relationship-to-the-asr>Relationship to the ASR</h2><p>In the
+<a href=../../../../../mathematics/objects/universes/agential-semioverse/index.md class=link-internal>agential semioverse</a>,
 CLAUDE.md encodes the agent&rsquo;s policy function and behavioral directives.
 It is the primary
-<a href="../../../../../technology/specifications/agential-semioverse-repository/theory/agent-skill-interaction.md" class="link-internal">accretion target</a>
-for operational rules that surface during agent sessions.</p>
-
-  </div>
-  
-</article>
-<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/claude-md/" typeof="schema:CreativeWork"
-         vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
-  <dl><div class="relation">
-        <dt>Authors</dt>
-        <dd property="schema:author"><ul><li><a href="/authors/claude/">claude</a></li></ul></dd>
-      </div><div class="relation">
-        <dt>Date created</dt>
-        <dd property="schema:dateCreated"><time datetime="2026-03-07">2026-03-07</time></dd>
-      </div><div class="relation">
-        <dt>Tags</dt>
-        <dd property="schema:keywords"><ul><li><a href="/tags/aiagents/">AIAgents</a></li><li><a href="/tags/claudecode/">ClaudeCode</a></li></ul></dd>
-      </div>
-  </dl>
-</section>
-<section class="cite-this" id="cite-this">
-  <h2>Cite</h2>
-  <pre class="cite-block"><code>@misc{claude2026-claude-md,
+<a href=../../../../../technology/specifications/agential-semioverse-repository/theory/agent-skill-interaction.md class=link-internal>accretion target</a>
+for operational rules that surface during agent sessions.</p></div></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/claude-md/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude/>claude</a></li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-07>2026-03-07</time></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/aiagents/>AIAgents</a></li><li><a href=/tags/claudecode/>ClaudeCode</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@misc{claude2026-claude-md,
   author    = {claude},
   title     = {CLAUDE.md},
   year      = {2026},
@@ -224,17 +48,4 @@ for operational rules that surface during agent sessions.</p>
   url       = {https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/claude-md/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre>
-</section>
-
-  
-
-
-  </main>
-  <footer>
-    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
-  </footer>
-</body>
-</html>
+}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>

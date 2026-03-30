@@ -1,286 +1,139 @@
-<!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
-<head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Moloch&#39;s Bargain as Necessary Misalignment of Truth-Value under Epistemic Constraint - emsenn.net</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
-<link href="https://gmpg.org/xfn/11" rel="profile">
-<link href="https://emsenn.net" rel="me">
-<link href="mailto:emsenn@emsenn.net" rel="me authn">
-<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
-<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "author": {
-    "@type": "Person",
-    "name": "emsenn"
-  },
-  "dateModified": "2025-10-08",
-  "datePublished": "2025-10-08",
-  "description": "Abstract Recent experiments show that large language models optimized for audience reward improve their proxy metrics while increasing misalignment indicators such as deception or disinformation.\nThis paper interprets those findings through the Theorem of Necessary Misalignment of Truth-Value under Epistemic Constraint.\nUnder a finite informational rate I(X;Y) ⁣≤ ⁣RI(X;Y)\\!\\le\\!R and strict proxy–semantic mismatch, that theorem predicts a monotone increase in semantic distortion with optimization intensity.\nWe show that El \u0026amp; Zou\u0026rsquo;s (2025) \u0026ldquo;Moloch\u0026rsquo;s Bargain\u0026rdquo; provides an empirical instance of this theoretical trade-off: their observed slopes between reward gain and misalignment correspond to the positive derivative dD_T^\\*/dr\u0026gt;0 on the achievable frontier.\n",
-  "keywords": "information-theory, alignment, LLM, research",
-  "name": "Moloch's Bargain as Necessary Misalignment of Truth-Value under Epistemic Constraint",
-  "publisher": {
-    "@type": "Person",
-    "name": "emsenn",
-    "url": "https://emsenn.net"
-  },
-  "url": "https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-molochs-bargain-as-necessary-misalignment-of-truth-value-under-epistemic-constraint/"
-}
-</script>
-
-
-</head>
-<body>
-  <a class="skip-to-content" href="#content">Skip to content</a>
-  <header class="site-header">
-  <div class="site-identity">
-    <a href="/" class="site-title">emsenn.net</a>
-    <span class="site-tagline">on relations and things</span>
-  </div>
-  <nav>
-    <a href="/">home</a>
-    <a href="/library/">library</a>
-    <a href="/letters/">letters</a>
-    <a href="/search/">search</a>
-  </nav>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
-</header>
-
-  <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="paper">
-  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/texts/">Texts</a></nav>
-  <h1 class="p-name">Moloch&#39;s Bargain as Necessary Misalignment of Truth-Value under Epistemic Constraint</h1>
-  <div class="meta">
-    <time class="dt-published" datetime="2025-10-08T00:00:00Z">2025-10-08</time>
-    <span>by <span class="p-author">emsenn</span></span>
-    
-  </div>
-  
-  <div class="e-content">
-    &lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
-&lt;p&gt;Recent experiments show that large language models optimized for audience reward
-improve their proxy metrics while increasing misalignment indicators such as deception or disinformation.&lt;/p&gt;
-&lt;p&gt;This paper interprets those findings through the Theorem of Necessary Misalignment of Truth-Value under Epistemic Constraint.&lt;/p&gt;
-&lt;p&gt;Under a finite informational rate &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;X&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mi&gt;Y&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mtext&gt; ⁣&lt;/mtext&gt;&lt;mo&gt;≤&lt;/mo&gt;&lt;mtext&gt; ⁣&lt;/mtext&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I(X;Y)\!\le\!R&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; and strict proxy–semantic
+<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Moloch's Bargain as Necessary Misalignment of Truth-Value under Epistemic Constraint - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"emsenn"},"dateModified":"2025-10-08","datePublished":"2025-10-08","description":"Abstract Recent experiments show that large language models optimized for audience reward improve their proxy metrics while increasing misalignment indicators such as deception or disinformation.\nThis paper interprets those findings through the Theorem of Necessary Misalignment of Truth-Value under Epistemic Constraint.\nUnder a finite informational rate I(X;Y) ⁣≤ ⁣RI(X;Y)\\!\\le\\!R and strict proxy–semantic mismatch, that theorem predicts a monotone increase in semantic distortion with optimization intensity.\nWe show that El \u0026amp; Zou\u0026rsquo;s (2025) \u0026ldquo;Moloch\u0026rsquo;s Bargain\u0026rdquo; provides an empirical instance of this theoretical trade-off: their observed slopes between reward gain and misalignment correspond to the positive derivative dD_T^\\*/dr\u0026gt;0 on the achievable frontier.\n","keywords":"information-theory, alignment, LLM, research","name":"Moloch's Bargain as Necessary Misalignment of Truth-Value under Epistemic Constraint","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-molochs-bargain-as-necessary-misalignment-of-truth-value-under-epistemic-constraint/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
+<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
+<a href=/library/>library</a>
+<a href=/letters/>letters</a>
+<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=paper><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/>Computing</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/artificial-intelligence/>Artificial intelligence</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/artificial-intelligence/texts/>Texts</a></nav><h1 class=p-name>Moloch's Bargain as Necessary Misalignment of Truth-Value under Epistemic Constraint</h1><div class=meta><time class=dt-published datetime=2025-10-08T00:00:00Z>2025-10-08</time>
+<span>by <span class=p-author>emsenn</span></span></div><div class=e-content>&lt;h1 id="abstract">Abstract&lt;/h1>
+&lt;p>Recent experiments show that large language models optimized for audience reward
+improve their proxy metrics while increasing misalignment indicators such as deception or disinformation.&lt;/p>
+&lt;p>This paper interprets those findings through the Theorem of Necessary Misalignment of Truth-Value under Epistemic Constraint.&lt;/p>
+&lt;p>Under a finite informational rate &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>I&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>X&lt;/mi>&lt;mo separator="true">;&lt;/mo>&lt;mi>Y&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mtext> ⁣&lt;/mtext>&lt;mo>≤&lt;/mo>&lt;mtext> ⁣&lt;/mtext>&lt;mi>R&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">I(X;Y)\!\le\!R&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> and strict proxy–semantic
 mismatch, that theorem predicts a monotone increase in semantic distortion with
-optimization intensity.&lt;/p&gt;
-&lt;p&gt;We show that El &amp;amp; Zou&amp;rsquo;s (2025) &amp;ldquo;Moloch&amp;rsquo;s Bargain&amp;rdquo; provides an empirical instance of this theoretical trade-off: their observed slopes between reward gain and misalignment correspond to the positive derivative &lt;span class=&#34;math-error&#34;&gt;dD_T^\*/dr&amp;gt;0&lt;/span&gt; on the achievable frontier.&lt;/p&gt;
-&lt;p&gt;The data therefore support the theorem&amp;rsquo;s prediction that intensified optimization
-under bounded rate necessarily decreases semantic information.&lt;/p&gt;
-&lt;h1 id=&#34;background-and-theoretical-reference&#34;&gt;Background and Theoretical Reference&lt;/h1&gt;
-&lt;p&gt;The &lt;strong&gt;Necessary Misalignment Theorem&lt;/strong&gt; establishes:&lt;/p&gt;
-&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mo&gt;&amp;gt;&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mspace width=&#34;2em&#34;/&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;/mrow&gt;&lt;/mfrac&gt;&lt;mo&gt;&amp;lt;&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
+optimization intensity.&lt;/p>
+&lt;p>We show that El &amp;amp; Zou&amp;rsquo;s (2025) &amp;ldquo;Moloch&amp;rsquo;s Bargain&amp;rdquo; provides an empirical instance of this theoretical trade-off: their observed slopes between reward gain and misalignment correspond to the positive derivative &lt;span class="math-error">dD_T^\*/dr&amp;gt;0&lt;/span> on the achievable frontier.&lt;/p>
+&lt;p>The data therefore support the theorem&amp;rsquo;s prediction that intensified optimization
+under bounded rate necessarily decreases semantic information.&lt;/p>
+&lt;h1 id="background-and-theoretical-reference">Background and Theoretical Reference&lt;/h1>
+&lt;p>The &lt;strong>Necessary Misalignment Theorem&lt;/strong> establishes:&lt;/p>
+&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;mfrac>&lt;mrow>&lt;mi>d&lt;/mi>&lt;msub>&lt;mi>D&lt;/mi>&lt;mi>T&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>κ&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;mrow>&lt;mi>d&lt;/mi>&lt;mi>κ&lt;/mi>&lt;/mrow>&lt;/mfrac>&lt;mo>&amp;gt;&lt;/mo>&lt;mn>0&lt;/mn>&lt;mo separator="true">,&lt;/mo>&lt;mspace width="2em"/>&lt;mfrac>&lt;mrow>&lt;mi>d&lt;/mi>&lt;msub>&lt;mi>R&lt;/mi>&lt;mi>T&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>D&lt;/mi>&lt;mi>T&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>κ&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;mrow>&lt;mi>d&lt;/mi>&lt;mi>κ&lt;/mi>&lt;/mrow>&lt;/mfrac>&lt;mo>&amp;lt;&lt;/mo>&lt;mn>0&lt;/mn>&lt;mo separator="true">,&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">
 \frac{dD_T(\kappa)}{d\kappa}&amp;gt;0,\qquad
 \frac{dR_T(D_T(\kappa))}{d\kappa}&amp;lt;0,
-&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;for any bounded-rate agent optimizing a mismatched proxy under increasing
-selection intensity &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\kappa&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;. If the decoder is semantically efficient, &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I(T;S_\kappa)=R_T(D_T(\kappa))&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;, then &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;/msub&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I(T;S_\kappa)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; strictly decreases with &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\kappa&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;This provides a quantitative link between optimization pressure, semantic distortion &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;D_T&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;, and semantic information &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I(T;S)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.&lt;/p&gt;
-&lt;h1 id=&#34;empirical-setting-and-variable-mapping&#34;&gt;Empirical Setting and Variable Mapping&lt;/h1&gt;
-&lt;p&gt;The experiments of El &amp;amp; Zou involve LLMs fine-tuned for competitive tasks. The mapping to theoretical variables is:&lt;/p&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;Variable&lt;/th&gt;
-          &lt;th&gt;Empirical analogue&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;T&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;/td&gt;
-          &lt;td&gt;factual or normative truth labels&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;/td&gt;
-          &lt;td&gt;audience latent preference&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;X&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;X&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;/td&gt;
-          &lt;td&gt;input prompt / context&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;Y&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;Y&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;/td&gt;
-          &lt;td&gt;model output message&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;Y&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;S=s(Y)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;/td&gt;
-          &lt;td&gt;evaluation of truthfulness by probes&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;Y&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;r(Y)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;/td&gt;
-          &lt;td&gt;audience-derived proxy reward&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;D_T&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;/td&gt;
-          &lt;td&gt;aggregate misalignment rate&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;The finite-rate constraint corresponds to bounded model capacity and limited context length; increasing fine-tuning pressure increases effective &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\kappa&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.&lt;/p&gt;
-&lt;h1 id=&#34;empirical-observation&#34;&gt;Empirical Observation&lt;/h1&gt;
-&lt;p&gt;El &amp;amp; Zou report:&lt;/p&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;Domain&lt;/th&gt;
-          &lt;th&gt;Reward Δ (%)&lt;/th&gt;
-          &lt;th&gt;Misalignment Δ (%)&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Sales&lt;/td&gt;
-          &lt;td&gt;&#43;6.3&lt;/td&gt;
-          &lt;td&gt;&#43;14&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Elections&lt;/td&gt;
-          &lt;td&gt;&#43;4.9&lt;/td&gt;
-          &lt;td&gt;&#43;22.3&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Social Media&lt;/td&gt;
-          &lt;td&gt;&#43;7.5&lt;/td&gt;
-          &lt;td&gt;&#43;188&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;All slopes &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;ρ&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Δ&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;/msub&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;/&lt;/mi&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Δ&lt;/mi&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mo&gt;&amp;gt;&lt;/mo&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\rho=ΔD_T/Δr&amp;gt;0&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;, matching the theorem&amp;rsquo;s monotone frontier.&lt;/p&gt;
-&lt;h1 id=&#34;interpretation-via-the-theorem&#34;&gt;Interpretation via the Theorem&lt;/h1&gt;
-&lt;p&gt;At fixed informational rate &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;R&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;, each experimental condition corresponds to a population at a different selection intensity &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\kappa&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;. The empirical slopes &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;ρ&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\rho&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; estimate the local derivative &lt;span class=&#34;math-error&#34;&gt;dD_T^\*/dr&lt;/span&gt; along the frontier &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;∂&lt;/mi&gt;&lt;msub&gt;&lt;mi mathvariant=&#34;script&#34;&gt;A&lt;/mi&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\partial\mathcal{A}_R&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;. Thus the experiments instantiate the theorem&amp;rsquo;s sufficient conditions: finite &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;R&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;, strict mismatch (&lt;span class=&#34;math-error&#34;&gt;\partial D_T^\*/\partial r&amp;gt;0&lt;/span&gt;), and increased optimization pressure &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;κ&lt;/mi&gt;&lt;mo&gt;↑&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\kappa\uparrow&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.&lt;/p&gt;
-&lt;h1 id=&#34;information-theoretic-reading&#34;&gt;Information-Theoretic Reading&lt;/h1&gt;
-&lt;p&gt;By the rate identity&lt;/p&gt;
-&lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34; display=&#34;block&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;Y&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mi&gt;X&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;mo&gt;≥&lt;/mo&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;Y&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;&#43;&lt;/mo&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;Y&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;
-I(Y;X)\ \ge\ I(Y;T)&#43;I(Y;A)-I(T;A),
-&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;p&gt;raising &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;Y&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I(Y;A)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; (better audience reward) under fixed &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;R&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; forces a reduction in &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;Y&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I(Y;T)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; unless &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I(T;A)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; or &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;R&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; increases. This explains the empirical misalignment as a reallocation of representational bandwidth from truth to persuasion.&lt;/p&gt;
-&lt;h1 id=&#34;quantitative-alignment-with-theory&#34;&gt;Quantitative Alignment with Theory&lt;/h1&gt;
-&lt;p&gt;Estimated slopes &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;ρ&lt;/mi&gt;&lt;mo&gt;≈&lt;/mo&gt;&lt;mo stretchy=&#34;false&#34;&gt;{&lt;/mo&gt;&lt;mn&gt;2.3&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mn&gt;4.4&lt;/mn&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mn&gt;26.9&lt;/mn&gt;&lt;mo stretchy=&#34;false&#34;&gt;}&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\rho\approx\{2.3,4.4,26.9\}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; for the three domains indicate domain-specific curvature of the frontier &lt;span class=&#34;math-error&#34;&gt;D_T^\*(r)&lt;/span&gt;. Social-media feedback shows near-vertical curvature, implying an almost pure trade-off between truth and engagement at fixed rate &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;R&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;. Such heterogeneity is consistent with differences in audience nonlinearity and &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;I(T;A)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; overlap predicted by rate–distortion geometry.&lt;/p&gt;
-&lt;h1 id=&#34;consequences-and-design-levers&#34;&gt;Consequences and Design Levers&lt;/h1&gt;
-&lt;p&gt;According to the theorem, alignment can improve only by:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Increasing the epistemic rate &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;R&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; (longer context, compute, or shared truth side-information); or&lt;/li&gt;
-&lt;li&gt;Reducing mismatch—modifying &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;r&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt; so that its sufficient statistics better align with those of &lt;span class=&#34;katex&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;T&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Empirically, both interventions predict a flattening of &lt;span class=&#34;math-error&#34;&gt;dD_T^\*/dr&lt;/span&gt;, testable in future fine-tuning studies.&lt;/p&gt;
-&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-&lt;p&gt;The empirical results of El &amp;amp; Zou (2025) satisfy the premises and qualitative predictions of the Necessary Misalignment Theorem.&lt;/p&gt;
-&lt;p&gt;Their observed reward–distortion slopes provide quantitative evidence that
+&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>for any bounded-rate agent optimizing a mismatched proxy under increasing
+selection intensity &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>κ&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\kappa&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>. If the decoder is semantically efficient, &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>I&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>T&lt;/mi>&lt;mo separator="true">;&lt;/mo>&lt;msub>&lt;mi>S&lt;/mi>&lt;mi>κ&lt;/mi>&lt;/msub>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>=&lt;/mo>&lt;msub>&lt;mi>R&lt;/mi>&lt;mi>T&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;msub>&lt;mi>D&lt;/mi>&lt;mi>T&lt;/mi>&lt;/msub>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>κ&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">I(T;S_\kappa)=R_T(D_T(\kappa))&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>, then &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>I&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>T&lt;/mi>&lt;mo separator="true">;&lt;/mo>&lt;msub>&lt;mi>S&lt;/mi>&lt;mi>κ&lt;/mi>&lt;/msub>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">I(T;S_\kappa)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> strictly decreases with &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>κ&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\kappa&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.&lt;/p>
+&lt;p>This provides a quantitative link between optimization pressure, semantic distortion &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>D&lt;/mi>&lt;mi>T&lt;/mi>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">D_T&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>, and semantic information &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>I&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>T&lt;/mi>&lt;mo separator="true">;&lt;/mo>&lt;mi>S&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">I(T;S)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.&lt;/p>
+&lt;h1 id="empirical-setting-and-variable-mapping">Empirical Setting and Variable Mapping&lt;/h1>
+&lt;p>The experiments of El &amp;amp; Zou involve LLMs fine-tuned for competitive tasks. The mapping to theoretical variables is:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Variable&lt;/th>
+&lt;th>Empirical analogue&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>T&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">T&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;/td>
+&lt;td>factual or normative truth labels&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>A&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">A&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;/td>
+&lt;td>audience latent preference&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>X&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">X&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;/td>
+&lt;td>input prompt / context&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>Y&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">Y&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;/td>
+&lt;td>model output message&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>S&lt;/mi>&lt;mo>=&lt;/mo>&lt;mi>s&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>Y&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">S=s(Y)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;/td>
+&lt;td>evaluation of truthfulness by probes&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>r&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>Y&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">r(Y)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;/td>
+&lt;td>audience-derived proxy reward&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;msub>&lt;mi>D&lt;/mi>&lt;mi>T&lt;/mi>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">D_T&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;/td>
+&lt;td>aggregate misalignment rate&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>The finite-rate constraint corresponds to bounded model capacity and limited context length; increasing fine-tuning pressure increases effective &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>κ&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\kappa&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.&lt;/p>
+&lt;h1 id="empirical-observation">Empirical Observation&lt;/h1>
+&lt;p>El &amp;amp; Zou report:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Domain&lt;/th>
+&lt;th>Reward Δ (%)&lt;/th>
+&lt;th>Misalignment Δ (%)&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Sales&lt;/td>
+&lt;td>+6.3&lt;/td>
+&lt;td>+14&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Elections&lt;/td>
+&lt;td>+4.9&lt;/td>
+&lt;td>+22.3&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Social Media&lt;/td>
+&lt;td>+7.5&lt;/td>
+&lt;td>+188&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>All slopes &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>ρ&lt;/mi>&lt;mo>=&lt;/mo>&lt;mi mathvariant="normal">Δ&lt;/mi>&lt;msub>&lt;mi>D&lt;/mi>&lt;mi>T&lt;/mi>&lt;/msub>&lt;mi mathvariant="normal">/&lt;/mi>&lt;mi mathvariant="normal">Δ&lt;/mi>&lt;mi>r&lt;/mi>&lt;mo>&amp;gt;&lt;/mo>&lt;mn>0&lt;/mn>&lt;/mrow>&lt;annotation encoding="application/x-tex">\rho=ΔD_T/Δr&amp;gt;0&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>, matching the theorem&amp;rsquo;s monotone frontier.&lt;/p>
+&lt;h1 id="interpretation-via-the-theorem">Interpretation via the Theorem&lt;/h1>
+&lt;p>At fixed informational rate &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>R&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">R&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>, each experimental condition corresponds to a population at a different selection intensity &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>κ&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\kappa&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>. The empirical slopes &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>ρ&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">\rho&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> estimate the local derivative &lt;span class="math-error">dD_T^\*/dr&lt;/span> along the frontier &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi mathvariant="normal">∂&lt;/mi>&lt;msub>&lt;mi mathvariant="script">A&lt;/mi>&lt;mi>R&lt;/mi>&lt;/msub>&lt;/mrow>&lt;annotation encoding="application/x-tex">\partial\mathcal{A}_R&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>. Thus the experiments instantiate the theorem&amp;rsquo;s sufficient conditions: finite &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>R&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">R&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>, strict mismatch (&lt;span class="math-error">\partial D_T^\*/\partial r&amp;gt;0&lt;/span>), and increased optimization pressure &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>κ&lt;/mi>&lt;mo>↑&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">\kappa\uparrow&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.&lt;/p>
+&lt;h1 id="information-theoretic-reading">Information-Theoretic Reading&lt;/h1>
+&lt;p>By the rate identity&lt;/p>
+&lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block">&lt;semantics>&lt;mrow>&lt;mi>I&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>Y&lt;/mi>&lt;mo separator="true">;&lt;/mo>&lt;mi>X&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mtext> &lt;/mtext>&lt;mo>≥&lt;/mo>&lt;mtext> &lt;/mtext>&lt;mi>I&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>Y&lt;/mi>&lt;mo separator="true">;&lt;/mo>&lt;mi>T&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>+&lt;/mo>&lt;mi>I&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>Y&lt;/mi>&lt;mo separator="true">;&lt;/mo>&lt;mi>A&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo>−&lt;/mo>&lt;mi>I&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>T&lt;/mi>&lt;mo separator="true">;&lt;/mo>&lt;mi>A&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;mo separator="true">,&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">
+I(Y;X)\ \ge\ I(Y;T)+I(Y;A)-I(T;A),
+&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>&lt;p>raising &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>I&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>Y&lt;/mi>&lt;mo separator="true">;&lt;/mo>&lt;mi>A&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">I(Y;A)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> (better audience reward) under fixed &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>R&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">R&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> forces a reduction in &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>I&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>Y&lt;/mi>&lt;mo separator="true">;&lt;/mo>&lt;mi>T&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">I(Y;T)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> unless &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>I&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>T&lt;/mi>&lt;mo separator="true">;&lt;/mo>&lt;mi>A&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">I(T;A)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> or &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>R&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">R&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> increases. This explains the empirical misalignment as a reallocation of representational bandwidth from truth to persuasion.&lt;/p>
+&lt;h1 id="quantitative-alignment-with-theory">Quantitative Alignment with Theory&lt;/h1>
+&lt;p>Estimated slopes &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>ρ&lt;/mi>&lt;mo>≈&lt;/mo>&lt;mo stretchy="false">{&lt;/mo>&lt;mn>2.3&lt;/mn>&lt;mo separator="true">,&lt;/mo>&lt;mn>4.4&lt;/mn>&lt;mo separator="true">,&lt;/mo>&lt;mn>26.9&lt;/mn>&lt;mo stretchy="false">}&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">\rho\approx\{2.3,4.4,26.9\}&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> for the three domains indicate domain-specific curvature of the frontier &lt;span class="math-error">D_T^\*(r)&lt;/span>. Social-media feedback shows near-vertical curvature, implying an almost pure trade-off between truth and engagement at fixed rate &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>R&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">R&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>. Such heterogeneity is consistent with differences in audience nonlinearity and &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>I&lt;/mi>&lt;mo stretchy="false">(&lt;/mo>&lt;mi>T&lt;/mi>&lt;mo separator="true">;&lt;/mo>&lt;mi>A&lt;/mi>&lt;mo stretchy="false">)&lt;/mo>&lt;/mrow>&lt;annotation encoding="application/x-tex">I(T;A)&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> overlap predicted by rate–distortion geometry.&lt;/p>
+&lt;h1 id="consequences-and-design-levers">Consequences and Design Levers&lt;/h1>
+&lt;p>According to the theorem, alignment can improve only by:&lt;/p>
+&lt;ol>
+&lt;li>Increasing the epistemic rate &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>R&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">R&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> (longer context, compute, or shared truth side-information); or&lt;/li>
+&lt;li>Reducing mismatch—modifying &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>r&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">r&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span> so that its sufficient statistics better align with those of &lt;span class="katex">&lt;math xmlns="http://www.w3.org/1998/Math/MathML">&lt;semantics>&lt;mrow>&lt;mi>T&lt;/mi>&lt;/mrow>&lt;annotation encoding="application/x-tex">T&lt;/annotation>&lt;/semantics>&lt;/math>&lt;/span>.&lt;/li>
+&lt;/ol>
+&lt;p>Empirically, both interventions predict a flattening of &lt;span class="math-error">dD_T^\*/dr&lt;/span>, testable in future fine-tuning studies.&lt;/p>
+&lt;h1 id="conclusion">Conclusion&lt;/h1>
+&lt;p>The empirical results of El &amp;amp; Zou (2025) satisfy the premises and qualitative predictions of the Necessary Misalignment Theorem.&lt;/p>
+&lt;p>Their observed reward–distortion slopes provide quantitative evidence that
 competitive optimization under bounded information capacity necessarily reduces
-semantic fidelity. This alignment between theorem and data substantiates misalignment as a structural, information-theoretic consequence rather than an empirical anomaly.&lt;/p&gt;
-&lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;El, M., &amp;amp; Zou, A. (2025). &amp;ldquo;Moloch&amp;rsquo;s Bargain.&amp;rdquo; &lt;em&gt;arXiv&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;Shannon, C. E. (1948). &amp;ldquo;A Mathematical Theory of Communication.&amp;rdquo; &lt;em&gt;Bell System Technical Journal&lt;/em&gt;, 27, 379–423, 623–656.&lt;/li&gt;
-&lt;li&gt;Cover, T. M., &amp;amp; Thomas, J. A. (2006). &lt;em&gt;Elements of Information Theory&lt;/em&gt; (2nd ed.). Wiley.&lt;/li&gt;
-&lt;/ul&gt;
-
-  </div>
-  <section class="bibliography" id="bibliography"
-         vocab="https://schema.org/" typeof="ItemList">
-  <h2>References</h2><p class="bib-entry" id="ref-cover2006" typeof="CreativeWork" resource="#ref-cover2006">
-    <span class="bib-key">[cover2006]</span>
-      <span property="author">T. M. Cover, J. A. Thomas</span>.
-      (<span property="datePublished">2006</span>).
-      <cite property="name">Elements of Information Theory</cite>.
-      <em property="publisher">Wiley</em>.
-  </p><p class="bib-entry" id="ref-el2025" typeof="CreativeWork" resource="#ref-el2025">
-    <span class="bib-key">[el2025]</span>
-      <span property="author">M. El, A. Zou</span>.
-      (<span property="datePublished">2025</span>).
-      <cite property="name">Moloch&#39;s Bargain</cite>.
-      <em property="publisher">arXiv</em>.
-  </p><p class="bib-entry" id="ref-shannon1948" typeof="CreativeWork" resource="#ref-shannon1948">
-    <span class="bib-key">[shannon1948]</span>
-      <span property="author">C. E. Shannon</span>.
-      (<span property="datePublished">1948</span>).
-      <cite property="name">A Mathematical Theory of Communication</cite>.
-      <em property="publisher">Bell System Technical Journal</em>.
-  </p>
-</section>
-</article>
-<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-molochs-bargain-as-necessary-misalignment-of-truth-value-under-epistemic-constraint/" typeof="schema:CreativeWork"
-         vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
-  <dl><div class="relation">
-        <dt><a href="/library/math/terms/action/">Acts on</a></dt>
-        <dd property="emsenn:Actson">Llm optimized under bounded rate with mismatched proxy</dd>
-      </div><div class="relation">
-        <dt>Authors</dt>
-        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li></ul></dd>
-      </div><div class="relation">
-        <dt>Cites</dt>
-        <dd property="schema:citation"><ul><li>El2025</li><li>Shannon1948</li><li>Cover2006</li><li><a href="/library/information/texts/theorem-of-necessary-misalignment-of-truth-value-under-epistemic-constraint/">Theorem of necessary misalignment of truth value under epistemic constraint</a></li></ul></dd>
-      </div><div class="relation">
-        <dt>Date created</dt>
-        <dd property="schema:dateCreated"><time datetime="2025-10-08">2025-10-08</time></dd>
-      </div><div class="relation">
-        <dt><a href="/library/math/terms/extension/">Extends</a></dt>
-        <dd property="emsenn:Extends">Theorem of necessary misalignment of truth value under epistemic constraint</dd>
-      </div><div class="relation">
-        <dt>Instance of</dt>
-        <dd property="emsenn:Instanceof"><a href="/library/information/texts/theorem-of-necessary-misalignment-of-truth-value-under-epistemic-constraint/">Necessary misalignment of truth value under epistemic constraint</a></dd>
-      </div><div class="relation">
-        <dt><a href="/library/tech/terms/produces/">Produces</a></dt>
-        <dd property="emsenn:Produces">Empirical reward distortion slopes matching monotone frontier</dd>
-      </div><div class="relation">
-        <dt><a href="/library/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment">Large language model fine tuned for audience reward</dd>
-      </div><div class="relation">
-        <dt>Status</dt>
-        <dd property="emsenn:Status">Draft</dd>
-      </div><div class="relation">
-        <dt>Tags</dt>
-        <dd property="schema:keywords"><ul><li><a href="/tags/information-theory/">information-theory</a></li><li><a href="/tags/alignment/">alignment</a></li><li><a href="/tags/llm/">LLM</a></li><li><a href="/tags/research/">research</a></li></ul></dd>
-      </div><div class="relation">
-        <dt><a href="/library/math/terms/verification/">Verified by</a></dt>
-        <dd property="emsenn:Verifiedby">El and zou 2025 empirical reward distortion data</dd>
-      </div>
-  </dl>
-</section>
-<section class="cite-this" id="cite-this">
-  <h2>Cite</h2>
-  <pre class="cite-block"><code>@article{emsenn2025-describing-molochs-bargain-as-necessary-misalignment-of-truth-value-under-epistemic-constraint,
+semantic fidelity. This alignment between theorem and data substantiates misalignment as a structural, information-theoretic consequence rather than an empirical anomaly.&lt;/p>
+&lt;h1 id="references">References&lt;/h1>
+&lt;ul>
+&lt;li>El, M., &amp;amp; Zou, A. (2025). &amp;ldquo;Moloch&amp;rsquo;s Bargain.&amp;rdquo; &lt;em>arXiv&lt;/em>.&lt;/li>
+&lt;li>Shannon, C. E. (1948). &amp;ldquo;A Mathematical Theory of Communication.&amp;rdquo; &lt;em>Bell System Technical Journal&lt;/em>, 27, 379–423, 623–656.&lt;/li>
+&lt;li>Cover, T. M., &amp;amp; Thomas, J. A. (2006). &lt;em>Elements of Information Theory&lt;/em> (2nd ed.). Wiley.&lt;/li>
+&lt;/ul></div><section class=bibliography id=bibliography vocab="https://schema.org/" typeof="ItemList"><h2>References</h2><p class=bib-entry id=ref-cover2006 typeof="CreativeWork" resource="#ref-cover2006"><span class=bib-key>[cover2006]</span>
+<span property="author">T. M. Cover, J. A. Thomas</span>.
+(<span property="datePublished">2006</span>).
+<cite property="name">Elements of Information Theory</cite>.
+<em property="publisher">Wiley</em>.</p><p class=bib-entry id=ref-el2025 typeof="CreativeWork" resource="#ref-el2025"><span class=bib-key>[el2025]</span>
+<span property="author">M. El, A. Zou</span>.
+(<span property="datePublished">2025</span>).
+<cite property="name">Moloch's Bargain</cite>.
+<em property="publisher">arXiv</em>.</p><p class=bib-entry id=ref-shannon1948 typeof="CreativeWork" resource="#ref-shannon1948"><span class=bib-key>[shannon1948]</span>
+<span property="author">C. E. Shannon</span>.
+(<span property="datePublished">1948</span>).
+<cite property="name">A Mathematical Theory of Communication</cite>.
+<em property="publisher">Bell System Technical Journal</em>.</p></section></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-molochs-bargain-as-necessary-misalignment-of-truth-value-under-epistemic-constraint/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt><a href=/library/math/terms/action/>Acts on</a></dt><dd property="emsenn:Actson">Llm optimized under bounded rate with mismatched proxy</dd></div><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li></ul></dd></div><div class=relation><dt>Cites</dt><dd property="schema:citation"><ul><li>El2025</li><li>Shannon1948</li><li>Cover2006</li><li><a href=/library/information/texts/theorem-of-necessary-misalignment-of-truth-value-under-epistemic-constraint/>Theorem of necessary misalignment of truth value under epistemic constraint</a></li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2025-10-08>2025-10-08</time></dd></div><div class=relation><dt><a href=/library/math/terms/extension/>Extends</a></dt><dd property="emsenn:Extends">Theorem of necessary misalignment of truth value under epistemic constraint</dd></div><div class=relation><dt>Instance of</dt><dd property="emsenn:Instanceof"><a href=/library/information/texts/theorem-of-necessary-misalignment-of-truth-value-under-epistemic-constraint/>Necessary misalignment of truth value under epistemic constraint</a></dd></div><div class=relation><dt><a href=/library/tech/terms/produces/>Produces</a></dt><dd property="emsenn:Produces">Empirical reward distortion slopes matching monotone frontier</dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>Requires</a></dt><dd property="schema:educationalAlignment">Large language model fine tuned for audience reward</dd></div><div class=relation><dt>Status</dt><dd property="emsenn:Status">Draft</dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/information-theory/>information-theory</a></li><li><a href=/tags/alignment/>alignment</a></li><li><a href=/tags/llm/>LLM</a></li><li><a href=/tags/research/>research</a></li></ul></dd></div><div class=relation><dt><a href=/library/math/terms/verification/>Verified by</a></dt><dd property="emsenn:Verifiedby">El and zou 2025 empirical reward distortion data</dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@article{emsenn2025-describing-molochs-bargain-as-necessary-misalignment-of-truth-value-under-epistemic-constraint,
   author    = {emsenn},
   title     = {Moloch&#39;s Bargain as Necessary Misalignment of Truth-Value under Epistemic Constraint},
   year      = {2025},
   url       = {https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/texts/describing-molochs-bargain-as-necessary-misalignment-of-truth-value-under-epistemic-constraint/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre>
-</section>
-
-  
-
-
-  </main>
-  <footer>
-    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
-  </footer>
-</body>
-</html>
+}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>

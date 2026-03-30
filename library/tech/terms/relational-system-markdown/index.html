@@ -1,236 +1,55 @@
-<!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
-<head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>emsenn.net</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
-<link href="https://gmpg.org/xfn/11" rel="profile">
-<link href="https://emsenn.net" rel="me">
-<link href="mailto:emsenn@emsenn.net" rel="me authn">
-<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
-<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "description": "The markdown encoding of the Flatfile Agential Resource System: how entities, relations, and scripts are encoded as markdown files, YAML frontmatter, and Python scripts.",
-  "name": "",
-  "publisher": {
-    "@type": "Person",
-    "name": "emsenn",
-    "url": "https://emsenn.net"
-  },
-  "url": "https://emsenn.net/library/tech/terms/relational-system-markdown/"
-}
-</script>
-
-
-</head>
-<body>
-  <a class="skip-to-content" href="#content">Skip to content</a>
-  <header class="site-header">
-  <div class="site-identity">
-    <a href="/" class="site-title">emsenn.net</a>
-    <span class="site-tagline">on relations and things</span>
-  </div>
-  <nav>
-    <a href="/">home</a>
-    <a href="/library/">library</a>
-    <a href="/letters/">letters</a>
-    <a href="/search/">search</a>
-  </nav>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
-</header>
-
-  <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
-  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/terms/">Terms</a></nav>
-  <h1 class="p-name"></h1>
-  <div class="meta">
-    
-    
-    <span class="p-summary">The markdown encoding of the Flatfile Agential Resource System: how entities, relations, and scripts are encoded as markdown files, YAML frontmatter, and Python scripts.</span>
-  </div><details class="toc">
-      <summary>Table of contents</summary>
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#what-it-is">What it is</a></li>
-    <li><a href="#entity-structure">Entity structure</a></li>
-    <li><a href="#fregean-relation-pattern">Fregean relation pattern</a></li>
-    <li><a href="#any-entity-can-be-any-role">Any entity can be any role</a></li>
-    <li><a href="#vocabulary-layer">Vocabulary layer</a></li>
-    <li><a href="#body-links-as-graph-edges">Body links as graph edges</a></li>
-    <li><a href="#input-pathway">Input pathway</a></li>
-    <li><a href="#python-stepping-map">Python stepping map</a>
-      <ul>
-        <li><a href="#typed-function-parameters-with-annotated">Typed function parameters with <code>Annotated</code></a></li>
-        <li><a href="#why-this-matters-for-the-ars">Why this matters for the ARS</a></li>
-      </ul>
-    </li>
-    <li><a href="#colocated-script-convention">Colocated script convention</a></li>
-    <li><a href="#locale-directory-structure">Locale directory structure</a></li>
-    <li><a href="#shacl-shapes">SHACL shapes</a></li>
-    <li><a href="#what-this-is-not">What this is NOT</a></li>
-    <li><a href="#open-questions">Open questions</a></li>
-  </ul>
-</nav>
-    </details>
-  <div class="e-content">
-    <h1 id="relational-system-markdown">Relational System Markdown</h1>
-<h2 id="what-it-is">What it is</h2>
-<p>This is the encoding specification for the <a href="flatfile-agential-resource-system.md" class="link-internal">FlatfileAgentialResourceSystem</a>: how entities, relations, shapes, runbooks, and scripts are realized as markdown files, YAML frontmatter, and Python scripts.</p>
-<p>FARS uses exactly three file types. Each corresponds to one irreducible mathematical object in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mrow><mi mathvariant="bold">S</mi><mi mathvariant="bold">h</mi></mrow><mo stretchy="false">(</mo><mi>T</mi><mo separator="true">,</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R = \mathbf{Sh}(T, J)</annotation></semantics></math></span>:</p>
-<table>
-  <thead>
-      <tr>
-          <th>File type</th>
-          <th>Math object</th>
-          <th>What it carries</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Markdown (<code>.md</code>)</td>
-          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">H^*_t</annotation></semantics></math></span> — settled fiber element</td>
-          <td>Propositional content: claims, definitions, relations</td>
-      </tr>
-      <tr>
-          <td>YAML (<code>.yaml</code>)</td>
-          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>∈</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">u \in T</annotation></semantics></math></span> — morphism in the site</td>
-          <td>Compositional structure: a composite extension in Foata normal form</td>
-      </tr>
-      <tr>
-          <td>Python (<code>.py</code>)</td>
-          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>γ</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\gamma_t</annotation></semantics></math></span> — stepping map</td>
-          <td>Computation: one function from one fiber state to the next</td>
-      </tr>
-  </tbody>
-</table>
-<p>The general markdown format is in <a href="markdown.md" class="link-internal">markdown</a>.
-The frontmatter-to-RDF encoding is in <a href="markdown-frontmatter.md" class="link-internal">markdown-frontmatter</a>.
-This spec covers what is specific to the Relations System context: the Fregean relation pattern, the vocabulary constraint, the Python annotation pattern, and the colocated script convention.</p>
-<h2 id="entity-structure">Entity structure</h2>
-<p>Every entity is a single <code>.md</code> file with YAML frontmatter.
+<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"The markdown encoding of the Flatfile Agential Resource System: how entities, relations, and scripts are encoded as markdown files, YAML frontmatter, and Python scripts.","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/terms/relational-system-markdown/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
+<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
+<a href=/library/>library</a>
+<a href=/letters/>letters</a>
+<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=page><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/terms/>Terms</a></nav><h1 class=p-name></h1><div class=meta><span class=p-summary>The markdown encoding of the Flatfile Agential Resource System: how entities, relations, and scripts are encoded as markdown files, YAML frontmatter, and Python scripts.</span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#what-it-is>What it is</a></li><li><a href=#entity-structure>Entity structure</a></li><li><a href=#fregean-relation-pattern>Fregean relation pattern</a></li><li><a href=#any-entity-can-be-any-role>Any entity can be any role</a></li><li><a href=#vocabulary-layer>Vocabulary layer</a></li><li><a href=#body-links-as-graph-edges>Body links as graph edges</a></li><li><a href=#input-pathway>Input pathway</a></li><li><a href=#python-stepping-map>Python stepping map</a><ul><li><a href=#typed-function-parameters-with-annotated>Typed function parameters with <code>Annotated</code></a></li><li><a href=#why-this-matters-for-the-ars>Why this matters for the ARS</a></li></ul></li><li><a href=#colocated-script-convention>Colocated script convention</a></li><li><a href=#locale-directory-structure>Locale directory structure</a></li><li><a href=#shacl-shapes>SHACL shapes</a></li><li><a href=#what-this-is-not>What this is NOT</a></li><li><a href=#open-questions>Open questions</a></li></ul></nav></details><div class=e-content><h1 id=relational-system-markdown>Relational System Markdown</h1><h2 id=what-it-is>What it is</h2><p>This is the encoding specification for the <a href=flatfile-agential-resource-system.md class=link-internal>FlatfileAgentialResourceSystem</a>: how entities, relations, shapes, runbooks, and scripts are realized as markdown files, YAML frontmatter, and Python scripts.</p><p>FARS uses exactly three file types. Each corresponds to one irreducible mathematical object in <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mrow><mi mathvariant="bold">S</mi><mi mathvariant="bold">h</mi></mrow><mo stretchy="false">(</mo><mi>T</mi><mo separator="true">,</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R = \mathbf{Sh}(T, J)</annotation></semantics></math></span>:</p><table><thead><tr><th>File type</th><th>Math object</th><th>What it carries</th></tr></thead><tbody><tr><td>Markdown (<code>.md</code>)</td><td><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">H^*_t</annotation></semantics></math></span> — settled fiber element</td><td>Propositional content: claims, definitions, relations</td></tr><tr><td>YAML (<code>.yaml</code>)</td><td><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>∈</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">u \in T</annotation></semantics></math></span> — morphism in the site</td><td>Compositional structure: a composite extension in Foata normal form</td></tr><tr><td>Python (<code>.py</code>)</td><td><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>γ</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\gamma_t</annotation></semantics></math></span> — stepping map</td><td>Computation: one function from one fiber state to the next</td></tr></tbody></table><p>The general markdown format is in <a href=markdown.md class=link-internal>markdown</a>.
+The frontmatter-to-RDF encoding is in <a href=markdown-frontmatter.md class=link-internal>markdown-frontmatter</a>.
+This spec covers what is specific to the Relations System context: the Fregean relation pattern, the vocabulary constraint, the Python annotation pattern, and the colocated script convention.</p><h2 id=entity-structure>Entity structure</h2><p>Every entity is a single <code>.md</code> file with YAML frontmatter.
 The frontmatter block begins the file; the markdown body follows.
-Every entity file MUST have:</p>
-<ul>
-<li><code>id</code> — unique kebab-case identifier; the node IRI in the RDF graph</li>
-<li><code>description</code> — one-line summary; human-readable label</li>
-</ul>
-<p>All other frontmatter fields are relations.
-An entity does not carry a <code>type:</code> field — what an entity is follows from which relations it has.</p>
-<h2 id="fregean-relation-pattern">Fregean relation pattern</h2>
-<p><strong>Frontmatter keys ARE relations, not labels for relations.</strong></p>
-<p><code>defines: RelationalSystemMarkdown</code> does not mean &ldquo;this file has a field called <code>defines</code> whose value is <code>RelationalSystemMarkdown</code>.&rdquo; It means: <strong>this file stands in the <code>defines</code> relation to <code>RelationalSystemMarkdown</code>.</strong> The key name carries the semantic content. The subject is always implicit — it is the file itself.</p>
-<p>The wrong pattern:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">skill</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">closure-type</span>: <span style="color:#ae81ff">process</span>
-</span></span></code></pre></div><p>The right pattern:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">closure-kind</span>: <span style="color:#ae81ff">process</span>
+Every entity file MUST have:</p><ul><li><code>id</code> — unique kebab-case identifier; the node IRI in the RDF graph</li><li><code>description</code> — one-line summary; human-readable label</li></ul><p>All other frontmatter fields are relations.
+An entity does not carry a <code>type:</code> field — what an entity is follows from which relations it has.</p><h2 id=fregean-relation-pattern>Fregean relation pattern</h2><p><strong>Frontmatter keys ARE relations, not labels for relations.</strong></p><p><code>defines: RelationalSystemMarkdown</code> does not mean &ldquo;this file has a field called <code>defines</code> whose value is <code>RelationalSystemMarkdown</code>.&rdquo; It means: <strong>this file stands in the <code>defines</code> relation to <code>RelationalSystemMarkdown</code>.</strong> The key name carries the semantic content. The subject is always implicit — it is the file itself.</p><p>The wrong pattern:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>type</span>: <span style=color:#ae81ff>skill</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>closure-type</span>: <span style=color:#ae81ff>process</span>
+</span></span></code></pre></div><p>The right pattern:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>closure-kind</span>: <span style=color:#ae81ff>process</span>
 </span></span></code></pre></div><p>In the wrong pattern, <code>kind</code> and <code>closure-type</code> are structural slots and the values carry the meaning.
 In the right pattern, <code>closure-kind</code> IS the relation — its presence in the frontmatter is what makes this file a Skill.
-<code>process</code> is the object of that relation.</p>
-<p>A file IS a Skill by having <code>closure-kind</code>.
+<code>process</code> is the object of that relation.</p><p>A file IS a Skill by having <code>closure-kind</code>.
 A file IS a Spec by having <code>defines</code>.
 No <code>type:</code> declaration is needed or wanted.
-In SHACL terms: shapes use <code>sh:targetSubjectsOf &lt;relation&gt;</code> — they target nodes that carry a relation, not nodes of a named class.</p>
-<h2 id="any-entity-can-be-any-role">Any entity can be any role</h2>
-<p>In a frontmatter triple, any entity can occupy any of the four RDF roles:</p>
-<ul>
-<li><strong>Subject</strong> — the entity being described (every entity with <code>id</code> and <code>description</code>)</li>
-<li><strong>Predicate</strong> — the entity as named relation (a skill, a spec field)</li>
-<li><strong>Object</strong> — the entity as valid target (referenced by another entity&rsquo;s predicate)</li>
-<li><strong>Result</strong> — the entity produced by composing subject + predicate + object</li>
-</ul>
-<p>A skill is an entity that functions in the relation role (it names an operation).
+In SHACL terms: shapes use <code>sh:targetSubjectsOf &lt;relation></code> — they target nodes that carry a relation, not nodes of a named class.</p><h2 id=any-entity-can-be-any-role>Any entity can be any role</h2><p>In a frontmatter triple, any entity can occupy any of the four RDF roles:</p><ul><li><strong>Subject</strong> — the entity being described (every entity with <code>id</code> and <code>description</code>)</li><li><strong>Predicate</strong> — the entity as named relation (a skill, a spec field)</li><li><strong>Object</strong> — the entity as valid target (referenced by another entity&rsquo;s predicate)</li><li><strong>Result</strong> — the entity produced by composing subject + predicate + object</li></ul><p>A skill is an entity that functions in the relation role (it names an operation).
 A spec is an entity that functions in the subject role (it is described by its relations).
 A SHACL shape constrains what can appear in the object role.
-A runbook produces a result.</p>
-<p>The self-referential property — R = U_G(R) — holds here: an entity that defines a relation is itself a subject (it has <code>id</code> and <code>description</code>), can be an object (other entities can reference it), and produces results when composed with other entities.</p>
-<h2 id="vocabulary-layer">Vocabulary layer</h2>
-<p><strong>Every relation key must itself be a specced entity.</strong>
-For an entity to validly function in the relation role, it must itself be a node in the graph — it must have <code>id</code> and <code>description</code>, and ideally have grown through enough U_G phases to be well-defined.</p>
-<p>A relation used in frontmatter but not itself specced as an entity is <strong>vocabulary debt</strong>: the graph has an edge whose label is not itself a node.
-The system loses self-describing capacity exactly where that edge appears.</p>
-<p>The set of relations in use at any point is not enumerated here — it is discovered by reading the graph.
+A runbook produces a result.</p><p>The self-referential property — R = U_G(R) — holds here: an entity that defines a relation is itself a subject (it has <code>id</code> and <code>description</code>), can be an object (other entities can reference it), and produces results when composed with other entities.</p><h2 id=vocabulary-layer>Vocabulary layer</h2><p><strong>Every relation key must itself be a specced entity.</strong>
+For an entity to validly function in the relation role, it must itself be a node in the graph — it must have <code>id</code> and <code>description</code>, and ideally have grown through enough U_G phases to be well-defined.</p><p>A relation used in frontmatter but not itself specced as an entity is <strong>vocabulary debt</strong>: the graph has an edge whose label is not itself a node.
+The system loses self-describing capacity exactly where that edge appears.</p><p>The set of relations in use at any point is not enumerated here — it is discovered by reading the graph.
 Any frontmatter key appearing in any entity file that does not itself have a corresponding node is vocabulary debt.
-When a new frontmatter field is introduced anywhere in the system, a corresponding entity MUST be added before that field is used.</p>
-<h2 id="body-links-as-graph-edges">Body links as graph edges</h2>
-<p>Inline links in the body (<code>[text](path.md)</code>) are also graph edges — less structured than frontmatter relations, but still edges. The full graph includes both frontmatter relations and body links. A body link that has no corresponding frontmatter relation is a candidate for nucleus evaluation: it may normalize to <code>uses:</code>, <code>grounding:</code>, or another specific predicate once its role is determined.</p>
-<h2 id="input-pathway">Input pathway</h2>
-<p>Not everything starts settled. Content enters the system unsettled and moves toward <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">H^*</annotation></semantics></math></span> through the nuclear settlement pipeline:</p>
-<p><strong>Fleeting note</strong>: a markdown file with <code>id:</code> and prose. No frontmatter relations beyond identity. Depth 1. Valid by condition 1.</p>
-<p><strong>Working note</strong>: frontmatter relations added. <code>related:</code> entries connecting it to existing nodes. <code>given:</code> entries naming what&rsquo;s unresolved. In the graph but unsettled — defect &gt; 0.</p>
-<p><strong>Settled note</strong>: all <code>related:</code> entries normalized to specific predicates. All <code>given:</code> entries resolved and deleted. Defect is zero. The file is unconditionally in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">H^*</annotation></semantics></math></span>.</p>
-<p>This pipeline IS the nucleus acting on raw input: σ normalizes backward dependencies, Δ normalizes forward consequences. When both have acted and the result is a fixed point, the note is settled. The mathematical structure guarantees that cleaning up links converges.</p>
-<h2 id="python-stepping-map">Python stepping map</h2>
-<p>A Python file is one stepping map <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>γ</mi><mi>t</mi></msub><mo>:</mo><mi>X</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>→</mo><mi>X</mi><mo stretchy="false">(</mo><mi>s</mi><mo>⋆</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\gamma_t : X(t) \to X(s \star t)</annotation></semantics></math></span> for one step <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">s \in \Sigma</annotation></semantics></math></span>.
-It contains one function. The function&rsquo;s typed signature is the single source of truth for that step&rsquo;s input and output types.</p>
-<p>A Python file carries no composition metadata — no <code>id</code>, no <code>description</code>, no <code>closure_kind</code>.
-Those fields describe morphisms in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span> (compositions of steps), not atomic steps.
-A stepping map doesn&rsquo;t know what composition it&rsquo;s part of, the same way a generator <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span> doesn&rsquo;t know what history <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span> it will extend.</p>
-<p><strong>Counit law.</strong> The function must satisfy the counit constraint: inputs must be recoverable from the output. The function adds content from step <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span> without destroying content from history <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span>. If the function fails, no state is changed — the stepping map either completes or does not fire.</p>
-<h3 id="typed-function-parameters-with-annotated">Typed function parameters with <code>Annotated</code></h3>
-<p>Function parameters are typed using <code>typing.Annotated[T, Field(description=&quot;...&quot;)]</code> — the single source of truth for this step&rsquo;s interface:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Annotated
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> Field
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_work_item</span>(
-</span></span><span style="display:flex;"><span>    locale: Annotated[str, Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Path to the locale directory&#34;</span>)],
-</span></span><span style="display:flex;"><span>    identifier: Annotated[str, Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Kebab-case work item identifier&#34;</span>)],
-</span></span><span style="display:flex;"><span>    action: Annotated[str, Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;What needs to be done&#34;</span>)],
-</span></span><span style="display:flex;"><span>    why: Annotated[str, Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Why this work is needed&#34;</span>)],
-</span></span><span style="display:flex;"><span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
-</span></span></code></pre></div><p>The full interface is extractable at runtime via:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> inspect<span style="color:#f92672">,</span> typing
-</span></span><span style="display:flex;"><span>sig <span style="color:#f92672">=</span> inspect<span style="color:#f92672">.</span>signature(fn)
-</span></span><span style="display:flex;"><span>hints <span style="color:#f92672">=</span> typing<span style="color:#f92672">.</span>get_type_hints(fn, include_extras<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># hints[&#34;locale&#34;] = Annotated[str, FieldInfo(description=&#34;...&#34;)]</span>
+When a new frontmatter field is introduced anywhere in the system, a corresponding entity MUST be added before that field is used.</p><h2 id=body-links-as-graph-edges>Body links as graph edges</h2><p>Inline links in the body (<code>[text](path.md)</code>) are also graph edges — less structured than frontmatter relations, but still edges. The full graph includes both frontmatter relations and body links. A body link that has no corresponding frontmatter relation is a candidate for nucleus evaluation: it may normalize to <code>uses:</code>, <code>grounding:</code>, or another specific predicate once its role is determined.</p><h2 id=input-pathway>Input pathway</h2><p>Not everything starts settled. Content enters the system unsettled and moves toward <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">H^*</annotation></semantics></math></span> through the nuclear settlement pipeline:</p><p><strong>Fleeting note</strong>: a markdown file with <code>id:</code> and prose. No frontmatter relations beyond identity. Depth 1. Valid by condition 1.</p><p><strong>Working note</strong>: frontmatter relations added. <code>related:</code> entries connecting it to existing nodes. <code>given:</code> entries naming what&rsquo;s unresolved. In the graph but unsettled — defect > 0.</p><p><strong>Settled note</strong>: all <code>related:</code> entries normalized to specific predicates. All <code>given:</code> entries resolved and deleted. Defect is zero. The file is unconditionally in <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">H^*</annotation></semantics></math></span>.</p><p>This pipeline IS the nucleus acting on raw input: σ normalizes backward dependencies, Δ normalizes forward consequences. When both have acted and the result is a fixed point, the note is settled. The mathematical structure guarantees that cleaning up links converges.</p><h2 id=python-stepping-map>Python stepping map</h2><p>A Python file is one stepping map <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>γ</mi><mi>t</mi></msub><mo>:</mo><mi>X</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>→</mo><mi>X</mi><mo stretchy="false">(</mo><mi>s</mi><mo>⋆</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\gamma_t : X(t) \to X(s \star t)</annotation></semantics></math></span> for one step <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">s \in \Sigma</annotation></semantics></math></span>.
+It contains one function. The function&rsquo;s typed signature is the single source of truth for that step&rsquo;s input and output types.</p><p>A Python file carries no composition metadata — no <code>id</code>, no <code>description</code>, no <code>closure_kind</code>.
+Those fields describe morphisms in <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span> (compositions of steps), not atomic steps.
+A stepping map doesn&rsquo;t know what composition it&rsquo;s part of, the same way a generator <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span> doesn&rsquo;t know what history <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span> it will extend.</p><p><strong>Counit law.</strong> The function must satisfy the counit constraint: inputs must be recoverable from the output. The function adds content from step <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span> without destroying content from history <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span>. If the function fails, no state is changed — the stepping map either completes or does not fire.</p><h3 id=typed-function-parameters-with-annotated>Typed function parameters with <code>Annotated</code></h3><p>Function parameters are typed using <code>typing.Annotated[T, Field(description="...")]</code> — the single source of truth for this step&rsquo;s interface:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Annotated
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> Field
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>add_work_item</span>(
+</span></span><span style=display:flex><span>    locale: Annotated[str, Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Path to the locale directory&#34;</span>)],
+</span></span><span style=display:flex><span>    identifier: Annotated[str, Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Kebab-case work item identifier&#34;</span>)],
+</span></span><span style=display:flex><span>    action: Annotated[str, Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;What needs to be done&#34;</span>)],
+</span></span><span style=display:flex><span>    why: Annotated[str, Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Why this work is needed&#34;</span>)],
+</span></span><span style=display:flex><span>) <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>...</span>
+</span></span></code></pre></div><p>The full interface is extractable at runtime via:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> inspect<span style=color:#f92672>,</span> typing
+</span></span><span style=display:flex><span>sig <span style=color:#f92672>=</span> inspect<span style=color:#f92672>.</span>signature(fn)
+</span></span><span style=display:flex><span>hints <span style=color:#f92672>=</span> typing<span style=color:#f92672>.</span>get_type_hints(fn, include_extras<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># hints[&#34;locale&#34;] = Annotated[str, FieldInfo(description=&#34;...&#34;)]</span>
 </span></span></code></pre></div><p>This is the standard pipeline used by PydanticAI, LangChain, and other AI agent frameworks to convert Python functions into JSON Schema tool definitions.
-A script annotated this way can be automatically surfaced as a tool in any compatible agent framework without any adapter code.</p>
-<h3 id="why-this-matters-for-the-ars">Why this matters for the ARS</h3>
-<p>A script with typed parameters is self-describing at the step level: its signature declares the interface and is readable by any compatible agent framework without adapter code.
-Composition identity (<code>id</code>, <code>description</code>, <code>closure-kind</code>) lives on the YAML, not the Python file.</p>
-<h2 id="colocated-script-convention">Colocated script convention</h2>
-<p>Every atomic runbook has exactly one colocated Python script:</p>
-<pre tabindex="0"><code>runbooks/
+A script annotated this way can be automatically surfaced as a tool in any compatible agent framework without any adapter code.</p><h3 id=why-this-matters-for-the-ars>Why this matters for the ARS</h3><p>A script with typed parameters is self-describing at the step level: its signature declares the interface and is readable by any compatible agent framework without adapter code.
+Composition identity (<code>id</code>, <code>description</code>, <code>closure-kind</code>) lives on the YAML, not the Python file.</p><h2 id=colocated-script-convention>Colocated script convention</h2><p>Every atomic runbook has exactly one colocated Python script:</p><pre tabindex=0><code>runbooks/
   add-operation-item.yaml    # Runbook: declares interface (inputs, outputs, steps)
   add-operation-item.py      # Script: implements it
-</code></pre><p>Naming convention: <code>{runbook-id}.py</code> and <code>{runbook-id}.yaml</code> in the same directory.</p>
-<p>The YAML is not read by the script at runtime (unless the script is a composite executor).
+</code></pre><p>Naming convention: <code>{runbook-id}.py</code> and <code>{runbook-id}.yaml</code> in the same directory.</p><p>The YAML is not read by the script at runtime (unless the script is a composite executor).
 They are coupled by naming convention only.
-The script&rsquo;s <code>--{flag}</code> interface mirrors the runbook&rsquo;s <code>inputs:</code> fields.</p>
-<p>The <code>--locale</code> flag is the conventional way to pass the locale directory path. <code>.</code> is valid and means the current directory, enabling scripts to be run from within a locale.</p>
-<p>Runbooks are colocated with the concept they operate on.
+The script&rsquo;s <code>--{flag}</code> interface mirrors the runbook&rsquo;s <code>inputs:</code> fields.</p><p>The <code>--locale</code> flag is the conventional way to pass the locale directory path. <code>.</code> is valid and means the current directory, enabling scripts to be run from within a locale.</p><p>Runbooks are colocated with the concept they operate on.
 A runbook for working with specs lives in <code>spec/flatfile-agential-resource-system-specification/runbooks/</code>.
 A runbook for working with a specific concept lives in that concept&rsquo;s directory.
-There is no shared root — locales reference each other&rsquo;s runbooks by path when needed.</p>
-<h2 id="locale-directory-structure">Locale directory structure</h2>
-<p>Each locale contains:</p>
-<pre tabindex="0"><code>{locale}/
+There is no shared root — locales reference each other&rsquo;s runbooks by path when needed.</p><h2 id=locale-directory-structure>Locale directory structure</h2><p>Each locale contains:</p><pre tabindex=0><code>{locale}/
   SOUL.md        # Principles
   AGENTS.md      # Agent policies
   MEMORY.md      # Cross-session knowledge
@@ -240,57 +59,9 @@ There is no shared root — locales reference each other&rsquo;s runbooks by pat
   runbooks/      # Department-specific runbooks (optional)
     {id}.yaml
     {id}.py
-</code></pre><p>The six context files are what an entity accumulates as it grows through the U_G phases to full locale instantiation. See <a href="flatfile-agential-resource-system.md" class="link-internal">flatfile-agential-resource-system</a> for the growth sequence and why each file appears when it does.</p>
-<h2 id="shacl-shapes">SHACL shapes</h2>
-<p>One SHACL shape file per relation lives at <code>shacl/{relation-id}.ttl</code>.
+</code></pre><p>The six context files are what an entity accumulates as it grows through the U_G phases to full locale instantiation. See <a href=flatfile-agential-resource-system.md class=link-internal>flatfile-agential-resource-system</a> for the growth sequence and why each file appears when it does.</p><h2 id=shacl-shapes>SHACL shapes</h2><p>One SHACL shape file per relation lives at <code>shacl/{relation-id}.ttl</code>.
 Each shape targets nodes that carry that relation via <code>sh:targetSubjectsOf</code>.
 <code>shacl/id.ttl</code> targets every node.
 A node&rsquo;s applicable shapes are those for the relations it actually has — every <code>id</code> is a potential shape target, not just nodes of particular named classes.
-See <a href="markdown-frontmatter.md" class="link-internal">markdown-frontmatter</a> for the full validation pipeline.</p>
-<h2 id="what-this-is-not">What this is NOT</h2>
-<p>This encoding spec does not describe the distributed runtime.
-For the live distributed system (rqlite, NATS, Dapr, PydanticAI, LangGraph), see <a href="distributed-relational-machine-runtime.md" class="link-internal">distributed-relational-machine-runtime</a>.</p>
-<h2 id="open-questions">Open questions</h2>
-<ul>
-<li>SHACL shapes for vocabulary relation nodes: <code>id.ttl</code>, <code>description.ttl</code>, etc.</li>
-<li>A mechanically checkable definition of vocabulary completeness: scan all frontmatter keys, check each against the graph, report those with no corresponding node as vocabulary debt.</li>
-<li>Formal treatment of how the Python annotation pattern corresponds to a SHACL shape: <code>Annotated[str, Field(...)]</code> as the flatfile encoding of a geometry-layer constraint on a script parameter.</li>
-</ul>
-
-  </div>
-  
-</article>
-<section class="page-relations" resource="https://emsenn.net/library/tech/terms/relational-system-markdown/" typeof="schema:CreativeWork"
-         vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
-  <dl><div class="relation">
-        <dt><a href="/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Component of</a></dt>
-        <dd property="emsenn:Componentof"><a href="/library/tech/terms/flatfile-agential-resource-system-blueprint/">Flatfile agential resource system blueprint</a></dd>
-      </div><div class="relation">
-        <dt>Defines</dt>
-        <dd property="emsenn:Defines"><a href="/library/tech/terms/relational-system-markdown/">Relational system markdown</a></dd>
-      </div><div class="relation">
-        <dt>Related</dt>
-        <dd property="emsenn:Related"><a href="/library/tech/terms/flatfile/">Flatfile</a></dd>
-      </div>
-  <div class="relation">
-    <dt>Referenced by</dt>
-    <dd>
-      <ul><li><a href="/library/tech/terms/markdown-frontmatter/"></a></li><li><a href="/library/tech/terms/flatfile-agential-resource-system-given/"></a></li></ul>
-    </dd>
-  </div>
-  </dl>
-</section>
-
-
-  
-
-
-  </main>
-  <footer>
-    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
-  </footer>
-</body>
-</html>
+See <a href=markdown-frontmatter.md class=link-internal>markdown-frontmatter</a> for the full validation pipeline.</p><h2 id=what-this-is-not>What this is NOT</h2><p>This encoding spec does not describe the distributed runtime.
+For the live distributed system (rqlite, NATS, Dapr, PydanticAI, LangGraph), see <a href=distributed-relational-machine-runtime.md class=link-internal>distributed-relational-machine-runtime</a>.</p><h2 id=open-questions>Open questions</h2><ul><li>SHACL shapes for vocabulary relation nodes: <code>id.ttl</code>, <code>description.ttl</code>, etc.</li><li>A mechanically checkable definition of vocabulary completeness: scan all frontmatter keys, check each against the graph, report those with no corresponding node as vocabulary debt.</li><li>Formal treatment of how the Python annotation pattern corresponds to a SHACL shape: <code>Annotated[str, Field(...)]</code> as the flatfile encoding of a geometry-layer constraint on a script parameter.</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/tech/terms/relational-system-markdown/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt><a href=/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/>Component of</a></dt><dd property="emsenn:Componentof"><a href=/library/tech/terms/flatfile-agential-resource-system-blueprint/>Flatfile agential resource system blueprint</a></dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><a href=/library/tech/terms/relational-system-markdown/>Relational system markdown</a></dd></div><div class=relation><dt>Related</dt><dd property="emsenn:Related"><a href=/library/tech/terms/flatfile/>Flatfile</a></dd></div><div class=relation><dt>Referenced by</dt><dd><ul><li><a href=/library/tech/terms/markdown-frontmatter/></a></li><li><a href=/library/tech/terms/flatfile-agential-resource-system-given/></a></li></ul></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>

@@ -1,40 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>emsenn.net</title>
-    <link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/</link>
-    <description>Recent content on emsenn.net</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 06 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Automated Transaction</title>
-      <link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/automated-transaction/</link>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/automated-transaction/</guid>
-      <description>&lt;h1 id=&#34;automated-transaction&#34;&gt;Automated Transaction&lt;/h1&gt;&#xA;&lt;p&gt;An automated transaction is a rule that generates additional postings whenever a real transaction matches a pattern. It&amp;rsquo;s defined with a &lt;code&gt;=&lt;/code&gt; sign followed by a matching expression:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;= /Grocery/&#xA;    (Budget:Food)    -1&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This rule adds a virtual posting to &lt;code&gt;Budget:Food&lt;/code&gt; for the negative of the matched amount on every transaction whose payee matches &amp;ldquo;Grocery.&amp;rdquo; Automated transactions are useful for budget tracking, tax categorization, and allocation — they apply consistently without manual intervention. They run at report time, not at data entry time, so they don&amp;rsquo;t modify the source file.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Directive</title>
-      <link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/directive/</link>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/directive/</guid>
-      <description>&lt;h1 id=&#34;directive&#34;&gt;Directive&lt;/h1&gt;&#xA;&lt;p&gt;A directive is a non-transaction command in a Ledger file that controls how the file is interpreted. Directives include:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;account&lt;/code&gt; — declares an account name (optional in Ledger, unlike &lt;a href=&#34;../beancount.md&#34; class=&#34;link-internal&#34;&gt;Beancount&lt;/a&gt; where it&amp;rsquo;s required)&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;commodity&lt;/code&gt; — declares a commodity and its display format&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;include&lt;/code&gt; — includes another Ledger file, enabling modular file organization&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;alias&lt;/code&gt; — creates a shorthand for an account name&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;tag&lt;/code&gt; — declares metadata tags&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;year&lt;/code&gt; / &lt;code&gt;Y&lt;/code&gt; — sets a default year for date parsing&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Directives don&amp;rsquo;t represent financial data — they configure the parser and provide metadata. Ledger is permissive about directives; most are optional and exist to add structure or catch typos through strict mode (&lt;code&gt;--strict&lt;/code&gt; or &lt;code&gt;--pedantic&lt;/code&gt; flags).&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Posting</title>
-      <link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/posting/</link>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/posting/</guid>
-      <description>&lt;h1 id=&#34;posting&#34;&gt;Posting&lt;/h1&gt;&#xA;&lt;p&gt;A posting is one line within a Ledger transaction that assigns an amount to an account. Every transaction contains at least two postings, and their amounts must sum to zero (enforcing &lt;a href=&#34;../../terms/double-entry-bookkeeping.md&#34; class=&#34;link-internal&#34;&gt;double-entry bookkeeping&lt;/a&gt;). Ledger allows the last posting in a transaction to omit its amount — the software infers it from the balance. Example:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;2024/03/15 Grocery Store&#xA;    Expenses:Food:Groceries    \$52.47&#xA;    Assets:Checking&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here there are two postings: one debiting &lt;code&gt;Expenses:Food:Groceries&lt;/code&gt; for $52.47, and one crediting &lt;code&gt;Assets:Checking&lt;/code&gt; for the balancing amount (-$52.47), which Ledger infers.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Virtual Posting</title>
-      <link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/virtual-posting/</link>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/virtual-posting/</guid>
-      <description>&lt;h1 id=&#34;virtual-posting&#34;&gt;Virtual Posting&lt;/h1&gt;&#xA;&lt;p&gt;A virtual posting is a posting enclosed in parentheses &lt;code&gt;()&lt;/code&gt; or square brackets &lt;code&gt;[]&lt;/code&gt; that doesn&amp;rsquo;t need to balance with the other postings in the transaction. Virtual postings exist for budgeting and tracking purposes — they let users associate amounts with accounts without affecting the real double-entry balance.&lt;/p&gt;&#xA;&lt;p&gt;Parenthesized postings &lt;code&gt;()&lt;/code&gt; are fully virtual — they don&amp;rsquo;t balance and don&amp;rsquo;t affect any real account. Bracketed postings &lt;code&gt;[]&lt;/code&gt; are &amp;ldquo;balanced virtual&amp;rdquo; — they must balance with other bracketed postings in the same transaction but are separate from the real postings.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>emsenn.net</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/</link><description>Recent content on emsenn.net</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 06 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/index.xml" rel="self" type="application/rss+xml"/><item><title>Automated Transaction</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/automated-transaction/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/automated-transaction/</guid><description>&lt;h1 id="automated-transaction"&gt;Automated Transaction&lt;/h1&gt;
+&lt;p&gt;An automated transaction is a rule that generates additional postings whenever a real transaction matches a pattern. It&amp;rsquo;s defined with a &lt;code&gt;=&lt;/code&gt; sign followed by a matching expression:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;= /Grocery/
+ (Budget:Food) -1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This rule adds a virtual posting to &lt;code&gt;Budget:Food&lt;/code&gt; for the negative of the matched amount on every transaction whose payee matches &amp;ldquo;Grocery.&amp;rdquo; Automated transactions are useful for budget tracking, tax categorization, and allocation — they apply consistently without manual intervention. They run at report time, not at data entry time, so they don&amp;rsquo;t modify the source file.&lt;/p&gt;</description></item><item><title>Directive</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/directive/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/directive/</guid><description>&lt;h1 id="directive"&gt;Directive&lt;/h1&gt;
+&lt;p&gt;A directive is a non-transaction command in a Ledger file that controls how the file is interpreted. Directives include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;account&lt;/code&gt; — declares an account name (optional in Ledger, unlike &lt;a href="../beancount.md" class="link-internal"&gt;Beancount&lt;/a&gt; where it&amp;rsquo;s required)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;commodity&lt;/code&gt; — declares a commodity and its display format&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;include&lt;/code&gt; — includes another Ledger file, enabling modular file organization&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;alias&lt;/code&gt; — creates a shorthand for an account name&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tag&lt;/code&gt; — declares metadata tags&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;year&lt;/code&gt; / &lt;code&gt;Y&lt;/code&gt; — sets a default year for date parsing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Directives don&amp;rsquo;t represent financial data — they configure the parser and provide metadata. Ledger is permissive about directives; most are optional and exist to add structure or catch typos through strict mode (&lt;code&gt;--strict&lt;/code&gt; or &lt;code&gt;--pedantic&lt;/code&gt; flags).&lt;/p&gt;</description></item><item><title>Posting</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/posting/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/posting/</guid><description>&lt;h1 id="posting"&gt;Posting&lt;/h1&gt;
+&lt;p&gt;A posting is one line within a Ledger transaction that assigns an amount to an account. Every transaction contains at least two postings, and their amounts must sum to zero (enforcing &lt;a href="../../terms/double-entry-bookkeeping.md" class="link-internal"&gt;double-entry bookkeeping&lt;/a&gt;). Ledger allows the last posting in a transaction to omit its amount — the software infers it from the balance. Example:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;2024/03/15 Grocery Store
+ Expenses:Food:Groceries \$52.47
+ Assets:Checking
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here there are two postings: one debiting &lt;code&gt;Expenses:Food:Groceries&lt;/code&gt; for $52.47, and one crediting &lt;code&gt;Assets:Checking&lt;/code&gt; for the balancing amount (-$52.47), which Ledger infers.&lt;/p&gt;</description></item><item><title>Virtual Posting</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/virtual-posting/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/ledger-cli/terms/virtual-posting/</guid><description>&lt;h1 id="virtual-posting"&gt;Virtual Posting&lt;/h1&gt;
+&lt;p&gt;A virtual posting is a posting enclosed in parentheses &lt;code&gt;()&lt;/code&gt; or square brackets &lt;code&gt;[]&lt;/code&gt; that doesn&amp;rsquo;t need to balance with the other postings in the transaction. Virtual postings exist for budgeting and tracking purposes — they let users associate amounts with accounts without affecting the real double-entry balance.&lt;/p&gt;
+&lt;p&gt;Parenthesized postings &lt;code&gt;()&lt;/code&gt; are fully virtual — they don&amp;rsquo;t balance and don&amp;rsquo;t affect any real account. Bracketed postings &lt;code&gt;[]&lt;/code&gt; are &amp;ldquo;balanced virtual&amp;rdquo; — they must balance with other bracketed postings in the same transaction but are separate from the real postings.&lt;/p&gt;</description></item></channel></rss>
