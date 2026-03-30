@@ -1,12 +1,220 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"Transient typed object produced by interpret-prompt and consumed by route-prompt-units; lives only in the skill chain between do-work's two steps, not in any context file.","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-prompt-unit/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=relational-universe><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/terms/>Terms</a></nav><h1 class=p-name></h1><div class=meta><span class=p-summary>Transient typed object produced by interpret-prompt and consumed by route-prompt-units; lives only in the skill chain between do-work's two steps, not in any context file.</span></div><div class=e-content><h1 id=flatfile-agential-resource-system-prompt-unit>Flatfile Agential Resource System Prompt Unit</h1><h2 id=what-it-is>What it is</h2><p>A FlatfileAgentialResourceSystemPromptUnit is an intermediate object in the <code>do-work</code> skill chain. It is produced by <code>interpret-prompt</code> (<a href=../skills/interpret-prompt.md class=link-internal>interpret-prompt</a>) and consumed by <code>route-prompt-units</code> (<a href=../skills/route-prompt-units.md class=link-internal>route-prompt-units</a>). It is not stored anywhere permanently — it is translated into the appropriate context-file Unit type during routing.</p><p>This makes FlatfileAgentialResourceSystemPromptUnit a skill object type (cf. <a href=flatfile-agential-resource-system-proof-skill-object-types.md class=link-internal>flatfile-agential-resource-system-proof-skill-object-types</a>), not a FlatfileAgentialResourceSystemContextEntry (<a href=flatfile-agential-resource-system-context-entry.md class=link-internal>flatfile-agential-resource-system-context-entry</a>).</p><h2 id=required-fields>Required fields</h2><p>Every FlatfileAgentialResourceSystemPromptUnit has:</p><ul><li><code>type</code> — one of: <code>Principle</code>, <code>Idea</code>, <code>OperationItem</code>, <code>Conjecture</code>, <code>Question</code>, <code>Gap</code></li><li><code>locale</code> — the <code>id</code> of the locale this unit belongs to</li><li><code>text</code> — the content extracted from the operator prompt</li></ul><h2 id=type-specific-fields>Type-specific fields</h2><table><thead><tr><th>Type</th><th>Additional required fields</th></tr></thead><tbody><tr><td><code>Principle</code></td><td>(none beyond required)</td></tr><tr><td><code>Idea</code></td><td><code>problem</code> — the gap or need the idea addresses</td></tr><tr><td><code>OperationItem</code></td><td><code>action</code> — one-sentence deliverable</td></tr><tr><td><code>Conjecture</code></td><td><code>evidence</code> — supporting reasoning from the prompt, or empty string</td></tr><tr><td><code>Question</code></td><td>(none beyond required)</td></tr><tr><td><code>Gap</code></td><td><code>location</code> — file or skill where the gap was found, or empty string</td></tr></tbody></table><h2 id=routing-targets>Routing targets</h2><p><code>route-prompt-units</code> maps each FlatfileAgentialResourceSystemPromptUnit to a context-file Unit as follows:</p><table><thead><tr><th>FlatfileAgentialResourceSystemPromptUnit type</th><th>Becomes</th><th>Placed in</th></tr></thead><tbody><tr><td><code>Principle</code></td><td>Principle</td><td><code>{locale}/SOUL.md</code></td></tr><tr><td><code>Idea</code></td><td>Idea</td><td><code>{locale}/IDEAS.md</code></td></tr><tr><td><code>OperationItem</code></td><td>OperationItem</td><td><code>{locale}/PLANS.md</code></td></tr><tr><td><code>Conjecture</code></td><td>Idea</td><td><code>math/IDEAS.md</code></td></tr><tr><td><code>Question</code></td><td>Message</td><td><code>{locale}/INBOX.md</code></td></tr><tr><td><code>Gap</code></td><td>OperationItem or Idea</td><td><code>{locale}/PLANS.md</code> or <code>{locale}/IDEAS.md</code></td></tr></tbody></table><h2 id=open-questions>Open questions</h2></div></article><section class=page-relations resource="https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-prompt-unit/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Ast</dt><dd property="emsenn:Ast"></dd></div><div class=relation><dt>Date modified</dt><dd property="emsenn:Datemodified"><time datetime=2026-03-19>2026-03-19</time></dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><a href=/library/tech/terms/flatfile-agential-resource-system-prompt-unit/>Flatfile agential resource system prompt unit</a></dd></div><div class=relation><dt><a href=/library/math/terms/locale/>Locale</a></dt><dd property="emsenn:Locale">Relational universe</dd></div><div class=relation><dt>Output</dt><dd property="emsenn:Output">Relational universe</dd></div><div class=relation><dt>Related</dt><dd property="emsenn:Related">Flatfile agential resource system context entry, skill</dd></div><div class=relation><dt><a href=/library/information/terms/text/>Text</a></dt><dd property="emsenn:Text">Relational universe</dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@misc{emsenn-flatfile-agential-resource-system-prompt-unit,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "Transient typed object produced by interpret-prompt and consumed by route-prompt-units; lives only in the skill chain between do-work's two steps, not in any context file.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-prompt-unit/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="relational-universe">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    <span class="p-summary">Transient typed object produced by interpret-prompt and consumed by route-prompt-units; lives only in the skill chain between do-work&#39;s two steps, not in any context file.</span>
+  </div>
+  <div class="e-content">
+    <h1 id="flatfile-agential-resource-system-prompt-unit">Flatfile Agential Resource System Prompt Unit</h1>
+<h2 id="what-it-is">What it is</h2>
+<p>A FlatfileAgentialResourceSystemPromptUnit is an intermediate object in the <code>do-work</code> skill chain. It is produced by <code>interpret-prompt</code> (<a href="../skills/interpret-prompt.md" class="link-internal">interpret-prompt</a>) and consumed by <code>route-prompt-units</code> (<a href="../skills/route-prompt-units.md" class="link-internal">route-prompt-units</a>). It is not stored anywhere permanently — it is translated into the appropriate context-file Unit type during routing.</p>
+<p>This makes FlatfileAgentialResourceSystemPromptUnit a skill object type (cf. <a href="flatfile-agential-resource-system-proof-skill-object-types.md" class="link-internal">flatfile-agential-resource-system-proof-skill-object-types</a>), not a FlatfileAgentialResourceSystemContextEntry (<a href="flatfile-agential-resource-system-context-entry.md" class="link-internal">flatfile-agential-resource-system-context-entry</a>).</p>
+<h2 id="required-fields">Required fields</h2>
+<p>Every FlatfileAgentialResourceSystemPromptUnit has:</p>
+<ul>
+<li><code>type</code> — one of: <code>Principle</code>, <code>Idea</code>, <code>OperationItem</code>, <code>Conjecture</code>, <code>Question</code>, <code>Gap</code></li>
+<li><code>locale</code> — the <code>id</code> of the locale this unit belongs to</li>
+<li><code>text</code> — the content extracted from the operator prompt</li>
+</ul>
+<h2 id="type-specific-fields">Type-specific fields</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Type</th>
+          <th>Additional required fields</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>Principle</code></td>
+          <td>(none beyond required)</td>
+      </tr>
+      <tr>
+          <td><code>Idea</code></td>
+          <td><code>problem</code> — the gap or need the idea addresses</td>
+      </tr>
+      <tr>
+          <td><code>OperationItem</code></td>
+          <td><code>action</code> — one-sentence deliverable</td>
+      </tr>
+      <tr>
+          <td><code>Conjecture</code></td>
+          <td><code>evidence</code> — supporting reasoning from the prompt, or empty string</td>
+      </tr>
+      <tr>
+          <td><code>Question</code></td>
+          <td>(none beyond required)</td>
+      </tr>
+      <tr>
+          <td><code>Gap</code></td>
+          <td><code>location</code> — file or skill where the gap was found, or empty string</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="routing-targets">Routing targets</h2>
+<p><code>route-prompt-units</code> maps each FlatfileAgentialResourceSystemPromptUnit to a context-file Unit as follows:</p>
+<table>
+  <thead>
+      <tr>
+          <th>FlatfileAgentialResourceSystemPromptUnit type</th>
+          <th>Becomes</th>
+          <th>Placed in</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>Principle</code></td>
+          <td>Principle</td>
+          <td><code>{locale}/SOUL.md</code></td>
+      </tr>
+      <tr>
+          <td><code>Idea</code></td>
+          <td>Idea</td>
+          <td><code>{locale}/IDEAS.md</code></td>
+      </tr>
+      <tr>
+          <td><code>OperationItem</code></td>
+          <td>OperationItem</td>
+          <td><code>{locale}/PLANS.md</code></td>
+      </tr>
+      <tr>
+          <td><code>Conjecture</code></td>
+          <td>Idea</td>
+          <td><code>math/IDEAS.md</code></td>
+      </tr>
+      <tr>
+          <td><code>Question</code></td>
+          <td>Message</td>
+          <td><code>{locale}/INBOX.md</code></td>
+      </tr>
+      <tr>
+          <td><code>Gap</code></td>
+          <td>OperationItem or Idea</td>
+          <td><code>{locale}/PLANS.md</code> or <code>{locale}/IDEAS.md</code></td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="open-questions">Open questions</h2>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-prompt-unit/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-19">2026-03-19</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/tech/terms/flatfile-agential-resource-system-prompt-unit/">Flatfile agential resource system prompt unit</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/locale/">Locale</a></dt>
+        <dd property="emsenn:Locale">Relational universe</dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">Relational universe</dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related">Flatfile agential resource system context entry, skill</dd>
+      </div><div class="relation">
+        <dt><a href="/library/information/terms/text/">Text</a></dt>
+        <dd property="emsenn:Text">Relational universe</dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn-flatfile-agential-resource-system-prompt-unit,
   author    = {emsenn},
   title     = {},
   note      = {Transient typed object produced by interpret-prompt and consumed by route-prompt-units; lives only in the skill chain between do-work&#39;s two steps, not in any context file.},
   url       = {https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-prompt-unit/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

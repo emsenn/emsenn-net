@@ -1,12 +1,165 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Fine-Tuning Local Models on a Knowledge Corpus - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-08","datePublished":"2026-03-08","description":"Fine-tuning adapts a pre-trained large language model to perform better on a specific domain or task by training it further on a curated dataset. For a structured knowledge repository — thousands of markdown files with frontmatter, cross-references, and discipline-specific vocabulary — fine-tuning could produce a model that generates content matching the repository\u0026rsquo;s conventions without explicit prompting.\nWhat fine-tuning does A base model like Qwen 2.5 3B knows general language but nothing about semiotic markdown, CamelCase tags, or the difference between a term and a concept in this repository\u0026rsquo;s type system. Every inference call must include the frontmatter specification, valid type list, and formatting rules in the prompt — consuming context window and adding latency.\n","keywords":"FineTuning, OnDeviceInference, MachineLearning","name":"Fine-Tuning Local Models on a Knowledge Corpus","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/on-device-inference/fine-tuning-local-models/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=text><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/>Computing</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/on-device-inference/>On device inference</a></nav><h1 class=p-name>Fine-Tuning Local Models on a Knowledge Corpus</h1><div class=meta><time class=dt-published datetime=2026-03-08T00:00:00Z>2026-03-08</time></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#what-fine-tuning-does>What fine-tuning does</a></li><li><a href=#feasibility-on-consumer-hardware>Feasibility on consumer hardware</a></li><li><a href=#what-to-fine-tune-on>What to fine-tune on</a></li><li><a href=#what-fine-tuning-does-not-do>What fine-tuning does not do</a></li><li><a href=#when-to-fine-tune>When to fine-tune</a></li></ul></nav></details><div class=e-content><p>Fine-tuning adapts a pre-trained <a href=terms/large-language-model.md class=link-internal>large language model</a> to perform better on a specific domain or task by training it further on a curated dataset. For a structured knowledge repository — thousands of markdown files with frontmatter, cross-references, and discipline-specific vocabulary — fine-tuning could produce a model that generates content matching the repository&rsquo;s conventions without explicit prompting.</p><h2 id=what-fine-tuning-does>What fine-tuning does</h2><p>A base model like <a href=terms/qwen.md class=link-internal>Qwen</a> 2.5 3B knows general language but nothing about semiotic markdown, CamelCase tags, or the difference between a term and a concept in this repository&rsquo;s type system. Every inference call must include the frontmatter specification, valid type list, and formatting rules in the prompt — consuming context window and adding latency.</p><p>Fine-tuning on the repository&rsquo;s content would teach the model these conventions directly. A fine-tuned model could produce correctly-formatted frontmatter, use the right type vocabulary, and generate CamelCase tags without being told the rules each time. The prompt shrinks from ~500 tokens of instructions to a simple &ldquo;enrich this file.&rdquo;</p><h2 id=feasibility-on-consumer-hardware>Feasibility on consumer hardware</h2><p>Fine-tuning a 3B-parameter model using LoRA (Low-Rank Adaptation) requires approximately 8-16 GB of VRAM or unified memory. On an ARM-based system like the Snapdragon X Elite with 32 GB of shared memory, this is feasible using CPU-based training tools (though slow) or potentially through the <a href=../../terms/neural-processing-unit.md class=link-internal>NPU</a> if the training framework supports the QNN backend.</p><p>Practical requirements:</p><ul><li><strong>Dataset preparation</strong>: convert repository files into training examples (input: raw content → output: enriched content with correct frontmatter)</li><li><strong>Training time</strong>: 1-4 hours for a 3B model with LoRA on CPU, potentially faster on GPU/NPU</li><li><strong>Storage</strong>: the LoRA adapter adds ~50-200 MB on top of the base model</li><li><strong>Tools</strong>: Unsloth, Axolotl, or llama.cpp&rsquo;s built-in fine-tuning support</li></ul><p>The resulting adapter can be loaded by <a href=../../software/ollama/index.md class=link-internal>Ollama</a> as a custom model, making it immediately available through the existing <code>local_llm</code> infrastructure.</p><h2 id=what-to-fine-tune-on>What to fine-tune on</h2><p>The training dataset should consist of high-quality examples:</p><ul><li>Files with complete, validated frontmatter (enriched by trusted models or by hand)</li><li>Term definitions that follow the one-concept-per-file convention</li><li>Cross-referenced content that demonstrates the linking style</li><li>A mix of content types (term, concept, text, index) to teach the type system</li></ul><p>A repository with ~500 well-formed files can produce a useful fine-tuning dataset. Quality matters more than quantity — 200 excellent examples outperform 2,000 mediocre ones.</p><h2 id=what-fine-tuning-does-not-do>What fine-tuning does not do</h2><p>Fine-tuning does not give the model new knowledge about the world. A fine-tuned model knows the repository&rsquo;s <em>conventions</em> better, but it still draws factual content from its pre-training data. It will not learn the specific content of the repository in a way that allows it to answer questions about that content — that requires retrieval-augmented generation (RAG) or a much larger training dataset.</p><p>Fine-tuning also does not make a small model as capable as a large one. A fine-tuned 3B model will follow formatting conventions better but will not suddenly produce the reasoning quality of a 70B model.</p><h2 id=when-to-fine-tune>When to fine-tune</h2><p>Fine-tuning makes sense when:</p><ul><li>The same long prompt is repeated across hundreds or thousands of calls (amortize prompt engineering into training)</li><li>The conventions are stable enough that retraining is infrequent</li><li>Output format consistency matters more than factual accuracy</li></ul><p>For this repository, the enrichment pipeline is the strongest candidate: the frontmatter specification is stable, the prompt is repeated thousands of times (once per triage file), and format consistency is critical. A fine-tuned model could replace the 500-token enrichment prompt with a 50-token prompt and produce more consistent results.</p><p>The appropriate time is after the repository conventions stabilize — fine-tuning on a moving target wastes the training effort. Current work on specifications and content type enforcement should reach a stable state before investing in fine-tuning.</p></div></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/on-device-inference/fine-tuning-local-models/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-08>2026-03-08</time></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/finetuning/>FineTuning</a></li><li><a href=/tags/ondeviceinference/>OnDeviceInference</a></li><li><a href=/tags/machinelearning/>MachineLearning</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@article{emsenn2026-fine-tuning-local-models,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fine-Tuning Local Models on a Knowledge Corpus - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-08",
+  "datePublished": "2026-03-08",
+  "description": "Fine-tuning adapts a pre-trained large language model to perform better on a specific domain or task by training it further on a curated dataset. For a structured knowledge repository — thousands of markdown files with frontmatter, cross-references, and discipline-specific vocabulary — fine-tuning could produce a model that generates content matching the repository\u0026rsquo;s conventions without explicit prompting.\nWhat fine-tuning does A base model like Qwen 2.5 3B knows general language but nothing about semiotic markdown, CamelCase tags, or the difference between a term and a concept in this repository\u0026rsquo;s type system. Every inference call must include the frontmatter specification, valid type list, and formatting rules in the prompt — consuming context window and adding latency.\n",
+  "keywords": "FineTuning, OnDeviceInference, MachineLearning",
+  "name": "Fine-Tuning Local Models on a Knowledge Corpus",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/on-device-inference/fine-tuning-local-models/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="text">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/on-device-inference/">On device inference</a></nav>
+  <h1 class="p-name">Fine-Tuning Local Models on a Knowledge Corpus</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-08T00:00:00Z">2026-03-08</time>
+    
+    
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-fine-tuning-does">What fine-tuning does</a></li>
+    <li><a href="#feasibility-on-consumer-hardware">Feasibility on consumer hardware</a></li>
+    <li><a href="#what-to-fine-tune-on">What to fine-tune on</a></li>
+    <li><a href="#what-fine-tuning-does-not-do">What fine-tuning does not do</a></li>
+    <li><a href="#when-to-fine-tune">When to fine-tune</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>Fine-tuning adapts a pre-trained <a href="terms/large-language-model.md" class="link-internal">large language model</a> to perform better on a specific domain or task by training it further on a curated dataset. For a structured knowledge repository — thousands of markdown files with frontmatter, cross-references, and discipline-specific vocabulary — fine-tuning could produce a model that generates content matching the repository&rsquo;s conventions without explicit prompting.</p>
+<h2 id="what-fine-tuning-does">What fine-tuning does</h2>
+<p>A base model like <a href="terms/qwen.md" class="link-internal">Qwen</a> 2.5 3B knows general language but nothing about semiotic markdown, CamelCase tags, or the difference between a term and a concept in this repository&rsquo;s type system. Every inference call must include the frontmatter specification, valid type list, and formatting rules in the prompt — consuming context window and adding latency.</p>
+<p>Fine-tuning on the repository&rsquo;s content would teach the model these conventions directly. A fine-tuned model could produce correctly-formatted frontmatter, use the right type vocabulary, and generate CamelCase tags without being told the rules each time. The prompt shrinks from ~500 tokens of instructions to a simple &ldquo;enrich this file.&rdquo;</p>
+<h2 id="feasibility-on-consumer-hardware">Feasibility on consumer hardware</h2>
+<p>Fine-tuning a 3B-parameter model using LoRA (Low-Rank Adaptation) requires approximately 8-16 GB of VRAM or unified memory. On an ARM-based system like the Snapdragon X Elite with 32 GB of shared memory, this is feasible using CPU-based training tools (though slow) or potentially through the <a href="../../terms/neural-processing-unit.md" class="link-internal">NPU</a> if the training framework supports the QNN backend.</p>
+<p>Practical requirements:</p>
+<ul>
+<li><strong>Dataset preparation</strong>: convert repository files into training examples (input: raw content → output: enriched content with correct frontmatter)</li>
+<li><strong>Training time</strong>: 1-4 hours for a 3B model with LoRA on CPU, potentially faster on GPU/NPU</li>
+<li><strong>Storage</strong>: the LoRA adapter adds ~50-200 MB on top of the base model</li>
+<li><strong>Tools</strong>: Unsloth, Axolotl, or llama.cpp&rsquo;s built-in fine-tuning support</li>
+</ul>
+<p>The resulting adapter can be loaded by <a href="../../software/ollama/index.md" class="link-internal">Ollama</a> as a custom model, making it immediately available through the existing <code>local_llm</code> infrastructure.</p>
+<h2 id="what-to-fine-tune-on">What to fine-tune on</h2>
+<p>The training dataset should consist of high-quality examples:</p>
+<ul>
+<li>Files with complete, validated frontmatter (enriched by trusted models or by hand)</li>
+<li>Term definitions that follow the one-concept-per-file convention</li>
+<li>Cross-referenced content that demonstrates the linking style</li>
+<li>A mix of content types (term, concept, text, index) to teach the type system</li>
+</ul>
+<p>A repository with ~500 well-formed files can produce a useful fine-tuning dataset. Quality matters more than quantity — 200 excellent examples outperform 2,000 mediocre ones.</p>
+<h2 id="what-fine-tuning-does-not-do">What fine-tuning does not do</h2>
+<p>Fine-tuning does not give the model new knowledge about the world. A fine-tuned model knows the repository&rsquo;s <em>conventions</em> better, but it still draws factual content from its pre-training data. It will not learn the specific content of the repository in a way that allows it to answer questions about that content — that requires retrieval-augmented generation (RAG) or a much larger training dataset.</p>
+<p>Fine-tuning also does not make a small model as capable as a large one. A fine-tuned 3B model will follow formatting conventions better but will not suddenly produce the reasoning quality of a 70B model.</p>
+<h2 id="when-to-fine-tune">When to fine-tune</h2>
+<p>Fine-tuning makes sense when:</p>
+<ul>
+<li>The same long prompt is repeated across hundreds or thousands of calls (amortize prompt engineering into training)</li>
+<li>The conventions are stable enough that retraining is infrequent</li>
+<li>Output format consistency matters more than factual accuracy</li>
+</ul>
+<p>For this repository, the enrichment pipeline is the strongest candidate: the frontmatter specification is stable, the prompt is repeated thousands of times (once per triage file), and format consistency is critical. A fine-tuned model could replace the 500-token enrichment prompt with a 50-token prompt and produce more consistent results.</p>
+<p>The appropriate time is after the repository conventions stabilize — fine-tuning on a moving target wastes the training effort. Current work on specifications and content type enforcement should reach a stable state before investing in fine-tuning.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/on-device-inference/fine-tuning-local-models/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-08">2026-03-08</time></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/finetuning/">FineTuning</a></li><li><a href="/tags/ondeviceinference/">OnDeviceInference</a></li><li><a href="/tags/machinelearning/">MachineLearning</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@article{emsenn2026-fine-tuning-local-models,
   author    = {emsenn},
   title     = {Fine-Tuning Local Models on a Knowledge Corpus},
   year      = {2026},
   url       = {https://emsenn.net/library/tech/domains/computing/domains/on-device-inference/fine-tuning-local-models/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,11 +1,151 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Center of Pressure - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"DefinedTerm","author":[{"@type":"Person","name":"emsenn"},{"@type":"Person","name":"claude-opus-4-6"}],"dateModified":"2026-03-07","datePublished":"2026-03-07","description":"The point where the total aerodynamic force effectively acts — its position relative to the center of gravity determines stability.","inDefinedTermSet":{"@type":"DefinedTermSet","name":"","url":"https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/"},"keywords":"Aerodynamics, FlightMechanics","name":"Center of Pressure","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"termCode":"center of pressure, aerodynamic center","url":"https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/center-of-pressure/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=term><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/engineering/>Engineering</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/engineering/domains/aerospace-engineering/>Aerospace engineering</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/engineering/domains/aerospace-engineering/terms/>Terms</a></nav><h1 class=p-name>Center of Pressure</h1><div class=meta><time class=dt-published datetime=2026-03-07T00:00:00Z>2026-03-07</time>
-<span>by <span class=p-author>emsenn</span>, <span class=p-author>claude-opus-4-6</span></span>
-<span class=p-summary>The point where the total aerodynamic force effectively acts — its position relative to the center of gravity determines stability.</span></div><div class="type-meta type-meta--definition"><span class=type-meta-label>Defines</span>
-<span class=type-meta-value>center of pressure, aerodynamic center</span></div><div class=e-content><p>The center of pressure (CP) is the point on a body where the resultant aerodynamic force can be considered to act. It is the single point that, if you replaced the entire distributed pressure field over the wing with a single force vector, would produce the same net force and moment.</p><p>For a wing, the center of pressure depends on the <a href=../../topics/uavs/terms/angle-of-attack.md class=link-internal>angle of attack</a>: at low AoA it lies aft; as AoA increases, it moves forward. This movement is what makes the center of pressure awkward for stability analysis — it is not a fixed point.</p><h2 id=aerodynamic-center-the-fixed-reference>Aerodynamic center: the fixed reference</h2><p>The <strong>aerodynamic center</strong> (AC) is the point about which the pitching moment coefficient does not change with angle of attack. For most subsonic <a href=../../topics/uavs/terms/airfoil.md class=link-internal>airfoils</a>, the aerodynamic center is at approximately 25% of the <a href=../../topics/uavs/terms/chord.md class=link-internal>chord</a> from the leading edge. This position is nearly constant regardless of angle of attack, making it far more useful than the center of pressure for design calculations.</p><p>The distinction:</p><ul><li><strong>Center of pressure</strong> = the point where total aerodynamic force acts (moves with AoA)</li><li><strong>Aerodynamic center</strong> = the point where the moment stays constant as AoA changes (fixed at ~25% chord)</li></ul><p>In practice, aerospace engineers work with forces and moments about the aerodynamic center rather than tracking the moving center of pressure. The lift force acts at the AC, and any residual pitching moment (from airfoil <a href=../../topics/uavs/terms/camber.md class=link-internal>camber</a>) is treated as a constant couple.</p><h2 id=stability-cp-vs-cg>Stability: CP vs. CG</h2><p>An aircraft is statically stable in pitch when the <a href=../../topics/uavs/terms/center-of-gravity.md class=link-internal>center of gravity</a> is forward of the <strong>neutral point</strong> — the aerodynamic center of the entire aircraft (including wing, tail, and fuselage contributions). If a gust increases the angle of attack, the additional lift force acting aft of the CG creates a nose-down restoring moment, pitching the aircraft back toward its trimmed condition.</p><p>For rockets, which lack aerodynamic surfaces that produce restoring moments in the same way, <a href=./stability.md class=link-internal>stability</a> requires the center of pressure to be aft of the center of gravity. Fins at the base of a rocket push the CP aft, creating the same kind of restoring moment: if the rocket yaws, the fins generate a side force that pushes the tail back into alignment.</p><p>The general rule for both aircraft and rockets: <strong>CG forward of CP/neutral point = stable; CG aft of CP/neutral point = unstable.</strong> The distance between them, expressed as a percentage of the <a href=../../topics/uavs/terms/chord.md class=link-internal>chord</a> (for aircraft) or body calibers (for rockets), is the static margin.</p><h2 id=related-terms>Related terms</h2><ul><li><a href=../../topics/uavs/terms/center-of-gravity.md class=link-internal>Center of Gravity</a> — the mass balance point; stability depends on the CG-to-CP relationship</li><li><a href=./stability.md class=link-internal>Stability</a> — the tendency to return to equilibrium, governed by CP and CG positions</li><li><a href=../../topics/uavs/terms/angle-of-attack.md class=link-internal>Angle of Attack</a> — the variable that moves the center of pressure</li><li><a href=../../topics/uavs/terms/airfoil.md class=link-internal>Airfoil</a> — the shape whose pressure distribution determines the aerodynamic center position</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/center-of-pressure/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-07>2026-03-07</time></dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><ul><li><a href=/library/engineering/domains/aerospace-engineering/terms/center-of-pressure/>Center of pressure</a></li><li><a href=/library/engineering/domains/aerospace-engineering/terms/center-of-pressure/>Aerodynamic center</a></li></ul></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/aerodynamics/>Aerodynamics</a></li><li><a href=/tags/flightmechanics/>FlightMechanics</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@misc{emsenn2026-center-of-pressure,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Center of Pressure - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "emsenn"
+    },
+    {
+      "@type": "Person",
+      "name": "claude-opus-4-6"
+    }
+  ],
+  "dateModified": "2026-03-07",
+  "datePublished": "2026-03-07",
+  "description": "The point where the total aerodynamic force effectively acts — its position relative to the center of gravity determines stability.",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "",
+    "url": "https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/"
+  },
+  "keywords": "Aerodynamics, FlightMechanics",
+  "name": "Center of Pressure",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "termCode": "center of pressure, aerodynamic center",
+  "url": "https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/center-of-pressure/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="term">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/">Aerospace engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/terms/">Terms</a></nav>
+  <h1 class="p-name">Center of Pressure</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-07T00:00:00Z">2026-03-07</time>
+    <span>by <span class="p-author">emsenn</span>, <span class="p-author">claude-opus-4-6</span></span>
+    <span class="p-summary">The point where the total aerodynamic force effectively acts — its position relative to the center of gravity determines stability.</span>
+  </div>
+  
+  <div class="type-meta type-meta--definition">
+    <span class="type-meta-label">Defines</span>
+    <span class="type-meta-value">center of pressure, aerodynamic center</span>
+  </div>
+  
+  
+  <div class="e-content">
+    <p>The center of pressure (CP) is the point on a body where the resultant aerodynamic force can be considered to act. It is the single point that, if you replaced the entire distributed pressure field over the wing with a single force vector, would produce the same net force and moment.</p>
+<p>For a wing, the center of pressure depends on the <a href="../../topics/uavs/terms/angle-of-attack.md" class="link-internal">angle of attack</a>: at low AoA it lies aft; as AoA increases, it moves forward. This movement is what makes the center of pressure awkward for stability analysis — it is not a fixed point.</p>
+<h2 id="aerodynamic-center-the-fixed-reference">Aerodynamic center: the fixed reference</h2>
+<p>The <strong>aerodynamic center</strong> (AC) is the point about which the pitching moment coefficient does not change with angle of attack. For most subsonic <a href="../../topics/uavs/terms/airfoil.md" class="link-internal">airfoils</a>, the aerodynamic center is at approximately 25% of the <a href="../../topics/uavs/terms/chord.md" class="link-internal">chord</a> from the leading edge. This position is nearly constant regardless of angle of attack, making it far more useful than the center of pressure for design calculations.</p>
+<p>The distinction:</p>
+<ul>
+<li><strong>Center of pressure</strong> = the point where total aerodynamic force acts (moves with AoA)</li>
+<li><strong>Aerodynamic center</strong> = the point where the moment stays constant as AoA changes (fixed at ~25% chord)</li>
+</ul>
+<p>In practice, aerospace engineers work with forces and moments about the aerodynamic center rather than tracking the moving center of pressure. The lift force acts at the AC, and any residual pitching moment (from airfoil <a href="../../topics/uavs/terms/camber.md" class="link-internal">camber</a>) is treated as a constant couple.</p>
+<h2 id="stability-cp-vs-cg">Stability: CP vs. CG</h2>
+<p>An aircraft is statically stable in pitch when the <a href="../../topics/uavs/terms/center-of-gravity.md" class="link-internal">center of gravity</a> is forward of the <strong>neutral point</strong> — the aerodynamic center of the entire aircraft (including wing, tail, and fuselage contributions). If a gust increases the angle of attack, the additional lift force acting aft of the CG creates a nose-down restoring moment, pitching the aircraft back toward its trimmed condition.</p>
+<p>For rockets, which lack aerodynamic surfaces that produce restoring moments in the same way, <a href="./stability.md" class="link-internal">stability</a> requires the center of pressure to be aft of the center of gravity. Fins at the base of a rocket push the CP aft, creating the same kind of restoring moment: if the rocket yaws, the fins generate a side force that pushes the tail back into alignment.</p>
+<p>The general rule for both aircraft and rockets: <strong>CG forward of CP/neutral point = stable; CG aft of CP/neutral point = unstable.</strong> The distance between them, expressed as a percentage of the <a href="../../topics/uavs/terms/chord.md" class="link-internal">chord</a> (for aircraft) or body calibers (for rockets), is the static margin.</p>
+<h2 id="related-terms">Related terms</h2>
+<ul>
+<li><a href="../../topics/uavs/terms/center-of-gravity.md" class="link-internal">Center of Gravity</a> — the mass balance point; stability depends on the CG-to-CP relationship</li>
+<li><a href="./stability.md" class="link-internal">Stability</a> — the tendency to return to equilibrium, governed by CP and CG positions</li>
+<li><a href="../../topics/uavs/terms/angle-of-attack.md" class="link-internal">Angle of Attack</a> — the variable that moves the center of pressure</li>
+<li><a href="../../topics/uavs/terms/airfoil.md" class="link-internal">Airfoil</a> — the shape whose pressure distribution determines the aerodynamic center position</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/center-of-pressure/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-07">2026-03-07</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><ul><li><a href="/library/engineering/domains/aerospace-engineering/terms/center-of-pressure/">Center of pressure</a></li><li><a href="/library/engineering/domains/aerospace-engineering/terms/center-of-pressure/">Aerodynamic center</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/aerodynamics/">Aerodynamics</a></li><li><a href="/tags/flightmechanics/">FlightMechanics</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-center-of-pressure,
   author    = {emsenn and claude-opus-4-6},
   title     = {Center of Pressure},
   year      = {2026},
@@ -13,4 +153,17 @@
   url       = {https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/center-of-pressure/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

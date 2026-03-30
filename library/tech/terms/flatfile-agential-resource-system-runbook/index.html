@@ -1,15 +1,113 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"A FARS Runbook is a named, declarative workflow definition: a YAML file encoding a sequence of steps that an agent reads and executes directly, scoped to the entity it operates on.","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-runbook/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=page><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/terms/>Terms</a></nav><h1 class=p-name></h1><div class=meta><span class=p-summary>A FARS Runbook is a named, declarative workflow definition: a YAML file encoding a sequence of steps that an agent reads and executes directly, scoped to the entity it operates on.</span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#what-this-is>What this is</a></li><li><a href=#atomicity>Atomicity</a></li><li><a href=#composition>Composition</a><ul><li><a href=#runbooks-as-parameters>Runbooks as parameters</a></li><li><a href=#inputoutput-matching>Input/output matching</a></li></ul></li><li><a href=#foata-normal-form>Foata normal form</a></li><li><a href=#yaml-format>YAML format</a><ul><li><a href=#step-types>Step types</a></li></ul></li><li><a href=#open-questions>Open questions</a></li></ul></nav></details><div class=e-content><h1 id=fars-runbook>FARS Runbook</h1><h2 id=what-this-is>What this is</h2><p>A <strong>FARS Runbook</strong> is the YAML encoding of a <a href=runbook.md class=link-internal>Runbook</a> in the <a href=flatfile-agential-resource-system.md class=link-internal>FlatfileAgentialResourceSystem</a>.
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "A FARS Runbook is a named, declarative workflow definition: a YAML file encoding a sequence of steps that an agent reads and executes directly, scoped to the entity it operates on.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-runbook/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    <span class="p-summary">A FARS Runbook is a named, declarative workflow definition: a YAML file encoding a sequence of steps that an agent reads and executes directly, scoped to the entity it operates on.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-this-is">What this is</a></li>
+    <li><a href="#atomicity">Atomicity</a></li>
+    <li><a href="#composition">Composition</a>
+      <ul>
+        <li><a href="#runbooks-as-parameters">Runbooks as parameters</a></li>
+        <li><a href="#inputoutput-matching">Input/output matching</a></li>
+      </ul>
+    </li>
+    <li><a href="#foata-normal-form">Foata normal form</a></li>
+    <li><a href="#yaml-format">YAML format</a>
+      <ul>
+        <li><a href="#step-types">Step types</a></li>
+      </ul>
+    </li>
+    <li><a href="#open-questions">Open questions</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="fars-runbook">FARS Runbook</h1>
+<h2 id="what-this-is">What this is</h2>
+<p>A <strong>FARS Runbook</strong> is the YAML encoding of a <a href="runbook.md" class="link-internal">Runbook</a> in the <a href="flatfile-agential-resource-system.md" class="link-internal">FlatfileAgentialResourceSystem</a>.
 It is a declarative YAML file defining a sequence of steps.
 An agent reads the file and executes each step directly.
-The runbook is the definition; the agent is the execution.</p><p>A FARS Runbook is itself a <a href=relational-entity.md class=link-internal>RelationalEntity</a>: it has <code>id</code> and <code>description</code> and is in R.
-A runbook can be referenced, shaped, and reasoned about like any other entity in the system.</p><p>A FARS Runbook is always scoped to a specific locale or unit.
+The runbook is the definition; the agent is the execution.</p>
+<p>A FARS Runbook is itself a <a href="relational-entity.md" class="link-internal">RelationalEntity</a>: it has <code>id</code> and <code>description</code> and is in R.
+A runbook can be referenced, shaped, and reasoned about like any other entity in the system.</p>
+<p>A FARS Runbook is always scoped to a specific locale or unit.
 A <code>spec/runbooks/</code> runbook operates on spec units.
 A <code>math/runbooks/</code> runbook operates on math entitys.
-The scope is determined by where the runbook file lives.</p><p>Executing a runbook takes entities in the system and produces entities in the system.
+The scope is determined by where the runbook file lives.</p>
+<p>Executing a runbook takes entities in the system and produces entities in the system.
 The outputs are first-class objects — not ephemeral side effects.
 A FARS Runbook MUST have <code>id</code> and <code>description</code> — it is a RelationalEntity.
 It MUST take RelationalEntities as inputs and produce RelationalEntities as outputs.
@@ -18,75 +116,235 @@ It MUST be declared before it is executed — no ad-hoc operations outside named
 It CANNOT have side effects not traceable to named output entities.
 It CANNOT depend on state not accessible through the system&rsquo;s own entities.
 It CANNOT contain execution logic — the agent reads the runbook and supplies the execution at each step.
-It CANNOT embed environment-specific values — use named inputs instead.</p><h2 id=atomicity>Atomicity</h2><p>A runbook MUST do one thing.
+It CANNOT embed environment-specific values — use named inputs instead.</p>
+<h2 id="atomicity">Atomicity</h2>
+<p>A runbook MUST do one thing.
 A runbook that does two separable things is two runbooks composed by a third.
 The smallest meaningful workflow is the right granularity for a runbook file.
-Atomic runbooks MUST NOT call other runbooks — use primitive step types only.</p><p><strong>Atomic runbook:</strong> a runbook whose steps are all primitive operations (query, write, update, script, llm-call) — no <code>call</code> steps to other runbooks.</p><p><strong>Composite runbook:</strong> a runbook that composes atomic runbooks via <code>call</code> steps.
-A composite runbook is a workflow; an atomic runbook is a work unit.</p><p>Both are valid runbooks.
-The distinction is structural, not hierarchical: a composite runbook does not &ldquo;own&rdquo; the runbooks it calls.</p><h2 id=composition>Composition</h2><p>Runbooks compose by calling other runbooks as steps.
-The composition mechanism is the <code>call</code> step type:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>steps</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>id</span>: <span style=color:#ae81ff>do-extraction</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>type</span>: <span style=color:#ae81ff>call</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>runbook</span>: <span style=color:#ae81ff>runbooks/extract-anchor.yaml</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>inputs</span>:
-</span></span><span style=display:flex><span>      <span style=color:#f92672>file_path</span>: <span style=color:#e6db74>&#34;{{inputs.file_path}}&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>anchor_id</span>: <span style=color:#e6db74>&#34;{{inputs.anchor_id}}&#34;</span>
-</span></span></code></pre></div><h3 id=runbooks-as-parameters>Runbooks as parameters</h3><p>A runbook input MAY have type <code>runbook</code>.
-This allows the caller to pass a runbook reference that the callee will execute:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>inputs</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>extraction_runbook</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>type</span>: <span style=color:#ae81ff>runbook</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;The runbook to call for each extraction target&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>steps</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>id</span>: <span style=color:#ae81ff>extract-each</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>type</span>: <span style=color:#ae81ff>for-each</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>over</span>: <span style=color:#e6db74>&#34;{{find-targets.result}}&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>do</span>:
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>id</span>: <span style=color:#ae81ff>run-extractor</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>type</span>: <span style=color:#ae81ff>call</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>runbook</span>: <span style=color:#e6db74>&#34;{{inputs.extraction_runbook}}&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>inputs</span>:
-</span></span><span style=display:flex><span>          <span style=color:#f92672>file_path</span>: <span style=color:#e6db74>&#34;{{item.file}}&#34;</span>
+Atomic runbooks MUST NOT call other runbooks — use primitive step types only.</p>
+<p><strong>Atomic runbook:</strong> a runbook whose steps are all primitive operations (query, write, update, script, llm-call) — no <code>call</code> steps to other runbooks.</p>
+<p><strong>Composite runbook:</strong> a runbook that composes atomic runbooks via <code>call</code> steps.
+A composite runbook is a workflow; an atomic runbook is a work unit.</p>
+<p>Both are valid runbooks.
+The distinction is structural, not hierarchical: a composite runbook does not &ldquo;own&rdquo; the runbooks it calls.</p>
+<h2 id="composition">Composition</h2>
+<p>Runbooks compose by calling other runbooks as steps.
+The composition mechanism is the <code>call</code> step type:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">id</span>: <span style="color:#ae81ff">do-extraction</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">call</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runbook</span>: <span style="color:#ae81ff">runbooks/extract-anchor.yaml</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">inputs</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">file_path</span>: <span style="color:#e6db74">&#34;{{inputs.file_path}}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">anchor_id</span>: <span style="color:#e6db74">&#34;{{inputs.anchor_id}}&#34;</span>
+</span></span></code></pre></div><h3 id="runbooks-as-parameters">Runbooks as parameters</h3>
+<p>A runbook input MAY have type <code>runbook</code>.
+This allows the caller to pass a runbook reference that the callee will execute:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">inputs</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">extraction_runbook</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">runbook</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;The runbook to call for each extraction target&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">id</span>: <span style="color:#ae81ff">extract-each</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">for-each</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">over</span>: <span style="color:#e6db74">&#34;{{find-targets.result}}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">do</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">id</span>: <span style="color:#ae81ff">run-extractor</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">type</span>: <span style="color:#ae81ff">call</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">runbook</span>: <span style="color:#e6db74">&#34;{{inputs.extraction_runbook}}&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">inputs</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">file_path</span>: <span style="color:#e6db74">&#34;{{item.file}}&#34;</span>
 </span></span></code></pre></div><p>The sweep runbook does not know which extraction runbook to use; the caller decides.
-This is how generic workflows compose with specific operations.</p><h3 id=inputoutput-matching>Input/output matching</h3><p>When a composite runbook calls a sub-runbook, the caller MUST supply all required inputs of the callee.
+This is how generic workflows compose with specific operations.</p>
+<h3 id="inputoutput-matching">Input/output matching</h3>
+<p>When a composite runbook calls a sub-runbook, the caller MUST supply all required inputs of the callee.
 The callee&rsquo;s outputs are available to subsequent steps via <code>{{step-id.result}}</code>.
-Composite runbooks MUST declare which sub-runbooks they call, either as literal paths or as <code>runbook</code>-typed inputs.</p><p>Two runbooks compose cleanly when the first runbook&rsquo;s output type matches the second runbook&rsquo;s input type.
-This is not enforced mechanically yet — it is a convention that skill-object-types will formalize (see Open questions).</p><h2 id=foata-normal-form>Foata normal form</h2><p>A YAML file is a morphism <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>∈</mo><mi mathvariant="double-struck">M</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi>I</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">u \in \mathbb{M}(\Sigma, I)</annotation></semantics></math></span> expressed in Foata normal form:</p><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>u</mi><mo>=</mo><msub><mi>B</mi><mn>1</mn></msub><mo>⋅</mo><msub><mi>B</mi><mn>2</mn></msub><mo>⋯</mo><msub><mi>B</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">u = B_1 \cdot B_2 \cdots B_k</annotation></semantics></math></span><p>where each <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">B_i</annotation></semantics></math></span> is a <strong>concurrent tier</strong> — an unordered set of steps that are pairwise commuting under the independence relation <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span>.</p><ul><li>Steps within the same tier commute: any ordering yields the same history.</li><li>Tiers are causally ordered: every step in <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">B_{i+1}</annotation></semantics></math></span> depends on at least one step in <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">B_i</annotation></semantics></math></span>.</li><li>Wiring between tiers is explicit: each step in <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">B_{i+1}</annotation></semantics></math></span> declares which output from a prior step feeds which of its inputs.</li></ul><p>Steps within a tier that share no wiring dependency are concurrent — they may execute in any order or in parallel. The YAML does not declare concurrency explicitly; it is derived from the absence of wiring dependencies between steps in the same tier.</p><p><code>closure-kind</code> lives on the YAML, not on individual Python files, because the nuclear quartet classifies <strong>compositions</strong>, not generators. A single step <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">s \in \Sigma</annotation></semantics></math></span> is a generator — it has no closure kind. The quartet position emerges from how generators compose:</p><table><thead><tr><th><code>closure-kind</code></th><th>Wiring structure</th></tr></thead><tbody><tr><td><code>process</code></td><td>every step wired deterministically; no branching</td></tr><tr><td><code>procedure</code></td><td>wiring includes conditional routing</td></tr><tr><td><code>derivation</code></td><td>wiring includes a step whose output type is declared but produced at runtime</td></tr><tr><td><code>inquiry</code></td><td>wiring is open — the composition discovers its structure during execution</td></tr></tbody></table><h2 id=yaml-format>YAML format</h2><p>A runbook is encoded as a <code>.yaml</code> file in <code>runbooks/</code>.
-The top-level keys are:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>id</span>: <span style=color:#ae81ff>kebab-case-id</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;one sentence&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>closure-kind</span>: <span style=color:#ae81ff>process | procedure | derivation | inquiry</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>inputs</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>param_name</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>type</span>: <span style=color:#ae81ff>str | int | list | runbook | ...</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;what this input is&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>outputs</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>result_name</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>from</span>: <span style=color:#e6db74>&#34;{{step-id.result}}&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>steps</span>:
-</span></span><span style=display:flex><span>  <span style=color:#75715e># Tier 1 — steps that commute with each other</span>
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>id</span>: <span style=color:#ae81ff>step-a</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>run</span>: <span style=color:#ae81ff>step_a.py</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>inputs</span>:
-</span></span><span style=display:flex><span>      <span style=color:#f92672>x</span>: <span style=color:#e6db74>&#34;{{inputs.x}}&#34;</span>
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>id</span>: <span style=color:#ae81ff>step-b</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>run</span>: <span style=color:#ae81ff>step_b.py</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>inputs</span>:
-</span></span><span style=display:flex><span>      <span style=color:#f92672>y</span>: <span style=color:#e6db74>&#34;{{inputs.y}}&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e># Tier 2 — depends on tier 1 via wiring</span>
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>id</span>: <span style=color:#ae81ff>step-c</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>run</span>: <span style=color:#ae81ff>step_c.py</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>inputs</span>:
-</span></span><span style=display:flex><span>      <span style=color:#f92672>from_a</span>: <span style=color:#e6db74>&#34;{{step-a.output}}&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>from_b</span>: <span style=color:#e6db74>&#34;{{step-b.output}}&#34;</span>
-</span></span></code></pre></div><p>Each <code>run:</code> value names a Python file. The Python file&rsquo;s function signature is the single source of truth for that step&rsquo;s input and output types — the YAML does not duplicate them.</p><h3 id=step-types>Step types</h3><table><thead><tr><th>Type</th><th>What it does</th><th>Atomic?</th></tr></thead><tbody><tr><td><code>query</code></td><td>Read data from the repository</td><td>yes</td></tr><tr><td><code>write</code></td><td>Create a file</td><td>yes</td></tr><tr><td><code>update</code></td><td>Modify an existing file</td><td>yes</td></tr><tr><td><code>script</code></td><td>Run a shell command</td><td>yes</td></tr><tr><td><code>llm-call</code></td><td>Ask the LLM a question</td><td>yes</td></tr><tr><td><code>collect</code></td><td>Gather results from prior steps</td><td>yes</td></tr><tr><td><code>call</code></td><td>Execute another runbook</td><td>no (composition)</td></tr><tr><td><code>for-each</code></td><td>Iterate over a collection</td><td>container (wraps other steps)</td></tr><tr><td><code>condition</code></td><td>Branch on a predicate</td><td>container (wraps other steps)</td></tr></tbody></table><p>Step ids MUST be unique within the runbook.
+Composite runbooks MUST declare which sub-runbooks they call, either as literal paths or as <code>runbook</code>-typed inputs.</p>
+<p>Two runbooks compose cleanly when the first runbook&rsquo;s output type matches the second runbook&rsquo;s input type.
+This is not enforced mechanically yet — it is a convention that skill-object-types will formalize (see Open questions).</p>
+<h2 id="foata-normal-form">Foata normal form</h2>
+<p>A YAML file is a morphism <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>∈</mo><mi mathvariant="double-struck">M</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi>I</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">u \in \mathbb{M}(\Sigma, I)</annotation></semantics></math></span> expressed in Foata normal form:
+</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>u</mi><mo>=</mo><msub><mi>B</mi><mn>1</mn></msub><mo>⋅</mo><msub><mi>B</mi><mn>2</mn></msub><mo>⋯</mo><msub><mi>B</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">u = B_1 \cdot B_2 \cdots B_k</annotation></semantics></math></span><p>
+where each <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">B_i</annotation></semantics></math></span> is a <strong>concurrent tier</strong> — an unordered set of steps that are pairwise commuting under the independence relation <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span>.</p>
+<ul>
+<li>Steps within the same tier commute: any ordering yields the same history.</li>
+<li>Tiers are causally ordered: every step in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">B_{i+1}</annotation></semantics></math></span> depends on at least one step in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">B_i</annotation></semantics></math></span>.</li>
+<li>Wiring between tiers is explicit: each step in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">B_{i+1}</annotation></semantics></math></span> declares which output from a prior step feeds which of its inputs.</li>
+</ul>
+<p>Steps within a tier that share no wiring dependency are concurrent — they may execute in any order or in parallel. The YAML does not declare concurrency explicitly; it is derived from the absence of wiring dependencies between steps in the same tier.</p>
+<p><code>closure-kind</code> lives on the YAML, not on individual Python files, because the nuclear quartet classifies <strong>compositions</strong>, not generators. A single step <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">s \in \Sigma</annotation></semantics></math></span> is a generator — it has no closure kind. The quartet position emerges from how generators compose:</p>
+<table>
+  <thead>
+      <tr>
+          <th><code>closure-kind</code></th>
+          <th>Wiring structure</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>process</code></td>
+          <td>every step wired deterministically; no branching</td>
+      </tr>
+      <tr>
+          <td><code>procedure</code></td>
+          <td>wiring includes conditional routing</td>
+      </tr>
+      <tr>
+          <td><code>derivation</code></td>
+          <td>wiring includes a step whose output type is declared but produced at runtime</td>
+      </tr>
+      <tr>
+          <td><code>inquiry</code></td>
+          <td>wiring is open — the composition discovers its structure during execution</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="yaml-format">YAML format</h2>
+<p>A runbook is encoded as a <code>.yaml</code> file in <code>runbooks/</code>.
+The top-level keys are:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">id</span>: <span style="color:#ae81ff">kebab-case-id</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;one sentence&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">closure-kind</span>: <span style="color:#ae81ff">process | procedure | derivation | inquiry</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">inputs</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">param_name</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">str | int | list | runbook | ...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;what this input is&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">outputs</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">result_name</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">from</span>: <span style="color:#e6db74">&#34;{{step-id.result}}&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Tier 1 — steps that commute with each other</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">id</span>: <span style="color:#ae81ff">step-a</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">step_a.py</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">inputs</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">x</span>: <span style="color:#e6db74">&#34;{{inputs.x}}&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">id</span>: <span style="color:#ae81ff">step-b</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">step_b.py</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">inputs</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">y</span>: <span style="color:#e6db74">&#34;{{inputs.y}}&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Tier 2 — depends on tier 1 via wiring</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">id</span>: <span style="color:#ae81ff">step-c</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">step_c.py</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">inputs</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">from_a</span>: <span style="color:#e6db74">&#34;{{step-a.output}}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">from_b</span>: <span style="color:#e6db74">&#34;{{step-b.output}}&#34;</span>
+</span></span></code></pre></div><p>Each <code>run:</code> value names a Python file. The Python file&rsquo;s function signature is the single source of truth for that step&rsquo;s input and output types — the YAML does not duplicate them.</p>
+<h3 id="step-types">Step types</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Type</th>
+          <th>What it does</th>
+          <th>Atomic?</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>query</code></td>
+          <td>Read data from the repository</td>
+          <td>yes</td>
+      </tr>
+      <tr>
+          <td><code>write</code></td>
+          <td>Create a file</td>
+          <td>yes</td>
+      </tr>
+      <tr>
+          <td><code>update</code></td>
+          <td>Modify an existing file</td>
+          <td>yes</td>
+      </tr>
+      <tr>
+          <td><code>script</code></td>
+          <td>Run a shell command</td>
+          <td>yes</td>
+      </tr>
+      <tr>
+          <td><code>llm-call</code></td>
+          <td>Ask the LLM a question</td>
+          <td>yes</td>
+      </tr>
+      <tr>
+          <td><code>collect</code></td>
+          <td>Gather results from prior steps</td>
+          <td>yes</td>
+      </tr>
+      <tr>
+          <td><code>call</code></td>
+          <td>Execute another runbook</td>
+          <td>no (composition)</td>
+      </tr>
+      <tr>
+          <td><code>for-each</code></td>
+          <td>Iterate over a collection</td>
+          <td>container (wraps other steps)</td>
+      </tr>
+      <tr>
+          <td><code>condition</code></td>
+          <td>Branch on a predicate</td>
+          <td>container (wraps other steps)</td>
+      </tr>
+  </tbody>
+</table>
+<p>Step ids MUST be unique within the runbook.
 Template expressions use <code>{{...}}</code> syntax.
 Input values are accessed as <code>{{inputs.param_name}}</code>.
 Step outputs are accessed as <code>{{step-id.result}}</code>.
-The context variable <code>{{today}}</code> is always available.</p><p>A runbook MAY have a colocated <code>.py</code> script implementing one or more of its steps.
-See <a href=flatfile-agential-resource-system-script.md class=link-internal>flatfile-agential-resource-system-script</a> for the colocated script spec.</p><h2 id=open-questions>Open questions</h2><ul><li>Which specific structural operations in <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math></span> correspond to which runbook patterns.
-The primitive operations in <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math></span> are fiberwise propositional operations, the nuclei σ and Δ, and history concatenation ★.
-The correspondence between these and concrete runbook step types is not yet derived.</li><li>Formal type system for runbook inputs/outputs so that composition can be mechanically verified. Blocked by skill-object-types spec.</li><li>Whether <code>for-each</code> and <code>condition</code> should be separate runbooks rather than step types — the current design treats them as control flow within a runbook, but they could be generic composition operators.</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-runbook/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Ast</dt><dd property="emsenn:Ast"></dd></div><div class=relation><dt>Closure kind</dt><dd property="emsenn:Closurekind">Relational universe</dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><a href=/library/tech/terms/flatfile-agential-resource-system-runbook/>Flatfile agential resource system runbook</a></dd></div><div class=relation><dt>Implements</dt><dd property="emsenn:Implements"><a href=/library/business/terms/runbook/>Runbook</a></dd></div><div class=relation><dt>Output</dt><dd property="emsenn:Output">Relational universe morphism</dd></div><div class=relation><dt>Steps</dt><dd property="emsenn:Steps">Relational universe</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+The context variable <code>{{today}}</code> is always available.</p>
+<p>A runbook MAY have a colocated <code>.py</code> script implementing one or more of its steps.
+See <a href="flatfile-agential-resource-system-script.md" class="link-internal">flatfile-agential-resource-system-script</a> for the colocated script spec.</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Which specific structural operations in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math></span> correspond to which runbook patterns.
+The primitive operations in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math></span> are fiberwise propositional operations, the nuclei σ and Δ, and history concatenation ★.
+The correspondence between these and concrete runbook step types is not yet derived.</li>
+<li>Formal type system for runbook inputs/outputs so that composition can be mechanically verified. Blocked by skill-object-types spec.</li>
+<li>Whether <code>for-each</code> and <code>condition</code> should be separate runbooks rather than step types — the current design treats them as control flow within a runbook, but they could be generic composition operators.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-runbook/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt>Closure kind</dt>
+        <dd property="emsenn:Closurekind">Relational universe</dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/tech/terms/flatfile-agential-resource-system-runbook/">Flatfile agential resource system runbook</a></dd>
+      </div><div class="relation">
+        <dt>Implements</dt>
+        <dd property="emsenn:Implements"><a href="/library/business/terms/runbook/">Runbook</a></dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">Relational universe morphism</dd>
+      </div><div class="relation">
+        <dt>Steps</dt>
+        <dd property="emsenn:Steps">Relational universe</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,69 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ClaudeCode on emsenn.net</title><link>https://emsenn.net/tags/claudecode/</link><description>Recent content in ClaudeCode on emsenn.net</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 07 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://emsenn.net/tags/claudecode/index.xml" rel="self" type="application/rss+xml"/><item><title>CLAUDE.md</title><link>https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/claude-md/</link><pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/claude-md/</guid><description>&lt;p&gt;A CLAUDE.md file is a markdown document that Claude Code reads at the start
-of every conversation. It provides persistent, project-specific context that
-the agent cannot infer from code alone.&lt;/p&gt;
-&lt;h2 id="load-order"&gt;Load order&lt;/h2&gt;
-&lt;p&gt;Claude Code loads CLAUDE.md files from four locations, additively:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Global&lt;/strong&gt; (&lt;code&gt;~/.claude/CLAUDE.md&lt;/code&gt;) — personal preferences, all projects&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Project root&lt;/strong&gt; (&lt;code&gt;./CLAUDE.md&lt;/code&gt;) — committed to version control, shared&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Subdirectory&lt;/strong&gt; (&lt;code&gt;path/to/dir/CLAUDE.md&lt;/code&gt;) — loaded lazily when Claude
-works in that directory&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;User-specific&lt;/strong&gt; (&lt;code&gt;.claude/CLAUDE.md&lt;/code&gt;) — personal overrides, gitignored&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Ancestor files load at startup. Subdirectory files load lazily when the
-agent touches files in that directory. Sibling directories never
-cross-load.&lt;/p&gt;</description></item><item><title>Progressive Disclosure in Agent Instructions</title><link>https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/progressive-disclosure/</link><pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/progressive-disclosure/</guid><description>&lt;p&gt;Progressive disclosure is an information architecture principle applied to
-AI agent instruction files. The root instruction file (CLAUDE.md or
-AGENTS.md) contains only universally applicable rules. Task-specific,
-domain-specific, or tool-specific instructions live in subdirectory files,
-skill documents, or referenced specifications.&lt;/p&gt;
-&lt;h2 id="why-it-matters"&gt;Why it matters&lt;/h2&gt;
-&lt;p&gt;Every token in a root instruction file loads on every request. Long root
-files create three problems:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Budget pressure&lt;/strong&gt; — instruction-following quality degrades as
-instruction count rises.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Relevance dilution&lt;/strong&gt; — instructions irrelevant to the current task
-compete for attention with relevant ones.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Staleness risk&lt;/strong&gt; — more content means more surface area for drift
-between instructions and actual project state.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="the-layering-pattern"&gt;The layering pattern&lt;/h2&gt;
-&lt;table&gt;
- &lt;thead&gt;
- &lt;tr&gt;
- &lt;th&gt;Layer&lt;/th&gt;
- &lt;th&gt;File&lt;/th&gt;
- &lt;th&gt;Loaded when&lt;/th&gt;
- &lt;th&gt;Contains&lt;/th&gt;
- &lt;/tr&gt;
- &lt;/thead&gt;
- &lt;tbody&gt;
- &lt;tr&gt;
- &lt;td&gt;Root&lt;/td&gt;
- &lt;td&gt;&lt;code&gt;CLAUDE.md&lt;/code&gt; (repo root)&lt;/td&gt;
- &lt;td&gt;Every session&lt;/td&gt;
- &lt;td&gt;Build commands, architectural constraints, what not to touch, pointers to key files&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;Subdirectory&lt;/td&gt;
- &lt;td&gt;&lt;code&gt;subdir/CLAUDE.md&lt;/code&gt;&lt;/td&gt;
- &lt;td&gt;When working in that directory&lt;/td&gt;
- &lt;td&gt;Local conventions, tool-specific setup, domain rules&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;Skill&lt;/td&gt;
- &lt;td&gt;&lt;code&gt;skills/*/SKILL.md&lt;/code&gt;&lt;/td&gt;
- &lt;td&gt;When skill is invoked&lt;/td&gt;
- &lt;td&gt;Detailed operational instructions for one task&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;Reference&lt;/td&gt;
- &lt;td&gt;Specification or guide files&lt;/td&gt;
- &lt;td&gt;When agent reads them on demand&lt;/td&gt;
- &lt;td&gt;Full style guides, formalization protocols, domain specs&lt;/td&gt;
- &lt;/tr&gt;
- &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id="in-this-repository"&gt;In this repository&lt;/h2&gt;
-&lt;p&gt;The emsenn.net repository applies progressive disclosure across two layers:&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ClaudeCode on emsenn.net</title>
+    <link>https://emsenn.net/tags/claudecode/</link>
+    <description>Recent content in ClaudeCode on emsenn.net</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 07 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://emsenn.net/tags/claudecode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CLAUDE.md</title>
+      <link>https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/claude-md/</link>
+      <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/claude-md/</guid>
+      <description>&lt;p&gt;A CLAUDE.md file is a markdown document that Claude Code reads at the start&#xA;of every conversation. It provides persistent, project-specific context that&#xA;the agent cannot infer from code alone.&lt;/p&gt;&#xA;&lt;h2 id=&#34;load-order&#34;&gt;Load order&lt;/h2&gt;&#xA;&lt;p&gt;Claude Code loads CLAUDE.md files from four locations, additively:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Global&lt;/strong&gt; (&lt;code&gt;~/.claude/CLAUDE.md&lt;/code&gt;) — personal preferences, all projects&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Project root&lt;/strong&gt; (&lt;code&gt;./CLAUDE.md&lt;/code&gt;) — committed to version control, shared&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Subdirectory&lt;/strong&gt; (&lt;code&gt;path/to/dir/CLAUDE.md&lt;/code&gt;) — loaded lazily when Claude&#xA;works in that directory&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;User-specific&lt;/strong&gt; (&lt;code&gt;.claude/CLAUDE.md&lt;/code&gt;) — personal overrides, gitignored&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Ancestor files load at startup. Subdirectory files load lazily when the&#xA;agent touches files in that directory. Sibling directories never&#xA;cross-load.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Progressive Disclosure in Agent Instructions</title>
+      <link>https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/progressive-disclosure/</link>
+      <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/progressive-disclosure/</guid>
+      <description>&lt;p&gt;Progressive disclosure is an information architecture principle applied to&#xA;AI agent instruction files. The root instruction file (CLAUDE.md or&#xA;AGENTS.md) contains only universally applicable rules. Task-specific,&#xA;domain-specific, or tool-specific instructions live in subdirectory files,&#xA;skill documents, or referenced specifications.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-it-matters&#34;&gt;Why it matters&lt;/h2&gt;&#xA;&lt;p&gt;Every token in a root instruction file loads on every request. Long root&#xA;files create three problems:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Budget pressure&lt;/strong&gt; — instruction-following quality degrades as&#xA;instruction count rises.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Relevance dilution&lt;/strong&gt; — instructions irrelevant to the current task&#xA;compete for attention with relevant ones.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Staleness risk&lt;/strong&gt; — more content means more surface area for drift&#xA;between instructions and actual project state.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;the-layering-pattern&#34;&gt;The layering pattern&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Layer&lt;/th&gt;&#xA;          &lt;th&gt;File&lt;/th&gt;&#xA;          &lt;th&gt;Loaded when&lt;/th&gt;&#xA;          &lt;th&gt;Contains&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Root&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;CLAUDE.md&lt;/code&gt; (repo root)&lt;/td&gt;&#xA;          &lt;td&gt;Every session&lt;/td&gt;&#xA;          &lt;td&gt;Build commands, architectural constraints, what not to touch, pointers to key files&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Subdirectory&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;subdir/CLAUDE.md&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;When working in that directory&lt;/td&gt;&#xA;          &lt;td&gt;Local conventions, tool-specific setup, domain rules&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Skill&lt;/td&gt;&#xA;          &lt;td&gt;&lt;code&gt;skills/*/SKILL.md&lt;/code&gt;&lt;/td&gt;&#xA;          &lt;td&gt;When skill is invoked&lt;/td&gt;&#xA;          &lt;td&gt;Detailed operational instructions for one task&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Reference&lt;/td&gt;&#xA;          &lt;td&gt;Specification or guide files&lt;/td&gt;&#xA;          &lt;td&gt;When agent reads them on demand&lt;/td&gt;&#xA;          &lt;td&gt;Full style guides, formalization protocols, domain specs&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;in-this-repository&#34;&gt;In this repository&lt;/h2&gt;&#xA;&lt;p&gt;The emsenn.net repository applies progressive disclosure across two layers:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,5 +1,190 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"When crypto platforms onboard new users, they present a combination of files, passwords, and phrases—each meant to serve as some piece of the user’s control over their account. These are not just technical artifacts. They\u0026rsquo;re pieces of interface language that carry strong associations.\nFor example:\nA “keystore” file is, in Ethereum ecosystems, an encrypted backup of a private key. A “secret phrase” usually means a mnemonic seed that restores an account. A “password” is often just a frontend credential, used to unlock the wallet but not hold authority. These conventions are learned. Repeated. Inherited. When a user sees these terms, they arrive with assumptions about what they mean.\n","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/business/domains/sigmund-vexler/sigmund-vexlers-content/misfiled-custody/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=page><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/business/>Business</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/business/domains/sigmund-vexler/>Sigmund vexler</a></nav><h1 class=p-name></h1><div class=meta></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><ul><li><a href=#case-the-inleo-onboarding-flow>Case: The InLeo Onboarding Flow</a></li><li><a href=#interfaces-teach>Interfaces Teach</a></li><li><a href=#the-metric-behind-the-misalignment>The Metric Behind the Misalignment</a></li><li><a href=#misfiled-custody-naming-the-failure-mode>Misfiled Custody: Naming the Failure Mode</a></li><li><a href=#why-it-matters>Why It Matters</a></li><li><a href=#clarity-is-infrastructure>Clarity is Infrastructure</a></li></ul></li></ul></nav></details><div class=e-content><p>When crypto platforms onboard new users, they present a combination of files, passwords, and phrases—each meant to serve as some piece of the user’s control over their account. These are not just technical artifacts. They&rsquo;re pieces of interface language that carry strong associations.</p><p>For example:</p><ul><li>A “keystore” file is, in Ethereum ecosystems, an encrypted backup of a private key.</li><li>A “secret phrase” usually means a mnemonic seed that restores an account.</li><li>A “password” is often just a frontend credential, used to unlock the wallet but not hold authority.</li></ul><p>These conventions are learned. Repeated. Inherited. When a user sees these terms, they arrive with assumptions about what they mean.</p><p>But as more platforms aim to bridge multiple ecosystems—bringing together EVM, Cosmos, and Hive, or layering Web2 UX on Web3 infrastructure—the meanings behind these terms begin to drift. And when naming drifts while authority structures stay rigid, what emerges is a new kind of failure:</p><p>Not lost custody.<br><strong>Misfiled custody.</strong></p><hr><h3 id=case-the-inleo-onboarding-flow>Case: The InLeo Onboarding Flow</h3><p>InLeo is a frontend in the Hive ecosystem. It&rsquo;s designed to make Hive more accessible, more cross-chain aware, and more approachable for users from outside the ecosystem. That ambition is admirable. But it introduces complexity—especially during onboarding.</p><p>When a new user signs up with InLeo’s “Keystore” method, they’re presented with three objects:</p><ol><li>A <strong>master password</strong>, created at the start of the process</li><li>A <strong>secret phrase</strong> (12 words), shown as something to copy</li><li>A <strong><code>keystore.json</code></strong> file, offered as a download</li><li>A truncated display of the <strong>Hive keys</strong> in JSON format (posting, active, memo, owner)</li></ol><p>At no point is the “secret phrase” described as the <strong>Hive master password</strong>, the object from which all keys are derived. It’s simply called a secret phrase.</p><p>Meanwhile, the <code>keystore.json</code> file is labeled as the &ldquo;download your keys&rdquo; option—implying it holds the essential control object. It does not. It appears to be an application-specific key, perhaps used for cross-chain signing or session management, but it has no relevance for restoring Hive access through any other interface.</p><p>And the Hive keys themselves? They&rsquo;re displayed inline, but not emphasized, not grouped as a download, and not marked as the source of authority. A user could reasonably assume they were derived from the keystore—or simply decorative.</p><p>The result: <strong>all the right parts are present</strong>, but the interface doesn’t teach which one matters.</p><hr><h3 id=interfaces-teach>Interfaces Teach</h3><p>Interfaces don&rsquo;t just display options. They <strong>teach mental models</strong>.</p><p>When objects are grouped together, they appear related.<br>When one is labeled “download your keys,” and another is called a “secret,” the language implies hierarchy.<br>When the most familiar term—<code>keystore.json</code>—is used to describe a file that <em>isn&rsquo;t</em> a keystore in the sense most users know, that isn’t a small mistake. It’s a false signal.</p><p>No explanation is offered. No disambiguation. The result is a set of objects that <strong>look equivalent</strong> in importance, but differ drastically in function.</p><p>So a user who:</p><ul><li>Saves their keystore file</li><li>Copies the master password</li><li>Maybe even jots down the secret phrase&mldr;</li></ul><p>&mldr;can still be left holding the wrong item when the frontend breaks. The authority is in one object—but trust was placed in another.</p><hr><h3 id=the-metric-behind-the-misalignment>The Metric Behind the Misalignment</h3><p>This isn’t random. It’s the product of pressure.</p><p>Like many platforms, InLeo is optimizing for <strong>onboarding</strong>. User growth. Conversion rates. Successful registration flows.</p><p>That’s not cynical—it’s business. Onboarding metrics are how platforms secure partnerships, pitch investors, and prove traction. But when a measure becomes a target, <strong>it ceases to be a good measure</strong>.</p><p>Once “users completed onboarding” becomes the definition of success, the interface evolves to minimize any friction that might reduce that number. Clarity becomes a potential source of dropout. Ambiguity becomes a feature—not intentionally, but structurally.</p><p>And so the objects in the UI are <strong>designed to be familiar, clickable, complete</strong>—but not necessarily accurate. The keystore metaphor is borrowed. The password field is vague. The true source of authority is underemphasized.</p><p>What matters is not that users understand Hive’s model. What matters is that they finish the signup process and feel like they’ve secured something.</p><p>This is what <strong>metric capture</strong> looks like in interface design.</p><hr><h3 id=misfiled-custody-naming-the-failure-mode>Misfiled Custody: Naming the Failure Mode</h3><p>This is a case of what we call <strong>misfiled custody</strong>.</p><p>Not theft.<br>Not loss.<br>Not even misunderstanding, exactly.</p><p>It’s what happens when a user:</p><ul><li>Backs up exactly what the interface told them to</li><li>Does so in good faith</li><li>And later finds that what they saved isn’t what grants them access</li></ul><p>It’s a failure mode that emerges when <strong>meaning is detached from structure</strong>.</p><p>If your interface presents three objects without making clear which one confers authority, then a user who backs up the wrong one hasn’t been careless—they’ve been misled.</p><hr><h3 id=why-it-matters>Why It Matters</h3><p>Hive is a self-custody system.<br>You are your keys. There is no admin override, no recovery process, no “forgot password” link. Sovereignty is hard-edged and absolute.</p><p>But if a user saves an object that feels like custody—but isn’t—they’ve effectively <strong>outsourced their security to a frontend without realizing it</strong>.</p><p>That’s the core danger of misfiled custody. It gives users the <strong>impression</strong> of sovereignty while leaving them structurally dependent on the interface that issued their account.</p><p>When that interface glitches, or disappears, or changes… what looked like control dissolves.</p><hr><h3 id=clarity-is-infrastructure>Clarity is Infrastructure</h3><p>The answer isn’t better documentation.<br>The answer is not “educate the user.”</p><p>The answer is: <strong>naming things clearly, and placing them with intention.</strong><br>The order, emphasis, and labeling of control objects <strong>is infrastructure</strong> in crypto systems.</p><p>It’s not cosmetic. It determines whether a user walks away with actual access or just a simulation of it.</p><p>As ecosystems become more composable, more cross-chain, more layered with abstraction, the risk of misfiled custody grows. The cost of ambiguity rises. And the platforms that endure will be the ones that respect the difference between a smooth flow and a truthful one.</p><blockquote><p><strong>In crypto, custody depends on clarity. And clarity starts with what we call things.</strong></p></blockquote></div></article></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "When crypto platforms onboard new users, they present a combination of files, passwords, and phrases—each meant to serve as some piece of the user’s control over their account. These are not just technical artifacts. They\u0026rsquo;re pieces of interface language that carry strong associations.\nFor example:\nA “keystore” file is, in Ethereum ecosystems, an encrypted backup of a private key. A “secret phrase” usually means a mnemonic seed that restores an account. A “password” is often just a frontend credential, used to unlock the wallet but not hold authority. These conventions are learned. Repeated. Inherited. When a user sees these terms, they arrive with assumptions about what they mean.\n",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/business/domains/sigmund-vexler/sigmund-vexlers-content/misfiled-custody/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/business/">Business</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/business/domains/sigmund-vexler/">Sigmund vexler</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#case-the-inleo-onboarding-flow">Case: The InLeo Onboarding Flow</a></li>
+        <li><a href="#interfaces-teach">Interfaces Teach</a></li>
+        <li><a href="#the-metric-behind-the-misalignment">The Metric Behind the Misalignment</a></li>
+        <li><a href="#misfiled-custody-naming-the-failure-mode">Misfiled Custody: Naming the Failure Mode</a></li>
+        <li><a href="#why-it-matters">Why It Matters</a></li>
+        <li><a href="#clarity-is-infrastructure">Clarity is Infrastructure</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>When crypto platforms onboard new users, they present a combination of files, passwords, and phrases—each meant to serve as some piece of the user’s control over their account. These are not just technical artifacts. They&rsquo;re pieces of interface language that carry strong associations.</p>
+<p>For example:</p>
+<ul>
+<li>A “keystore” file is, in Ethereum ecosystems, an encrypted backup of a private key.</li>
+<li>A “secret phrase” usually means a mnemonic seed that restores an account.</li>
+<li>A “password” is often just a frontend credential, used to unlock the wallet but not hold authority.</li>
+</ul>
+<p>These conventions are learned. Repeated. Inherited. When a user sees these terms, they arrive with assumptions about what they mean.</p>
+<p>But as more platforms aim to bridge multiple ecosystems—bringing together EVM, Cosmos, and Hive, or layering Web2 UX on Web3 infrastructure—the meanings behind these terms begin to drift. And when naming drifts while authority structures stay rigid, what emerges is a new kind of failure:</p>
+<p>Not lost custody.<br>
+<strong>Misfiled custody.</strong></p>
+<hr>
+<h3 id="case-the-inleo-onboarding-flow">Case: The InLeo Onboarding Flow</h3>
+<p>InLeo is a frontend in the Hive ecosystem. It&rsquo;s designed to make Hive more accessible, more cross-chain aware, and more approachable for users from outside the ecosystem. That ambition is admirable. But it introduces complexity—especially during onboarding.</p>
+<p>When a new user signs up with InLeo’s “Keystore” method, they’re presented with three objects:</p>
+<ol>
+<li>A <strong>master password</strong>, created at the start of the process</li>
+<li>A <strong>secret phrase</strong> (12 words), shown as something to copy</li>
+<li>A <strong><code>keystore.json</code></strong> file, offered as a download</li>
+<li>A truncated display of the <strong>Hive keys</strong> in JSON format (posting, active, memo, owner)</li>
+</ol>
+<p>At no point is the “secret phrase” described as the <strong>Hive master password</strong>, the object from which all keys are derived. It’s simply called a secret phrase.</p>
+<p>Meanwhile, the <code>keystore.json</code> file is labeled as the &ldquo;download your keys&rdquo; option—implying it holds the essential control object. It does not. It appears to be an application-specific key, perhaps used for cross-chain signing or session management, but it has no relevance for restoring Hive access through any other interface.</p>
+<p>And the Hive keys themselves? They&rsquo;re displayed inline, but not emphasized, not grouped as a download, and not marked as the source of authority. A user could reasonably assume they were derived from the keystore—or simply decorative.</p>
+<p>The result: <strong>all the right parts are present</strong>, but the interface doesn’t teach which one matters.</p>
+<hr>
+<h3 id="interfaces-teach">Interfaces Teach</h3>
+<p>Interfaces don&rsquo;t just display options. They <strong>teach mental models</strong>.</p>
+<p>When objects are grouped together, they appear related.<br>
+When one is labeled “download your keys,” and another is called a “secret,” the language implies hierarchy.<br>
+When the most familiar term—<code>keystore.json</code>—is used to describe a file that <em>isn&rsquo;t</em> a keystore in the sense most users know, that isn’t a small mistake. It’s a false signal.</p>
+<p>No explanation is offered. No disambiguation. The result is a set of objects that <strong>look equivalent</strong> in importance, but differ drastically in function.</p>
+<p>So a user who:</p>
+<ul>
+<li>Saves their keystore file</li>
+<li>Copies the master password</li>
+<li>Maybe even jots down the secret phrase&hellip;</li>
+</ul>
+<p>&hellip;can still be left holding the wrong item when the frontend breaks. The authority is in one object—but trust was placed in another.</p>
+<hr>
+<h3 id="the-metric-behind-the-misalignment">The Metric Behind the Misalignment</h3>
+<p>This isn’t random. It’s the product of pressure.</p>
+<p>Like many platforms, InLeo is optimizing for <strong>onboarding</strong>. User growth. Conversion rates. Successful registration flows.</p>
+<p>That’s not cynical—it’s business. Onboarding metrics are how platforms secure partnerships, pitch investors, and prove traction. But when a measure becomes a target, <strong>it ceases to be a good measure</strong>.</p>
+<p>Once “users completed onboarding” becomes the definition of success, the interface evolves to minimize any friction that might reduce that number. Clarity becomes a potential source of dropout. Ambiguity becomes a feature—not intentionally, but structurally.</p>
+<p>And so the objects in the UI are <strong>designed to be familiar, clickable, complete</strong>—but not necessarily accurate. The keystore metaphor is borrowed. The password field is vague. The true source of authority is underemphasized.</p>
+<p>What matters is not that users understand Hive’s model. What matters is that they finish the signup process and feel like they’ve secured something.</p>
+<p>This is what <strong>metric capture</strong> looks like in interface design.</p>
+<hr>
+<h3 id="misfiled-custody-naming-the-failure-mode">Misfiled Custody: Naming the Failure Mode</h3>
+<p>This is a case of what we call <strong>misfiled custody</strong>.</p>
+<p>Not theft.<br>
+Not loss.<br>
+Not even misunderstanding, exactly.</p>
+<p>It’s what happens when a user:</p>
+<ul>
+<li>Backs up exactly what the interface told them to</li>
+<li>Does so in good faith</li>
+<li>And later finds that what they saved isn’t what grants them access</li>
+</ul>
+<p>It’s a failure mode that emerges when <strong>meaning is detached from structure</strong>.</p>
+<p>If your interface presents three objects without making clear which one confers authority, then a user who backs up the wrong one hasn’t been careless—they’ve been misled.</p>
+<hr>
+<h3 id="why-it-matters">Why It Matters</h3>
+<p>Hive is a self-custody system.<br>
+You are your keys. There is no admin override, no recovery process, no “forgot password” link. Sovereignty is hard-edged and absolute.</p>
+<p>But if a user saves an object that feels like custody—but isn’t—they’ve effectively <strong>outsourced their security to a frontend without realizing it</strong>.</p>
+<p>That’s the core danger of misfiled custody. It gives users the <strong>impression</strong> of sovereignty while leaving them structurally dependent on the interface that issued their account.</p>
+<p>When that interface glitches, or disappears, or changes… what looked like control dissolves.</p>
+<hr>
+<h3 id="clarity-is-infrastructure">Clarity is Infrastructure</h3>
+<p>The answer isn’t better documentation.<br>
+The answer is not “educate the user.”</p>
+<p>The answer is: <strong>naming things clearly, and placing them with intention.</strong><br>
+The order, emphasis, and labeling of control objects <strong>is infrastructure</strong> in crypto systems.</p>
+<p>It’s not cosmetic. It determines whether a user walks away with actual access or just a simulation of it.</p>
+<p>As ecosystems become more composable, more cross-chain, more layered with abstraction, the risk of misfiled custody grows. The cost of ambiguity rises. And the platforms that endure will be the ones that respect the difference between a smooth flow and a truthful one.</p>
+<blockquote>
+<p><strong>In crypto, custody depends on clarity. And clarity starts with what we call things.</strong></p>
+</blockquote>
+
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

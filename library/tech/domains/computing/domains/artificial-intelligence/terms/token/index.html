@@ -1,6 +1,149 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Token - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-29","datePublished":"2026-03-29","description":"The atomic unit of text that a language model processes — a subword fragment, whole word, or punctuation mark, typically 3-4 characters of English on average.","name":"Token","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/token/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=page><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/>Computing</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/artificial-intelligence/>Artificial intelligence</a></nav><h1 class=p-name>Token</h1><div class=meta><time class=dt-published datetime=2026-03-29T00:00:00Z>2026-03-29</time>
-<span class=p-summary>The atomic unit of text that a language model processes — a subword fragment, whole word, or punctuation mark, typically 3-4 characters of English on average.</span></div><div class=e-content><p>A token is the atomic unit of text that a <a href=../../on-device-inference/terms/large-language-model.md class=link-internal>large language model</a> processes. Models do not operate on characters or words directly; they operate on tokens — subword fragments produced by a tokenizer that splits text into pieces from a fixed vocabulary. The word &ldquo;unbelievable&rdquo; might be tokenized as [&ldquo;un&rdquo;, &ldquo;believ&rdquo;, &ldquo;able&rdquo;]; common words like &ldquo;the&rdquo; are single tokens; rare words or code identifiers are split into multiple tokens.</p><p>Tokenizers are trained on large text corpora to find a vocabulary (typically 32,000–100,000 tokens) that minimizes the total number of tokens needed to represent the training data. The dominant algorithm is Byte Pair Encoding (BPE), introduced for neural machine translation by Sennrich, Haddow, and Birch (2016). BPE starts with individual characters and iteratively merges the most frequent adjacent pairs until the vocabulary reaches the target size. The result is a vocabulary where common words and subwords are single tokens and rare sequences are composed from smaller pieces.</p><p>Tokens matter for three practical reasons:</p><ol><li><p><strong>Cost.</strong> API providers charge per token (input and output). A rough conversion for English is 1 token ≈ 4 characters, or about 750 words per 1,000 tokens. Code, non-English languages, and structured data (JSON, XML) tend to tokenize less efficiently — the same information may cost 2-3× more in tokens.</p></li><li><p><strong>Context window.</strong> The <a href=./context-window.md class=link-internal>context window</a> is measured in tokens, not words or characters. A 200,000-token context window holds roughly 150,000 words of English. Everything the model sees — the system prompt, the conversation history, tool definitions, tool results — must fit within this budget.</p></li><li><p><strong>Generation.</strong> Language models generate text one token at a time, left to right. Each token produced requires a forward pass through the <a href=./transformer.md class=link-internal>transformer</a>. Generation speed is measured in tokens per second; latency is proportional to the number of output tokens.</p></li></ol><p>Different providers use different tokenizers with different vocabularies, so the same text tokenizes differently across models. This means token counts are not directly comparable between providers, and a prompt that fits within one model&rsquo;s context window may not fit within another&rsquo;s even if the nominal window size is the same.</p><h2 id=related-terms>Related terms</h2><ul><li><a href=./transformer.md class=link-internal>Transformer</a> — the architecture that processes token sequences</li><li><a href=./context-window.md class=link-internal>Context window</a> — the maximum number of tokens a model can process at once</li><li><a href=../../on-device-inference/terms/large-language-model.md class=link-internal>Large language model</a> — the systems whose behavior tokens determine</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/token/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt><a href=/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/>Component of</a></dt><dd property="emsenn:Componentof">Context window</dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>Date updated</dt><dd property="schema:dateModified"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><a href=/library/tech/domains/computing/domains/artificial-intelligence/terms/token/>Token</a></dd></div><div class=relation><dt><a href=/library/math/domains/sets/terms/domain/>Domain</a></dt><dd property="emsenn:Domain">Artificial intelligence</dd></div><div class=relation><dt><a href=/library/math/terms/measure/>Measures</a></dt><dd property="emsenn:Measures">Context window</dd></div><div class=relation><dt>Produced by</dt><dd property="emsenn:Producedby">Tokenizer</dd></div><div class=relation><dt>Referenced by</dt><dd><ul><li><a href=/library/tech/domains/computing/domains/artificial-intelligence/terms/context-engineering/>Context Engineering</a></li><li><a href=/library/tech/domains/computing/domains/artificial-intelligence/terms/context-window/>Context Window</a></li><li><a href=/library/tech/domains/computing/domains/artificial-intelligence/terms/transformer/>Transformer</a></li></ul></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "The atomic unit of text that a language model processes — a subword fragment, whole word, or punctuation mark, typically 3-4 characters of English on average.",
+  "name": "Token",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/token/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a></nav>
+  <h1 class="p-name">Token</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">The atomic unit of text that a language model processes — a subword fragment, whole word, or punctuation mark, typically 3-4 characters of English on average.</span>
+  </div>
+  <div class="e-content">
+    <p>A token is the atomic unit of text that a <a href="../../on-device-inference/terms/large-language-model.md" class="link-internal">large language model</a> processes. Models do not operate on characters or words directly; they operate on tokens — subword fragments produced by a tokenizer that splits text into pieces from a fixed vocabulary. The word &ldquo;unbelievable&rdquo; might be tokenized as [&ldquo;un&rdquo;, &ldquo;believ&rdquo;, &ldquo;able&rdquo;]; common words like &ldquo;the&rdquo; are single tokens; rare words or code identifiers are split into multiple tokens.</p>
+<p>Tokenizers are trained on large text corpora to find a vocabulary (typically 32,000–100,000 tokens) that minimizes the total number of tokens needed to represent the training data. The dominant algorithm is Byte Pair Encoding (BPE), introduced for neural machine translation by Sennrich, Haddow, and Birch (2016). BPE starts with individual characters and iteratively merges the most frequent adjacent pairs until the vocabulary reaches the target size. The result is a vocabulary where common words and subwords are single tokens and rare sequences are composed from smaller pieces.</p>
+<p>Tokens matter for three practical reasons:</p>
+<ol>
+<li>
+<p><strong>Cost.</strong> API providers charge per token (input and output). A rough conversion for English is 1 token ≈ 4 characters, or about 750 words per 1,000 tokens. Code, non-English languages, and structured data (JSON, XML) tend to tokenize less efficiently — the same information may cost 2-3× more in tokens.</p>
+</li>
+<li>
+<p><strong>Context window.</strong> The <a href="./context-window.md" class="link-internal">context window</a> is measured in tokens, not words or characters. A 200,000-token context window holds roughly 150,000 words of English. Everything the model sees — the system prompt, the conversation history, tool definitions, tool results — must fit within this budget.</p>
+</li>
+<li>
+<p><strong>Generation.</strong> Language models generate text one token at a time, left to right. Each token produced requires a forward pass through the <a href="./transformer.md" class="link-internal">transformer</a>. Generation speed is measured in tokens per second; latency is proportional to the number of output tokens.</p>
+</li>
+</ol>
+<p>Different providers use different tokenizers with different vocabularies, so the same text tokenizes differently across models. This means token counts are not directly comparable between providers, and a prompt that fits within one model&rsquo;s context window may not fit within another&rsquo;s even if the nominal window size is the same.</p>
+<h2 id="related-terms">Related terms</h2>
+<ul>
+<li><a href="./transformer.md" class="link-internal">Transformer</a> — the architecture that processes token sequences</li>
+<li><a href="./context-window.md" class="link-internal">Context window</a> — the maximum number of tokens a model can process at once</li>
+<li><a href="../../on-device-inference/terms/large-language-model.md" class="link-internal">Large language model</a> — the systems whose behavior tokens determine</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/artificial-intelligence/terms/token/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt><a href="/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Component of</a></dt>
+        <dd property="emsenn:Componentof">Context window</dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Date updated</dt>
+        <dd property="schema:dateModified"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/token/">Token</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">Artificial intelligence</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/measure/">Measures</a></dt>
+        <dd property="emsenn:Measures">Context window</dd>
+      </div><div class="relation">
+        <dt>Produced by</dt>
+        <dd property="emsenn:Producedby">Tokenizer</dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/context-engineering/">Context Engineering</a></li><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/context-window/">Context Window</a></li><li><a href="/library/tech/domains/computing/domains/artificial-intelligence/terms/transformer/">Transformer</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

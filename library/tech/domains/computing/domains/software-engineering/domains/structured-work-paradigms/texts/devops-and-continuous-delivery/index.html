@@ -1,61 +1,203 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>DevOps and Continuous Delivery as Planning Infrastructure - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"claude"},"dateModified":"2026-03-07","datePublished":"2026-03-07","description":"Research summary of how DevOps practices and CI/CD pipelines serve as verification infrastructure for software project planning.","keywords":"DevOps, ContinuousIntegration, ContinuousDelivery, DeploymentPipeline","name":"DevOps and Continuous Delivery as Planning Infrastructure","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/devops-and-continuous-delivery/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=text><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/>Computing</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/software-engineering/>Software engineering</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/>Structured work paradigms</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/>Texts</a></nav><h1 class=p-name>DevOps and Continuous Delivery as Planning Infrastructure</h1><div class=meta><time class=dt-published datetime=2026-03-07T00:00:00Z>2026-03-07</time>
-<span>by <span class=p-author>claude</span></span></div><div class="type-meta type-meta--abstract"><span class=type-meta-label>Abstract</span><p>Research summary of how DevOps practices and CI/CD pipelines serve as verification infrastructure for software project planning.</p></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#continuous-integration-and-continuous-delivery>Continuous integration and continuous delivery</a></li><li><a href=#the-three-ways>The Three Ways</a></li><li><a href=#planning-function>Planning function</a></li><li><a href=#key-citations>Key citations</a></li></ul></nav></details><div class=e-content><p>DevOps is a set of practices that unifies software development (Dev)
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DevOps and Continuous Delivery as Planning Infrastructure - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "claude"
+  },
+  "dateModified": "2026-03-07",
+  "datePublished": "2026-03-07",
+  "description": "Research summary of how DevOps practices and CI/CD pipelines serve as verification infrastructure for software project planning.",
+  "keywords": "DevOps, ContinuousIntegration, ContinuousDelivery, DeploymentPipeline",
+  "name": "DevOps and Continuous Delivery as Planning Infrastructure",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/devops-and-continuous-delivery/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="text">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software-engineering/">Software engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/">Structured work paradigms</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/">Texts</a></nav>
+  <h1 class="p-name">DevOps and Continuous Delivery as Planning Infrastructure</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-07T00:00:00Z">2026-03-07</time>
+    <span>by <span class="p-author">claude</span></span>
+    
+  </div>
+  
+  <div class="type-meta type-meta--abstract">
+    <span class="type-meta-label">Abstract</span>
+    <p>Research summary of how DevOps practices and CI/CD pipelines serve as verification infrastructure for software project planning.</p>
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#continuous-integration-and-continuous-delivery">Continuous integration and continuous delivery</a></li>
+    <li><a href="#the-three-ways">The Three Ways</a></li>
+    <li><a href="#planning-function">Planning function</a></li>
+    <li><a href="#key-citations">Key citations</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>DevOps is a set of practices that unifies software development (Dev)
 and IT operations (Ops) to shorten the development lifecycle and
 deliver software changes more frequently. The term emerged around
 2008&ndash;2009, with Patrick Debois organizing the first DevOpsDays
 conference in Ghent, Belgium, in 2009. The foundational texts are
 Jez Humble and David Farley&rsquo;s <em>Continuous Delivery</em> (Addison-Wesley,
 2010) and Gene Kim, Patrick Debois, John Willis, and Jez Humble&rsquo;s
-<em>The DevOps Handbook</em> (IT Revolution Press, 2016).</p><h2 id=continuous-integration-and-continuous-delivery>Continuous integration and continuous delivery</h2><p><strong>Continuous Integration (CI)</strong> is the practice of merging all
+<em>The DevOps Handbook</em> (IT Revolution Press, 2016).</p>
+<h2 id="continuous-integration-and-continuous-delivery">Continuous integration and continuous delivery</h2>
+<p><strong>Continuous Integration (CI)</strong> is the practice of merging all
 developers&rsquo; working copies into a shared mainline several times per
 day, with each integration verified by an automated build and test
 suite. The practice originated in Kent Beck&rsquo;s Extreme Programming
 (XP) in the late 1990s. Martin Fowler codified its principles in
 his 2006 article &ldquo;Continuous Integration&rdquo; (martinfowler.com), which
-remains a standard reference.</p><p><strong>Continuous Delivery (CD)</strong> extends CI by automating the path from
+remains a standard reference.</p>
+<p><strong>Continuous Delivery (CD)</strong> extends CI by automating the path from
 code commit to production-ready release. Humble and Farley (2010)
 introduced the <strong>deployment pipeline</strong> as the central concept: a
 sequence of automated stages &mdash; build, unit test, integration test,
 acceptance test, staging, production &mdash; through which every code
 change passes. A change that fails any stage doesn&rsquo;t proceed. The
-pipeline makes the state of every change visible at every stage.</p><p><strong>Continuous Deployment</strong> goes further: every change that passes
+pipeline makes the state of every change visible at every stage.</p>
+<p><strong>Continuous Deployment</strong> goes further: every change that passes
 all pipeline stages deploys to production automatically, without
-manual approval.</p><h2 id=the-three-ways>The Three Ways</h2><p>Kim et al. (2016) organized DevOps principles into the Three Ways,
+manual approval.</p>
+<h2 id="the-three-ways">The Three Ways</h2>
+<p>Kim et al. (2016) organized DevOps principles into the Three Ways,
 first introduced in Kim&rsquo;s novel <em>The Phoenix Project</em> (IT Revolution
-Press, 2013):</p><ol><li><strong>Flow</strong>: optimize the left-to-right movement of work from
+Press, 2013):</p>
+<ol>
+<li><strong>Flow</strong>: optimize the left-to-right movement of work from
 development through operations to the customer. Reduce batch
-sizes, limit work in progress, and remove bottlenecks.</li><li><strong>Feedback</strong>: create fast, right-to-left feedback loops so that
+sizes, limit work in progress, and remove bottlenecks.</li>
+<li><strong>Feedback</strong>: create fast, right-to-left feedback loops so that
 problems are detected and corrected at the source. Automated
-testing, monitoring, and alerting serve this function.</li><li><strong>Continual Learning and Experimentation</strong>: build a culture that
+testing, monitoring, and alerting serve this function.</li>
+<li><strong>Continual Learning and Experimentation</strong>: build a culture that
 supports taking risks, learning from failure, and improving
-through practice.</li></ol><h2 id=planning-function>Planning function</h2><p>CI/CD pipelines serve as verification infrastructure for plans. When
+through practice.</li>
+</ol>
+<h2 id="planning-function">Planning function</h2>
+<p>CI/CD pipelines serve as verification infrastructure for plans. When
 a team defines acceptance criteria for a feature, automated tests
 encode those criteria as executable checks. The pipeline runs the
 checks on every change. This transforms planning expectations into
 machine-verifiable assertions: a plan isn&rsquo;t just a document that
 describes what should happen &mdash; it&rsquo;s a set of tests that confirm
-whether it did.</p><p><strong>Infrastructure as Code</strong> (IaC) extends this principle from
+whether it did.</p>
+<p><strong>Infrastructure as Code</strong> (IaC) extends this principle from
 application code to system configuration. Tools like Terraform,
 Ansible, and CloudFormation allow teams to declare their
 infrastructure in version-controlled files. Changes to infrastructure
 go through the same pipeline as application changes: proposed, reviewed,
 tested, and deployed. This makes infrastructure planning auditable
-and reproducible.</p><p>The analogy between &ldquo;infrastructure as code&rdquo; and &ldquo;plans as code&rdquo; is
+and reproducible.</p>
+<p>The analogy between &ldquo;infrastructure as code&rdquo; and &ldquo;plans as code&rdquo; is
 direct: both take something that was previously a document (a server
 setup guide, a project plan) and encode it as an executable,
 testable, version-controlled artifact. The pipeline is the mechanism
-that closes the loop between intention and verification.</p><h2 id=key-citations>Key citations</h2><ul><li>Humble, Jez, and David Farley. <em>Continuous Delivery: Reliable
+that closes the loop between intention and verification.</p>
+<h2 id="key-citations">Key citations</h2>
+<ul>
+<li>Humble, Jez, and David Farley. <em>Continuous Delivery: Reliable
 Software Releases through Build, Test, and Deployment Automation.</em>
-Addison-Wesley, 2010.</li><li>Kim, Gene, Kevin Behr, and George Spafford. <em>The Phoenix Project:
+Addison-Wesley, 2010.</li>
+<li>Kim, Gene, Kevin Behr, and George Spafford. <em>The Phoenix Project:
 A Novel about IT, DevOps, and Helping Your Business Win.</em> IT
-Revolution Press, 2013.</li><li>Kim, Gene, Patrick Debois, John Willis, and Jez Humble. <em>The DevOps
+Revolution Press, 2013.</li>
+<li>Kim, Gene, Patrick Debois, John Willis, and Jez Humble. <em>The DevOps
 Handbook: How to Create World-Class Agility, Reliability, and
-Security in Technology Organizations.</em> IT Revolution Press, 2016.</li><li>Fowler, Martin. &ldquo;Continuous Integration.&rdquo; martinfowler.com, 2006.</li><li>Beck, Kent. <em>Extreme Programming Explained: Embrace Change.</em>
-Addison-Wesley, 1999.</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/devops-and-continuous-delivery/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude/>claude</a></li></ul></dd></div><div class=relation><dt>Cites</dt><dd property="schema:citation"><ul><li>Humble, jez, and david farley. continuous delivery reliable software releases through build, test, and deployment automation. addison wesley, 2010.</li><li>Kim, gene, patrick debois, john willis, and jez humble. the dev ops handbook how to create world class agility, reliability, and security in technology organizations. it revolution press, 2016.</li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-07>2026-03-07</time></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/devops/>DevOps</a></li><li><a href=/tags/continuousintegration/>ContinuousIntegration</a></li><li><a href=/tags/continuousdelivery/>ContinuousDelivery</a></li><li><a href=/tags/deploymentpipeline/>DeploymentPipeline</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@article{claude2026-devops-and-continuous-delivery,
+Security in Technology Organizations.</em> IT Revolution Press, 2016.</li>
+<li>Fowler, Martin. &ldquo;Continuous Integration.&rdquo; martinfowler.com, 2006.</li>
+<li>Beck, Kent. <em>Extreme Programming Explained: Embrace Change.</em>
+Addison-Wesley, 1999.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/devops-and-continuous-delivery/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/claude/">claude</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Cites</dt>
+        <dd property="schema:citation"><ul><li>Humble, jez, and david farley. continuous delivery reliable software releases through build, test, and deployment automation. addison wesley, 2010.</li><li>Kim, gene, patrick debois, john willis, and jez humble. the dev ops handbook how to create world class agility, reliability, and security in technology organizations. it revolution press, 2016.</li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-07">2026-03-07</time></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/devops/">DevOps</a></li><li><a href="/tags/continuousintegration/">ContinuousIntegration</a></li><li><a href="/tags/continuousdelivery/">ContinuousDelivery</a></li><li><a href="/tags/deploymentpipeline/">DeploymentPipeline</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@article{claude2026-devops-and-continuous-delivery,
   author    = {claude},
   title     = {DevOps and Continuous Delivery as Planning Infrastructure},
   year      = {2026},
@@ -63,4 +205,17 @@ Addison-Wesley, 1999.</li></ul></div></article><section class=page-relations res
   url       = {https://emsenn.net/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/devops-and-continuous-delivery/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

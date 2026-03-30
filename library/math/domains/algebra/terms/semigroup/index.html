@@ -1,6 +1,132 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2025-12-31","datePublished":"2025-12-31","description":"A magma with associativity — the minimal structure where expressions like a ∗ b ∗ c are unambiguous.","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/math/domains/algebra/terms/semigroup/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=page><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/math/>Math</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/math/domains/algebra/>Algebra</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/math/domains/algebra/terms/>Terms</a></nav><h1 class=p-name></h1><div class=meta><time class=dt-published datetime=2025-12-31T00:00:00Z>2025-12-31</time>
-<span class=p-summary>A magma with associativity — the minimal structure where expressions like a ∗ b ∗ c are unambiguous.</span></div><div class=e-content><p>A semigroup is a <a href=./magma.md class=link-internal>magma</a> whose operation is associative: <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>∗</mo><mi>b</mi><mo stretchy="false">)</mo><mo>∗</mo><mi>c</mi><mo>=</mo><mi>a</mi><mo>∗</mo><mo stretchy="false">(</mo><mi>b</mi><mo>∗</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a \ast b) \ast c = a \ast (b \ast c)</annotation></semantics></math></span> for all elements a, b, c. Associativity means that the order of performing operations does not matter — you can drop the parentheses. The expression <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∗</mo><mi>b</mi><mo>∗</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">a \ast b \ast c</annotation></semantics></math></span> is unambiguous.</p><p>Associativity is the first axiom that most of mathematics needs. Without it, even simple chains of operations become ambiguous — <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>∗</mo><mi>b</mi><mo stretchy="false">)</mo><mo>∗</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">(a \ast b) \ast c</annotation></semantics></math></span> might differ from <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∗</mo><mo stretchy="false">(</mo><mi>b</mi><mo>∗</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a \ast (b \ast c)</annotation></semantics></math></span>, and you would need parentheses everywhere. With it, you can talk about &ldquo;the product of a, b, and c&rdquo; without specifying grouping.</p><p>A semigroup with an <a href=./identity-element.md class=link-internal>identity element</a> is a <a href=./monoid.md class=link-internal>monoid</a>. A monoid with inverses is a <a href=./group.md class=link-internal>group</a>. The positive integers under addition form a semigroup but not a monoid, since 0 is excluded and there is no identity. The set of all strings over an alphabet under concatenation is a semigroup and a monoid, with the empty string as identity.</p><p>Semigroups are the minimal structure needed for sequential composition. In a <a href=../categories/domains/ordinary-categories/terms/category.md class=link-internal>category</a>, the collection of endomorphisms of any object (morphisms from the object to itself) forms a monoid under composition. Forgetting the identity morphism leaves a semigroup. Associativity of composition is one of the two axioms of a category — it comes from the semigroup level of the algebraic hierarchy. The other axiom, the identity law, comes from the monoid level.</p></div></article><section class=page-relations resource="https://emsenn.net/library/math/domains/algebra/terms/semigroup/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Axioms</dt><dd property="emsenn:Axioms">Associativity</dd></div><div class=relation><dt>Categorical role</dt><dd property="emsenn:Categoricalrole">Endomorphisms without identity</dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2025-12-31>2025-12-31</time></dd></div><div class=relation><dt>Date modified</dt><dd property="emsenn:Datemodified"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><a href=/library/math/domains/algebra/terms/semigroup/>Semigroup</a></dd></div><div class=relation><dt><a href=/library/math/terms/extension/>Extends</a></dt><dd property="emsenn:Extends"><a href=/library/math/domains/algebra/terms/magma/>Magma</a></dd></div><div class=relation><dt>Extends to</dt><dd property="emsenn:Extendsto"><a href=/library/math/domains/algebra/terms/monoid/>Monoid</a></dd></div><div class=relation><dt>Referenced by</dt><dd><ul><li><a href=/library/math/domains/algebra/terms/magma/></a></li><li><a href=/library/math/domains/algebra/terms/monoid/></a></li></ul></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2025-12-31",
+  "datePublished": "2025-12-31",
+  "description": "A magma with associativity — the minimal structure where expressions like a ∗ b ∗ c are unambiguous.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/math/domains/algebra/terms/semigroup/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/math/">Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/math/domains/algebra/">Algebra</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/math/domains/algebra/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2025-12-31T00:00:00Z">2025-12-31</time>
+    
+    <span class="p-summary">A magma with associativity — the minimal structure where expressions like a ∗ b ∗ c are unambiguous.</span>
+  </div>
+  <div class="e-content">
+    <p>A semigroup is a <a href="./magma.md" class="link-internal">magma</a> whose operation is associative: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>∗</mo><mi>b</mi><mo stretchy="false">)</mo><mo>∗</mo><mi>c</mi><mo>=</mo><mi>a</mi><mo>∗</mo><mo stretchy="false">(</mo><mi>b</mi><mo>∗</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a \ast b) \ast c = a \ast (b \ast c)</annotation></semantics></math></span> for all elements a, b, c. Associativity means that the order of performing operations does not matter — you can drop the parentheses. The expression <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∗</mo><mi>b</mi><mo>∗</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">a \ast b \ast c</annotation></semantics></math></span> is unambiguous.</p>
+<p>Associativity is the first axiom that most of mathematics needs. Without it, even simple chains of operations become ambiguous — <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>∗</mo><mi>b</mi><mo stretchy="false">)</mo><mo>∗</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">(a \ast b) \ast c</annotation></semantics></math></span> might differ from <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∗</mo><mo stretchy="false">(</mo><mi>b</mi><mo>∗</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a \ast (b \ast c)</annotation></semantics></math></span>, and you would need parentheses everywhere. With it, you can talk about &ldquo;the product of a, b, and c&rdquo; without specifying grouping.</p>
+<p>A semigroup with an <a href="./identity-element.md" class="link-internal">identity element</a> is a <a href="./monoid.md" class="link-internal">monoid</a>. A monoid with inverses is a <a href="./group.md" class="link-internal">group</a>. The positive integers under addition form a semigroup but not a monoid, since 0 is excluded and there is no identity. The set of all strings over an alphabet under concatenation is a semigroup and a monoid, with the empty string as identity.</p>
+<p>Semigroups are the minimal structure needed for sequential composition. In a <a href="../categories/domains/ordinary-categories/terms/category.md" class="link-internal">category</a>, the collection of endomorphisms of any object (morphisms from the object to itself) forms a monoid under composition. Forgetting the identity morphism leaves a semigroup. Associativity of composition is one of the two axioms of a category — it comes from the semigroup level of the algebraic hierarchy. The other axiom, the identity law, comes from the monoid level.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/math/domains/algebra/terms/semigroup/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Axioms</dt>
+        <dd property="emsenn:Axioms">Associativity</dd>
+      </div><div class="relation">
+        <dt>Categorical role</dt>
+        <dd property="emsenn:Categoricalrole">Endomorphisms without identity</dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2025-12-31">2025-12-31</time></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/math/domains/algebra/terms/semigroup/">Semigroup</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/extension/">Extends</a></dt>
+        <dd property="emsenn:Extends"><a href="/library/math/domains/algebra/terms/magma/">Magma</a></dd>
+      </div><div class="relation">
+        <dt>Extends to</dt>
+        <dd property="emsenn:Extendsto"><a href="/library/math/domains/algebra/terms/monoid/">Monoid</a></dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/math/domains/algebra/terms/magma/"></a></li><li><a href="/library/math/domains/algebra/terms/monoid/"></a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

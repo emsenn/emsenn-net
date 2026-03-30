@@ -1,11 +1,176 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Flow Separation - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"DefinedTerm","author":[{"@type":"Person","name":"emsenn"},{"@type":"Person","name":"claude-opus-4-6"}],"dateModified":"2026-03-07","datePublished":"2026-03-07","description":"The detachment of the boundary layer from a surface under adverse pressure gradients — the mechanism behind stall, buffet, and most forms of pressure drag.","inDefinedTermSet":{"@type":"DefinedTermSet","name":"","url":"https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/"},"keywords":"Aerodynamics, FluidDynamics","name":"Flow Separation","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"termCode":"flow separation, separation","url":"https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/flow-separation/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=term><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/engineering/>Engineering</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/engineering/domains/aerospace-engineering/>Aerospace engineering</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/engineering/domains/aerospace-engineering/terms/>Terms</a></nav><h1 class=p-name>Flow Separation</h1><div class=meta><time class=dt-published datetime=2026-03-07T00:00:00Z>2026-03-07</time>
-<span>by <span class=p-author>emsenn</span>, <span class=p-author>claude-opus-4-6</span></span>
-<span class=p-summary>The detachment of the boundary layer from a surface under adverse pressure gradients — the mechanism behind stall, buffet, and most forms of pressure drag.</span></div><div class="type-meta type-meta--definition"><span class=type-meta-label>Defines</span>
-<span class=type-meta-value>flow separation, separation</span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#why-separation-happens>Why separation happens</a></li><li><a href=#types-of-separation>Types of separation</a><ul><li><a href=#trailing-edge-separation>Trailing-edge separation</a></li><li><a href=#leading-edge-separation>Leading-edge separation</a></li><li><a href=#laminar-separation-bubble>Laminar separation bubble</a></li><li><a href=#massive-separation>Massive separation</a></li></ul></li><li><a href=#design-strategies-against-separation>Design strategies against separation</a></li><li><a href=#related-terms>Related terms</a></li></ul></nav></details><div class=e-content><p>Flow separation occurs when the <a href=../../topics/uavs/terms/boundary-layer.md class=link-internal>boundary layer</a> detaches from a surface and the smooth flow breaks down into a region of reversed, recirculating air. It is the mechanism behind <a href=../../topics/uavs/terms/stall.md class=link-internal>stall</a> (lift loss when the upper-surface boundary layer separates), behind most <a href=../../topics/uavs/terms/parasitic-drag.md class=link-internal>pressure drag</a> (the low-pressure wake behind a bluff body), and behind the laminar separation bubbles that dominate <a href=../../topics/uavs/concepts/low-reynolds-number-aerodynamics.md class=link-internal>low-Reynolds-number aerodynamics</a>.</p><h2 id=why-separation-happens>Why separation happens</h2><p>The boundary layer is driven forward by the freestream velocity and retarded by friction with the surface. On the forward portion of an airfoil, the flow accelerates (favorable pressure gradient) and the boundary layer stays thin and attached. Past the point of minimum pressure (typically 20–40% of <a href=../../topics/uavs/terms/chord.md class=link-internal>chord</a> on the upper surface), the flow must decelerate as pressure recovers toward ambient — this is an <strong>adverse pressure gradient</strong>.</p><p>In an adverse pressure gradient, the slowest fluid near the surface decelerates faster than the faster fluid above it. If the adverse gradient is strong enough, the near-surface fluid reverses direction — it flows backward, upstream. At that point, the boundary layer has separated. Downstream of the separation point, the flow is chaotic, recirculating, and produces much higher drag than attached flow.</p><h2 id=types-of-separation>Types of separation</h2><h3 id=trailing-edge-separation>Trailing-edge separation</h3><p>The boundary layer separates near the trailing edge and the separated region grows forward as <a href=../../topics/uavs/terms/angle-of-attack.md class=link-internal>angle of attack</a> increases. This is the typical stall mechanism for thick airfoils at high Reynolds number. Stall onset is gradual and predictable — lift increases until the separated region reaches a critical extent, then lift decreases. Most large aircraft stall this way.</p><h3 id=leading-edge-separation>Leading-edge separation</h3><p>The boundary layer separates abruptly near the leading edge, usually because a thin airfoil&rsquo;s leading-edge radius is too small to keep the flow attached at high AoA. The separation is sudden and the lift loss is abrupt — &ldquo;hard stall.&rdquo; Common on thin airfoils and at low Reynolds numbers.</p><h3 id=laminar-separation-bubble>Laminar separation bubble</h3><p>At low <a href=../../topics/uavs/terms/reynolds-number.md class=link-internal>Reynolds numbers</a> (Re 50,000–300,000), the <a href=./laminar-and-turbulent-flow.md class=link-internal>laminar</a> boundary layer separates when it encounters the adverse pressure gradient, but the separated shear layer transitions to turbulent, re-energizes, and reattaches downstream. The result is a trapped recirculation region — a bubble — between separation and reattachment. The bubble increases drag by 50–200% compared to fully attached flow and is the dominant performance-limiting phenomenon for small UAVs. See <a href=../../topics/uavs/concepts/low-reynolds-number-aerodynamics.md class=link-internal>Low-Reynolds-Number Aerodynamics</a> for detailed treatment.</p><h3 id=massive-separation>Massive separation</h3><p>At very high angles of attack or on bluff (non-streamlined) bodies, the flow separates from a large portion of the surface and does not reattach. The wake is wide and turbulent, and <a href=../../topics/uavs/terms/drag.md class=link-internal>drag</a> is dominated by the low pressure in the separated region. This is why unstreamlined shapes (flat plates, cylinders, exposed landing gear) produce high drag — the separated wake creates a large pressure deficit on the downstream side.</p><h2 id=design-strategies-against-separation>Design strategies against separation</h2><ul><li><strong>Airfoil shaping</strong> — gradual pressure recovery (gentle adverse gradients) delays separation.</li><li><strong>Turbulators</strong> — tripping the boundary layer to <a href=./laminar-and-turbulent-flow.md class=link-internal>turbulent</a> before the separation point, because turbulent layers resist separation better.</li><li><strong>Vortex generators</strong> — small fins that create streamwise vortices, mixing high-energy air from the outer flow into the boundary layer.</li><li><strong>Slats and slots</strong> — leading-edge devices that re-energize the upper-surface boundary layer with air ducted from below.</li><li><strong>Suction</strong> — removing the decelerated boundary layer air through porous surfaces (used in laminar flow control research but rarely in production).</li></ul><h2 id=related-terms>Related terms</h2><ul><li><a href=../../topics/uavs/terms/stall.md class=link-internal>Stall</a> — the flight condition resulting from upper-surface separation</li><li><a href=../../topics/uavs/terms/boundary-layer.md class=link-internal>Boundary Layer</a> — the thin layer that separates</li><li><a href=./laminar-and-turbulent-flow.md class=link-internal>Laminar and Turbulent Flow</a> — the two boundary layer states, which separate differently</li><li><a href=../../topics/uavs/terms/drag.md class=link-internal>Drag</a> — the force that separation dramatically increases</li><li><a href=./viscosity.md class=link-internal>Viscosity</a> — the fluid property that creates the boundary layer and enables separation</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/flow-separation/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-07>2026-03-07</time></dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><ul><li><a href=/library/engineering/domains/aerospace-engineering/terms/flow-separation/>Flow separation</a></li><li><a href=/library/engineering/domains/aerospace-engineering/terms/flow-separation/>Separation</a></li></ul></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/aerodynamics/>Aerodynamics</a></li><li><a href=/tags/fluiddynamics/>FluidDynamics</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@misc{emsenn2026-flow-separation,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flow Separation - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "emsenn"
+    },
+    {
+      "@type": "Person",
+      "name": "claude-opus-4-6"
+    }
+  ],
+  "dateModified": "2026-03-07",
+  "datePublished": "2026-03-07",
+  "description": "The detachment of the boundary layer from a surface under adverse pressure gradients — the mechanism behind stall, buffet, and most forms of pressure drag.",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "",
+    "url": "https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/"
+  },
+  "keywords": "Aerodynamics, FluidDynamics",
+  "name": "Flow Separation",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "termCode": "flow separation, separation",
+  "url": "https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/flow-separation/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="term">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/">Aerospace engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/terms/">Terms</a></nav>
+  <h1 class="p-name">Flow Separation</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-07T00:00:00Z">2026-03-07</time>
+    <span>by <span class="p-author">emsenn</span>, <span class="p-author">claude-opus-4-6</span></span>
+    <span class="p-summary">The detachment of the boundary layer from a surface under adverse pressure gradients — the mechanism behind stall, buffet, and most forms of pressure drag.</span>
+  </div>
+  
+  <div class="type-meta type-meta--definition">
+    <span class="type-meta-label">Defines</span>
+    <span class="type-meta-value">flow separation, separation</span>
+  </div>
+  
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#why-separation-happens">Why separation happens</a></li>
+    <li><a href="#types-of-separation">Types of separation</a>
+      <ul>
+        <li><a href="#trailing-edge-separation">Trailing-edge separation</a></li>
+        <li><a href="#leading-edge-separation">Leading-edge separation</a></li>
+        <li><a href="#laminar-separation-bubble">Laminar separation bubble</a></li>
+        <li><a href="#massive-separation">Massive separation</a></li>
+      </ul>
+    </li>
+    <li><a href="#design-strategies-against-separation">Design strategies against separation</a></li>
+    <li><a href="#related-terms">Related terms</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>Flow separation occurs when the <a href="../../topics/uavs/terms/boundary-layer.md" class="link-internal">boundary layer</a> detaches from a surface and the smooth flow breaks down into a region of reversed, recirculating air. It is the mechanism behind <a href="../../topics/uavs/terms/stall.md" class="link-internal">stall</a> (lift loss when the upper-surface boundary layer separates), behind most <a href="../../topics/uavs/terms/parasitic-drag.md" class="link-internal">pressure drag</a> (the low-pressure wake behind a bluff body), and behind the laminar separation bubbles that dominate <a href="../../topics/uavs/concepts/low-reynolds-number-aerodynamics.md" class="link-internal">low-Reynolds-number aerodynamics</a>.</p>
+<h2 id="why-separation-happens">Why separation happens</h2>
+<p>The boundary layer is driven forward by the freestream velocity and retarded by friction with the surface. On the forward portion of an airfoil, the flow accelerates (favorable pressure gradient) and the boundary layer stays thin and attached. Past the point of minimum pressure (typically 20–40% of <a href="../../topics/uavs/terms/chord.md" class="link-internal">chord</a> on the upper surface), the flow must decelerate as pressure recovers toward ambient — this is an <strong>adverse pressure gradient</strong>.</p>
+<p>In an adverse pressure gradient, the slowest fluid near the surface decelerates faster than the faster fluid above it. If the adverse gradient is strong enough, the near-surface fluid reverses direction — it flows backward, upstream. At that point, the boundary layer has separated. Downstream of the separation point, the flow is chaotic, recirculating, and produces much higher drag than attached flow.</p>
+<h2 id="types-of-separation">Types of separation</h2>
+<h3 id="trailing-edge-separation">Trailing-edge separation</h3>
+<p>The boundary layer separates near the trailing edge and the separated region grows forward as <a href="../../topics/uavs/terms/angle-of-attack.md" class="link-internal">angle of attack</a> increases. This is the typical stall mechanism for thick airfoils at high Reynolds number. Stall onset is gradual and predictable — lift increases until the separated region reaches a critical extent, then lift decreases. Most large aircraft stall this way.</p>
+<h3 id="leading-edge-separation">Leading-edge separation</h3>
+<p>The boundary layer separates abruptly near the leading edge, usually because a thin airfoil&rsquo;s leading-edge radius is too small to keep the flow attached at high AoA. The separation is sudden and the lift loss is abrupt — &ldquo;hard stall.&rdquo; Common on thin airfoils and at low Reynolds numbers.</p>
+<h3 id="laminar-separation-bubble">Laminar separation bubble</h3>
+<p>At low <a href="../../topics/uavs/terms/reynolds-number.md" class="link-internal">Reynolds numbers</a> (Re 50,000–300,000), the <a href="./laminar-and-turbulent-flow.md" class="link-internal">laminar</a> boundary layer separates when it encounters the adverse pressure gradient, but the separated shear layer transitions to turbulent, re-energizes, and reattaches downstream. The result is a trapped recirculation region — a bubble — between separation and reattachment. The bubble increases drag by 50–200% compared to fully attached flow and is the dominant performance-limiting phenomenon for small UAVs. See <a href="../../topics/uavs/concepts/low-reynolds-number-aerodynamics.md" class="link-internal">Low-Reynolds-Number Aerodynamics</a> for detailed treatment.</p>
+<h3 id="massive-separation">Massive separation</h3>
+<p>At very high angles of attack or on bluff (non-streamlined) bodies, the flow separates from a large portion of the surface and does not reattach. The wake is wide and turbulent, and <a href="../../topics/uavs/terms/drag.md" class="link-internal">drag</a> is dominated by the low pressure in the separated region. This is why unstreamlined shapes (flat plates, cylinders, exposed landing gear) produce high drag — the separated wake creates a large pressure deficit on the downstream side.</p>
+<h2 id="design-strategies-against-separation">Design strategies against separation</h2>
+<ul>
+<li><strong>Airfoil shaping</strong> — gradual pressure recovery (gentle adverse gradients) delays separation.</li>
+<li><strong>Turbulators</strong> — tripping the boundary layer to <a href="./laminar-and-turbulent-flow.md" class="link-internal">turbulent</a> before the separation point, because turbulent layers resist separation better.</li>
+<li><strong>Vortex generators</strong> — small fins that create streamwise vortices, mixing high-energy air from the outer flow into the boundary layer.</li>
+<li><strong>Slats and slots</strong> — leading-edge devices that re-energize the upper-surface boundary layer with air ducted from below.</li>
+<li><strong>Suction</strong> — removing the decelerated boundary layer air through porous surfaces (used in laminar flow control research but rarely in production).</li>
+</ul>
+<h2 id="related-terms">Related terms</h2>
+<ul>
+<li><a href="../../topics/uavs/terms/stall.md" class="link-internal">Stall</a> — the flight condition resulting from upper-surface separation</li>
+<li><a href="../../topics/uavs/terms/boundary-layer.md" class="link-internal">Boundary Layer</a> — the thin layer that separates</li>
+<li><a href="./laminar-and-turbulent-flow.md" class="link-internal">Laminar and Turbulent Flow</a> — the two boundary layer states, which separate differently</li>
+<li><a href="../../topics/uavs/terms/drag.md" class="link-internal">Drag</a> — the force that separation dramatically increases</li>
+<li><a href="./viscosity.md" class="link-internal">Viscosity</a> — the fluid property that creates the boundary layer and enables separation</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/flow-separation/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-07">2026-03-07</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><ul><li><a href="/library/engineering/domains/aerospace-engineering/terms/flow-separation/">Flow separation</a></li><li><a href="/library/engineering/domains/aerospace-engineering/terms/flow-separation/">Separation</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/aerodynamics/">Aerodynamics</a></li><li><a href="/tags/fluiddynamics/">FluidDynamics</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-flow-separation,
   author    = {emsenn and claude-opus-4-6},
   title     = {Flow Separation},
   year      = {2026},
@@ -13,4 +178,17 @@
   url       = {https://emsenn.net/library/engineering/domains/aerospace-engineering/terms/flow-separation/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

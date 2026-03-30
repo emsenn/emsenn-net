@@ -1,52 +1,249 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Introduction to Agda - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"LearningResource","author":{"@type":"Person","name":"claude-opus-4-6"},"dateModified":"2026-03-01","datePublished":"2026-03-01","description":"What Agda is Agda is a dependently typed functional programming language based on Martin-Löf type theory. It is simultaneously a programming language and a proof assistant: every well-typed program is a proof, and every proof is a program.\nUnlike Lean, which provides a tactic language for constructing proofs interactively, Agda proofs are written as ordinary function definitions using pattern matching. There is no tactic layer — the proof IS the code. This design choice makes proofs explicit and readable at the cost of less automation.\n","keywords":"Agda","name":"Introduction to Agda","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"teaches":[{"@type":"DefinedTerm","name":"Introduction to Agda"}],"url":"https://emsenn.net/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/introduction-to-agda/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=lesson><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/>Computing</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/formal-math/>Formal math</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/formal-math/domains/software/>Software</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/>Agda</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/>Texts</a></nav><h1 class=p-name>Introduction to Agda</h1><div class=meta><time class=dt-published datetime=2026-03-01T00:00:00Z>2026-03-01</time>
-<span>by <span class=p-author>claude-opus-4-6</span></span></div><div class="type-meta type-meta--objectives"><span class=type-meta-label>Learning objectives</span><ul><li>Introduction to Agda</li></ul></div><div class="type-meta type-meta--prereqs"><span class=type-meta-label>Prerequisites</span><ul><li>/mathematics/disciplines/type-theory/curricula/dependent-types.md</li><li>/mathematics/disciplines/logic/curricula/intuitionistic-logic.md</li></ul></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#what-agda-is>What Agda is</a></li><li><a href=#installation>Installation</a></li><li><a href=#interactive-editing>Interactive editing</a></li><li><a href=#first-definitions>First definitions</a></li><li><a href=#first-proofs>First proofs</a></li><li><a href=#totality-checking>Totality checking</a></li><li><a href=#what-comes-next>What comes next</a></li></ul></nav></details><div class=e-content><h2 id=what-agda-is>What Agda is</h2><p>Agda is a dependently typed functional programming language based on Martin-Löf type
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introduction to Agda - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "author": {
+    "@type": "Person",
+    "name": "claude-opus-4-6"
+  },
+  "dateModified": "2026-03-01",
+  "datePublished": "2026-03-01",
+  "description": "What Agda is Agda is a dependently typed functional programming language based on Martin-Löf type theory. It is simultaneously a programming language and a proof assistant: every well-typed program is a proof, and every proof is a program.\nUnlike Lean, which provides a tactic language for constructing proofs interactively, Agda proofs are written as ordinary function definitions using pattern matching. There is no tactic layer — the proof IS the code. This design choice makes proofs explicit and readable at the cost of less automation.\n",
+  "keywords": "Agda",
+  "name": "Introduction to Agda",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "teaches": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Introduction to Agda"
+    }
+  ],
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/introduction-to-agda/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="lesson">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/formal-math/">Formal math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/formal-math/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/">Agda</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/">Texts</a></nav>
+  <h1 class="p-name">Introduction to Agda</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-01T00:00:00Z">2026-03-01</time>
+    <span>by <span class="p-author">claude-opus-4-6</span></span>
+    
+  </div>
+  
+  <div class="type-meta type-meta--objectives">
+    <span class="type-meta-label">Learning objectives</span>
+    <ul><li>Introduction to Agda</li></ul>
+  </div>
+  
+  
+  <div class="type-meta type-meta--prereqs">
+    <span class="type-meta-label">Prerequisites</span>
+    <ul><li>/mathematics/disciplines/type-theory/curricula/dependent-types.md</li><li>/mathematics/disciplines/logic/curricula/intuitionistic-logic.md</li></ul>
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-agda-is">What Agda is</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#interactive-editing">Interactive editing</a></li>
+    <li><a href="#first-definitions">First definitions</a></li>
+    <li><a href="#first-proofs">First proofs</a></li>
+    <li><a href="#totality-checking">Totality checking</a></li>
+    <li><a href="#what-comes-next">What comes next</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h2 id="what-agda-is">What Agda is</h2>
+<p>Agda is a dependently typed functional programming language based on Martin-Löf type
 theory. It is simultaneously a programming language and a proof assistant: every
-well-typed program is a proof, and every proof is a program.</p><p>Unlike <a href=../../lean/index.md class=link-internal>Lean</a>, which provides a tactic language for constructing
+well-typed program is a proof, and every proof is a program.</p>
+<p>Unlike <a href="../../lean/index.md" class="link-internal">Lean</a>, which provides a tactic language for constructing
 proofs interactively, Agda proofs are written as ordinary function definitions using
-<a href=../terms/pattern-matching.md class=link-internal>pattern matching</a>. There is no tactic layer — the proof
+<a href="../terms/pattern-matching.md" class="link-internal">pattern matching</a>. There is no tactic layer — the proof
 IS the code. This design choice makes proofs explicit and readable at the cost of less
-automation.</p><p>Agda&rsquo;s type theory is natively <a href=../../../../../../mathematics/disciplines/logic/curricula/intuitionistic-logic.md class=link-internal>intuitionistic</a>. Excluded middle is not assumed. Every proof constructs its witness. Classical axioms can be postulated if needed, but the default is constructive.</p><h2 id=installation>Installation</h2><p>Agda is installed through the Haskell package manager:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cabal install Agda
+automation.</p>
+<p>Agda&rsquo;s type theory is natively <a href="../../../../../../mathematics/disciplines/logic/curricula/intuitionistic-logic.md" class="link-internal">intuitionistic</a>. Excluded middle is not assumed. Every proof constructs its witness. Classical axioms can be postulated if needed, but the default is constructive.</p>
+<h2 id="installation">Installation</h2>
+<p>Agda is installed through the Haskell package manager:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cabal install Agda
 </span></span></code></pre></div><p>Or via a package manager (<code>apt install agda</code>, <code>brew install agda</code>, etc.). After
-installation, <code>agda --version</code> confirms the setup.</p><p>The standard library is installed separately:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/agda/agda-stdlib
-</span></span></code></pre></div><p>Then add its path to <code>~/.agda/libraries</code> and <code>~/.agda/defaults</code>.</p><p>Editor support: Emacs with <code>agda2-mode</code> is the traditional environment, providing
+installation, <code>agda --version</code> confirms the setup.</p>
+<p>The standard library is installed separately:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/agda/agda-stdlib
+</span></span></code></pre></div><p>Then add its path to <code>~/.agda/libraries</code> and <code>~/.agda/defaults</code>.</p>
+<p>Editor support: Emacs with <code>agda2-mode</code> is the traditional environment, providing
 interactive type checking, goal display, and case splitting. VS Code with the <code>agda-mode</code>
-extension offers similar features.</p><h2 id=interactive-editing>Interactive editing</h2><p>Agda&rsquo;s development workflow is interactive. You write definitions with <strong>holes</strong> (marked
-<code>?</code> or <code>{! !}</code>) and ask the type checker to fill or refine them:</p><ul><li><strong>C-c C-l</strong> (load): type-check the file and display any errors or unsolved holes.</li><li><strong>C-c C-c</strong> (case split): in a hole, split on a variable — Agda generates one clause
-per constructor.</li><li><strong>C-c C-r</strong> (refine): if there is an obvious next step, fill the hole with it.</li><li><strong>C-c C-a</strong> (auto): attempt to fill the hole automatically.</li><li><strong>C-c C-,</strong> (goal type): display the type of the current hole and the available context.</li></ul><p>This interactive loop — write a hole, inspect its type, refine or split — is how Agda
-proofs are developed in practice.</p><h2 id=first-definitions>First definitions</h2><p>Agda modules begin with a module declaration:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-agda data-lang=agda><span style=display:flex><span><span style=color:#66d9ef>module</span> Example <span style=color:#66d9ef>where</span>
-</span></span></code></pre></div><p>Data types are defined with the <code>data</code> keyword:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-agda data-lang=agda><span style=display:flex><span><span style=color:#66d9ef>data</span> Nat <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span> <span style=color:#66d9ef>where</span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>zero</span> <span style=color:#f92672>:</span> Nat
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>suc</span>  <span style=color:#f92672>:</span> Nat <span style=color:#f92672>→</span> Nat
+extension offers similar features.</p>
+<h2 id="interactive-editing">Interactive editing</h2>
+<p>Agda&rsquo;s development workflow is interactive. You write definitions with <strong>holes</strong> (marked
+<code>?</code> or <code>{! !}</code>) and ask the type checker to fill or refine them:</p>
+<ul>
+<li><strong>C-c C-l</strong> (load): type-check the file and display any errors or unsolved holes.</li>
+<li><strong>C-c C-c</strong> (case split): in a hole, split on a variable — Agda generates one clause
+per constructor.</li>
+<li><strong>C-c C-r</strong> (refine): if there is an obvious next step, fill the hole with it.</li>
+<li><strong>C-c C-a</strong> (auto): attempt to fill the hole automatically.</li>
+<li><strong>C-c C-,</strong> (goal type): display the type of the current hole and the available context.</li>
+</ul>
+<p>This interactive loop — write a hole, inspect its type, refine or split — is how Agda
+proofs are developed in practice.</p>
+<h2 id="first-definitions">First definitions</h2>
+<p>Agda modules begin with a module declaration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">module</span> Example <span style="color:#66d9ef">where</span>
+</span></span></code></pre></div><p>Data types are defined with the <code>data</code> keyword:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> Nat <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">zero</span> <span style="color:#f92672">:</span> Nat
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">suc</span>  <span style="color:#f92672">:</span> Nat <span style="color:#f92672">→</span> Nat
 </span></span></code></pre></div><p>This defines natural numbers as an inductive type with two constructors. <code>Set</code> is the
-<a href=../terms/universe-level.md class=link-internal>universe</a> of types.</p><p>Functions are defined by pattern matching:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-agda data-lang=agda><span style=display:flex><span><span style=color:#a6e22e>_+_</span> <span style=color:#f92672>:</span> Nat <span style=color:#f92672>→</span> Nat <span style=color:#f92672>→</span> Nat
-</span></span><span style=display:flex><span>zero  + n <span style=color:#f92672>=</span> n
-</span></span><span style=display:flex><span>suc m + n <span style=color:#f92672>=</span> suc <span style=color:#f92672>(</span>m + n<span style=color:#f92672>)</span>
+<a href="../terms/universe-level.md" class="link-internal">universe</a> of types.</p>
+<p>Functions are defined by pattern matching:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">_+_</span> <span style="color:#f92672">:</span> Nat <span style="color:#f92672">→</span> Nat <span style="color:#f92672">→</span> Nat
+</span></span><span style="display:flex;"><span>zero  + n <span style="color:#f92672">=</span> n
+</span></span><span style="display:flex;"><span>suc m + n <span style="color:#f92672">=</span> suc <span style="color:#f92672">(</span>m + n<span style="color:#f92672">)</span>
 </span></span></code></pre></div><p>Agda checks that the patterns are exhaustive (every constructor is covered) and that the
-function terminates (recursive calls are on structurally smaller arguments).</p><h2 id=first-proofs>First proofs</h2><p>Equality in Agda is a type. The standard definition:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-agda data-lang=agda><span style=display:flex><span><span style=color:#66d9ef>data</span> _≡_ <span style=color:#f92672>{</span>A <span style=color:#f92672>:</span> <span style=color:#66d9ef>Set</span><span style=color:#f92672>}</span> <span style=color:#f92672>:</span> A <span style=color:#f92672>→</span> A <span style=color:#f92672>→</span> <span style=color:#66d9ef>Set</span> <span style=color:#66d9ef>where</span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>refl</span> <span style=color:#f92672>:</span> <span style=color:#f92672>{</span>x <span style=color:#f92672>:</span> A<span style=color:#f92672>}</span> <span style=color:#f92672>→</span> x ≡ x
+function terminates (recursive calls are on structurally smaller arguments).</p>
+<h2 id="first-proofs">First proofs</h2>
+<p>Equality in Agda is a type. The standard definition:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> _≡_ <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> <span style="color:#66d9ef">Set</span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">refl</span> <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>x <span style="color:#f92672">:</span> A<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> x ≡ x
 </span></span></code></pre></div><p><code>refl</code> is the only constructor: it proves that any value equals itself. To prove <code>a ≡ b</code>,
-you must show that <code>a</code> and <code>b</code> compute to the same value — then <code>refl</code> applies.</p><p>A first proof:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-agda data-lang=agda><span style=display:flex><span><span style=color:#a6e22e>+-zero</span> <span style=color:#f92672>:</span> <span style=color:#f92672>(</span>n <span style=color:#f92672>:</span> Nat<span style=color:#f92672>)</span> <span style=color:#f92672>→</span> n + zero ≡ n
-</span></span><span style=display:flex><span>+-zero zero    <span style=color:#f92672>=</span> refl
-</span></span><span style=display:flex><span>+-zero <span style=color:#f92672>(</span>suc m<span style=color:#f92672>)</span> <span style=color:#f92672>=</span> cong suc <span style=color:#f92672>(</span>+-zero m<span style=color:#f92672>)</span>
-</span></span></code></pre></div><p>Step by step:</p><ul><li>Base case: <code>zero + zero</code> computes to <code>zero</code>, so <code>refl</code> applies.</li><li>Inductive case: <code>suc m + zero</code> computes to <code>suc (m + zero)</code>. The goal is
+you must show that <code>a</code> and <code>b</code> compute to the same value — then <code>refl</code> applies.</p>
+<p>A first proof:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">+-zero</span> <span style="color:#f92672">:</span> <span style="color:#f92672">(</span>n <span style="color:#f92672">:</span> Nat<span style="color:#f92672">)</span> <span style="color:#f92672">→</span> n + zero ≡ n
+</span></span><span style="display:flex;"><span>+-zero zero    <span style="color:#f92672">=</span> refl
+</span></span><span style="display:flex;"><span>+-zero <span style="color:#f92672">(</span>suc m<span style="color:#f92672">)</span> <span style="color:#f92672">=</span> cong suc <span style="color:#f92672">(</span>+-zero m<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Step by step:</p>
+<ul>
+<li>Base case: <code>zero + zero</code> computes to <code>zero</code>, so <code>refl</code> applies.</li>
+<li>Inductive case: <code>suc m + zero</code> computes to <code>suc (m + zero)</code>. The goal is
 <code>suc (m + zero) ≡ suc m</code>. By the induction hypothesis <code>+-zero m : m + zero ≡ m</code>,
-and <code>cong suc</code> applies <code>suc</code> to both sides of that equality.</li></ul><p>The proof is a recursive function. The induction hypothesis is the recursive call. Pattern
-matching on the input is case analysis. This is proofs-as-programs in its purest form.</p><h2 id=totality-checking>Totality checking</h2><p>Agda enforces two discipline constraints:</p><ol><li><strong>Termination</strong>: all recursive functions must terminate. Agda checks that recursive
+and <code>cong suc</code> applies <code>suc</code> to both sides of that equality.</li>
+</ul>
+<p>The proof is a recursive function. The induction hypothesis is the recursive call. Pattern
+matching on the input is case analysis. This is proofs-as-programs in its purest form.</p>
+<h2 id="totality-checking">Totality checking</h2>
+<p>Agda enforces two discipline constraints:</p>
+<ol>
+<li><strong>Termination</strong>: all recursive functions must terminate. Agda checks that recursive
 calls are on structurally smaller arguments (a conservative approximation of
-termination).</li><li><strong>Coverage</strong>: pattern matches must be exhaustive — every constructor of the matched
-type must appear.</li></ol><p>These constraints ensure that every Agda function defines a total function and every proof
+termination).</li>
+<li><strong>Coverage</strong>: pattern matches must be exhaustive — every constructor of the matched
+type must appear.</li>
+</ol>
+<p>These constraints ensure that every Agda function defines a total function and every proof
 is valid. A non-terminating function could prove anything (by infinite regress), so
-totality is essential for logical consistency.</p><h2 id=what-comes-next>What comes next</h2><ul><li>Dependent Types in Agda — Pi-types, Sigma-types, indexed
-families, and implicit arguments</li><li>Proving in Agda — equational reasoning, congruence, and
-structuring proofs</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/introduction-to-agda/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-01>2026-03-01</time></dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>Requires</a></dt><dd property="schema:educationalAlignment"><ul><li>Mathematics disciplines type theory curricula dependent types.md</li><li>Mathematics disciplines logic curricula intuitionistic logic.md</li></ul></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/agda/>Agda</a></li></ul></dd></div><div class=relation><dt>Teaches</dt><dd property="emsenn:Teaches"><ul><li><a href=/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/introduction-to-agda/>Introduction to agda</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@misc{claude-opus-4-62026-introduction-to-agda,
+totality is essential for logical consistency.</p>
+<h2 id="what-comes-next">What comes next</h2>
+<ul>
+<li>Dependent Types in Agda — Pi-types, Sigma-types, indexed
+families, and implicit arguments</li>
+<li>Proving in Agda — equational reasoning, congruence, and
+structuring proofs</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/introduction-to-agda/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li>Mathematics disciplines type theory curricula dependent types.md</li><li>Mathematics disciplines logic curricula intuitionistic logic.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/agda/">Agda</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li><a href="/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/introduction-to-agda/">Introduction to agda</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{claude-opus-4-62026-introduction-to-agda,
   author    = {claude-opus-4-6},
   title     = {Introduction to Agda},
   year      = {2026},
   url       = {https://emsenn.net/library/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/introduction-to-agda/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

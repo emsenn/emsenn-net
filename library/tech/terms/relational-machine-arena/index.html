@@ -1,12 +1,151 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-18","datePublished":"2026-03-18","description":"The RelationalMachineArena is the full interaction type of a RelationalMachine — the pair (Σ, I) of step types that enter and the global sections Γ(H*) that exit, specifying who can connect to the machine and what they will receive.","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/terms/relational-machine-arena/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=page><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/terms/>Terms</a></nav><h1 class=p-name></h1><div class=meta><time class=dt-published datetime=2026-03-18T00:00:00Z>2026-03-18</time>
-<span class=p-summary>The RelationalMachineArena is the full interaction type of a RelationalMachine — the pair (Σ, I) of step types that enter and the global sections Γ(H*) that exit, specifying who can connect to the machine and what they will receive.</span></div><div class=e-content><h1 id=relational-machine-arena>Relational Machine Arena</h1><h2 id=what-this-is>What this is</h2><p>The <strong>RelationalMachineArena</strong> is the full interaction type of a <a href=relational-machine.md class=link-internal>RelationalMachine</a>: what the machine accepts as input and what it returns as output, stated as a typed contract.</p><p>The arena name comes from compositional game theory (Ghani, Hedges et al.): an <em>arena</em> (X, S) specifies what a game receives from its context (X) and what it returns (S).
-Applied to the RelationalMachine: the input type is the <a href=relational-machine-port.md class=link-internal>RelationalMachinePort</a> (the step set Σ with independence relation I) and the output type is the settled global sections emitted by the Observation Layer.</p><p>Knowing the arena of two RelationalMachines is sufficient to determine whether they can be connected: the output type of one must be receivable as an input type by the other.</p><h2 id=mathematical-grounding>Mathematical grounding</h2><p>The input side of the arena is the <a href=relational-machine-port.md class=link-internal>RelationalMachinePort</a>: steps s ∈ Σ, with commutation relation I.
-Each step s ∈ Σ indexes a sequential comonad G_s on R (<a href=../math/directed-comonad.md class=link-internal>directed-comonad</a>).
-The <a href=../math/directed-comonad.md class=link-internal>CoKleisli category</a> coKl(G_s) formalizes interaction: a morphism G_s X → Y is a process that consumes one step of type s and produces Y.
-The RelationalMachineArena is the type-level summary of all such morphisms: what step types enter (the port) and what settled sections exit (the observation layer output).</p><p>The output side is Γ(H*_{t&rsquo;}) ∖ Γ(H*_t): the global sections newly settled after step t → t&rsquo; = s★t.
-This is the machine&rsquo;s output per step: the sections that became stable as a result of processing the step.</p><h2 id=in-the-fars>In the FARS</h2><p>In a <a href=flatfile-agential-resource-system.md class=link-internal>FlatfileAgentialResourceSystem</a> locale:</p><ul><li>Input type: the four <a href=flatfile-agential-resource-system-message.md class=link-internal>FlatfileAgentialResourceSystemMessage</a> types {FixNeeded, GapFound, Discovery, Coordination}</li><li>Output type: messages deposited in other locales&rsquo; <code>INBOX.md</code> files and newly settled entity files</li></ul><p>Two locales can be connected when the output type of one locale is a subset of the input type of the other locale&rsquo;s <a href=relational-machine-port.md class=link-internal>RelationalMachinePort</a>.</p><p>A RelationalMachineArena MUST name both the input type (<a href=relational-machine-port.md class=link-internal>RelationalMachinePort</a>) and the output type (settled sections).
-It MUST be sufficient to determine connection compatibility between two RelationalMachines.</p><h2 id=open-questions>Open questions</h2></div></article><section class=page-relations resource="https://emsenn.net/library/tech/terms/relational-machine-arena/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Ast</dt><dd property="emsenn:Ast"></dd></div><div class=relation><dt><a href=/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/>Component of</a></dt><dd property="emsenn:Componentof"><a href=/library/tech/terms/relational-machine/>Relational machine</a></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-18>2026-03-18</time></dd></div><div class=relation><dt>Date modified</dt><dd property="emsenn:Datemodified"><time datetime=2026-03-18>2026-03-18</time></dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><a href=/library/tech/terms/relational-machine-arena/>Relational machine arena</a></dd></div><div class=relation><dt>Input port</dt><dd property="emsenn:Inputport">Relational universe</dd></div><div class=relation><dt>Output</dt><dd property="emsenn:Output">Relational universe</dd></div><div class=relation><dt>Output sections</dt><dd property="emsenn:Outputsections">Relational history fiber fixed layer</dd></div><div class=relation><dt><a href=/library/tech/terms/uses/>Uses</a></dt><dd property="emsenn:Uses"><a href=/library/tech/terms/relational-machine-port/>Relational machine port</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-18",
+  "datePublished": "2026-03-18",
+  "description": "The RelationalMachineArena is the full interaction type of a RelationalMachine — the pair (Σ, I) of step types that enter and the global sections Γ(H*) that exit, specifying who can connect to the machine and what they will receive.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/terms/relational-machine-arena/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-18T00:00:00Z">2026-03-18</time>
+    
+    <span class="p-summary">The RelationalMachineArena is the full interaction type of a RelationalMachine — the pair (Σ, I) of step types that enter and the global sections Γ(H*) that exit, specifying who can connect to the machine and what they will receive.</span>
+  </div>
+  <div class="e-content">
+    <h1 id="relational-machine-arena">Relational Machine Arena</h1>
+<h2 id="what-this-is">What this is</h2>
+<p>The <strong>RelationalMachineArena</strong> is the full interaction type of a <a href="relational-machine.md" class="link-internal">RelationalMachine</a>: what the machine accepts as input and what it returns as output, stated as a typed contract.</p>
+<p>The arena name comes from compositional game theory (Ghani, Hedges et al.): an <em>arena</em> (X, S) specifies what a game receives from its context (X) and what it returns (S).
+Applied to the RelationalMachine: the input type is the <a href="relational-machine-port.md" class="link-internal">RelationalMachinePort</a> (the step set Σ with independence relation I) and the output type is the settled global sections emitted by the Observation Layer.</p>
+<p>Knowing the arena of two RelationalMachines is sufficient to determine whether they can be connected: the output type of one must be receivable as an input type by the other.</p>
+<h2 id="mathematical-grounding">Mathematical grounding</h2>
+<p>The input side of the arena is the <a href="relational-machine-port.md" class="link-internal">RelationalMachinePort</a>: steps s ∈ Σ, with commutation relation I.
+Each step s ∈ Σ indexes a sequential comonad G_s on R (<a href="../math/directed-comonad.md" class="link-internal">directed-comonad</a>).
+The <a href="../math/directed-comonad.md" class="link-internal">CoKleisli category</a> coKl(G_s) formalizes interaction: a morphism G_s X → Y is a process that consumes one step of type s and produces Y.
+The RelationalMachineArena is the type-level summary of all such morphisms: what step types enter (the port) and what settled sections exit (the observation layer output).</p>
+<p>The output side is Γ(H*_{t&rsquo;}) ∖ Γ(H*_t): the global sections newly settled after step t → t&rsquo; = s★t.
+This is the machine&rsquo;s output per step: the sections that became stable as a result of processing the step.</p>
+<h2 id="in-the-fars">In the FARS</h2>
+<p>In a <a href="flatfile-agential-resource-system.md" class="link-internal">FlatfileAgentialResourceSystem</a> locale:</p>
+<ul>
+<li>Input type: the four <a href="flatfile-agential-resource-system-message.md" class="link-internal">FlatfileAgentialResourceSystemMessage</a> types {FixNeeded, GapFound, Discovery, Coordination}</li>
+<li>Output type: messages deposited in other locales&rsquo; <code>INBOX.md</code> files and newly settled entity files</li>
+</ul>
+<p>Two locales can be connected when the output type of one locale is a subset of the input type of the other locale&rsquo;s <a href="relational-machine-port.md" class="link-internal">RelationalMachinePort</a>.</p>
+<p>A RelationalMachineArena MUST name both the input type (<a href="relational-machine-port.md" class="link-internal">RelationalMachinePort</a>) and the output type (settled sections).
+It MUST be sufficient to determine connection compatibility between two RelationalMachines.</p>
+<h2 id="open-questions">Open questions</h2>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/terms/relational-machine-arena/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt><a href="/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Component of</a></dt>
+        <dd property="emsenn:Componentof"><a href="/library/tech/terms/relational-machine/">Relational machine</a></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-18">2026-03-18</time></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-18">2026-03-18</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/tech/terms/relational-machine-arena/">Relational machine arena</a></dd>
+      </div><div class="relation">
+        <dt>Input port</dt>
+        <dd property="emsenn:Inputport">Relational universe</dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">Relational universe</dd>
+      </div><div class="relation">
+        <dt>Output sections</dt>
+        <dd property="emsenn:Outputsections">Relational history fiber fixed layer</dd>
+      </div><div class="relation">
+        <dt><a href="/library/tech/terms/uses/">Uses</a></dt>
+        <dd property="emsenn:Uses"><a href="/library/tech/terms/relational-machine-port/">Relational machine port</a></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

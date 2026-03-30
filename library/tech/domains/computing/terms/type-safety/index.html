@@ -1,6 +1,133 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Type Safety - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-29","datePublished":"2026-03-29","description":"The property of a program or system that guarantees operations are only applied to data of the correct type — preventing a category of errors at compile time or validation time rather than at runtime.","name":"Type Safety","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/terms/type-safety/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry data-type=page><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/>Computing</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/terms/>Terms</a></nav><h1 class=p-name>Type Safety</h1><div class=meta><time class=dt-published datetime=2026-03-29T00:00:00Z>2026-03-29</time>
-<span class=p-summary>The property of a program or system that guarantees operations are only applied to data of the correct type — preventing a category of errors at compile time or validation time rather than at runtime.</span></div><div class=e-content><p>Type safety is the property of a program or system that guarantees operations are only applied to data of compatible types. A type-safe system prevents you from treating a string as a number, passing three arguments to a function that expects two, or accessing a field that does not exist on a given data structure. The guarantee can be enforced at compile time (static type checking), at runtime (dynamic type checking), or at the boundary between systems (schema validation).</p><p>In statically typed languages (Rust, Haskell, TypeScript in strict mode), the type checker verifies type correctness before the program runs. In dynamically typed languages (Python, JavaScript), types are checked at runtime when operations are performed. Python&rsquo;s type annotation system (PEP 484, introduced in Python 3.5) adds optional static type hints that tools like mypy can check, but the Python runtime itself does not enforce them. <strong>Pydantic</strong> bridges this gap: it uses Python type annotations to generate runtime validators that enforce type constraints when data enters the system.</p><p>Type safety matters for <a href=../domains/artificial-intelligence/domains/agents/terms/agentic-system.md class=link-internal>agentic systems</a> because the boundary between a language model and the host application is inherently type-unsafe. A language model produces text — an untyped string. When that string represents a <a href=../domains/artificial-intelligence/domains/agents/terms/tool-use.md class=link-internal>tool call</a> with specific arguments in specific types, something must verify that the output conforms to the expected structure. A malformed tool call (wrong type, missing field, out-of-range value) propagates silently until it causes a downstream failure.</p><p><a href=../domains/artificial-intelligence/domains/agents/terms/pydantic-ai.md class=link-internal>PydanticAI</a> makes type safety load-bearing in agent architecture. When an LLM produces structured output, PydanticAI validates it against a Pydantic model. If validation fails, the validation errors are fed back to the LLM as part of the conversation, and the model retries. The type system does not merely detect errors — it participates in the inference loop, guiding the model toward valid output. This is the type-safety-in-the-loop pattern: the type constraint is not a post-hoc check but an active participant in shaping behavior.</p><p><a href=./json-schema.md class=link-internal>JSON Schema</a> serves a similar function at a different layer: it defines the structure that tool inputs must conform to, and the model&rsquo;s fine-tuning on schema-conformant outputs is what makes <a href=../domains/artificial-intelligence/domains/agents/terms/tool-use.md class=link-internal>tool use</a> reliable. The combination — JSON Schema defining the contract, Pydantic enforcing it at runtime, and the LLM trained to produce conformant output — creates a type-safe pipeline across the boundary between statistical generation and deterministic execution.</p><h2 id=related-terms>Related terms</h2><ul><li><a href=./json-schema.md class=link-internal>JSON Schema</a> — the schema language used for tool interface contracts</li><li><a href=../domains/artificial-intelligence/domains/agents/terms/pydantic-ai.md class=link-internal>PydanticAI</a> — the framework that makes type safety participate in the inference loop</li><li><a href=../domains/artificial-intelligence/domains/agents/terms/tool-use.md class=link-internal>Tool use</a> — the mechanism that requires type safety at the model-application boundary</li></ul></div></article><section class=page-relations resource="https://emsenn.net/library/tech/domains/computing/terms/type-safety/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>Date updated</dt><dd property="schema:dateModified"><time datetime=2026-03-29>2026-03-29</time></dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><a href=/library/tech/domains/computing/terms/type-safety/>Type safety</a></dd></div><div class=relation><dt><a href=/library/information/terms/channel/>Delivered via</a></dt><dd property="emsenn:Deliveredvia">JSON schema, pydantic ai</dd></div><div class=relation><dt><a href=/library/math/domains/sets/terms/domain/>Domain</a></dt><dd property="emsenn:Domain">Computing</dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/possibility/>Enables</a></dt><dd property="emsenn:Enables">Structured output</dd></div><div class=relation><dt>Governs</dt><dd property="emsenn:Governs">Tool use</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Type Safety - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "The property of a program or system that guarantees operations are only applied to data of the correct type — preventing a category of errors at compile time or validation time rather than at runtime.",
+  "name": "Type Safety",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/domains/computing/terms/type-safety/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/terms/">Terms</a></nav>
+  <h1 class="p-name">Type Safety</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">The property of a program or system that guarantees operations are only applied to data of the correct type — preventing a category of errors at compile time or validation time rather than at runtime.</span>
+  </div>
+  <div class="e-content">
+    <p>Type safety is the property of a program or system that guarantees operations are only applied to data of compatible types. A type-safe system prevents you from treating a string as a number, passing three arguments to a function that expects two, or accessing a field that does not exist on a given data structure. The guarantee can be enforced at compile time (static type checking), at runtime (dynamic type checking), or at the boundary between systems (schema validation).</p>
+<p>In statically typed languages (Rust, Haskell, TypeScript in strict mode), the type checker verifies type correctness before the program runs. In dynamically typed languages (Python, JavaScript), types are checked at runtime when operations are performed. Python&rsquo;s type annotation system (PEP 484, introduced in Python 3.5) adds optional static type hints that tools like mypy can check, but the Python runtime itself does not enforce them. <strong>Pydantic</strong> bridges this gap: it uses Python type annotations to generate runtime validators that enforce type constraints when data enters the system.</p>
+<p>Type safety matters for <a href="../domains/artificial-intelligence/domains/agents/terms/agentic-system.md" class="link-internal">agentic systems</a> because the boundary between a language model and the host application is inherently type-unsafe. A language model produces text — an untyped string. When that string represents a <a href="../domains/artificial-intelligence/domains/agents/terms/tool-use.md" class="link-internal">tool call</a> with specific arguments in specific types, something must verify that the output conforms to the expected structure. A malformed tool call (wrong type, missing field, out-of-range value) propagates silently until it causes a downstream failure.</p>
+<p><a href="../domains/artificial-intelligence/domains/agents/terms/pydantic-ai.md" class="link-internal">PydanticAI</a> makes type safety load-bearing in agent architecture. When an LLM produces structured output, PydanticAI validates it against a Pydantic model. If validation fails, the validation errors are fed back to the LLM as part of the conversation, and the model retries. The type system does not merely detect errors — it participates in the inference loop, guiding the model toward valid output. This is the type-safety-in-the-loop pattern: the type constraint is not a post-hoc check but an active participant in shaping behavior.</p>
+<p><a href="./json-schema.md" class="link-internal">JSON Schema</a> serves a similar function at a different layer: it defines the structure that tool inputs must conform to, and the model&rsquo;s fine-tuning on schema-conformant outputs is what makes <a href="../domains/artificial-intelligence/domains/agents/terms/tool-use.md" class="link-internal">tool use</a> reliable. The combination — JSON Schema defining the contract, Pydantic enforcing it at runtime, and the LLM trained to produce conformant output — creates a type-safe pipeline across the boundary between statistical generation and deterministic execution.</p>
+<h2 id="related-terms">Related terms</h2>
+<ul>
+<li><a href="./json-schema.md" class="link-internal">JSON Schema</a> — the schema language used for tool interface contracts</li>
+<li><a href="../domains/artificial-intelligence/domains/agents/terms/pydantic-ai.md" class="link-internal">PydanticAI</a> — the framework that makes type safety participate in the inference loop</li>
+<li><a href="../domains/artificial-intelligence/domains/agents/terms/tool-use.md" class="link-internal">Tool use</a> — the mechanism that requires type safety at the model-application boundary</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/terms/type-safety/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Date updated</dt>
+        <dd property="schema:dateModified"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/tech/domains/computing/terms/type-safety/">Type safety</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/information/terms/channel/">Delivered via</a></dt>
+        <dd property="emsenn:Deliveredvia">JSON schema, pydantic ai</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">Computing</dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/logic/terms/possibility/">Enables</a></dt>
+        <dd property="emsenn:Enables">Structured output</dd>
+      </div><div class="relation">
+        <dt>Governs</dt>
+        <dd property="emsenn:Governs">Tool use</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>
