@@ -1,8 +1,92 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"CCE Remote Procedure Call (CCE-RPC)\nSpecification – Version 0.x (normative)\nPurpose CCE-RPC defines a transport‑neutral envelope for invoking the Cellular Closure Engine over networked or interprocess channels. It standardizes request/response fields, canonical JSON expectations, session/lease semantics, and conformance fixtures so independently implemented clients and servers interoperate.\nEnvelope Requests and responses MUST be canonical JSON with lexicographically sorted keys. Binary transports (gRPC, Cap’n Proto) MUST embed the canonical JSON inside the payload; no additional framing semantics may alter the bytes. Payload octets are base64 of UTF‑8 JSON produced by CDS/RTL canonicalization. Streaming transports (server or bidi) MUST frame each message as a complete request/response pair with the same envelope; streaming MAY batch multiple apply calls but MUST NOT mutate envelope ordering or introduce out‑of‑band fields.\n","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-computer-engine-remote-procedure-call/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content><article class=h-entry data-pagefind-body data-type=page data-pagefind-filter=type:page><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/>Computing</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/software/>Software</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/software/domains/ideas/>Ideas</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/>Cellular closure computing</a></nav><span data-pagefind-filter=domain data-pagefind-ignore=all style=display:none>Tech</span><h1 class=p-name></h1><div class=meta></div><div class=e-content><p>CCE Remote Procedure Call (CCE-RPC)</p><p><strong>Specification – Version 0.x (normative)</strong></p><hr><ol><li>Purpose</li></ol><p>CCE-RPC defines a transport‑neutral envelope for invoking the Cellular Closure Engine over networked or interprocess channels. It standardizes request/response fields, canonical JSON expectations, session/lease semantics, and conformance fixtures so independently implemented clients and servers interoperate.</p><hr><ol start=2><li>Envelope</li></ol><p>Requests and responses MUST be canonical JSON with lexicographically sorted keys. Binary transports (gRPC, Cap’n Proto) MUST embed the canonical JSON inside the payload; no additional framing semantics may alter the bytes. Payload octets are base64 of UTF‑8 JSON produced by CDS/RTL canonicalization. Streaming transports (server or bidi) MUST frame <em>each</em> message as a complete request/response pair with the same envelope; streaming MAY batch multiple apply calls but MUST NOT mutate envelope ordering or introduce out‑of‑band fields.</p><p>2.1 Request</p><pre tabindex=0><code>{
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "CCE Remote Procedure Call (CCE-RPC)\nSpecification – Version 0.x (normative)\nPurpose CCE-RPC defines a transport‑neutral envelope for invoking the Cellular Closure Engine over networked or interprocess channels. It standardizes request/response fields, canonical JSON expectations, session/lease semantics, and conformance fixtures so independently implemented clients and servers interoperate.\nEnvelope Requests and responses MUST be canonical JSON with lexicographically sorted keys. Binary transports (gRPC, Cap’n Proto) MUST embed the canonical JSON inside the payload; no additional framing semantics may alter the bytes. Payload octets are base64 of UTF‑8 JSON produced by CDS/RTL canonicalization. Streaming transports (server or bidi) MUST frame each message as a complete request/response pair with the same envelope; streaming MAY batch multiple apply calls but MUST NOT mutate envelope ordering or introduce out‑of‑band fields.\n",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-computer-engine-remote-procedure-call/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software/domains/ideas/">Ideas</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/">Cellular closure computing</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    
+  </div>
+  <div class="e-content">
+    <p>CCE Remote Procedure Call (CCE-RPC)</p>
+<p><strong>Specification – Version 0.x (normative)</strong></p>
+<hr>
+<ol>
+<li>Purpose</li>
+</ol>
+<p>CCE-RPC defines a transport‑neutral envelope for invoking the Cellular Closure Engine over networked or interprocess channels. It standardizes request/response fields, canonical JSON expectations, session/lease semantics, and conformance fixtures so independently implemented clients and servers interoperate.</p>
+<hr>
+<ol start="2">
+<li>Envelope</li>
+</ol>
+<p>Requests and responses MUST be canonical JSON with lexicographically sorted keys. Binary transports (gRPC, Cap’n Proto) MUST embed the canonical JSON inside the payload; no additional framing semantics may alter the bytes. Payload octets are base64 of UTF‑8 JSON produced by CDS/RTL canonicalization. Streaming transports (server or bidi) MUST frame <em>each</em> message as a complete request/response pair with the same envelope; streaming MAY batch multiple apply calls but MUST NOT mutate envelope ordering or introduce out‑of‑band fields.</p>
+<p>2.1 Request</p>
+<pre tabindex="0"><code>{
   &#34;id&#34;: &#34;client-generated uuid&#34;,
   &#34;version&#34;: &#34;CCE-0.x&#34;,             // optional; if present, MUST match server version
   &#34;method&#34;: &#34;apply&#34; | &#34;merge&#34;,
@@ -11,7 +95,8 @@
   &#34;fuel&#34;: 16,                          // optional override
   &#34;prior_refined_cds&#34;: &#34;sha256-hex&#34;   // optional for session refinement
 }
-</code></pre><p>2.2 Response</p><pre tabindex=0><code>{
+</code></pre><p>2.2 Response</p>
+<pre tabindex="0"><code>{
   &#34;id&#34;: &#34;same as request.id&#34;,
   &#34;version&#34;: &#34;CCE-0.x&#34;,             // required; MUST surface CCE spec version
   &#34;status&#34;: &#34;ok&#34; | &#34;error&#34;,
@@ -22,4 +107,151 @@
   &#34;repair_log&#34;: &#34;base64-utf8-json&#34;,       // canonical log array, present whenever produced
   &#34;evidence&#34;: [&#34;sha256-hex&#34;, ...]        // optional trace of repair steps
 }
-</code></pre><ul><li><code>refined_cds_hash</code> MUST equal the canonical hash of <code>refined_cds</code>.</li><li><code>repair_log</code> MAY appear on error responses when CCE generated logs during partial progress; servers MUST forward it canonically.</li><li>Unknown top‑level fields in either envelope (other than <code>version</code>) MUST trigger <code>CCE_RPC_UNKNOWN_FIELD</code>.</li><li>Servers MUST reject mismatched base64 decoding or non‑UTF‑8 payloads with <code>CCE_RPC_PAYLOAD_ENCODING</code>.</li></ul><hr><ol start=3><li>Error Mapping</li></ol><p>CCE error codes propagate to RPC <code>code</code> verbatim. Transports MUST map:</p><table><thead><tr><th>CCE/ CDS/ RTL code</th><th>Transport status</th></tr></thead><tbody><tr><td>any <code>*_INVALID</code>, <code>*_MISMATCH</code></td><td><code>INVALID_ARGUMENT</code> (gRPC) / HTTP 400</td></tr><tr><td><code>CCE_CLOSURE_FUEL_EXCEEDED</code></td><td><code>RESOURCE_EXHAUSTED</code> / HTTP 429</td></tr><tr><td><code>CCE_SIGMA_DELTA_DIVERGED</code></td><td><code>FAILED_PRECONDITION</code> / HTTP 412</td></tr><tr><td><code>CCE_REPAIR_FAILED</code></td><td><code>FAILED_PRECONDITION</code> / HTTP 412</td></tr><tr><td><code>CCE_MERGE_*</code></td><td><code>FAILED_PRECONDITION</code> / HTTP 412</td></tr><tr><td><code>CCE_RPC_UNKNOWN_FIELD</code></td><td><code>INVALID_ARGUMENT</code> / HTTP 400</td></tr><tr><td><code>CCE_RPC_PAYLOAD_ENCODING</code></td><td><code>INVALID_ARGUMENT</code> / HTTP 400</td></tr><tr><td>unknown codes</td><td><code>UNKNOWN</code> / HTTP 500</td></tr></tbody></table><p>Servers MUST NOT mask application codes with transport OK statuses.</p><hr><ol start=4><li>Session / Lease Semantics</li></ol><p>Clients MAY perform multi‑call refinement:</p><ol><li>Client supplies <code>prior_refined_cds</code> equal to the hash from the previous response.</li><li>Server MUST check that <code>prior_refined_cds == hash(cds_payload)</code> after canonicalization; mismatch yields <code>CCE_RPC_PRIOR_HASH_MISMATCH</code>.</li><li>When fuel is omitted, the server MAY reuse the previous fuel bound from the session; otherwise it MUST honor the provided <code>fuel</code> exactly.</li><li>Servers MUST ensure determinism: repeated calls with identical inputs and prior hashes MUST return byte‑identical outputs, including <code>repair_log</code> order.</li></ol><p>Sessions are purely logical; no mutable server state beyond hash comparison is permitted. Servers MUST NOT cache partial closures between requests.</p><hr><ol start=5><li>Conformance Fixtures</li></ol><p>Implementations MUST publish fixtures:</p><ul><li><strong>Unary apply</strong>: CDS/RTL pair from CDS §8.1 returning success with known hash.</li><li><strong>Unary error</strong>: malformed RTL (unknown operator) returning <code>RTL_UNKNOWN_OPERATOR</code>.</li><li><strong>Lease refinement</strong>: two sequential apply calls where the second includes <code>prior_refined_cds</code> from the first; outputs must match exactly, including <code>repair_log</code>.</li><li><strong>Merge</strong>: merge fixtures covering success, site mismatch, and empty fixed layer intersection.</li></ul><p>Each fixture MUST include the canonical request JSON, expected response JSON, refined CDS bytes, and canonical repair log to allow cross‑implementation replay.</p><hr><ol start=6><li>Deterministic Transcript and Auditing</li></ol><p>Servers and clients MUST produce auditable transcripts:</p><ul><li><strong>Canonical request/response pair.</strong> Log the canonical JSON (post base64 decoding) and its SHA‑256 hash for both request and response. Hashes MUST match the <code>refined_cds_hash</code> field when present.</li><li><strong>Repair log linkage.</strong> Include the sequence of <code>repair_log</code> hashes in the transcript to prove that the server honored the closure and sheafification steps in order.</li><li><strong>Transport neutrality.</strong> The transcript MUST be identical whether delivered over HTTP, gRPC, Cap’n Proto, or a message bus; transport‑specific metadata MUST NOT alter field ordering or encoding.</li><li><strong>Spec and fuel disclosure.</strong> Each transcript line MUST include the CCE spec version string plus the fuel budget accepted by the server for the request. If the fuel budget differs from the client’s declared <code>fuel_hint</code>, the transcript MUST record both values to preserve the mathematical replay of the closure iteration.</li></ul><p>Transcripts are required artifacts for conformance certification; missing or non‑deterministic transcripts render the RPC implementation non‑normative.</p><hr><ol start=7><li>Interpretive Transport Notes</li></ol><p>RPC transports sit above the ABI but MUST remain faithful to the same closure principles:</p><ul><li><strong>Envelope as boundary object.</strong> The base64 payloads are not arbitrary blobs; they are the canonical witnesses of the closure computation. Servers MUST NOT rewrite or pretty‑print the JSON before hashing or forwarding to the ABI.</li><li><strong>Session hashes as morphisms.</strong> <code>prior_refined_cds</code> behaves like a morphism in the AOG between sequential closure states. Rejecting mismatched hashes maintains the categorical composition implied by GFRTU generative closure.</li><li><strong>Error propagation as logical evidence.</strong> Transport status codes MUST be a transparent reflection of the mathematical failure mode (sheaf gap, σ/Δ divergence, merge inconsistency) so that remote clients can treat RPC replies as proofs of success or failure, not opaque HTTP outcomes.</li></ul><p>These interpretive constraints prevent RPC layers from introducing informal semantics that could obscure determinism or the provenance of closure evidence.</p><hr><ol start=8><li>Cross-document Deterministic Fixture</li></ol><p>Implementers MUST support the following canonical fixture end‑to‑end (CDS → RTL → CCE → ABI → RPC) to demonstrate reproducibility:</p><ol><li><strong>CDS payload.</strong> Canonical JSON (single line) and hash:</li><li>Hash = <code>f44702d559037b6b99c7425fee32cf5be10137bc124b4a9be86c5d14d4d6404c</code>, base64 = `eyJjb25zdHJ1Y3RvcnMiOltdLCJkZWZpbmluZ19leHByZXNzaW9uIjp7ImNsb3N1cmVfZGVwdGgiOjAsImRlcml2YXRpb25fb3JkZXIiOiJoZWlnaHQtdGhlbi1sZWZ0bW9zdCIsImp1ZGdtZW50cyI6W119LCJleGFtcGxlcyI6e30sImZpYmVycyI6eyJyZWNvZ25pdGlvbiI6eyJjYXJyaWVyIjoiQm9vbGVhbiIsImRlbHRhIjp7InRhYmxlIjpbWyIwIiwiMCJdLFsiMCIsIjEiXV19LCJoZXl0aW5nIjp7ImltcCI6W1siMSIsIjEiXSxbIjAiLCIxIl1dLCJqb2luIjpbWyIwIiwiMSJdLFsiMSIsIjEiXV0sIm1lZXQiOltbIjAiLCIwIl0sWyIwIiwiMSJdXX0sInNpZ21hIjp7InRhYmxlIjpbWyIwIiwiMSJdLFsiMSIsIjEiXV19fSwic2VjdGlvbnMiOlt7ImVsZW1lbnRzIjpbIjAiLCIxIl0sIm9iamVjdCI6IlUifV19LCJmaXhlZF9sYXllciI6eyJyZWNvZ25pdGlvbiI6eyJjYXJyaWVyIjoiQm9vbGVhbiIsImRlbHRhIjp7InRhYmxlIjpbWyIwIiwiMCJdLFsiMCIsIjEiXV19LCJoZXl0aW5nIjp7ImltcCI6W1siMSIsIjEiXSxbIjAiLCIxIl1dLCJqb2luIjpbWyIwIiwiMSJdLFsiMSIsIjEiXV0sIm1lZXQiOltbIjAiLCIwIl0sWyIwIiwiMSJdXX0sInNpZ21hIjp7InRhYmxlIjpbWyIwIiwiMSJdLFsiMSIsIjEiXV19fSwic2VjdGlvbnMiOlt7ImVsZW1lbnRzIjpbIjAiLCIxIl0sIm9iamVjdCI6IlUifV19LCJpZCI6ImY0NDcwMmQ1NTkwMzdiNmI5OWM3NDI1ZmVlMzJjZjViZTEwMTM3YmMxMjRiNGE5YmU4NmM1ZDE0ZDRkNjQwNGMiLCJraW5kIjoiY2RzIiwibGF3cyI6eyJjYW5vbmljYWxpemF0aW9uIjp7Imhhc2giOiJzaGEyNTYiLCJzdHJhdGVneSI6ImNivi1sZWZ0LXRvLXJpZ2h0In0sImludmFyaWFudHMiOlt7ImNvZGUiOiJDRFNfSU5WX1NIRUFGIiwibmFtZSI6InNoZWFmX2NvbmRpdGlvbiIsInNldmVyaXR5IjoiaGFyZCJ9XSwicmVwYWlyX2xvZyI6W119LCJydGxfc2lnbmF0dXJlIjp7ImJhc2VfdHlwZXMiOlsiT2IgVSJdLCJjb25zdHJ1Y3RvcnMiOltdfSwic2l0ZSI6eyJoZXl0aW5nX3RhYmxlIjp7ImltcCI6W1siVSIsIlUiXV0sImpvaW4iOltbIlUiLCJVIl1dLCJtZWV0IjpbWyJVIiwiVSJdXX0sIm1vcnBoaXNtcyI6W10sIm9iamVjdHMiOlt7ImNvdmVyIjpbXSwiaWQiOiJVIn1dLCJ0b3BvbG9neSI6W1siVSJdXX0sInN0cnVjdHVyYWxfdm9jYWJ1bGFyeSI6eyJtb3JwaGlzbXMiOltdLCJvYmplY3RzIjpbIlUiXSwicmVsYXRpb25zIjpbXX19</li><li><strong>RTL judgment.</strong> Canonical JSON, hash, and base64:</li><li>Hash = <code>10a1d0cb3641c4b6ba9b76c8841e2d4b60ecbdf0462797bcc84d228e63670bbf</code>, base64 = <code>eyJjb250ZXh0IjpbeyJuYW1lIjoieCIsInR5cGUiOnsicmVmIjoiT2IgVSJ9fV0sInRlcm0iOnsidmFyIjoieCJ9LCJ0eXBlIjp7InJlZiI6Ik9iIFUifX0=</code>.</li><li><strong>RPC apply round‑trip.</strong> Request:</li><li>Response:</li><li><strong>ABI check.</strong> Feeding the same CDS/RTL bytes through <code>cce_apply</code> MUST return zero with output buffers matching the base64 payloads above. The repair log is the empty array <code>[]</code> (<code>W10=</code> base64).</li><li><strong>Hashing snippets.</strong> Independent toolchains MUST reproduce the hashes using canonical JSON sorting. Example (Python):</li><li>Example (Go):</li></ol><p>The fixture demonstrates that CDS canonicalization, RTL normalization, CCE closure, ABI bindings, and RPC envelopes all preserve byte‑identical artifacts.</p><hr><ol start=7><li>Operational Checklist</li></ol><p>Clients and servers MUST expose the following observable behaviors to guarantee deterministic interoperability:</p><ol><li><strong>Strict payload echo</strong>: responses MUST repeat the request <code>id</code> and any supplied <code>prior_refined_cds</code> hash verbatim. Any alteration, even cosmetic, indicates an envelope violation and MUST result in <code>CCE_RPC_ECHO_FAIL</code>.</li><li><strong>Canonical timing</strong>: streaming transports MUST preserve request order; the server MAY process in parallel but MUST serialize responses in the exact order requests were received so causal hashes remain inspectable.</li><li><strong>Lease accounting</strong>: when a session lease expires, the server MUST emit a terminal error with the lease identifier and MUST NOT reuse the lease token. Clients MUST treat reuse as non‑deterministic behavior and abort.</li><li><strong>Version proof</strong>: every response MUST set the <code>version</code> field to the CCE spec version string from <code>cce.md</code>; mismatches against the client’s expected version MUST be a hard error so replay tools can refuse mixed evidence.</li></ol><p>This checklist ties wire behavior to the GFRTU closure steps, ensuring that transport adapters cannot smuggle in host scheduling assumptions or hidden state.</p></div></article></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+</code></pre><ul>
+<li><code>refined_cds_hash</code> MUST equal the canonical hash of <code>refined_cds</code>.</li>
+<li><code>repair_log</code> MAY appear on error responses when CCE generated logs during partial progress; servers MUST forward it canonically.</li>
+<li>Unknown top‑level fields in either envelope (other than <code>version</code>) MUST trigger <code>CCE_RPC_UNKNOWN_FIELD</code>.</li>
+<li>Servers MUST reject mismatched base64 decoding or non‑UTF‑8 payloads with <code>CCE_RPC_PAYLOAD_ENCODING</code>.</li>
+</ul>
+<hr>
+<ol start="3">
+<li>Error Mapping</li>
+</ol>
+<p>CCE error codes propagate to RPC <code>code</code> verbatim. Transports MUST map:</p>
+<table>
+  <thead>
+      <tr>
+          <th>CCE/ CDS/ RTL code</th>
+          <th>Transport status</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>any <code>*_INVALID</code>, <code>*_MISMATCH</code></td>
+          <td><code>INVALID_ARGUMENT</code> (gRPC) / HTTP 400</td>
+      </tr>
+      <tr>
+          <td><code>CCE_CLOSURE_FUEL_EXCEEDED</code></td>
+          <td><code>RESOURCE_EXHAUSTED</code> / HTTP 429</td>
+      </tr>
+      <tr>
+          <td><code>CCE_SIGMA_DELTA_DIVERGED</code></td>
+          <td><code>FAILED_PRECONDITION</code> / HTTP 412</td>
+      </tr>
+      <tr>
+          <td><code>CCE_REPAIR_FAILED</code></td>
+          <td><code>FAILED_PRECONDITION</code> / HTTP 412</td>
+      </tr>
+      <tr>
+          <td><code>CCE_MERGE_*</code></td>
+          <td><code>FAILED_PRECONDITION</code> / HTTP 412</td>
+      </tr>
+      <tr>
+          <td><code>CCE_RPC_UNKNOWN_FIELD</code></td>
+          <td><code>INVALID_ARGUMENT</code> / HTTP 400</td>
+      </tr>
+      <tr>
+          <td><code>CCE_RPC_PAYLOAD_ENCODING</code></td>
+          <td><code>INVALID_ARGUMENT</code> / HTTP 400</td>
+      </tr>
+      <tr>
+          <td>unknown codes</td>
+          <td><code>UNKNOWN</code> / HTTP 500</td>
+      </tr>
+  </tbody>
+</table>
+<p>Servers MUST NOT mask application codes with transport OK statuses.</p>
+<hr>
+<ol start="4">
+<li>Session / Lease Semantics</li>
+</ol>
+<p>Clients MAY perform multi‑call refinement:</p>
+<ol>
+<li>Client supplies <code>prior_refined_cds</code> equal to the hash from the previous response.</li>
+<li>Server MUST check that <code>prior_refined_cds == hash(cds_payload)</code> after canonicalization; mismatch yields <code>CCE_RPC_PRIOR_HASH_MISMATCH</code>.</li>
+<li>When fuel is omitted, the server MAY reuse the previous fuel bound from the session; otherwise it MUST honor the provided <code>fuel</code> exactly.</li>
+<li>Servers MUST ensure determinism: repeated calls with identical inputs and prior hashes MUST return byte‑identical outputs, including <code>repair_log</code> order.</li>
+</ol>
+<p>Sessions are purely logical; no mutable server state beyond hash comparison is permitted. Servers MUST NOT cache partial closures between requests.</p>
+<hr>
+<ol start="5">
+<li>Conformance Fixtures</li>
+</ol>
+<p>Implementations MUST publish fixtures:</p>
+<ul>
+<li><strong>Unary apply</strong>: CDS/RTL pair from CDS §8.1 returning success with known hash.</li>
+<li><strong>Unary error</strong>: malformed RTL (unknown operator) returning <code>RTL_UNKNOWN_OPERATOR</code>.</li>
+<li><strong>Lease refinement</strong>: two sequential apply calls where the second includes <code>prior_refined_cds</code> from the first; outputs must match exactly, including <code>repair_log</code>.</li>
+<li><strong>Merge</strong>: merge fixtures covering success, site mismatch, and empty fixed layer intersection.</li>
+</ul>
+<p>Each fixture MUST include the canonical request JSON, expected response JSON, refined CDS bytes, and canonical repair log to allow cross‑implementation replay.</p>
+<hr>
+<ol start="6">
+<li>Deterministic Transcript and Auditing</li>
+</ol>
+<p>Servers and clients MUST produce auditable transcripts:</p>
+<ul>
+<li><strong>Canonical request/response pair.</strong> Log the canonical JSON (post base64 decoding) and its SHA‑256 hash for both request and response. Hashes MUST match the <code>refined_cds_hash</code> field when present.</li>
+<li><strong>Repair log linkage.</strong> Include the sequence of <code>repair_log</code> hashes in the transcript to prove that the server honored the closure and sheafification steps in order.</li>
+<li><strong>Transport neutrality.</strong> The transcript MUST be identical whether delivered over HTTP, gRPC, Cap’n Proto, or a message bus; transport‑specific metadata MUST NOT alter field ordering or encoding.</li>
+<li><strong>Spec and fuel disclosure.</strong> Each transcript line MUST include the CCE spec version string plus the fuel budget accepted by the server for the request. If the fuel budget differs from the client’s declared <code>fuel_hint</code>, the transcript MUST record both values to preserve the mathematical replay of the closure iteration.</li>
+</ul>
+<p>Transcripts are required artifacts for conformance certification; missing or non‑deterministic transcripts render the RPC implementation non‑normative.</p>
+<hr>
+<ol start="7">
+<li>Interpretive Transport Notes</li>
+</ol>
+<p>RPC transports sit above the ABI but MUST remain faithful to the same closure principles:</p>
+<ul>
+<li><strong>Envelope as boundary object.</strong> The base64 payloads are not arbitrary blobs; they are the canonical witnesses of the closure computation. Servers MUST NOT rewrite or pretty‑print the JSON before hashing or forwarding to the ABI.</li>
+<li><strong>Session hashes as morphisms.</strong> <code>prior_refined_cds</code> behaves like a morphism in the AOG between sequential closure states. Rejecting mismatched hashes maintains the categorical composition implied by GFRTU generative closure.</li>
+<li><strong>Error propagation as logical evidence.</strong> Transport status codes MUST be a transparent reflection of the mathematical failure mode (sheaf gap, σ/Δ divergence, merge inconsistency) so that remote clients can treat RPC replies as proofs of success or failure, not opaque HTTP outcomes.</li>
+</ul>
+<p>These interpretive constraints prevent RPC layers from introducing informal semantics that could obscure determinism or the provenance of closure evidence.</p>
+<hr>
+<ol start="8">
+<li>Cross-document Deterministic Fixture</li>
+</ol>
+<p>Implementers MUST support the following canonical fixture end‑to‑end (CDS → RTL → CCE → ABI → RPC) to demonstrate reproducibility:</p>
+<ol>
+<li><strong>CDS payload.</strong> Canonical JSON (single line) and hash:</li>
+<li>Hash = <code>f44702d559037b6b99c7425fee32cf5be10137bc124b4a9be86c5d14d4d6404c</code>, base64 = `eyJjb25zdHJ1Y3RvcnMiOltdLCJkZWZpbmluZ19leHByZXNzaW9uIjp7ImNsb3N1cmVfZGVwdGgiOjAsImRlcml2YXRpb25fb3JkZXIiOiJoZWlnaHQtdGhlbi1sZWZ0bW9zdCIsImp1ZGdtZW50cyI6W119LCJleGFtcGxlcyI6e30sImZpYmVycyI6eyJyZWNvZ25pdGlvbiI6eyJjYXJyaWVyIjoiQm9vbGVhbiIsImRlbHRhIjp7InRhYmxlIjpbWyIwIiwiMCJdLFsiMCIsIjEiXV19LCJoZXl0aW5nIjp7ImltcCI6W1siMSIsIjEiXSxbIjAiLCIxIl1dLCJqb2luIjpbWyIwIiwiMSJdLFsiMSIsIjEiXV0sIm1lZXQiOltbIjAiLCIwIl0sWyIwIiwiMSJdXX0sInNpZ21hIjp7InRhYmxlIjpbWyIwIiwiMSJdLFsiMSIsIjEiXV19fSwic2VjdGlvbnMiOlt7ImVsZW1lbnRzIjpbIjAiLCIxIl0sIm9iamVjdCI6IlUifV19LCJmaXhlZF9sYXllciI6eyJyZWNvZ25pdGlvbiI6eyJjYXJyaWVyIjoiQm9vbGVhbiIsImRlbHRhIjp7InRhYmxlIjpbWyIwIiwiMCJdLFsiMCIsIjEiXV19LCJoZXl0aW5nIjp7ImltcCI6W1siMSIsIjEiXSxbIjAiLCIxIl1dLCJqb2luIjpbWyIwIiwiMSJdLFsiMSIsIjEiXV0sIm1lZXQiOltbIjAiLCIwIl0sWyIwIiwiMSJdXX0sInNpZ21hIjp7InRhYmxlIjpbWyIwIiwiMSJdLFsiMSIsIjEiXV19fSwic2VjdGlvbnMiOlt7ImVsZW1lbnRzIjpbIjAiLCIxIl0sIm9iamVjdCI6IlUifV19LCJpZCI6ImY0NDcwMmQ1NTkwMzdiNmI5OWM3NDI1ZmVlMzJjZjViZTEwMTM3YmMxMjRiNGE5YmU4NmM1ZDE0ZDRkNjQwNGMiLCJraW5kIjoiY2RzIiwibGF3cyI6eyJjYW5vbmljYWxpemF0aW9uIjp7Imhhc2giOiJzaGEyNTYiLCJzdHJhdGVneSI6ImNivi1sZWZ0LXRvLXJpZ2h0In0sImludmFyaWFudHMiOlt7ImNvZGUiOiJDRFNfSU5WX1NIRUFGIiwibmFtZSI6InNoZWFmX2NvbmRpdGlvbiIsInNldmVyaXR5IjoiaGFyZCJ9XSwicmVwYWlyX2xvZyI6W119LCJydGxfc2lnbmF0dXJlIjp7ImJhc2VfdHlwZXMiOlsiT2IgVSJdLCJjb25zdHJ1Y3RvcnMiOltdfSwic2l0ZSI6eyJoZXl0aW5nX3RhYmxlIjp7ImltcCI6W1siVSIsIlUiXV0sImpvaW4iOltbIlUiLCJVIl1dLCJtZWV0IjpbWyJVIiwiVSJdXX0sIm1vcnBoaXNtcyI6W10sIm9iamVjdHMiOlt7ImNvdmVyIjpbXSwiaWQiOiJVIn1dLCJ0b3BvbG9neSI6W1siVSJdXX0sInN0cnVjdHVyYWxfdm9jYWJ1bGFyeSI6eyJtb3JwaGlzbXMiOltdLCJvYmplY3RzIjpbIlUiXSwicmVsYXRpb25zIjpbXX19</li>
+<li><strong>RTL judgment.</strong> Canonical JSON, hash, and base64:</li>
+<li>Hash = <code>10a1d0cb3641c4b6ba9b76c8841e2d4b60ecbdf0462797bcc84d228e63670bbf</code>, base64 = <code>eyJjb250ZXh0IjpbeyJuYW1lIjoieCIsInR5cGUiOnsicmVmIjoiT2IgVSJ9fV0sInRlcm0iOnsidmFyIjoieCJ9LCJ0eXBlIjp7InJlZiI6Ik9iIFUifX0=</code>.</li>
+<li><strong>RPC apply round‑trip.</strong> Request:</li>
+<li>Response:</li>
+<li><strong>ABI check.</strong> Feeding the same CDS/RTL bytes through <code>cce_apply</code> MUST return zero with output buffers matching the base64 payloads above. The repair log is the empty array <code>[]</code> (<code>W10=</code> base64).</li>
+<li><strong>Hashing snippets.</strong> Independent toolchains MUST reproduce the hashes using canonical JSON sorting. Example (Python):</li>
+<li>Example (Go):</li>
+</ol>
+<p>The fixture demonstrates that CDS canonicalization, RTL normalization, CCE closure, ABI bindings, and RPC envelopes all preserve byte‑identical artifacts.</p>
+<hr>
+<ol start="7">
+<li>Operational Checklist</li>
+</ol>
+<p>Clients and servers MUST expose the following observable behaviors to guarantee deterministic interoperability:</p>
+<ol>
+<li><strong>Strict payload echo</strong>: responses MUST repeat the request <code>id</code> and any supplied <code>prior_refined_cds</code> hash verbatim. Any alteration, even cosmetic, indicates an envelope violation and MUST result in <code>CCE_RPC_ECHO_FAIL</code>.</li>
+<li><strong>Canonical timing</strong>: streaming transports MUST preserve request order; the server MAY process in parallel but MUST serialize responses in the exact order requests were received so causal hashes remain inspectable.</li>
+<li><strong>Lease accounting</strong>: when a session lease expires, the server MUST emit a terminal error with the lease identifier and MUST NOT reuse the lease token. Clients MUST treat reuse as non‑deterministic behavior and abort.</li>
+<li><strong>Version proof</strong>: every response MUST set the <code>version</code> field to the CCE spec version string from <code>cce.md</code>; mismatches against the client’s expected version MUST be a hard error so replay tools can refuse mixed evidence.</li>
+</ol>
+<p>This checklist ties wire behavior to the GFRTU closure steps, ensuring that transport adapters cannot smuggle in host scheduling assumptions or hidden state.</p>
+
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

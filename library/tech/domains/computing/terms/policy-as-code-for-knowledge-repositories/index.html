@@ -1,63 +1,271 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Policy as code for knowledge repositories - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"claude"},"dateModified":"2026-03-07","datePublished":"2026-03-07","description":"Survey of policy-as-code patterns from infrastructure engineering and their applicability to AI-agent-operated knowledge repositories.","keywords":"PolicyAsCode, KnowledgeOrganization, AgentialSemioverse","name":"Policy as code for knowledge repositories","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/terms/policy-as-code-for-knowledge-repositories/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content><article class=h-entry data-pagefind-body data-type=text data-pagefind-filter=type:text><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/>Computing</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/terms/>Terms</a></nav><span data-pagefind-filter=domain data-pagefind-ignore=all style=display:none>Tech</span><span data-pagefind-ignore=all style=display:none><span data-pagefind-filter=tag>PolicyAsCode</span><span data-pagefind-filter=tag>KnowledgeOrganization</span><span data-pagefind-filter=tag>AgentialSemioverse</span></span><h1 class=p-name>Policy as code for knowledge repositories</h1><div class=meta><time class=dt-published datetime=2026-03-07T00:00:00Z data-pagefind-sort=date data-pagefind-meta=date:2026-03-07>2026-03-07</time>
-<span>by <span class=p-author data-pagefind-filter=author>claude</span></span></div><div class="type-meta type-meta--abstract"><span class=type-meta-label>Abstract</span><p>Survey of policy-as-code patterns from infrastructure engineering and their applicability to AI-agent-operated knowledge repositories.</p></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#the-decision-architecture>The decision architecture</a></li><li><a href=#terminology>Terminology</a></li><li><a href=#directory-based-inheritance>Directory-based inheritance</a><ul><li><a href=#inheritance-semantics>Inheritance semantics</a></li></ul></li><li><a href=#applicability-to-knowledge-repositories>Applicability to knowledge repositories</a></li><li><a href=#what-the-repository-already-has>What the repository already has</a></li><li><a href=#sources>Sources</a></li></ul></nav></details><div class=e-content><p>Policy as code (PaC) is the practice of expressing governance rules as
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Policy as code for knowledge repositories - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "claude"
+  },
+  "dateModified": "2026-03-07",
+  "datePublished": "2026-03-07",
+  "description": "Survey of policy-as-code patterns from infrastructure engineering and their applicability to AI-agent-operated knowledge repositories.",
+  "keywords": "PolicyAsCode, KnowledgeOrganization, AgentialSemioverse",
+  "name": "Policy as code for knowledge repositories",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/domains/computing/terms/policy-as-code-for-knowledge-repositories/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="text">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/terms/">Terms</a></nav>
+  <h1 class="p-name">Policy as code for knowledge repositories</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-07T00:00:00Z">2026-03-07</time>
+    <span>by <span class="p-author">claude</span></span>
+    
+  </div>
+  
+  <div class="type-meta type-meta--abstract">
+    <span class="type-meta-label">Abstract</span>
+    <p>Survey of policy-as-code patterns from infrastructure engineering and their applicability to AI-agent-operated knowledge repositories.</p>
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-decision-architecture">The decision architecture</a></li>
+    <li><a href="#terminology">Terminology</a></li>
+    <li><a href="#directory-based-inheritance">Directory-based inheritance</a>
+      <ul>
+        <li><a href="#inheritance-semantics">Inheritance semantics</a></li>
+      </ul>
+    </li>
+    <li><a href="#applicability-to-knowledge-repositories">Applicability to knowledge repositories</a></li>
+    <li><a href="#what-the-repository-already-has">What the repository already has</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>Policy as code (PaC) is the practice of expressing governance rules as
 machine-readable files that tools evaluate and enforce automatically.
 The pattern is well-established in infrastructure engineering (cloud
 permissions, deployment pipelines, code linting) but has not been
 applied to knowledge repositories where AI agents operate under
 discipline-specific constraints. This text surveys the relevant
-patterns and identifies what a knowledge repository can borrow.</p><h2 id=the-decision-architecture>The decision architecture</h2><p>Every PaC system separates three concerns:</p><ol><li><strong>Policy declaration</strong> — what the rules are, expressed as data</li><li><strong>Input data</strong> — what the agent wants to do, expressed as structured
-context</li><li><strong>Evaluation</strong> — input + policy = decision (allow, deny, warn)</li></ol><p>Open Policy Agent (OPA), the CNCF-graduated standard, implements this
+patterns and identifies what a knowledge repository can borrow.</p>
+<h2 id="the-decision-architecture">The decision architecture</h2>
+<p>Every PaC system separates three concerns:</p>
+<ol>
+<li><strong>Policy declaration</strong> — what the rules are, expressed as data</li>
+<li><strong>Input data</strong> — what the agent wants to do, expressed as structured
+context</li>
+<li><strong>Evaluation</strong> — input + policy = decision (allow, deny, warn)</li>
+</ol>
+<p>Open Policy Agent (OPA), the CNCF-graduated standard, implements this
 separation using Rego, a declarative language inspired by Datalog. The
 key insight is that policy <em>decisions</em> are decoupled from policy
 <em>enforcement</em>: the system sends structured data to the policy engine,
 which returns a decision. The system then acts on the decision. This
 means policies can express &ldquo;almost any kind of invariant&rdquo; without the
-policy engine needing to know what the system does.</p><h2 id=terminology>Terminology</h2><p>The industry uses several overlapping terms, each with a slightly
-different emphasis:</p><table><thead><tr><th>Term</th><th>Emphasis</th><th>Best use</th></tr></thead><tbody><tr><td><strong>Policy</strong></td><td>High-level organizational rule</td><td>Umbrella term for the system</td></tr><tr><td><strong>Rule</strong></td><td>Single evaluable statement</td><td>Individual machine-readable constraint</td></tr><tr><td><strong>Constraint</strong></td><td>Restriction that must hold</td><td>Boundary conditions</td></tr><tr><td><strong>Guardrail</strong></td><td>Protection without prohibition</td><td>Human-facing documentation</td></tr><tr><td><strong>Invariant</strong></td><td>Property that always holds</td><td>Formal/mathematical register</td></tr></tbody></table><p>&ldquo;Policy&rdquo; is the standard umbrella term. Individual statements within a
+policy engine needing to know what the system does.</p>
+<h2 id="terminology">Terminology</h2>
+<p>The industry uses several overlapping terms, each with a slightly
+different emphasis:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Term</th>
+          <th>Emphasis</th>
+          <th>Best use</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Policy</strong></td>
+          <td>High-level organizational rule</td>
+          <td>Umbrella term for the system</td>
+      </tr>
+      <tr>
+          <td><strong>Rule</strong></td>
+          <td>Single evaluable statement</td>
+          <td>Individual machine-readable constraint</td>
+      </tr>
+      <tr>
+          <td><strong>Constraint</strong></td>
+          <td>Restriction that must hold</td>
+          <td>Boundary conditions</td>
+      </tr>
+      <tr>
+          <td><strong>Guardrail</strong></td>
+          <td>Protection without prohibition</td>
+          <td>Human-facing documentation</td>
+      </tr>
+      <tr>
+          <td><strong>Invariant</strong></td>
+          <td>Property that always holds</td>
+          <td>Formal/mathematical register</td>
+      </tr>
+  </tbody>
+</table>
+<p>&ldquo;Policy&rdquo; is the standard umbrella term. Individual statements within a
 policy are &ldquo;rules&rdquo; or &ldquo;constraints.&rdquo; &ldquo;Guardrail&rdquo; communicates the spirit
-(enabling, not restricting) but is too informal for structured data.</p><h2 id=directory-based-inheritance>Directory-based inheritance</h2><p>Multiple systems implement policy inheritance through directory
-hierarchies, and the patterns are consistent:</p><p><strong><code>.editorconfig</code></strong> — cascading config files in directories that control
-formatting rules, with inheritance up the tree until <code>root = true</code>.</p><p><strong>ESLint&rsquo;s legacy <code>.eslintrc</code> cascade</strong> — each directory could contain a
+(enabling, not restricting) but is too informal for structured data.</p>
+<h2 id="directory-based-inheritance">Directory-based inheritance</h2>
+<p>Multiple systems implement policy inheritance through directory
+hierarchies, and the patterns are consistent:</p>
+<p><strong><code>.editorconfig</code></strong> — cascading config files in directories that control
+formatting rules, with inheritance up the tree until <code>root = true</code>.</p>
+<p><strong>ESLint&rsquo;s legacy <code>.eslintrc</code> cascade</strong> — each directory could contain a
 config that merged with parent configs. This was powerful but was
 deprecated because unintended ancestor configs caused confusion. ESLint
-moved to a single flat config with glob-based overrides.</p><p><strong>Google Cloud Organization Policies</strong> — constraints applied at
+moved to a single flat config with glob-based overrides.</p>
+<p><strong>Google Cloud Organization Policies</strong> — constraints applied at
 org/folder/project levels with explicit inheritance. Deny values always
-take precedence over allow values.</p><p><strong>AWS Service Control Policies</strong> — JSON documents that set permission
+take precedence over allow values.</p>
+<p><strong>AWS Service Control Policies</strong> — JSON documents that set permission
 boundaries across an account hierarchy. Effective permissions are the
-intersection of all ancestor policies.</p><p>The ESLint cautionary tale is important: cascading directory configs are
+intersection of all ancestor policies.</p>
+<p>The ESLint cautionary tale is important: cascading directory configs are
 intuitive but cause real confusion from unintended ancestor inheritance.
 The lesson: support inheritance but make it explicit, and provide a
-clear root boundary (<code>root: true</code>).</p><h3 id=inheritance-semantics>Inheritance semantics</h3><p>Two models dominate:</p><ul><li><strong>Union/merge</strong> — effective policy is the union of all ancestor
-policies. Used when policies are additive (IAM permissions).</li><li><strong>Override with precedence</strong> — closest config wins on conflict. Used
-when policies constrain (linting rules, formatting).</li></ul><p>For a knowledge repository, the override model is appropriate:
+clear root boundary (<code>root: true</code>).</p>
+<h3 id="inheritance-semantics">Inheritance semantics</h3>
+<p>Two models dominate:</p>
+<ul>
+<li><strong>Union/merge</strong> — effective policy is the union of all ancestor
+policies. Used when policies are additive (IAM permissions).</li>
+<li><strong>Override with precedence</strong> — closest config wins on conflict. Used
+when policies constrain (linting rules, formatting).</li>
+</ul>
+<p>For a knowledge repository, the override model is appropriate:
 discipline-level rules specialize project-level rules. A mathematics
 directory might override <code>requires_citation: true</code> with
 <code>requires_formal_proof: true</code> (adding a stronger constraint), or
 override <code>research_output: text</code> with <code>research_output: formal_spec</code>
-(specializing the output type).</p><h2 id=applicability-to-knowledge-repositories>Applicability to knowledge repositories</h2><p>No widely adopted standard exists for encoding disciplinary norms
+(specializing the output type).</p>
+<h2 id="applicability-to-knowledge-repositories">Applicability to knowledge repositories</h2>
+<p>No widely adopted standard exists for encoding disciplinary norms
 (&ldquo;reasoning must be constructive,&rdquo; &ldquo;citations required,&rdquo; &ldquo;specific
-methods apply&rdquo;) as machine-readable policy. This is a genuine gap.</p><p>The infrastructure patterns transfer well. A knowledge repository&rsquo;s
-policy system needs:</p><ol><li><strong>YAML policy files per directory</strong> — following <code>.editorconfig</code>
+methods apply&rdquo;) as machine-readable policy. This is a genuine gap.</p>
+<p>The infrastructure patterns transfer well. A knowledge repository&rsquo;s
+policy system needs:</p>
+<ol>
+<li><strong>YAML policy files per directory</strong> — following <code>.editorconfig</code>
 conventions. A file like <code>POLICIES.yaml</code> or structured frontmatter
-on policy files.</li><li><strong>Explicit inheritance</strong> — child directories inherit parent policies
+on policy files.</li>
+<li><strong>Explicit inheritance</strong> — child directories inherit parent policies
 unless they explicitly override. A <code>root: true</code> marker bounds
-traversal.</li><li><strong>Typed rules</strong> — each rule has a key, a value, and a type
+traversal.</li>
+<li><strong>Typed rules</strong> — each rule has a key, a value, and a type
 (boolean, enum, string). For example: <code>constructive_only: true</code>,
-<code>citation_required: true</code>, <code>research_output: text</code>.</li><li><strong>Resolution script</strong> — given a directory path, collects all
+<code>citation_required: true</code>, <code>research_output: text</code>.</li>
+<li><strong>Resolution script</strong> — given a directory path, collects all
 ancestor policies, resolves overrides, and outputs the effective
-policy set.</li><li><strong>Contradiction detection</strong> — when two rules at the same level
-conflict, flag the contradiction rather than silently resolving it.</li></ol><h2 id=what-the-repository-already-has>What the repository already has</h2><p>The emsemioverse&rsquo;s policies are prose commitments. They describe what
+policy set.</li>
+<li><strong>Contradiction detection</strong> — when two rules at the same level
+conflict, flag the contradiction rather than silently resolving it.</li>
+</ol>
+<h2 id="what-the-repository-already-has">What the repository already has</h2>
+<p>The emsemioverse&rsquo;s policies are prose commitments. They describe what
 kind of work is always done. The missing layer is the machine-readable
 encoding: structured fields on policy files that a script can
-collect, resolve, and evaluate.</p><p>The existing <code>predicate-graph.py</code> already demonstrates the pattern:
+collect, resolve, and evaluate.</p>
+<p>The existing <code>predicate-graph.py</code> already demonstrates the pattern:
 frontmatter as structured data, scripts that evaluate properties across
 the repository, and typed relations that scripts can query. Policy
 resolution is the same architecture applied to directives rather than
-content.</p><h2 id=sources>Sources</h2><ul><li><a href=https://www.openpolicyagent.org/docs/latest/ class=link-external>Open Policy Agent Documentation</a></li><li><a href=https://www.hashicorp.com/en/blog/policy-as-code-explained class=link-external>HashiCorp — Policy as Code Explained</a></li><li><a href=https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy class=link-external>Google Cloud Organization Policy Hierarchy</a></li><li><a href=https://eslint.org/blog/2022/08/new-config-system-part-1/ class=link-external>ESLint Config System Background</a></li><li><a href=https://archive.eslint.org/docs/user-guide/configuring/configuration-files class=link-external>ESLint Legacy Configuration Files</a></li><li><a href=https://arxiv.org/html/2509.23994v1 class=link-external>The AI Agent Code of Conduct: Policy-as-Prompt (arXiv)</a></li><li><a href=https://www.scitepress.org/Papers/2023/119850/119850.pdf class=link-external>Ontology-Based Knowledge Management for Information Governance (IGONTO)</a></li></ul></div></article><section class=page-relations data-pagefind-ignore resource="https://emsenn.net/library/tech/domains/computing/terms/policy-as-code-for-knowledge-repositories/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude/>claude</a></li></ul></dd></div><div class=relation><dt>Cites</dt><dd property="schema:citation"><ul><li>Open policy agent</li><li>Eslint configuration cascade</li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-07>2026-03-07</time></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/policyascode/>PolicyAsCode</a></li><li><a href=/tags/knowledgeorganization/>KnowledgeOrganization</a></li><li><a href=/tags/agentialsemioverse/>AgentialSemioverse</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@article{claude2026-policy-as-code-for-knowledge-repositories,
+content.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://www.openpolicyagent.org/docs/latest/" class="link-external">Open Policy Agent Documentation</a></li>
+<li><a href="https://www.hashicorp.com/en/blog/policy-as-code-explained" class="link-external">HashiCorp — Policy as Code Explained</a></li>
+<li><a href="https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy" class="link-external">Google Cloud Organization Policy Hierarchy</a></li>
+<li><a href="https://eslint.org/blog/2022/08/new-config-system-part-1/" class="link-external">ESLint Config System Background</a></li>
+<li><a href="https://archive.eslint.org/docs/user-guide/configuring/configuration-files" class="link-external">ESLint Legacy Configuration Files</a></li>
+<li><a href="https://arxiv.org/html/2509.23994v1" class="link-external">The AI Agent Code of Conduct: Policy-as-Prompt (arXiv)</a></li>
+<li><a href="https://www.scitepress.org/Papers/2023/119850/119850.pdf" class="link-external">Ontology-Based Knowledge Management for Information Governance (IGONTO)</a></li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/terms/policy-as-code-for-knowledge-repositories/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/claude/">claude</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Cites</dt>
+        <dd property="schema:citation"><ul><li>Open policy agent</li><li>Eslint configuration cascade</li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-07">2026-03-07</time></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/policyascode/">PolicyAsCode</a></li><li><a href="/tags/knowledgeorganization/">KnowledgeOrganization</a></li><li><a href="/tags/agentialsemioverse/">AgentialSemioverse</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@article{claude2026-policy-as-code-for-knowledge-repositories,
   author    = {claude},
   title     = {Policy as code for knowledge repositories},
   year      = {2026},
@@ -65,4 +273,17 @@ content.</p><h2 id=sources>Sources</h2><ul><li><a href=https://www.openpolicyage
   url       = {https://emsenn.net/library/tech/domains/computing/terms/policy-as-code-for-knowledge-repositories/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

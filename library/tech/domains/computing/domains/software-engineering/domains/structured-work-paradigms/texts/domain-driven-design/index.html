@@ -1,57 +1,182 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Domain-Driven Design - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"claude"},"dateModified":"2026-03-07","datePublished":"2026-03-07","description":"Research summary of Domain-Driven Design's strategic patterns for organizing large software projects around domain models.","keywords":"DomainDrivenDesign, StrategicDesign, BoundedContext, SoftwareArchitecture","name":"Domain-Driven Design","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/domain-driven-design/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content><article class=h-entry data-pagefind-body data-type=text data-pagefind-filter=type:text><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/>Computing</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/software-engineering/>Software engineering</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/>Structured work paradigms</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/>Texts</a></nav><span data-pagefind-filter=domain data-pagefind-ignore=all style=display:none>Tech</span><span data-pagefind-ignore=all style=display:none><span data-pagefind-filter=tag>DomainDrivenDesign</span><span data-pagefind-filter=tag>StrategicDesign</span><span data-pagefind-filter=tag>BoundedContext</span><span data-pagefind-filter=tag>SoftwareArchitecture</span></span><h1 class=p-name>Domain-Driven Design</h1><div class=meta><time class=dt-published datetime=2026-03-07T00:00:00Z data-pagefind-sort=date data-pagefind-meta=date:2026-03-07>2026-03-07</time>
-<span>by <span class=p-author data-pagefind-filter=author>claude</span></span></div><div class="type-meta type-meta--abstract"><span class=type-meta-label>Abstract</span><p>Research summary of Domain-Driven Design's strategic patterns for organizing large software projects around domain models.</p></div><div class=e-content><p>Domain-Driven Design (DDD) is an approach to software development
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Domain-Driven Design - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "claude"
+  },
+  "dateModified": "2026-03-07",
+  "datePublished": "2026-03-07",
+  "description": "Research summary of Domain-Driven Design's strategic patterns for organizing large software projects around domain models.",
+  "keywords": "DomainDrivenDesign, StrategicDesign, BoundedContext, SoftwareArchitecture",
+  "name": "Domain-Driven Design",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/domain-driven-design/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="text">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software-engineering/">Software engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/">Structured work paradigms</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/">Texts</a></nav>
+  <h1 class="p-name">Domain-Driven Design</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-07T00:00:00Z">2026-03-07</time>
+    <span>by <span class="p-author">claude</span></span>
+    
+  </div>
+  
+  <div class="type-meta type-meta--abstract">
+    <span class="type-meta-label">Abstract</span>
+    <p>Research summary of Domain-Driven Design&#39;s strategic patterns for organizing large software projects around domain models.</p>
+  </div>
+  
+  <div class="e-content">
+    <p>Domain-Driven Design (DDD) is an approach to software development
 that organizes code and teams around a model of the business domain.
 Eric Evans introduced the approach in <em>Domain-Driven Design: Tackling
 Complexity in the Heart of Software</em> (Addison-Wesley, 2003). Evans
 argued that the primary complexity in most software projects is not
 technical but conceptual &mdash; it lies in the domain the software serves.
 DDD addresses this by making the domain model the central artifact
-around which development is organized.</p><h2 id=strategic-design-patterns>Strategic design patterns</h2><p>Evans divided DDD into tactical patterns (for structuring code within
+around which development is organized.</p>
+<h2 id="strategic-design-patterns">Strategic design patterns</h2>
+<p>Evans divided DDD into tactical patterns (for structuring code within
 a single model) and strategic patterns (for organizing multiple models
 across a large system). The strategic patterns are the planning
-mechanisms relevant to long-term project organization.</p><p><strong>Ubiquitous Language</strong> is a shared vocabulary that the development
+mechanisms relevant to long-term project organization.</p>
+<p><strong>Ubiquitous Language</strong> is a shared vocabulary that the development
 team and domain experts build together. The language appears in
 conversations, code, tests, and documentation. When the language
 changes, the model changes with it. The ubiquitous language is not a
 glossary imposed after the fact; it develops through ongoing
-collaboration between developers and domain practitioners.</p><p><strong>Bounded Context</strong> defines a boundary within which a particular
+collaboration between developers and domain practitioners.</p>
+<p><strong>Bounded Context</strong> defines a boundary within which a particular
 domain model applies. Different parts of a large system may use the
 same term to mean different things; a bounded context makes these
 differences explicit. Each bounded context has its own ubiquitous
 language, its own model, and (often) its own team. Evans defined a
 bounded context as an operational delimiter where a model is
-well-defined and applicable.</p><p><strong>Context Map</strong> is a representation of the relationships between
+well-defined and applicable.</p>
+<p><strong>Context Map</strong> is a representation of the relationships between
 bounded contexts in a system. A context map shows how models interact
 at their boundaries: which contexts share data, which translate
 between models, and which operate independently. Evans identified
 several relationship patterns, including Shared Kernel (two contexts
 share a subset of their model), Customer-Supplier (one context
 provides what another needs), and Anticorruption Layer (a translation
-layer that prevents one context&rsquo;s model from leaking into another).</p><h2 id=core-planning-mechanism>Core planning mechanism</h2><p>DDD&rsquo;s planning mechanism operates through model alignment. Rather
+layer that prevents one context&rsquo;s model from leaking into another).</p>
+<h2 id="core-planning-mechanism">Core planning mechanism</h2>
+<p>DDD&rsquo;s planning mechanism operates through model alignment. Rather
 than planning work as a sequence of features or tasks, DDD organizes
 work around the question: does the code reflect the domain model,
 and does the domain model reflect the domain? When the model drifts
 from reality &mdash; when the code says one thing and the domain experts
-say another &mdash; that misalignment is itself the work to be done.</p><p>At the strategic level, bounded contexts serve as organizational
+say another &mdash; that misalignment is itself the work to be done.</p>
+<p>At the strategic level, bounded contexts serve as organizational
 units for planning. Each context can evolve at its own pace, with
 its own team, its own release schedule, and its own internal
 architecture. The context map provides a system-level view that
-makes inter-team dependencies visible and negotiable.</p><p>Vaughn Vernon extended Evans&rsquo; work in <em>Implementing Domain-Driven
+makes inter-team dependencies visible and negotiable.</p>
+<p>Vaughn Vernon extended Evans&rsquo; work in <em>Implementing Domain-Driven
 Design</em> (Addison-Wesley, 2013), presenting the strategic patterns
 before the tactical patterns and providing worked examples of bounded
 context integration. Vernon also connected DDD&rsquo;s strategic patterns
 to concrete architectural styles, particularly event-driven
-architectures and what later became known as microservices.</p><p>Martin Fowler&rsquo;s writing on DDD (martinfowler.com) has served as an
+architectures and what later became known as microservices.</p>
+<p>Martin Fowler&rsquo;s writing on DDD (martinfowler.com) has served as an
 accessible introduction to the patterns. The Open Group&rsquo;s
 Architecture Standard includes DDD strategic patterns as a reference
-for enterprise architecture practice.</p><h2 id=key-citations>Key citations</h2><ul><li>Evans, Eric. <em>Domain-Driven Design: Tackling Complexity in the
-Heart of Software.</em> Addison-Wesley, 2003.</li><li>Evans, Eric. <em>Domain-Driven Design Reference.</em> Domain Language,
-Inc., 2015.</li><li>Vernon, Vaughn. <em>Implementing Domain-Driven Design.</em>
-Addison-Wesley, 2013.</li><li>Fowler, Martin. &ldquo;Domain Driven Design.&rdquo; martinfowler.com/bliki.</li></ul></div></article><section class=page-relations data-pagefind-ignore resource="https://emsenn.net/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/domain-driven-design/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude/>claude</a></li></ul></dd></div><div class=relation><dt>Cites</dt><dd property="schema:citation"><ul><li>Evans, eric. domain driven design tackling complexity in the heart of software. addison wesley, 2003.</li><li>Vernon, vaughn. implementing domain driven design. addison wesley, 2013.</li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-07>2026-03-07</time></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/domaindrivendesign/>DomainDrivenDesign</a></li><li><a href=/tags/strategicdesign/>StrategicDesign</a></li><li><a href=/tags/boundedcontext/>BoundedContext</a></li><li><a href=/tags/softwarearchitecture/>SoftwareArchitecture</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@article{claude2026-domain-driven-design,
+for enterprise architecture practice.</p>
+<h2 id="key-citations">Key citations</h2>
+<ul>
+<li>Evans, Eric. <em>Domain-Driven Design: Tackling Complexity in the
+Heart of Software.</em> Addison-Wesley, 2003.</li>
+<li>Evans, Eric. <em>Domain-Driven Design Reference.</em> Domain Language,
+Inc., 2015.</li>
+<li>Vernon, Vaughn. <em>Implementing Domain-Driven Design.</em>
+Addison-Wesley, 2013.</li>
+<li>Fowler, Martin. &ldquo;Domain Driven Design.&rdquo; martinfowler.com/bliki.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/domain-driven-design/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/claude/">claude</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Cites</dt>
+        <dd property="schema:citation"><ul><li>Evans, eric. domain driven design tackling complexity in the heart of software. addison wesley, 2003.</li><li>Vernon, vaughn. implementing domain driven design. addison wesley, 2013.</li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-07">2026-03-07</time></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/domaindrivendesign/">DomainDrivenDesign</a></li><li><a href="/tags/strategicdesign/">StrategicDesign</a></li><li><a href="/tags/boundedcontext/">BoundedContext</a></li><li><a href="/tags/softwarearchitecture/">SoftwareArchitecture</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@article{claude2026-domain-driven-design,
   author    = {claude},
   title     = {Domain-Driven Design},
   year      = {2026},
@@ -59,4 +184,17 @@ Addison-Wesley, 2013.</li><li>Fowler, Martin. &ldquo;Domain Driven Design.&rdquo
   url       = {https://emsenn.net/library/tech/domains/computing/domains/software-engineering/domains/structured-work-paradigms/texts/domain-driven-design/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

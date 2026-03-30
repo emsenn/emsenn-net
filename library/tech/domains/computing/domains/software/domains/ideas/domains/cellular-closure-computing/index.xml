@@ -1,52 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>emsenn.net</title><link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/</link><description>Recent content on emsenn.net</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-closure-engine/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-closure-engine/</guid><description>&lt;p&gt;Cellular Closure Engine (CCE)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Specification – Version 0.x (normative)&lt;/strong&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li&gt;Purpose and Scope&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The Cellular Closure Engine (CCE) operationalizes &lt;strong&gt;generative closure&lt;/strong&gt; for a single cell of a Generative Fibered Relational Trace Universe (GFRTU). Given a structural CDS serialization and an RTL judgment, CCE decides admissibility and returns a refined, closure‑complete cell or a rejection code.&lt;/p&gt;
-&lt;hr&gt;
-&lt;ol start="2"&gt;
-&lt;li&gt;Interface&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;CCE exposes two pure functions:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;apply : (CDS_cell, RTL_judgment) → Reject(error, repair_log) | Accept(canonical_judgment, refined_cds, repair_log)
-merge : (CDS_cell, CDS_cell) → CDS_cell | Reject(error)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In both cases, &lt;code&gt;repair_log&lt;/code&gt; is a canonical JSON array recording repairs or partial progress. It MUST be present even on failure (possibly empty).&lt;/p&gt;</description></item><item><title/><link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-computer-engine-application-binary0-interface/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-computer-engine-application-binary0-interface/</guid><description>&lt;p&gt;CCE Application Binary Interface (CCE-ABI)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Specification – Version 0.x (normative)&lt;/strong&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li&gt;Purpose&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;CCE-ABI defines the binding‑level contracts for invoking the Cellular Closure Engine from host runtimes. It specifies memory layouts, ownership rules, error surfaces, and conformance vectors so that independent implementations inter‑ operate deterministically.&lt;/p&gt;
-&lt;hr&gt;
-&lt;ol start="2"&gt;
-&lt;li&gt;Type Definitions&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The ABI is expressed in a C‑like struct notation; Rust or other FFI hosts MUST preserve field order and alignment. All integers are little‑endian two’s complement; &lt;code&gt;size_t&lt;/code&gt; MUST be 64‑bit. Structs MUST use the platform’s standard C ABI alignment (e.g., 8‑byte alignment for 64‑bit fields on LP64). Rust bindings MUST use &lt;code&gt;#[repr(C)]&lt;/code&gt;. C bindings MAY apply &lt;code&gt;#pragma pack(push, 8)&lt;/code&gt; or an equivalent directive when necessary to enforce ABI‑standard alignment. Bindings MUST NOT reduce alignment below the natural alignment of 64‑bit fields.&lt;/p&gt;</description></item><item><title/><link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-computer-engine-remote-procedure-call/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-computer-engine-remote-procedure-call/</guid><description>&lt;p&gt;CCE Remote Procedure Call (CCE-RPC)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Specification – Version 0.x (normative)&lt;/strong&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li&gt;Purpose&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;CCE-RPC defines a transport‑neutral envelope for invoking the Cellular Closure Engine over networked or interprocess channels. It standardizes request/response fields, canonical JSON expectations, session/lease semantics, and conformance fixtures so independently implemented clients and servers interoperate.&lt;/p&gt;
-&lt;hr&gt;
-&lt;ol start="2"&gt;
-&lt;li&gt;Envelope&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Requests and responses MUST be canonical JSON with lexicographically sorted keys. Binary transports (gRPC, Cap’n Proto) MUST embed the canonical JSON inside the payload; no additional framing semantics may alter the bytes. Payload octets are base64 of UTF‑8 JSON produced by CDS/RTL canonicalization. Streaming transports (server or bidi) MUST frame &lt;em&gt;each&lt;/em&gt; message as a complete request/response pair with the same envelope; streaming MAY batch multiple apply calls but MUST NOT mutate envelope ordering or introduce out‑of‑band fields.&lt;/p&gt;</description></item><item><title/><link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-data-serialization/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-data-serialization/</guid><description>&lt;p&gt;Cellular Data Serialization (CDS)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Specification – Version 0.x (normative)&lt;/strong&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li&gt;Purpose and Scope&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Cellular Data Serialization (CDS) provides a canonical JSON carrier for the structural state of a single local universe (&lt;strong&gt;cell&lt;/strong&gt;) in a Generative Fibered Relational Trace Universe (GFRTU). A CDS serialization:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;encodes the cell site and restricted Grothendieck topology;&lt;/li&gt;
-&lt;li&gt;encodes recognition fibers and their candidate fixed layer;&lt;/li&gt;
-&lt;li&gt;binds the Recognition Term Language (RTL) to cell objects and operations;&lt;/li&gt;
-&lt;li&gt;enumerates structural vocabulary and generative constructors;&lt;/li&gt;
-&lt;li&gt;records admissibility, canonicalization, and invariant laws; and&lt;/li&gt;
-&lt;li&gt;may include defining RTL judgments that operationally generate the cell.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;CDS is &lt;strong&gt;closed‑world&lt;/strong&gt;: every input required by the Cellular Closure Engine (CCE) to test admissibility or build closure MUST appear in a single CDS JSON object. Whether a CDS is closure‑complete is a semantic property determined by CCE, not an alternate file format.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emsenn.net</title>
+    <link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/</link>
+    <description>Recent content on emsenn.net</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-closure-engine/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-closure-engine/</guid>
+      <description>&lt;p&gt;Cellular Closure Engine (CCE)&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Specification – Version 0.x (normative)&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Purpose and Scope&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;The Cellular Closure Engine (CCE) operationalizes &lt;strong&gt;generative closure&lt;/strong&gt; for a single cell of a Generative Fibered Relational Trace Universe (GFRTU). Given a structural CDS serialization and an RTL judgment, CCE decides admissibility and returns a refined, closure‑complete cell or a rejection code.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;Interface&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;CCE exposes two pure functions:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apply : (CDS_cell, RTL_judgment) → Reject(error, repair_log) | Accept(canonical_judgment, refined_cds, repair_log)&#xA;merge : (CDS_cell, CDS_cell) → CDS_cell | Reject(error)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In both cases, &lt;code&gt;repair_log&lt;/code&gt; is a canonical JSON array recording repairs or partial progress. It MUST be present even on failure (possibly empty).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-computer-engine-application-binary0-interface/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-computer-engine-application-binary0-interface/</guid>
+      <description>&lt;p&gt;CCE Application Binary Interface (CCE-ABI)&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Specification – Version 0.x (normative)&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Purpose&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;CCE-ABI defines the binding‑level contracts for invoking the Cellular Closure Engine from host runtimes. It specifies memory layouts, ownership rules, error surfaces, and conformance vectors so that independent implementations inter‑ operate deterministically.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;Type Definitions&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;The ABI is expressed in a C‑like struct notation; Rust or other FFI hosts MUST preserve field order and alignment. All integers are little‑endian two’s complement; &lt;code&gt;size_t&lt;/code&gt; MUST be 64‑bit. Structs MUST use the platform’s standard C ABI alignment (e.g., 8‑byte alignment for 64‑bit fields on LP64). Rust bindings MUST use &lt;code&gt;#[repr(C)]&lt;/code&gt;. C bindings MAY apply &lt;code&gt;#pragma pack(push, 8)&lt;/code&gt; or an equivalent directive when necessary to enforce ABI‑standard alignment. Bindings MUST NOT reduce alignment below the natural alignment of 64‑bit fields.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-computer-engine-remote-procedure-call/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-computer-engine-remote-procedure-call/</guid>
+      <description>&lt;p&gt;CCE Remote Procedure Call (CCE-RPC)&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Specification – Version 0.x (normative)&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Purpose&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;CCE-RPC defines a transport‑neutral envelope for invoking the Cellular Closure Engine over networked or interprocess channels. It standardizes request/response fields, canonical JSON expectations, session/lease semantics, and conformance fixtures so independently implemented clients and servers interoperate.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;Envelope&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Requests and responses MUST be canonical JSON with lexicographically sorted keys. Binary transports (gRPC, Cap’n Proto) MUST embed the canonical JSON inside the payload; no additional framing semantics may alter the bytes. Payload octets are base64 of UTF‑8 JSON produced by CDS/RTL canonicalization. Streaming transports (server or bidi) MUST frame &lt;em&gt;each&lt;/em&gt; message as a complete request/response pair with the same envelope; streaming MAY batch multiple apply calls but MUST NOT mutate envelope ordering or introduce out‑of‑band fields.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-data-serialization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://emsenn.net/library/tech/domains/computing/domains/software/domains/ideas/domains/cellular-closure-computing/cellular-data-serialization/</guid>
+      <description>&lt;p&gt;Cellular Data Serialization (CDS)&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Specification – Version 0.x (normative)&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Purpose and Scope&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Cellular Data Serialization (CDS) provides a canonical JSON carrier for the structural state of a single local universe (&lt;strong&gt;cell&lt;/strong&gt;) in a Generative Fibered Relational Trace Universe (GFRTU). A CDS serialization:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;encodes the cell site and restricted Grothendieck topology;&lt;/li&gt;&#xA;&lt;li&gt;encodes recognition fibers and their candidate fixed layer;&lt;/li&gt;&#xA;&lt;li&gt;binds the Recognition Term Language (RTL) to cell objects and operations;&lt;/li&gt;&#xA;&lt;li&gt;enumerates structural vocabulary and generative constructors;&lt;/li&gt;&#xA;&lt;li&gt;records admissibility, canonicalization, and invariant laws; and&lt;/li&gt;&#xA;&lt;li&gt;may include defining RTL judgments that operationally generate the cell.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;CDS is &lt;strong&gt;closed‑world&lt;/strong&gt;: every input required by the Cellular Closure Engine (CCE) to test admissibility or build closure MUST appear in a single CDS JSON object. Whether a CDS is closure‑complete is a semantic property determined by CCE, not an alternate file format.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

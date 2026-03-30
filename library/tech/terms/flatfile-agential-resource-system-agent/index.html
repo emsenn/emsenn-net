@@ -1,15 +1,187 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-18","datePublished":"2026-03-18","description":"An entity that submits steps to a system's RelationalMachineInterface and receives output from its Observation Layer — the actor in the relational machine architecture.","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-agent/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content><article class=h-entry data-pagefind-body data-type=page data-pagefind-filter=type:page><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/terms/>Terms</a></nav><span data-pagefind-filter=domain data-pagefind-ignore=all style=display:none>Tech</span><h1 class=p-name></h1><div class=meta><time class=dt-published datetime=2026-03-18T00:00:00Z data-pagefind-sort=date data-pagefind-meta=date:2026-03-18>2026-03-18</time>
-<span class=p-summary data-pagefind-meta=description>An entity that submits steps to a system's RelationalMachineInterface and receives output from its Observation Layer — the actor in the relational machine architecture.</span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#formal-definition>Formal definition</a></li><li><a href=#what-this-is>What this is</a></li><li><a href=#agent-types-in-this-system>Agent types in this system</a></li><li><a href=#in-the-fars>In the FARS</a></li><li><a href=#open-questions>Open questions</a></li></ul></nav></details><div class=e-content><h1 id=flatfile-agential-resource-system-agent>Flatfile Agential Resource System Agent</h1><h2 id=formal-definition>Formal definition</h2><p>A <strong>FlatfileAgentialResourceSystemAgent</strong> is a pair <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">b</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi></mrow><mo separator="true">,</mo><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">v</mi><mi mathvariant="normal">e</mi></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathrm{submit}, \mathrm{receive})</annotation></semantics></math></span>:</p><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Agent</mtext><mo>=</mo><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">b</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi></mrow><mo>:</mo><mi mathvariant="normal">Σ</mi><mo>→</mo><mi>I</mi><mo separator="true">,</mo><mtext>  </mtext><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">v</mi><mi mathvariant="normal">e</mi></mrow><mo>:</mo><mi>O</mi><mo>→</mo><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{Agent} = (\mathrm{submit} : \Sigma \to I,\; \mathrm{receive} : O \to H^*_t)</annotation></semantics></math></span><p>where:</p><ul><li><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math></span> is the <strong>step alphabet</strong> — the set of named steps the agent can submit</li><li><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span> is the <strong>RelationalMachineInterface</strong> — the intake boundary accepting steps <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">s \in \Sigma</annotation></semantics></math></span> and extending the current history <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>↦</mo><mi>s</mi><mo>⋆</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">t \mapsto s \star t</annotation></semantics></math></span></li><li><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span> is the <strong>Observation Layer</strong> — the output channel returning newly settled global sections <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><msubsup><mi>H</mi><msup><mi>t</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">x \in H^*_{t&#x27;}</annotation></semantics></math></span></li><li><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">b</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi></mrow><annotation encoding="application/x-tex">\mathrm{submit}</annotation></semantics></math></span> sends a step <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span> into <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span>, advancing the machine from history <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span> to <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>t</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>=</mo><mi>s</mi><mo>⋆</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">t&#x27; = s \star t</annotation></semantics></math></span></li><li><span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">v</mi><mi mathvariant="normal">e</mi></mrow><annotation encoding="application/x-tex">\mathrm{receive}</annotation></semantics></math></span> consumes the observation output at <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>t</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">t&#x27;</annotation></semantics></math></span></li></ul><p><strong>Agent loop.</strong> The agent&rsquo;s interaction with the machine is a sequence of (submit, receive) cycles: <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>o</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>o</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo></mrow><annotation encoding="application/x-tex">s_1, o_1, s_2, o_2, \ldots</annotation></semantics></math></span> Each cycle extends the history by one step and returns one settled observation. The agent&rsquo;s behavior is fully characterized by the sequence of steps it chooses given the observations it receives — a strategy in the game-theoretic sense: a function from observation history to next step.</p><p><strong>Agent-agnostic.</strong> Human and AI agents are FlatfileAgentialResourceSystemAgents in the same formal sense: both submit <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">s \in \Sigma</annotation></semantics></math></span> and receive <span class=katex><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>o</mi><mo>∈</mo><msubsup><mi>H</mi><msup><mi>t</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">o \in H^*_{t&#x27;}</annotation></semantics></math></span>. The distinction is in how they choose steps, not in the interface structure.</p><h2 id=what-this-is>What this is</h2><p>A <strong>FlatfileAgentialResourceSystemAgent</strong> is an entity that submits steps to a <a href=relational-machine-interface.md class=link-internal>RelationalMachineInterface</a> and receives output from an Observation Layer.</p><p>In the <a href=relational-machine.md class=link-internal>RelationalMachine</a> architecture, the <a href=relational-machine-interface.md class=link-internal>RelationalMachineInterface</a> receives steps s ∈ Σ that extend the current history t to t&rsquo; = s★t.
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-18",
+  "datePublished": "2026-03-18",
+  "description": "An entity that submits steps to a system's RelationalMachineInterface and receives output from its Observation Layer — the actor in the relational machine architecture.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-agent/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-18T00:00:00Z">2026-03-18</time>
+    
+    <span class="p-summary">An entity that submits steps to a system&#39;s RelationalMachineInterface and receives output from its Observation Layer — the actor in the relational machine architecture.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#formal-definition">Formal definition</a></li>
+    <li><a href="#what-this-is">What this is</a></li>
+    <li><a href="#agent-types-in-this-system">Agent types in this system</a></li>
+    <li><a href="#in-the-fars">In the FARS</a></li>
+    <li><a href="#open-questions">Open questions</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="flatfile-agential-resource-system-agent">Flatfile Agential Resource System Agent</h1>
+<h2 id="formal-definition">Formal definition</h2>
+<p>A <strong>FlatfileAgentialResourceSystemAgent</strong> is a pair <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">b</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi></mrow><mo separator="true">,</mo><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">v</mi><mi mathvariant="normal">e</mi></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathrm{submit}, \mathrm{receive})</annotation></semantics></math></span>:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Agent</mtext><mo>=</mo><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">b</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi></mrow><mo>:</mo><mi mathvariant="normal">Σ</mi><mo>→</mo><mi>I</mi><mo separator="true">,</mo><mtext>  </mtext><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">v</mi><mi mathvariant="normal">e</mi></mrow><mo>:</mo><mi>O</mi><mo>→</mo><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{Agent} = (\mathrm{submit} : \Sigma \to I,\; \mathrm{receive} : O \to H^*_t)</annotation></semantics></math></span><p>where:</p>
+<ul>
+<li><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math></span> is the <strong>step alphabet</strong> — the set of named steps the agent can submit</li>
+<li><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span> is the <strong>RelationalMachineInterface</strong> — the intake boundary accepting steps <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">s \in \Sigma</annotation></semantics></math></span> and extending the current history <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>↦</mo><mi>s</mi><mo>⋆</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">t \mapsto s \star t</annotation></semantics></math></span></li>
+<li><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span> is the <strong>Observation Layer</strong> — the output channel returning newly settled global sections <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><msubsup><mi>H</mi><msup><mi>t</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">x \in H^*_{t&#x27;}</annotation></semantics></math></span></li>
+<li><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">b</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi></mrow><annotation encoding="application/x-tex">\mathrm{submit}</annotation></semantics></math></span> sends a step <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span> into <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span>, advancing the machine from history <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span> to <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>t</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>=</mo><mi>s</mi><mo>⋆</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">t&#x27; = s \star t</annotation></semantics></math></span></li>
+<li><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">v</mi><mi mathvariant="normal">e</mi></mrow><annotation encoding="application/x-tex">\mathrm{receive}</annotation></semantics></math></span> consumes the observation output at <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>t</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">t&#x27;</annotation></semantics></math></span></li>
+</ul>
+<p><strong>Agent loop.</strong> The agent&rsquo;s interaction with the machine is a sequence of (submit, receive) cycles: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>o</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>o</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo></mrow><annotation encoding="application/x-tex">s_1, o_1, s_2, o_2, \ldots</annotation></semantics></math></span> Each cycle extends the history by one step and returns one settled observation. The agent&rsquo;s behavior is fully characterized by the sequence of steps it chooses given the observations it receives — a strategy in the game-theoretic sense: a function from observation history to next step.</p>
+<p><strong>Agent-agnostic.</strong> Human and AI agents are FlatfileAgentialResourceSystemAgents in the same formal sense: both submit <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">s \in \Sigma</annotation></semantics></math></span> and receive <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>o</mi><mo>∈</mo><msubsup><mi>H</mi><msup><mi>t</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">o \in H^*_{t&#x27;}</annotation></semantics></math></span>. The distinction is in how they choose steps, not in the interface structure.</p>
+<h2 id="what-this-is">What this is</h2>
+<p>A <strong>FlatfileAgentialResourceSystemAgent</strong> is an entity that submits steps to a <a href="relational-machine-interface.md" class="link-internal">RelationalMachineInterface</a> and receives output from an Observation Layer.</p>
+<p>In the <a href="relational-machine.md" class="link-internal">RelationalMachine</a> architecture, the <a href="relational-machine-interface.md" class="link-internal">RelationalMachineInterface</a> receives steps s ∈ Σ that extend the current history t to t&rsquo; = s★t.
 The FlatfileAgentialResourceSystemAgent is what originates those steps — the source of input to the machine.
-The Observation Layer returns newly settled global sections to the FlatfileAgentialResourceSystemAgent as output.</p><p>A FlatfileAgentialResourceSystemAgent is not defined by being human or artificial.
-A FlatfileAgentialResourceSystemAgent is defined by its relation to the machine: it submits steps to an interface and receives settled sections back.</p><h2 id=agent-types-in-this-system>Agent types in this system</h2><p>Two kinds of FlatfileAgentialResourceSystemAgent operate in a <a href=flatfile-agential-resource-system.md class=link-internal>FlatfileAgentialResourceSystem</a>:</p><p><strong>Human</strong> — reads files directly, issues instructions, reviews output, makes judgment calls that require interpreting intent or resolving ambiguity.</p><p><strong>AI assistant</strong> — reads entity files, follows skills, executes runbooks, invokes scripts, and deposits messages.
-Operates within the permissions declared in <code>AGENTS.md</code>.</p><p>Both are FlatfileAgentialResourceSystemAgents in the same sense: both submit steps to interfaces and receive output.
-The distinction is in capability and permission scope, not in role within the machine architecture.</p><p>A <a href=flatfile-agential-resource-system-locale.md class=link-internal>FlatfileAgentialResourceSystemLocale</a> is also a FlatfileAgentialResourceSystemAgent at its own scope: it submits steps to other locales&rsquo; interfaces via <a href=../skills/deposit-message-in-agent-inbox.md class=link-internal>deposit-message-in-agent-inbox</a> and receives steps at its own interface.</p><h2 id=in-the-fars>In the FARS</h2><p>In a <a href=flatfile-agential-resource-system.md class=link-internal>FlatfileAgentialResourceSystem</a>, the FlatfileAgentialResourceSystemAgent&rsquo;s interaction is:</p><ul><li><strong>Input</strong>: writing to files, invoking skills, running runbooks — each is a step submitted to a locale&rsquo;s <a href=relational-machine-interface.md class=link-internal>RelationalMachineInterface</a> (<code>INBOX.md</code> or the improvement loop entry point)</li><li><strong>Output</strong>: reading settled entity files, receiving skill results, reading messages written to <code>INBOX.md</code></li></ul><p>A FlatfileAgentialResourceSystemAgent operates within exactly one locale at a time.
+The Observation Layer returns newly settled global sections to the FlatfileAgentialResourceSystemAgent as output.</p>
+<p>A FlatfileAgentialResourceSystemAgent is not defined by being human or artificial.
+A FlatfileAgentialResourceSystemAgent is defined by its relation to the machine: it submits steps to an interface and receives settled sections back.</p>
+<h2 id="agent-types-in-this-system">Agent types in this system</h2>
+<p>Two kinds of FlatfileAgentialResourceSystemAgent operate in a <a href="flatfile-agential-resource-system.md" class="link-internal">FlatfileAgentialResourceSystem</a>:</p>
+<p><strong>Human</strong> — reads files directly, issues instructions, reviews output, makes judgment calls that require interpreting intent or resolving ambiguity.</p>
+<p><strong>AI assistant</strong> — reads entity files, follows skills, executes runbooks, invokes scripts, and deposits messages.
+Operates within the permissions declared in <code>AGENTS.md</code>.</p>
+<p>Both are FlatfileAgentialResourceSystemAgents in the same sense: both submit steps to interfaces and receive output.
+The distinction is in capability and permission scope, not in role within the machine architecture.</p>
+<p>A <a href="flatfile-agential-resource-system-locale.md" class="link-internal">FlatfileAgentialResourceSystemLocale</a> is also a FlatfileAgentialResourceSystemAgent at its own scope: it submits steps to other locales&rsquo; interfaces via <a href="../skills/deposit-message-in-agent-inbox.md" class="link-internal">deposit-message-in-agent-inbox</a> and receives steps at its own interface.</p>
+<h2 id="in-the-fars">In the FARS</h2>
+<p>In a <a href="flatfile-agential-resource-system.md" class="link-internal">FlatfileAgentialResourceSystem</a>, the FlatfileAgentialResourceSystemAgent&rsquo;s interaction is:</p>
+<ul>
+<li><strong>Input</strong>: writing to files, invoking skills, running runbooks — each is a step submitted to a locale&rsquo;s <a href="relational-machine-interface.md" class="link-internal">RelationalMachineInterface</a> (<code>INBOX.md</code> or the improvement loop entry point)</li>
+<li><strong>Output</strong>: reading settled entity files, receiving skill results, reading messages written to <code>INBOX.md</code></li>
+</ul>
+<p>A FlatfileAgentialResourceSystemAgent operates within exactly one locale at a time.
 Cross-locale actions are permitted only when a skill explicitly instructs them.
 A FlatfileAgentialResourceSystemAgent must not write to another locale&rsquo;s files directly — it submits a step to that locale&rsquo;s interface via <code>skills/deposit-message-in-agent-inbox.md</code>.
 A FlatfileAgentialResourceSystemAgent must operate within the permissions declared in the locale&rsquo;s <code>AGENTS.md</code>.
-A FlatfileAgentialResourceSystemAgent must not modify content in a locale it depends on.</p><h2 id=open-questions>Open questions</h2><ul><li>How does the User/Operator/Agent three-way distinction derive from the RelationalMachine structure? Operator is the entity with configuration authority (writes SOUL.md/AGENTS.md); User is the entity whose goals the system serves. Neither is fully derived yet.</li></ul></div></article><section class=page-relations data-pagefind-ignore resource="https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-agent/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Ast</dt><dd property="emsenn:Ast"></dd></div><div class=relation><dt><a href=/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/>Component of</a></dt><dd property="emsenn:Componentof"><a href=/library/tech/terms/flatfile-agential-resource-system-locale/>Flatfile agential resource system locale</a></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-18>2026-03-18</time></dd></div><div class=relation><dt>Date modified</dt><dd property="emsenn:Datemodified"><time datetime=2026-03-19>2026-03-19</time></dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><a href=/library/tech/terms/flatfile-agential-resource-system-agent/>Flatfile agential resource system agent</a></dd></div><div class=relation><dt><a href=/library/math/terms/extension/>Extends</a></dt><dd property="emsenn:Extends">Entity</dd></div><div class=relation><dt>Interface</dt><dd property="emsenn:Interface">Relational machine interface</dd></div><div class=relation><dt>Observation layer</dt><dd property="emsenn:Observationlayer">Relational universe</dd></div><div class=relation><dt>Output</dt><dd property="emsenn:Output">Relational universe morphism</dd></div><div class=relation><dt>Step alphabet</dt><dd property="emsenn:Stepalphabet">Relational universe</dd></div><div class=relation><dt><a href=/library/tech/terms/uses/>Uses</a></dt><dd property="emsenn:Uses"><a href=/library/tech/terms/relational-machine-interface/>Relational machine interface</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+A FlatfileAgentialResourceSystemAgent must not modify content in a locale it depends on.</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>How does the User/Operator/Agent three-way distinction derive from the RelationalMachine structure? Operator is the entity with configuration authority (writes SOUL.md/AGENTS.md); User is the entity whose goals the system serves. Neither is fully derived yet.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/terms/flatfile-agential-resource-system-agent/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt><a href="/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Component of</a></dt>
+        <dd property="emsenn:Componentof"><a href="/library/tech/terms/flatfile-agential-resource-system-locale/">Flatfile agential resource system locale</a></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-18">2026-03-18</time></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-19">2026-03-19</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/tech/terms/flatfile-agential-resource-system-agent/">Flatfile agential resource system agent</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/terms/extension/">Extends</a></dt>
+        <dd property="emsenn:Extends">Entity</dd>
+      </div><div class="relation">
+        <dt>Interface</dt>
+        <dd property="emsenn:Interface">Relational machine interface</dd>
+      </div><div class="relation">
+        <dt>Observation layer</dt>
+        <dd property="emsenn:Observationlayer">Relational universe</dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">Relational universe morphism</dd>
+      </div><div class="relation">
+        <dt>Step alphabet</dt>
+        <dd property="emsenn:Stepalphabet">Relational universe</dd>
+      </div><div class="relation">
+        <dt><a href="/library/tech/terms/uses/">Uses</a></dt>
+        <dd property="emsenn:Uses"><a href="/library/tech/terms/relational-machine-interface/">Relational machine interface</a></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,19 +1,166 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","dateModified":"2026-03-18","datePublished":"2026-03-18","description":"A DataStore is the persistence component within a Runtime that holds structured State across operations, indexed for retrieval by the Engine and readable by the Observation Layer.","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/tech/terms/data-store/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content><article class=h-entry data-pagefind-body data-type=page data-pagefind-filter=type:page><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/>Tech</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/tech/terms/>Terms</a></nav><span data-pagefind-filter=domain data-pagefind-ignore=all style=display:none>Tech</span><h1 class=p-name></h1><div class=meta><time class=dt-published datetime=2026-03-18T00:00:00Z data-pagefind-sort=date data-pagefind-meta=date:2026-03-18>2026-03-18</time>
-<span class=p-summary data-pagefind-meta=description>A DataStore is the persistence component within a Runtime that holds structured State across operations, indexed for retrieval by the Engine and readable by the Observation Layer.</span></div><div class=e-content><h1 id=datastore>DataStore</h1><h2 id=what-this-is>What this is</h2><p>A <strong>DataStore</strong> is the persistence component within a <a href=relational-machine-runtime.md class=link-internal>Runtime</a>.
-It holds <a href=state.md class=link-internal>State</a> that survives between operations — between Engine invocations, between step extensions, between observer queries.</p><p>The DataStore is the memory of the Runtime.
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-18",
+  "datePublished": "2026-03-18",
+  "description": "A DataStore is the persistence component within a Runtime that holds structured State across operations, indexed for retrieval by the Engine and readable by the Observation Layer.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/tech/terms/data-store/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-18T00:00:00Z">2026-03-18</time>
+    
+    <span class="p-summary">A DataStore is the persistence component within a Runtime that holds structured State across operations, indexed for retrieval by the Engine and readable by the Observation Layer.</span>
+  </div>
+  <div class="e-content">
+    <h1 id="datastore">DataStore</h1>
+<h2 id="what-this-is">What this is</h2>
+<p>A <strong>DataStore</strong> is the persistence component within a <a href="relational-machine-runtime.md" class="link-internal">Runtime</a>.
+It holds <a href="state.md" class="link-internal">State</a> that survives between operations — between Engine invocations, between step extensions, between observer queries.</p>
+<p>The DataStore is the memory of the Runtime.
 Without it, every invocation of the Engine starts from nothing.
-With it, each invocation builds on accumulated State.</p><h2 id=role-in-the-expertsystem-pattern>Role in the ExpertSystem pattern</h2><p>The DataStore corresponds to the <strong>knowledge base</strong> in the <a href=expert-system.md class=link-internal>ExpertSystem</a> pattern.
-The <a href=engine.md class=link-internal>Engine</a> applies operations to what the DataStore holds; the DataStore accumulates the results.</p><h2 id=what-a-datastore-is-not>What a DataStore is not</h2><p>A DataStore is not the Engine.
+With it, each invocation builds on accumulated State.</p>
+<h2 id="role-in-the-expertsystem-pattern">Role in the ExpertSystem pattern</h2>
+<p>The DataStore corresponds to the <strong>knowledge base</strong> in the <a href="expert-system.md" class="link-internal">ExpertSystem</a> pattern.
+The <a href="engine.md" class="link-internal">Engine</a> applies operations to what the DataStore holds; the DataStore accumulates the results.</p>
+<h2 id="what-a-datastore-is-not">What a DataStore is not</h2>
+<p>A DataStore is not the Engine.
 The DataStore does not apply transformation operations.
-It persists and serves — it does not compute.</p><p>A DataStore is not a static file store.
-A static file store (such as the <a href=flatfile-agential-resource-system.md class=link-internal>FlatfileAgentialResourceSystem</a>) may hold content, but it does not serve a running Engine.
-The DataStore is the persistence layer of a live Runtime; it is designed to be read and written by the Engine during operation.</p><h2 id=structure-in-the-relationalmachineruntime>Structure in the RelationalMachineRuntime</h2><p>In a <a href=relational-machine-runtime.md class=link-internal>RelationalMachineRuntime</a>, the DataStore holds:</p><ul><li><strong>H_t</strong> — the full fiber Heyting algebra at each history t</li><li><em><em>H</em>_t</em>* — the settled subalgebra Im(π_t) at each history t</li><li><strong>Restriction maps ρ: H_{t&rsquo;} → H_t</strong> — for all t ≤ t&rsquo;, connecting fibers across histories</li><li><strong>Nucleus results</strong> — cached outputs of σ_t and Δ_t</li></ul><p>The DataStore is indexed by history t.
+It persists and serves — it does not compute.</p>
+<p>A DataStore is not a static file store.
+A static file store (such as the <a href="flatfile-agential-resource-system.md" class="link-internal">FlatfileAgentialResourceSystem</a>) may hold content, but it does not serve a running Engine.
+The DataStore is the persistence layer of a live Runtime; it is designed to be read and written by the Engine during operation.</p>
+<h2 id="structure-in-the-relationalmachineruntime">Structure in the RelationalMachineRuntime</h2>
+<p>In a <a href="relational-machine-runtime.md" class="link-internal">RelationalMachineRuntime</a>, the DataStore holds:</p>
+<ul>
+<li><strong>H_t</strong> — the full fiber Heyting algebra at each history t</li>
+<li><em><em>H</em>_t</em>* — the settled subalgebra Im(π_t) at each history t</li>
+<li><strong>Restriction maps ρ: H_{t&rsquo;} → H_t</strong> — for all t ≤ t&rsquo;, connecting fibers across histories</li>
+<li><strong>Nucleus results</strong> — cached outputs of σ_t and Δ_t</li>
+</ul>
+<p>The DataStore is indexed by history t.
 The Engine loads the fiber at the current history, applies normalization, and writes H*_t back.
-The Observation Layer queries H*_t across histories to compute global sections.</p><p>A DataStore MUST persist State durably across Engine invocations.
+The Observation Layer queries H*_t across histories to compute global sections.</p>
+<p>A DataStore MUST persist State durably across Engine invocations.
 It MUST allow indexed access so the Engine can load State at a specific index position.
 It MUST expose a query interface to the Observation Layer.
-It MUST maintain consistency across concurrent writes — writes from Engine workers at different histories MUST NOT corrupt each other.</p><h2 id=open-questions>Open questions</h2></div></article><section class=page-relations data-pagefind-ignore resource="https://emsenn.net/library/tech/terms/data-store/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Ast</dt><dd property="emsenn:Ast"></dd></div><div class=relation><dt><a href=/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/>Component of</a></dt><dd property="emsenn:Componentof"><a href=/library/general/terms/container/>Container</a></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-18>2026-03-18</time></dd></div><div class=relation><dt>Date modified</dt><dd property="emsenn:Datemodified"><time datetime=2026-03-19>2026-03-19</time></dd></div><div class=relation><dt>Defines</dt><dd property="emsenn:Defines"><a href=/library/tech/terms/data-store/>Data store</a></dd></div><div class=relation><dt>Fiber algebra</dt><dd property="emsenn:Fiberalgebra">Relational universe morphism</dd></div><div class=relation><dt>Index</dt><dd property="emsenn:Index">Relational history</dd></div><div class=relation><dt>Output</dt><dd property="emsenn:Output">Relational universe</dd></div><div class=relation><dt><a href=/library/tech/terms/uses/>Uses</a></dt><dd property="emsenn:Uses"><a href=/library/math/terms/state/>State</a></dd></div><div class=relation><dt>Referenced by</dt><dd><ul><li><a href=/library/tech/terms/engine/></a></li><li><a href=/library/tech/terms/expert-system/></a></li></ul></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+It MUST maintain consistency across concurrent writes — writes from Engine workers at different histories MUST NOT corrupt each other.</p>
+<h2 id="open-questions">Open questions</h2>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/tech/terms/data-store/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt><a href="/library/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Component of</a></dt>
+        <dd property="emsenn:Componentof"><a href="/library/general/terms/container/">Container</a></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-18">2026-03-18</time></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-19">2026-03-19</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/tech/terms/data-store/">Data store</a></dd>
+      </div><div class="relation">
+        <dt>Fiber algebra</dt>
+        <dd property="emsenn:Fiberalgebra">Relational universe morphism</dd>
+      </div><div class="relation">
+        <dt>Index</dt>
+        <dd property="emsenn:Index">Relational history</dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">Relational universe</dd>
+      </div><div class="relation">
+        <dt><a href="/library/tech/terms/uses/">Uses</a></dt>
+        <dd property="emsenn:Uses"><a href="/library/math/terms/state/">State</a></dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/tech/terms/engine/"></a></li><li><a href="/library/tech/terms/expert-system/"></a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>
