@@ -450,6 +450,46 @@ a.citation {
   border: none;
 }
 
+/* === TABLE OF CONTENTS === */
+.toc {
+  margin-bottom: 1.5em;
+  padding: 0.6em 0;
+  border-bottom: 1px solid var(--rule);
+}
+.toc summary {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  cursor: pointer;
+}
+.toc summary:hover {
+  color: var(--text);
+}
+.toc nav {
+  margin-top: 0.5em;
+}
+.toc ul {
+  list-style: none;
+  padding-left: 1.2em;
+  margin: 0.2em 0;
+}
+.toc > nav > ul {
+  padding-left: 0;
+}
+.toc li {
+  margin-bottom: 0.15em;
+}
+.toc a {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8em;
+  color: var(--mid);
+}
+.toc a:hover {
+  color: var(--text);
+}
+
 /* === SEARCH (Pagefind UI overrides) === */
 .pagefind-ui {
   --pagefind-ui-scale: 0.9;
@@ -520,3 +560,73 @@ a.citation {
   .letter { margin: 0 0.5em; text-align: left; }
 }
 @media (min-width: 512px) { html { font-size: large; } }
+
+/* === PRINT === */
+@media print {
+  :root {
+    --text: rgba(38,38,38,1);
+    --bg: rgba(255,255,255,1);
+    --surface: rgba(255,255,255,1);
+    --mid: rgba(110,110,110,1);
+    --mid-light: rgba(110,110,110,0.15);
+    --mid-faint: rgba(110,110,110,0.07);
+    --mid-border: rgba(110,110,110,0.25);
+    --accent: rgba(80,55,65,1);
+    --rule: rgba(38,38,38,0.12);
+  }
+  .site-header,
+  .skip-to-content,
+  .pagefind-ui {
+    display: none !important;
+  }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  body {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  article.h-entry {
+    background: none;
+    border-left: none;
+    padding: 0;
+  }
+  a {
+    background: none !important;
+    text-decoration: underline;
+    color: var(--text) !important;
+  }
+  a::before {
+    display: none !important;
+  }
+  a[href]::after {
+    content: " [" attr(href) "]";
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.8em;
+    color: var(--mid);
+    word-break: break-all;
+  }
+  .breadcrumbs a[href]::after,
+  nav a[href]::after,
+  .toc a[href]::after,
+  a.citation[href]::after {
+    content: none;
+  }
+  details > summary {
+    display: none;
+  }
+  details, details > *:not(summary) {
+    display: block !important;
+  }
+  blockquote, pre, .type-meta, .bib-entry, .cite-block {
+    break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+  }
+  footer {
+    border-top: 1px solid var(--mid-border);
+  }
+}
