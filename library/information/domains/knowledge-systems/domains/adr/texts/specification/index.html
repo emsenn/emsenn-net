@@ -1,19 +1,198 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ADR Specification - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":[{"@type":"Person","name":"emsenn"},{"@type":"Person","name":"claude"}],"dateModified":"2026-03-09","datePublished":"2026-03-09","description":"Conformance requirements for architectural decision records.","keywords":"ADR, KnowledgeGovernance","name":"ADR Specification","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/information/domains/knowledge-systems/domains/adr/texts/specification/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content><article class=h-entry data-pagefind-body data-type=specification data-pagefind-filter=type:specification><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/information/>Information</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/information/domains/knowledge-systems/>Knowledge systems</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/information/domains/knowledge-systems/domains/adr/>Adr</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/information/domains/knowledge-systems/domains/adr/texts/>Texts</a></nav><span data-pagefind-filter=domain data-pagefind-ignore=all style=display:none>Information</span><span data-pagefind-ignore=all style=display:none><span data-pagefind-filter=tag>ADR</span><span data-pagefind-filter=tag>KnowledgeGovernance</span></span><h1 class=p-name>ADR Specification</h1><div class=meta><time class=dt-published datetime=2026-03-09T00:00:00Z data-pagefind-sort=date data-pagefind-meta=date:2026-03-09>2026-03-09</time>
-<span>by <span class=p-author data-pagefind-filter=author>emsenn</span>, <span class=p-author data-pagefind-filter=author>claude</span></span>
-<span class=p-summary data-pagefind-meta=description>Conformance requirements for architectural decision records.</span></div><div class=e-content><h2 id=normative-scope>Normative scope</h2><p>This specification IS normative about: ADR format and location.
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADR Specification - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "emsenn"
+    },
+    {
+      "@type": "Person",
+      "name": "claude"
+    }
+  ],
+  "dateModified": "2026-03-09",
+  "datePublished": "2026-03-09",
+  "description": "Conformance requirements for architectural decision records.",
+  "keywords": "ADR, KnowledgeGovernance",
+  "name": "ADR Specification",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/information/domains/knowledge-systems/domains/adr/texts/specification/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="specification">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/">Information</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/domains/knowledge-systems/">Knowledge systems</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/domains/knowledge-systems/domains/adr/">Adr</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/domains/knowledge-systems/domains/adr/texts/">Texts</a></nav>
+  <h1 class="p-name">ADR Specification</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-09T00:00:00Z">2026-03-09</time>
+    <span>by <span class="p-author">emsenn</span>, <span class="p-author">claude</span></span>
+    <span class="p-summary">Conformance requirements for architectural decision records.</span>
+  </div>
+  <div class="e-content">
+    <h2 id="normative-scope">Normative scope</h2>
+<p>This specification IS normative about: ADR format and location.
 This specification IS NOT normative about: what decisions warrant
 an ADR (use judgment — if it would be confusing later without a
-record, write one).</p><h2 id=required-fields-frontmatter>Required fields (frontmatter)</h2><table><thead><tr><th>Field</th><th>Requirement</th></tr></thead><tbody><tr><td><code>title</code></td><td>MUST start with &ldquo;Decision:&rdquo;</td></tr><tr><td><code>date-created</code></td><td>MUST be ISO 8601</td></tr><tr><td><code>authors</code></td><td>MUST list decision-makers</td></tr><tr><td><code>type</code></td><td>MUST be <code>decision</code></td></tr><tr><td><code>status</code></td><td>MUST be one of: <code>accepted</code>, <code>superseded</code>, <code>proposed</code></td></tr></tbody></table><h2 id=required-sections-body>Required sections (body)</h2><table><thead><tr><th>Section</th><th>Contains</th></tr></thead><tbody><tr><td><code>## Context</code></td><td>What situation prompted this decision</td></tr><tr><td><code>## Decision</code></td><td>What was decided, stated directly</td></tr><tr><td><code>## Consequences</code></td><td>What follows from this decision</td></tr><tr><td><code>## Alternatives considered</code></td><td>What was rejected and why</td></tr></tbody></table><h2 id=location>Location</h2><p>ADRs MUST live in a <code>decisions/</code> directory within the Thing they
+record, write one).</p>
+<h2 id="required-fields-frontmatter">Required fields (frontmatter)</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Field</th>
+          <th>Requirement</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>title</code></td>
+          <td>MUST start with &ldquo;Decision:&rdquo;</td>
+      </tr>
+      <tr>
+          <td><code>date-created</code></td>
+          <td>MUST be ISO 8601</td>
+      </tr>
+      <tr>
+          <td><code>authors</code></td>
+          <td>MUST list decision-makers</td>
+      </tr>
+      <tr>
+          <td><code>type</code></td>
+          <td>MUST be <code>decision</code></td>
+      </tr>
+      <tr>
+          <td><code>status</code></td>
+          <td>MUST be one of: <code>accepted</code>, <code>superseded</code>, <code>proposed</code></td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="required-sections-body">Required sections (body)</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Section</th>
+          <th>Contains</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>## Context</code></td>
+          <td>What situation prompted this decision</td>
+      </tr>
+      <tr>
+          <td><code>## Decision</code></td>
+          <td>What was decided, stated directly</td>
+      </tr>
+      <tr>
+          <td><code>## Consequences</code></td>
+          <td>What follows from this decision</td>
+      </tr>
+      <tr>
+          <td><code>## Alternatives considered</code></td>
+          <td>What was rejected and why</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="location">Location</h2>
+<p>ADRs MUST live in a <code>decisions/</code> directory within the Thing they
 govern. A decision about the knowing-semioverse standard goes in
 <code>knowing-semioverse/decisions/</code>. A decision about the ADR standard
-itself goes in <code>adr/decisions/</code>.</p><h2 id=naming>Naming</h2><p>ADR filenames MUST follow: <code>NNNN-short-title.md</code> where NNNN is a
-zero-padded sequence number within that decisions/ directory.</p><h2 id=append-only>Append-only</h2><p>ADRs MUST NOT be edited after acceptance except to mark them
+itself goes in <code>adr/decisions/</code>.</p>
+<h2 id="naming">Naming</h2>
+<p>ADR filenames MUST follow: <code>NNNN-short-title.md</code> where NNNN is a
+zero-padded sequence number within that decisions/ directory.</p>
+<h2 id="append-only">Append-only</h2>
+<p>ADRs MUST NOT be edited after acceptance except to mark them
 <code>status: superseded</code> and add a <code>superseded-by</code> field pointing to the
-newer ADR. The body is permanent.</p></div></article><section class=page-relations data-pagefind-ignore resource="https://emsenn.net/library/information/domains/knowledge-systems/domains/adr/texts/specification/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li><li><a href=/authors/claude/>claude</a></li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-09>2026-03-09</time></dd></div><div class=relation><dt>Part of</dt><dd property="schema:isPartOf">Information disciplines knowledge systems standards adr</dd></div><div class=relation><dt><a href=/library/engineering/domains/aerospace-engineering/terms/stability/>Stability</a></dt><dd property="emsenn:Stability"><a href=/library/writing/domains/essay-writing/terms/draft/>Draft</a></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/adr/>ADR</a></li><li><a href=/tags/knowledgegovernance/>KnowledgeGovernance</a></li></ul></dd></div><div class=relation><dt>Version</dt><dd property="emsenn:Version"><ul><li><a href=/library/math/domains/number-theory/terms/zero/>0th</a></li><li>1st</li><li><a href=/library/math/domains/number-theory/terms/zero/>0th</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@misc{emsenn2026-specification,
+newer ADR. The body is permanent.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/information/domains/knowledge-systems/domains/adr/texts/specification/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li><li><a href="/authors/claude/">claude</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-09">2026-03-09</time></dd>
+      </div><div class="relation">
+        <dt>Part of</dt>
+        <dd property="schema:isPartOf">Information disciplines knowledge systems standards adr</dd>
+      </div><div class="relation">
+        <dt><a href="/library/engineering/domains/aerospace-engineering/terms/stability/">Stability</a></dt>
+        <dd property="emsenn:Stability"><a href="/library/writing/domains/essay-writing/terms/draft/">Draft</a></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/adr/">ADR</a></li><li><a href="/tags/knowledgegovernance/">KnowledgeGovernance</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Version</dt>
+        <dd property="emsenn:Version"><ul><li><a href="/library/math/domains/number-theory/terms/zero/">0th</a></li><li>1st</li><li><a href="/library/math/domains/number-theory/terms/zero/">0th</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-specification,
   author    = {emsenn and claude},
   title     = {ADR Specification},
   year      = {2026},
@@ -21,4 +200,17 @@ newer ADR. The body is permanent.</p></div></article><section class=page-relatio
   url       = {https://emsenn.net/library/information/domains/knowledge-systems/domains/adr/texts/specification/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,10 +1,231 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>UAV Guidance, Navigation, and Control - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"DefinedTerm","author":[{"@type":"Person","name":"emsenn"},{"@type":"Person","name":"claude-opus-4-6"}],"dateModified":"2026-03-06","datePublished":"2026-03-06","description":"How uncrewed aircraft know where they are, where to go, and how to get there — from IMU stabilization through GPS waypoint following to vision-based autonomy.","inDefinedTermSet":{"@type":"DefinedTermSet","name":"","url":"https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/"},"keywords":"ControlSystems, Navigation","name":"UAV Guidance, Navigation, and Control","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-guidance-navigation-and-control/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content><article class=h-entry data-pagefind-body data-type=concept data-pagefind-filter=type:concept><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/engineering/>Engineering</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/engineering/domains/aerospace-engineering/>Aerospace engineering</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/engineering/domains/aerospace-engineering/domains/uavs/>Uavs</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/engineering/domains/aerospace-engineering/domains/uavs/terms/>Terms</a></nav><span data-pagefind-filter=domain data-pagefind-ignore=all style=display:none>Engineering</span><span data-pagefind-ignore=all style=display:none><span data-pagefind-filter=tag>ControlSystems</span><span data-pagefind-filter=tag>Navigation</span></span><h1 class=p-name>UAV Guidance, Navigation, and Control</h1><div class=meta><time class=dt-published datetime=2026-03-06T00:00:00Z data-pagefind-sort=date data-pagefind-meta=date:2026-03-06>2026-03-06</time>
-<span>by <span class=p-author data-pagefind-filter=author>emsenn</span>, <span class=p-author data-pagefind-filter=author>claude-opus-4-6</span></span>
-<span class=p-summary data-pagefind-meta=description>How uncrewed aircraft know where they are, where to go, and how to get there — from IMU stabilization through GPS waypoint following to vision-based autonomy.</span></div><details class=toc><summary>Table of contents</summary><nav id=TableOfContents><ul><li><a href=#the-three-layers>The three layers</a></li><li><a href=#sensor-fusion>Sensor fusion</a></li><li><a href=#gps-denied-navigation>GPS-denied navigation</a></li><li><a href=#control-architectures>Control architectures</a></li><li><a href=#autonomy-levels>Autonomy levels</a></li><li><a href=#related-concepts>Related concepts</a></li></ul></nav></details><div class=e-content><p>Guidance, navigation, and control (GNC) is the engineering discipline concerned with three questions: Where am I? Where should I go? How do I get there? For UAVs, these questions are answered by a layered system of sensors, estimation algorithms, and control laws running on the <a href=../terms/flight-controller.md class=link-internal>flight controller</a>.</p><h2 id=the-three-layers>The three layers</h2><p><strong>Control</strong> (innermost loop, 100–8,000 Hz): Stabilize the aircraft&rsquo;s attitude. Read the <a href=../terms/imu.md class=link-internal>IMU</a>, compare measured attitude to desired attitude, compute actuator commands (<a href=../terms/servo.md class=link-internal>servo</a> deflections or <a href=../terms/esc.md class=link-internal>ESC</a> throttle values) to minimize the error. This loop runs fastest because attitude changes happen on millisecond timescales, especially for inherently unstable platforms like multirotors.</p><p><strong>Navigation</strong> (middle loop, 1–50 Hz): Estimate the aircraft&rsquo;s position and velocity. Fuse IMU data with GPS, barometric altitude, magnetometer heading, and optionally airspeed, optical flow, or visual odometry. The standard estimation tool is the extended Kalman filter (EKF), which produces a best estimate of the full state (position, velocity, attitude, sensor biases) from noisy, delayed, and intermittent sensor data.</p><p><strong>Guidance</strong> (outermost loop, 0.1–10 Hz): Decide where to fly. Follow a sequence of waypoints, orbit a target, execute a search pattern, respond to operator commands, or — in autonomous systems — make targeting decisions. This layer converts mission-level intent into a sequence of desired positions and velocities that the navigation and control layers execute.</p><h2 id=sensor-fusion>Sensor fusion</h2><p>No single sensor provides reliable state estimation across all conditions:</p><table><thead><tr><th>Sensor</th><th>Measures</th><th>Strengths</th><th>Weaknesses</th></tr></thead><tbody><tr><td><a href=../terms/imu.md class=link-internal>IMU</a> (gyro + accel)</td><td>Angular rate, linear acceleration</td><td>Fast (kHz), always available</td><td>Drifts within seconds without correction</td></tr><tr><td>GPS</td><td>Position, velocity</td><td>Absolute, global</td><td>Update rate slow (1–10 Hz), denied in jamming, multipath in urban areas</td></tr><tr><td>Magnetometer</td><td>Heading</td><td>Absolute reference to magnetic north</td><td>Distorted by motors, batteries, metal structures, power lines</td></tr><tr><td>Barometric altimeter</td><td>Altitude (relative)</td><td>Smooth, high-rate</td><td>Drifts with weather, affected by prop wash</td></tr><tr><td>Airspeed sensor (pitot tube)</td><td>Indicated airspeed</td><td>Direct measurement of aerodynamic state</td><td>Mechanical (can ice or clog), not relevant for multirotors</td></tr><tr><td>Optical flow</td><td>Ground-relative velocity</td><td>Works indoors, GPS-denied</td><td>Fails over featureless surfaces, altitude-dependent scaling</td></tr><tr><td>LiDAR altimeter</td><td>Height above ground</td><td>Precise, fast</td><td>Weight, cost, single-point (not a full position solution)</td></tr><tr><td>Visual odometry / SLAM</td><td>Position, orientation</td><td>No external infrastructure needed</td><td>Computationally expensive, fails in featureless or dark environments</td></tr></tbody></table><p>The flight controller&rsquo;s EKF fuses these inputs by weighting each according to its reliability and consistency. If GPS is available, it dominates position estimation. If GPS is lost (jamming, indoor flight, canyon), the EKF falls back to IMU dead reckoning corrected by whatever other sensors are available — optical flow, visual odometry, or barometric altitude. The quality of this fallback determines whether the UAV can continue its mission or must return home.</p><h2 id=gps-denied-navigation>GPS-denied navigation</h2><p>Operating without GPS is the defining challenge for military UAVs in contested environments and for commercial drones in indoor or urban settings:</p><ul><li><strong>Inertial navigation</strong> — pure <a href=../terms/imu.md class=link-internal>IMU</a> integration. MEMS IMUs drift at 0.5–10°/hour, making this usable for minutes at most. Military INS units with fiber-optic or ring-laser gyroscopes can navigate for hours, but cost $10,000–$100,000.</li><li><strong>Terrain-referenced navigation</strong> — comparing onboard sensor measurements (radar altimeter profile, camera imagery) against a stored terrain database. Used in cruise missiles for decades; increasingly available for UAVs with lightweight cameras and onboard compute.</li><li><strong>Visual-inertial odometry (VIO)</strong> — fusing camera imagery with IMU data to track position by matching visual features between frames. Requires a textured environment and sufficient compute. The standard approach for indoor drone navigation.</li><li><strong>Simultaneous localization and mapping (SLAM)</strong> — building a map of the environment while simultaneously localizing within it. LiDAR SLAM or visual SLAM can provide centimeter-level accuracy in unknown environments but requires significant processing power.</li><li><strong>Collaborative navigation</strong> — UAVs in a swarm share position estimates, with inter-vehicle ranging (radio time-of-flight, UWB) providing relative position data even without absolute GPS fixes.</li></ul><h2 id=control-architectures>Control architectures</h2><p><strong>PID control</strong> (proportional-integral-derivative) is the workhorse of UAV attitude control. Three gains — proportional (reacts to current error), integral (corrects accumulated error), derivative (damps oscillation) — are tuned for each axis (roll, pitch, yaw) and each loop (rate, angle, position). PID tuning is one of the most common practical tasks in UAV development; undertoned controllers oscillate, and overtoned controllers respond sluggishly.</p><p><strong>Cascaded PID</strong> — the standard architecture: an outer position controller commands velocity, a velocity controller commands attitude, an attitude controller commands angular rate, and a rate controller commands actuators. Each loop runs faster than the one above it.</p><p><strong>Model-based control</strong> — linear quadratic regulator (LQR), model predictive control (MPC), and adaptive control methods use a mathematical model of the aircraft&rsquo;s dynamics to compute optimal actuator commands. These provide better performance than PID in theory but require accurate models and more computational resources. Emerging in research and high-end commercial autopilots.</p><p><strong>Neural network control</strong> — reinforcement learning and neural network-based controllers trained in simulation and transferred to real hardware. Still experimental for primary flight control but increasingly used for higher-level tasks (obstacle avoidance, aggressive maneuvering, landing site selection).</p><h2 id=autonomy-levels>Autonomy levels</h2><p>The GNC architecture determines what level of autonomy the UAV can achieve:</p><ol><li><strong>Manual / rate mode</strong> — pilot directly commands angular rates. The flight controller only stabilizes against IMU noise. No navigation. Requires continuous pilot input.</li><li><strong>Stabilized / angle mode</strong> — flight controller maintains commanded pitch and roll angles. Pilot releases sticks, aircraft levels out. IMU-only.</li><li><strong>Position hold</strong> — flight controller maintains GPS position and altitude. Pilot commands velocity or gives no input. Requires GPS + barometer.</li><li><strong>Waypoint mission</strong> — flight controller follows a pre-programmed sequence of positions, altitudes, and speeds. Operator monitors. Standard for survey, mapping, and delivery UAVs.</li><li><strong>Reactive autonomy</strong> — the UAV responds to sensor input in real time: obstacle avoidance, terrain following, moving target tracking. Requires onboard perception (cameras, LiDAR) and sufficient compute.</li><li><strong>Deliberative autonomy</strong> — the UAV makes mission-level decisions: selecting targets, replanning routes around threats, coordinating with other UAVs. The frontier of military UAV development.</li></ol><h2 id=related-concepts>Related concepts</h2><ul><li><a href=./wing-planform-selection-for-uavs.md class=link-internal>Wing Planform Selection for UAVs</a> — planform affects stability characteristics that the control system must manage</li><li><a href=./uav-propulsion-systems.md class=link-internal>UAV Propulsion Systems</a> — propulsion vibration and response time interact with GNC</li><li><a href=./additive-manufacturing-in-uav-airframes.md class=link-internal>Additive Manufacturing in UAV Airframes</a> — IMU mounting and vibration damping in printed structures affect navigation quality</li></ul></div></article><section class=page-relations data-pagefind-ignore resource="https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-guidance-navigation-and-control/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-06>2026-03-06</time></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/controlsystems/>ControlSystems</a></li><li><a href=/tags/navigation/>Navigation</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@misc{emsenn2026-uav-guidance-navigation-and-control,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UAV Guidance, Navigation, and Control - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "emsenn"
+    },
+    {
+      "@type": "Person",
+      "name": "claude-opus-4-6"
+    }
+  ],
+  "dateModified": "2026-03-06",
+  "datePublished": "2026-03-06",
+  "description": "How uncrewed aircraft know where they are, where to go, and how to get there — from IMU stabilization through GPS waypoint following to vision-based autonomy.",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "",
+    "url": "https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/"
+  },
+  "keywords": "ControlSystems, Navigation",
+  "name": "UAV Guidance, Navigation, and Control",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-guidance-navigation-and-control/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="concept">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/">Aerospace engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/domains/uavs/">Uavs</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/engineering/domains/aerospace-engineering/domains/uavs/terms/">Terms</a></nav>
+  <h1 class="p-name">UAV Guidance, Navigation, and Control</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-06T00:00:00Z">2026-03-06</time>
+    <span>by <span class="p-author">emsenn</span>, <span class="p-author">claude-opus-4-6</span></span>
+    <span class="p-summary">How uncrewed aircraft know where they are, where to go, and how to get there — from IMU stabilization through GPS waypoint following to vision-based autonomy.</span>
+  </div>
+  
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-three-layers">The three layers</a></li>
+    <li><a href="#sensor-fusion">Sensor fusion</a></li>
+    <li><a href="#gps-denied-navigation">GPS-denied navigation</a></li>
+    <li><a href="#control-architectures">Control architectures</a></li>
+    <li><a href="#autonomy-levels">Autonomy levels</a></li>
+    <li><a href="#related-concepts">Related concepts</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>Guidance, navigation, and control (GNC) is the engineering discipline concerned with three questions: Where am I? Where should I go? How do I get there? For UAVs, these questions are answered by a layered system of sensors, estimation algorithms, and control laws running on the <a href="../terms/flight-controller.md" class="link-internal">flight controller</a>.</p>
+<h2 id="the-three-layers">The three layers</h2>
+<p><strong>Control</strong> (innermost loop, 100–8,000 Hz): Stabilize the aircraft&rsquo;s attitude. Read the <a href="../terms/imu.md" class="link-internal">IMU</a>, compare measured attitude to desired attitude, compute actuator commands (<a href="../terms/servo.md" class="link-internal">servo</a> deflections or <a href="../terms/esc.md" class="link-internal">ESC</a> throttle values) to minimize the error. This loop runs fastest because attitude changes happen on millisecond timescales, especially for inherently unstable platforms like multirotors.</p>
+<p><strong>Navigation</strong> (middle loop, 1–50 Hz): Estimate the aircraft&rsquo;s position and velocity. Fuse IMU data with GPS, barometric altitude, magnetometer heading, and optionally airspeed, optical flow, or visual odometry. The standard estimation tool is the extended Kalman filter (EKF), which produces a best estimate of the full state (position, velocity, attitude, sensor biases) from noisy, delayed, and intermittent sensor data.</p>
+<p><strong>Guidance</strong> (outermost loop, 0.1–10 Hz): Decide where to fly. Follow a sequence of waypoints, orbit a target, execute a search pattern, respond to operator commands, or — in autonomous systems — make targeting decisions. This layer converts mission-level intent into a sequence of desired positions and velocities that the navigation and control layers execute.</p>
+<h2 id="sensor-fusion">Sensor fusion</h2>
+<p>No single sensor provides reliable state estimation across all conditions:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Sensor</th>
+          <th>Measures</th>
+          <th>Strengths</th>
+          <th>Weaknesses</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="../terms/imu.md" class="link-internal">IMU</a> (gyro + accel)</td>
+          <td>Angular rate, linear acceleration</td>
+          <td>Fast (kHz), always available</td>
+          <td>Drifts within seconds without correction</td>
+      </tr>
+      <tr>
+          <td>GPS</td>
+          <td>Position, velocity</td>
+          <td>Absolute, global</td>
+          <td>Update rate slow (1–10 Hz), denied in jamming, multipath in urban areas</td>
+      </tr>
+      <tr>
+          <td>Magnetometer</td>
+          <td>Heading</td>
+          <td>Absolute reference to magnetic north</td>
+          <td>Distorted by motors, batteries, metal structures, power lines</td>
+      </tr>
+      <tr>
+          <td>Barometric altimeter</td>
+          <td>Altitude (relative)</td>
+          <td>Smooth, high-rate</td>
+          <td>Drifts with weather, affected by prop wash</td>
+      </tr>
+      <tr>
+          <td>Airspeed sensor (pitot tube)</td>
+          <td>Indicated airspeed</td>
+          <td>Direct measurement of aerodynamic state</td>
+          <td>Mechanical (can ice or clog), not relevant for multirotors</td>
+      </tr>
+      <tr>
+          <td>Optical flow</td>
+          <td>Ground-relative velocity</td>
+          <td>Works indoors, GPS-denied</td>
+          <td>Fails over featureless surfaces, altitude-dependent scaling</td>
+      </tr>
+      <tr>
+          <td>LiDAR altimeter</td>
+          <td>Height above ground</td>
+          <td>Precise, fast</td>
+          <td>Weight, cost, single-point (not a full position solution)</td>
+      </tr>
+      <tr>
+          <td>Visual odometry / SLAM</td>
+          <td>Position, orientation</td>
+          <td>No external infrastructure needed</td>
+          <td>Computationally expensive, fails in featureless or dark environments</td>
+      </tr>
+  </tbody>
+</table>
+<p>The flight controller&rsquo;s EKF fuses these inputs by weighting each according to its reliability and consistency. If GPS is available, it dominates position estimation. If GPS is lost (jamming, indoor flight, canyon), the EKF falls back to IMU dead reckoning corrected by whatever other sensors are available — optical flow, visual odometry, or barometric altitude. The quality of this fallback determines whether the UAV can continue its mission or must return home.</p>
+<h2 id="gps-denied-navigation">GPS-denied navigation</h2>
+<p>Operating without GPS is the defining challenge for military UAVs in contested environments and for commercial drones in indoor or urban settings:</p>
+<ul>
+<li><strong>Inertial navigation</strong> — pure <a href="../terms/imu.md" class="link-internal">IMU</a> integration. MEMS IMUs drift at 0.5–10°/hour, making this usable for minutes at most. Military INS units with fiber-optic or ring-laser gyroscopes can navigate for hours, but cost $10,000–$100,000.</li>
+<li><strong>Terrain-referenced navigation</strong> — comparing onboard sensor measurements (radar altimeter profile, camera imagery) against a stored terrain database. Used in cruise missiles for decades; increasingly available for UAVs with lightweight cameras and onboard compute.</li>
+<li><strong>Visual-inertial odometry (VIO)</strong> — fusing camera imagery with IMU data to track position by matching visual features between frames. Requires a textured environment and sufficient compute. The standard approach for indoor drone navigation.</li>
+<li><strong>Simultaneous localization and mapping (SLAM)</strong> — building a map of the environment while simultaneously localizing within it. LiDAR SLAM or visual SLAM can provide centimeter-level accuracy in unknown environments but requires significant processing power.</li>
+<li><strong>Collaborative navigation</strong> — UAVs in a swarm share position estimates, with inter-vehicle ranging (radio time-of-flight, UWB) providing relative position data even without absolute GPS fixes.</li>
+</ul>
+<h2 id="control-architectures">Control architectures</h2>
+<p><strong>PID control</strong> (proportional-integral-derivative) is the workhorse of UAV attitude control. Three gains — proportional (reacts to current error), integral (corrects accumulated error), derivative (damps oscillation) — are tuned for each axis (roll, pitch, yaw) and each loop (rate, angle, position). PID tuning is one of the most common practical tasks in UAV development; undertoned controllers oscillate, and overtoned controllers respond sluggishly.</p>
+<p><strong>Cascaded PID</strong> — the standard architecture: an outer position controller commands velocity, a velocity controller commands attitude, an attitude controller commands angular rate, and a rate controller commands actuators. Each loop runs faster than the one above it.</p>
+<p><strong>Model-based control</strong> — linear quadratic regulator (LQR), model predictive control (MPC), and adaptive control methods use a mathematical model of the aircraft&rsquo;s dynamics to compute optimal actuator commands. These provide better performance than PID in theory but require accurate models and more computational resources. Emerging in research and high-end commercial autopilots.</p>
+<p><strong>Neural network control</strong> — reinforcement learning and neural network-based controllers trained in simulation and transferred to real hardware. Still experimental for primary flight control but increasingly used for higher-level tasks (obstacle avoidance, aggressive maneuvering, landing site selection).</p>
+<h2 id="autonomy-levels">Autonomy levels</h2>
+<p>The GNC architecture determines what level of autonomy the UAV can achieve:</p>
+<ol>
+<li><strong>Manual / rate mode</strong> — pilot directly commands angular rates. The flight controller only stabilizes against IMU noise. No navigation. Requires continuous pilot input.</li>
+<li><strong>Stabilized / angle mode</strong> — flight controller maintains commanded pitch and roll angles. Pilot releases sticks, aircraft levels out. IMU-only.</li>
+<li><strong>Position hold</strong> — flight controller maintains GPS position and altitude. Pilot commands velocity or gives no input. Requires GPS + barometer.</li>
+<li><strong>Waypoint mission</strong> — flight controller follows a pre-programmed sequence of positions, altitudes, and speeds. Operator monitors. Standard for survey, mapping, and delivery UAVs.</li>
+<li><strong>Reactive autonomy</strong> — the UAV responds to sensor input in real time: obstacle avoidance, terrain following, moving target tracking. Requires onboard perception (cameras, LiDAR) and sufficient compute.</li>
+<li><strong>Deliberative autonomy</strong> — the UAV makes mission-level decisions: selecting targets, replanning routes around threats, coordinating with other UAVs. The frontier of military UAV development.</li>
+</ol>
+<h2 id="related-concepts">Related concepts</h2>
+<ul>
+<li><a href="./wing-planform-selection-for-uavs.md" class="link-internal">Wing Planform Selection for UAVs</a> — planform affects stability characteristics that the control system must manage</li>
+<li><a href="./uav-propulsion-systems.md" class="link-internal">UAV Propulsion Systems</a> — propulsion vibration and response time interact with GNC</li>
+<li><a href="./additive-manufacturing-in-uav-airframes.md" class="link-internal">Additive Manufacturing in UAV Airframes</a> — IMU mounting and vibration damping in printed structures affect navigation quality</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-guidance-navigation-and-control/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-06">2026-03-06</time></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/controlsystems/">ControlSystems</a></li><li><a href="/tags/navigation/">Navigation</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-uav-guidance-navigation-and-control,
   author    = {emsenn and claude-opus-4-6},
   title     = {UAV Guidance, Navigation, and Control},
   year      = {2026},
@@ -12,4 +233,17 @@
   url       = {https://emsenn.net/library/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-guidance-navigation-and-control/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

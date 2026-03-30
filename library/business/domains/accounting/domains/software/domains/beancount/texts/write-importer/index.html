@@ -1,50 +1,173 @@
-<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Write a Beancount Importer - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"HowTo","author":{"@type":"Person","name":"claude-opus-4-6"},"dateModified":"2026-03-06","datePublished":"2026-03-06","description":"Write a Beancount Importer Beancount\u0026rsquo;s import framework (beancount.ingest) provides a structured way to convert bank CSV or OFX files into Beancount transactions. An importer is a Python class that implements three methods:\nidentify(file) — returns True if this importer can handle the given file (based on filename, headers, or content). file_account(file) — returns the account name this file belongs to (e.g., Assets:Checking). extract(file) — parses the file and returns a list of Beancount directive objects (transactions). Minimal example:\n","keywords":"Accounting","name":"Write a Beancount Importer","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/write-importer/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
-<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
-<a href=/library/>library</a>
-<a href=/letters/>letters</a>
-<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content><article class=h-entry data-pagefind-body data-type=skill data-pagefind-filter=type:skill><nav class=breadcrumbs aria-label=Breadcrumb><a href=/library/>Libraries</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/business/>Business</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/business/domains/accounting/>Accounting</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/business/domains/accounting/domains/software/>Software</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/business/domains/accounting/domains/software/domains/beancount/>Beancount</a> <span class=breadcrumb-sep aria-hidden=true>&#8250;</span> <a href=/library/business/domains/accounting/domains/software/domains/beancount/texts/>Texts</a></nav><span data-pagefind-filter=domain data-pagefind-ignore=all style=display:none>Business</span><span data-pagefind-ignore=all style=display:none><span data-pagefind-filter=tag>Accounting</span></span><h1 class=p-name>Write a Beancount Importer</h1><div class=meta><time class=dt-published datetime=2026-03-06T00:00:00Z data-pagefind-sort=date data-pagefind-meta=date:2026-03-06>2026-03-06</time>
-<span>by <span class=p-author data-pagefind-filter=author>claude-opus-4-6</span></span></div><div class=e-content><h1 id=write-a-beancount-importer>Write a Beancount Importer</h1><p>Beancount&rsquo;s import framework (<code>beancount.ingest</code>) provides a structured way to convert bank CSV or OFX files into Beancount transactions. An importer is a Python class that implements three methods:</p><ol><li><code>identify(file)</code> — returns <code>True</code> if this importer can handle the given file (based on filename, headers, or content).</li><li><code>file_account(file)</code> — returns the account name this file belongs to (e.g., <code>Assets:Checking</code>).</li><li><code>extract(file)</code> — parses the file and returns a list of Beancount directive objects (transactions).</li></ol><p><strong>Minimal example</strong>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> csv
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> beancount.core <span style=color:#f92672>import</span> data
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> beancount.core.amount <span style=color:#f92672>import</span> Amount
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> beancount.core.number <span style=color:#f92672>import</span> D
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> beancount.ingest <span style=color:#f92672>import</span> importer
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> date
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BankCSVImporter</span>(importer<span style=color:#f92672>.</span>ImporterProtocol):
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>identify</span>(self, file):
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;bank_transactions&#34;</span> <span style=color:#f92672>in</span> file<span style=color:#f92672>.</span>name
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>file_account</span>(self, file):
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Assets:Checking&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>extract</span>(self, file, existing_entries<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>):
-</span></span><span style=display:flex><span>        entries <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>with</span> open(file<span style=color:#f92672>.</span>name) <span style=color:#66d9ef>as</span> f:
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> row <span style=color:#f92672>in</span> csv<span style=color:#f92672>.</span>DictReader(f):
-</span></span><span style=display:flex><span>                txn <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span>Transaction(
-</span></span><span style=display:flex><span>                    meta<span style=color:#f92672>=</span>data<span style=color:#f92672>.</span>new_metadata(file<span style=color:#f92672>.</span>name, <span style=color:#ae81ff>0</span>),
-</span></span><span style=display:flex><span>                    date<span style=color:#f92672>=</span>date<span style=color:#f92672>.</span>fromisoformat(row[<span style=color:#e6db74>&#34;date&#34;</span>]),
-</span></span><span style=display:flex><span>                    flag<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;!&#34;</span>,
-</span></span><span style=display:flex><span>                    payee<span style=color:#f92672>=</span>row[<span style=color:#e6db74>&#34;description&#34;</span>],
-</span></span><span style=display:flex><span>                    narration<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>,
-</span></span><span style=display:flex><span>                    tags<span style=color:#f92672>=</span>set(),
-</span></span><span style=display:flex><span>                    links<span style=color:#f92672>=</span>set(),
-</span></span><span style=display:flex><span>                    postings<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>                        data<span style=color:#f92672>.</span>Posting(<span style=color:#e6db74>&#34;Assets:Checking&#34;</span>,
-</span></span><span style=display:flex><span>                                     Amount(D(row[<span style=color:#e6db74>&#34;amount&#34;</span>]), <span style=color:#e6db74>&#34;USD&#34;</span>),
-</span></span><span style=display:flex><span>                                     <span style=color:#66d9ef>None</span>, <span style=color:#66d9ef>None</span>, <span style=color:#66d9ef>None</span>, <span style=color:#66d9ef>None</span>),
-</span></span><span style=display:flex><span>                        data<span style=color:#f92672>.</span>Posting(<span style=color:#e6db74>&#34;Expenses:Uncategorized&#34;</span>,
-</span></span><span style=display:flex><span>                                     <span style=color:#66d9ef>None</span>, <span style=color:#66d9ef>None</span>, <span style=color:#66d9ef>None</span>, <span style=color:#66d9ef>None</span>, <span style=color:#66d9ef>None</span>),
-</span></span><span style=display:flex><span>                    ],
-</span></span><span style=display:flex><span>                )
-</span></span><span style=display:flex><span>                entries<span style=color:#f92672>.</span>append(txn)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> entries
-</span></span></code></pre></div><p>The <code>!</code> flag marks imported transactions as &ldquo;needs review&rdquo; — the user changes it to <code>*</code> after verifying and categorizing each one.</p><p>Run the importer with:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>bean-extract config.py bank_download.csv &gt;&gt; ledger.beancount
-</span></span></code></pre></div><p>Where <code>config.py</code> registers the importer instances. The importer framework also supports <code>bean-identify</code> (which file goes to which importer) and <code>bean-file</code> (filing downloaded documents into an organized directory structure).</p></div></article><section class=page-relations data-pagefind-ignore resource="https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/write-importer/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>Authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>Date created</dt><dd property="schema:dateCreated"><time datetime=2026-03-06>2026-03-06</time></dd></div><div class=relation><dt>Tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/accounting/>Accounting</a></li></ul></dd></div></dl></section><section class=cite-this id=cite-this><h2>Cite</h2><pre class=cite-block><code>@misc{claude-opus-4-62026-write-importer,
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Write a Beancount Importer - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "author": {
+    "@type": "Person",
+    "name": "claude-opus-4-6"
+  },
+  "dateModified": "2026-03-06",
+  "datePublished": "2026-03-06",
+  "description": "Write a Beancount Importer Beancount\u0026rsquo;s import framework (beancount.ingest) provides a structured way to convert bank CSV or OFX files into Beancount transactions. An importer is a Python class that implements three methods:\nidentify(file) — returns True if this importer can handle the given file (based on filename, headers, or content). file_account(file) — returns the account name this file belongs to (e.g., Assets:Checking). extract(file) — parses the file and returns a list of Beancount directive objects (transactions). Minimal example:\n",
+  "keywords": "Accounting",
+  "name": "Write a Beancount Importer",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/write-importer/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+    <a href="/search/">search</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="skill">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/business/">Business</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/business/domains/accounting/">Accounting</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/business/domains/accounting/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/business/domains/accounting/domains/software/domains/beancount/">Beancount</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/business/domains/accounting/domains/software/domains/beancount/texts/">Texts</a></nav>
+  <h1 class="p-name">Write a Beancount Importer</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-06T00:00:00Z">2026-03-06</time>
+    <span>by <span class="p-author">claude-opus-4-6</span></span>
+    
+  </div>
+  <div class="e-content">
+    <h1 id="write-a-beancount-importer">Write a Beancount Importer</h1>
+<p>Beancount&rsquo;s import framework (<code>beancount.ingest</code>) provides a structured way to convert bank CSV or OFX files into Beancount transactions. An importer is a Python class that implements three methods:</p>
+<ol>
+<li><code>identify(file)</code> — returns <code>True</code> if this importer can handle the given file (based on filename, headers, or content).</li>
+<li><code>file_account(file)</code> — returns the account name this file belongs to (e.g., <code>Assets:Checking</code>).</li>
+<li><code>extract(file)</code> — parses the file and returns a list of Beancount directive objects (transactions).</li>
+</ol>
+<p><strong>Minimal example</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> csv
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> beancount.core <span style="color:#f92672">import</span> data
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> beancount.core.amount <span style="color:#f92672">import</span> Amount
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> beancount.core.number <span style="color:#f92672">import</span> D
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> beancount.ingest <span style="color:#f92672">import</span> importer
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> date
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BankCSVImporter</span>(importer<span style="color:#f92672">.</span>ImporterProtocol):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">identify</span>(self, file):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;bank_transactions&#34;</span> <span style="color:#f92672">in</span> file<span style="color:#f92672">.</span>name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">file_account</span>(self, file):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Assets:Checking&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">extract</span>(self, file, existing_entries<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>        entries <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span> open(file<span style="color:#f92672">.</span>name) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> csv<span style="color:#f92672">.</span>DictReader(f):
+</span></span><span style="display:flex;"><span>                txn <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>Transaction(
+</span></span><span style="display:flex;"><span>                    meta<span style="color:#f92672">=</span>data<span style="color:#f92672">.</span>new_metadata(file<span style="color:#f92672">.</span>name, <span style="color:#ae81ff">0</span>),
+</span></span><span style="display:flex;"><span>                    date<span style="color:#f92672">=</span>date<span style="color:#f92672">.</span>fromisoformat(row[<span style="color:#e6db74">&#34;date&#34;</span>]),
+</span></span><span style="display:flex;"><span>                    flag<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;!&#34;</span>,
+</span></span><span style="display:flex;"><span>                    payee<span style="color:#f92672">=</span>row[<span style="color:#e6db74">&#34;description&#34;</span>],
+</span></span><span style="display:flex;"><span>                    narration<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>                    tags<span style="color:#f92672">=</span>set(),
+</span></span><span style="display:flex;"><span>                    links<span style="color:#f92672">=</span>set(),
+</span></span><span style="display:flex;"><span>                    postings<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>                        data<span style="color:#f92672">.</span>Posting(<span style="color:#e6db74">&#34;Assets:Checking&#34;</span>,
+</span></span><span style="display:flex;"><span>                                     Amount(D(row[<span style="color:#e6db74">&#34;amount&#34;</span>]), <span style="color:#e6db74">&#34;USD&#34;</span>),
+</span></span><span style="display:flex;"><span>                                     <span style="color:#66d9ef">None</span>, <span style="color:#66d9ef">None</span>, <span style="color:#66d9ef">None</span>, <span style="color:#66d9ef">None</span>),
+</span></span><span style="display:flex;"><span>                        data<span style="color:#f92672">.</span>Posting(<span style="color:#e6db74">&#34;Expenses:Uncategorized&#34;</span>,
+</span></span><span style="display:flex;"><span>                                     <span style="color:#66d9ef">None</span>, <span style="color:#66d9ef">None</span>, <span style="color:#66d9ef">None</span>, <span style="color:#66d9ef">None</span>, <span style="color:#66d9ef">None</span>),
+</span></span><span style="display:flex;"><span>                    ],
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>                entries<span style="color:#f92672">.</span>append(txn)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> entries
+</span></span></code></pre></div><p>The <code>!</code> flag marks imported transactions as &ldquo;needs review&rdquo; — the user changes it to <code>*</code> after verifying and categorizing each one.</p>
+<p>Run the importer with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bean-extract config.py bank_download.csv &gt;&gt; ledger.beancount
+</span></span></code></pre></div><p>Where <code>config.py</code> registers the importer instances. The importer framework also supports <code>bean-identify</code> (which file goes to which importer) and <code>bean-file</code> (filing downloaded documents into an organized directory structure).</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/write-importer/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Authors</dt>
+        <dd property="schema:author"><ul><li><a href="/authors/claude-opus-4-6/">claude-opus-4-6</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-06">2026-03-06</time></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/accounting/">Accounting</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{claude-opus-4-62026-write-importer,
   author    = {claude-opus-4-6},
   title     = {Write a Beancount Importer},
   year      = {2026},
   url       = {https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/write-importer/},
   publisher = {emsenn.net},
   license   = {CC BY-SA 4.0}
-}</code></pre></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>
