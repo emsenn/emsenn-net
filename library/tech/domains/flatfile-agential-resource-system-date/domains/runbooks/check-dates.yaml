@@ -1,0 +1,19 @@
+id: check-dates
+description: "Report all unit .md files in a directory that are missing date-created or date-modified frontmatter."
+closure-kind: process
+
+inputs:
+  - name: directory
+    type: str
+    description: "Directory to scan (e.g. spec/ or spec/predicate/)"
+
+outputs:
+  - name: result
+    from: "{{check.result}}"
+
+steps:
+  - id: check
+    type: script
+    script: check-dates.py
+    inputs:
+      directory: "{{inputs.directory}}"

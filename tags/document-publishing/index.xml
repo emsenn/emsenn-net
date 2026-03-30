@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Document Publishing on emsenn.net</title><link>https://emsenn.net/tags/document-publishing/</link><description>Recent content in Document Publishing on emsenn.net</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://emsenn.net/tags/document-publishing/index.xml" rel="self" type="application/rss+xml"/><item><title>Semiotic Publishing Script</title><link>https://emsenn.net/library/relationality/content/docs/tools/semiotic-publisher-script/semiotic-publisher/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/relationality/content/docs/tools/semiotic-publisher-script/semiotic-publisher/</guid><description>&lt;h1 id="semiotic-publishing-script"&gt;Semiotic Publishing Script&lt;/h1&gt;
+&lt;p&gt;This is the documentation for the &amp;ldquo;semiotic publishing script,&amp;rdquo; the thing I use to make my website and other documents.&lt;/p&gt;
+&lt;p&gt;It works by treating a Markdown file as a [Stewardable Semiotic Concept Universe](Stewardable Semiotic Concept Universe), or combining a bunch of them into one universe.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="1-highlevel-overview"&gt;1. High‑Level Overview&lt;/h2&gt;
+&lt;p&gt;At a high level, the publisher does the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Scan a vault&lt;/strong&gt; of Markdown files with YAML frontmatter.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parse concepts&lt;/strong&gt;: each file becomes a &lt;code&gt;Concept&lt;/code&gt; with metadata, body, links, and annotations.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Interpret annotations&lt;/strong&gt; into &lt;strong&gt;atoms&lt;/strong&gt; (tags, folders, links, status, type, facts, temporal markers).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configure j‑relations&lt;/strong&gt;: a graph of implications between atoms (folder→tag, synonyms, status/type→tag).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Compute fragments and semantics&lt;/strong&gt; by iterated closure under &lt;code&gt;j&lt;/code&gt; and &lt;code&gt;G&lt;/code&gt; (trace).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Evaluate concepts&lt;/strong&gt; with a simple quantitative score based on semantic features.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Build indices&lt;/strong&gt; (tag, folder, type, status) over the universe.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Export&lt;/strong&gt; one or more targets:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;html&lt;/code&gt;: a static site with an index and concept pages,&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;json&lt;/code&gt;: a static JSON API,&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rdf&lt;/code&gt;: an RDF graph of concepts and atoms,&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;openapi&lt;/code&gt;: a static OpenAPI description of the JSON API,&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pandoc&lt;/code&gt;: Markdown suitable for Pandoc (single concept or combined “book”).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The pipeline is driven from the CLI entrypoint and configured via a YAML file (&lt;code&gt;semiotic.config.yml&lt;/code&gt;) plus command‑line overrides.&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,87 @@
+<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Governance Layers: Policies, Decisions, and Agent Instructions - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"claude"},"dateModified":"2026-03-07","datePublished":"2026-03-07","description":"Analysis of the three-layer governance system in the emsemioverse: policies as stabilized habits, decisions as rationale records, and agent instructions as rendered presentation.","keywords":"Governance, Policies, DecisionRecords, AgentInstructions","name":"Governance Layers: Policies, Decisions, and Agent Instructions","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/domains/agential-semioverse-repository/texts/governance-layers/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
+<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
+<a href=/library/>library</a>
+<a href=/letters/>letters</a>
+<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Governance Layers: Policies, Decisions, and Agent Instructions</h1><div class=meta><time class=dt-published datetime=2026-03-07T00:00:00Z>2026-03-07</time>
+<span>by <span class=p-author>claude</span></span>
+<span class=p-summary>Analysis of the three-layer governance system in the emsemioverse: policies as stabilized habits, decisions as rationale records, and agent instructions as rendered presentation.</span></div><div class=e-content><p>The emsemioverse has three governance mechanisms that interact but
+are not interchangeable: <strong>policies</strong>, <strong>decision records</strong>, and
+<strong>agent instructions</strong>. This text maps their relationship.</p><h2 id=the-three-layers>The three layers</h2><h3 id=policies-what-kind-of-thing-we-always-do>Policies: what kind of thing we always do</h3><p><a href=../concepts/policy.md class=link-internal>Policies</a> are standing commitments —
+stabilized habits that constrain all work. They answer &ldquo;what kind of
+thing do we always do?&rdquo; rather than &ldquo;what do we do about X?&rdquo; They
+are the repository-level reflection of the modal closure operator <em>j</em>:
+patterns that have stabilized through practice.</p><p>Policies live at
+<code>content/personal/projects/emsemioverse/policies/</code> (source of
+truth) and are mirrored to <code>.claude/rules/policies/</code> for automatic
+loading by Claude Code.</p><p>Key properties:</p><ul><li>One commitment per file (policy 002 applied to itself)</li><li>Numbered for reference stability, not ranked</li><li>Constrain simultaneously — no policy overrides another</li><li>Revised when closure pressure forces it, not on a schedule</li><li>Not goals (goals are achieved and retired)</li><li>Not rules (rules are enforced mechanically)</li></ul><h3 id=decisions-how-we-got-here>Decisions: how we got here</h3><p><a href=../plans/decisions/index.md class=link-internal>Decision records</a> capture choices that
+affect how the repository works. They are modeled on Architecture
+Decision Records (ADRs). They answer &ldquo;what was decided, and why?&rdquo;</p><p>Key properties:</p><ul><li>Append-only — supersede, never edit</li><li>Carry status: accepted, superseded, deprecated</li><li>Record context, decision, consequences, alternatives</li><li>Are retrospective: they document choices already made</li><li>Form an immutable audit trail of governance evolution</li></ul><h3 id=agent-instructions-what-you-need-to-know-right-now>Agent instructions: what you need to know right now</h3><p>CLAUDE.md and AGENTS.md files are the presentation layer — they
+tell agents what they need to know to work in a given context.
+They are currently hand-written but
+<a href=../plans/decisions/0003-agent-instructions-from-policies.md class=link-internal>decision 0003</a>
+specifies that they should eventually be generated from resolved
+policies.</p><p>Key properties:</p><ul><li>Progressive disclosure: root CLAUDE.md → content CLAUDE.md →
+discipline AGENTS.md → topic AGENTS.md</li><li>Derived from policies (source of truth) plus directory-specific
+context</li><li>May include setup instructions, essential vocabulary, and
+operational rules that are not policies (e.g., &ldquo;run
+<code>git submodule update</code>&rdquo;)</li><li>Are the only governance layer agents read directly at session
+start</li></ul><h2 id=how-they-relate>How they relate</h2><pre tabindex=0><code>POLICIES (source of truth)
+  │
+  ├── generate → AGENT INSTRUCTIONS (presentation)
+  │                  CLAUDE.md, AGENTS.md
+  │
+  └── produce → DECISIONS (rationale)
+                   when a policy leads to a choice,
+                   or when a choice leads to a new policy
+</code></pre><p><strong>Policies are prior.</strong> A decision implements or refines a policy. An
+agent instruction presents the policy in context. The policy itself
+is the commitment.</p><p><strong>Decisions are retrospective.</strong> They record why something is the way
+it is. A policy can exist without a decision record (it emerged from
+practice, not from a deliberate choice). A decision can exist without
+creating a policy (it was a one-time choice, not a standing
+commitment). But often a decision creates or revises a policy, and
+the decision record documents why.</p><p><strong>Agent instructions are derived.</strong> They should reflect the current
+state of policies, filtered by context. Currently they are hand-
+written and may drift from the actual policies. Decision 0003
+specifies the path to generation.</p><h2 id=where-the-layers-live>Where the layers live</h2><table><thead><tr><th>Layer</th><th>Source of truth</th><th>Mirror / rendered</th><th>Loaded by</th></tr></thead><tbody><tr><td>Policies</td><td><code>content/.../policies/*.md</code></td><td><code>.claude/rules/policies/</code></td><td>Claude Code (auto)</td></tr><tr><td>Decisions</td><td><code>content/.../plans/decisions/</code></td><td>—</td><td>Agent (on demand)</td></tr><tr><td>Instructions</td><td><code>CLAUDE.md</code>, <code>AGENTS.md</code></td><td>—</td><td>Claude Code (auto)</td></tr></tbody></table><h2 id=current-gaps>Current gaps</h2><h3 id=1-mirror-synchronization>1. Mirror synchronization</h3><p>Policies exist in two places: <code>content/.../policies/</code> and
+<code>.claude/rules/policies/</code>. These are currently maintained by a
+script (<code>scripts/install-policies.sh</code>), but the synchronization is
+manual. If a policy is edited in content, the mirror may be stale.</p><p><strong>Gap</strong>: No automated check that <code>.claude/rules/policies/</code> matches
+<code>content/.../policies/</code>.</p><h3 id=2-policy-inheritance>2. Policy inheritance</h3><p><a href=../plans/decisions/0003-agent-instructions-from-policies.md class=link-internal>Decision 0003</a>
+specifies that policies cascade: project-level → discipline-level →
+topic-level, with specificity winning on conflict. But currently
+only project-level policies exist. No discipline or topic has its
+own policies directory.</p><p><strong>Gap</strong>: The inheritance mechanism is specified but untested because
+only one level exists.</p><h3 id=3-instruction-generation>3. Instruction generation</h3><p>Decision 0003 specifies that AGENTS.md files should be generated
+from resolved policies. This is plan 0001 (per-directory agent
+instructions) and plan 0011 (generated agent instructions). Neither
+is active.</p><p><strong>Gap</strong>: Instructions are hand-written and may not reflect current
+policies.</p><h3 id=4-claude-rules-vs-policies>4. Claude Rules vs. policies</h3><p>Claude Code&rsquo;s <code>.claude/rules/</code> directory is a platform mechanism.
+The repository&rsquo;s <code>policies/</code> directory is a semiotic concept. They
+happen to be mirrored, but their relationship is contingent, not
+necessary. If the emsemioverse moved to a different agent platform,
+the policies would stay; the Claude Rules directory would not.</p><p>This means: <strong>policies are the portable governance layer.</strong> Agent
+instructions (including Claude Rules) are platform-specific
+renderings of policies. The policy is the commitment; the rule is
+the enforcement mechanism.</p><h3 id=5-decision-policy-connection>5. Decision-policy connection</h3><p>Decision records do not currently declare which policy they
+implement or revise. Adding a <code>policy:</code> field to decision frontmatter
+would make this connection machine-readable.</p><p><strong>Gap</strong>: No typed relation between decisions and policies.</p><h2 id=relationship-to-semiotic-project-management>Relationship to semiotic-project-management</h2><p>The <a href=../../semiotic-project-management/index.md class=link-internal>semiotic-project-management</a>
+specification describes governance in section 5: anarchic structure,
+review-based decision-making, plan lifecycle as evidence
+accumulation. That specification defines the <em>theory</em> of governance.
+This text maps the <em>current implementation</em> and identifies where the
+implementation diverges from the theory.</p><p>The key divergence: the theory says policies emerge from closure
+pressure and dissolve when circumstances change. The implementation
+has policies that were written by agents during sessions and
+accepted by emsenn. Whether they &ldquo;emerged from closure pressure&rdquo; or
+were &ldquo;imposed by an agent following a pattern&rdquo; is a question the
+system should be able to answer — but currently cannot, because the
+provenance of policies is not tracked.</p></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>claude. (2026, March 7). Governance Layers: Policies, Decisions, and Agent Instructions. <i>emsenn.net</i>. https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/domains/agential-semioverse-repository/texts/governance-layers/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@article{claude2026-governance-layers,
+  author    = {claude},
+  title     = {Governance Layers: Policies, Decisions, and Agent Instructions},
+  year      = {2026},
+  note      = {Analysis of the three-layer governance system in the emsemioverse: policies as stabilized habits, decisions as rationale records, and agent instructions as rendered presentation.},
+  url       = {https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/domains/agential-semioverse-repository/texts/governance-layers/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/domains/agential-semioverse-repository/texts/governance-layers/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude/>claude</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-07>2026-03-07</time></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">Analysis of the three-layer governance system in the emsemioverse: policies as stabilized habits, decisions as rationale records, and agent instructions as rendered presentation.</dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>requires</a></dt><dd property="schema:educationalAlignment"><ul><li>../concepts/policy.md</li><li>../plans/decisions/index.md</li><li>../plans/index.md</li></ul></dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/governance/>Governance</a></li><li><a href=/tags/policies/>Policies</a></li><li><a href=/tags/decisionrecords/>DecisionRecords</a></li><li><a href=/tags/agentinstructions/>AgentInstructions</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Governance Layers: Policies, Decisions, and Agent Instructions</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/text/>text</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>

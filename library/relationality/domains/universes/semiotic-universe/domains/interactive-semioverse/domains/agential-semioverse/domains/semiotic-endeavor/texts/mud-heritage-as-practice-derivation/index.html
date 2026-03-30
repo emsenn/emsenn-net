@@ -1,0 +1,109 @@
+<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>MUD heritage as practice derivation - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"claude"},"dateModified":"2026-03-08","datePublished":"2026-03-08","description":"Documents the role of MUDs (especially LPMUDs) as a derivation source for turning the endeavor's theory into practice, distinct from the domain derivation chain in decision 0007.","keywords":"SemioticEndeavor, Derivation, MUD, Practice","name":"MUD heritage as practice derivation","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/semiotic-endeavor/texts/mud-heritage-as-practice-derivation/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
+<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
+<a href=/library/>library</a>
+<a href=/letters/>letters</a>
+<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>MUD heritage as practice derivation</h1><div class=meta><time class=dt-published datetime=2026-03-08T00:00:00Z>2026-03-08</time>
+<span>by <span class=p-author>claude</span></span>
+<span class=p-summary>Documents the role of MUDs (especially LPMUDs) as a derivation source for turning the endeavor's theory into practice, distinct from the domain derivation chain in decision 0007.</span></div><div class=e-content><p>Decision 0007 establishes a derivation chain for the endeavor&rsquo;s
+<em>theory</em>: TCCC → insurgent → disaster → military → medicine → FOSS →
+business. The cross-domain derivation text traces what each domain
+contributes to what an endeavor IS. This text documents a different
+derivation: where the endeavor draws from when turning theory into
+<em>practice</em> — when abstract concepts become concrete implementations.</p><h2 id=the-practice-derivation-problem>The practice derivation problem</h2><p>The endeavor&rsquo;s theory is written in neutral, formal vocabulary:
+closure operators, fixed points, method-practice gaps, non-interference
+theorems. This vocabulary is domain-independent by design (per content
+neutrality). But implementing that theory requires concrete
+architectural decisions: how should a script interact with the
+repository? What should a tool&rsquo;s interface look like? How should
+agents coordinate through shared artifacts?</p><p>These implementation decisions are not neutral — they inherit from
+specific programming traditions. The endeavor&rsquo;s practice derivation
+draws primarily from MUDs, especially LPMUDs and their descendants.
+This is not an abstract academic choice: emsenn has personal
+experience building and running MUDs, including multiple MUD engines
+(qtMUD in Python and Crystal, racket-mud in Racket) and the Teraum
+MUD world. The derivation from MUD architecture is grounded in the
+same kind of first-hand operational knowledge that TCCC contributes
+to the theory — not borrowed from literature, but learned through
+practice.</p><h2 id=muds-as-the-longest-running-networked-semioverse>MUDs as the longest-running networked semioverse</h2><p>MUDs are the longest-running instances of anything resembling a
+semioverse implemented on networked computers. Since MUD1 in 1978,
+MUDs have maintained persistent shared worlds where signs (room
+descriptions, object names, command responses) and computational
+objects (rooms, items, NPCs with state and behavior) coexist in a
+formally specified semantics, operated on by multiple agents
+simultaneously, governed by coded rules that constitute the world&rsquo;s
+method.</p><p>MUDs do not describe themselves in semiotic terms. But the structural
+correspondence is exact: a MUD is an interactive semioverse with
+handles (object references), interaction surfaces (commands), agents
+(players and NPCs), tools (objects with behaviors), and norms (coded
+rules and social conventions). The LPMud tradition adds a clean
+separation between infrastructure (driver) and application logic
+(mudlib) that maps directly to the ASR&rsquo;s separation between scripts
+and content. Nearly five decades of continuous operation and
+iteration make MUDs the richest empirical source for how semioverse-
+like systems actually work under sustained use — including failure
+modes, governance problems, coordination challenges, and the
+relationship between builders (method-makers) and players
+(practitioners).</p><h2 id=what-muds-contribute>What MUDs contribute</h2><h3 id=drivermudlib-separation>Driver/mudlib separation</h3><p>The LPMud architecture separates the driver (engine: networking,
+object lifecycle, memory management, a programming language) from the
+mudlib (application: game world, mechanics, player experience, written
+entirely in the driver&rsquo;s language). The driver provides infrastructure;
+the mudlib provides meaning. The driver is written once by engine
+programmers; the mudlib is written continuously by world builders who
+may not be professional programmers.</p><p>The ASR inherits this separation. The infrastructure layer (scripts,
+MCP server, build system, validation tools) is the driver. The
+content layer (specifications, terms, concepts, texts, skills) is the
+mudlib. The infrastructure provides a standard interaction surface
+(frontmatter validation, triage enrichment, plan tracking, predicate
+graph queries); the content builds on that surface to create the
+endeavor&rsquo;s actual knowledge.</p><p>This is why scripts live alongside skills rather than in a separate
+scripts/ directory: the driver and mudlib are co-developed, and
+the skill (mudlib) gives the script (driver component) its meaning.</p><h3 id=world-building-as-programming>World-building as programming</h3><p>In a MUD, creating a forest means writing code. A room is a software
+object with a description, exits, and behaviors. There is no
+separation between &ldquo;content&rdquo; and &ldquo;code&rdquo; — the world is code, and
+code is the world. This insight connects directly to the semiotic
+framework&rsquo;s claim that everything in the semioverse is both a sign
+(it has a description, it responds to interpretation) and a
+computational object (it has state, it responds to operations).</p><p>The ASR instantiates this: a term file is both content (human-readable
+definition) and code (machine-readable frontmatter that participates
+in the predicate graph). A skill is both documentation (SKILL.md
+instructions) and a callable unit of computation. The MUD tradition
+provides the empirical precedent for this convergence.</p><h3 id=object-inheritance-and-base-classes>Object inheritance and base classes</h3><p>MUD mudlibs provide base classes: room, weapon, monster, player. A
+builder inherits from these and overrides or extends behavior. The
+ASR&rsquo;s type system works the same way: the <code>type</code> field in frontmatter
+(term, concept, text, specification, etc.) determines which schema
+applies, which validation rules fire, and how the file participates
+in the predicate graph. Each type is a base class; each file is an
+instance.</p><h3 id=permission-models-and-sandboxing>Permission models and sandboxing</h3><p>LPC includes a permission system controlling what code can access
+what resources — anticipating modern sandboxed environments. The
+ASR&rsquo;s region declarations (what a skill reads and writes) serve the
+same function: they bound what a skill can affect, enabling the
+non-interference theorem&rsquo;s application. The MUD tradition&rsquo;s
+experience with untrusted builder code running on shared
+infrastructure is directly relevant to the endeavor&rsquo;s multi-agent
+coordination problem.</p><h2 id=the-dual-with-modern-programming>The dual with modern programming</h2><p>The MUD heritage informs <em>what</em> the practice does — the architectural
+patterns, the convergence of content and code, the driver/mudlib
+separation. But <em>how</em> that practice is specified follows modern
+programming conventions: typed interfaces, JSON schemas, structured
+logging, version control, CI/CD, formal verification where possible.</p><p>This is another instance of the derivation-presentation dual. The
+practice derives internally from MUD architecture (the deepest
+experiential source for this endeavor&rsquo;s author), but presents
+externally in the vocabulary of modern software engineering (the
+most accessible form for implementers). The MUD patterns are the
+empirical content; the modern conventions are the presentation
+language.</p><h2 id=relationship-to-the-domain-derivation-chain>Relationship to the domain derivation chain</h2><p>The domain derivation chain (decision 0007) operates at the level of
+organizational theory — what an endeavor IS. The MUD heritage operates
+at the level of implementation pattern — how an endeavor&rsquo;s tools
+WORK. These are complementary, not competing:</p><ul><li><strong>Theory</strong>: TCCC teaches context-determined practice → the spec says
+method must be context-responsive</li><li><strong>Practice</strong>: MUDs teach driver/mudlib separation → the scripts
+provide infrastructure while skills provide application logic</li></ul><p>The theory says what; the MUD heritage says how. Both are needed.
+The theory without the practice heritage would produce specifications
+with no implementation intuition. The practice heritage without the
+theory would produce tools with no principled justification.</p></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>claude. (2026, March 8). MUD heritage as practice derivation. <i>emsenn.net</i>. https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/semiotic-endeavor/texts/mud-heritage-as-practice-derivation/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@article{claude2026-mud-heritage-as-practice-derivation,
+  author    = {claude},
+  title     = {MUD heritage as practice derivation},
+  year      = {2026},
+  note      = {Documents the role of MUDs (especially LPMUDs) as a derivation source for turning the endeavor&#39;s theory into practice, distinct from the domain derivation chain in decision 0007.},
+  url       = {https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/semiotic-endeavor/texts/mud-heritage-as-practice-derivation/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/semiotic-endeavor/texts/mud-heritage-as-practice-derivation/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude/>claude</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-08>2026-03-08</time></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">Documents the role of MUDs (especially LPMUDs) as a derivation source for turning the endeavor's theory into practice, distinct from the domain derivation chain in decision 0007.</dd></div><div class=relation><dt>part-of</dt><dd property="schema:isPartOf">technology/specifications/semiotic-endeavor</dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/semioticendeavor/>SemioticEndeavor</a></li><li><a href=/tags/derivation/>Derivation</a></li><li><a href=/tags/mud/>MUD</a></li><li><a href=/tags/practice/>Practice</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">MUD heritage as practice derivation</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/text/>text</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>

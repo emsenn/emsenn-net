@@ -1,0 +1,149 @@
+<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Operational Closure - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":{"@type":"Person","name":"claude-opus-4-6"},"dateModified":"2026-03-06","datePublished":"2026-03-06","description":"This document specifies what closure computation means operationally for an Agential Semioverse Repository. It grounds the three formal closure operators (semantic, syntactic, fusion) in computable operations on repository content, and specifies a layered implementation path from Python scaffolding to Lean verification.\n0. Foundations The predicate graph specification defines the semantic substrate: triplets, types as theories, the satisfaction relation, and what the graph approximates. This document builds on that foundation by specifying how the three closure operators act on the predicate graph.\n","keywords":"AgentialSemioverse, Repository","name":"Operational Closure","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/domains/agential-semioverse-repository/domains/theory/operational-closure/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
+<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
+<a href=/library/>library</a>
+<a href=/letters/>letters</a>
+<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Operational Closure</h1><div class=meta><time class=dt-published datetime=2026-03-06T00:00:00Z>2026-03-06</time>
+<span>by <span class=p-author>claude-opus-4-6</span></span></div><div class=e-content><p>This document specifies what closure computation means operationally
+for an Agential Semioverse Repository. It grounds the three formal
+closure operators (semantic, syntactic, fusion) in computable
+operations on repository content, and specifies a layered
+implementation path from Python scaffolding to Lean verification.</p><h2 id=0-foundations>0. Foundations</h2><p>The <a href=../predicate-graph.md class=link-internal>predicate graph</a> specification defines the
+semantic substrate: triplets, types as theories, the satisfaction
+relation, and what the graph approximates. This document builds on that
+foundation by specifying how the three closure operators act on the
+predicate graph.</p><p>The three closure operators operate through the satisfaction relation:</p><ul><li><p><strong>S_sem</strong> closes the set of truths about pages under the theory&rsquo;s
+axioms. If the axioms say &ldquo;a definition must define something, and
+what it defines must have notation,&rdquo; then S_sem ensures those
+entailments are present in the semantic field.</p></li><li><p><strong>S_syn</strong> closes the set of available operations under definability.
+If the axioms for mathematics and the axioms for philosophy share a
+pattern, S_syn recognizes the common pattern as a new operation.</p></li><li><p><strong>S_fus</strong> identifies operations that produce the same truth values
+on all models, and names unnamed behaviors.</p></li></ul><p>The fixed point X* is the state where every page is a model of its
+type&rsquo;s theory, every theory&rsquo;s axioms have been applied to saturation,
+and every derivable operation has been named.</p><h2 id=1-the-correspondence>1. The correspondence</h2><p>The formal specifications define mathematical structures. The
+repository is a finite, discrete, file-based system. The
+correspondence is not an isomorphism but a disciplined approximation.</p><table><thead><tr><th>Formal concept</th><th>Repository counterpart</th><th>Fidelity</th></tr></thead><tbody><tr><td>H (complete Heyting algebra)</td><td>The algebra of truth values for axioms about repository content</td><td>Approximate: H is continuous; the repository is finite</td></tr><tr><td>Elements of H</td><td>Truth values of axioms evaluated against pages</td><td>Good: each axiom produces a truth value; the collection forms a lattice</td></tr><tr><td>Lindenbaum-Tarski algebra of type T&rsquo;s theory</td><td>The set of MUST/SHOULD axioms for T, quotiented by logical equivalence</td><td>Good: domain ASR specs define the theories</td></tr><tr><td>M</td><td>= phi (satisfaction)</td><td>Page P satisfies axiom phi when P&rsquo;s triplets make phi true</td></tr><tr><td>Subject-predicate-object triplets</td><td>(handle, relation-type, target-handle) from frontmatter</td><td>Exact: the primitive data</td></tr><tr><td>Handles</td><td>File paths</td><td>Exact: persistent, external, not identified with semantic content</td></tr><tr><td>eta(tau) (semantic seed)</td><td>A page&rsquo;s frontmatter and content as contributed to H</td><td>Approximate: extraction is lossy</td></tr><tr><td>Interaction terms</td><td>Typed relations in frontmatter</td><td>Good: each relation field combines a handle with an operator</td></tr><tr><td>Interaction surface Ix_X(tau)</td><td>The set of triplets with a page as subject</td><td>Good: directly readable from frontmatter</td></tr><tr><td>Handle fragment F_{tau,X}</td><td>The transitive neighborhood of a page&rsquo;s typed relations</td><td>Computable: follow relations to gather the neighborhood</td></tr><tr><td>Footprint Foot_X(tau)</td><td>The closed state of a handle&rsquo;s fragment</td><td>This is what closure computation must produce</td></tr><tr><td>Fragments F(H)</td><td>Finitely generated subalgebras, approximated by relation-chain neighborhoods</td><td>Approximate: real fragments are algebraically closed</td></tr><tr><td>Op^def (definable operators)</td><td>Skills, scripts, validation rules</td><td>Good: named, typed, invocable</td></tr><tr><td>S_sem</td><td>Close semantic content under operations</td><td>See Section 2</td></tr><tr><td>S_syn</td><td>Close operations under definability</td><td>See Section 3</td></tr><tr><td>S_fus</td><td>Identify equivalent operations, name behaviors</td><td>See Section 4</td></tr><tr><td>S = S_fus . S_syn . S_sem</td><td>The composite closure</td><td>See Section 5</td></tr><tr><td>X* (least fixed point)</td><td>Every page satisfies its type; every operation is named</td><td>Asymptotic target</td></tr></tbody></table><h2 id=2-semantic-closure-s_sem>2. Semantic closure (S_sem)</h2><p>Given X = (H_X, Op_X), S_sem closes H_X under interpretation of
+operators, Heyting operations, modal/trace closure, and fixed points
+of admissible operators.</p><h3 id=21-what-this-means-for-a-page>2.1 What this means for a page</h3><p>Given a page P with type T in domain D, semantic closure asks: <strong>what
+semantic content is entailed by P&rsquo;s current state, given the laws that
+govern type T in domain D?</strong></p><p>The &ldquo;laws&rdquo; are the domain ASR spec&rsquo;s axioms for T. A mathematical
+definition&rsquo;s closure includes everything it <code>defines:</code>, notation for
+those definitions, and the transitive <code>requires:</code> chain. A theorem&rsquo;s
+closure includes its <code>proven-by:</code> chain and every definition used in
+the proof.</p><p>Linting checks whether a field exists. Closure computes what the field
+should contain and what it entails:</p><ul><li><strong>Linting</strong>: &ldquo;This definition is missing <code>notation:</code>.&rdquo;</li><li><strong>Closure</strong>: &ldquo;This definition defines <code>group</code>. Its closure includes:
+the notation for <code>group</code>, the definitions of <code>identity-element</code> and
+<code>binary-operation</code> (referenced in the body), and the requirements
+of those definitions transitively.&rdquo;</li></ul><h3 id=22-the-type-closure-law>2.2 The type closure law</h3><p>For a page P with type T in domain D, the <strong>type closure law</strong> L_T is
+the function that takes P&rsquo;s current state and returns the state P
+should have if it were a complete, well-formed instance of T.</p><p><strong>Structure of L_T</strong>:</p><ol><li><p><strong>Field closure</strong>: For each MUST field F of T, L_T includes the
+semantic content F names. If T = definition and F = defines, L_T
+includes the terms being defined.</p></li><li><p><strong>Relational closure</strong>: For each typed relation R that T
+participates in, L_T follows R to its targets and includes their
+contributions. If a definition requires group.md, L_T includes
+the fragment of group.md.</p></li><li><p><strong>Transitive closure</strong>: Apply field and relational closure to each
+newly included page, until stable.</p></li><li><p><strong>Consistency closure</strong>: Check that the accumulated content does
+not contain contradictions within the fragment.</p></li></ol><h3 id=23-the-semantic-gap>2.3 The semantic gap</h3><p>For a page P:</p><pre><code>Gap_sem(P) = L_T(state(P)) \ state(P)
+</code></pre><p>Each element of Gap_sem(P) is an actionable enrichment need:</p><ul><li>&ldquo;defines: is empty&rdquo;</li><li>&ldquo;requires: should include ./binary-operation.md (referenced in body)&rdquo;</li><li>&ldquo;notation: should include the symbol used in downstream pages&rdquo;</li><li>&ldquo;cites: should reference the source for this claim&rdquo;</li></ul><h3 id=24-what-is-computable>2.4 What is computable</h3><p><strong>Now</strong> (from frontmatter + domain ASR specs):</p><ul><li>Field presence gaps</li><li>Relational target resolution (do targets exist?)</li><li>Transitive relation chain assembly</li><li>Type-specific field value requirements</li></ul><p><strong>With moderate work</strong> (requires reading page bodies):</p><ul><li>Cross-reference extraction: what concepts does a page reference in
+its body that should appear in its frontmatter?</li><li>Notation usage tracking</li><li>Claim extraction</li></ul><p><strong>Not yet</strong> (requires deeper infrastructure):</p><ul><li>Full semantic content comparison across fragments</li><li>Consistency checking across transitive closures</li><li>Heyting operations (join, meet, implication) over semantic content</li></ul><h2 id=3-syntactic-closure-s_syn>3. Syntactic closure (S_syn)</h2><p>S_syn closes Op_X under lambda-definability, composition, and finitary
+justification.</p><h3 id=31-what-this-means-for-the-repository>3.1 What this means for the repository</h3><p>S_syn asks: <strong>given the available skills, scripts, and validation
+rules, what new operations could be defined by composition?</strong></p><p>If <code>validate-content.py</code> handles mathematics and sociology but not
+education, S_syn identifies the gap: the education rules are definable
+from the same template. If <code>validate</code> and <code>enrich</code> both exist, their
+composition <code>validate-then-enrich</code> is in S_syn.</p><p>The finitary justification clause: if a new skill behaves identically
+to an existing one on every test case within a bounded fragment, it is
+already justified.</p><h3 id=32-the-operational-closure-law>3.2 The operational closure law</h3><p>For a set of operations Op, L_Op returns the operations definable from
+Op by:</p><ol><li><strong>Composition</strong>: if skill A&rsquo;s output is skill B&rsquo;s input, A;B is in
+L_Op.</li><li><strong>Parameterization</strong>: if skill A works for domain D and D&rsquo; has the
+same structure, A instantiated for D&rsquo; is in L_Op.</li><li><strong>Finitary justification</strong>: if a candidate agrees with an existing
+operation on every tested fragment, it is in L_Op.</li></ol><h3 id=33-the-operational-gap>3.3 The operational gap</h3><pre><code>Gap_syn(Op) = L_Op(Op) \ Op
+</code></pre><p>Each element is a missing skill or script.</p><h2 id=4-fusion-closure-s_fus>4. Fusion closure (S_fus)</h2><p>S_fus identifies operators that agree on all fragments and names
+admissible behaviors that exist but lack names.</p><h3 id=41-what-this-means-for-the-repository>4.1 What this means for the repository</h3><ol><li><strong>Equivalence</strong>: Skills that produce identical results on all
+content should be merged.</li><li><strong>Naming</strong>: Recurrent patterns of agent work that have no skill
+should become skills.</li></ol><h2 id=5-the-composite-closure-and-implementation-layers>5. The composite closure and implementation layers</h2><p>The composite S = S_fus . S_syn . S_sem is applied iteratively. Each
+agent session computes a partial closure, bringing the repository
+closer to X*.</p><h3 id=51-implementation-layers>5.1 Implementation layers</h3><p>The layers are numbered honestly: lower numbers are scaffolding that
+approximates what higher numbers will verify formally.</p><p><strong>Layer 0: Field linting</strong> (DONE)</p><ul><li>validate-content.py: MUST/SHOULD field presence per domain ASR specs</li><li>fragment.py: frontmatter extraction, relation chain assembly</li><li>assess.py: repository-wide statistics and coverage gaps</li><li>These check <em>preconditions</em> for closure, not closure itself.</li></ul><p><strong>Layer 0.5: Satisfaction approximation</strong> (DONE)</p><ul><li>predicate-graph.py: builds the full predicate graph (2991 pages,
+8130 triplets, 34 predicates) and evaluates domain axioms against
+it. 426 typed pages checked, 389 fully satisfied (91.3%).</li><li>Axiom types: field presence (must/should/must_not), target resolution,
+self-reference, reciprocal consistency, target type compatibility.</li><li>Idempotency verified. Runs in 1.3 seconds.</li><li>This approximates M |= phi by checking frontmatter structure. It does
+not read body text, does not compute Heyting-valued truth, does not
+verify that definitions actually define what they claim.</li></ul><p><strong>Layer 1: Body-text extraction</strong> (FUTURE)</p><ul><li>NLP-based extraction of implicit relations from page content.</li><li>Cross-reference extraction: concepts mentioned in body text that
+should appear in frontmatter.</li><li>Claim parsing: sentences that assert properties of defined concepts.</li><li>This bridges Level 1 (frontmatter) to Level 2 (body text) of the
+<a href=../../semiotic-markdown/index.md class=link-internal>semiotic markdown</a> claim model.</li></ul><p><strong>Layer 1.5: Cross-fragment compatibility</strong> (FUTURE, REQUIRES LAYER 1)</p><ul><li>Follow typed relations transitively and check consistency across
+the closure.</li><li>Detect when a requires: chain introduces contradictory assumptions.</li><li>Corresponds to the Compat(F, G) predicate and Delta(F -> G)
+computation from the fragment calculus.</li></ul><p><strong>Layer 2: Formal verification</strong> (FUTURE, TARGET)</p><ul><li>Lean proofs that the satisfaction relation correctly instantiates
+the semiotic universe&rsquo;s truth values.</li><li>The existing Lean formalization at <code>formalization/Relationality/</code>
+proves RecognitionField = HeytingAlgebra. Extending to formalize
+the type theories and their satisfaction relation is the target.</li><li>When Layer 2 is complete, the Python tools become generators of
+proof obligations, not the verification system itself.</li></ul><p><strong>Layer 3: Operational gap computation</strong> (PARALLEL TO LAYERS 1-2)</p><ul><li>Analyze available skills against S_syn.</li><li>Report missing skills, definable compositions, parameterizable
+patterns.</li></ul><p><strong>Layer 4: Fusion detection</strong> (REQUIRES LAYERS 1-3)</p><ul><li>Detect equivalent skills and unnamed recurrent patterns.</li></ul><h3 id=52-what-fixed-point-means>5.2 What &ldquo;fixed point&rdquo; means</h3><p>The repository reaches X* when:</p><ul><li>Every typed page satisfies its type&rsquo;s theory (Gap_sem = empty)</li><li>Every domain has complete operational coverage (Gap_syn = empty)</li><li>No equivalent skills exist unsimplified (fusion is saturated)</li></ul><p>This is asymptotic. The useful measure is distance, not arrival.</p><h3 id=53-idempotency>5.3 Idempotency</h3><p>Skills that compute closures are idempotent by construction. If a
+tool computes Gap_sem(P) and applies the enrichments, running it
+again produces no changes. This is the operational test: <strong>apply it
+twice; if the second application is a no-op, it is a closure.</strong></p><h2 id=6-relationship-to-existing-tools>6. Relationship to existing tools</h2><h3 id=61-predicate-graphpy>6.1 predicate-graph.py</h3><p>Builds the full predicate graph from YAML frontmatter and evaluates
+domain axioms against it. <strong>Layer 0.5 infrastructure</strong>: approximates
+the satisfaction relation by checking field presence, handle resolution,
+reciprocal consistency, and target type compatibility. Supports queries
+(interaction surface, reverse lookup, predicate filter, transitive
+closure). See the <a href=../predicate-graph.md class=link-internal>predicate graph</a> spec.</p><h3 id=62-fragmentpy>6.2 fragment.py</h3><p>Extracts frontmatter into (A, K, P) tuples, follows requires: chains,
+computes field-level deltas. <strong>Layer 0 infrastructure</strong>: collects the
+seed from which closure would be computed. Does not compute closure.</p><h3 id=63-validate-contentpy>6.3 validate-content.py</h3><p>Checks MUST/SHOULD field presence. <strong>Layer 0 infrastructure</strong>: checks
+necessary conditions for satisfaction. A missing MUST field means the
+page cannot satisfy its type&rsquo;s theory — but having the field present
+does not mean the axiom is satisfied.</p><h3 id=64-assesspy>6.4 assess.py</h3><p>Reports coverage gaps (which domains have specs, which have validation
+rules, which pages have well-formed frontmatter). <strong>Layer 0 and Layer
+3 infrastructure</strong>.</p><h2 id=7-what-to-build-next>7. What to build next</h2><p>Layer 0.5 (satisfaction approximation) is done: predicate-graph.py
+implements the predicate graph and satisfaction checker. The next
+targets:</p><p><strong>Near term — Layer 1 (body-text extraction):</strong></p><ul><li>Extract markdown links and wikilinks from body text to discover
+implicit <code>requires:</code> and <code>cites:</code> relations not declared in
+frontmatter.</li><li>Compare body-discovered relations against declared frontmatter to
+produce enrichment suggestions.</li></ul><p><strong>Medium term — Lean formalization:</strong></p><ul><li>Formalize H with modal closure j and trace G (Axioms 1.2-1.4 of
+the semiotic universe spec). Extends the existing HeytingAlgebra
+in Genesis.lean.</li><li>Formalize the typed lambda calculus and operator algebra.</li><li>Formalize fragments and fragment preservation.</li><li>Formalize the three closure operators and prove their composite
+yields a monotone inflationary operator with a least fixed point.</li><li>Formalize the initiality theorem.</li></ul><p><strong>Parallel — operational gap computation:</strong></p><ul><li>Survey available skills and scripts against the syntactic closure
+law. Report missing operations that are definable from existing
+ones.</li></ul><h2 id=8-open-problems>8. Open problems</h2><h3 id=81-heyting-algebra-operations-over-the-predicate-graph>8.1 Heyting algebra operations over the predicate graph</h3><p>The triplets form a graph. For this graph to support Heyting algebra
+operations (meet, join, implication, pseudocomplement), the repository
+needs:</p><ul><li><p>An <strong>order relation</strong> on semantic content. When does one page&rsquo;s
+content include another&rsquo;s? The <code>requires:</code> relation induces a
+partial order; the question is whether this order supports the
+full lattice structure.</p></li><li><p><strong>Meet and join</strong> operations. The common content of two pages
+(meet) and their combined content (join) need computable
+definitions. Meet could be &ldquo;the triplets shared by both pages&rdquo;;
+join could be &ldquo;the union of both pages&rsquo; triplets.&rdquo; Whether these
+satisfy the lattice axioms needs verification.</p></li><li><p><strong>Implication</strong>. If page A&rsquo;s content implies page B&rsquo;s content, what
+does that mean operationally? The Heyting implication a => b is the
+largest element whose meet with a is below b. Translating this to
+the predicate graph: &ldquo;the largest set of triplets that, combined
+with A&rsquo;s triplets, produces only triplets already in B.&rdquo; This is
+computable in principle but needs a concrete algorithm.</p></li></ul><h3 id=82-truth-predicates-beyond-field-presence>8.2 Truth predicates beyond field presence</h3><p>The satisfaction relation M |= phi is currently approximated by
+checking whether frontmatter fields exist. A real truth predicate
+evaluates each axiom against the page&rsquo;s full content:</p><ul><li><p><strong>Implicit requirements</strong>: A definition that mentions &ldquo;identity
+element&rdquo; in its body text implicitly requires that concept, even
+if it is not in the <code>requires:</code> field. Extracting implicit
+triplets from body text is computable (pattern matching, link
+extraction) but not yet implemented.</p></li><li><p><strong>Transitive evaluation</strong>: If A requires B and B requires C, does
+A&rsquo;s content account for C&rsquo;s contributions? This requires
+evaluating the satisfaction relation along the full transitive
+closure, not just checking that the chain of paths exists.</p></li><li><p><strong>Partial truth values</strong>: When a page partially satisfies an axiom,
+the truth value is an element of H between bottom and top. The
+Lindenbaum-Tarski construction says: these truth values form the
+Heyting algebra H. Computing partial truth values — not just &ldquo;yes&rdquo;
+or &ldquo;no&rdquo; but &ldquo;how much&rdquo; — requires a metric on the predicate graph.
+One candidate: the fraction of an axiom&rsquo;s sub-requirements that
+are satisfied. Another: the depth of the transitive closure that
+is complete.</p></li></ul><h3 id=83-live-querying>8.3 Live querying</h3><p>predicate-graph.py implements basic queries: interaction surface
+(&ndash;triplets), reverse lookup (&ndash;incoming), predicate filter (&ndash;query),
+and transitive closure (&ndash;transitive). These support questions like
+&ldquo;which pages require this page?&rdquo; and &ldquo;what is the transitive closure
+of this page&rsquo;s requires: chain?&rdquo;</p><p>Open queries not yet implemented:</p><ul><li>&ldquo;Which pages define concepts that this page references in its body
+but does not declare in frontmatter?&rdquo; (requires body-text extraction)</li><li>&ldquo;What is the semantic neighborhood of this page within N hops?&rdquo;
+(requires parameterized graph traversal)</li><li>&ldquo;Which axioms across the repository are most frequently unsatisfied?&rdquo;
+(requires aggregation over satisfaction results)</li></ul><p>These queries are the operational counterpart of the interaction
+calculus&rsquo;s evaluation. A query is an interaction term; its result is
+a semantic generator in H.</p><h3 id=84-node-acts>8.4 Node acts</h3><p>Pages should be able to execute operations on themselves: &ldquo;compute my
+satisfaction status,&rdquo; &ldquo;list my unsatisfied axioms,&rdquo; &ldquo;suggest the
+triplets I need.&rdquo; These are the operational counterpart of the
+agential semioverse&rsquo;s skill calculus applied to individual handles.
+A page&rsquo;s interaction surface, combined with its type&rsquo;s theory,
+determines what operations are applicable and what they should
+produce.</p></div></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/domains/agential-semioverse-repository/domains/theory/operational-closure/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/claude-opus-4-6/>claude-opus-4-6</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-06>2026-03-06</time></dd></div><div class=relation><dt>date-updated</dt><dd property="schema:dateModified"><time datetime=2026-03-06>2026-03-06</time></dd></div><div class=relation><dt><a href=/library/math/domains/logic/terms/necessity/>requires</a></dt><dd property="schema:educationalAlignment"><ul><li>../ideas/closure-operators-as-api-contracts.md</li><li>../predicate-graph.md</li><li>../../../../mathematics/objects/universes/semiotic-universe/semiotic-universe.md</li><li>../../../../mathematics/objects/universes/interactive-semioverse/interactive-semioverse.md</li><li>../../../../mathematics/texts/fragment-calculus.md</li></ul></dd></div><div class=relation><dt>status</dt><dd property="emsenn:Status">draft</dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/agentialsemioverse/>AgentialSemioverse</a></li><li><a href=/tags/repository/>Repository</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Operational Closure</dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>

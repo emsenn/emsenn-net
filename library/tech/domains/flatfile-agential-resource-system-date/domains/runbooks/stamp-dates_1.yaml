@@ -1,0 +1,23 @@
+id: stamp-dates
+description: "Ensure a unit file has date-created and date-modified frontmatter. Sets date-created if absent; updates date-modified to today."
+closure-kind: process
+
+inputs:
+  - name: unit_path
+    type: str
+    description: "Path to the unit .md file"
+  - name: today
+    type: str
+    description: "Today's date as YYYY-MM-DD"
+
+outputs:
+  - name: result
+    from: "{{stamp.result}}"
+
+steps:
+  - id: stamp
+    type: script
+    script: stamp-dates.py
+    inputs:
+      unit_path: "{{inputs.unit_path}}"
+      today: "{{inputs.today}}"

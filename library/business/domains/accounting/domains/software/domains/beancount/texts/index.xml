@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>emsenn.net</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/</link><description>Recent content on emsenn.net</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 06 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/index.xml" rel="self" type="application/rss+xml"/><item><title>Set Up a New Beancount Ledger</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/set-up-new-ledger/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/set-up-new-ledger/</guid><description>&lt;h1 id="set-up-a-new-beancount-ledger"&gt;Set Up a New Beancount Ledger&lt;/h1&gt;
+&lt;p&gt;A Beancount ledger starts as a plain text file (conventionally &lt;code&gt;.beancount&lt;/code&gt; extension). Unlike &lt;a href="../gnucash.md" class="link-internal"&gt;GnuCash&lt;/a&gt;, there are no templates — the user builds the structure from scratch.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Minimal starting file&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;option &amp;#34;title&amp;#34; &amp;#34;Personal Finances&amp;#34;
+option &amp;#34;operating_currency&amp;#34; &amp;#34;USD&amp;#34;
+
+; Account declarations
+2024-01-01 open Assets:Checking USD
+2024-01-01 open Assets:Savings USD
+2024-01-01 open Liabilities:CreditCard USD
+2024-01-01 open Equity:Opening-Balances USD
+2024-01-01 open Expenses:Food USD
+2024-01-01 open Expenses:Housing USD
+2024-01-01 open Expenses:Transport USD
+2024-01-01 open Income:Salary USD
+
+; Opening balances
+2024-01-01 pad Assets:Checking Equity:Opening-Balances
+2024-01-01 balance Assets:Checking 5000.00 USD
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Key decisions:&lt;/p&gt;</description></item><item><title>Use Fava for Reporting</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/use-fava/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/use-fava/</guid><description>&lt;h1 id="use-fava-for-reporting"&gt;Use Fava for Reporting&lt;/h1&gt;
+&lt;p&gt;Fava provides a web interface for browsing and querying Beancount data. Install it with pip:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pip install fava
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Start the server:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;fava ledger.beancount
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This opens a web interface (default: &lt;code&gt;http://localhost:5000&lt;/code&gt;) with several views:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Income Statement&lt;/strong&gt;: Shows revenue and expenses for a selected period — the same as an &lt;a href="../../terms/income-statement.md" class="link-internal"&gt;income statement&lt;/a&gt; in traditional accounting.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Balance Sheet&lt;/strong&gt;: Shows &lt;a href="../../terms/account.md" class="link-internal"&gt;assets&lt;/a&gt;, &lt;a href="../../terms/account.md" class="link-internal"&gt;liabilities&lt;/a&gt;, and equity at a point in time — equivalent to the &lt;a href="../../terms/balance-sheet.md" class="link-internal"&gt;balance sheet&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Trial Balance&lt;/strong&gt;: Lists all accounts with their balances — the &lt;a href="../../terms/trial-balance.md" class="link-internal"&gt;trial balance&lt;/a&gt; that confirms debits equal credits.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Journal&lt;/strong&gt;: Chronological list of all transactions, filterable by account, payee, or tag.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Account pages&lt;/strong&gt;: Click any account to see its transaction history and balance over time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Query&lt;/strong&gt;: Write BQL (Beancount Query Language) queries — a SQL-like language for custom reports:
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; account, &lt;span style="color:#66d9ef"&gt;sum&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;position&lt;/span&gt;) &lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; account &lt;span style="color:#f92672"&gt;~&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;Expenses&amp;#34;&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;GROUP&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; account &lt;span style="color:#66d9ef"&gt;ORDER&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;sum&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;position&lt;/span&gt;) &lt;span style="color:#66d9ef"&gt;DESC&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Fava reloads the Beancount file on each page load, so edits to the text file appear immediately in the web interface. For day-to-day use, keep Fava running in a terminal while editing the Beancount file in a text editor — the workflow is edit, save, refresh browser.&lt;/p&gt;</description></item><item><title>Write a Beancount Importer</title><link>https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/write-importer/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://emsenn.net/library/business/domains/accounting/domains/software/domains/beancount/texts/write-importer/</guid><description>&lt;h1 id="write-a-beancount-importer"&gt;Write a Beancount Importer&lt;/h1&gt;
+&lt;p&gt;Beancount&amp;rsquo;s import framework (&lt;code&gt;beancount.ingest&lt;/code&gt;) provides a structured way to convert bank CSV or OFX files into Beancount transactions. An importer is a Python class that implements three methods:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;identify(file)&lt;/code&gt; — returns &lt;code&gt;True&lt;/code&gt; if this importer can handle the given file (based on filename, headers, or content).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;file_account(file)&lt;/code&gt; — returns the account name this file belongs to (e.g., &lt;code&gt;Assets:Checking&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;extract(file)&lt;/code&gt; — parses the file and returns a list of Beancount directive objects (transactions).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Minimal example&lt;/strong&gt;:&lt;/p&gt;</description></item></channel></rss>

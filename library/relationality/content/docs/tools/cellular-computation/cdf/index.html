@@ -1,0 +1,743 @@
+<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","description":"Cellular Data Serialization (CDS)\nSpecification – Version 0.x (Draft)\nIntroduction The Cellular Data Serialization (CDS) defines a complete, self‑contained, canonical, machine‑readable serialization of a single local universe (a cell) of a Generative Fibered Relational Trace Universe (GFRTU).\nMathematically, a cell is a sheaf topos of the form:\n𝑅 𝑈 𝑆 ℎ ( 𝑈 , 𝐽 ∣ 𝑈 ) , R U ​\n=Sh(U,J∣ U ​\n),\nwhere 𝑈 ⊆ 𝑇 U⊆T is a full subcategory of the global trace site and 𝐽 ∣ 𝑈 J∣ U ​\n","name":"","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/content/docs/tools/cellular-computation/cdf/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
+<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
+<a href=/library/>library</a>
+<a href=/letters/>letters</a>
+<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name></h1><div class=meta></div><div class=e-content><p>Cellular Data Serialization (CDS)</p><p>Specification – Version 0.x (Draft)</p><ol><li>Introduction</li></ol><p>The Cellular Data Serialization (CDS) defines a complete, self‑contained, canonical, machine‑readable serialization of a single local universe (a cell) of a Generative Fibered Relational Trace Universe (GFRTU).</p><p>Mathematically, a cell is a sheaf topos of the form:</p><h1 id=𝑈>𝑅
+𝑈</h1><p>𝑆
+ℎ
+(
+𝑈
+,
+𝐽
+∣
+𝑈
+)
+,
+R
+U
+​</p><p>=Sh(U,J∣
+U
+​</p><p>),</p><p>where
+𝑈
+⊆
+𝑇
+U⊆T is a full subcategory of the global trace site and
+𝐽
+∣
+𝑈
+J∣
+U
+​</p><p>is the restricted Grothendieck topology.</p><p>gfrtu</p><p>A CDS serialization:</p><p>encodes the cell site
+𝑈
+U and restricted topology
+𝐽
+∣
+𝑈
+J∣
+U
+​</p><p>;</p><p>encodes the restricted recognition functor
+𝐻
+∣
+𝑈
+:
+𝑈
+𝑜
+𝑝
+→
+𝑅
+𝑒
+𝑐
+𝐹
+𝑖
+𝑏
+H∣
+U
+​</p><p>:U
+op
+→RecFib and its fixed layer
+𝐻
+𝑈
+*
+H
+U
+*
+​</p><p>;</p><p>binds the Recognition Term Language (RTL) to this cell’s objects and operations;</p><p>enumerates the structural vocabulary and generative constructors allowed in the cell;</p><p>records admissibility, canonicalization, and invariant laws governing terms and structure;</p><p>stores at least one defining RTL expression whose generative closure yields this cell.</p><p>CDS is closed‑world: all data required to interpret RTL terms and run the Cellular Closure Engine (CCE) on this cell MUST be contained in a single CDS serialization. References to external semantic state are prohibited.</p><ol start=2><li>Conformance and Terminology</li></ol><p>The key words MUST, MUST NOT, REQUIRED, SHOULD, MAY are to be interpreted as described in RFC 2119.</p><p>A CDS serialization is a JSON object conforming to this specification.</p><p>A cell is the semantic structure represented by a CDS serialization.</p><p>A CDS implementation is any component that parses, validates, or produces CDS serializations.</p><p>A cell‑aware system is a CDS implementation that also supports RTL and the CCE.</p><p>A conforming CDS implementation MUST:</p><p>Accept any serialization that satisfies all MUST‑level requirements in this specification.</p><p>Reject serializations that violate any MUST‑level requirement.</p><ol start=3><li>Overall Document Structure
+3.1 Top‑Level JSON Object</li></ol><p>A CDS serialization MUST be a single JSON object with at least the following fields:</p><p>{
+&ldquo;type&rdquo;: &ldquo;cds-cell&rdquo;,
+&ldquo;version&rdquo;: &ldquo;0.x&rdquo;,</p><p>&ldquo;id&rdquo;: &ldquo;<canonical-hash>&rdquo;,</p><p>&ldquo;cell_site&rdquo;: { &mldr; },
+&ldquo;fibers&rdquo;: { &mldr; },
+&ldquo;fixed_layer&rdquo;: { &mldr; }, // optional if derivable
+&ldquo;rtl_signature&rdquo;: { &mldr; },
+&ldquo;structural_vocabulary&rdquo;: { &mldr; },
+&ldquo;generative_constructors&rdquo;: { &mldr; },
+&ldquo;laws&rdquo;: { &mldr; },
+&ldquo;defining_expression&rdquo;: { &mldr; },</p><p>&ldquo;metadata&rdquo;: { &mldr; }
+}</p><p>Requirements:</p><p>&ldquo;type&rdquo; MUST be the string &ldquo;cds-cell&rdquo;.</p><p>&ldquo;version&rdquo; MUST be a version string understood by the implementation (e.g. &ldquo;0.1&rdquo;).</p><p>All keys MUST be unique and MUST NOT be null.</p><p>The serialization MUST be expressible in canonical JSON form (Section 4).</p><p>Additional fields MAY be present in future versions but MUST NOT alter the semantics defined by this spec.</p><p>3.2 Top‑Level Semantics</p><h1 id=𝑈-1>The top‑level object represents exactly one local universe
+𝑅
+𝑈</h1><p>𝑆
+ℎ
+(
+𝑈
+,
+𝐽
+∣
+𝑈
+)
+R
+U
+​</p><p>=Sh(U,J∣
+U
+​</p><p>), with:</p><p>a small site
+𝑈
+U and topology
+𝐽
+∣
+𝑈
+J∣
+U
+​</p><p>;</p><p>gfrtu</p><p>a recognition functor
+𝐻
+∣
+𝑈
+:
+𝑈
+𝑜
+𝑝
+→
+𝑅
+𝑒
+𝑐
+𝐹
+𝑖
+𝑏
+H∣
+U
+​</p><p>:U
+op
+→RecFib;</p><p>gfrtu</p><p>a fixed‑fiber subsheaf
+𝐻
+𝑈
+*
+⊆
+𝐻
+𝑈
+H
+U
+*
+​</p><p>⊆H
+U
+​</p><p>;</p><p>gfrtu</p><p>the interpretation of RTL types and constructors in this cell;</p><p>gfrtu</p><p>the structural vocabulary
+𝐹
+F and allowed constructors
+𝐶
+𝑜
+𝑛
+𝑠
+Cons used by the generative closure operator
+𝑈
+𝐺
+UG.</p><p>No CDS serialization may represent more than one cell.</p><ol start=4><li>Canonicalization and Hashing
+4.1 Canonical JSON</li></ol><p>CDS uses the JSON Canonicalization Scheme (JCS), as defined in RFC 8785, for all normative serialization.</p><p>A CDS serialization MUST conform to RFC 8785 canonical JSON:</p><p>Object keys MUST be lexicographically sorted.</p><p>Numeric values MUST be encoded in the canonical JCS numeric form.</p><p>Strings MUST be normalized as per JCS rules.</p><p>No insignificant whitespace or alternate encodings are allowed.</p><p>Whenever this spec refers to the “canonical CDS serialization,” it means the JCS‑canonical UTF‑8 byte sequence of the CDS JSON object.</p><p>4.2 Cell Identity and &ldquo;id&rdquo; Field</p><p>The &ldquo;id&rdquo; field is the canonical identifier for the cell. It MUST be constructed as follows:</p><p>Take the CDS serialization and temporarily replace &ldquo;id&rdquo; with a fixed placeholder value (e.g. the empty string), or omit it entirely.</p><p>Serialize the modified serialization object to canonical JSON as per RFC 8785.</p><p>Compute a cryptographic hash of the resulting byte sequence using a hash algorithm specified in &ldquo;metadata.hash_algorithm&rdquo; (Section 12).</p><p>Encode the hash as a lowercase hexadecimal string.</p><p>Set &ldquo;id&rdquo; to that string.</p><p>Two CDS serializations represent the same cell if and only if:</p><p>They use the same hash algorithm, and</p><p>Their &ldquo;id&rdquo; fields and canonical serializations are identical.</p><p>A CDS implementation MUST verify that the &ldquo;id&rdquo; field matches the hash of the canonicalized serialization as described above. If it does not match, the serialization MUST be rejected as invalid.</p><ol start=5><li>Cell Site (&ldquo;cell_site&rdquo;)
+5.1 Purpose</li></ol><p>&ldquo;cell_site&rdquo; encodes the full small category
+𝑈
+U and the restricted Grothendieck topology
+𝐽
+∣
+𝑈
+J∣
+U
+​</p><p>that define the cell site.</p><p>gfrtu</p><p>5.2 JSON Structure
+&ldquo;cell_site&rdquo;: {
+&ldquo;objects&rdquo;: [&ldquo;t0&rdquo;, &ldquo;t1&rdquo;, &mldr;],</p><p>&ldquo;morphisms&rdquo;: [
+{ &ldquo;id&rdquo;: &ldquo;f0&rdquo;, &ldquo;src&rdquo;: &ldquo;t0&rdquo;, &ldquo;dst&rdquo;: &ldquo;t1&rdquo; },
+{ &ldquo;id&rdquo;: &ldquo;id_t0&rdquo;, &ldquo;src&rdquo;: &ldquo;t0&rdquo;, &ldquo;dst&rdquo;: &ldquo;t0&rdquo; },
+&mldr;
+],</p><p>&ldquo;identities&rdquo;: {
+&ldquo;t0&rdquo;: &ldquo;id_t0&rdquo;,
+&ldquo;t1&rdquo;: &ldquo;id_t1&rdquo;
+},</p><p>&ldquo;composition&rdquo;: [
+{ &ldquo;pair&rdquo;: [&ldquo;f0&rdquo;, &ldquo;f1&rdquo;], &ldquo;result&rdquo;: &ldquo;f1∘f0&rdquo; },
+&mldr;
+],</p><p>&ldquo;covers&rdquo;: [
+{ &ldquo;object&rdquo;: &ldquo;t0&rdquo;, &ldquo;families&rdquo;: [
+{ &ldquo;morphisms&rdquo;: [&ldquo;f0&rdquo;,&ldquo;f1&rdquo;] },
+{ &ldquo;morphisms&rdquo;: [&ldquo;g0&rdquo;] }
+]
+},
+&mldr;
+]
+}</p><p>5.3 Category Requirements</p><p>The cell_site.objects and cell_site.morphisms fields MUST define a small category:</p><p>&ldquo;objects&rdquo; MUST be a nonempty finite or countable array of unique string IDs.</p><p>&ldquo;morphisms&rdquo; MUST list all morphisms of U:</p><p>Each morphism object MUST have &ldquo;id&rdquo;, &ldquo;src&rdquo;, and &ldquo;dst&rdquo; fields.</p><p>&ldquo;src&rdquo; and &ldquo;dst&rdquo; MUST reference objects in &ldquo;objects&rdquo;.</p><p>&ldquo;identities&rdquo; MUST map each object ID to a morphism ID in &ldquo;morphisms&rdquo; such that:</p><p>For each object t, &ldquo;identities[t]&rdquo; is a morphism with &ldquo;src&rdquo; = &ldquo;dst&rdquo; = t.</p><p>&ldquo;composition&rdquo; MUST list all composable pairs and their composites:</p><p>For each entry, &ldquo;pair&rdquo; is a 2‑element array of morphism IDs [f, g] where cod(f) = dom(g).</p><p>&ldquo;result&rdquo; is a morphism ID representing
+𝑔
+∘
+𝑓
+g∘f.</p><p>The following axioms MUST hold and MUST be mechanically checkable:</p><p>Identity: For each morphism f: s → t,</p><p>&ldquo;identities[t]&rdquo; ∘ f = f,</p><p>f ∘ &ldquo;identities[s]&rdquo; = f.</p><p>Associativity: For composable triples (f,g,h), composition MUST satisfy (h∘g)∘f = h∘(g∘f).</p><p>CDS implementations MUST validate these axioms; invalid categories MUST cause rejection.</p><p>5.4 Topology Requirements</p><p>The &ldquo;covers&rdquo; field encodes the Grothendieck topology
+𝐽
+∣
+𝑈
+J∣
+U
+​</p><p>. For each object t:</p><p>covers MAY contain an entry with &ldquo;object&rdquo;: t and a &ldquo;families&rdquo; array.</p><p>Each &ldquo;families[i].morphisms&rdquo; MUST be a nonempty array of morphism IDs
+𝑢
+𝑖
+:
+𝑡
+𝑖
+→
+𝑡
+u
+i
+​</p><p>:t
+i
+​</p><p>→t.</p><p>The collection of all such families across all objects defines
+𝐽
+∣
+𝑈
+J∣
+U
+​</p><p>.</p><p>The following Grothendieck topology axioms MUST be enforced:</p><p>gfrtu</p><p>Isomorphism Covers: For each isomorphism
+𝑢
+:
+𝑡
+′
+→
+𝑡
+u:t
+′
+→t, {u} MUST be in J(t).</p><p>Stability Under Pullback: For any morphism
+𝑓
+:
+𝑠
+→
+𝑡
+f:s→t and cover
+{
+𝑢
+𝑖
+:
+𝑡
+𝑖
+→
+𝑡
+}
+∈
+𝐽
+(
+𝑡
+)
+{u
+i
+​</p><p>:t
+i
+​</p><p>→t}∈J(t), there MUST exist a cover
+{
+𝑣
+𝑗
+:
+𝑠
+𝑗
+→
+𝑠
+}
+∈
+𝐽
+(
+𝑠
+)
+{v
+j
+​</p><p>:s
+j
+​</p><p>→s}∈J(s) and morphisms making each v_j a pullback of some u_i.</p><p>Transitivity: If
+{
+𝑢
+𝑖
+:
+𝑡
+𝑖
+→
+𝑡
+}
+∈
+𝐽
+(
+𝑡
+)
+{u
+i
+​</p><p>:t
+i
+​</p><p>→t}∈J(t) and for each i,
+{
+𝑣
+𝑖
+𝑗
+:
+𝑠
+𝑖
+𝑗
+→
+𝑡
+𝑖
+}
+∈
+𝐽
+(
+𝑡
+𝑖
+)
+{v
+ij
+​</p><p>:s
+ij
+​</p><p>→t
+i
+​</p><p>}∈J(t
+i
+​</p><p>), then
+{
+𝑢
+𝑖
+∘
+𝑣
+𝑖
+𝑗
+:
+𝑠
+𝑖
+𝑗
+→
+𝑡
+}
+{u
+i
+​</p><p>∘v
+ij
+​</p><p>:s
+ij
+​</p><p>→t} MUST be in J(t).</p><p>CDS implementations MUST either:</p><p>check these axioms directly, or</p><p>rely on a trusted construction process that guarantees them.</p><ol start=6><li>Recognition Fibers (&ldquo;fibers&rdquo;)
+6.1 Purpose</li></ol><p>The &ldquo;fibers&rdquo; section encodes the restriction of the GFRTU recognition functor:</p><p>𝐻
+∣
+𝑈
+:
+𝑈
+𝑜
+𝑝
+→
+𝑅
+𝑒
+𝑐
+𝐹
+𝑖
+𝑏
+,
+H∣
+U
+​</p><p>:U
+op
+→RecFib,</p><p>where each fiber
+𝐻
+𝑡
+H
+t
+​</p><p>is a finite Heyting algebra with stabilizer
+𝜎
+𝑡
+σ
+t
+​</p><p>and drift
+Δ
+𝑡
+Δ
+t
+​</p><p>, and each restriction
+𝐻
+(
+𝑓
+)
+:
+𝐻
+𝑡
+′
+→
+𝐻
+𝑡
+H(f):H
+t
+′
+​</p><p>→H
+t
+​</p><p>is a RecFib morphism.</p><p>gfrtu</p><p>6.2 JSON Structure
+&ldquo;fibers&rdquo;: {
+&ldquo;t0&rdquo;: {
+&ldquo;elements&rdquo;: [&ldquo;e0&rdquo;,&ldquo;e1&rdquo;,&ldquo;e2&rdquo;],</p><pre><code>&quot;heyting&quot;: {
+  &quot;meet&quot;: { &quot;e0,e0&quot;: &quot;e0&quot;, &quot;e0,e1&quot;: &quot;e0&quot;, ... },
+  &quot;join&quot;: { &quot;e0,e0&quot;: &quot;e0&quot;, &quot;e0,e1&quot;: &quot;e1&quot;, ... },
+  &quot;imp&quot;:  { &quot;e0,e0&quot;: &quot;e2&quot;, &quot;e1,e2&quot;: &quot;e2&quot;, ... },
+  &quot;bot&quot;: &quot;e0&quot;,
+  &quot;top&quot;: &quot;e2&quot;
+},
+
+&quot;sigma&quot;: { &quot;e0&quot;: &quot;e0&quot;, &quot;e1&quot;: &quot;e2&quot;, &quot;e2&quot;: &quot;e2&quot; },
+&quot;delta&quot;: { &quot;e0&quot;: &quot;e0&quot;, &quot;e1&quot;: &quot;e1&quot;, &quot;e2&quot;: &quot;e2&quot; },
+
+&quot;restrictions&quot;: {
+  &quot;f0&quot;: { &quot;map&quot;: { &quot;e0&quot;: &quot;e0&quot;, &quot;e1&quot;: &quot;e1&quot;, &quot;e2&quot;: &quot;e2&quot; } }
+}
+</code></pre><p>},</p><p>&ldquo;t1&rdquo;: { &mldr; }
+}</p><p>Each key under &ldquo;fibers&rdquo; MUST be an object ID from &ldquo;cell_site.objects&rdquo;.</p><p>6.3 Fiber‑Level Requirements</p><p>For each object t:</p><p>&ldquo;elements&rdquo; MUST be a nonempty finite array of unique element IDs.</p><p>&ldquo;heyting&rdquo; MUST define:</p><p>&ldquo;meet&rdquo;, &ldquo;join&rdquo;, and &ldquo;imp&rdquo; as total binary operations:</p><p>For every ordered pair (a,b) of elements, the key &ldquo;a,b&rdquo; MUST exist and refer to an element ID.</p><p>&ldquo;bot&rdquo; and &ldquo;top&rdquo; as element IDs in &ldquo;elements&rdquo;.</p><p>The operations defined by &ldquo;heyting&rdquo; MUST make
+𝐻
+𝑡
+H
+t
+​</p><p>into a finite Heyting algebra (bounded distributive lattice with implication).</p><p>gfrtu</p><p>&ldquo;sigma&rdquo; MUST map every element to an element of the same fiber:</p><p>σ_t MUST be monotone, extensive (a ≤ σ_t(a)), and idempotent.</p><p>&ldquo;delta&rdquo; MUST map every element to an element of the same fiber:</p><p>Δ_t MUST be monotone, inflationary (a ≤ Δ_t(a)), and eventually idempotent (Δ_t^k(a) stabilizes for some finite k).</p><p>σ_t and Δ_t MUST commute:</p><h1 id=heading>𝜎
+𝑡
+(
+Δ
+𝑡
+(
+𝑎
+)
+)</h1><p>Δ
+𝑡
+(
+𝜎
+𝑡
+(
+𝑎
+)
+)
+∀
+𝑎
+∈
+𝐻
+𝑡
+.
+σ
+t
+​</p><p>(Δ
+t
+​</p><p>(a))=Δ
+t
+​</p><p>(σ
+t
+​</p><p>(a))∀a∈H
+t
+​</p><p>.</p><p>A CDS implementation MUST validate these properties by exhaustive check over the finite tables.</p><p>6.4 Restrictions and Functoriality</p><p>For each morphism f : s → t in U:</p><p>&ldquo;fibers[t].restrictions[f_id]&rdquo; MUST be present and MUST define:</p><p>a total map from fibers[t].elements to fibers[s].elements via &ldquo;map&rdquo;.</p><p>The map MUST be a RecFib homomorphism:</p><p>It MUST preserve meet/join/imp, ⊥, ⊤, and commute with σ, Δ:</p><h1 id=heading-1>𝐻
+(
+𝑓
+)
+(
+𝑎
+∧
+𝑡
+𝑏
+)</h1><p>𝐻
+(
+𝑓
+)
+(
+𝑎
+)
+∧
+𝑠
+𝐻
+(
+𝑓
+)
+(
+𝑏
+)
+H(f)(a∧
+t
+​</p><p>b)=H(f)(a)∧
+s
+​</p><p>H(f)(b), and similarly for join and implication.</p><h1 id=heading-2>𝐻
+(
+𝑓
+)
+(
+𝜎
+𝑡
+(
+𝑎
+)
+)</h1><p>𝜎
+𝑠
+(
+𝐻
+(
+𝑓
+)
+(
+𝑎
+)
+)
+H(f)(σ
+t
+​</p><p>(a))=σ
+s
+​</p><p>(H(f)(a)).</p><h1 id=heading-3>𝐻
+(
+𝑓
+)
+(
+Δ
+𝑡
+(
+𝑎
+)
+)</h1><p>Δ
+𝑠
+(
+𝐻
+(
+𝑓
+)
+(
+𝑎
+)
+)
+H(f)(Δ
+t
+​</p><p>(a))=Δ
+s
+​</p><p>(H(f)(a)).</p><p>gfrtu</p><p>Functoriality MUST hold:</p><p>For each object t, &ldquo;restrictions[identity_of_t]&rdquo; MUST be the identity map on &ldquo;elements&rdquo;.</p><p>For each composable pair
+𝑔
+:
+𝑟
+→
+𝑠
+g:r→s,
+𝑓
+:
+𝑠
+→
+𝑡
+f:s→t:</p><p>&ldquo;restrictions[f∘g]&rdquo; MUST equal &ldquo;restrictions[g]&rdquo; ∘ &ldquo;restrictions[f]&rdquo; pointwise on elements.</p><p>A CDS implementation MUST reject any serialization that violates these constraints.</p><ol start=7><li>Fixed Layer (&ldquo;fixed_layer&rdquo;)
+7.1 Purpose</li></ol><p>The fixed layer encodes the subsheaf
+𝐻
+𝑈
+*
+⊆
+𝐻
+𝑈
+H
+U
+*
+​</p><p>⊆H
+U
+​</p><p>consisting of elements fixed under σ and Δ:</p><h1 id=heading-4>𝐻
+𝑡
+*</h1><h1 id=heading-5>{
+𝑎
+∈
+𝐻
+𝑡
+∣
+𝜎
+𝑡
+(
+𝑎
+)</h1><h1 id=𝑎>𝑎</h1><p>Δ
+𝑡
+(
+𝑎
+)
+}
+,
+𝑡
+∈
+𝑈
+,
+H
+t
+*
+​</p><p>={a∈H
+t
+​</p><p>∣σ
+t
+​</p><p>(a)=a=Δ
+t
+​</p><p>(a)},t∈U,</p><p>which, by Assumption 2.1, forms a sheaf on
+(
+𝑈
+,
+𝐽
+∣
+𝑈
+)
+(U,J∣
+U
+​</p><p>).</p><p>gfrtu</p><p>7.2 JSON Structure
+&ldquo;fixed_layer&rdquo;: {
+&ldquo;explicit&rdquo;: true | false,
+&ldquo;fibers&rdquo;: {
+&ldquo;t0&rdquo;: [&ldquo;e0&rdquo;,&ldquo;e3&rdquo;],
+&ldquo;t1&rdquo;: [&ldquo;e1&rdquo;,&ldquo;e2&rdquo;],
+&mldr;
+}
+}</p><p>If &ldquo;explicit&rdquo; is true, &ldquo;fibers[t]&rdquo; MUST explicitly list the fixed elements in H_t^*.</p><p>If &ldquo;explicit&rdquo; is false (or the entire &ldquo;fixed_layer&rdquo; field is omitted), CCE MUST compute fixed fibers by definition from σ and Δ.</p><p>7.3 Requirements</p><p>For each object t:</p><p>Every element listed in &ldquo;fixed_layer.fibers[t]&rdquo; MUST be in &ldquo;fibers[t].elements&rdquo;.</p><p>Each such element MUST satisfy σ_t(a)=a=Δ_t(a).</p><p>For each morphism f : s→t:</p><p>&ldquo;fibers[t].restrictions[f]&rdquo; MUST map fixed elements in H_t^* into fixed elements in H_s^*.</p><h1 id=heading-6>The family
+𝐻
+𝑈
+*</h1><p>{
+𝐻
+𝑡
+*
+}
+H
+U
+*
+​</p><p>={H
+t
+*
+​</p><p>} MUST satisfy the sheaf condition for
+𝐽
+∣
+𝑈
+J∣
+U
+​</p><p>:</p><p>For each cover
+{
+𝑢
+𝑖
+:
+𝑡
+𝑖
+→
+𝑡
+}
+{u
+i
+​</p><p>:t
+i
+​</p><p>→t} in J(t), any compatible family of fixed elements
+𝑎
+𝑖
+∈
+𝐻
+𝑡
+𝑖
+*
+a
+i
+​</p><p>∈H
+t
+i
+​</p><p>*
+​</p><p>along the restrictions MUST glue to a unique fixed element a ∈ H_t^*.</p><p>A CDS implementation MAY:</p><p>validate this condition directly using fibers and covers, or</p><p>trust a construction process known to produce sheaves.</p><p>If explicit fixed fibers are provided and they fail these properties, the CDS serialization MUST be rejected.</p><ol start=8><li>RTL Signature Binding (&ldquo;rtl_signature&rdquo;)
+8.1 Purpose</li></ol><p>The &ldquo;rtl_signature&rdquo; section specifies how RTL’s types and constructors are interpreted inside this cell. It provides the bridge from the syntax of RTL to the internal objects and arrows of
+𝑅
+𝑈
+R
+U
+​</p><p>.</p><p>gfrtu</p><p>CCE uses this section to:</p><p>typecheck RTL judgments;</p><p>interpret terms as arrows in the sheaf topos;</p><p>ensure modal and logical constructors act on the recognition object.</p><p>8.2 JSON Structure</p><p>A typical structure:</p><p>&ldquo;rtl_signature&rdquo;: {
+&ldquo;types&rdquo;: {
+&ldquo;Rec&rdquo;: { &ldquo;kind&rdquo;: &ldquo;builtin&rdquo;, &ldquo;object&rdquo;: &ldquo;H_U&rdquo; },
+&ldquo;Prod&rdquo;: { &ldquo;kind&rdquo;: &ldquo;type_constructor&rdquo;, &ldquo;op&rdquo;: &ldquo;product&rdquo; },
+&ldquo;Arrow&rdquo;: { &ldquo;kind&rdquo;: &ldquo;type_constructor&rdquo;, &ldquo;op&rdquo;: &ldquo;exponential&rdquo; }
+},</p><p>&ldquo;constructors&rdquo;: {
+&ldquo;and&rdquo;: {
+&ldquo;kind&rdquo;: &ldquo;rec_op&rdquo;,
+&ldquo;op&rdquo;: &ldquo;heyting.meet&rdquo;,
+&ldquo;arity&rdquo;: 2
+},
+&ldquo;or&rdquo;: {
+&ldquo;kind&rdquo;: &ldquo;rec_op&rdquo;,
+&ldquo;op&rdquo;: &ldquo;heyting.join&rdquo;,
+&ldquo;arity&rdquo;: 2
+},
+&ldquo;imp&rdquo;: {
+&ldquo;kind&rdquo;: &ldquo;rec_op&rdquo;,
+&ldquo;op&rdquo;: &ldquo;heyting.imp&rdquo;,
+&ldquo;arity&rdquo;: 2
+},
+&ldquo;true&rdquo;: {
+&ldquo;kind&rdquo;: &ldquo;rec_const&rdquo;,
+&ldquo;op&rdquo;: &ldquo;heyting.top&rdquo;
+},
+&ldquo;false&rdquo;: {
+&ldquo;kind&rdquo;: &ldquo;rec_const&rdquo;,
+&ldquo;op&rdquo;: &ldquo;heyting.bot&rdquo;
+},
+&ldquo;stabilize&rdquo;: {
+&ldquo;kind&rdquo;: &ldquo;modal&rdquo;,
+&ldquo;op&rdquo;: &ldquo;sigma&rdquo;
+},
+&ldquo;drift&rdquo;: {
+&ldquo;kind&rdquo;: &ldquo;modal&rdquo;,
+&ldquo;op&rdquo;: &ldquo;delta&rdquo;
+}
+}
+}</p><p>8.3 Requirements</p><p>&ldquo;types.Rec&rdquo; MUST designate the recognition object of the cell (denoted H_U).</p><p>&ldquo;types.Prod&rdquo; and &ldquo;types.Arrow&rdquo; MUST correspond to the topos product and exponential constructors.</p><p>For every RTL constructor in use:</p><p>There MUST be an entry under &ldquo;constructors&rdquo;.</p><p>The entry MUST be consistent with the semantics of that constructor in GFRTU:</p><p>logical ops refer to Heyting operations on H_U,</p><p>modal ops refer to σ_U, Δ_U : H_U→H_U.</p><p>No RTL type or constructor may be used in a judgment unless it is declared here and can be interpreted from the data in the CDS.</p><ol start=9><li>Structural Vocabulary (&ldquo;structural_vocabulary&rdquo;) and Generative Constructors (&ldquo;generative_constructors&rdquo;)
+9.1 Purpose</li></ol><p>GFRTU defines a finite structural vocabulary
+𝐹
+F and a set of allowed constructions
+𝐶
+𝑜
+𝑛
+𝑠
+Cons which determine the generative closure operator
+𝑈
+𝐺
+UG.</p><p>In CDS, &ldquo;structural_vocabulary&rdquo; and &ldquo;generative_constructors&rdquo; encode the local restrictions of these to the cell.</p><p>9.2 Structural Vocabulary
+&ldquo;structural_vocabulary&rdquo;: {
+&ldquo;primitive_ops&rdquo;: [
+&ldquo;trace:concat&rdquo;,
+&ldquo;heyting:meet&rdquo;,
+&ldquo;heyting:join&rdquo;,
+&ldquo;heyting:imp&rdquo;,
+&ldquo;modal:sigma&rdquo;,
+&ldquo;modal:delta&rdquo;,
+&ldquo;sheaf:product&rdquo;,
+&ldquo;sheaf:exponential&rdquo;
+]
+}</p><p>&ldquo;primitive_ops&rdquo; MUST list the primitive operations available in this cell.</p><p>Each listed operation MUST correspond to:</p><p>an operation on traces, recognitions, or sheaves defined from the underlying GFRTU primitive data, and/or</p><p>standard topos constructions (finite limits, exponentials).</p><p>9.3 Generative Constructors
+&ldquo;generative_constructors&rdquo;: {
+&ldquo;allowed&rdquo;: [
+&ldquo;finite-limit&rdquo;,
+&ldquo;finite-colimit&rdquo;,
+&ldquo;exponential&rdquo;,
+&ldquo;finitely-presented-subobject&rdquo;,
+&ldquo;sheafification&rdquo;,
+&ldquo;restriction&rdquo;
+]
+}</p><p>&ldquo;allowed&rdquo; MUST be a list of strings naming constructions that may be used by the CCE during closure.</p><p>The allowed set MUST be a subset of GFRTU’s
+𝐶
+𝑜
+𝑛
+𝑠
+Cons: finitary, structural, and local to
+𝑅
+𝑈
+R
+U
+​</p><p>.</p><p>gfrtu</p><p>CCE MUST treat these lists as a whitelist: it MUST NOT introduce objects or morphisms using constructions not present in &ldquo;generative_constructors.allowed&rdquo;.</p><ol start=10><li>Laws (&ldquo;laws&rdquo;)
+10.1 Purpose</li></ol><p>The &ldquo;laws&rdquo; section encodes machine‑checkable constraints that govern:</p><p>Admissibility: when an RTL judgment is allowed in this cell.</p><p>Canonicalization: how terms and values are reduced to canonical forms.</p><p>Invariants: structural properties that must hold for the cell to be a valid fragment of a GFRTU.</p><p>These laws turn the GFRTU’s mathematical assumptions (e.g. fixed fibers forming a sheaf, closure rules, etc.) into runtime‑enforceable conditions.</p><p>10.2 JSON Structure</p><p>At minimum:</p><p>&ldquo;laws&rdquo;: {
+&ldquo;admissibility&rdquo;: [
+{ &ldquo;id&rdquo;: &ldquo;no-foreign-op&rdquo;, &ldquo;kind&rdquo;: &ldquo;constructor-whitelist&rdquo;, &ldquo;constructors&rdquo;: ["&mldr;"] },
+&mldr;
+],
+&ldquo;canonicalization&rdquo;: [
+{ &ldquo;id&rdquo;: &ldquo;modal-order&rdquo;, &ldquo;rule&rdquo;: &ldquo;stabilize-outside-drift&rdquo; },
+&mldr;
+],
+&ldquo;invariants&rdquo;: [
+{ &ldquo;id&rdquo;: &ldquo;fixed-layer-sheaf&rdquo;, &ldquo;kind&rdquo;: &ldquo;fixed-sheaf&rdquo;, &ldquo;check&rdquo;: true },
+&mldr;
+]
+}</p><p>This spec does not fix a concrete DSL for laws; instead, it imposes semantic requirements:</p><p>Admissibility laws MUST be sufficient for CCE to:</p><p>reject uses of RTL constructors not declared in &ldquo;rtl_signature&rdquo; or &ldquo;structural_vocabulary&rdquo;;</p><p>reject any judgment that requires non‑allowed generative constructors;</p><p>enforce any cell‑specific syntactic restrictions (e.g., restricted use of modalities).</p><p>Canonicalization laws MUST:</p><p>define how modal operators are ordered in canonical terms;</p><p>define any additional rewrite rules beyond RTL’s βη normalization that are required to match the cell’s equational theory.</p><p>Invariant laws MUST include at least:</p><p>the fixed‑layer sheaf condition,</p><p>functoriality and RecFib constraints on &ldquo;fibers&rdquo; (may be implied by construction),</p><p>closure and stability conditions consistent with GFRTU.</p><p>A CDS implementation MAY embed a structured law DSL, but MUST ensure CCE can evaluate these laws deterministically.</p><ol start=11><li>Defining Expression (&ldquo;defining_expression&rdquo;)
+11.1 Purpose</li></ol><p>The &ldquo;defining_expression&rdquo; field stores at least one RTL term (or judgment) that acts as the operational origin of the cell:</p><p>When submitted to the CCE starting from a smaller universe (e.g., an initial or prior CDS), its generative closure yields the current cell.</p><p>This enables reproduction, verification, and provenance tracking.</p><p>This is an operational convenience, not a primitive requirement of GFRTU, but it is strongly RECOMMENDED.</p><p>11.2 JSON Structure</p><p>Minimal form:</p><p>&ldquo;defining_expression&rdquo;: {
+&ldquo;judgment&rdquo;: {
+&ldquo;ctx&rdquo;: [ &mldr; ],
+&ldquo;term&rdquo;: { &mldr; }, // RTL term AST
+&ldquo;type&rdquo;: { &mldr; } // RTL type AST
+},
+&ldquo;notes&rdquo;: &ldquo;Produced by closure on 2025-12-04&rdquo;
+}</p><p>Requirements:</p><p>&ldquo;judgment&rdquo; MUST be a valid RTL judgment in canonical JSON form.</p><p>The judgment MUST be admissible in this cell and MUST reflect the cell’s own &ldquo;rtl_signature&rdquo;.</p><p>A CDS implementation MAY record a sequence or tree of defining expressions, but MUST preserve at least one canonical origin.</p><ol start=12><li>Metadata (&ldquo;metadata&rdquo;)</li></ol><p>The &ldquo;metadata&rdquo; object is optional and purely informational; it MUST NOT affect semantics.</p><p>Example:</p><p>&ldquo;metadata&rdquo;: {
+&ldquo;hash_algorithm&rdquo;: &ldquo;sha256&rdquo;,
+&ldquo;created&rdquo;: &ldquo;2025-12-04T00:00:00Z&rdquo;,
+&ldquo;author&rdquo;: &ldquo;user@domain&rdquo;,
+&ldquo;labels&rdquo;: [&ldquo;local&rdquo;, &ldquo;demo&rdquo;],
+&ldquo;description&rdquo;: &ldquo;Toy two-object cell with nontrivial drift&rdquo;
+}</p><p>&ldquo;hash_algorithm&rdquo; MUST name the hash used for &ldquo;id&rdquo; (&ldquo;sha256&rdquo; or &ldquo;sha3-256&rdquo; are RECOMMENDED).</p><p>Other fields MAY include timestamps, authorship, comments, tags, etc.</p><p>Implementations MUST ignore unknown metadata fields for purposes of semantics and validation.</p><ol start=13><li>Determinism Requirements</li></ol><p>A CDS‑compliant system MUST ensure:</p><p>Parsing determinism: A given byte sequence representing canonical JSON parses to a unique internal representation.</p><p>Identity determinism: The &ldquo;id&rdquo; field of a valid CDS serialization is uniquely determined by its own canonical JSON byte sequence and the declared hash algorithm.</p><p>Equivalence: Two semantically equivalent cells MUST serialize to identical canonical JSON, and thus share the same &ldquo;id&rdquo;.</p><p>These properties are required so that CCE and external tooling can rely on stable cell identities and reproducible semantics.</p><ol start=14><li>Versioning and Compatibility</li></ol><p>A CDS serialization’s &ldquo;version&rdquo; identifies the version of this specification it targets.</p><p>Implementations SHOULD reject serializations whose &ldquo;version&rdquo; they do not understand.</p><p>Future versions MAY:</p><p>add new optional fields,</p><p>refine the structure of &ldquo;laws&rdquo;,</p><p>extend the representation of &ldquo;rtl_signature&rdquo; and &ldquo;structural_vocabulary&rdquo;,
+but MUST preserve backward compatibility at the semantic level for cells that conform to this version.</p><ol start=15><li>Security Considerations</li></ol><p>CDS serializations are data, not code:</p><p>Implementations MUST treat all fields as untrusted input.</p><p>Implementations MUST NOT execute code based on values found in CDS (e.g., in &ldquo;metadata&rdquo; or &ldquo;laws&rdquo;), unless such execution is explicitly mediated by a vetted interpreter.</p><p>Implementations MUST avoid network access or file system access based on CDS contents.</p><p>Malformed CDS input MUST be handled gracefully:</p><p>Serializations failing validation MUST be rejected with clear error reports.</p><p>Resource limits SHOULD be imposed on the size and complexity of sites, fibers, and laws to prevent denial‑of‑service scenarios.</p></div></article></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>

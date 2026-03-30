@@ -1,0 +1,64 @@
+<!doctype html><html lang=en prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Skill-triggering gap analysis - emsenn.net</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/style.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css integrity=sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX crossorigin=anonymous><link href=https://gmpg.org/xfn/11 rel=profile><link href=https://emsenn.net rel=me><link href=mailto:emsenn@emsenn.net rel="me authn"><link rel=webmention href=https://webmention.io/emsenn.net/webmention><link rel=pingback href="https://webmention.io/webmention?forward=https://emsenn.net/webmention"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","author":[{"@type":"Person","name":"emsenn"},{"@type":"Person","name":"claude"}],"dateModified":"2026-03-08","datePublished":"2026-03-08","description":"Analysis of why the agent chronically bypasses the skill system and what recent changes make the problem more resolvable.","keywords":"AgentialSemioverse, PromptRouting, ProgressiveAutomation","name":"Skill-triggering gap analysis","publisher":{"@type":"Person","name":"emsenn","url":"https://emsenn.net"},"url":"https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/skill-triggering-gap-analysis/"}</script></head><body><a class=skip-to-content href=#content>Skip to content</a><header class=site-header><div class=site-identity><a href=/ class=site-title>emsenn.net</a>
+<span class=site-tagline>on relations and things</span></div><nav><a href=/>home</a>
+<a href=/library/>library</a>
+<a href=/letters/>letters</a>
+<a href=/search/>search</a></nav><details class=site-about><summary>About this site</summary><ul><li><details><summary>This is a personal library and digital garden.</summary><p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p></details></li><li><details><summary>Its content was written by hand.</summary><p>This means there might be mistakes, and some pages are more complete than others.</p></details></li><li><details><summary>This site was built as a public asset.</summary><p>Content is licensed <a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a>. If you find it useful, consider <a href=https://ko-fi.com/emsenn>supporting the work on Ko-fi</a>.</p></details></li></ul></details></header><main id=content data-pagefind-body><article class=h-entry><h1 class=p-name>Skill-triggering gap analysis</h1><div class=meta><time class=dt-published datetime=2026-03-08T00:00:00Z>2026-03-08</time>
+<span>by <span class=p-author>emsenn</span>, <span class=p-author>claude</span></span>
+<span class=p-summary>Analysis of why the agent chronically bypasses the skill system and what recent changes make the problem more resolvable.</span></div><div class=e-content><p>The agent chronically bypasses the skill architecture, executing
+actions ad-hoc rather than through skills. This text analyzes the
+structural causes and identifies concrete changes enabled by recent
+session work.</p><h2 id=the-problem>The problem</h2><p>The prompt-routing specification (theory/prompt-routing.md) defines a
+three-phase dispatch: direct naming → trigger matching → fallback.
+Phase 2 (trigger matching) says the agent &ldquo;performs this matching by
+semantic similarity.&rdquo; In practice, the agent reads the registry table,
+does approximate keyword matching against the user&rsquo;s natural language,
+and frequently decides the task is &ldquo;simple enough to just do&rdquo; without
+a skill.</p><p>The interpret-message skill addresses this with step 7 (HARD STOP):
+verify skill coverage before executing. But step 7 is expensive — it
+requires searching for SKILL.md files and matching each action to a
+skill — and the agent routinely skips it when the work feels
+straightforward.</p><h2 id=structural-causes>Structural causes</h2><ol><li><p><strong>Trigger narrowness</strong>. Registry triggers are exact keyword phrases
+(&ldquo;write term&rdquo;, &ldquo;create a plan&rdquo;). The user&rsquo;s natural language
+(&ldquo;another source of inspiration I want to mark explicitly&rdquo;) does not
+contain these exact phrases. The agent must bridge the semantic gap,
+and when it doesn&rsquo;t, no skill is matched.</p></li><li><p><strong>Step 7 cost</strong>. The verification step requires listing all skills,
+comparing each action against all triggers, and reading matched
+SKILL.md files. This is 3-5 tool calls per action. The agent
+economizes by skipping it.</p></li><li><p><strong>Missing skills for common patterns</strong>. Until this session, there
+were no skills for writing derivation texts, creating term/concept
+files, or integrating cross-domain concepts. The agent did these
+ad-hoc because there was nothing to route to.</p></li><li><p><strong>No feedback mechanism</strong>. When the agent bypasses a skill, nothing
+records the bypass. The next session has no evidence that the agent
+should have used a skill, so the same pattern repeats.</p></li></ol><h2 id=what-recent-changes-improve>What recent changes improve</h2><h3 id=skills-that-fill-the-gap-direct>Skills that fill the gap (direct)</h3><p>Three new inference skills created this session cover the most common
+ad-hoc patterns:</p><ul><li><strong>write-derivation-text</strong>: covers the pattern of documenting what a
+source domain contributes to the endeavor. Previously done ad-hoc
+for MUD heritage, Starfleet, and cross-domain derivations.</li><li><strong>write-term-or-concept</strong>: covers term/concept creation with correct
+layer placement. Previously done ad-hoc with varying quality.</li><li><strong>integrate-cross-domain-concept</strong>: covers the pattern of abstracting
+a domain concept into endeavor vocabulary.</li></ul><p>These directly reduce the cases where &ldquo;no skill exists&rdquo; was the reason
+for bypass.</p><h3 id=the-convergent-direction-indirect>The convergent direction (indirect)</h3><p>The convergent-direction text documents how inference→determinism,
+endeavor specification, and token reduction all converge. This frames
+skill usage as project-level priority: every action done ad-hoc is a
+missed opportunity to encode a skill, which delays the convergence.
+This is motivational, not operational, but it strengthens the agent&rsquo;s
+reason to route through skills.</p><h3 id=the-validate-plan-status-script-proof-of-concept>The validate-plan-status script (proof of concept)</h3><p>Demonstrates the full pipeline from inference to determinism: plan
+validation was previously a manual review, now it&rsquo;s a stage-4
+procedural script. This proves the progressive automation policy works
+when skills are actually created.</p><h2 id=concrete-changes-to-make-now>Concrete changes to make now</h2><h3 id=1-make-step-7-cheaper-with-mcp-tool>1. Make step 7 cheaper with MCP tool</h3><p>The <code>list_skills</code> MCP tool accepts a <code>search</code> parameter. Instead of
+manual searching, step 7 can be: &ldquo;For each action identified in step 6,
+call <code>list_skills(search=KEYWORD)</code>. If a matching skill is returned,
+use it.&rdquo;</p><p>This reduces step 7 from 3-5 tool calls per action to 1 MCP call per
+action.</p><h3 id=2-add-a-skill-usage-report-to-interpret-message-step-0>2. Add a skill-usage report to interpret-message step 0</h3><p>Step 0 says &ldquo;review what skills were used in the previous turn.&rdquo; Make
+this concrete: enumerate the actions taken, check each against the
+registry, and report which were done through skills and which were
+ad-hoc. This creates the feedback mechanism (cause 4).</p><h3 id=3-expand-high-frequency-trigger-phrases>3. Expand high-frequency trigger phrases</h3><p>Add natural-language variants for the most commonly needed skills. The
+current triggers are command-form (&ldquo;write term&rdquo;); add query-form
+(&ldquo;what is this concept&rdquo;, &ldquo;define X&rdquo;) and description-form (&ldquo;I want to
+document how X contributes&rdquo;).</p></div><section class=cite-this id=cite-this><h2>Cite</h2><details><summary>APA</summary><pre class=cite-block><code>emsenn and claude. (2026, March 8). Skill-triggering gap analysis. <i>emsenn.net</i>. https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/skill-triggering-gap-analysis/</code></pre></details><details><summary>BibTeX</summary><pre class=cite-block><code>@article{emsenn2026-skill-triggering-gap-analysis,
+  author    = {emsenn and claude},
+  title     = {Skill-triggering gap analysis},
+  year      = {2026},
+  note      = {Analysis of why the agent chronically bypasses the skill system and what recent changes make the problem more resolvable.},
+  url       = {https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/skill-triggering-gap-analysis/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre></details></section></article><section class=page-relations resource="https://emsenn.net/library/relationality/domains/universes/semiotic-universe/domains/interactive-semioverse/domains/agential-semioverse/domains/computing/agential-semioverse-repository/texts/skill-triggering-gap-analysis/" typeof="schema:CreativeWork" vocab="https://emsenn.net/vocab#"><h2>Relations</h2><dl><div class=relation><dt>authors</dt><dd property="schema:author"><ul><li><a href=/authors/emsenn/>emsenn</a></li><li><a href=/authors/claude/>claude</a></li></ul></dd></div><div class=relation><dt>date-created</dt><dd property="schema:dateCreated"><time datetime=2026-03-08>2026-03-08</time></dd></div><div class=relation><dt><a href=/library/information/terms/description/>description</a></dt><dd property="schema:description">Analysis of why the agent chronically bypasses the skill system and what recent changes make the problem more resolvable.</dd></div><div class=relation><dt>tags</dt><dd property="schema:keywords"><ul><li><a href=/tags/agentialsemioverse/>AgentialSemioverse</a></li><li><a href=/tags/promptrouting/>PromptRouting</a></li><li><a href=/tags/progressiveautomation/>ProgressiveAutomation</a></li></ul></dd></div><div class=relation><dt>title</dt><dd property="schema:name">Skill-triggering gap analysis</dd></div><div class=relation><dt>type</dt><dd property="dc:type"><a href=/types/text/>text</a></dd></div></dl></section></main><footer><p class=footer-closing>All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p><div class=footer-license><a href=https://creativecommons.org/licenses/by-sa/4.0/ rel=license>CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div><div class=footer-meta><a href=mailto:emsenn@emsenn.net>emsenn@emsenn.net</a> · <a href=https://ko-fi.com/emsenn>support this work</a></div></footer></body></html>
