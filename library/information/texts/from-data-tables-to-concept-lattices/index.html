@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Data Tables to Concept Lattices - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-30",
+  "datePublished": "2026-03-30",
+  "description": "How a collection of key-value records generates a formal context, and how the Galois connection on that context produces a concept lattice — the algebraic structure already present in any data system.",
+  "name": "From Data Tables to Concept Lattices",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/information/texts/from-data-tables-to-concept-lattices/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="text">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/">Information</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/information/texts/">Texts</a></nav>
+  <h1 class="p-name">From Data Tables to Concept Lattices</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-30T00:00:00Z">2026-03-30</time>
+    
+    
+  </div>
+  
+  <div class="type-meta type-meta--abstract">
+    <span class="type-meta-label">Abstract</span>
+    <p>How a collection of key-value records generates a formal context, and how the Galois connection on that context produces a concept lattice — the algebraic structure already present in any data system.</p>
+  </div>
+  
+  <div class="e-content">
+    <p>Any collection of things with named attributes is a data table. A set of YAML files with frontmatter. A spreadsheet. A database. The rows are entities, the columns are attribute names, the cells are values. This is the most common shape of structured data.</p>
+<p>Formal concept analysis (Ganter &amp; Wille 1999) takes this data table and extracts its conceptual structure. The table is a <a href="../math/domains/logic/terms/formal-context.md" class="link-internal">formal context</a>: entities are objects, attribute names are attributes, and the cell values give the incidence relation.</p>
+<p>The extraction works through a <a href="../math/domains/order/terms/galois-connection.md" class="link-internal">Galois connection</a> — a pair of maps that go back and forth between subsets of objects and subsets of attributes:</p>
+<p>Given a set of objects <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span>: find all attributes they share (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">A&#x27;</annotation></semantics></math></span>).
+Given a set of attributes <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span>: find all objects that have all of them (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>B</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">B&#x27;</annotation></semantics></math></span>).</p>
+<p>A <strong>formal concept</strong> is a pair <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(A, B)</annotation></semantics></math></span> where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> are mutual images under these maps: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>=</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A&#x27; = B</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>B</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>=</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">B&#x27; = A</annotation></semantics></math></span>. The objects <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> are the concept&rsquo;s <strong>extent</strong> (what falls under it). The attributes <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> are its <strong>intent</strong> (what defines it).</p>
+<p>The formal concepts form a complete <a href="../math/domains/order/terms/lattice.md" class="link-internal">lattice</a> — the <a href="../math/domains/order/terms/concept-lattice.md" class="link-internal">concept lattice</a>. This is not imposed on the data. It is extracted from the data by the Galois connection. The lattice was already there; the Galois connection makes it visible.</p>
+<p>The concept lattice answers structural questions about the data:</p>
+<ul>
+<li>Which attributes always appear together? (They share a concept.)</li>
+<li>Which entities are interchangeable? (They have the same intent.)</li>
+<li>What hierarchy of concepts organizes the entities? (The lattice ordering.)</li>
+</ul>
+<p>This works for binary data (attribute present/absent). Belohlavek (2004) extended it to many-valued data, where cells carry values from a <a href="../math/domains/algebra/terms/residuated-lattice.md" class="link-internal">residuated lattice</a> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span>. The Galois connection uses <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span>&rsquo;s implication, and the concept lattice inherits <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span>&rsquo;s algebraic structure.</p>
+<p>When the values come from the four-valued <a href="../math/domains/algebra/terms/bilattice.md" class="link-internal">bilattice</a> — tracking whether each attribute is unattested (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">\bot</annotation></semantics></math></span>), affirmed (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span>), denied (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span>), or contested (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊤</mi></mrow><annotation encoding="application/x-tex">\top</annotation></semantics></math></span>) for each entity — the concept lattice becomes a residuated lattice with a <a href="../math/domains/logic/terms/lambek-calculus.md" class="link-internal">Lambek calculus</a> (Wurm 2012). The data table acquires a modal calculus: you can reason about what&rsquo;s known, unknown, and contradictory across the whole system, using the algebra that the Galois connection extracted.</p>
+<p>This is what formal concept analysis does: it takes data you already have and shows you the algebraic structure it already contains.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/information/texts/from-data-tables-to-concept-lattices/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-30">2026-03-30</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li><a href="/library/math/domains/order/terms/lattice/">lattice</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li><a href="/library/information/terms/formal-concept-analysis/">formal concept analysis</a></li><li><a href="/library/math/domains/logic/terms/formal-context/">formal context</a></li><li><a href="/library/math/domains/order/terms/concept-lattice/">concept lattice</a></li><li><a href="/library/math/domains/order/terms/galois-connection/">galois connection</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@article{emsenn2026-from-data-tables-to-concept-lattices,
+  author    = {emsenn},
+  title     = {From Data Tables to Concept Lattices},
+  year      = {2026},
+  note      = {How a collection of key-value records generates a formal context, and how the Galois connection on that context produces a concept lattice — the algebraic structure already present in any data system.},
+  url       = {https://emsenn.net/library/information/texts/from-data-tables-to-concept-lattices/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

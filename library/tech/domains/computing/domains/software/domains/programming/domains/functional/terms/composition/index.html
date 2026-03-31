@@ -20,7 +20,7 @@
   "@type": "DefinedTerm",
   "dateModified": "2026-03-05",
   "datePublished": "2026-03-05",
-  "description": "Composition is the operation of combining two functions so that the output of the first becomes the input of the second. Given a function f:A→Bf : A \\to B and a function g:B→Cg : B \\to C, their composition g∘fg \\circ f is a new function from AA to CC that applies ff first, then gg to the result:\n(g∘f)(x)=g(f(x)) (g \\circ f)(x) = g(f(x)) Composition is the primary mechanism by which functional programming builds complex behavior from simple parts. Rather than writing a single large function, a functional programmer writes small pure functions and wires them together through composition.\n",
+  "description": "Composition is the operation of combining two functions so that the output of the first becomes the input of the second. Given a function f:A→Bf : A \\to B and a function g:B→Cg : B \\to C, their composition g∘fg \\circ f is a new function from AA to CC that applies ff first, then gg to the result:\n(g∘f)(x)=g(f(x))\r(g \\circ f)(x) = g(f(x))\rComposition is the primary mechanism by which functional programming builds complex behavior from simple parts. Rather than writing a single large function, a functional programmer writes small pure functions and wires them together through composition.\n",
   "inDefinedTermSet": {
     "@type": "DefinedTermSet",
     "name": "",
@@ -96,13 +96,6 @@
 <p>The operation is <strong>associative</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>h</mi><mo>∘</mo><mi>g</mi><mo stretchy="false">)</mo><mo>∘</mo><mi>f</mi><mo>=</mo><mi>h</mi><mo>∘</mo><mo stretchy="false">(</mo><mi>g</mi><mo>∘</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(h \circ g) \circ f = h \circ (g \circ f)</annotation></semantics></math></span>. The identity function <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>id</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\text{id}(x) = x</annotation></semantics></math></span> serves as the identity element: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>∘</mo><mtext>id</mtext><mo>=</mo><mtext>id</mtext><mo>∘</mo><mi>f</mi><mo>=</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">f \circ \text{id} = \text{id} \circ f = f</annotation></semantics></math></span>. These properties mean that functions under composition form a mathematical structure (a category), which is one of the deep connections between functional programming and mathematics.</p>
 <p>Some languages provide a composition operator directly. Haskell uses <code>.</code> (dot): <code>(g . f) x</code> means <code>g(f(x))</code>. In languages without a built-in operator, composition is achieved by nesting calls — <code>g(f(x))</code> — or by writing a <code>compose</code> <a href="higher-order-function.md" class="link-internal">higher-order function</a> that returns the composed function.</p>
 <p><strong>Pipelines</strong> are composition read in the other direction. Where <code>g ∘ f</code> reads right-to-left (&ldquo;apply f then g&rdquo;), a pipeline reads left-to-right: &ldquo;start with x, then apply f, then apply g.&rdquo; Languages like Elixir (<code>|&gt;</code>), F# (<code>|&gt;</code>), and Unix shells (<code>|</code>) use pipeline operators. The underlying operation is the same.</p>
-<h2 id="related-terms">Related terms</h2>
-<ul>
-<li><a href="pure-function.md" class="link-internal">pure function</a> — purity guarantees that composition is safe</li>
-<li><a href="higher-order-function.md" class="link-internal">higher-order function</a> — <code>compose</code> is itself a higher-order function</li>
-<li><a href="currying.md" class="link-internal">currying</a> — partially applied functions are often composed into pipelines</li>
-<li><a href="first-class-function.md" class="link-internal">first-class function</a> — composition requires functions to be values</li>
-</ul>
 
   </div>
   
@@ -115,12 +108,12 @@
         <dd property="schema:dateCreated"><time datetime="2026-03-05">2026-03-05</time></dd>
       </div><div class="relation">
         <dt>Defines</dt>
-        <dd property="emsenn:Defines"><ul><li><a href="/library/tech/domains/computing/domains/software/domains/programming/domains/functional/terms/composition/">Composition</a></li><li><a href="/library/tech/domains/computing/domains/software/domains/programming/domains/functional/terms/composition/">Function composition</a></li></ul></dd>
+        <dd property="emsenn:Defines"><ul><li><a href="/library/tech/domains/computing/domains/software/domains/programming/domains/functional/terms/composition/">composition</a></li><li><a href="/library/tech/domains/computing/domains/software/domains/programming/domains/functional/terms/composition/">function composition</a></li></ul></dd>
       </div>
   <div class="relation">
     <dt>Referenced by</dt>
     <dd>
-      <ul><li><a href="/library/math/terms/extension/">Extension</a></li><li><a href="/library/math/terms/factorization/">Factorization</a></li><li><a href="/library/math/terms/inverse/">Inverse</a></li><li><a href="/library/math/terms/measure/">Measure</a></li><li><a href="/library/tech/domains/computing/domains/software/domains/programming/domains/functional/texts/composition-and-currying/">Composition and Currying</a></li><li><a href="/library/math/domains/categories/domains/ordinary-categories/terms/identity-morphism/"></a></li><li><a href="/library/math/domains/categories/domains/ordinary-categories/terms/composition/">Composition</a></li><li><a href="/library/math/domains/categories/domains/ordinary-categories/terms/morphism/">Morphism</a></li></ul>
+      <ul><li><a href="/library/math/domains/algebra/terms/binary-operation/"></a></li><li><a href="/library/math/terms/extension/">Extension</a></li><li><a href="/library/math/terms/factorization/">Factorization</a></li><li><a href="/library/math/terms/inverse/">Inverse</a></li><li><a href="/library/math/terms/measure/">Measure</a></li><li><a href="/library/tech/domains/computing/domains/software/domains/programming/domains/functional/texts/composition-and-currying/">Composition and Currying</a></li><li><a href="/library/math/domains/categories/domains/ordinary-categories/terms/category/"></a></li><li><a href="/library/math/domains/categories/domains/ordinary-categories/terms/identity-morphism/"></a></li><li><a href="/library/math/domains/categories/domains/ordinary-categories/terms/composition/">Composition</a></li><li><a href="/library/math/domains/categories/domains/ordinary-categories/terms/morphism/">Morphism</a></li></ul>
     </dd>
   </div>
   </dl>

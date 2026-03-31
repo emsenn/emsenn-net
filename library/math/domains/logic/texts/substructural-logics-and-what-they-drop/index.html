@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Substructural Logics and What They Drop - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-30",
+  "datePublished": "2026-03-30",
+  "description": "Classical logic assumes hypotheses can be duplicated, discarded, and reordered. Dropping these assumptions yields linear logic, relevance logic, and the Lambek calculus — each with distinct algebraic semantics.",
+  "name": "Substructural Logics and What They Drop",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/math/domains/logic/texts/substructural-logics-and-what-they-drop/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="text">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/math/">Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/math/domains/logic/">Logic</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/math/domains/logic/texts/">Texts</a></nav>
+  <h1 class="p-name">Substructural Logics and What They Drop</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-30T00:00:00Z">2026-03-30</time>
+    
+    
+  </div>
+  
+  <div class="type-meta type-meta--abstract">
+    <span class="type-meta-label">Abstract</span>
+    <p>Classical logic assumes hypotheses can be duplicated, discarded, and reordered. Dropping these assumptions yields linear logic, relevance logic, and the Lambek calculus — each with distinct algebraic semantics.</p>
+  </div>
+  
+  <div class="e-content">
+    <p>Classical logic has three structural rules that are so basic they are usually invisible:</p>
+<p><strong>Contraction</strong>: if you can prove <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> using <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> twice, you can prove <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> using <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> once. Hypotheses are reusable.</p>
+<p><strong>Weakening</strong>: if you can prove <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> from <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span>, you can still prove <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> if you add an unused hypothesis <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span>. Unused hypotheses are harmless.</p>
+<p><strong>Exchange</strong>: the order of hypotheses does not matter. <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo>⊢</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">A, B \vdash C</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo separator="true">,</mo><mi>A</mi><mo>⊢</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">B, A \vdash C</annotation></semantics></math></span> are the same thing.</p>
+<p>These rules say: hypotheses are abstract facts with no cost, no order, and no limit on use. This is fine when you are reasoning about timeless mathematical truths. It breaks down when hypotheses are resources, actions, or utterances — things that get consumed, depend on sequence, or cannot be freely duplicated.</p>
+<p><a href="../terms/substructural-logic.md" class="link-internal">Substructural logics</a> drop one or more of these rules:</p>
+<p><strong>Drop contraction and weakening → <a href="../terms/linear-logic.md" class="link-internal">Linear logic</a></strong> (Girard 1987). Each hypothesis is used exactly once. Proofs track resources: using a premise consumes it. The connectives split into multiplicatives (tensor <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo></mrow><annotation encoding="application/x-tex">\otimes</annotation></semantics></math></span> and par <span class="math-error">\parr</span>, which combine resources) and additives (with <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">&amp;</mi></mrow><annotation encoding="application/x-tex">\&amp;</annotation></semantics></math></span> and plus <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊕</mo></mrow><annotation encoding="application/x-tex">\oplus</annotation></semantics></math></span>, which offer choices). The &ldquo;of course&rdquo; modality <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">!</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">!A</annotation></semantics></math></span> restores unlimited use when needed. Linear logic&rsquo;s tensor and linear implication form the fundamental adjunction <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo><mo>⊣</mo><mo>⊸</mo></mrow><annotation encoding="application/x-tex">\otimes \dashv \multimap</annotation></semantics></math></span>.</p>
+<p><strong>Drop all three → <a href="../terms/lambek-calculus.md" class="link-internal">Lambek calculus</a></strong> (Lambek 1958). Hypotheses are ordered, used exactly once, and cannot be reordered. This is the logic of how words combine into sentences: in &ldquo;the cat sat,&rdquo; the order matters, each word is used once, and you cannot add irrelevant words without changing the sentence. The Lambek calculus has two implications (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">/</mi></mrow><annotation encoding="application/x-tex">/</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">\</mi></mrow><annotation encoding="application/x-tex">\backslash</annotation></semantics></math></span>) corresponding to the two directions of combination: &ldquo;what goes on the right&rdquo; and &ldquo;what goes on the left.&rdquo;</p>
+<p><strong>Drop contraction → Relevance logic</strong>. Every hypothesis must be used at least once. No idle premises. Proofs must be relevant to their conclusions.</p>
+<p>Galatos, Jipsen, Kowalski, &amp; Ono (2007) proved the algebraic connection: substructural logics are the logics of <a href="../../algebra/terms/residuated-lattice.md" class="link-internal">residuated lattices</a>. Each structural rule corresponds to an algebraic condition:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Structural rule</th>
+          <th>Algebraic condition</th>
+          <th>Logic when dropped</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Contraction</td>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⋅</mo><mi>a</mi><mo>≤</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">a \cdot a \leq a</annotation></semantics></math></span> (idempotence)</td>
+          <td>Linear, Lambek</td>
+      </tr>
+      <tr>
+          <td>Weakening</td>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>e</mi></mrow><annotation encoding="application/x-tex">a \leq e</annotation></semantics></math></span> (integrality)</td>
+          <td>Linear, Lambek</td>
+      </tr>
+      <tr>
+          <td>Exchange</td>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⋅</mo><mi>b</mi><mo>=</mo><mi>b</mi><mo>⋅</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">a \cdot b = b \cdot a</annotation></semantics></math></span> (commutativity)</td>
+          <td>Lambek</td>
+      </tr>
+  </tbody>
+</table>
+<p>So the landscape of substructural logics IS the landscape of residuated lattice varieties. Commutative residuated lattices give commutative linear logic. Non-commutative ones give the Lambek calculus. Integral commutative ones give intuitionistic logic (Heyting algebras).</p>
+<p>The four-valued <a href="../../algebra/terms/bilattice.md" class="link-internal">bilattice</a> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn mathvariant="bold">2</mn><mo>⊗</mo><mn mathvariant="bold">2</mn></mrow><annotation encoding="application/x-tex">\mathbf{2} \otimes \mathbf{2}</annotation></semantics></math></span> is a commutative residuated lattice (Busaniche &amp; Cignoli 2014). Its logic is a commutative substructural logic — specifically, a fragment of linear logic (Jakl 2025). When predicates are valued in this bilattice, the resources being tracked are <a href="../../information/terms/epistemic-state.md" class="link-internal">epistemic states</a>: assertions that can be affirmed, denied, contested, or unattested.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/math/domains/logic/texts/substructural-logics-and-what-they-drop/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-30">2026-03-30</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li>logic</li></ul></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li><a href="/library/math/domains/logic/terms/substructural-logic/">substructural logic</a></li><li><a href="/library/math/domains/logic/terms/linear-logic/">linear logic</a></li><li><a href="/library/math/domains/logic/terms/lambek-calculus/">lambek calculus</a></li><li><a href="/library/math/domains/algebra/terms/residuated-lattice/">residuated lattice</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@article{emsenn2026-substructural-logics-and-what-they-drop,
+  author    = {emsenn},
+  title     = {Substructural Logics and What They Drop},
+  year      = {2026},
+  note      = {Classical logic assumes hypotheses can be duplicated, discarded, and reordered. Dropping these assumptions yields linear logic, relevance logic, and the Lambek calculus — each with distinct algebraic semantics.},
+  url       = {https://emsenn.net/library/math/domains/logic/texts/substructural-logics-and-what-they-drop/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -20,7 +20,7 @@
   "@type": "DefinedTerm",
   "dateModified": "2026-03-05",
   "datePublished": "2026-03-05",
-  "description": "Currying is the transformation of a function that takes multiple arguments into a sequence of functions, each taking a single argument. A function f(a,b,c)f(a, b, c) becomes a function f(a)f(a) that returns a function g(b)g(b) that returns a function h(c)h(c) that produces the result. In notation:\nf:A×B×C→D⟶f′:A→(B→(C→D)) f : A \\times B \\times C \\to D \\quad\\longrightarrow\\quad f\u0026#x27; : A \\to (B \\to (C \\to D)) The concept is named after Haskell Curry, though it was first described by Moses Schönfinkel. In the lambda calculus, all functions naturally take a single argument — multi-argument functions are always expressed as curried chains of single-argument abstractions. The expression λx. λy. x+y\\lambda x.\\, \\lambda y.\\, x + y takes xx and returns a function that takes yy and returns x+yx + y.\n",
+  "description": "Currying is the transformation of a function that takes multiple arguments into a sequence of functions, each taking a single argument. A function f(a,b,c)f(a, b, c) becomes a function f(a)f(a) that returns a function g(b)g(b) that returns a function h(c)h(c) that produces the result. In notation:\nf:A×B×C→D⟶f′:A→(B→(C→D))\rf : A \\times B \\times C \\to D \\quad\\longrightarrow\\quad f\u0026#x27; : A \\to (B \\to (C \\to D))\rThe concept is named after Haskell Curry, though it was first described by Moses Schönfinkel. In the lambda calculus, all functions naturally take a single argument — multi-argument functions are always expressed as curried chains of single-argument abstractions. The expression λx. λy. x+y\\lambda x.\\, \\lambda y.\\, x + y takes xx and returns a function that takes yy and returns x+yx + y.\n",
   "inDefinedTermSet": {
     "@type": "DefinedTermSet",
     "name": "",
@@ -96,14 +96,6 @@ f : A \times B \times C \to D \quad\longrightarrow\quad f&#x27; : A \to (B \to (
 <p>In Haskell, all functions are curried by default. Writing <code>add x y = x + y</code> defines a function that takes <code>x</code> and returns a function that takes <code>y</code>. Writing <code>add 3</code> produces the &ldquo;add three&rdquo; function without any special syntax. In languages where functions are not curried by default (Python, JavaScript), partial application requires explicit support — Python&rsquo;s <code>functools.partial</code>, for example.</p>
 <p>Currying and partial application enable a style of programming where general functions are specialized by supplying some of their arguments, then <a href="composition.md" class="link-internal">composed</a> into pipelines. Instead of writing a new function for each variation, the programmer reuses existing functions by fixing specific arguments: <code>map(double)</code>, <code>filter(isEven)</code>, <code>sortBy(name)</code>.</p>
 <p>The connection to <a href="closure.md" class="link-internal">closures</a> is direct. Each step of a curried function returns a <a href="closure.md" class="link-internal">closure</a> that captures the supplied argument. <code>add(3)</code> returns a closure that remembers <code>3</code> and waits for the second argument.</p>
-<h2 id="related-terms">Related terms</h2>
-<ul>
-<li><a href="composition.md" class="link-internal">composition</a> — partially applied functions are often composed into pipelines</li>
-<li><a href="closure.md" class="link-internal">closure</a> — each step of a curried function returns a closure</li>
-<li><a href="higher-order-function.md" class="link-internal">higher-order function</a> — curried functions are inherently higher-order</li>
-<li><a href="first-class-function.md" class="link-internal">first-class function</a> — currying requires functions to be values</li>
-<li><a href="pure-function.md" class="link-internal">pure function</a> — curried pure functions are safe to partially apply and reuse</li>
-</ul>
 
   </div>
   
@@ -116,7 +108,7 @@ f : A \times B \times C \to D \quad\longrightarrow\quad f&#x27; : A \to (B \to (
         <dd property="schema:dateCreated"><time datetime="2026-03-05">2026-03-05</time></dd>
       </div><div class="relation">
         <dt>Defines</dt>
-        <dd property="emsenn:Defines"><ul><li><a href="/library/tech/domains/computing/domains/software/domains/programming/domains/functional/terms/currying/">Currying</a></li><li><a href="/library/tech/domains/computing/domains/software/domains/programming/domains/functional/terms/currying/">Partial application</a></li></ul></dd>
+        <dd property="emsenn:Defines"><ul><li><a href="/library/tech/domains/computing/domains/software/domains/programming/domains/functional/terms/currying/">currying</a></li><li><a href="/library/tech/domains/computing/domains/software/domains/programming/domains/functional/terms/currying/">partial application</a></li></ul></dd>
       </div>
   <div class="relation">
     <dt>Referenced by</dt>
