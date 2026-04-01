@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building a Concept Lattice by Hand - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-31",
+  "datePublished": "2026-03-31",
+  "description": "A tutorial: take a small data table, compute the Galois connection, find the formal concepts, and draw the lattice. No prerequisites beyond arithmetic.",
+  "name": "Building a Concept Lattice by Hand",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/science/domains/math/domains/order/texts/building-a-concept-lattice-by-hand/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="text">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/">Science</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/">Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/order/texts/">Texts</a></nav>
+  <h1 class="p-name">Building a Concept Lattice by Hand</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-31T00:00:00Z">2026-03-31</time>
+    
+    
+  </div>
+  
+  <div class="type-meta type-meta--abstract">
+    <span class="type-meta-label">Abstract</span>
+    <p>A tutorial: take a small data table, compute the Galois connection, find the formal concepts, and draw the lattice. No prerequisites beyond arithmetic.</p>
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-data">The data</a></li>
+    <li><a href="#the-galois-connection">The Galois connection</a></li>
+    <li><a href="#the-formal-concepts">The formal concepts</a></li>
+    <li><a href="#the-lattice">The lattice</a></li>
+    <li><a href="#what-you-learn">What you learn</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>This tutorial walks through building a <a href="../terms/concept-lattice.md" class="link-internal">concept lattice</a> from a small data table. You need no mathematical background — just the ability to look at a table and find patterns.</p>
+<h2 id="the-data">The data</h2>
+<p>Suppose you have five files with frontmatter:</p>
+<table>
+  <thead>
+      <tr>
+          <th>File</th>
+          <th>type</th>
+          <th>authors</th>
+          <th>status</th>
+          <th>extends</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>A</td>
+          <td>paper</td>
+          <td>emsenn</td>
+          <td>draft</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td>B</td>
+          <td>paper</td>
+          <td>emsenn</td>
+          <td>published</td>
+          <td>lattice</td>
+      </tr>
+      <tr>
+          <td>C</td>
+          <td>term</td>
+          <td>emsenn</td>
+          <td>published</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td>D</td>
+          <td>paper</td>
+          <td>claude</td>
+          <td>draft</td>
+          <td>lattice</td>
+      </tr>
+      <tr>
+          <td>E</td>
+          <td>term</td>
+          <td>—</td>
+          <td>draft</td>
+          <td>—</td>
+      </tr>
+  </tbody>
+</table>
+<p>The files are the <strong>objects</strong>. The attribute-value pairs are the <strong>attributes</strong>. (For simplicity, treat each column as binary: does the file have a value for this attribute or not?)</p>
+<p>Binary version:</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>type</th>
+          <th>authors</th>
+          <th>status</th>
+          <th>extends</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>A</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td>B</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+      </tr>
+      <tr>
+          <td>C</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>—</td>
+      </tr>
+      <tr>
+          <td>D</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+      </tr>
+      <tr>
+          <td>E</td>
+          <td>✓</td>
+          <td>—</td>
+          <td>✓</td>
+          <td>—</td>
+      </tr>
+  </tbody>
+</table>
+<p>This is a <a href="../../logic/terms/formal-context.md" class="link-internal">formal context</a>: objects {A, B, C, D, E}, attributes {type, authors, status, extends}, and a binary incidence relation.</p>
+<h2 id="the-galois-connection">The Galois connection</h2>
+<p>Two operations go back and forth between sets of objects and sets of attributes:</p>
+<p><strong>From objects to attributes</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">A&#x27;</annotation></semantics></math></span>): given some files, what attributes do ALL of them have?</p>
+<ul>
+<li>{A, B}&rsquo; = {type, authors, status} (both have all three; only B has extends)</li>
+<li>{B, D}&rsquo; = {type, authors, status, extends} (both have all four)</li>
+<li>{A, B, C, D, E}&rsquo; = {type, status} (the only attributes every file has)</li>
+</ul>
+<p><strong>From attributes to objects</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>B</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">B&#x27;</annotation></semantics></math></span>): given some attributes, what files have ALL of them?</p>
+<ul>
+<li>{type, authors}&rsquo; = {A, B, C, D} (all have both; E lacks authors)</li>
+<li>{extends}&rsquo; = {B, D} (only these two have extends)</li>
+<li>{type, authors, status, extends}&rsquo; = {B, D}</li>
+</ul>
+<h2 id="the-formal-concepts">The formal concepts</h2>
+<p>A formal concept is a pair (objects, attributes) where each determines the other: the objects are exactly those that have all the attributes, and the attributes are exactly those shared by all the objects.</p>
+<p>Let&rsquo;s find them:</p>
+<ul>
+<li>({B, D}, {type, authors, status, extends}): B and D share all four attributes. The files with all four are exactly B and D. ✓ This is a concept.</li>
+<li>({A, B, C, D}, {type, authors, status}): A, B, C, D share these three. The files with all three (that also have authors) are A, B, C, D. ✓ Concept.</li>
+<li>({A, B, C, D, E}, {type, status}): every file has type and status. The attributes shared by every file are type and status. ✓ Concept.</li>
+<li>({B, D}, {type, authors, status, extends}): already found.</li>
+<li>(∅, {type, authors, status, extends}): no file has all attributes? Actually B and D do. So this is not a concept.</li>
+</ul>
+<p>The full list of concepts (you find them by systematically checking all closure pairs):</p>
+<ol>
+<li>({A, B, C, D, E}, {type, status}) — the most general concept: &ldquo;all files share type and status&rdquo;</li>
+<li>({A, B, C, D}, {type, authors, status}) — &ldquo;files with authors&rdquo;</li>
+<li>({B, D}, {type, authors, status, extends}) — &ldquo;files that extend something&rdquo;</li>
+<li>There may be others depending on the exact closure computation.</li>
+</ol>
+<h2 id="the-lattice">The lattice</h2>
+<p>Order the concepts by inclusion of their object sets (or equivalently, reverse inclusion of attribute sets). More objects = more general = higher in the lattice. More attributes = more specific = lower.</p>
+<pre tabindex="0"><code>    ({A,B,C,D,E}, {type, status})
+              |
+    ({A,B,C,D}, {type, authors, status})
+              |
+    ({B,D}, {type, authors, status, extends})
+</code></pre><p>This is the concept lattice. It captures the implicit hierarchy: all files have type and status; most also have authors; a specific subset also extends something.</p>
+<h2 id="what-you-learn">What you learn</h2>
+<p>The lattice tells you the structure of your data without a <a href="../../information/terms/schema.md" class="link-internal">schema</a>:</p>
+<ul>
+<li><strong>File E is an outlier</strong>: it lacks authors, breaking the pattern of concept 2. The lattice shows this as E being in concept 1 but not concept 2.</li>
+<li><strong>extends is a specialization of the common pattern</strong>: only files that already have all three basic attributes also have extends.</li>
+<li><strong>The implicit schema</strong> is the hierarchy itself: type and status are universal; authors is nearly universal; extends is specialized.</li>
+</ul>
+<p>Formal concept analysis extracts this structure from any data table. The table can have hundreds of rows and columns — the Galois connection and concept lattice scale. The structure was already in the data; FCA makes it visible.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/science/domains/math/domains/order/texts/building-a-concept-lattice-by-hand/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-31">2026-03-31</time></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li><a href="/library/domains/science/domains/math/domains/logic/terms/formal-context/">formal context</a></li><li><a href="/library/domains/science/domains/math/domains/order/terms/concept-lattice/">concept lattice</a></li><li><a href="/library/domains/science/domains/math/domains/order/terms/galois-connection/">galois connection</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@article{emsenn2026-building-a-concept-lattice-by-hand,
+  author    = {emsenn},
+  title     = {Building a Concept Lattice by Hand},
+  year      = {2026},
+  note      = {A tutorial: take a small data table, compute the Galois connection, find the formal concepts, and draw the lattice. No prerequisites beyond arithmetic.},
+  url       = {https://emsenn.net/library/domains/science/domains/math/domains/order/texts/building-a-concept-lattice-by-hand/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

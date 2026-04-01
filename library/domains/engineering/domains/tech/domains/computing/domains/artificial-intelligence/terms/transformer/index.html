@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transformer - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "A neural network architecture based on self-attention mechanisms that processes input sequences in parallel — introduced by Vaswani et al. (2017) and the basis for all current large language models.",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/"
+  },
+  "name": "Transformer",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "termCode": "Transformer",
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/transformer/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="term">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a></nav>
+  <h1 class="p-name">Transformer</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">A neural network architecture based on self-attention mechanisms that processes input sequences in parallel — introduced by Vaswani et al. (2017) and the basis for all current large language models.</span>
+  </div>
+  
+  <div class="type-meta type-meta--definition">
+    <span class="type-meta-label">Defines</span>
+    <span class="type-meta-value">Transformer</span>
+  </div>
+  
+  
+  <div class="type-meta type-meta--prereqs">
+    <span class="type-meta-label">Requires</span>
+    <span class="type-meta-value">token</span>
+  </div>
+  
+  <div class="e-content">
+    <p>The transformer is a <a href="./neural-network.md" class="link-internal">neural network</a> architecture introduced by Vaswani et al. in &ldquo;Attention Is All You Need&rdquo; (2017). It processes input sequences using <strong>self-attention</strong> — a mechanism that allows every element in a sequence to attend to every other element, computing relevance weights dynamically rather than relying on fixed-distance connections. This replaced the recurrent architectures (LSTMs, GRUs) that previously dominated sequence modeling, which processed inputs one step at a time and struggled with long-range dependencies.</p>
+<p>The attention mechanism works as follows. Given a sequence of <a href="./token.md" class="link-internal">tokens</a>, the transformer computes three vectors for each token: a query (what am I looking for?), a key (what do I contain?), and a value (what do I contribute?). Attention scores are computed by comparing each query against all keys; these scores determine how much each token&rsquo;s value contributes to the output at each position. The operation is a weighted sum, where the weights are learned through training. Every token attends to every other token, capturing long-range dependencies in a single operation.</p>
+<p>Transformers process all positions in parallel (during training), making them much faster to train on modern hardware (GPUs, TPUs) than recurrent models, which must process positions sequentially. This parallelism is what enabled training on the massive datasets that produce <a href="../../on-device-inference/terms/large-language-model.md" class="link-internal">large language models</a>.</p>
+<p>The original transformer had both an encoder (processes input) and a decoder (generates output). Subsequent work split into three families:</p>
+<ul>
+<li><strong>Encoder-only</strong> (BERT, 2018): processes input bidirectionally. Used for classification, embedding, and understanding tasks.</li>
+<li><strong>Decoder-only</strong> (GPT, 2018; GPT-2, 2019; GPT-3, 2020): generates output autoregressively (left to right). This is the architecture behind all current large language models — GPT-4, Claude, Gemini, Llama, Qwen, Gemma.</li>
+<li><strong>Encoder-decoder</strong> (T5, BART): uses both components. Used for translation and summarization.</li>
+</ul>
+<p>The decoder-only architecture dominates because autoregressive generation (predict the next token given all previous tokens) scales well and naturally handles open-ended generation. The <a href="./context-window.md" class="link-internal">context window</a> — the maximum number of tokens the model can process at once — is a direct consequence of the attention mechanism: computing attention over N tokens requires O(N²) operations, so longer contexts require quadratically more compute. Extending context windows is an active area of research (sparse attention, sliding window attention, linear attention approximations).</p>
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-vaswani2017" typeof="CreativeWork" resource="#ref-vaswani2017">
+    <span class="bib-key">[vaswani2017]</span>
+      <span property="author">Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin</span>.
+      (<span property="datePublished">2017</span>).
+      <cite property="name">Attention Is All You Need</cite>.
+      <em property="publisher">Advances in Neural Information Processing Systems</em>.
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/transformer/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Cites</dt>
+        <dd property="schema:citation"><ul><li>vaswani2017</li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Date updated</dt>
+        <dd property="schema:dateModified"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/transformer/">Transformer</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/determination/">Determines</a></dt>
+        <dd property="emsenn:Determines">context window</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">artificial intelligence</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
+        <dd property="emsenn:Enables">large language model</dd>
+      </div><div class="relation">
+        <dt>Instance of</dt>
+        <dd property="emsenn:Instanceof">neural network</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/token/">token</a></dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/claude/">Claude</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/texts/claude-model-releases/">Claude Model Releases</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-window/">Context Window</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/neural-network/">Neural Network</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-transformer,
+  author    = {emsenn},
+  title     = {Transformer},
+  year      = {2026},
+  note      = {A neural network architecture based on self-attention mechanisms that processes input sequences in parallel — introduced by Vaswani et al. (2017) and the basis for all current large language models.},
+  url       = {https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/transformer/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

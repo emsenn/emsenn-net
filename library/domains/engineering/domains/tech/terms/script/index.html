@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "A Script is an ephemeral coordination unit: runs to completion, exits, and exposes itself through stdin/stdout/stderr and an exit code.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/terms/script/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    <span class="p-summary">A Script is an ephemeral coordination unit: runs to completion, exits, and exposes itself through stdin/stdout/stderr and an exit code.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#formal-definition">Formal definition</a></li>
+    <li><a href="#what-it-is">What it is</a></li>
+    <li><a href="#the-interface-contract">The interface contract</a></li>
+    <li><a href="#atomicity">Atomicity</a></li>
+    <li><a href="#composition">Composition</a></li>
+    <li><a href="#open-questions">Open questions</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="script">Script</h1>
+<h2 id="formal-definition">Formal definition</h2>
+<p>A <strong>Script</strong> is a morphism <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f : A \to B</annotation></semantics></math></span> in the category of data types:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Script</mtext><mo>=</mo><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mtext>  </mtext><mi>B</mi><mo separator="true">,</mo><mtext>  </mtext><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo separator="true">,</mo><mtext>  </mtext><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi></mrow><mo>:</mo><mi>A</mi><mo>→</mo><mn mathvariant="bold">2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{Script} = (A,\; B,\; f : A \to B,\; \mathrm{exit} : A \to \mathbf{2})</annotation></semantics></math></span><p>where:</p>
+<ul>
+<li><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> is the <strong>input type</strong> — the set of valid inputs (stdin stream, flags, input files)</li>
+<li><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> is the <strong>output type</strong> — the set of valid outputs (stdout stream)</li>
+<li><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span> is the <strong>computation</strong> — a total function from input to output</li>
+<li><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi></mrow><mo>:</mo><mi>A</mi><mo>→</mo><mn mathvariant="bold">2</mn></mrow><annotation encoding="application/x-tex">\mathrm{exit} : A \to \mathbf{2}</annotation></semantics></math></span> is the <strong>success indicator</strong> — maps each input to success ($0<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">)</mo><mi>o</mi><mi>r</mi><mi>f</mi><mi>a</mi><mi>i</mi><mi>l</mi><mi>u</mi><mi>r</mi><mi>e</mi><mo stretchy="false">(</mo><mi>n</mi><mi>o</mi><mi>n</mi><mo>−</mo><mi>z</mi><mi>e</mi><mi>r</mi><mi>o</mi><mo stretchy="false">)</mo><mo separator="true">;</mo></mrow><annotation encoding="application/x-tex">) or failure (non-zero); </annotation></semantics></math></span>f<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mi>s</mi><mi>o</mi><mi>n</mi><mi>l</mi><mi>y</mi><mi>s</mi><mi>e</mi><mi>m</mi><mi>a</mi><mi>n</mi><mi>t</mi><mi>i</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>l</mi><mi>y</mi><mi>m</mi><mi>e</mi><mi>a</mi><mi>n</mi><mi>i</mi><mi>n</mi><mi>g</mi><mi>f</mi><mi>u</mi><mi>l</mi><mi>w</mi><mi>h</mi><mi>e</mi><mi>n</mi></mrow><annotation encoding="application/x-tex"> is only semantically meaningful when </annotation></semantics></math></span>\mathrm{exit}(a) = 0$</li>
+</ul>
+<p><strong>UNIX realization.</strong> In the concrete UNIX interface: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>≤</mo><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi></mrow><mo>×</mo><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">A \leq \mathrm{String} \times \mathrm{Flags}</annotation></semantics></math></span> (stdin + named flags), <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>≤</mo><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi></mrow></mrow><annotation encoding="application/x-tex">B \leq \mathrm{String}</annotation></semantics></math></span> (stdout). The contract <code>(stdin, flags) → stdout</code> is the standard interface every script exposes. Scripts compose by pipe: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>∘</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">g \circ f</annotation></semantics></math></span> when <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>f</mi></msub><mo>≤</mo><msub><mi>A</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">B_f \leq A_g</annotation></semantics></math></span>.</p>
+<p><strong>Atomicity.</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span> is total — it either produces output or fails cleanly; no partial states. A Script that does two separable operations is two scripts composed by a third. Atomicity means: one named input type, one named output type, one function.</p>
+<p><strong>Difference from Skill.</strong> A <a href="skills.md" class="link-internal">Skill</a> is a judgment — it occupies a nuclear quartet position and operates within <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">H_t</annotation></semantics></math></span>. A Script is an implementation — it operates on concrete data types, has no nuclear structure, and terminates. Skills invoke Scripts; Scripts do not invoke Skills.</p>
+<h2 id="what-it-is">What it is</h2>
+<p>A Script is a program that automates a sequence of operations by coordinating existing components: it is invoked, runs to completion, and exits.
+It does not persist state between invocations — a Script CANNOT maintain state between invocations.
+It CANNOT expose a network interface or block indefinitely waiting for external events.
+This is the structural distinction from a Service — a service waits for requests indefinitely; a script terminates.</p>
+<p>Its job is coordination, not implementation. A Script connects inputs to outputs by routing through existing components — file formats, other scripts, external tools. The behavior lives in those components; the Script is the glue that assembles them into a named operation. (Ousterhout: scripting languages are <em>gluing</em> languages — they assume the existence of powerful components and are intended primarily for connecting them.)</p>
+<h2 id="the-interface-contract">The interface contract</h2>
+<p>A Script exposes itself through four channels:</p>
+<ul>
+<li><strong>stdin</strong> — optional input stream</li>
+<li><strong>stdout</strong> — primary output</li>
+<li><strong>stderr</strong> — errors and diagnostics only</li>
+<li><strong>exit code</strong> — 0 = success; non-zero = failure</li>
+</ul>
+<p>Nothing else is guaranteed to be visible to callers. This shared interface is what makes Scripts composable without coordination: two Scripts that have never heard of each other can be chained because they agree on this contract.</p>
+<p>A Script MUST write its primary output to stdout and errors and diagnostics to stderr — not stdout.
+It MUST exit with a non-zero code on failure and run to completion — no persistent background threads.
+A Script MAY read from stdin, accept named flags as its argument interface, invoke other Scripts as subprocesses, or read input files at runtime.</p>
+<h2 id="atomicity">Atomicity</h2>
+<p>A Script MUST do one thing.
+The boundary of &ldquo;one thing&rdquo; is a single named operation with a defined input type and output type.
+A Script that does two separable operations is two Scripts composed by a third.</p>
+<p>A Script with no subprocess calls is an <strong>atomic Script</strong> — its behavior is entirely self-contained. A Script that invokes other Scripts as subprocesses and routes their outputs is a <strong>composite Script</strong> — its behavior is dispatching. Both are Scripts; the distinction is structural.</p>
+<h2 id="composition">Composition</h2>
+<p>Scripts compose by chaining through the pipe interface, or by a caller invoking them as subprocesses and consuming their stdout. The called Script knows nothing about the caller. Composition is structural — it requires only interface compatibility — not semantic (shared knowledge of internals).</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>No formal mechanism yet to detect drift between a Runbook&rsquo;s declared interface and its colocated Script&rsquo;s actual flags.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/terms/script/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt>Computation</dt>
+        <dd property="emsenn:Computation">relational universe morphism</dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-19">2026-03-19</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/terms/script/">Script</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dd property="emsenn:Extends">Entity</dd>
+      </div><div class="relation">
+        <dt>Input type</dt>
+        <dd property="emsenn:Inputtype">relational universe</dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">relational universe morphism</dd>
+      </div><div class="relation">
+        <dt>Output type</dt>
+        <dd property="emsenn:Outputtype">relational universe</dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/terms/flatfile-agential-resource-system-script/"></a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

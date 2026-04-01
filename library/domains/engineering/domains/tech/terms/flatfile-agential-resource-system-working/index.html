@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "Executing a work unit from a queue without selection bias. The base mode of agent activity; does not require the target to be a SkillfulWorkUnit.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/terms/flatfile-agential-resource-system-working/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    <span class="p-summary">Executing a work unit from a queue without selection bias. The base mode of agent activity; does not require the target to be a SkillfulWorkUnit.</span>
+  </div>
+  <div class="e-content">
+    <h1 id="flatfile-agential-resource-system-working">Flatfile Agential Resource System Working</h1>
+<h2 id="what-this-is">What this is</h2>
+<p><strong>FlatfileAgentialResourceSystemWorking</strong> is the act of executing the next available work unit from a queue.
+It has no selection bias — it takes what is next.
+The target need not be a SkillfulWorkUnit (<a href="flatfile-agential-resource-system-skillful-work.md" class="link-internal">flatfile-agential-resource-system-skillful-work</a>): ad-hoc work, exploratory work, one-off tasks, and direct user requests are all forms of FlatfileAgentialResourceSystemWorking.</p>
+<p>FlatfileAgentialResourceSystemWorking is the base mode.
+It gets things done.
+It does not ask whether doing this work enables more work — that question belongs to FlatfileAgentialResourceSystemImproving (<a href="flatfile-agential-resource-system-improving.md" class="link-internal">flatfile-agential-resource-system-improving</a>).</p>
+<p>FlatfileAgentialResourceSystemWorking MUST consume a work unit from the queue and produce a named output (<a href="work.md" class="link-internal">work</a>) — the output may be an artifact, a judgment, a transformed state, or a report that nothing was found.
+It MUST emit a FlatfileAgentialResourceSystemSkillResult (<a href="flatfile-agential-resource-system-skill-result.md" class="link-internal">flatfile-agential-resource-system-skill-result</a>) — success with the output value, or a SkillError if the work could not be completed.
+It MUST leave the queue in a consistent state — the consumed item is marked done whether the result is success or error.
+FlatfileAgentialResourceSystemWorking CANNOT reorder the queue based on what would enable more work — that is selection bias, which belongs to FlatfileAgentialResourceSystemImproving.
+It CANNOT discard a SkillError without recording it — an error that vanishes is not a completed work unit.
+FlatfileAgentialResourceSystemWorking MAY target any work unit (skillful or ad-hoc) and MAY be invoked directly by a user request without any queue or plan.</p>
+<h2 id="relationship-to-flatfileagentialresourcesystemimproving">Relationship to FlatfileAgentialResourceSystemImproving</h2>
+<p>FlatfileAgentialResourceSystemWorking and FlatfileAgentialResourceSystemImproving are not mutually exclusive.
+FlatfileAgentialResourceSystemImproving (<a href="flatfile-agential-resource-system-improving.md" class="link-internal">flatfile-agential-resource-system-improving</a>) IS a form of FlatfileAgentialResourceSystemWorking — it applies FlatfileAgentialResourceSystemWorking to SkillfulWorkUnits specifically, with added selection bias and feedback cycles.
+Every FlatfileAgentialResourceSystemImproving pass is a FlatfileAgentialResourceSystemWorking pass; not every FlatfileAgentialResourceSystemWorking pass is a FlatfileAgentialResourceSystemImproving pass.</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Formal construction of WorkQueue as a typed object — blocked by: skill-algebra construction</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/terms/flatfile-agential-resource-system-working/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-19">2026-03-19</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/terms/flatfile-agential-resource-system-working/">FlatfileAgentialResourceSystemWorking</a></dd>
+      </div><div class="relation">
+        <dt>Describes</dt>
+        <dd property="emsenn:Describes"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/work/">Work</a></dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">relational universe morphism</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/engineering/domains/tech/terms/produces/">Produces</a></dt>
+        <dd property="emsenn:Produces">WorkResult</dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related"><a href="/library/domains/engineering/domains/tech/terms/flatfile-agential-resource-system-improving/">FlatfileAgentialResourceSystemImproving</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/engineering/domains/tech/terms/takes/">Takes</a></dt>
+        <dd property="emsenn:Takes">WorkQueue</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/engineering/domains/tech/terms/uses/">Uses</a></dt>
+        <dd property="emsenn:Uses"><ul><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/work/">Work</a></li><li><a href="/library/domains/engineering/domains/tech/terms/flatfile-agential-resource-system-skill-result/">FlatfileAgentialResourceSystemSkillResult</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Work queue</dt>
+        <dd property="emsenn:Workqueue">relational universe</dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/terms/flatfile-agential-resource-system-improving/"></a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

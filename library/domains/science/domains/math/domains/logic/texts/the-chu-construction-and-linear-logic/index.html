@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Chu Construction and Linear Logic - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-30",
+  "datePublished": "2026-03-30",
+  "description": "How the Chu construction connects formal contexts, bilattices, and linear logic — and why this means every bilattice-valued data system is a model of linear logic.",
+  "name": "The Chu Construction and Linear Logic",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/science/domains/math/domains/logic/texts/the-chu-construction-and-linear-logic/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="text">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/">Science</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/">Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/logic/">Logic</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/logic/texts/">Texts</a></nav>
+  <h1 class="p-name">The Chu Construction and Linear Logic</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-30T00:00:00Z">2026-03-30</time>
+    
+    
+  </div>
+  
+  <div class="type-meta type-meta--abstract">
+    <span class="type-meta-label">Abstract</span>
+    <p>How the Chu construction connects formal contexts, bilattices, and linear logic — and why this means every bilattice-valued data system is a model of linear logic.</p>
+  </div>
+  
+  <div class="e-content">
+    <p>Three structures that look unrelated turn out to be the same thing.</p>
+<p>A <a href="../terms/formal-context.md" class="link-internal">formal context</a> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>G</mi><mo separator="true">,</mo><mi>M</mi><mo separator="true">,</mo><mi>I</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(G, M, I)</annotation></semantics></math></span> is a table of objects and attributes. A <a href="../../algebra/terms/bilattice.md" class="link-internal">bilattice</a> is an algebraic structure with two lattice orderings and two involutions. <a href="../terms/linear-logic.md" class="link-internal">Linear logic</a> is a logic where premises are resources consumed by use. These come from data analysis, algebraic logic, and proof theory respectively. They should have nothing to do with each other.</p>
+<p>Pratt (1999) showed a formal context is a <a href="../terms/chu-space.md" class="link-internal">Chu space</a> — a triple <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>r</mi><mo separator="true">,</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(A, r, X)</annotation></semantics></math></span> of states, attributes, and an evaluation function. Chu spaces form a <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∗</mo></mrow><annotation encoding="application/x-tex">*</annotation></semantics></math></span>-autonomous category, which is the categorical structure underlying linear logic. So formal contexts and linear logic share a categorical home.</p>
+<p>Jakl (2025) closed the triangle: the Chu construction <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">h</mi><mi mathvariant="normal">u</mi></mrow><mo stretchy="false">(</mo><mi>H</mi><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{Chu}(H, 0)</annotation></semantics></math></span> over a <a href="../terms/heyting-algebra.md" class="link-internal">Heyting algebra</a> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math></span> is exactly the <a href="../../algebra/terms/twist-product.md" class="link-internal">twist construction</a> that produces bilattices. Under this identification:</p>
+<ul>
+<li><strong>Tensor</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo></mrow><annotation encoding="application/x-tex">\otimes</annotation></semantics></math></span>) in linear logic = <strong>fusion</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo></mrow><annotation encoding="application/x-tex">\odot</annotation></semantics></math></span>) on the twist product = <strong>extending</strong></li>
+<li><strong>Linear implication</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊸</mo></mrow><annotation encoding="application/x-tex">\multimap</annotation></semantics></math></span>) = <strong>twist-product implication</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span>) = <strong>restricting</strong></li>
+<li>The adjunction <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo><mo>⊣</mo><mo>⊸</mo></mrow><annotation encoding="application/x-tex">\otimes \dashv \multimap</annotation></semantics></math></span> of linear logic IS the Busaniche-Cignoli residuation</li>
+</ul>
+<p>This means:</p>
+<p>A bilattice-valued formal context — a data table where each cell carries an <a href="../../information/terms/epistemic-state.md" class="link-internal">epistemic state</a> from <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi mathvariant="normal">⊥</mi><mo separator="true">,</mo><mi>t</mi><mo separator="true">,</mo><mi>f</mi><mo separator="true">,</mo><mi mathvariant="normal">⊤</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\bot, t, f, \top\}</annotation></semantics></math></span> — is simultaneously:</p>
+<ol>
+<li>A formal context in the FCA sense (with a <a href="../../order/terms/concept-lattice.md" class="link-internal">concept lattice</a> and Galois connection)</li>
+<li>A Chu space (with the <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∗</mo></mrow><annotation encoding="application/x-tex">*</annotation></semantics></math></span>-autonomous category structure)</li>
+<li>A model of linear logic (where extending is tensor and restricting is linear implication)</li>
+<li>A <a href="../../algebra/terms/residuated-lattice.md" class="link-internal">residuated lattice</a> (with <a href="../terms/lambek-calculus.md" class="link-internal">Lambek calculus</a> structure, by Wurm 2012)</li>
+</ol>
+<p>The &ldquo;resources&rdquo; tracked by linear logic in this setting are epistemic states. Extending by an affirmation (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span>) and a denial (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span>) produces a contest (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊤</mi></mrow><annotation encoding="application/x-tex">\top</annotation></semantics></math></span>): <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>⊙</mo><mi>f</mi><mo>=</mo><mi mathvariant="normal">⊤</mi></mrow><annotation encoding="application/x-tex">t \odot f = \top</annotation></semantics></math></span>. The resource has been consumed — the two assertions combined into a contradiction. This is linear logic&rsquo;s resource sensitivity applied to knowledge: using conflicting evidence produces contestation, and the evidence is consumed in the process.</p>
+<p>Every system of key-value records valued in the bilattice — every YAML repository, every annotated database — is a model of linear logic. The algebra is already there.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/science/domains/math/domains/logic/texts/the-chu-construction-and-linear-logic/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-30">2026-03-30</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li><a href="/library/domains/science/domains/math/domains/logic/terms/formal-context/">formal context</a></li><li><a href="/library/domains/science/domains/math/domains/algebra/terms/bilattice/">bilattice</a></li><li><a href="/library/domains/science/domains/math/domains/logic/terms/linear-logic/">linear logic</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li><a href="/library/domains/science/domains/math/domains/logic/terms/chu-space/">chu space</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@article{emsenn2026-the-chu-construction-and-linear-logic,
+  author    = {emsenn},
+  title     = {The Chu Construction and Linear Logic},
+  year      = {2026},
+  note      = {How the Chu construction connects formal contexts, bilattices, and linear logic — and why this means every bilattice-valued data system is a model of linear logic.},
+  url       = {https://emsenn.net/library/domains/science/domains/math/domains/logic/texts/the-chu-construction-and-linear-logic/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

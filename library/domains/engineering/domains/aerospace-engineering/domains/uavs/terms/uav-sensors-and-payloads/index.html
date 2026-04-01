@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UAV Sensors and Payloads - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "dateModified": "2026-03-06",
+  "datePublished": "2026-03-06",
+  "description": "The sensors, cameras, and mission-specific equipment carried by UAVs, and how payload integration constrains airframe design.",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "",
+    "url": "https://emsenn.net/library/domains/engineering/domains/aerospace-engineering/domains/uavs/terms/"
+  },
+  "keywords": "Sensors, StructuralEngineering",
+  "name": "UAV Sensors and Payloads",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-sensors-and-payloads/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="concept">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/aerospace-engineering/">Aerospace engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/aerospace-engineering/domains/uavs/">Uavs</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/aerospace-engineering/domains/uavs/terms/">Terms</a></nav>
+  <h1 class="p-name">UAV Sensors and Payloads</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-06T00:00:00Z">2026-03-06</time>
+    
+    <span class="p-summary">The sensors, cameras, and mission-specific equipment carried by UAVs, and how payload integration constrains airframe design.</span>
+  </div>
+  
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#payload-categories">Payload categories</a>
+      <ul>
+        <li><a href="#electro-optical--infrared-eoir">Electro-optical / infrared (EO/IR)</a></li>
+        <li><a href="#lidar">LiDAR</a></li>
+        <li><a href="#synthetic-aperture-radar-sar">Synthetic aperture radar (SAR)</a></li>
+        <li><a href="#electronic-warfare">Electronic warfare</a></li>
+        <li><a href="#delivery-and-manipulation">Delivery and manipulation</a></li>
+        <li><a href="#warheads">Warheads</a></li>
+      </ul>
+    </li>
+    <li><a href="#integration-constraints">Integration constraints</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>The payload is the reason the drone exists. Everything else — the wing, the engine, the <a href="../terms/flight-controller.md" class="link-internal">flight controller</a>, the structure — is support infrastructure for getting the payload to the right place at the right time. Payload integration is where aerodynamics, structures, electronics, and mission requirements collide, and the resulting compromises shape the aircraft more than any other design decision.</p>
+<h2 id="payload-categories">Payload categories</h2>
+<h3 id="electro-optical--infrared-eoir">Electro-optical / infrared (EO/IR)</h3>
+<p>Cameras — visible light, near-infrared, thermal infrared — are the most common UAV payload. The range extends from consumer-grade RGB cameras on photography drones (200 g, $300) to multi-sensor gimballed turrets on <a href="../terms/male.md" class="link-internal">MALE</a> platforms (50+ kg, $1M+). Key parameters:</p>
+<ul>
+<li><strong>Resolution and sensor size</strong> — determines ground sample distance (GSD, the size of each pixel on the ground). A 20 MP camera at 100 m altitude gives ~2 cm GSD; the same camera at 5,000 m gives ~1 m GSD.</li>
+<li><strong>Stabilization</strong> — a 3-axis gimbal isolates the camera from aircraft vibration and attitude changes. Gimbal quality is the difference between usable and unusable imagery, especially on platforms with piston <a href="./uav-propulsion-systems.md" class="link-internal">propulsion</a> where engine vibration is significant.</li>
+<li><strong>Thermal</strong> — LWIR (long-wave infrared, 8–14 μm) cameras detect heat signatures for search and rescue, building inspection, agricultural health monitoring, and military targeting. Uncooled microbolometer sensors are cheap and light (suitable for sub-5 kg drones); cooled InSb or MCT sensors provide higher sensitivity for military applications.</li>
+</ul>
+<h3 id="lidar">LiDAR</h3>
+<p>Light Detection and Ranging sensors emit laser pulses and measure return time to build 3D point clouds of terrain and structures. UAV-mounted LiDAR is used for topographic surveying, forestry inventory, power line inspection, and archaeological prospection. Key trade-offs:</p>
+<ul>
+<li><strong>Weight</strong> — ranges from 200 g (solid-state LiDAR for small UAVs) to 5+ kg (survey-grade spinning LiDAR).</li>
+<li><strong>Point rate</strong> — 100,000 to 1,500,000+ points per second. Higher rates give denser point clouds but require more processing and storage.</li>
+<li><strong>Accuracy</strong> — depends on the quality of the <a href="../terms/imu.md" class="link-internal">IMU</a> and GPS used to georeference the point cloud. Survey-grade results (±2 cm) require post-processed kinematic (PPK) GPS and a high-quality inertial system.</li>
+</ul>
+<h3 id="synthetic-aperture-radar-sar">Synthetic aperture radar (SAR)</h3>
+<p>SAR uses the forward motion of the aircraft to synthesize a long antenna aperture, producing radar imagery with resolution independent of range. SAR can image through clouds, at night, and through light vegetation — capabilities that optical sensors lack. Weight and power requirements restrict SAR to <a href="../terms/male.md" class="link-internal">MALE</a> platforms and above, though lightweight SAR systems for tactical UAVs (10–30 kg class) are emerging.</p>
+<h3 id="electronic-warfare">Electronic warfare</h3>
+<ul>
+<li><strong>SIGINT/ELINT</strong> — receivers that detect, classify, and locate electromagnetic emissions (radar, communications, electronic devices).</li>
+<li><strong>Jammers</strong> — transmitters that disrupt enemy communications or GPS. Weight and power scale with effective range and bandwidth.</li>
+<li><strong>Decoys</strong> — expendable platforms that mimic the radar or infrared signature of a more valuable asset.</li>
+</ul>
+<h3 id="delivery-and-manipulation">Delivery and manipulation</h3>
+<ul>
+<li><strong>Cargo delivery</strong> — packages dropped or lowered by winch. Payload fraction and <a href="../terms/center-of-gravity.md" class="link-internal">center of gravity</a> shift during release are the main design concerns.</li>
+<li><strong>Agricultural sprayers</strong> — liquid tanks with spray nozzles for pesticide or fertilizer application.</li>
+<li><strong>Sampling equipment</strong> — water samplers, atmospheric sensors, soil probes for scientific missions.</li>
+</ul>
+<h3 id="warheads">Warheads</h3>
+<p>For expendable strike drones and <a href="../terms/loitering-munition.md" class="link-internal">loitering munitions</a>, the payload is a warhead — typically a shaped charge (for armored targets), a fragmentation charge (for personnel and soft targets), or a thermobaric charge (for structures). Warhead integration is unique among payload types because the payload is designed to destroy the airframe: the detonation shock must not propagate prematurely to other components, and the fuzing system must be isolated from flight vibration and electromagnetic interference.</p>
+<h2 id="integration-constraints">Integration constraints</h2>
+<p>Payload integration imposes constraints that ripple through every other design decision:</p>
+<p><strong>Weight and CG:</strong> Adding payload changes the total weight (affecting <a href="../terms/wing-loading.md" class="link-internal">wing loading</a> and <a href="../terms/endurance.md" class="link-internal">endurance</a>) and shifts the <a href="../terms/center-of-gravity.md" class="link-internal">center of gravity</a> (affecting stability and <a href="../terms/trim.md" class="link-internal">trim</a>). Gimballed cameras typically hang below the fuselage, moving the CG downward (good for stability) and forward (may require tail ballast). Internal warheads in the nose move the CG forward; aft fuel tanks compensate.</p>
+<p><strong>Volume:</strong> Sensors need line-of-sight to the ground or target. External pods and gimbals increase <a href="../terms/parasitic-drag.md" class="link-internal">parasitic drag</a>. Internal mounting requires fuselage volume that competes with fuel, avionics, and structure. Flying-wing <a href="./wing-planform-selection-for-uavs.md" class="link-internal">planforms</a> can house payloads within the wing thickness, but the available volume is constrained by airfoil geometry.</p>
+<p><strong>Vibration:</strong> Cameras and <a href="../terms/imu.md" class="link-internal">IMUs</a> require vibration isolation from propulsion sources. Piston engines produce discrete-frequency vibration at 1× and 2× the RPM; propellers produce vibration at blade-pass frequency (RPM × blade count). <a href="./additive-manufacturing-in-uav-airframes.md" class="link-internal">3D-printed</a> mounting structures can provide tuned vibration damping through specific <a href="../terms/infill-density.md" class="link-internal">infill</a> patterns and compliance, but the design must account for the resonant characteristics of the printed material.</p>
+<p><strong>Power:</strong> High-power payloads (SAR, jammers, high-resolution EO/IR with active cooling) draw significant electrical power. On electric UAVs, payload power competes directly with propulsion power, reducing endurance. On fuel-burning UAVs, a generator or alternator adds weight and complexity.</p>
+<p><strong>Aerodynamic interference:</strong> External payloads create <a href="../terms/drag.md" class="link-internal">drag</a> and can alter the local airflow over the wing or tail. A camera pod hanging below a small UAV&rsquo;s fuselage can increase total drag by 10–30%, depending on the pod&rsquo;s shape and position. Conformal integration (shaping the payload to blend with the fuselage) reduces this but constrains sensor field of view.</p>
+<p><strong>Data and communication:</strong> High-resolution sensors produce data rates that may exceed available downlink bandwidth. A 4K video stream at 30 fps requires 20–50 Mbps; a LiDAR producing 1 million points per second generates ~50 MB/s of raw data. On-board storage, compression, or edge processing (running AI models on the aircraft) reduces the bandwidth requirement but adds weight, power draw, and thermal management challenges.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-sensors-and-payloads/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-06">2026-03-06</time></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/sensors/">Sensors</a></li><li><a href="/tags/structuralengineering/">StructuralEngineering</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-uav-sensors-and-payloads,
+  author    = {emsenn},
+  title     = {UAV Sensors and Payloads},
+  year      = {2026},
+  note      = {The sensors, cameras, and mission-specific equipment carried by UAVs, and how payload integration constrains airframe design.},
+  url       = {https://emsenn.net/library/domains/engineering/domains/aerospace-engineering/domains/uavs/terms/uav-sensors-and-payloads/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

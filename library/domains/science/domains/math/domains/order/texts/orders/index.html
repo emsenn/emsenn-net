@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Partial Orders - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "dateModified": "2025-12-26",
+  "datePublished": "2025-12-26",
+  "description": "What this lesson covers This lesson introduces partial orders: the mathematical structure that captures the idea of \u0026ldquo;this thing is at least as much as that thing\u0026rdquo; in a consistent way. By the end, you will be able to identify when a relation is a partial order, draw its Hasse diagram, and explain why partial orders matter for the structures that follow (lattices, Heyting algebras, closure operators).\nWhy it matters Suppose you are organizing a library. You could sort books alphabetically — a total order where every pair of books has a definite ranking. But suppose instead you want to organize by topic. Introduction to Logic is more specific than Mathematics, and Modal Logic is more specific than Introduction to Logic. But how does Modal Logic compare to Set Theory? They are both more specific than Mathematics, but neither is more specific than the other. They are incomparable.\n",
+  "keywords": "OrderTheory",
+  "name": "Partial Orders",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "teaches": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Partial Orders"
+    }
+  ],
+  "url": "https://emsenn.net/library/domains/science/domains/math/domains/order/texts/orders/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="lesson">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/">Science</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/">Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/order/texts/">Texts</a></nav>
+  <h1 class="p-name">Partial Orders</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2025-12-26T00:00:00Z">2025-12-26</time>
+    
+    
+  </div>
+  
+  <div class="type-meta type-meta--objectives">
+    <span class="type-meta-label">Learning objectives</span>
+    <ul><li>Partial Orders</li></ul>
+  </div>
+  
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-this-lesson-covers">What this lesson covers</a></li>
+    <li><a href="#why-it-matters">Why it matters</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#core-concepts">Core concepts</a>
+      <ul>
+        <li><a href="#relations-on-a-set">Relations on a set</a></li>
+        <li><a href="#the-three-axioms">The three axioms</a></li>
+        <li><a href="#preorders-the-weaker-cousin">Preorders: the weaker cousin</a></li>
+        <li><a href="#comparability-and-incomparability">Comparability and incomparability</a></li>
+        <li><a href="#hasse-diagrams">Hasse diagrams</a></li>
+      </ul>
+    </li>
+    <li><a href="#worked-example-the-power-set">Worked example: the power set</a></li>
+    <li><a href="#check-your-understanding">Check your understanding</a></li>
+    <li><a href="#common-mistakes">Common mistakes</a></li>
+    <li><a href="#what-comes-next">What comes next</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h2 id="what-this-lesson-covers">What this lesson covers</h2>
+<p>This lesson introduces <a href="../terms/partial-order.md" class="link-internal">partial orders</a>: the mathematical structure that captures the idea of &ldquo;this thing is at least as much as that thing&rdquo; in a consistent way. By the end, you will be able to identify when a relation is a <a href="../terms/partial-order.md" class="link-internal">partial order</a>, draw its Hasse diagram, and explain why <a href="../terms/partial-order.md" class="link-internal">partial orders</a> matter for the structures that follow (<a href="../terms/lattice.md" class="link-internal">lattices</a>, <a href="../../../concepts/heyting-algebra/index.md" class="link-internal">Heyting algebras</a>, <a href="../../../concepts/closure-operator/index.md" class="link-internal">closure operators</a>).</p>
+<h2 id="why-it-matters">Why it matters</h2>
+<p>Suppose you are organizing a library. You could sort books alphabetically — a total order where every pair of books has a definite ranking. But suppose instead you want to organize by topic. <em>Introduction to Logic</em> is more specific than <em>Mathematics</em>, and <em>Modal Logic</em> is more specific than <em>Introduction to Logic</em>. But how does <em>Modal Logic</em> compare to <em>Set Theory</em>? They are both more specific than <em>Mathematics</em>, but neither is more specific than the other. They are incomparable.</p>
+<p>This is the situation <a href="../terms/partial-order.md" class="link-internal">partial orders</a> handle. Unlike total orders (where everything is comparable), <a href="../terms/partial-order.md" class="link-internal">partial orders</a> allow incomparability. The set of topics forms a <a href="../terms/partial-order.md" class="link-internal">partial order</a> under &ldquo;is more specific than,&rdquo; and some pairs simply have no ranking. This turns out to be exactly the right structure for organizing knowledge — and for the mathematical frameworks (<a href="../../../concepts/heyting-algebra/index.md" class="link-internal">Heyting algebras</a>, <a href="../../../concepts/closure-operator/index.md" class="link-internal">closure operators</a>) that formalize reasoning about meaning and structure.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>None. This lesson assumes familiarity with sets and basic logical notation (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∀</mi></mrow><annotation encoding="application/x-tex">\forall</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span>) but no prior exposure to order theory.</p>
+<h2 id="core-concepts">Core concepts</h2>
+<h3 id="relations-on-a-set">Relations on a set</h3>
+<p>A <strong>relation</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span> on a set <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span> is a collection of ordered pairs from <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span>. We write <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mtext> </mtext><mi>R</mi><mtext> </mtext><mi>b</mi></mrow><annotation encoding="application/x-tex">a \, R \, b</annotation></semantics></math></span> (or <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>R</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">aRb</annotation></semantics></math></span>) to mean the pair <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, b)</annotation></semantics></math></span> is in the relation. For order relations, we write <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \leq b</annotation></semantics></math></span>.</p>
+<p><em>Example.</em> Let <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S = \{1, 2, 3\}</annotation></semantics></math></span> and let <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> be the usual &ldquo;less than or equal to&rdquo; on numbers. Then <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">1 \leq 2</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>≤</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">2 \leq 3</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1 \leq 1</annotation></semantics></math></span>, but <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">3 \leq 1</annotation></semantics></math></span> does not hold.</p>
+<h3 id="the-three-axioms">The three axioms</h3>
+<p>A relation <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> on a set <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span> is a <strong><a href="../terms/partial-order.md" class="link-internal">partial order</a></strong> when it satisfies three properties:</p>
+<ol>
+<li>
+<p><strong>Reflexive</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">a \leq a</annotation></semantics></math></span> for every <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">a \in S</annotation></semantics></math></span>.
+Every element is related to itself. This is the minimum requirement for the relation to be consistent — a thing is at least as much as itself.</p>
+</li>
+<li>
+<p><strong>Antisymmetric</strong>: if <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \leq b</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>≤</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">b \leq a</annotation></semantics></math></span>, then <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a = b</annotation></semantics></math></span>.
+The only way two elements can be mutually related is if they are the same element. This prevents cycles (other than self-loops).</p>
+</li>
+<li>
+<p><strong>Transitive</strong>: if <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \leq b</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>≤</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">b \leq c</annotation></semantics></math></span>, then <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">a \leq c</annotation></semantics></math></span>.
+Chains of comparisons compose. If <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span> is below <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span> is below <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span>, then <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span> is below <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span>.</p>
+</li>
+</ol>
+<p>A set <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span> together with a <a href="../terms/partial-order.md" class="link-internal">partial order</a> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> on it is called a <strong><a href="../terms/partial-order.md" class="link-internal">partially ordered</a> set</strong>, or <strong>poset</strong>, written <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>S</mi><mo separator="true">,</mo><mo>≤</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(S, \leq)</annotation></semantics></math></span>.</p>
+<h3 id="preorders-the-weaker-cousin">Preorders: the weaker cousin</h3>
+<p>If you drop antisymmetry but keep reflexivity and transitivity, you get a <strong>preorder</strong>. In a preorder, two distinct elements can satisfy <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \leq b</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>≤</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">b \leq a</annotation></semantics></math></span> without being equal. Preorders arise when you have a notion of &ldquo;at least as good as&rdquo; where ties are possible — like ranking restaurants where two can be equivalently good.</p>
+<p>Every <a href="../terms/partial-order.md" class="link-internal">partial order</a> is a preorder, but not every preorder is a partial order. The distinction matters: <a href="../terms/partial-order.md" class="link-internal">partial orders</a> give clean hierarchies; preorders allow equivalence classes.</p>
+<h3 id="comparability-and-incomparability">Comparability and incomparability</h3>
+<p>Two elements <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo separator="true">,</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a, b</annotation></semantics></math></span> in a poset are <strong>comparable</strong> if <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \leq b</annotation></semantics></math></span> or <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>≤</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">b \leq a</annotation></semantics></math></span>. They are <strong>incomparable</strong> otherwise.</p>
+<p>A <strong>total order</strong> (or <strong>linear order</strong>) is a partial order where every pair is comparable. The integers under <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> form a total order. The subsets of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{x, y\}</annotation></semantics></math></span> under inclusion do not: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{x\}</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>y</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{y\}</annotation></semantics></math></span> are incomparable.</p>
+<h3 id="hasse-diagrams">Hasse diagrams</h3>
+<p>A <strong>Hasse diagram</strong> is a visual representation of a poset. Elements are drawn as dots. If <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a &lt; b</annotation></semantics></math></span> and there is no element <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span> with <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mi>c</mi><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a &lt; c &lt; b</annotation></semantics></math></span> (that is, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span> covers <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span>), you draw a line from <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span> up to <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span>. The diagram shows the &ldquo;skeleton&rdquo; of the order — all other comparisons can be deduced from transitivity.</p>
+<p><em>Example.</em> The divisibility order on <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>6</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{1, 2, 3, 6\}</annotation></semantics></math></span> (where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \leq b</annotation></semantics></math></span> means <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span> divides <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span>):</p>
+<pre tabindex="0"><code>    6
+   / \
+  2   3
+   \ /
+    1
+</code></pre><p>From this diagram you can read off: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">1 \leq 2</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">1 \leq 3</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">1 \leq 6</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>≤</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">2 \leq 6</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>≤</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">3 \leq 6</annotation></semantics></math></span>. And <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span> are incomparable — neither divides the other.</p>
+<h2 id="worked-example-the-power-set">Worked example: the power set</h2>
+<p>Let <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mo stretchy="false">{</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">X = \{a, b\}</annotation></semantics></math></span>. The <strong>power set</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">{</mo><mi mathvariant="normal">∅</mi><mo separator="true">,</mo><mo stretchy="false">{</mo><mi>a</mi><mo stretchy="false">}</mo><mo separator="true">,</mo><mo stretchy="false">{</mo><mi>b</mi><mo stretchy="false">}</mo><mo separator="true">,</mo><mo stretchy="false">{</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">}</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathcal{P}(X) = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}</annotation></semantics></math></span> is the set of all subsets of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span>. Define <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>≤</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \leq B</annotation></semantics></math></span> iff <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊆</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \subseteq B</annotation></semantics></math></span> (every element of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> is also in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span>).</p>
+<p><strong>Check the axioms:</strong></p>
+<ol>
+<li><em>Reflexive</em>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊆</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">A \subseteq A</annotation></semantics></math></span> for every set <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span>. ✓</li>
+<li><em>Antisymmetric</em>: If <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊆</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \subseteq B</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>⊆</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">B \subseteq A</annotation></semantics></math></span>, then <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A = B</annotation></semantics></math></span>. ✓</li>
+<li><em>Transitive</em>: If <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊆</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \subseteq B</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>⊆</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">B \subseteq C</annotation></semantics></math></span>, then <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊆</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">A \subseteq C</annotation></semantics></math></span>. ✓</li>
+</ol>
+<p>So <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi mathvariant="script">P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mo>⊆</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathcal{P}(X), \subseteq)</annotation></semantics></math></span> is a poset. Its Hasse diagram:</p>
+<pre tabindex="0"><code>   {a,b}
+   /   \
+ {a}   {b}
+   \   /
+    ∅
+</code></pre><p>Note that <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>a</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{a\}</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>b</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{b\}</annotation></semantics></math></span> are incomparable — neither is a subset of the other. This is what makes it a partial order rather than a total order.</p>
+<p>This poset will reappear in the next lesson as a <a href="../terms/lattice.md" class="link-internal">lattice</a>, and then again as a <a href="../../../concepts/heyting-algebra/index.md" class="link-internal">Heyting algebra</a>. The power set is the running example throughout this sequence.</p>
+<h2 id="check-your-understanding">Check your understanding</h2>
+<details>
+<summary>1. Is the "is ancestor of" relation on people a partial order?</summary>
+<p>It is reflexive (everyone is their own ancestor, by convention) and transitive (an ancestor of an ancestor is an ancestor). Is it antisymmetric? If person A is an ancestor of person B and B is an ancestor of A, are they the same person? Yes — ancestry cannot cycle (setting aside the reflexive case). So it is a partial order. But it is not total: two cousins are incomparable.</p>
+</details>
+<details>
+<summary>2. Let $S = \{1, 2, 3, 4, 5, 6\}$ with the divisibility order ($a \leq b$ iff $a$ divides $b$). Are 2 and 3 comparable? Are 4 and 6 comparable?</summary>
+<p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span> are incomparable: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span> does not divide <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span>, and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span> does not divide <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span>. <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span> are also incomparable: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span> does not divide <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span>, and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span> does not divide <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span>. (This surprises people who expect the divisibility order to be total — it is not.)</p>
+</details>
+<details>
+<summary>3. What goes wrong if you try to define a "preference" order where Alice prefers coffee to tea, tea to juice, and juice to coffee?</summary>
+<p>This is not a partial order because it violates transitivity (or rather, transitivity combined with antisymmetry produces a contradiction). We have coffee <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> tea <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> juice <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> coffee, which by transitivity gives coffee <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> coffee (fine, reflexivity), but also coffee <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> tea and tea <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> juice <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> coffee, so tea <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> coffee and coffee <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> tea, which by antisymmetry means coffee = tea. The cycle collapses the order. This is why <a href="../terms/partial-order.md" class="link-internal">partial orders</a> cannot have cycles — and why cyclic preferences require a different mathematical structure.</p>
+</details>
+<h2 id="common-mistakes">Common mistakes</h2>
+<ul>
+<li><strong>Assuming every order is total.</strong> The most common error. In a poset, two elements may simply be incomparable — this is not a defect, it is the point.</li>
+<li><strong>Confusing antisymmetry with asymmetry.</strong> Antisymmetry says: if <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \leq b</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>≤</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">b \leq a</annotation></semantics></math></span>, then <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a = b</annotation></semantics></math></span>. It does <em>not</em> say that <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \leq b</annotation></semantics></math></span> implies <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>≰</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">b \not\leq a</annotation></semantics></math></span>. (That would be asymmetry, which holds for strict orders like <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo></mrow><annotation encoding="application/x-tex">&lt;</annotation></semantics></math></span> but not for <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span>.)</li>
+<li><strong>Forgetting reflexivity.</strong> The relation <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo></mrow><annotation encoding="application/x-tex">&lt;</annotation></semantics></math></span> (strict less than) on numbers is transitive and antisymmetric, but not reflexive. It is a strict partial order, not a partial order. To get a partial order, use <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span>.</li>
+</ul>
+<h2 id="what-comes-next">What comes next</h2>
+<p>The next lesson, <a href="./lattices.md" class="link-internal">Lattices</a>, adds structure to <a href="../terms/partial-order.md" class="link-internal">partial orders</a> by requiring that every pair of elements has a <strong>meet</strong> (greatest lower bound) and a <strong>join</strong> (least upper bound). The power set example already has this structure — intersection is the meet and union is the join. Lattices are the foundation for <a href="./heyting-algebras.md" class="link-internal">Heyting Algebras</a>, which add implication, and for <a href="./closure-operators.md" class="link-internal">closure operators</a>, which formalize the idea of completing or stabilizing a structure.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/science/domains/math/domains/order/texts/orders/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2025-12-26">2025-12-26</time></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/ordertheory/">OrderTheory</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li><a href="/library/domains/science/domains/math/domains/order/terms/partial-order/">Partial Orders</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2025-orders,
+  author    = {emsenn},
+  title     = {Partial Orders},
+  year      = {2025},
+  url       = {https://emsenn.net/library/domains/science/domains/math/domains/order/texts/orders/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Servo - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "dateModified": "2026-03-06",
+  "datePublished": "2026-03-06",
+  "description": "A small actuator that converts electrical signals into precise angular position, used to deflect control surfaces on fixed-wing UAVs.",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "",
+    "url": "https://emsenn.net/library/domains/engineering/domains/aerospace-engineering/domains/uavs/terms/"
+  },
+  "keywords": "ControlSystems",
+  "name": "Servo",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "termCode": "servo, servomechanism",
+  "url": "https://emsenn.net/library/domains/engineering/domains/aerospace-engineering/domains/uavs/terms/servo/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="term">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/aerospace-engineering/">Aerospace engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/aerospace-engineering/domains/uavs/">Uavs</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/aerospace-engineering/domains/uavs/terms/">Terms</a></nav>
+  <h1 class="p-name">Servo</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-06T00:00:00Z">2026-03-06</time>
+    
+    <span class="p-summary">A small actuator that converts electrical signals into precise angular position, used to deflect control surfaces on fixed-wing UAVs.</span>
+  </div>
+  
+  <div class="type-meta type-meta--definition">
+    <span class="type-meta-label">Defines</span>
+    <span class="type-meta-value">servo, servomechanism</span>
+  </div>
+  
+  
+  <div class="e-content">
+    <p>A servo (servomechanism) is a small electric motor with integrated position feedback, gearing, and control electronics. It receives a commanded position (typically as a PWM signal from the <a href="./flight-controller.md" class="link-internal">flight controller</a>) and rotates its output shaft to match. In fixed-wing UAVs, servos deflect control surfaces — ailerons, elevators, rudders, elevons — to control the aircraft&rsquo;s attitude and trajectory.</p>
+<p>Servo selection for UAV design involves:</p>
+<ul>
+<li><strong>Torque</strong> — the force the servo can exert, typically 1–20 kg·cm for small UAVs. Must exceed the hinge moment of the control surface at maximum airspeed with a margin. Under-torqued servos cause control flutter or loss of authority at high speed.</li>
+<li><strong>Speed</strong> — angular velocity, typically 0.05–0.20 seconds per 60° of rotation. Faster servos provide better control response but draw more current.</li>
+<li><strong>Weight</strong> — from 4 g for micro servos to 80+ g for standard metal-gear servos. For a small expendable drone, the total servo weight can be a significant fraction of the airframe mass.</li>
+<li><strong>Gear material</strong> — plastic gears are lighter and cheaper but strip under shock loads (catapult launch, hard maneuvers). Metal gears survive abuse but add weight.</li>
+<li><strong>Digital vs. analog</strong> — digital servos update their position at higher rates (typically 300 Hz vs. 50 Hz), providing stiffer, more precise hold and faster response. Cost premium is modest.</li>
+</ul>
+<p>For <a href="../concepts/expendable-airframe-design.md" class="link-internal">expendable airframes</a>, servo selection is driven by minimum-acceptable quality. A single servo per control surface (no redundancy) with the cheapest metal-gear unit that meets the torque and speed requirements. For reusable tactical and MALE UAVs, redundant servos, waterproofing, and EMI shielding become relevant.</p>
+<p>Multirotor UAVs generally do not use servos — they achieve all attitude control through differential motor speed, with the <a href="./flight-controller.md" class="link-internal">flight controller</a> commanding each motor&rsquo;s <a href="./esc.md" class="link-internal">ESC</a> directly.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/aerospace-engineering/domains/uavs/terms/servo/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-06">2026-03-06</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><ul><li><a href="/library/domains/engineering/domains/aerospace-engineering/domains/uavs/terms/servo/">servo</a></li><li><a href="/library/domains/engineering/domains/aerospace-engineering/domains/uavs/terms/servo/">servomechanism</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/controlsystems/">ControlSystems</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-servo,
+  author    = {emsenn},
+  title     = {Servo},
+  year      = {2026},
+  note      = {A small actuator that converts electrical signals into precise angular position, used to deflect control surfaces on fixed-wing UAVs.},
+  url       = {https://emsenn.net/library/domains/engineering/domains/aerospace-engineering/domains/uavs/terms/servo/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-20",
+  "datePublished": "2026-03-20",
+  "description": "Production is a relation O produces R — operation O produces resource R — asserting that O creates a new instance of R where no instance existed before: R did not exist as input to O, but R exists as O's output. The defining structure: production is creation — the operation brings a new resource into existence. Production is the counterpart to consumption: consumption destroys a resource; production creates one. Production corresponds to the postset t• of a Petri net transition (newly deposited tokens), to the right-introduction rules of linear logic (proofs that construct resources), and to the allocation operation in separation logic (creating new heap cells).",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/terms/produces/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-20T00:00:00Z">2026-03-20</time>
+    
+    <span class="p-summary">Production is a relation O produces R — operation O produces resource R — asserting that O creates a new instance of R where no instance existed before: R did not exist as input to O, but R exists as O&#39;s output. The defining structure: production is creation — the operation brings a new resource into existence. Production is the counterpart to consumption: consumption destroys a resource; production creates one. Production corresponds to the postset t• of a Petri net transition (newly deposited tokens), to the right-introduction rules of linear logic (proofs that construct resources), and to the allocation operation in separation logic (creating new heap cells).</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#formal-definition">Formal definition</a></li>
+    <li><a href="#girard-linear-logic-construction">Girard: linear logic construction</a></li>
+    <li><a href="#petri-nets-postset-token-deposit">Petri nets: postset token deposit</a></li>
+    <li><a href="#separation-logic-heap-allocation">Separation logic: heap allocation</a></li>
+    <li><a href="#open-questions">Open questions</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="produces">Produces</h1>
+<h2 id="formal-definition">Formal definition</h2>
+<p><strong>Production</strong> is a relation <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mtext> produces </mtext><mi>R</mi></mrow><annotation encoding="application/x-tex">O \text{ produces } R</annotation></semantics></math></span>:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mi>O</mi><mo>:</mo><mrow><mi mathvariant="normal">O</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi></mrow><mo separator="true">,</mo><mtext>  </mtext><mi>R</mi><mo>:</mo><mrow><mi mathvariant="normal">O</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">T</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">e</mi></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(O : \mathrm{Operation},\; R : \mathrm{OutputType})</annotation></semantics></math></span><p>holding when <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span> creates a new instance of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span> — <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span> did not exist (as <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span>&rsquo;s input) and comes into existence as <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span>&rsquo;s output.</p>
+<p><strong>One invariant.</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mtext> produces </mtext><mi>R</mi></mrow><annotation encoding="application/x-tex">O \text{ produces } R</annotation></semantics></math></span> iff:</p>
+<ol>
+<li><strong>Creation ex novo</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span> brings a new instance <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>:</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">r : R</annotation></semantics></math></span> into existence; <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span> is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span>&rsquo;s output and was not supplied as <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span>&rsquo;s input. Production is not transformation (which takes an existing resource and modifies it) and not retrieval (which returns a pre-existing resource that the operation accessed). The produced resource is genuinely new.</li>
+</ol>
+<h2 id="girard-linear-logic-construction">Girard: linear logic construction</h2>
+<p>Jean-Yves Girard (<em>Linear Logic</em>, 1987): in linear logic, the <strong>right-introduction rules</strong> construct resources. The tensor introduction <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">\otimes R</annotation></semantics></math></span>:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><mi mathvariant="normal">Γ</mi><mo>⊢</mo><mi>A</mi><mspace width="1em"/><mi mathvariant="normal">Δ</mi><mo>⊢</mo><mi>B</mi></mrow><mrow><mi mathvariant="normal">Γ</mi><mo separator="true">,</mo><mi mathvariant="normal">Δ</mi><mo>⊢</mo><mi>A</mi><mo>⊗</mo><mi>B</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash A \quad \Delta \vdash B}{\Gamma, \Delta \vdash A \otimes B}</annotation></semantics></math></span><p>constructs a new resource <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊗</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \otimes B</annotation></semantics></math></span> from separate resources <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span>. This is production: the <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊗</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \otimes B</annotation></semantics></math></span> resource is new; the <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> resources that went into it are consumed.</p>
+<p>The <strong>1-introduction</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊢</mo><mn mathvariant="bold">1</mn></mrow><annotation encoding="application/x-tex">\vdash \mathbf{1}</annotation></semantics></math></span> — the unit resource can be produced from nothing. This is the limiting case of production: creating a unit resource requires no inputs. Production from nothing (no consumed inputs) is the formal analogue of allocation.</p>
+<p><strong>Par</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi mathvariant="normal">℘</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">A \wp B</annotation></semantics></math></span>): the multiplicative disjunction. <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi mathvariant="normal">Γ</mi><mo separator="true">,</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo>⊢</mo><mi mathvariant="normal">Δ</mi></mrow><mrow><mi mathvariant="normal">Γ</mi><mo separator="true">,</mo><mi>A</mi><mi mathvariant="normal">℘</mi><mi>B</mi><mo>⊢</mo><mi mathvariant="normal">Δ</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma, A, B \vdash \Delta}{\Gamma, A \wp B \vdash \Delta}</annotation></semantics></math></span> consumes the par to produce <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> separately. Par is the formal structure of a producing operation that &ldquo;splits&rdquo; one resource into two.</p>
+<h2 id="petri-nets-postset-token-deposit">Petri nets: postset token deposit</h2>
+<p>Carl Adam Petri (<em>Kommunikation mit Automaten</em>, 1962): when a Petri net transition <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span> fires, it deposits tokens in its <strong>postset</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>∙</mo><mo>=</mo><mo stretchy="false">{</mo><mi>p</mi><mo>∈</mo><mi>P</mi><mo>∣</mo><mo stretchy="false">(</mo><mi>t</mi><mo separator="true">,</mo><mi>p</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>F</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">t\bullet = \{p \in P \mid (t, p) \in F\}</annotation></semantics></math></span>. Token deposit is the Petri net model of production: new tokens (resources) appear in output places where they did not exist before the firing.</p>
+<p>The <strong>net balance</strong> of a transition: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mo>∙</mo><mi>t</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">|\bullet t|</annotation></semantics></math></span> tokens consumed from inputs; <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi>t</mi><mo>∙</mo><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">|t\bullet|</annotation></semantics></math></span> tokens produced in outputs. Production-only transitions (no input places, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∙</mo><mi>t</mi><mo>=</mo><mi mathvariant="normal">∅</mi></mrow><annotation encoding="application/x-tex">\bullet t = \emptyset</annotation></semantics></math></span>) are <strong>sources</strong> — they produce resources unconditionally. In workflow nets, the source place <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>s</mi></msub></mrow><annotation encoding="application/x-tex">p_s</annotation></semantics></math></span> is the initial producer: it has a token in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">M_0</annotation></semantics></math></span> representing the workflow case being initiated.</p>
+<h2 id="separation-logic-heap-allocation">Separation logic: heap allocation</h2>
+<p>Peter O&rsquo;Hearn, John Reynolds, Hongseok Yang (2001): the allocation command <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mo>=</mo><mrow><mi mathvariant="bold">a</mi><mi mathvariant="bold">l</mi><mi mathvariant="bold">l</mi><mi mathvariant="bold">o</mi><mi mathvariant="bold">c</mi></mrow><mo stretchy="false">(</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x := \mathbf{alloc}(v)</annotation></semantics></math></span> <strong>produces</strong> a new heap cell:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">{</mo><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">p</mi></mrow><mo stretchy="false">}</mo><mtext>  </mtext><mi>x</mi><mo>:</mo><mo>=</mo><mrow><mi mathvariant="bold">a</mi><mi mathvariant="bold">l</mi><mi mathvariant="bold">l</mi><mi mathvariant="bold">o</mi><mi mathvariant="bold">c</mi></mrow><mo stretchy="false">(</mo><mi>v</mi><mo stretchy="false">)</mo><mtext>  </mtext><mo stretchy="false">{</mo><mi>x</mi><mo>↦</mo><mi>v</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\mathrm{emp}\}\; x := \mathbf{alloc}(v)\; \{x \mapsto v\}</annotation></semantics></math></span><p>Starting from an empty heap, allocation creates a new heap cell <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span> pointing to value <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span>. The new cell <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>↦</mo><mi>v</mi></mrow><annotation encoding="application/x-tex">x \mapsto v</annotation></semantics></math></span> is produced — it did not exist before the allocation. The points-to assertion is new evidence in the post-state.</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Whether production (creating from nothing) and consumption (destroying) form a symmetric pair in some formal sense — whether there is a duality between the introduction rules (production) and elimination rules (consumption) that makes <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mtext> produces </mtext><mi>R</mi></mrow><annotation encoding="application/x-tex">O \text{ produces } R</annotation></semantics></math></span> dual to <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>O</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mtext> consumes </mtext><mi>R</mi></mrow><annotation encoding="application/x-tex">O&#x27; \text{ consumes } R</annotation></semantics></math></span> in the same way that conjunction-introduction is dual to conjunction-elimination.</li>
+<li>Whether the total production and consumption of resources in a closed system must be balanced (conserved), and whether this conservation corresponds to the balance between introduction and elimination rules in a proof-theoretically normalizable derivation.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/terms/produces/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-20">2026-03-20</time></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-20">2026-03-20</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/terms/produces/">Produces</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/operation/">Operation</a></dt>
+        <dd property="emsenn:Operation">relational universe morphism</dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">relational universe morphism</dd>
+      </div><div class="relation">
+        <dt>Output type</dt>
+        <dd property="emsenn:Outputtype">relational universe</dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related">Consumes, Returns, Emits, Takes, LinearLogic, PetriNet, Allocation</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

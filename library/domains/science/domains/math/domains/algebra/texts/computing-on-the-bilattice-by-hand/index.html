@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Computing on the Bilattice by Hand - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-31",
+  "datePublished": "2026-03-31",
+  "description": "A tutorial: take a small set of assertions with epistemic states, compute extends (⊙) and restricts (⇒) step by step, and see what the adjunction does.",
+  "name": "Computing on the Bilattice by Hand",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/science/domains/math/domains/algebra/texts/computing-on-the-bilattice-by-hand/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="text">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/">Science</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/">Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/algebra/">Algebra</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/algebra/texts/">Texts</a></nav>
+  <h1 class="p-name">Computing on the Bilattice by Hand</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-31T00:00:00Z">2026-03-31</time>
+    
+    
+  </div>
+  
+  <div class="type-meta type-meta--abstract">
+    <span class="type-meta-label">Abstract</span>
+    <p>A tutorial: take a small set of assertions with epistemic states, compute extends (⊙) and restricts (⇒) step by step, and see what the adjunction does.</p>
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-four-values">The four values</a></li>
+    <li><a href="#the-operations">The operations</a></li>
+    <li><a href="#worked-examples">Worked examples</a>
+      <ul>
+        <li><a href="#example-1-extending-an-affirmation-by-an-affirmation">Example 1: Extending an affirmation by an affirmation</a></li>
+        <li><a href="#example-2-extending-an-affirmation-by-a-denial">Example 2: Extending an affirmation by a denial</a></li>
+        <li><a href="#example-3-what-about---">Example 3: What about ⊥ ⊙ ⊥?</a></li>
+        <li><a href="#example-4-restricting-an-affirmation-by-itself">Example 4: Restricting an affirmation by itself</a></li>
+        <li><a href="#example-5-does-the-adjunction-hold">Example 5: Does the adjunction hold?</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-full-tables">The full tables</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>This tutorial walks through computing with the four-valued <a href="../terms/bilattice.md" class="link-internal">bilattice</a> by hand. You will apply the extending operation (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo></mrow><annotation encoding="application/x-tex">\odot</annotation></semantics></math></span>) and the restricting operation (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span>) to concrete <a href="../../information/terms/epistemic-state.md" class="link-internal">epistemic states</a> and verify the <a href="../../categories/domains/ordinary-categories/terms/adjoint-pair.md" class="link-internal">adjunction</a> on specific examples.</p>
+<h2 id="the-four-values">The four values</h2>
+<p>Each value is a pair of binary components — positive evidence and negative evidence:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Value</th>
+          <th>Pair</th>
+          <th>Meaning</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">\bot</annotation></semantics></math></span></td>
+          <td>(0, 0)</td>
+          <td>No information from any source</td>
+      </tr>
+      <tr>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span></td>
+          <td>(1, 0)</td>
+          <td>Affirmed: positive evidence, no negative</td>
+      </tr>
+      <tr>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span></td>
+          <td>(0, 1)</td>
+          <td>Denied: negative evidence, no positive</td>
+      </tr>
+      <tr>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊤</mi></mrow><annotation encoding="application/x-tex">\top</annotation></semantics></math></span></td>
+          <td>(1, 1)</td>
+          <td>Contested: both positive and negative evidence</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="the-operations">The operations</h2>
+<p>The base lattice is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{0, 1\}</annotation></semantics></math></span> with multiplication <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>⋅</mo><mi>y</mi><mo>=</mo><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x \cdot y = \min(x, y)</annotation></semantics></math></span> and implication <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>→</mo><mi>y</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x \to y = 0</annotation></semantics></math></span> if <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&gt;</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x &gt; y</annotation></semantics></math></span>, else <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span>.</p>
+<p><strong>Extending</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo></mrow><annotation encoding="application/x-tex">\odot</annotation></semantics></math></span>): <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>⊙</mo><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>x</mi><mo>⋅</mo><mi>z</mi><mo separator="true">,</mo><mtext> </mtext><mo stretchy="false">(</mo><mi>x</mi><mo>→</mo><mi>v</mi><mo stretchy="false">)</mo><mo>∧</mo><mo stretchy="false">(</mo><mi>z</mi><mo>→</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y) \odot (z, v) = (x \cdot z,\ (x \to v) \wedge (z \to y))</annotation></semantics></math></span></p>
+<p><strong>Restricting</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span>): <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>⇒</mo><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>x</mi><mo>→</mo><mi>z</mi><mo stretchy="false">)</mo><mo>∧</mo><mo stretchy="false">(</mo><mi>v</mi><mo>→</mo><mi>y</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mtext> </mtext><mi>x</mi><mo>⋅</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y) \Rightarrow (z, v) = ((x \to z) \wedge (v \to y),\ x \cdot v)</annotation></semantics></math></span></p>
+<h2 id="worked-examples">Worked examples</h2>
+<h3 id="example-1-extending-an-affirmation-by-an-affirmation">Example 1: Extending an affirmation by an affirmation</h3>
+<p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>⊙</mo><mi>t</mi><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>⊙</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t \odot t = (1, 0) \odot (1, 0)</annotation></semantics></math></span></p>
+<p>First component: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>⋅</mo><mn>1</mn><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1 \cdot 1 = 1</annotation></semantics></math></span>
+Second component: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>→</mo><mn>0</mn><mo stretchy="false">)</mo><mo>∧</mo><mo stretchy="false">(</mo><mn>1</mn><mo>→</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn><mo>∧</mo><mn>0</mn><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">(1 \to 0) \wedge (1 \to 0) = 0 \wedge 0 = 0</annotation></semantics></math></span></p>
+<p>Result: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">(1, 0) = t</annotation></semantics></math></span>.</p>
+<p>Affirming something that is already affirmed gives affirmation. Extending does not create contradiction from agreement.</p>
+<h3 id="example-2-extending-an-affirmation-by-a-denial">Example 2: Extending an affirmation by a denial</h3>
+<p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>⊙</mo><mi>f</mi><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>⊙</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t \odot f = (1, 0) \odot (0, 1)</annotation></semantics></math></span></p>
+<p>First component: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>⋅</mo><mn>0</mn><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1 \cdot 0 = 0</annotation></semantics></math></span>
+Second component: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>→</mo><mn>1</mn><mo stretchy="false">)</mo><mo>∧</mo><mo stretchy="false">(</mo><mn>0</mn><mo>→</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>∧</mo><mn>1</mn><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">(1 \to 1) \wedge (0 \to 0) = 1 \wedge 1 = 1</annotation></semantics></math></span></p>
+<p>Result: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">(0, 1) = f</annotation></semantics></math></span>.</p>
+<p>Extending an affirmation by a denial yields denial. The denial wins — it absorbs the affirmation.</p>
+<h3 id="example-3-what-about---">Example 3: What about ⊥ ⊙ ⊥?</h3>
+<p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi><mo>⊙</mo><mi mathvariant="normal">⊥</mi><mo>=</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>⊙</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\bot \odot \bot = (0, 0) \odot (0, 0)</annotation></semantics></math></span></p>
+<p>First component: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>⋅</mo><mn>0</mn><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">0 \cdot 0 = 0</annotation></semantics></math></span>
+Second component: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>→</mo><mn>0</mn><mo stretchy="false">)</mo><mo>∧</mo><mo stretchy="false">(</mo><mn>0</mn><mo>→</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>∧</mo><mn>1</mn><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">(0 \to 0) \wedge (0 \to 0) = 1 \wedge 1 = 1</annotation></semantics></math></span></p>
+<p>Result: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">(0, 1) = f</annotation></semantics></math></span>.</p>
+<p>Extending nothing by nothing gives denial. This is the most surprising result in the table: the product of two unknowns is not unknown but denied. Two absences of evidence combine into a negative result.</p>
+<h3 id="example-4-restricting-an-affirmation-by-itself">Example 4: Restricting an affirmation by itself</h3>
+<p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>⇒</mo><mi>t</mi><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>⇒</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t \Rightarrow t = (1, 0) \Rightarrow (1, 0)</annotation></semantics></math></span></p>
+<p>First component: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>→</mo><mn>1</mn><mo stretchy="false">)</mo><mo>∧</mo><mo stretchy="false">(</mo><mn>0</mn><mo>→</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>∧</mo><mn>1</mn><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">(1 \to 1) \wedge (0 \to 0) = 1 \wedge 1 = 1</annotation></semantics></math></span>
+Second component: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>⋅</mo><mn>0</mn><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1 \cdot 0 = 0</annotation></semantics></math></span></p>
+<p>Result: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">(1, 0) = t</annotation></semantics></math></span>.</p>
+<p>Restricting something by itself affirms it. Self-restriction is self-confirmation.</p>
+<h3 id="example-5-does-the-adjunction-hold">Example 5: Does the adjunction hold?</h3>
+<p>Check the triple <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">a = t</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">p = \bot</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">q = t</annotation></semantics></math></span>:</p>
+<p><strong>Left side</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>⊙</mo><mi mathvariant="normal">⊥</mi><mo>=</mo><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">t \odot \bot = \bot</annotation></semantics></math></span> (computed from the table). Is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi><msub><mo>≤</mo><mi>t</mi></msub><mi>t</mi></mrow><annotation encoding="application/x-tex">\bot \leq_t t</annotation></semantics></math></span>? The truth ordering has <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi><msub><mo>≤</mo><mi>t</mi></msub><mi>t</mi></mrow><annotation encoding="application/x-tex">\bot \leq_t t</annotation></semantics></math></span>. Yes. Left side: TRUE.</p>
+<p><strong>Right side</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>⇒</mo><mi>t</mi><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">t \Rightarrow t = t</annotation></semantics></math></span> (computed above). Is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi><msub><mo>≤</mo><mi>t</mi></msub><mi>t</mi></mrow><annotation encoding="application/x-tex">\bot \leq_t t</annotation></semantics></math></span>? Yes. Right side: TRUE.</p>
+<p>Both true. The adjunction holds for this triple.</p>
+<p>Check <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">a = f</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">p = t</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>=</mo><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">q = \bot</annotation></semantics></math></span>:</p>
+<p><strong>Left side</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>⊙</mo><mi>t</mi><mo>=</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">f \odot t = f</annotation></semantics></math></span>. Is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><msub><mo>≤</mo><mi>t</mi></msub><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">f \leq_t \bot</annotation></semantics></math></span>? The truth ordering has <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><msub><mo>≤</mo><mi>t</mi></msub><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">f \leq_t \bot</annotation></semantics></math></span>. Yes. Left side: TRUE.</p>
+<p><strong>Right side</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>⇒</mo><mi mathvariant="normal">⊥</mi><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">f \Rightarrow \bot = t</annotation></semantics></math></span>. Is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><msub><mo>≤</mo><mi>t</mi></msub><mi>t</mi></mrow><annotation encoding="application/x-tex">t \leq_t t</annotation></semantics></math></span>? Yes. Right side: TRUE.</p>
+<p>Both true. Holds again.</p>
+<h2 id="the-full-tables">The full tables</h2>
+<p>For reference, the complete operation tables (verify any entry using the formulas above):</p>
+<pre tabindex="0"><code>⊙  |  ⊥   t   f   ⊤        ⇒  |  ⊥   t   f   ⊤
+---|----------------        ---|----------------
+⊥  |  f   ⊥   f   ⊥        ⊥  |  t   t   ⊥   ⊥
+t  |  ⊥   t   f   t        t  |  ⊥   t   f   f
+f  |  f   f   f   f        f  |  t   t   t   t
+⊤  |  ⊥   t   f   ⊤        ⊤  |  ⊥   t   f   ⊤
+</code></pre><p>Patterns to notice:</p>
+<ul>
+<li>The <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊤</mi></mrow><annotation encoding="application/x-tex">\top</annotation></semantics></math></span> row and column of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo></mrow><annotation encoding="application/x-tex">\odot</annotation></semantics></math></span> reproduce the other argument: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊤</mi><mo>⊙</mo><mi>a</mi><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">\top \odot a = a</annotation></semantics></math></span>. Extending by the maximally-informed state does nothing.</li>
+<li>The <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span> row of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo></mrow><annotation encoding="application/x-tex">\odot</annotation></semantics></math></span> is all <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span>: extending by denial always yields denial.</li>
+<li>The <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span> row of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span> is all <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span>: denial restricts everything to affirmation. (If the premise is denied, the implication is vacuously true.)</li>
+<li>The diagonal of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span> is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span> except for <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊤</mi><mo>⇒</mo><mi mathvariant="normal">⊤</mi><mo>=</mo><mi mathvariant="normal">⊤</mi></mrow><annotation encoding="application/x-tex">\top \Rightarrow \top = \top</annotation></semantics></math></span>: self-restriction affirms, unless you are already contested.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/science/domains/math/domains/algebra/texts/computing-on-the-bilattice-by-hand/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-31">2026-03-31</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li><a href="/library/domains/science/domains/information/terms/epistemic-state/">epistemic state</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li><a href="/library/domains/science/domains/math/domains/algebra/terms/bilattice/">bilattice</a></li><li><a href="/library/domains/science/domains/math/domains/algebra/terms/residuated-lattice/">residuated lattice</a></li><li><a href="/library/domains/science/domains/math/domains/algebra/terms/twist-product/">twist product</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@article{emsenn2026-computing-on-the-bilattice-by-hand,
+  author    = {emsenn},
+  title     = {Computing on the Bilattice by Hand},
+  year      = {2026},
+  note      = {A tutorial: take a small set of assertions with epistemic states, compute extends (⊙) and restricts (⇒) step by step, and see what the adjunction does.},
+  url       = {https://emsenn.net/library/domains/science/domains/math/domains/algebra/texts/computing-on-the-bilattice-by-hand/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

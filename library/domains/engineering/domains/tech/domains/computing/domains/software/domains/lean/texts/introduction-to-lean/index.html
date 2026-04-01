@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introduction to Lean - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "dateModified": "2026-03-01",
+  "datePublished": "2026-03-01",
+  "description": "What Lean is Lean 4 is a dependently typed functional programming language and interactive theorem prover. It serves two purposes at once: you can write executable programs in it, and you can state and prove mathematical theorems in it. These are the same activity — a proof is a program whose type is the proposition it proves.\nLean\u0026rsquo;s architecture has two layers:\nThe kernel: a small, trusted type checker that verifies proof terms. The kernel implements the Calculus of Inductive Constructions. If the kernel accepts a term, the proof is correct — there is no appeal to external authority. The elaborator: a front-end that translates human-readable Lean code into the kernel\u0026rsquo;s internal language. Tactics, implicit arguments, type inference, and metaprogramming all live in the elaborator. They make proofs easier to write without enlarging the trusted base. Installation Lean 4 is installed through elan, a toolchain manager (analogous to rustup for Rust):\n",
+  "keywords": "Lean",
+  "name": "Introduction to Lean",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "teaches": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Introduction to Lean"
+    }
+  ],
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/introduction-to-lean/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="lesson">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/">Lean</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/">Texts</a></nav>
+  <h1 class="p-name">Introduction to Lean</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-01T00:00:00Z">2026-03-01</time>
+    
+    
+  </div>
+  
+  <div class="type-meta type-meta--objectives">
+    <span class="type-meta-label">Learning objectives</span>
+    <ul><li>Introduction to Lean</li></ul>
+  </div>
+  
+  
+  <div class="type-meta type-meta--prereqs">
+    <span class="type-meta-label">Prerequisites</span>
+    <ul><li>/mathematics/disciplines/type-theory/curricula/dependent-types.md</li></ul>
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-lean-is">What Lean is</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#first-definitions">First definitions</a></li>
+    <li><a href="#first-proofs">First proofs</a></li>
+    <li><a href="#the-proof-state">The proof state</a></li>
+    <li><a href="#what-comes-next">What comes next</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h2 id="what-lean-is">What Lean is</h2>
+<p>Lean 4 is a dependently typed functional programming language and interactive theorem
+prover. It serves two purposes at once: you can write executable programs in it, and you
+can state and prove mathematical theorems in it. These are the same activity — a proof is
+a program whose type is the proposition it proves.</p>
+<p>Lean&rsquo;s architecture has two layers:</p>
+<ul>
+<li>The <strong>kernel</strong>: a small, trusted type checker that verifies proof terms. The kernel
+implements the Calculus of Inductive Constructions. If the kernel accepts a term, the
+proof is correct — there is no appeal to external authority.</li>
+<li>The <strong>elaborator</strong>: a front-end that translates human-readable Lean code into the
+kernel&rsquo;s internal language. Tactics, implicit arguments, type inference, and
+metaprogramming all live in the elaborator. They make proofs easier to write without
+enlarging the trusted base.</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>Lean 4 is installed through <code>elan</code>, a toolchain manager (analogous to <code>rustup</code> for Rust):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh
+</span></span></code></pre></div><p>On Windows, download the installer from the Lean 4 releases page. After installation,
+<code>lean --version</code> confirms the setup. Projects are created with <code>lake init</code> (Lake is
+Lean&rsquo;s build system).</p>
+<p>Editor support: VS Code with the <code>lean4</code> extension provides interactive proof development
+— goals, types, and errors display inline as you write.</p>
+<h2 id="first-definitions">First definitions</h2>
+<p>A definition in Lean introduces a named value with a type:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">def</span> double <span style="color:#f92672">(</span>n <span style="color:#f92672">:</span> Nat<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> Nat <span style="color:#f92672">:</span>= n + n
+</span></span></code></pre></div><p>This defines <code>double</code> as a function from <code>Nat</code> to <code>Nat</code>. Lean checks that the body
+(<code>n + n</code>) has the declared return type.</p>
+<p>Inductive types define new data:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">inductive</span> MyBool <span style="color:#f92672">where</span>
+</span></span><span style="display:flex;"><span>  | true
+</span></span><span style="display:flex;"><span>  | false
+</span></span></code></pre></div><p>Pattern matching deconstructs inductive values:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">def</span> negate <span style="color:#f92672">:</span> MyBool → MyBool
+</span></span><span style="display:flex;"><span>  | .true  =&gt; .false
+</span></span><span style="display:flex;"><span>  | .false =&gt; .true
+</span></span></code></pre></div><h2 id="first-proofs">First proofs</h2>
+<p>A theorem is a definition whose type is a proposition:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">theorem</span> add_zero <span style="color:#f92672">(</span>n <span style="color:#f92672">:</span> Nat<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> n + <span style="color:#ae81ff">0</span> = n <span style="color:#f92672">:</span>= <span style="color:#66d9ef">by</span>
+</span></span><span style="display:flex;"><span>  simp
+</span></span></code></pre></div><p>The type <code>n + 0 = n</code> is a proposition (an element of <code>Prop</code>). The <code>by</code> keyword enters
+tactic mode. The tactic <code>simp</code> simplifies the goal using known lemmas and closes it.</p>
+<p>A proof can also be given as a term directly:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">theorem</span> add_zero&#39; <span style="color:#f92672">(</span>n <span style="color:#f92672">:</span> Nat<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> n + <span style="color:#ae81ff">0</span> = n <span style="color:#f92672">:</span>=
+</span></span><span style="display:flex;"><span>  Nat.add_zero n
+</span></span></code></pre></div><p>Here <code>Nat.add_zero</code> is a lemma from Lean&rsquo;s standard library whose type is
+<code>∀ (n : Nat), n + 0 = n</code>. Applying it to <code>n</code> produces a proof of <code>n + 0 = n</code>.</p>
+<h2 id="the-proof-state">The proof state</h2>
+<p>In tactic mode, Lean displays the current <strong>proof state</strong>: a list of hypotheses (what
+you know) and goals (what you need to prove). Each tactic transforms <a href="../../../../../../../../humanities/domains/sociology/terms/the-state.md" class="link-internal">the state</a> — it may
+close a goal, split it into subgoals, or introduce new hypotheses.</p>
+<p>Example proof state after <code>intro h</code>:</p>
+<pre tabindex="0"><code>h : P
+⊢ Q
+</code></pre><p>This reads: &ldquo;assuming <code>h : P</code>, prove <code>Q</code>.&rdquo; The tactic <code>exact proof_of_Q</code> would close
+this goal if <code>proof_of_Q</code> has type <code>Q</code> under hypothesis <code>h</code>.</p>
+<p>Interactive development means writing one tactic at a time, inspecting the proof state
+after each step, and adjusting. The VS Code extension shows <a href="../../../../../../../../humanities/domains/sociology/terms/the-state.md" class="link-internal">the state</a> live as you type.</p>
+<h2 id="what-comes-next">What comes next</h2>
+<ul>
+<li>Types and Propositions in Lean — how Lean&rsquo;s type
+system encodes mathematical structures and logical statements</li>
+<li>Tactics in Lean — the tactic language for building proofs
+interactively</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/introduction-to-lean/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li>/mathematics/disciplines/type theory/curricula/dependent types.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/lean/">Lean</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/introduction-to-lean/">Introduction to Lean</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-introduction-to-lean,
+  author    = {emsenn},
+  title     = {Introduction to Lean},
+  year      = {2026},
+  url       = {https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/introduction-to-lean/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

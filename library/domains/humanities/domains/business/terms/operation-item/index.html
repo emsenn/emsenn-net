@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-18",
+  "datePublished": "2026-03-18",
+  "description": "An OperationItem is the initial algebra of the functor F(X) = WorkUnit ⊕ List(X) — either a ground atomic WorkUnit (base case) or a Workflow wrapping a list of OperationItems (recursive case).",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/humanities/domains/business/terms/operation-item/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/">Business</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-18T00:00:00Z">2026-03-18</time>
+    
+    <span class="p-summary">An OperationItem is the initial algebra of the functor F(X) = WorkUnit ⊕ List(X) — either a ground atomic WorkUnit (base case) or a Workflow wrapping a list of OperationItems (recursive case).</span>
+  </div>
+  <div class="e-content">
+    <h1 id="operationitem">OperationItem</h1>
+<h2 id="what-this-is">What this is</h2>
+<p>An <strong>OperationItem</strong> is the carrier of the initial algebra for the functor F(X) = WorkUnit ⊕ List(X).</p>
+<p>The mathematical invariant comes from the theory of initial algebras and algebraic data types (Lambek 1968; Hagino 1987). Given a functor F: Set → Set, an <strong>F-algebra</strong> is a pair (A, α: F(A) → A). An <strong>initial F-algebra</strong> is one from which there is a unique algebra homomorphism to every other F-algebra — it is the canonical recursive type defined by F.</p>
+<p>For F(X) = WorkUnit ⊕ List(X):</p>
+<ul>
+<li>The <strong>base case</strong> is a <a href="work-unit.md" class="link-internal">WorkUnit</a> — a ground term, fully specified, atomic, not further decomposable.</li>
+<li>The <strong>recursive case</strong> is a <a href="workflow.md" class="link-internal">Workflow</a> — a list of OperationItems, each of which may itself be atomic or composite.</li>
+</ul>
+<p>By Lambek&rsquo;s theorem, the initial algebra satisfies the fixed-point equation:</p>
+<p><strong>OperationItem ≅ F(OperationItem) = WorkUnit ⊕ List(OperationItem)</strong></p>
+<p>This is exactly the type equation <code>OperationItem = WorkUnit | Workflow(OperationItem*)</code>. The isomorphism confirms that the type is well-founded: every OperationItem is either atomic or decomposes into a finite list of smaller OperationItems, terminating at WorkUnits.</p>
+<h2 id="catamorphism">Catamorphism</h2>
+<p>The canonical way to process all OperationItems in a Task is the <strong>catamorphism</strong> (fold) over this initial algebra. Given any F-algebra (B, β: F(B) → B), the unique homomorphism cata(β): OperationItem → B is:</p>
+<ul>
+<li>cata(β)(w: WorkUnit) = β(inl(w))</li>
+<li>cata(β)(wf: Workflow) = β(inr(cata(β) applied to each item in wf))</li>
+</ul>
+<p>In practice: any operation that handles both atomic and composite work items by handling the base case and recursing on the list is computing a catamorphism. Status roll-up, execution, serialization — all are catamorphisms over the OperationItem algebra.</p>
+<h2 id="commitment">Commitment</h2>
+<p>An OperationItem is <strong>committed</strong> — it has been triaged, judged actionable, and placed in a Task. Uncommitted potential work items are <a href="flatfile-agential-resource-system-idea.md" class="link-internal">FlatfileAgentialResourceSystemIdeas</a> (open terms awaiting closure). The transition from Idea to OperationItem is the act of closing the open term into a ground specification.</p>
+<h2 id="required-fields">Required fields</h2>
+<p>Every OperationItem MUST have:</p>
+<ul>
+<li><strong>An identifier</strong>: kebab-case name, unique within the file; named by what the work produces, not position</li>
+<li><strong>A title</strong>: imperative noun phrase naming what is produced</li>
+<li><strong>Added</strong>: ISO 8601 date when this item was placed in PLANS</li>
+<li><strong>Status</strong>: exactly one of <code>open</code> or <code>deferred</code>; a deferred item MUST include a reason</li>
+<li><strong>Action</strong>: one imperative sentence — the thing to do</li>
+</ul>
+<p>Every OperationItem SHOULD have:</p>
+<ul>
+<li><strong>Why</strong>: one sentence of motivation sufficient for any agent to understand why this work matters now</li>
+</ul>
+<h2 id="canonical-format">Canonical format</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#75715e">### {identifier}
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Added:**</span> YYYY-MM-DD
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Status:**</span> open | deferred
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Action:**</span> imperative sentence.
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Why:**</span> motivation sentence.
+</span></span></code></pre></div><p>When completed, an OperationItem is deleted from the file. The work is in the repo; git history is the record.</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Whether the List in F(X) = WorkUnit ⊕ List(X) should be an ordered list (preserving sequencing) or a set (unordered), and whether this choice affects the catamorphism.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/humanities/domains/business/terms/operation-item/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Component of</a></dt>
+        <dd property="emsenn:Componentof"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/task/">Task</a></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-18">2026-03-18</time></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-19">2026-03-19</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/humanities/domains/business/terms/operation-item/">OperationItem</a></dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">relational universe</dd>
+      </div><div class="relation">
+        <dt>Sub items</dt>
+        <dd property="emsenn:Subitems">relational universe</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/engineering/domains/tech/terms/uses/">Uses</a></dt>
+        <dd property="emsenn:Uses">WorkUnit, Workflow</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/humanities/domains/sociology/domains/work/terms/work/">Work unit</a></dt>
+        <dd property="emsenn:Workunit">relational universe</dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/humanities/domains/business/terms/work-unit/"></a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

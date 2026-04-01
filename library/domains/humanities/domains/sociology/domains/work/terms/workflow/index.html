@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "A directed graph of tasks — edges represent dependencies or information flow, the graph structure is the plan.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/workflow/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">A directed graph of tasks — edges represent dependencies or information flow, the graph structure is the plan.</span>
+  </div>
+  <div class="e-content">
+    <p>A workflow is a composition of <a href="./work.md" class="link-internal">work</a> units with one algebraic constraint: the initial input type equals the final output type. The workflow takes something of type X and produces something of type X, regardless of what happens internally. The internal structure is unconstrained — flat sequence, branching web, parallel paths, nested sub-workflows. What matters is the boundary: same type in, same type out.</p>
+<p>This constraint is what makes workflows composable. Two workflows on the same type can be chained. A workflow can be nested inside another workflow as a single step. A workflow can replace any work unit that has the same input and output type. The algebraic boundary makes substitution safe.</p>
+<p>The simplest workflow is a sequence: A then B then C. The simplest branching workflow adds a condition: after A, do B if X, else do C. The simplest parallel workflow runs B and C simultaneously after A, then joins at D. All workflows are combinations of these three patterns — sequence, branch, and parallel — composed into a directed graph.</p>
+<p>A workflow is not the same thing as a <a href="./task.md" class="link-internal">task</a>, though they overlap. A workflow is an algebraic concept — it specifies a composition of work with a type boundary. A task is a planning concept — it specifies a named container with a completion condition. A task may contain a workflow. A workflow may serve as a task when given a name and completion condition. But a workflow without a name or completion condition is still a valid composition of work; it just has no place in a plan. And a task containing a single work unit is a valid planning container but not a workflow in the algebraic sense.</p>
+<p>A workflow is a directed graph, and directed graphs have computable properties. Reachability: can every task be reached from the start? Boundedness: can any intermediate queue grow without limit? Liveness: can every task eventually execute, or are there deadlocks? These properties are checkable before execution — you can analyze a workflow&rsquo;s structure to find problems without running it.</p>
+<p>Petri nets formalize workflow analysis. A Petri net is a bipartite graph of places (which hold tokens representing state) and transitions (which consume and produce tokens). A transition fires when its input places have the required tokens. Workflow soundness — every case that starts eventually completes without leftover tokens — is a Petri net reachability property.</p>
+<p>A workflow is a partial order on its tasks. The dependency edges define a precedence relation: A must complete before B starts. This relation is reflexive (every task depends on itself trivially), antisymmetric (if A depends on B and B depends on A, they are the same task or there is a cycle, which is a design error), and transitive (if A before B before C, then A before C). A workflow without cycles is a directed acyclic graph — a DAG — and the dependency relation is a <a href="../../../science/domains/math/domains/order/terms/partial-order.md" class="link-internal">partial order</a>.</p>
+<p>Tasks in a workflow may be any of the four work types. A workflow of pure <a href="./process.md" class="link-internal">processes</a> is deterministic — run it and the outcome is fixed. A workflow containing <a href="./procedure.md" class="link-internal">procedures</a> branches on conditions. A workflow containing <a href="./inquiry.md" class="link-internal">inquiry</a> is adaptive — the graph may be modified during execution as inquiry reveals new information. The most rigid workflows are pure process chains. The most flexible are inquiry-containing workflows that rewrite their own structure.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/workflow/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/terms/composition/">Composed of</a></dt>
+        <dd property="emsenn:Composedof"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/task/">task</a></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/workflow/">workflow</a></dd>
+      </div><div class="relation">
+        <dt>Edges</dt>
+        <dd property="emsenn:Edges">dependency, information flow</dd>
+      </div><div class="relation">
+        <dt>Executable by</dt>
+        <dd property="emsenn:Executableby">process, procedure, agent</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/model/">Models</a></dt>
+        <dd property="emsenn:Models">petri net, directed graph, partial order</dd>
+      </div><div class="relation">
+        <dt>Properties</dt>
+        <dd property="emsenn:Properties">reachability, boundedness, liveness</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/model/">Structure</a></dt>
+        <dd property="emsenn:Structure">directed graph</dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/procedure/"></a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/process/"></a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/task/"></a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/work/"></a></li><li><a href="/library/domains/humanities/domains/business/terms/workflow/"></a></li><li><a href="/library/domains/engineering/domains/tech/terms/flatfile-agential-resource-system-wind-down-workflow/"></a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-20",
+  "datePublished": "2026-03-20",
+  "description": "An Enrollment is a triple (p, V, T) — a person p, a vessel V, and an operational period T — such that p becomes a section of V's role fiber for T: a right inverse of the role projection assigning p to a specific position r ∈ Roles(V). The enrollment act (the signing of articles, the assumption of duty) is the discrete event that constitutes the section; before it, p is not crew; after it, p is crew for T. Formally: enrollment is the act of installing a section of the role fibration over the operational period, subject to the counit law of the directed comonad — the section coheres with the presheaf structure of V across T.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/humanities/domains/business/terms/enrollment/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/">Business</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-20T00:00:00Z">2026-03-20</time>
+    
+    <span class="p-summary">An Enrollment is a triple (p, V, T) — a person p, a vessel V, and an operational period T — such that p becomes a section of V&#39;s role fiber for T: a right inverse of the role projection assigning p to a specific position r ∈ Roles(V). The enrollment act (the signing of articles, the assumption of duty) is the discrete event that constitutes the section; before it, p is not crew; after it, p is crew for T. Formally: enrollment is the act of installing a section of the role fibration over the operational period, subject to the counit law of the directed comonad — the section coheres with the presheaf structure of V across T.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#formal-definition">Formal definition</a></li>
+    <li><a href="#the-section-reading">The section reading</a></li>
+    <li><a href="#enrollment-vs-investiture">Enrollment vs. investiture</a></li>
+    <li><a href="#discharge-of-enrollment">Discharge of enrollment</a></li>
+    <li><a href="#math-grounding">Math grounding</a></li>
+    <li><a href="#open-questions">Open questions</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="enrollment">Enrollment</h1>
+<h2 id="formal-definition">Formal definition</h2>
+<p>An <strong>Enrollment</strong> is a triple <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">E</mi><mo>=</mo><mo stretchy="false">(</mo><mi>p</mi><mo separator="true">,</mo><mi>V</mi><mo separator="true">,</mo><mi>T</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{E} = (p, V, T)</annotation></semantics></math></span>:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="script">E</mi><mo>=</mo><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi></mrow><mo separator="true">,</mo><mtext>  </mtext><mi>V</mi><mo>:</mo><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi></mrow><mo separator="true">,</mo><mtext>  </mtext><mi>T</mi><mo>:</mo><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">v</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">l</mi></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{E} = (p : \mathrm{Person},\; V : \mathrm{Vessel},\; T : \mathrm{Interval})</annotation></semantics></math></span><p>together with:</p>
+<ul>
+<li>A <strong>role assignment</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mi>R</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo>∈</mo><mrow><mi mathvariant="normal">R</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi></mrow><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">r = R(p) \in \mathrm{Roles}(V)</annotation></semantics></math></span> — the specific position <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> fills in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span>&rsquo;s complement</li>
+<li>An <strong>enrollment act</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ι</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\iota_p</annotation></semantics></math></span> — the discrete event (signing of articles, assumption of duty, formal assignment) at which <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> becomes a section of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span>&rsquo;s role fiber for <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span></li>
+<li>A <strong>discharge predicate</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>δ</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\delta_p</annotation></semantics></math></span> — the condition (end of voyage, relief, death) at which the section status terminates</li>
+</ul>
+<p>The enrollment constitutes <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> as a <strong>section</strong> of the role fibration over <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span> for period <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span>: the assignment <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo>=</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">R(p) = r</annotation></semantics></math></span> is a right inverse of the role projection <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mi>r</mi></msub><mo>:</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">w</mi></mrow><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mi>T</mi><mo stretchy="false">)</mo><mo>→</mo><mrow><mi mathvariant="normal">R</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi></mrow><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_r : \mathrm{Crew}(V, T) \to \mathrm{Roles}(V)</annotation></semantics></math></span> at position <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span>. The section condition is: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mi>r</mi></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">\pi_r(R(p)) = r</annotation></semantics></math></span> — after enrollment, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> is provably in position <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span>.</p>
+<p><strong>Four invariants.</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">E</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math></span> is an enrollment iff:</p>
+<ol>
+<li>
+<p><strong>Section condition</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo>=</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">R(p) = r</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>∈</mo><mrow><mi mathvariant="normal">R</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi></mrow><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">r \in \mathrm{Roles}(V)</annotation></semantics></math></span> — <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> fills an actual role in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span>&rsquo;s complement, not a phantom position. The section condition <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mi>r</mi></msub><mo>∘</mo><mi>R</mi><mo>=</mo><msub><mrow><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow><mrow><mrow><mi mathvariant="normal">R</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi></mrow><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\pi_r \circ R = \mathrm{id}_{\mathrm{Roles}(V)}</annotation></semantics></math></span> ensures that every required role has a person assigned (<a href="../../../science/domains/math/section.md" class="link-internal">Section</a>: a right inverse of the projection).</p>
+</li>
+<li>
+<p><strong>Discreteness of enrollment act</strong>: enrollment is not continuous but instantaneous. There is a specific moment <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ι</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\iota_p</annotation></semantics></math></span> — the signing, the declaration, the formal assumption — at which <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> transitions from non-crew to crew. Before <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ι</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\iota_p</annotation></semantics></math></span>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo mathvariant="normal">∉</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">w</mi></mrow><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mi>T</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p \notin \mathrm{Crew}(V, T)</annotation></semantics></math></span>. After <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ι</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\iota_p</annotation></semantics></math></span>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>∈</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">w</mi></mrow><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mi>T</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p \in \mathrm{Crew}(V, T)</annotation></semantics></math></span> with role <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span>. This mirrors the <a href="investiture.md" class="link-internal">Investiture</a> structure: enrollment is the crew-level investiture.</p>
+</li>
+<li>
+<p><strong>Period-specificity</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span>&rsquo;s section status is bounded by <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span>. The enrollment constitutes a section for <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span> only — not an indefinite assignment. At <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span>&rsquo;s end (the discharge predicate <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>δ</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\delta_p</annotation></semantics></math></span>), the section status lapses. The bounded-period invariant is what distinguishes crew enrollment from permanent institutional membership.</p>
+</li>
+<li>
+<p><strong>Counit coherence</strong>: the enrollment section coheres with the presheaf structure of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span> across <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span>. Formally: for each restriction map <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>:</mo><msub><mi>H</mi><msup><mi>t</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></msub><mo>→</mo><msub><mi>H</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">H(f) : H_{t&#x27;} \to H_t</annotation></semantics></math></span> (for <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>≤</mo><msup><mi>t</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>≤</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">t \leq t&#x27; \leq T</annotation></semantics></math></span>), <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span>&rsquo;s role-binding at <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>t</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">t&#x27;</annotation></semantics></math></span> restricts correctly to <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span>&rsquo;s role-binding at <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span>. This is the counit law of the directed comonad (<a href="../../../science/domains/math/section.md" class="link-internal">Section</a>): <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ε</mi><mi>V</mi></msub><mo>∘</mo><msub><mi>γ</mi><mi>p</mi></msub><mo>=</mo><msub><mrow><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\varepsilon_V \circ \gamma_p = \mathrm{id}_p</annotation></semantics></math></span> — after the stepping map advances <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span>&rsquo;s state and the counit restricts it back, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span>&rsquo;s assignment is unchanged. Perfect enrollment: the person coheres with the vessel across time.</p>
+</li>
+</ol>
+<h2 id="the-section-reading">The section reading</h2>
+<p><a href="../../../science/domains/math/section.md" class="link-internal">Section</a> in the fibration sense: given the role fibration <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi><mo>:</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">w</mi></mrow><mo>→</mo><mrow><mi mathvariant="normal">R</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi></mrow><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi : \mathrm{Crew} \to \mathrm{Roles}(V)</annotation></semantics></math></span> that projects each crew member to their assigned role, an enrollment of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> into role <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span> is a section <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>r</mi></msub><mo>:</mo><mo stretchy="false">{</mo><mi>r</mi><mo stretchy="false">}</mo><mo>→</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">w</mi></mrow></mrow><annotation encoding="application/x-tex">s_r : \{r\} \to \mathrm{Crew}</annotation></semantics></math></span> with <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi><mo>∘</mo><msub><mi>s</mi><mi>r</mi></msub><mo>=</mo><msub><mrow><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow><mrow><mo stretchy="false">{</mo><mi>r</mi><mo stretchy="false">}</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\pi \circ s_r = \mathrm{id}_{\{r\}}</annotation></semantics></math></span>. The section assigns to the position <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span> the person <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><msub><mi>s</mi><mi>r</mi></msub><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p = s_r(r)</annotation></semantics></math></span> who fills it.</p>
+<p>The section condition is the minimal structural occupancy condition. It says:</p>
+<ul>
+<li><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> is in the correct fiber (the role <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span> position in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span>)</li>
+<li>The assignment is right-invertible: knowing the role, you can recover the person</li>
+</ul>
+<p>The section condition says nothing about dynamics (how <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> came to be enrolled), obligation (whether <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> is fulfilling their duties), or performance (how well <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> is executing role <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span>). Those dimensions are added by <a href="duty.md" class="link-internal">Duty</a> (the deontic obligations of the role), <a href="discharge.md" class="link-internal">Discharge</a> (performance recognition), and <a href="../../../science/domains/math/serving.md" class="link-internal">Serving</a> (the ongoing act of service).</p>
+<h2 id="enrollment-vs-investiture">Enrollment vs. investiture</h2>
+<p><a href="investiture.md" class="link-internal">Investiture</a> installs an agent into a <strong>formal office</strong> with a Hohfeldian deontic profile — a position in the normative system. Enrollment installs a person into a <strong>role in a crew</strong> for a bounded operational period. The structures are related but distinct:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Dimension</th>
+          <th>Investiture</th>
+          <th>Enrollment</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Scope</td>
+          <td>Formal office with deontic profile</td>
+          <td>Operational role in a vessel&rsquo;s complement</td>
+      </tr>
+      <tr>
+          <td>Duration</td>
+          <td>Until relief act <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>I</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">I^{-1}</annotation></semantics></math></span></td>
+          <td>Bounded by operational period <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span></td>
+      </tr>
+      <tr>
+          <td>Constituting act</td>
+          <td>Installation ceremony / orders</td>
+          <td>Articles of agreement / duty assignment</td>
+      </tr>
+      <tr>
+          <td>What persists</td>
+          <td>The office and its deontic profile</td>
+          <td>The vessel&rsquo;s complement schema</td>
+      </tr>
+      <tr>
+          <td>Math grounding</td>
+          <td>Section of duty-fibration</td>
+          <td>Section of role-fibration</td>
+      </tr>
+  </tbody>
+</table>
+<p>A commanding officer is both invested (holds a formal command office) and enrolled (serves as crew for the voyage). For ordinary crew, enrollment creates the role-section; investiture into the command office is the additional step that creates the authority section.</p>
+<h2 id="discharge-of-enrollment">Discharge of enrollment</h2>
+<p>The section status terminates when the discharge predicate <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>δ</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\delta_p</annotation></semantics></math></span> is satisfied:</p>
+<ul>
+<li><strong>Voyage completion</strong>: the articles of agreement close at the end of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span>; all crew sections lapse simultaneously</li>
+<li><strong>Individual relief</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> is relieved from their role; the section <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>r</mi></msub><mo>↦</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">s_r \mapsto p</annotation></semantics></math></span> is replaced by <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>r</mi></msub><mo>↦</mo><msup><mi>p</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">s_r \mapsto p&#x27;</annotation></semantics></math></span> for the relief crew member <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">p&#x27;</annotation></semantics></math></span></li>
+<li><strong>Death or incapacity</strong>: the section lapses; the role position becomes vacant; complement coverage may fail</li>
+</ul>
+<p>At discharge, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> leaves the crew fiber for <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span> and returns to the pool of persons. The vessel <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span> continues; the section <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>r</mi></msub></mrow><annotation encoding="application/x-tex">s_r</annotation></semantics></math></span> is vacant until a new enrollment fills it.</p>
+<h2 id="math-grounding">Math grounding</h2>
+<p>The enrollment structure grounds in two math concepts:</p>
+<p><strong><a href="../../../science/domains/math/section.md" class="link-internal">Section</a></strong>: the abstract section condition <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>∘</mo><mi>s</mi><mo>=</mo><mrow><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow></mrow><annotation encoding="application/x-tex">p \circ s = \mathrm{id}</annotation></semantics></math></span> is what enrollment instantiates. The role fibration <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi><mo>:</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">w</mi></mrow><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>→</mo><mrow><mi mathvariant="normal">R</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi></mrow><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi : \mathrm{Crew}(V) \to \mathrm{Roles}(V)</annotation></semantics></math></span> is the fibration; enrollment is the section. The counit law (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ε</mi><mi>X</mi></msub><mo>∘</mo><mi>γ</mi><mo>=</mo><msub><mrow><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow><mi>X</mi></msub></mrow><annotation encoding="application/x-tex">\varepsilon_X \circ \gamma = \mathrm{id}_X</annotation></semantics></math></span>) is the period-coherence condition: the enrolled person&rsquo;s assignment advances with the vessel&rsquo;s history and restricts correctly.</p>
+<p><strong><a href="../../../science/domains/math/natural-transformation.md" class="link-internal">Natural Transformation</a></strong>: a person&rsquo;s enrollment across the operational period <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span> is a natural transformation <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>T</mi></msub><mo>:</mo><mn mathvariant="bold">1</mn><mo>⇒</mo><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">w</mi></mrow><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mo>−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p_T : \mathbf{1} \Rightarrow \mathrm{Crew}(V, -)</annotation></semantics></math></span> from the terminal presheaf to the crew presheaf — a coherent assignment of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> to the vessel&rsquo;s crew at every history in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span>, compatible with the restriction maps.</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Whether collective enrollment (all crew members signing articles simultaneously) is the categorical product of individual enrollments, or whether the articles constitute the crew as a unit (a limit of the individual sections) with additional coherence conditions not present in the product.</li>
+<li>Whether the minimum complement condition <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mrow><mi mathvariant="normal">C</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">w</mi></mrow><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mi>T</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi><mo>≥</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">|\mathrm{Crew}(V,T)| \geq k</annotation></semantics></math></span> has a formal expression in terms of the section coverage: whether a vessel below minimum complement fails to have a jointly surjective family of sections — and whether joint surjectivity is a covering condition in the site topology <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math></span> of the vessel.</li>
+<li>Whether enrollment into command position (the first officer or captain&rsquo;s section) has a special structure — a distinguished section among the crew sections — and whether the distinction corresponds to the section being in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>H</mi><msup><mi>t</mi><mo>∗</mo></msup><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">H^*_{t^*}</annotation></semantics></math></span> (doubly settled) rather than merely in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><msup><mi>t</mi><mo>∗</mo></msup></msub></mrow><annotation encoding="application/x-tex">H_{t^*}</annotation></semantics></math></span>.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/humanities/domains/business/terms/enrollment/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Ast</dt>
+        <dd property="emsenn:Ast"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-20">2026-03-20</time></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-20">2026-03-20</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/humanities/domains/business/terms/enrollment/">Enrollment</a></dd>
+      </div><div class="relation">
+        <dt>Operational period</dt>
+        <dd property="emsenn:Operationalperiod">relational history</dd>
+      </div><div class="relation">
+        <dt>Output</dt>
+        <dd property="emsenn:Output">relational history fiber fixed layer</dd>
+      </div><div class="relation">
+        <dt><a href="/library/terms/person/">Person</a></dt>
+        <dd property="emsenn:Person"><a href="/library/terms/person/">person</a></dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related">Crew, Vessel, Person, Investiture, Act, Section, Discharge</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/terms/role/">Role</a></dt>
+        <dd property="emsenn:Role">relational universe fiber proposition</dd>
+      </div><div class="relation">
+        <dt><a href="/library/terms/vessel/">Vessel</a></dt>
+        <dd property="emsenn:Vessel"><a href="/library/terms/vessel/">vessel</a></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "description": "A Shape is a predicate constraint that classifies RelationalEntities: what any RelationsSystem must have to satisfy U_G condition 5 (subobject classification).",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/terms/relational-system-shape/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    
+    
+    <span class="p-summary">A Shape is a predicate constraint that classifies RelationalEntities: what any RelationsSystem must have to satisfy U_G condition 5 (subobject classification).</span>
+  </div>
+  <div class="e-content">
+    <h1 id="relational-system-shape">Relational System Shape</h1>
+<h2 id="what-it-is">What it is</h2>
+<p>A <strong>RelationalSystemShape</strong> is a constraint specification that classifies entities in <a href="relations-system.md" class="link-internal">R</a> by which predicates they carry and what those predicates must satisfy.
+It is what it means, in a RelationsSystem, for the object class to be closed under subobject formation — <a href="../../../science/domains/math/universe-object-class-generative-closure.md" class="link-internal">generative-closure</a> condition 5.</p>
+<p>A shape does not classify by declared type.
+It classifies by predicates: any entity that carries a given predicate is a target of that predicate&rsquo;s shape, regardless of what else it is.
+What an entity IS is determined by which predicates it has, not by a category it declares membership in.</p>
+<p>A shape is itself a <a href="relational-entity.md" class="link-internal">RelationalEntity</a>: it has <code>id</code> and <code>description</code> and is in R.
+The system can validate shapes using shapes.
+This is the self-referential closure condition 5 requires: the subobject classifier Ω is an object of R.</p>
+<h2 id="one-shape-per-predicate">One shape per predicate</h2>
+<p>The constraint for predicate <code>P</code> lives in exactly one shape, targeting every entity that carries <code>P</code>.
+Multiple predicates on a single entity engage multiple shapes independently.
+An entity is never globally &ldquo;valid&rdquo; or &ldquo;invalid&rdquo; — it satisfies some shapes and not others, depending on which predicates it has.
+Validity is always relative to the shapes applicable at the current predicate set.
+A RelationalSystemShape CANNOT target entities by declared class membership.
+It CANNOT duplicate constraints already expressed by another shape — each shape is responsible for exactly one predicate.
+It CANNOT depend on predicates that are not themselves specced entities.</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Whether shapes compose: if an entity carries both <code>id</code> and <code>defines</code>, is there a combined shape more than the sum of the two individual shapes?
+The current per-predicate model does not address composition.</li>
+<li>Whether the shape for a predicate should constrain the predicate value&rsquo;s own required predicates (object constraints), or whether that is expressed by the value&rsquo;s own shape.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/terms/relational-system-shape/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/terms/relational-system-shape/">RelationalSystemShape</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dd property="emsenn:Extends">RelationalEntity</dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related">GenerativeClosure</dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/terms/flatfile-agential-resource-system-shape/"></a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>
