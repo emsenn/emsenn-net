@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emsenn.net</title>
+    <link>https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/</link>
+    <description>Recent content on emsenn.net</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>pattern matching</title>
+      <link>https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/pattern-matching/</link>
+      <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/pattern-matching/</guid>
+      <description>&lt;p&gt;Pattern matching in Agda is dependent: when you match on a constructor, the type checker refines the types of all other variables in scope to reflect the information gained.&lt;/p&gt;&#xA;&lt;p&gt;For example, matching a value of type &lt;code&gt;Vec A (suc n)&lt;/code&gt; against the constructor &lt;code&gt;x ∷ xs&lt;/code&gt; tells the checker that the length is &lt;code&gt;suc n&lt;/code&gt;, and &lt;code&gt;xs&lt;/code&gt; has type &lt;code&gt;Vec A n&lt;/code&gt;. This refinement happens automatically and is checked for completeness — you must handle every constructor.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>standard library</title>
+      <link>https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/standard-library/</link>
+      <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/standard-library/</guid>
+      <description>&lt;p&gt;The Agda standard library (&lt;code&gt;agda-stdlib&lt;/code&gt;) provides formalized definitions and proofs for common mathematical and computational structures. It covers:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Data types&lt;/strong&gt;: natural numbers, integers, lists, vectors, finite sets, strings.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Relations&lt;/strong&gt;: binary relations, equivalence relations, &lt;a href=&#34;../../../../../../mathematics/objects/posets/terms/partial-order.md&#34; class=&#34;link-internal&#34;&gt;partial orders&lt;/a&gt;, total orders, decidability.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Algebra&lt;/strong&gt;: monoids, groups, rings, &lt;a href=&#34;../../../../../../mathematics/objects/posets/terms/lattice.md&#34; class=&#34;link-internal&#34;&gt;lattices&lt;/a&gt;, with an algebraic hierarchy using record types.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Logic&lt;/strong&gt;: propositional logic, predicate logic, decidability, classical axioms (importable but not default).&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Category theory&lt;/strong&gt;: basic definitions of categories, &lt;a href=&#34;../../../../../../mathematics/objects/categories/ordinary-categories/terms/functor.md&#34; class=&#34;link-internal&#34;&gt;functors&lt;/a&gt;, &lt;a href=&#34;../../../../../../mathematics/objects/categories/ordinary-categories/terms/natural-transformation.md&#34; class=&#34;link-internal&#34;&gt;natural transformations&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The standard library is smaller and more manually curated than Lean&amp;rsquo;s &lt;a href=&#34;../../lean/terms/Mathlib.md&#34; class=&#34;link-internal&#34;&gt;Mathlib&lt;/a&gt;. Where Mathlib aims for broad coverage with automation, agda-stdlib emphasizes explicit, readable definitions that stay close to the underlying type theory.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>universe level</title>
+      <link>https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/universe-level/</link>
+      <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/universe-level/</guid>
+      <description>&lt;p&gt;In Agda, types are organized into a hierarchy of universes to avoid paradoxes. The base universe is &lt;code&gt;Set&lt;/code&gt; (also written &lt;code&gt;Set₀&lt;/code&gt;), which contains ordinary types like &lt;code&gt;Nat&lt;/code&gt;, &lt;code&gt;Bool&lt;/code&gt;, and &lt;code&gt;List Nat&lt;/code&gt;. The type &lt;code&gt;Set&lt;/code&gt; itself belongs to &lt;code&gt;Set₁&lt;/code&gt;, which belongs to &lt;code&gt;Set₂&lt;/code&gt;, and so on:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Nat : Set&#xD;&#xA;Set : Set₁&#xD;&#xA;Set₁ : Set₂&#xD;&#xA;...&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This stratification prevents Russell&amp;rsquo;s paradox: no universe contains itself.&lt;/p&gt;&#xA;&lt;p&gt;Agda supports &lt;strong&gt;universe polymorphism&lt;/strong&gt; — definitions can be parameterized over a universe level variable &lt;code&gt;ℓ&lt;/code&gt;, allowing them to work at any level:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

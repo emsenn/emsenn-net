@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dependent Types in Agda - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "dateModified": "2026-03-01",
+  "datePublished": "2026-03-01",
+  "description": "Dependent function types (Pi-types) In Agda, every function type can be dependent. The syntax:\nf : (x : A) → B x declares a function where the return type B x depends on the input value x. When the return type does not depend on the input, this reduces to the ordinary function type A → B.\nExample. A function that returns a type based on a boolean:\nT : Bool → Set T true = Nat T false = String A function using this:\n",
+  "keywords": "Agda",
+  "name": "Dependent Types in Agda",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "teaches": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Dependent Types in Agda"
+    }
+  ],
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/dependent-types-in-agda/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="lesson">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/">Formal math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/">Agda</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/">Texts</a></nav>
+  <h1 class="p-name">Dependent Types in Agda</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-01T00:00:00Z">2026-03-01</time>
+    
+    
+  </div>
+  
+  <div class="type-meta type-meta--objectives">
+    <span class="type-meta-label">Learning objectives</span>
+    <ul><li>Dependent Types in Agda</li></ul>
+  </div>
+  
+  
+  <div class="type-meta type-meta--prereqs">
+    <span class="type-meta-label">Prerequisites</span>
+    <ul><li>/technology/disciplines/computing/software/agda/curricula/introduction-to-agda.md</li><li>/mathematics/disciplines/type-theory/curricula/dependent-types.md</li></ul>
+  </div>
+  <details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#dependent-function-types-pi-types">Dependent function types (Pi-types)</a></li>
+    <li><a href="#indexed-families">Indexed families</a></li>
+    <li><a href="#sigma-types-dependent-pairs">Sigma-types (dependent pairs)</a></li>
+    <li><a href="#implicit-arguments">Implicit arguments</a></li>
+    <li><a href="#instance-arguments">Instance arguments</a></li>
+    <li><a href="#the-with-abstraction">The with-abstraction</a></li>
+    <li><a href="#what-comes-next">What comes next</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h2 id="dependent-function-types-pi-types">Dependent function types (Pi-types)</h2>
+<p>In Agda, every function type can be dependent. The syntax:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">f</span> <span style="color:#f92672">:</span> <span style="color:#f92672">(</span>x <span style="color:#f92672">:</span> A<span style="color:#f92672">)</span> <span style="color:#f92672">→</span> B x
+</span></span></code></pre></div><p>declares a function where the return type <code>B x</code> depends on the input value <code>x</code>. When the
+return type does not depend on the input, this reduces to the ordinary function type
+<code>A → B</code>.</p>
+<p><strong>Example.</strong> A function that returns a type based on a boolean:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">T</span> <span style="color:#f92672">:</span> Bool <span style="color:#f92672">→</span> <span style="color:#66d9ef">Set</span>
+</span></span><span style="display:flex;"><span>T true  <span style="color:#f92672">=</span> Nat
+</span></span><span style="display:flex;"><span>T false <span style="color:#f92672">=</span> String
+</span></span></code></pre></div><p>A function using this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">choose</span> <span style="color:#f92672">:</span> <span style="color:#f92672">(</span>b <span style="color:#f92672">:</span> Bool<span style="color:#f92672">)</span> <span style="color:#f92672">→</span> T b
+</span></span><span style="display:flex;"><span>choose true  <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>choose false <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello&#34;</span>
+</span></span></code></pre></div><p>The return type changes depending on the input. The type checker verifies that each clause
+returns a value of the correct type.</p>
+<h2 id="indexed-families">Indexed families</h2>
+<p>An indexed family is a type parameterized by values, not just other types. The classic
+example is length-indexed vectors:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> Vec <span style="color:#f92672">(</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">)</span> <span style="color:#f92672">:</span> Nat <span style="color:#f92672">→</span> <span style="color:#66d9ef">Set</span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">[]</span>  <span style="color:#f92672">:</span> Vec A zero
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">_∷_</span> <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>n <span style="color:#f92672">:</span> Nat<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> Vec A n <span style="color:#f92672">→</span> Vec A <span style="color:#f92672">(</span>suc n<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>The type <code>Vec A n</code> encodes its length <code>n</code> in the type. The empty vector has type
+<code>Vec A zero</code>; consing an element to a vector of length <code>n</code> produces a vector of length
+<code>suc n</code>.</p>
+<p>This lets you write functions whose types guarantee properties:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">head</span> <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">{</span>n <span style="color:#f92672">:</span> Nat<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> Vec A <span style="color:#f92672">(</span>suc n<span style="color:#f92672">)</span> <span style="color:#f92672">→</span> A
+</span></span><span style="display:flex;"><span>head <span style="color:#f92672">(</span>x ∷ _<span style="color:#f92672">)</span> <span style="color:#f92672">=</span> x
+</span></span></code></pre></div><p>The type <code>Vec A (suc n)</code> guarantees the vector is non-empty. The <code>[]</code> case is impossible
+— the type checker knows this and does not require it.</p>
+<h2 id="sigma-types-dependent-pairs">Sigma-types (dependent pairs)</h2>
+<p>Agda represents dependent pairs with record types or the <code>Σ</code> type:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">record</span> Σ <span style="color:#f92672">(</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>B <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">)</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span> _,_
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">field</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fst</span> <span style="color:#f92672">:</span> A
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">snd</span> <span style="color:#f92672">:</span> B fst
+</span></span></code></pre></div><p>An element of <code>Σ A B</code> is a pair <code>(a , b)</code> where <code>a : A</code> and <code>b : B a</code>. Under
+Curry-Howard, this encodes existential quantification: &ldquo;there exists an <code>a : A</code> such that
+<code>B a</code> holds.&rdquo;</p>
+<p><strong>Example.</strong> The type of even numbers:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">Even</span> <span style="color:#f92672">:</span> Nat <span style="color:#f92672">→</span> <span style="color:#66d9ef">Set</span>
+</span></span><span style="display:flex;"><span>Even n <span style="color:#f92672">=</span> Σ Nat <span style="color:#f92672">(</span><span style="color:#f92672">λ</span> k <span style="color:#f92672">→</span> n ≡ k + k<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">six-is-even</span> <span style="color:#f92672">:</span> Even <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>six-is-even <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> , refl
+</span></span></code></pre></div><p>The witness is <code>3</code>, and the proof is <code>refl</code> because <code>6 ≡ 3 + 3</code> holds by computation.</p>
+<h2 id="implicit-arguments">Implicit arguments</h2>
+<p>Agda uses curly braces for implicit arguments — arguments that the type checker infers:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">id</span> <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> A
+</span></span><span style="display:flex;"><span>id x <span style="color:#f92672">=</span> x
+</span></span></code></pre></div><p>When calling <code>id</code>, you do not supply <code>A</code> — Agda infers it from the argument:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">example</span> <span style="color:#f92672">:</span> Nat
+</span></span><span style="display:flex;"><span>example <span style="color:#f92672">=</span> id <span style="color:#ae81ff">42</span>  <span style="color:#75715e">-- A is inferred as Nat</span>
+</span></span></code></pre></div><p>You can supply implicit arguments explicitly with braces: <code>id {Nat} 42</code>.</p>
+<p>Implicit arguments reduce syntactic noise in dependently typed code, where many parameters
+are determined by other arguments.</p>
+<h2 id="instance-arguments">Instance arguments</h2>
+<p>Agda also supports instance arguments (in double braces <code>{{...}}</code>), which are resolved by
+instance search — similar to Lean&rsquo;s type class inference. This is used for algebraic
+structures:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">record</span> Monoid <span style="color:#f92672">(</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">)</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">field</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ε</span>   <span style="color:#f92672">:</span> A
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">_·_</span> <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> A
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">-- ... axioms</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fold</span> <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">→</span> <span style="color:#f92672">{{</span>Monoid A<span style="color:#f92672">}}</span> <span style="color:#f92672">→</span> List A <span style="color:#f92672">→</span> A
+</span></span></code></pre></div><p>The <code>Monoid</code> instance is found automatically when one is in scope.</p>
+<h2 id="the-with-abstraction">The with-abstraction</h2>
+<p>The <code>with</code> keyword lets you pattern-match on an intermediate computation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">filter</span> <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">→</span> <span style="color:#f92672">(</span>A <span style="color:#f92672">→</span> Bool<span style="color:#f92672">)</span> <span style="color:#f92672">→</span> List A <span style="color:#f92672">→</span> List A
+</span></span><span style="display:flex;"><span>filter p []       <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>filter p <span style="color:#f92672">(</span>x ∷ xs<span style="color:#f92672">)</span> <span style="color:#66d9ef">with</span> p x
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span> <span style="color:#f92672">|</span> true  <span style="color:#f92672">=</span> x ∷ filter p xs
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span> <span style="color:#f92672">|</span> false <span style="color:#f92672">=</span> filter p xs
+</span></span></code></pre></div><p>In proof contexts, <code>with</code> is used to inspect a decision procedure&rsquo;s result:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">decide-eq</span> <span style="color:#f92672">:</span> <span style="color:#f92672">(</span>m n <span style="color:#f92672">:</span> Nat<span style="color:#f92672">)</span> <span style="color:#f92672">→</span> Dec <span style="color:#f92672">(</span>m ≡ n<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Matching on the result with <code>with decide-eq m n</code> gives you either a proof of <code>m ≡ n</code> or
+a proof of <code>¬ (m ≡ n)</code>.</p>
+<h2 id="what-comes-next">What comes next</h2>
+<ul>
+<li>Proving in Agda — equational reasoning chains, congruence, and
+structuring mathematical proofs</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/dependent-types-in-agda/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
+      </div><div class="relation">
+        <dt>Readiness</dt>
+        <dd property="emsenn:Readiness">shaped</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li>/technology/disciplines/computing/software/agda/curricula/introduction to agda.md</li><li>/mathematics/disciplines/type theory/curricula/dependent types.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/agda/">Agda</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/dependent-types-in-agda/">Dependent Types in Agda</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-dependent-types-in-agda,
+  author    = {emsenn},
+  title     = {Dependent Types in Agda},
+  year      = {2026},
+  url       = {https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/dependent-types-in-agda/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

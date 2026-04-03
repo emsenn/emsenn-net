@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-01",
+  "datePublished": "2026-04-01",
+  "description": "A user-defined action that fires automatically when a specific system event occurs — the mechanism by which a user extends system behavior without modifying the system itself.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/terms/hook/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-01T00:00:00Z">2026-04-01</time>
+    
+    <span class="p-summary">A user-defined action that fires automatically when a specific system event occurs — the mechanism by which a user extends system behavior without modifying the system itself.</span>
+  </div>
+  <div class="e-content">
+    <p>A hook is a user-defined action that fires automatically when a specific system event occurs. The system defines the events. The user defines what happens when they fire. This separation — the system controls when, the user controls what — is what makes hooks a mechanism for extension without modification.</p>
+<p>The pattern originates in operating systems. Unix signals (Dennis MacAlistair Ritchie and Kenneth Lane Thompson, 1971) allowed a process to register a handler for a system event like <code>SIGTERM</code> or <code>SIGINT</code>. The operating system raises the signal; the process&rsquo;s registered handler runs. The Emacs text editor (Richard Matthew Stallman, 1976) generalized this into named hook variables: <code>before-save-hook</code>, <code>after-init-hook</code>, and hundreds of others. Each hook is a list of functions. When the event occurs, Emacs calls every function on the list. Users customize Emacs by adding functions to hooks rather than modifying Emacs itself.</p>
+<p>Git adopted the convention for version control. A git hook is a script in <code>.git/hooks/</code> that runs when a specific git event occurs — <code>pre-commit</code> before a commit is created, <code>post-merge</code> after a merge completes, <code>pre-push</code> before pushing to a remote. If the hook script exits with a non-zero status, the operation is aborted. This gives hooks veto power: a <code>pre-commit</code> hook can prevent a commit that fails linting or contains secrets.</p>
+<p>In agentic systems like Claude Code, hooks are shell commands configured in <code>.claude/settings.json</code> that fire on tool-use events. A hook can run before or after a tool call, inspect the tool&rsquo;s parameters, and allow, modify, or block the operation. Hooks differ from <a href="./rule.md" class="link-internal">rules</a> in that rules shape the agent&rsquo;s reasoning continuously, while hooks intercept specific system events. Hooks differ from <a href="./command.md" class="link-internal">commands</a> in that commands are explicitly invoked by a user, while hooks fire without user action. Hooks differ from <a href="./skill.md" class="link-internal">skills</a> in that skills provide knowledge for the agent to use, while hooks execute external code the agent does not control.</p>
+<p>The power of hooks is that they compose. Multiple hooks can attach to the same event. Each runs independently. The system&rsquo;s extended behavior is the product of all registered hooks, just as the behavior of a rule-based system is the product of all active <a href="./rule.md" class="link-internal">rules</a>. Adding a hook does not require modifying existing hooks or the system itself.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/terms/hook/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-01">2026-04-01</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/terms/hook/">hook</a></dd>
+      </div><div class="relation">
+        <dt>Distinguished from</dt>
+        <dd property="emsenn:Distinguishedfrom"><ul><li><a href="/library/domains/engineering/domains/tech/terms/rule/">rule</a></li><li><a href="/library/domains/engineering/domains/tech/terms/command/">command</a></li><li><a href="/library/domains/engineering/domains/tech/terms/skill/">skill</a></li></ul></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dd property="emsenn:Extends">callback</dd>
+      </div><div class="relation">
+        <dt>Instances</dt>
+        <dd property="emsenn:Instances"><ul><li>pre commit hook</li><li>post tool use hook</li><li>pre build hook</li></ul></dd>
+      </div><div class="relation">
+        <dt>Made of</dt>
+        <dd property="emsenn:Madeof"><ul><li><a href="/library/domains/science/domains/math/domains/probability/terms/event/">event</a></li><li><a href="/library/domains/science/domains/math/terms/action/">action</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Readiness</dt>
+        <dd property="emsenn:Readiness">shaped</dd>
+      </div><div class="relation">
+        <dt>Triggered by</dt>
+        <dd property="emsenn:Triggeredby"><a href="/library/domains/science/domains/math/domains/probability/terms/event/">event</a></dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/terms/command/"></a></li><li><a href="/library/domains/engineering/domains/tech/terms/rule/"></a></li><li><a href="/library/domains/engineering/domains/tech/terms/skill/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/texts/claude-code-extension-architecture/">Extension Architecture in Claude Code</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/domains/claude-code/terms/hooks/">Hooks</a></li><li><a href="/library/domains/humanities/domains/writing/domains/essay-writing/terms/hook/">Hook</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

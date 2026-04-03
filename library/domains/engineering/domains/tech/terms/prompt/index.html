@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-01",
+  "datePublished": "2026-04-01",
+  "description": "An input that directs an agent's behavior by specifying what to do, how to do it, or what constraints to observe — the primary interface between a principal and an agent in language-based systems.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/terms/prompt/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-01T00:00:00Z">2026-04-01</time>
+    
+    <span class="p-summary">An input that directs an agent&#39;s behavior by specifying what to do, how to do it, or what constraints to observe — the primary interface between a principal and an agent in language-based systems.</span>
+  </div>
+  <div class="e-content">
+    <p>A prompt is an input that directs an <a href="./agent.md" class="link-internal">agent</a>&rsquo;s behavior by specifying what to do, how to do it, or what constraints to observe. In a language-based system, the prompt is the primary interface between a principal and an agent — it is how the principal communicates intent.</p>
+<p>The word comes from theater. A prompter sits offstage and feeds lines to actors who have forgotten them. The prompter does not perform; the prompter tells the performer what to say next. The theatrical sense carries into computing: a shell prompt (<code>$</code>, <code>&gt;</code>) tells the user the system is waiting for input. The command prompt is not itself a <a href="./command.md" class="link-internal">command</a> — it is the invitation to give one.</p>
+<p>In artificial intelligence, prompting became a central technique with the development of large language models. Rather than training a model for each specific task, researchers discovered that providing the right input text could steer a general model toward specific behavior. Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia, Ed Chi, Quoc Le, and Denny Zhou demonstrated in &ldquo;Chain-of-Thought Prompting Elicits Reasoning in Large Language Models&rdquo; (2022) that including reasoning steps in a prompt caused models to produce reasoning steps in their output. The prompt shapes the response not by changing the model but by changing what the model conditions on.</p>
+<p>A prompt has three components. Instructions specify what the agent should do — the task, the format, the goal. Context provides information the agent needs — background, examples, relevant state. Constraints specify what the agent must not do — boundaries, safety requirements, scope limits. A well-constructed prompt balances all three: enough instruction to direct, enough context to inform, enough constraint to bound.</p>
+<p>In agentic systems, prompts compose. A system prompt sets baseline behavior for all interactions. <a href="./rule.md" class="link-internal">Rules</a> inject standing constraints. <a href="./skill.md" class="link-internal">Skills</a> inject domain-specific knowledge when activated. A user prompt specifies the immediate task. The agent&rsquo;s effective prompt is the composition of all these layers — system, rules, skills, and user input merged into a single context that governs the agent&rsquo;s next action. This layered composition is why agentic systems can be customized without modifying the agent itself: each layer adds to the prompt without replacing what came before.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/terms/prompt/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-01">2026-04-01</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/terms/prompt/">prompt</a></dd>
+      </div><div class="relation">
+        <dt>Distinguished from</dt>
+        <dd property="emsenn:Distinguishedfrom"><ul><li><a href="/library/domains/engineering/domains/tech/terms/command/">command</a></li><li><a href="/library/domains/engineering/domains/tech/terms/rule/">rule</a></li><li><a href="/library/domains/engineering/domains/tech/terms/skill/">skill</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Governs</dt>
+        <dd property="emsenn:Governs"><a href="/library/domains/engineering/domains/tech/terms/agent/">agent</a></dd>
+      </div><div class="relation">
+        <dt>Instances</dt>
+        <dd property="emsenn:Instances"><ul><li>system prompt</li><li>user prompt</li><li>skill prompt</li></ul></dd>
+      </div><div class="relation">
+        <dt>Made of</dt>
+        <dd property="emsenn:Madeof"><ul><li>instruction</li><li>context</li><li>constraint</li></ul></dd>
+      </div><div class="relation">
+        <dt>Readiness</dt>
+        <dd property="emsenn:Readiness">shaped</dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/system-prompt/">System Prompt</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

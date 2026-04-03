@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-01",
+  "datePublished": "2026-03-01",
+  "description": "Translate a mathematical statement into Agda and produce a verified proof term. Always check the write-formal-proof skill first for the anti-slop protocol.",
+  "keywords": "Agda, FormalVerification",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/write-agda-proof/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="operational">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/">Formal math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/software/domains/agda/">Agda</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/">Texts</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-01T00:00:00Z">2026-03-01</time>
+    
+    <span class="p-summary">Translate a mathematical statement into Agda and produce a verified proof term. Always check the write-formal-proof skill first for the anti-slop protocol.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#agda-specific-workflow">Agda-specific workflow</a></li>
+    <li><a href="#common-agda-patterns">Common Agda patterns</a></li>
+    <li><a href="#universe-level-conventions">Universe level conventions</a></li>
+    <li><a href="#semiotic-universe-conventions">Semiotic universe conventions</a></li>
+    <li><a href="#external-libraries">External libraries</a></li>
+    <li><a href="#anti-slop-agda-specific">Anti-slop (Agda-specific)</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="write-agda-proof">Write Agda Proof</h1>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Read the <a href="/mathematics/concepts/proof/skills/write-formal-proof/SKILL.md" class="link-internal">write-formal-proof</a> skill first. It contains the anti-slop checklist that must pass before any proof is considered complete.</p>
+<h2 id="agda-specific-workflow">Agda-specific workflow</h2>
+<ol>
+<li>
+<p><strong>State the proposition</strong> as an Agda type signature with explicit
+universe levels and parameters.</p>
+</li>
+<li>
+<p><strong>Identify standard library imports.</strong> Common ones:</p>
+<ul>
+<li><code>Relation.Binary.PropositionalEquality</code> — <code>_≡_</code>, <code>refl</code>, <code>cong</code>,
+<code>sym</code>, <code>trans</code>, <code>subst</code></li>
+<li><code>Data.Nat</code>, <code>Data.List</code> — basic data types</li>
+<li><code>Data.Product</code> — <code>_×_</code>, <code>_,_</code>, <code>proj₁</code>, <code>proj₂</code></li>
+<li><code>Data.Sum</code> — <code>_⊎_</code>, <code>inj₁</code>, <code>inj₂</code></li>
+<li><code>Level</code> — universe level management</li>
+<li><code>Function</code> — <code>id</code>, <code>_∘_</code>, <code>case_of_</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Write the proof as a function definition.</strong> Agda has no tactic
+mode — proofs are terms. Use:</p>
+<ul>
+<li>Pattern matching for case analysis</li>
+<li><code>where</code> clauses for helper lemmas</li>
+<li>Equational reasoning chains for multi-step equalities</li>
+<li><code>trans</code> chains: <code>trans step1 (trans step2 step3)</code></li>
+<li><code>cong f eq</code> to lift equality through a function</li>
+</ul>
+</li>
+<li>
+<p><strong>Use holes (<code>{!!}</code>) during development</strong> to inspect goal types.
+Replace all holes before considering the proof complete.
+Auto-case split with <code>C-c C-c</code> in an Agda-mode editor.</p>
+</li>
+<li>
+<p><strong>Verify type-checking:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>LC_ALL<span style="color:#f92672">=</span>C.UTF-8 agda SemioticUniverse/Everything.agda
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="common-agda-patterns">Common Agda patterns</h2>
+<p><strong>Dealing with name ambiguity:</strong>
+When importing both <code>Level</code> and <code>Data.Nat</code>, <code>suc</code> becomes ambiguous.
+Fix: <code>open import Level renaming (suc to lsuc)</code>.</p>
+<p><strong>Records vs modules:</strong></p>
+<ul>
+<li><code>record</code> for bundled structures (data + laws together)</li>
+<li>Parameterized <code>module</code> for shared context (operations, axioms)</li>
+<li><code>open record-value</code> to bring fields into scope</li>
+</ul>
+<p><strong>Parameterized modules (our pattern):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">module</span> Fragments <span style="color:#f92672">{</span>ℓ <span style="color:#f92672">:</span> Level<span style="color:#f92672">}</span> <span style="color:#f92672">(</span>H <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> ℓ<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>_⊓_ <span style="color:#f92672">:</span> H <span style="color:#f92672">→</span> H <span style="color:#f92672">→</span> H<span style="color:#f92672">)</span> <span style="color:#f92672">...</span> <span style="color:#66d9ef">where</span>
+</span></span></code></pre></div><p>This factors common parameters across all definitions in the module.
+Consumers open with <code>open Fragments H _⊓_ ...</code>.</p>
+<p><strong>Equational reasoning chains:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">open</span> <span style="color:#66d9ef">import</span> Relation.Binary.PropositionalEquality <span style="color:#66d9ef">using</span> <span style="color:#f92672">(</span>begin_; _≡⟨_⟩_; _∎<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>proof <span style="color:#f92672">=</span> begin
+</span></span><span style="display:flex;"><span>  lhs       ≡⟨ step1 ⟩
+</span></span><span style="display:flex;"><span>  middle     ≡⟨ step2 ⟩
+</span></span><span style="display:flex;"><span>  rhs       ∎
+</span></span></code></pre></div><p><strong>Constructive idioms:</strong></p>
+<ul>
+<li><code>Dec A</code> instead of booleans for decidable propositions</li>
+<li>Absurd patterns <code>()</code> for impossible cases</li>
+<li>No LEM by default — Agda is intuitionistic</li>
+<li>Setoids for quotients (no quotient types in vanilla Agda)</li>
+</ul>
+<h2 id="universe-level-conventions">Universe level conventions</h2>
+<ul>
+<li>Every definition carries explicit universe levels</li>
+<li>Use <code>Level</code> and <code>_⊔_</code> from <code>Level</code> module</li>
+<li>Records parameterized by <code>(ℓ : Level)</code> for polymorphism</li>
+<li>The category R lives at <code>(ℓ ℓ′ : Level)</code></li>
+<li>When a record field&rsquo;s type is <code>Set (lsuc ℓ)</code>, the record
+itself must live at <code>Set (lsuc (lsuc ℓ))</code> or higher</li>
+</ul>
+<h2 id="semiotic-universe-conventions">Semiotic universe conventions</h2>
+<ul>
+<li>One file per construction layer</li>
+<li>Modules parameterized over the semantic domain for reuse</li>
+<li>The synthetic approach: construct, don&rsquo;t axiomatize</li>
+<li><code>postulate</code> only with explicit justification comments</li>
+<li><code>record</code> fields that are postulated must explain what
+construction would discharge them (e.g., &ldquo;requires
+exponential objects in the topos&rdquo;)</li>
+</ul>
+<h2 id="external-libraries">External libraries</h2>
+<ul>
+<li><strong>agda-stdlib</strong> (v1.7.3 via apt, or v2.x via cabal): provides
+algebraic structures, relations, data types</li>
+<li><strong>agda-categories</strong> (v0.3.0): categories, functors, adjunctions,
+limits, Yoneda, cartesian closed categories, elementary topos
+with subobject classifier. Does NOT cover Lawvere-Tierney
+topologies — that&rsquo;s our novel contribution.</li>
+<li><strong>1Lab</strong> (cubical Agda): extensive category theory with
+computational univalence. Reference for category-theoretic
+concepts but uses cubical foundations.</li>
+</ul>
+<h2 id="anti-slop-agda-specific">Anti-slop (Agda-specific)</h2>
+<ul>
+<li>No <code>{!!}</code> holes in committed code.</li>
+<li>Every <code>postulate</code> must have a comment explaining:
+(a) what it asserts, (b) why it is true, (c) what would be
+needed to prove it.</li>
+<li>Verify imports actually resolve — don&rsquo;t import modules that
+don&rsquo;t exist in your stdlib version.</li>
+<li>If you redefine something from stdlib (like list membership),
+document why (e.g., &ldquo;redefined to avoid universe level issues&rdquo;).</li>
+<li>Run <code>agda --check</code> before committing. If you cannot run it,
+say &ldquo;UNVERIFIED&rdquo; explicitly.</li>
+<li>Watch for <code>Level.suc</code> vs <code>Data.Nat.suc</code> ambiguity — use
+<code>renaming (suc to lsuc)</code> on the Level import.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/write-agda-proof/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
+      </div><div class="relation">
+        <dt>Date updated</dt>
+        <dd property="schema:dateModified"><time datetime="2026-03-07">2026-03-07</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/ethics/domains/care-ethics/terms/dependency/">Dependencies</a></dt>
+        <dd property="emsenn:Dependencies"><ul><li>/technology/disciplines/computing/software/agda/curricula/index.md</li><li>/mathematics/disciplines/type theory/curricula/dependent types.md</li><li>/mathematics/concepts/proof/skills/write formal proof/SKILL.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Inputs</dt>
+        <dd property="emsenn:Inputs"><ul><li>A mathematical statement in natural language or informal notation</li><li>The relevant spec section (e.g., §1.2 of semiotic universe.md)</li></ul></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/information/terms/name/">Name</a></dt>
+        <dd property="emsenn:Name">write agda proof</dd>
+      </div><div class="relation">
+        <dt>Part of</dt>
+        <dd property="schema:isPartOf">technology/disciplines/computing/software/agda</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/engineering/domains/tech/terms/produces/">Produces</a></dt>
+        <dd property="emsenn:Produces"><ul><li>An Agda module containing the type signature and proof term</li></ul></dd>
+      </div><div class="relation">
+        <dt>Region</dt>
+        <dd property="emsenn:Region"></dd>
+      </div><div class="relation">
+        <dt>Runtime</dt>
+        <dd property="emsenn:Runtime"></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/agda/">Agda</a></li><li><a href="/tags/formalverification/">FormalVerification</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+<section class="cite-this" id="cite-this">
+  <h2>Cite</h2>
+  <pre class="cite-block"><code>@misc{emsenn2026-write-agda-proof,
+  author    = {emsenn},
+  title     = {},
+  year      = {2026},
+  note      = {Translate a mathematical statement into Agda and produce a verified proof term. Always check the write-formal-proof skill first for the anti-slop protocol.},
+  url       = {https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/software/domains/agda/texts/write-agda-proof/},
+  publisher = {emsenn.net},
+  license   = {CC BY-SA 4.0}
+}</code></pre>
+</section>
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

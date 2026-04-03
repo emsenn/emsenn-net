@@ -20,7 +20,7 @@
   "@type": "DefinedTerm",
   "dateModified": "2026-01-01",
   "datePublished": "2026-01-01",
-  "description": "The median of a collection of values is the middle value when the values are ordered from smallest to largest. If n is odd, the median is the ((n+1)/2)-th value; if n is even, it is typically taken as the average of the two middle values. The median divides the data in half: at least 50% of values are at or below it, and at least 50% are at or above it.\n",
+  "description": "The median of a collection of values is the middle value when all values are arranged in order. Half the values fall below the median and half above — it splits the data into two equal halves. If you have five test scores (70, 80, 85, 90, 100), the median is 85, the third value. If you have six scores (70, 80, 85, 90, 95, 100), the median is the average of the third and fourth values: (85+90)/2=87.5(85 + 90)/2 = 87.5.\n",
   "inDefinedTermSet": {
     "@type": "DefinedTermSet",
     "name": "",
@@ -88,9 +88,11 @@
   
   
   <div class="e-content">
-    <p>The median of a collection of values is the middle value when the values are ordered from smallest to largest. If n is odd, the median is the ((n+1)/2)-th value; if n is even, it is typically taken as the average of the two middle values. The median divides the data in half: at least 50% of values are at or below it, and at least 50% are at or above it.</p>
-<p>The median is a robust measure of central tendency: unlike the <a href="./mean.md" class="link-internal">mean</a>, it is not sensitive to outliers. If one value in a dataset is replaced with an extreme outlier, the mean changes dramatically but the median may not change at all. This makes the median preferable for skewed distributions (income data, for example, is typically summarized by median rather than mean).</p>
-<p>The median minimizes the sum of absolute deviations Σ |xᵢ − c|, just as the mean minimizes the sum of squared deviations. In a symmetric distribution, mean and median coincide. In a skewed distribution, the median lies between the mean and the <a href="./mode.md" class="link-internal">mode</a>, closer to the bulk of the data.</p>
+    <p>The median of a collection of values is the middle value when all values are arranged in order. Half the values fall below the median and half above — it splits the data into two equal halves. If you have five test scores (70, 80, 85, 90, 100), the median is 85, the third value. If you have six scores (70, 80, 85, 90, 95, 100), the median is the average of the third and fourth values: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>85</mn><mo>+</mo><mn>90</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>87.5</mn></mrow><annotation encoding="application/x-tex">(85 + 90)/2 = 87.5</annotation></semantics></math></span>.</p>
+<p>The median is a measure of central tendency — like the <a href="./mean.md" class="link-internal">mean</a>, it tries to capture what is &ldquo;typical&rdquo; about a set of values. But it does so in a fundamentally different way. The mean balances contributions from all values equally, which makes it sensitive to extreme values: replace the 100 in the dataset above with 10,000 and the mean rockets upward. The median barely budges — it moves from 85 to 87.5. This robustness makes the median the preferred summary for skewed distributions.</p>
+<p>Income data is the canonical example. In the United States, the mean household income is substantially higher than the median, because a small number of very high incomes pull the mean upward. The median gives a better sense of what a typical household earns. Similar situations arise with home prices, hospital lengths of stay, and any quantity where a few extreme values distort the average.</p>
+<p>The median has a clean mathematical characterization: it is the value <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span> that minimizes the sum of absolute deviations <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∑</mo><mi mathvariant="normal">∣</mi><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><mi>c</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">\sum |x_i - c|</annotation></semantics></math></span>. This parallels the mean, which minimizes the sum of <em>squared</em> deviations. The absolute-deviation criterion penalizes large errors less harshly than the squared-deviation criterion, which is why the median is less sensitive to outliers.</p>
+<p>For a continuous <a href="./distribution.md" class="link-internal">distribution</a> with cumulative distribution function <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span>, the median is the value <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span> where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0.5</mn></mrow><annotation encoding="application/x-tex">F(m) = 0.5</annotation></semantics></math></span> — the point that divides the probability in half. In a symmetric distribution (like the normal), the mean and median coincide. In a skewed distribution, they separate: the mean is pulled toward the long tail, while the median stays closer to where most of the data actually are. The <a href="./mode.md" class="link-internal">mode</a> (the most frequent value or the peak of the density) typically lies on the other side of the median from the mean. This relationship — mode, median, mean arranged in order from the peak toward the tail — is a useful rule of thumb for understanding skewed data.</p>
 
   </div>
   
@@ -104,6 +106,9 @@
       </div><div class="relation">
         <dt>Defines</dt>
         <dd property="emsenn:Defines"><ul><li><a href="/library/domains/science/domains/math/domains/probability/terms/median/">Median</a></li><li><a href="/library/domains/science/domains/math/domains/probability/terms/median/">medians</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Readiness</dt>
+        <dd property="emsenn:Readiness">shaped</dd>
       </div>
   </dl>
 </section>
