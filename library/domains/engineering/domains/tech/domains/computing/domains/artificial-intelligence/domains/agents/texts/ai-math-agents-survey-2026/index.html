@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Survey: AI Agents for Formal Mathematics (External Landscape, 2026) - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-07",
+  "datePublished": "2026-03-07",
+  "description": "AI Agents for Formal Mathematics: External Landscape Survey Survey of external tools, research, and practices for LLM agents doing formal mathematics with proof assistants. Focused on what exists outside this repository that could improve agent mathematical capability here.\n1. LLM-Based Mathematical Reasoning Agents DeepSeek-Prover-V2 (DeepSeek, 2025) Formal theorem proving in Lean 4. Key innovation: subgoal decomposition — the model writes an informal proof sketch first, decomposes into formal subgoals, then proves each subgoal. Trained with GRPO (not PPO) reinforcement learning. Achieved 88.9% on MiniF2F-test, 49 out of 658 problems on FormalMATH. Open-weight (7B and 671B MoE variants).\n",
+  "keywords": "Formalization, ProofAssistants, AIAgents",
+  "name": "Survey: AI Agents for Formal Mathematics (External Landscape, 2026)",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/ai-math-agents-survey-2026/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/">Texts</a></nav>
+  <h1 class="p-name">Survey: AI Agents for Formal Mathematics (External Landscape, 2026)</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-07T00:00:00Z">2026-03-07</time>
+    
+    
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-llm-based-mathematical-reasoning-agents">1. LLM-Based Mathematical Reasoning Agents</a>
+      <ul>
+        <li><a href="#deepseek-prover-v2-deepseek-2025">DeepSeek-Prover-V2 (DeepSeek, 2025)</a></li>
+        <li><a href="#alphaproof-deepmind-2024">AlphaProof (DeepMind, 2024)</a></li>
+        <li><a href="#kimina-prover-may-2025">Kimina-Prover (May 2025)</a></li>
+        <li><a href="#bfs-prover-bytedance-2025">BFS-Prover (ByteDance, 2025)</a></li>
+        <li><a href="#hilbert-2025">HILBERT (2025)</a></li>
+        <li><a href="#copra-2024">COPRA (2024)</a></li>
+        <li><a href="#prover-agent--delta-prover-2025">Prover Agent / Delta Prover (2025)</a></li>
+        <li><a href="#apollo-neurips-2025">APOLLO (NeurIPS 2025)</a></li>
+        <li><a href="#leanagent-iclr-2025">LeanAgent (ICLR 2025)</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-agent-tools-for-lean-4">2. Agent Tools for Lean 4</a>
+      <ul>
+        <li><a href="#lean-lsp-mcp-mcp-server">lean-lsp-mcp (MCP server)</a></li>
+        <li><a href="#leandojo-v2--pantograph">LeanDojo v2 + Pantograph</a></li>
+        <li><a href="#leancopilot">LeanCopilot</a></li>
+        <li><a href="#reprover-leandojo-team">ReProver (LeanDojo team)</a></li>
+        <li><a href="#lean-search-tools">Lean search tools</a></li>
+        <li><a href="#leanaide">LeanAide</a></li>
+        <li><a href="#zafferlean-gpt">Zaffer/lean-gpt</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-agent-tools-for-agda">3. Agent Tools for Agda</a>
+      <ul>
+        <li><a href="#almost-nothing-exists">Almost nothing exists.</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-benchmarks-and-datasets">4. Benchmarks and Datasets</a>
+      <ul>
+        <li><a href="#minif2f-leanisabelle-2021">MiniF2F (Lean/Isabelle, 2021)</a></li>
+        <li><a href="#formalmath-2025">FormalMATH (2025)</a></li>
+        <li><a href="#math--gsm8k-informal">MATH / GSM8K (informal)</a></li>
+        <li><a href="#proofnet-2023">ProofNet (2023)</a></li>
+        <li><a href="#no-agda-benchmarks-exist">No Agda benchmarks exist.</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-training-approaches-and-curricula">5. Training Approaches and Curricula</a>
+      <ul>
+        <li><a href="#expert-iteration">Expert Iteration</a></li>
+        <li><a href="#self-play-stp-icml-2025">Self-Play (STP, ICML 2025)</a></li>
+        <li><a href="#curriculum-learning-leanagent">Curriculum Learning (LeanAgent)</a></li>
+        <li><a href="#subgoal-decomposition-deepseek-prover-v2">Subgoal Decomposition (DeepSeek-Prover-V2)</a></li>
+        <li><a href="#draft-sketch-prove-dsp">Draft-Sketch-Prove (DSP)</a></li>
+        <li><a href="#retrieval-augmented-generation">Retrieval-Augmented Generation</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-practical-integration-patterns">6. Practical Integration Patterns</a>
+      <ul>
+        <li><a href="#repl-based-lean-4-via-pantograph--lean-lsp-mcp">REPL-based (Lean 4 via Pantograph / lean-lsp-mcp)</a></li>
+        <li><a href="#file-based-agda-or-lean-without-pantograph">File-based (Agda, or Lean without Pantograph)</a></li>
+        <li><a href="#error-feedback-loops">Error feedback loops</a></li>
+        <li><a href="#handling-mathlibs-namespace">Handling Mathlib&rsquo;s namespace</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-known-failure-modes">7. Known Failure Modes</a></li>
+    <li><a href="#8-actionable-recommendations">8. Actionable Recommendations</a>
+      <ul>
+        <li><a href="#immediate-tools-to-install">Immediate (tools to install)</a></li>
+        <li><a href="#skills-to-define">Skills to define</a></li>
+        <li><a href="#curricula-to-build">Curricula to build</a></li>
+        <li><a href="#workflow-pattern">Workflow pattern</a></li>
+      </ul>
+    </li>
+    <li><a href="#sources">Sources</a>
+      <ul>
+        <li><a href="#blog-posts-and-practitioner-reports">Blog Posts and Practitioner Reports</a></li>
+        <li><a href="#tools-and-repositories">Tools and Repositories</a></li>
+        <li><a href="#papers">Papers</a></li>
+        <li><a href="#community">Community</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="ai-agents-for-formal-mathematics-external-landscape-survey">AI Agents for Formal Mathematics: External Landscape Survey</h1>
+<p>Survey of external tools, research, and practices for LLM agents doing formal
+mathematics with proof assistants. Focused on what exists outside this
+repository that could improve agent mathematical capability here.</p>
+<h2 id="1-llm-based-mathematical-reasoning-agents">1. LLM-Based Mathematical Reasoning Agents</h2>
+<h3 id="deepseek-prover-v2-deepseek-2025">DeepSeek-Prover-V2 (DeepSeek, 2025)</h3>
+<p>Formal theorem proving in Lean 4. Key innovation: subgoal decomposition —
+the model writes an informal proof sketch first, decomposes into formal
+subgoals, then proves each subgoal. Trained with GRPO (not PPO) reinforcement
+learning. Achieved 88.9% on MiniF2F-test, 49 out of 658 problems on
+FormalMATH. Open-weight (7B and 671B MoE variants).</p>
+<ul>
+<li>Paper: arxiv.org/abs/2505.XXXXX</li>
+<li>Relevance: The subgoal decomposition pattern is directly applicable. The
+&ldquo;informal sketch first, then formalize&rdquo; workflow is what our agent should do.</li>
+</ul>
+<h3 id="alphaproof-deepmind-2024">AlphaProof (DeepMind, 2024)</h3>
+<p>Solved 4 of 6 IMO 2024 problems (silver medal level). Uses AlphaZero-style
+reinforcement learning with Lean 4 as the verifier. Not open-source. Trained
+on millions of self-generated problems.</p>
+<ul>
+<li>Relevance: Demonstrates ceiling capability. Not usable by us, but the
+self-play training pattern influenced later open systems.</li>
+</ul>
+<h3 id="kimina-prover-may-2025">Kimina-Prover (May 2025)</h3>
+<p>Based on Qwen2.5-72B, fine-tuned for Lean 4. Uses &ldquo;K1-style&rdquo; long thinking
+for proof search. Achieved 80.7% on MiniF2F-test. Open-weight.</p>
+<ul>
+<li>Relevance: Shows that mid-scale models can be competitive with fine-tuning.</li>
+</ul>
+<h3 id="bfs-prover-bytedance-2025">BFS-Prover (ByteDance, 2025)</h3>
+<p>Best-first search with expert iteration in Lean 4. Achieved 71.3% on
+MiniF2F-test. Key contribution: curriculum-based training where problems
+are ordered by difficulty.</p>
+<ul>
+<li>Relevance: The curriculum ordering is relevant to our skill design.</li>
+</ul>
+<h3 id="hilbert-2025">HILBERT (2025)</h3>
+<p>Multi-agent system achieving 99.2% on MiniF2F-test. Uses recursive
+decomposition: informal reasoning → formal subgoals → tactic generation →
+semantic theorem retrieval → verification loop.</p>
+<ul>
+<li>Paper: arxiv.org/abs/2509.22819</li>
+<li>Relevance: Very high. The agent architecture maps to skills we could define.</li>
+</ul>
+<h3 id="copra-2024">COPRA (2024)</h3>
+<p>In-context learning agent for Coq and Lean. No fine-tuning — uses GPT-4
+with retrieval from the proof library. Sends proof state, gets next tactic.</p>
+<ul>
+<li>Relevance: Closest to our setup (general-purpose LLM, no fine-tuning).
+Demonstrates that in-context retrieval can work without specialization.</li>
+</ul>
+<h3 id="prover-agent--delta-prover-2025">Prover Agent / Delta Prover (2025)</h3>
+<p>Multi-agent decomposition: reasoning agent breaks theorem into subgoals,
+proof agent generates tactics, repair agent fixes errors. Reflective
+decomposition with iterative refinement.</p>
+<ul>
+<li>Paper: arxiv.org/abs/2506.19923</li>
+<li>Relevance: The decompose-prove-repair cycle maps to three distinct skills.</li>
+</ul>
+<h3 id="apollo-neurips-2025">APOLLO (NeurIPS 2025)</h3>
+<p>Agent framework with explicit sub-skills: syntax refining, sub-lemma
+isolation, automated solver invocation, proof recombination.</p>
+<ul>
+<li>Paper: arxiv.org/abs/2505.05758</li>
+<li>Relevance: High. Closest to a skills taxonomy for math agents.</li>
+</ul>
+<h3 id="leanagent-iclr-2025">LeanAgent (ICLR 2025)</h3>
+<p>Lifelong learning across 23 Lean repositories. Uses curriculum-based
+progression — starts with easy proofs, gradually increases difficulty.
+Demonstrates transfer learning across mathematical domains.</p>
+<ul>
+<li>Relevance: The curriculum progression model is directly relevant to
+building agent skills that improve over time.</li>
+</ul>
+<hr>
+<h2 id="2-agent-tools-for-lean-4">2. Agent Tools for Lean 4</h2>
+<h3 id="lean-lsp-mcp-mcp-server">lean-lsp-mcp (MCP server)</h3>
+<p>MCP server giving Claude Code access to Lean 4 via LSP: diagnostics, proof
+goals, hover documentation, and search tools (LeanSearch, Loogle, Lean
+Finder, Lean Hammer premise search). Install: <code>claude mcp add lean-lsp uvx lean-lsp-mcp</code>. A Claude agent using this solved 12/12 Putnam 2025 problems.</p>
+<ul>
+<li>URL: github.com/oOo0oOo/lean-lsp-mcp</li>
+<li>Relevance: VERY HIGH. This is the single most important tool for our setup.</li>
+</ul>
+<h3 id="leandojo-v2--pantograph">LeanDojo v2 + Pantograph</h3>
+<p>Gymnasium-like environment for interacting with Lean 4 programmatically.
+Pantograph provides a REPL: send a tactic, get the new goal state back.
+LeanDojo extracts training data from Lean repos and provides premise
+retrieval via ReProver.</p>
+<ul>
+<li>URL: leandojo.org, github.com/leanprover-community/Pantograph</li>
+<li>Relevance: High for understanding how agent-prover interaction works.
+Pantograph&rsquo;s REPL model is what lean-lsp-mcp builds on.</li>
+</ul>
+<h3 id="leancopilot">LeanCopilot</h3>
+<p>LLMs as native copilots inside Lean 4 for tactic suggestion, premise search,
+and proof search. Supports bring-your-own-model. Reduces manual proof steps
+from 3.86 (aesop alone) to 2.08 on average.</p>
+<ul>
+<li>URL: github.com/lean-dojo/LeanCopilot</li>
+<li>Relevance: Medium. More for interactive VS Code use than agent workflows.</li>
+</ul>
+<h3 id="reprover-leandojo-team">ReProver (LeanDojo team)</h3>
+<p>Premise retrieval model for Lean 4. Given a proof state, retrieves relevant
+premises from Mathlib&rsquo;s 100K+ declarations. Used by multiple agent systems.</p>
+<ul>
+<li>Relevance: The retrieval approach matters — our agent needs to find the
+right Mathlib lemma. lean-lsp-mcp provides access to similar search.</li>
+</ul>
+<h3 id="lean-search-tools">Lean search tools</h3>
+<ul>
+<li><strong>Loogle</strong> (loogle.lean-lang.org) — pattern-based search by type signature</li>
+<li><strong>LeanSearch</strong> — natural language search for Mathlib</li>
+<li><strong>Moogle</strong> (Morph Labs) — LLM-based semantic search</li>
+<li><strong>LeanExplore</strong> — AI-generated informal translations of formal statements</li>
+<li><strong>Lean Finder</strong> — synthesizes user-style queries from formal statements</li>
+</ul>
+<p>All available via lean-lsp-mcp.</p>
+<h3 id="leanaide">LeanAide</h3>
+<p>Autoformalization: translates informal math statements to Lean 4 formal
+statements, then generates proofs.</p>
+<ul>
+<li>URL: github.com/siddhartha-gadgil/LeanAide</li>
+<li>Relevance: Relevant for our autoformalization needs.</li>
+</ul>
+<h3 id="zafferlean-gpt">Zaffer/lean-gpt</h3>
+<p>Pre-prompt for configuring GPT-4 as a Lean 4 proof assistant. Emphasizes
+brevity, tactical proof solving, error-cycle breaking, iterative refinement.</p>
+<ul>
+<li>URL: github.com/Zaffer/lean-gpt</li>
+<li>Relevance: High. The pre-prompt structure is a template for a Lean skill.</li>
+</ul>
+<hr>
+<h2 id="3-agent-tools-for-agda">3. Agent Tools for Agda</h2>
+<h3 id="almost-nothing-exists">Almost nothing exists.</h3>
+<ul>
+<li><strong>No Pantograph equivalent</strong> — no REPL-based interaction</li>
+<li><strong>No LeanDojo equivalent</strong> — no training data extraction</li>
+<li><strong>No benchmarks</strong> — no MiniF2F for Agda</li>
+<li><strong>No LLM integration tools</strong> — the only known project is a GitHub Gist
+(agda-llm) that loops LLM output through <code>agda --check</code></li>
+<li><strong>QUILL</strong> (Chalmers, 2025) — first neural architecture designed for Agda,
+modeling dependently-typed programs. Early-stage research.</li>
+</ul>
+<p><strong>Structural difference</strong>: Agda has no tactic language. Proofs are written as
+direct terms in a functional programming style. Most LLM theorem-proving
+frameworks are tightly coupled to tactic-based interaction. For Agda, the
+agent must generate complete proof terms, not tactic sequences.</p>
+<p><strong>This is a genuine research gap.</strong> Building an Agda MCP server modeled on
+lean-lsp-mcp would be novel work.</p>
+<hr>
+<h2 id="4-benchmarks-and-datasets">4. Benchmarks and Datasets</h2>
+<h3 id="minif2f-leanisabelle-2021">MiniF2F (Lean/Isabelle, 2021)</h3>
+<p>488 math competition problems formalized in Lean and Isabelle. The standard
+benchmark. Approaching saturation — top systems exceed 95%.</p>
+<h3 id="formalmath-2025">FormalMATH (2025)</h3>
+<p>5,560 problems across 16 mathematical domains in Lean 4. Much harder than
+MiniF2F. Current SOTA: 16%. This is the relevant hard benchmark now.</p>
+<h3 id="math--gsm8k-informal">MATH / GSM8K (informal)</h3>
+<p>Informal math problem datasets. MATH: 12,500 competition problems. GSM8K:
+8,500 grade school word problems. Used for training informal reasoning, not
+formal proving.</p>
+<h3 id="proofnet-2023">ProofNet (2023)</h3>
+<p>Undergraduate-level math problems formalized in Lean 3 and Isabelle. Covers
+analysis, algebra, number theory, topology.</p>
+<h3 id="no-agda-benchmarks-exist">No Agda benchmarks exist.</h3>
+<hr>
+<h2 id="5-training-approaches-and-curricula">5. Training Approaches and Curricula</h2>
+<h3 id="expert-iteration">Expert Iteration</h3>
+<p>Generate candidate proofs → verify with proof checker → fine-tune on
+successful proofs → repeat. Foundational approach used by most systems.
+Plateaus without additional techniques.</p>
+<h3 id="self-play-stp-icml-2025">Self-Play (STP, ICML 2025)</h3>
+<p>Breaks the expert iteration plateau by having the model generate its own
+training problems (conjectures), not just proofs. The model learns to
+conjecture, prove, and verify in a loop.</p>
+<h3 id="curriculum-learning-leanagent">Curriculum Learning (LeanAgent)</h3>
+<p>Order problems by difficulty. Start with easy proofs, gradually increase
+complexity. Demonstrated transfer across 23 Lean repositories. Directly
+relevant to defining skill progressions.</p>
+<h3 id="subgoal-decomposition-deepseek-prover-v2">Subgoal Decomposition (DeepSeek-Prover-V2)</h3>
+<p>Informal reasoning first → decompose into formal subgoals → prove each.
+The most effective pattern for hard problems. Does not require fine-tuning
+— works with general-purpose LLMs via prompting.</p>
+<h3 id="draft-sketch-prove-dsp">Draft-Sketch-Prove (DSP)</h3>
+<p>Prompt the LLM for an informal proof → translate to a formal sketch with
+<code>sorry</code> holes → fill holes with automation or further LLM calls. Bridges
+informal and formal reasoning.</p>
+<h3 id="retrieval-augmented-generation">Retrieval-Augmented Generation</h3>
+<p>Retrieve relevant premises/lemmas from the proof library before generating
+the proof. ReProver, Loogle, LeanSearch all serve this role for Lean.</p>
+<hr>
+<h2 id="6-practical-integration-patterns">6. Practical Integration Patterns</h2>
+<h3 id="repl-based-lean-4-via-pantograph--lean-lsp-mcp">REPL-based (Lean 4 via Pantograph / lean-lsp-mcp)</h3>
+<p>Send a tactic → get the new goal state → send the next tactic. Fine-grained
+feedback. The agent sees exactly what remains to prove after each step.</p>
+<h3 id="file-based-agda-or-lean-without-pantograph">File-based (Agda, or Lean without Pantograph)</h3>
+<p>Write a complete file → run the checker → parse errors → revise → repeat.
+Coarser feedback but simpler to implement.</p>
+<h3 id="error-feedback-loops">Error feedback loops</h3>
+<p>Both Lean and Agda provide detailed type error messages. The agent reads
+errors, attempts fixes, resubmits. The Galois blog post (&ldquo;Claude Can
+Sometimes Prove It&rdquo;) reports this loop works but deep persistent mistakes
+are costly to unwind.</p>
+<h3 id="handling-mathlibs-namespace">Handling Mathlib&rsquo;s namespace</h3>
+<p>Mathlib has 230K+ theorems and 110K+ definitions. Agents use:</p>
+<ul>
+<li>Loogle/LeanSearch/Moogle for retrieval</li>
+<li>lean-lsp-mcp for integrated search within Claude Code</li>
+<li>Naming conventions: theorem names follow syntax-tree order of the
+declarations they involve</li>
+</ul>
+<hr>
+<h2 id="7-known-failure-modes">7. Known Failure Modes</h2>
+<p>From the LeanCat benchmark and practitioner reports:</p>
+<ol>
+<li><strong>Library knowledge gaps</strong> — hallucinated lemma names, wrong Mathlib
+definitions. The most common failure.</li>
+<li><strong>Abstraction mismatch</strong> — element-wise reasoning when categorical
+reasoning is needed, or vice versa.</li>
+<li><strong>Incomplete multi-step planning</strong> — can&rsquo;t connect intermediate facts
+into a coherent end-to-end proof.</li>
+<li><strong>Error cycle loops</strong> — produces the same wrong code repeatedly.</li>
+<li><strong>Autoformalization errors</strong> — if the theorem statement is wrong, all
+proofs are useless regardless of validity.</li>
+<li><strong>Creative reasoning gaps</strong> — can execute known strategies but cannot
+invent new mathematical insights.</li>
+</ol>
+<p>From the Galois report: deep persistent mistakes are rare but extremely
+costly. The agent embeds confused understanding across many changes and
+unpicking it is very time-consuming.</p>
+<hr>
+<h2 id="8-actionable-recommendations">8. Actionable Recommendations</h2>
+<h3 id="immediate-tools-to-install">Immediate (tools to install)</h3>
+<ol>
+<li><strong>lean-lsp-mcp</strong> — install for any Lean 4 work. Gives the agent proof
+state, diagnostics, and Mathlib search.</li>
+<li><strong>elan + Lean 4</strong> — already installed in this environment.</li>
+<li><strong>Agda</strong> — already installed in this environment.</li>
+</ol>
+<h3 id="skills-to-define">Skills to define</h3>
+<p>Based on the decomposition used by HILBERT, APOLLO, Delta Prover, and the
+Galois practitioner report:</p>
+<ol>
+<li><code>formalize-statement</code> — translate informal math to Lean 4 / Agda</li>
+<li><code>search-lemma</code> — find relevant library lemmas (via lean-lsp-mcp for Lean)</li>
+<li><code>decompose-proof</code> — break a theorem into subgoals and auxiliary lemmas</li>
+<li><code>write-proof</code> — generate a tactic proof (Lean) or term proof (Agda)</li>
+<li><code>repair-proof</code> — use compiler errors to fix broken proofs</li>
+<li><code>detect-error-cycle</code> — recognize when the same error keeps recurring</li>
+<li><code>verify-formalization</code> — check that formal statement matches informal intent</li>
+</ol>
+<h3 id="curricula-to-build">Curricula to build</h3>
+<p>Based on LeanAgent&rsquo;s curriculum learning and BFS-Prover&rsquo;s difficulty ordering:</p>
+<ol>
+<li>Start with Lean/Agda syntax exercises (rewrite existing proofs)</li>
+<li>Progress to filling <code>sorry</code> holes in existing proofs</li>
+<li>Then prove stated lemmas with known proof strategies</li>
+<li>Then formalize informal statements and prove them</li>
+<li>Then decompose and prove multi-step theorems</li>
+</ol>
+<h3 id="workflow-pattern">Workflow pattern</h3>
+<p>The planner-executor pattern (from &ldquo;Vibe Validation with Lean&rdquo;):</p>
+<ul>
+<li>Use one pass to plan the proof structure (informal sketch, subgoals)</li>
+<li>Execute steps individually with verification between each</li>
+<li>Keep proof attempts bite-sized — don&rsquo;t let the agent run too long on one proof</li>
+<li>Always verify the formal statement matches the informal mathematics first</li>
+</ul>
+<hr>
+<h2 id="sources">Sources</h2>
+<h3 id="blog-posts-and-practitioner-reports">Blog Posts and Practitioner Reports</h3>
+<ul>
+<li><a href="https://www.galois.com/articles/claude-can-sometimes-prove-it" class="link-external">Galois: Claude Can (Sometimes) Prove It</a></li>
+<li><a href="https://medium.com/@carlmkadie/vibe-validation-with-lean-chatgpt-5-claude-4-5-part-1-c57b430b3d7a" class="link-external">Carl M. Kadie: Vibe Validation with Lean</a></li>
+<li><a href="https://martin.kleppmann.com/2025/12/08/ai-formal-verification.html" class="link-external">Martin Kleppmann: AI will make formal verification go mainstream</a></li>
+<li><a href="https://luisscoccola.com/blog/artificial-mathematical-intelligence/" class="link-external">Luis Scoccola: Artificial Mathematical Intelligence in 2025</a></li>
+</ul>
+<h3 id="tools-and-repositories">Tools and Repositories</h3>
+<ul>
+<li><a href="https://github.com/oOo0oOo/lean-lsp-mcp" class="link-external">lean-lsp-mcp</a></li>
+<li><a href="https://leandojo.org" class="link-external">LeanDojo</a></li>
+<li><a href="https://github.com/lean-dojo/LeanCopilot" class="link-external">LeanCopilot</a></li>
+<li><a href="https://github.com/siddhartha-gadgil/LeanAide" class="link-external">LeanAide</a></li>
+<li><a href="https://github.com/Zaffer/lean-gpt" class="link-external">Zaffer/lean-gpt</a></li>
+<li><a href="https://github.com/wellecks/llmstep" class="link-external">llmstep</a></li>
+<li><a href="https://loogle.lean-lang.org/" class="link-external">Loogle</a></li>
+<li><a href="https://github.com/leanprover-community/Pantograph" class="link-external">Pantograph</a></li>
+</ul>
+<h3 id="papers">Papers</h3>
+<ul>
+<li>HILBERT (arxiv.org/abs/2509.22819)</li>
+<li>APOLLO (arxiv.org/abs/2505.05758)</li>
+<li>Prover Agent (arxiv.org/abs/2506.19923)</li>
+<li>Delta Prover (arxiv.org/html/2507.15225v1)</li>
+<li>LeanCat benchmark (arxiv.org/html/2512.24796v1)</li>
+<li>LeanExplore (arxiv.org/html/2506.11085v1)</li>
+<li>Lean Finder (arxiv.org/html/2510.15940v1)</li>
+</ul>
+<h3 id="community">Community</h3>
+<ul>
+<li><a href="https://leanprover-community.github.io/archive/stream/219941-Machine-Learning-for-Theorem-Proving/" class="link-external">Lean Zulip: ML for Theorem Proving</a></li>
+<li><a href="https://europroofnet.github.io/wg5-edinburgh25/" class="link-external">EuroProofNet Workshop</a></li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/ai-math-agents-survey-2026/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-07">2026-03-07</time></dd>
+      </div><div class="relation">
+        <dt>Part of</dt>
+        <dd property="schema:isPartOf"><ul><li>reports</li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/formalization/">Formalization</a></li><li><a href="/tags/proofassistants/">ProofAssistants</a></li><li><a href="/tags/aiagents/">AIAgents</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

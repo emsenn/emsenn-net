@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compute Infrastructure for Small Organizations - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-03",
+  "datePublished": "2026-04-03",
+  "description": "Survey of compute infrastructure options for small organizations (1-10 people) building software systems — VPS, cloud, self-hosted — with current pricing, scaling patterns, and portability analysis.",
+  "keywords": "Infrastructure, VPS, SelfHosting, CloudComputing, Scaling",
+  "name": "Compute Infrastructure for Small Organizations",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/compute-infrastructure-for-small-organizations/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/">Software engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/">Texts</a></nav>
+  <h1 class="p-name">Compute Infrastructure for Small Organizations</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-03T00:00:00Z">2026-04-03</time>
+    
+    <span class="p-summary">Survey of compute infrastructure options for small organizations (1-10 people) building software systems — VPS, cloud, self-hosted — with current pricing, scaling patterns, and portability analysis.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#virtual-private-servers">Virtual private servers</a></li>
+    <li><a href="#cloud-platforms">Cloud platforms</a></li>
+    <li><a href="#self-hosted-hardware">Self-hosted hardware</a></li>
+    <li><a href="#operating-system">Operating system</a></li>
+    <li><a href="#scaling-patterns">Scaling patterns</a></li>
+    <li><a href="#portability-and-vendor-independence">Portability and vendor independence</a></li>
+    <li><a href="#cost-reality">Cost reality</a></li>
+    <li><a href="#key-citations">Key citations</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>A small organization building a software system faces an
+infrastructure question that larger organizations can defer to
+specialized teams: where does the system run? The answer determines
+cost, operational burden, scaling path, and the degree of control
+the organization retains over its own systems. This text surveys
+the real options as of 2026, with documented pricing and
+practitioner-reported tradeoffs.</p>
+<h2 id="virtual-private-servers">Virtual private servers</h2>
+<p>A virtual private server (VPS) is a virtual machine rented from a
+hosting provider, accessed via SSH, with full root control. It is
+the most common starting point for small teams.</p>
+<p><strong>Hetzner</strong> (Germany, Finland, US, Singapore) offers the strongest
+price-to-performance ratio in 2026. A CX43 instance — 4 vCPU,
+16 GB RAM, 160 GB SSD, 20 TB monthly transfer — costs €12/month.
+An 8-core, 32 GB instance costs €22/month. Hetzner increased
+prices 30–37% in April 2026 and still undercuts competitors by
+3–4x. The limitation is geographic reach: no Africa, South America,
+or most of Asia-Pacific.</p>
+<p><strong>DigitalOcean</strong> (15+ global regions) charges $48/month for 4 vCPU
+and 8 GB RAM — roughly 4x Hetzner&rsquo;s price for similar specs. The
+premium buys global datacenter presence, managed services
+(databases, Kubernetes, serverless), and 24/7 support.</p>
+<p><strong>Contabo</strong> (Germany) offers maximum raw specifications per dollar,
+with plans starting at €5/month. Tooling is less polished than
+competitors. Monthly billing only, no hourly.</p>
+<p><strong>OVHcloud</strong> (France) includes free unmetered bandwidth — a
+significant advantage for egress-heavy workloads where other
+providers charge $0.08–0.12/GB for data transfer.</p>
+<p><strong>Vultr</strong> and <strong>Linode (Akamai)</strong> fall in the DigitalOcean pricing
+tier with comparable capabilities and global presence.</p>
+<h2 id="cloud-platforms">Cloud platforms</h2>
+<p>Cloud platforms (AWS, Google Cloud, Azure) provide managed services
+— databases, message queues, container orchestration, identity
+management — at higher cost and with significant vendor lock-in.
+Proprietary APIs and data formats make migration expensive.</p>
+<p>A 2025 trend documented by multiple sources is <strong>cloud
+repatriation</strong>: organizations moving workloads from hyperscale
+cloud back to VPS or self-hosted infrastructure, driven by
+cost predictability and control. The pattern is especially
+pronounced for small teams whose workloads don&rsquo;t require the
+elastic scaling that justifies cloud platform premiums.</p>
+<p>Cloud platforms remain the practical choice for organizations
+that need managed services and can&rsquo;t staff operations roles.
+The tradeoff is cost and dependency for reduced operational burden.</p>
+<h2 id="self-hosted-hardware">Self-hosted hardware</h2>
+<p>Running your own hardware eliminates recurring hosting costs
+and gives maximum control over the physical infrastructure. Modern
+mini PCs (Intel NUC, ASUS NUC Pro) with 16+ cores and 64–96 GB
+DDR5 RAM provide substantial compute capacity. Reliability metrics
+for current hardware: 1% return rate, 50,000-hour mean time between
+failures (5.7 years of continuous operation).</p>
+<p>Hardware cost is <span class="math-error">300–800 for a capable development and light
+production server. Power consumption for NUC-class hardware is
+minimal — electricity costs of </span>10–30/year. The total cost of
+ownership breaks even with a €4/month VPS in under two years
+and with a $48/month VPS in under one year.</p>
+<p>The tradeoff is operational burden. You manage power, cooling,
+network, backups, security updates, and hardware replacement.
+Remote access depends on your internet connection. Self-hosting
+makes sense when: you need compute available during internet
+outages, you have physical infrastructure to manage (printers,
+sensors, local network services), or your workload is sustained
+24/7 and the economics favor ownership.</p>
+<h2 id="operating-system">Operating system</h2>
+<p><strong>Ubuntu Server</strong> has 28% developer adoption (2025) and 10-year
+LTS support via Ubuntu Pro. It is the default choice for teams
+without strong preferences — extensive documentation, official
+cloud images for every provider, and the largest package ecosystem.</p>
+<p><strong>Debian</strong> prioritizes stability over features. Lower memory
+footprint than Ubuntu (~520 MB for Ubuntu versus less for Debian),
+community-driven with no commercial support tier. The standard
+choice for production servers where predictability is paramount.</p>
+<p><strong>Alpine Linux</strong> uses musl libc and BusyBox to achieve ~8 MB
+container images. Dominant in containerized deployments, uncommon
+as a host OS.</p>
+<p><strong>NixOS</strong> provides declarative, reproducible system configuration.
+Growing adoption for teams that want infrastructure-as-code at the
+OS level. Steeper learning curve but enables exact reproduction
+of system state across machines.</p>
+<h2 id="scaling-patterns">Scaling patterns</h2>
+<p>Small organizations progress through infrastructure stages as
+load and complexity increase.</p>
+<p><strong>Stage 1: Single server.</strong> The entire stack — application,
+database, caching, monitoring — runs on one VPS. Cost: $20–50/month.
+Viable until resource competition between services causes problems.</p>
+<p><strong>Stage 2: Database separation.</strong> Move the database to its own
+server. Databases have different resource profiles from application
+servers — they need consistent I/O and stable memory, while
+application servers need CPU and can tolerate variable memory.
+Separation allows independent scaling. Cost: ~$32/month for two
+small servers, often less than one large server.</p>
+<p><strong>Stage 3: Service specialization.</strong> Application servers, database,
+monitoring, and CI/CD each get dedicated resources. Role isolation
+improves reliability — a build process can&rsquo;t destabilize production.
+Cost: ~$48–100/month for 3–4 servers.</p>
+<p><strong>Stage 4: Container orchestration.</strong> k3s (lightweight Kubernetes)
+runs on a single VPS with 4 vCPU and 8 GB RAM (<span class="math-error">25–40/month) and
+scales to multi-node clusters by adding servers. Deployments are
+declarative YAML, portable across any infrastructure. A documented
+migration: team moved from DigitalOcean App Platform (</span>55/month) to
+k3s on a single VPS ($25/month) with equivalent capabilities.</p>
+<p><strong>Stage 5: High availability.</strong> Three or more nodes running
+Kubernetes with replicated control planes. Survives single-node
+failures automatically. Starts around $45–60/month for three
+budget VPS instances.</p>
+<p>The decision points between stages are concrete: split the database
+when it competes with the application for CPU or memory. Split CI/CD
+when builds destabilize production. Adopt container orchestration
+when you want declarative, portable deployments. Add nodes when you
+need availability guarantees.</p>
+<h2 id="portability-and-vendor-independence">Portability and vendor independence</h2>
+<p>Two practices preserve the ability to move between providers or to
+self-hosted hardware:</p>
+<p><strong>Infrastructure as Code (IaC).</strong> Tools like Terraform define
+infrastructure in version-controlled configuration files. Changing
+providers requires modifying configuration, not rewriting the
+system. This works across Hetzner, DigitalOcean, AWS, OVH, and
+most hosting providers.</p>
+<p><strong>Container-based deployment.</strong> Docker containers and Kubernetes
+manifests describe the application independent of where it runs.
+k3s backup and restore works across any VPS provider. Git-tracked
+manifests and persistent volume snapshots enable full migration.</p>
+<p>The combination of IaC and containers creates infrastructure
+independence: the system&rsquo;s deployment is described in files that
+work on any provider, and the system itself runs in containers
+that work on any Linux host.</p>
+<h2 id="cost-reality">Cost reality</h2>
+<p>Documented monthly costs for small teams (2026):</p>
+<table>
+  <thead>
+      <tr>
+          <th>Configuration</th>
+          <th>Monthly cost</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Single mid-range VPS</td>
+          <td>$25–50</td>
+      </tr>
+      <tr>
+          <td>App + database separation</td>
+          <td>$32</td>
+      </tr>
+      <tr>
+          <td>App + database + monitoring</td>
+          <td>$52–100</td>
+      </tr>
+      <tr>
+          <td>App + managed PostgreSQL + Redis</td>
+          <td>$32–60</td>
+      </tr>
+      <tr>
+          <td>k3s single-node with services</td>
+          <td>$25–40</td>
+      </tr>
+      <tr>
+          <td>Three-node HA cluster</td>
+          <td>$45–60</td>
+      </tr>
+  </tbody>
+</table>
+<p>Hidden costs frequently underestimated: data egress (<span class="math-error">0.08–0.12/GB),
+backup storage (</span>10–50/month depending on volume), and the
+opportunity cost of operations work (roughly 20% of an engineer&rsquo;s
+time for part-time DevOps at small scale).</p>
+<p>Self-hosted always costs less than managed platforms past the
+$50–100/month threshold, but the savings are paid for in
+operational labor.</p>
+<h2 id="key-citations">Key citations</h2>
+<ul>
+<li>Hetzner Online. &ldquo;Cloud Server Pricing.&rdquo; hetzner.com, 2026.</li>
+<li>DigitalOcean. &ldquo;Pricing.&rdquo; digitalocean.com, 2026.</li>
+<li>Stanislas. &ldquo;Moving My Personal Infrastructure to Kubernetes.&rdquo;
+stanislas.blog, 2025.</li>
+<li>MassiveGrid. &ldquo;When to Split Your VPS: Single-Server vs
+Multi-Server Architecture.&rdquo; massivegrid.com, 2025.</li>
+<li>Kim, Gene, Patrick Debois, John Willis, and Jez Humble.
+<em>The DevOps Handbook.</em> IT Revolution Press, 2016.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/compute-infrastructure-for-small-organizations/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Citations</dt>
+        <dd property="emsenn:Citations"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-03">2026-04-03</time></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/infrastructure/">Infrastructure</a></li><li><a href="/tags/vps/">VPS</a></li><li><a href="/tags/selfhosting/">SelfHosting</a></li><li><a href="/tags/cloudcomputing/">CloudComputing</a></li><li><a href="/tags/scaling/">Scaling</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

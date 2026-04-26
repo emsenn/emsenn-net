@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic AI in Industrial Control and Physical Infrastructure: A 2026 Survey - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Survey of how AI agents interface with physical systems — manufacturing, SCADA, energy grids, agriculture, buildings, and homes — covering protocols, safety mechanisms, feedback loops, and the emerging MCP-OPC UA bridge.",
+  "name": "Agentic AI in Industrial Control and Physical Infrastructure: A 2026 Survey",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/agentic-industrial-control-survey-2026/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">Agentic AI in Industrial Control and Physical Infrastructure: A 2026 Survey</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Survey of how AI agents interface with physical systems — manufacturing, SCADA, energy grids, agriculture, buildings, and homes — covering protocols, safety mechanisms, feedback loops, and the emerging MCP-OPC UA bridge.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-protocol-stack-how-ai-reaches-physical-systems">The Protocol Stack: How AI Reaches Physical Systems</a>
+      <ul>
+        <li><a href="#opc-ua-the-industrial-data-layer">OPC UA: The Industrial Data Layer</a></li>
+        <li><a href="#mqtt-the-iot-messaging-layer">MQTT: The IoT Messaging Layer</a></li>
+        <li><a href="#mcp-the-agent-interface-layer">MCP: The Agent Interface Layer</a></li>
+      </ul>
+    </li>
+    <li><a href="#domain-survey">Domain Survey</a>
+      <ul>
+        <li><a href="#manufacturing-and-industrial-control">Manufacturing and Industrial Control</a></li>
+        <li><a href="#scada-and-critical-infrastructure">SCADA and Critical Infrastructure</a></li>
+        <li><a href="#digital-twins">Digital Twins</a></li>
+        <li><a href="#energy-grid-management">Energy Grid Management</a></li>
+        <li><a href="#building-automation">Building Automation</a></li>
+        <li><a href="#agriculture-and-hydroponics">Agriculture and Hydroponics</a></li>
+        <li><a href="#home-automation">Home Automation</a></li>
+        <li><a href="#robotic-process-automation-rpa--agentic-automation">Robotic Process Automation (RPA) → Agentic Automation</a></li>
+      </ul>
+    </li>
+    <li><a href="#safety-mechanisms-a-cross-domain-analysis">Safety Mechanisms: A Cross-Domain Analysis</a>
+      <ul>
+        <li><a href="#the-hitlhotl-spectrum">The HITL/HOTL Spectrum</a></li>
+        <li><a href="#functional-safety-standards">Functional Safety Standards</a></li>
+        <li><a href="#operating-envelopes">Operating Envelopes</a></li>
+        <li><a href="#simulation-before-execution">Simulation-Before-Execution</a></li>
+        <li><a href="#layered-defense">Layered Defense</a></li>
+        <li><a href="#emerging-safety-standards-for-ai">Emerging Safety Standards for AI</a></li>
+        <li><a href="#documented-failure-modes">Documented Failure Modes</a></li>
+      </ul>
+    </li>
+    <li><a href="#patterns-and-gaps">Patterns and Gaps</a>
+      <ul>
+        <li><a href="#what-works-now">What Works Now</a></li>
+        <li><a href="#what-does-not-yet-exist">What Does Not Yet Exist</a></li>
+        <li><a href="#the-emerging-architecture">The Emerging Architecture</a></li>
+      </ul>
+    </li>
+    <li><a href="#implications-for-the-561-system">Implications for the 561 System</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="agentic-ai-in-industrial-control-and-physical-infrastructure-a-2026-survey">Agentic AI in Industrial Control and Physical Infrastructure: A 2026 Survey</h1>
+<p>AI agents are moving from software environments into the physical world. As of early 2026, agentic systems — AI that autonomously perceives, decides, and acts — are interfacing with manufacturing lines, power grids, building systems, farms, and homes. This survey maps what exists, how it works, and what safety mechanisms constrain it.</p>
+<p>The motivation is practical: understanding the current state of AI-to-physical-system integration informs how any system intending to control physical infrastructure (printers, hydroponics, servers, networks) should be designed.</p>
+<h2 id="the-protocol-stack-how-ai-reaches-physical-systems">The Protocol Stack: How AI Reaches Physical Systems</h2>
+<p>The fundamental architectural question is: how does an AI agent&rsquo;s decision become a physical action? Three protocol layers have emerged as the dominant pattern.</p>
+<h3 id="opc-ua-the-industrial-data-layer">OPC UA: The Industrial Data Layer</h3>
+<p>OPC UA (Open Platform Communications Unified Architecture) is the established standard for machine-to-machine communication in industrial automation. It provides typed, semantic data access to operational technology (OT) assets — PLCs, sensors, actuators, SCADA systems. The OPC Foundation now has a dedicated working group on AI integration, exploring how to present OPC UA data in formats that AI models can consume directly.</p>
+<p>OPC UA matters because it already connects millions of industrial devices. Any AI system that wants to interact with factory equipment will almost certainly pass through OPC UA at some point.</p>
+<h3 id="mqtt-the-iot-messaging-layer">MQTT: The IoT Messaging Layer</h3>
+<p>MQTT is a lightweight publish-subscribe messaging protocol designed for constrained devices and low-bandwidth networks. It dominates IoT deployments — smart homes, environmental sensors, small-scale automation. Devices publish sensor readings to topics; controllers subscribe and issue commands. QoS levels (0, 1, 2) provide delivery guarantees appropriate to criticality: QoS 2 for safety-critical alarms, QoS 0 for routine telemetry.</p>
+<p><strong>Sparkplug B</strong> is the MQTT payload standard for industrial use. Where raw MQTT leaves payload format to the implementer, Sparkplug B defines typed, self-describing messages with birth/death certificates for devices, metric definitions, and state management. The OPC UA + Sparkplug B combination — OPC UA for semantic data modeling, Sparkplug B/MQTT for lightweight distribution — is now the consensus industrial IoT data pipeline.</p>
+<p>MQTT is the lingua franca of smaller-scale physical systems: hydroponic controllers, building sensors, home automation hubs. At industrial scale, it carries Sparkplug B payloads.</p>
+<h3 id="mcp-the-agent-interface-layer">MCP: The Agent Interface Layer</h3>
+<p>The Model Context Protocol (MCP) standardizes how AI models interact with external tools and data sources. Two developments in 2025-2026 have made MCP the bridge between AI agents and physical systems:</p>
+<p><strong>OPC UA MCP Server</strong> (Kukapay, open-source). A Python application that connects to any OPC UA server on one side and presents itself as an MCP server on the other. An MCP-compatible AI agent (running in Claude Desktop, for example) can discover tools that directly read from and write to industrial hardware. The agent can browse OPC UA node hierarchies, read real-time sensor values, and write setpoints to actuators — all through natural language interaction mediated by MCP tool calls.</p>
+<p><strong>MCP over MQTT</strong> (EMQ, 2025). Running MCP&rsquo;s tool-call protocol over MQTT transport allows low-power, intermittently connected IoT devices to participate in agentic workflows. EMQ&rsquo;s MQTTX client already supports natural language interfaces where users issue commands to IoT devices through AI agents, with MQTT carrying the actual device communication.</p>
+<p>The resulting three-layer stack is:</p>
+<ol>
+<li><strong>OPC UA / MQTT</strong> — secure, semantic access to physical devices</li>
+<li><strong>MCP</strong> — standardized agent-tool interface</li>
+<li><strong>LLM agent</strong> — reasoning, planning, tool selection</li>
+</ol>
+<p>This stack means an AI agent can, today, read a temperature sensor on a factory floor via OPC UA, reason about whether the reading requires action, and write a new setpoint to a cooling system — all through the same tool-calling interface it uses to search the web or read files.</p>
+<h2 id="domain-survey">Domain Survey</h2>
+<h3 id="manufacturing-and-industrial-control">Manufacturing and Industrial Control</h3>
+<p><strong>Siemens Industrial Copilot</strong> (Siemens + Microsoft, 2025). The most prominent production system. Generates structured control language (SCL) code for programmable logic controllers (PLCs), integrates within the TIA Portal engineering environment, and generates machine visualizations. As of 2025, thyssenkrupp is rolling it out globally across development and manufacturing. Siemens plans to add multimodal capabilities (image analysis of equipment) and agent-based automation where the copilot autonomously manages complex tasks.</p>
+<p><strong>Samsung AI-Driven Factories</strong> (announced MWC 2026). Samsung is transitioning all manufacturing to AI-driven operations by 2030, deploying specialized AI agents for quality control, production, and logistics, with digital twin-based simulations throughout. This is a commitment to agent-per-function architecture: distinct agents for distinct physical concerns, coordinated through a shared digital twin.</p>
+<p><strong>Hitachi HMAX Industry</strong> (launched December 2025). An AI agent platform for equipment maintenance that combines generative AI with Hitachi&rsquo;s operational technology expertise. Targets predictive maintenance — detecting equipment degradation before failure — with agents that can autonomously generate and submit work orders.</p>
+<p><strong>XMPRO</strong> provides multi-agent systems for asset-intensive industries (mining, manufacturing, oil and gas). Their architecture deploys specialized agents per function — one for anomaly detection, one for root cause analysis, one for work order generation — coordinated through a shared event bus. Reported results: 250%+ ROI within 24 months for predictive maintenance deployments, 43% reduction in unplanned downtime.</p>
+<p><strong>Gartner&rsquo;s projection</strong>: by 2030, semi-autonomous AI agents will orchestrate 10% of key production operations, quality, and maintenance use cases — up from 2% in 2025. Humans retain final approval. Gartner also predicts 40% of agentic AI projects will be cancelled by 2027 due to unclear value and inadequate risk controls — a useful corrective to vendor optimism.</p>
+<p><strong>The three-layer architecture</strong> that has consolidated across industrial deployments separates concerns by latency:</p>
+<ol>
+<li><strong>PLC/Safety layer</strong> (microseconds) — deterministic control, IEC 61508 certified, AI never runs here</li>
+<li><strong>Edge AI layer</strong> (1-10ms) — ML inference on factory-floor gateways, continues operating when cloud is offline, handles time-critical decisions</li>
+<li><strong>Cloud/planning layer</strong> (seconds to hours) — LLM reasoning, multi-agent orchestration, strategic optimization</li>
+</ol>
+<p>This separation is load-bearing: it means the AI can be wrong or slow or offline without the physical system becoming unsafe.</p>
+<p><strong>Physical systems controlled</strong>: PLCs, robotic arms, conveyor systems, CNC machines, quality inspection cameras, compressors, pumps.
+<strong>Interfaces</strong>: OPC UA for device communication, MQTT/Sparkplug B for data distribution, TIA Portal APIs for engineering tools, proprietary SCADA integrations.
+<strong>Feedback loop</strong>: sensor readings → edge inference (fast) → PLC setpoint adjustment → sensor readings, with parallel cloud path: sensor readings → digital twin update → LLM reasoning → optimization recommendations → edge layer → PLC.</p>
+<h3 id="scada-and-critical-infrastructure">SCADA and Critical Infrastructure</h3>
+<p>SCADA (Supervisory Control and Data Acquisition) systems manage water treatment, power generation, oil and gas pipelines, and other critical infrastructure. AI integration here is primarily defensive and analytical, not yet autonomous.</p>
+<p><strong>Anomaly detection</strong> dominates. Deep learning architectures — autoencoders, hybrid ResNet-LSTM models, Deep Factorization Machines — analyze SCADA network traffic to detect intrusions and anomalous behavior. The Sherlock dataset (2025) provides a benchmark specifically for process-aware intrusion detection in power grid networks.</p>
+<p><strong>SPARK &amp; SAD</strong> (2026) are new deep learning intrusion detection systems designed specifically for SCADA networks in solar power plants, where SCADA oversees energy generation, monitors panel performance, optimizes output, and identifies faults.</p>
+<p>AI is not autonomously controlling SCADA systems in production. The safety requirements are too extreme and the regulatory environment too strict. Instead, AI augments human operators: flagging anomalies, predicting equipment failures, optimizing schedules. The human remains in the control loop for all actuation decisions.</p>
+<p><strong>Physical systems monitored</strong>: water treatment plants, power substations, oil pipelines, solar farms.
+<strong>Interfaces</strong>: SCADA-specific protocols (Modbus, DNP3), OPC UA bridges, proprietary historian databases.
+<strong>Safety</strong>: AI recommendations only — no autonomous actuation. Intrusion detection runs alongside, not instead of, existing safety systems.</p>
+<h3 id="digital-twins">Digital Twins</h3>
+<p>Digital twins have evolved from passive 3D visualizations to active, AI-driven simulation environments. The 2025-2026 shift is from descriptive twins (what happened) to prescriptive twins (what to do) to autonomous twins (doing it).</p>
+<p>A digital twin receives real-time sensor data from physical equipment, maintains a synchronized virtual model, and provides a sandbox where AI agents can simulate actions before executing them on real hardware. This is the strongest safety mechanism in industrial AI: the agent acts on the twin first, observes consequences in simulation, and only if outcomes are acceptable does the action propagate to physical systems.</p>
+<p><strong>Gartner predicts</strong> closed-loop digital twins — where the twin autonomously adjusts physical systems based on simulation results — will become standard in manufacturing by 2030.</p>
+<p><strong>Physical systems modeled</strong>: entire production lines, individual machines, building HVAC systems, power grid segments.
+<strong>Interfaces</strong>: real-time sensor feeds (OPC UA, MQTT), CAD/BIM models, physics simulation engines.
+<strong>Safety mechanism</strong>: simulation-before-execution. The twin absorbs the risk of experimentation.
+<strong>Learning</strong>: AI models trained on twin data can explore operating conditions that would be dangerous or expensive to test on real equipment.</p>
+<h3 id="energy-grid-management">Energy Grid Management</h3>
+<p>The energy grid is one of the most active domains for agentic AI, driven by the complexity of balancing intermittent renewable sources with variable demand.</p>
+<p><strong>Market size</strong>: the agentic AI in energy market was <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>480</mn><mi>m</mi><mi>i</mi><mi>l</mi><mi>l</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi>i</mi><mi>n</mi><mn>2024</mn><mo separator="true">,</mo><mi>p</mi><mi>r</mi><mi>o</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mi>e</mi><mi>d</mi><mi>t</mi><mi>o</mi><mi>r</mi><mi>e</mi><mi>a</mi><mi>c</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">480 million in 2024, projected to reach </annotation></semantics></math></span>10.7 billion by 2034 (36.4% CAGR).</p>
+<p><strong>Microsoft</strong> launched an AI-powered energy optimization suite with multi-agent systems for grid balancing (December 2025). <strong>IBM</strong> introduced an agentic AI analytics engine for real-time energy demand forecasting (February 2026).</p>
+<p><strong>GridMind</strong> (Argonne National Laboratory). A multi-agent system designed for power grid control rooms. Multiple LLM-based agents coordinate across SCADA data, weather forecasting, and failure analysis, providing human operators with synthesized situational awareness and recommended actions. This is one of the most technically sophisticated deployments of LLM agents in physical infrastructure — a national lab tackling a real operational problem with agentic architecture.</p>
+<p>Core applications:</p>
+<ul>
+<li><strong>Demand response</strong>: AI agents incentivize consumers to shift electricity use to off-peak hours through automated pricing adjustments. Real-time demand response improved up to 30% through dynamic load balancing and storage dispatch.</li>
+<li><strong>Microgrid orchestration</strong>: multi-agent systems coordinate wind, solar, battery storage, and grid tie-ins. Each energy resource gets its own agent; a coordinator agent manages the portfolio.</li>
+<li><strong>Self-healing grids</strong>: agents detect outages, reroute power, and dispatch repair resources autonomously.</li>
+<li><strong>EV charging optimization</strong>: AI agents balance vehicle charging loads against grid capacity, using blockchain for transaction integrity.</li>
+</ul>
+<p><strong>Physical systems controlled</strong>: inverters, battery management systems, grid switches, EV chargers, demand response relays.
+<strong>Interfaces</strong>: SCADA for grid equipment, smart meter APIs, weather data feeds, market price APIs.
+<strong>Safety</strong>: grid operations are subject to NERC CIP standards. AI systems operate within pre-defined operating envelopes — voltage limits, frequency bounds, thermal ratings. Agents cannot exceed these bounds regardless of optimization objectives.</p>
+<h3 id="building-automation">Building Automation</h3>
+<p>Smart buildings integrate HVAC, lighting, access control, fire safety, and energy management. AI agents are entering this space through existing Building Management Systems (BMS). The market is substantial — $96 billion — and AI-driven optimization delivers 35% energy savings in documented deployments.</p>
+<p><strong>Honeywell Connected Solutions</strong> (June 2025) is an AI-powered building management platform that uses reinforcement learning agents to optimize HVAC operation. The agents learn building thermal dynamics from historical data and weather forecasts, then adjust setpoints to minimize energy use while maintaining occupant comfort. This is one of the few production systems where RL agents directly control physical equipment through a BMS API.</p>
+<p>MQTT is the dominant protocol for building IoT sensors. Commands flow to actuators (dampers, valves, lighting controllers) through BACnet, Modbus, or MQTT. AI agents sit above the BMS, consuming sensor data and issuing high-level setpoint changes rather than direct actuator commands.</p>
+<p>Critical alarms (fire, gas leak, intrusion) are prioritized via MQTT QoS 2 and processed through deterministic safety systems that AI cannot override. Non-critical optimizations (energy use, comfort) use QoS 1 and are subject to AI control.</p>
+<p><strong>Physical systems controlled</strong>: HVAC dampers and chillers, lighting circuits, blind motors, door locks.
+<strong>Interfaces</strong>: BACnet, Modbus, MQTT, proprietary BMS APIs.
+<strong>Safety</strong>: fire and life safety systems remain fully deterministic — no AI in the loop. AI controls comfort and efficiency only.</p>
+<h3 id="agriculture-and-hydroponics">Agriculture and Hydroponics</h3>
+<p>Precision agriculture deploys AI at two scales: field-level (drones, tractors, irrigation) and controlled-environment (greenhouses, hydroponics).</p>
+<p><strong>Field-scale</strong>: The agricultural drone market reached <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5.4</mn><mi>b</mi><mi>i</mi><mi>l</mi><mi>l</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi>i</mi><mi>n</mi><mn>2025</mn><mo stretchy="false">(</mo><mi>p</mi><mi>r</mi><mi>o</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mi>e</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">5.4 billion in 2025 (projected </annotation></semantics></math></span>12 billion by 2030). AI-powered drones autonomously survey fields, with machine learning models analyzing imagery for pest detection, nutrient deficiency, and irrigation needs. Q-learning agents reduce water usage 18-34% through UAV-mediated precision irrigation. Deep Q-Networks optimize fertilizer schedules, achieving 22% yield improvements at 31% input reduction.</p>
+<p><strong>Controlled-environment</strong>: Hydroponic systems are a particularly clean example of the sensor-AI-actuator loop. Modern systems instrument reservoirs with pH, electrical conductivity (EC), dissolved oxygen (DO), and temperature sensors. Data transmits via MQTT to a broker (EMQX is common), processed by a backend, stored in a database, and presented through a web dashboard. AI analyzes correlations between environmental parameters and growth outcomes, predicts nutrient deficiencies, and automatically adjusts dosing pumps and LED lighting spectra.</p>
+<p>The hydroponic case is notable because the system is physically contained, the variables are measurable, the feedback loops are fast (hours to days), and the consequences of AI error are economic (lost crop) rather than safety-critical (no human harm). This makes hydroponics a natural proving ground for autonomous physical control.</p>
+<p><strong>Physical systems controlled</strong>: irrigation valves, dosing pumps, LED grow lights, ventilation fans, drone flight systems.
+<strong>Interfaces</strong>: MQTT for sensor data and actuator commands, REST APIs for drone fleet management, 5G for real-time field communication.
+<strong>Feedback loop</strong>: sensor → MQTT broker → AI model → actuator command → MQTT → actuator → sensor (typical cycle: minutes for hydroponics, hours for field crops).</p>
+<h3 id="home-automation">Home Automation</h3>
+<p>Home automation is where agentic AI has the broadest installed base and the most direct user interaction.</p>
+<p><strong>Home Assistant</strong> (600,000+ active installations in 2026) is the dominant open-source platform. Its 2025 AI integration includes:</p>
+<ul>
+<li><strong>Assist</strong>: natural language voice control with conversation memory. Local processing via Whisper (speech-to-text runs on user hardware, voice commands never leave the house). Supports both cloud LLMs (OpenAI, Anthropic) and local models (Ollama).</li>
+<li><strong>AI Tasks</strong>: integration that generates data using AI — attach cameras, ask what&rsquo;s happening, get structured output.</li>
+<li><strong>Automation suggestions</strong>: AI proposes automations based on observed behavior patterns.</li>
+</ul>
+<p>The Home Assistant architecture is significant: MQTT subscriptions provide instant state-change notifications to AI agents (no polling), enabling latency-sensitive automations for security, presence detection, and environmental control.</p>
+<p><strong>Josh.ai</strong> provides a commercial alternative focused on luxury homes, with a dedicated AI control system that integrates with major home automation platforms.</p>
+<p><strong>Physical systems controlled</strong>: lights, thermostats, locks, blinds, garage doors, irrigation, security cameras.
+<strong>Interfaces</strong>: MQTT, Zigbee, Z-Wave, Wi-Fi, Bluetooth, proprietary APIs (Hue, Nest, etc.) — Home Assistant integrates 2000+ device types.
+<strong>Safety</strong>: home systems are low-risk (worst case: lights on at 3am, thermostat too cold). No life-safety integration — fire alarms, CO detectors remain independent.
+<strong>Learning</strong>: behavioral pattern recognition suggests automations; users approve before activation.</p>
+<h3 id="robotic-process-automation-rpa--agentic-automation">Robotic Process Automation (RPA) → Agentic Automation</h3>
+<p>RPA — software robots that automate repetitive digital tasks — is undergoing a fundamental shift toward agentic AI.</p>
+<p><strong>UiPath</strong> (Gartner Magic Quadrant leader, 2025) launched its agentic automation platform, combining AI agents, traditional software robots, and human workers. <strong>UiPath Maestro</strong> is a new orchestration layer that models, operates, and optimizes complex processes end-to-end with embedded process intelligence and real-time KPI monitoring.</p>
+<p>The shift from RPA to agentic automation means: traditional RPA follows rigid scripts (click here, type this, copy that); agentic RPA agents reason about goals, handle exceptions, and make judgment calls. UiPath&rsquo;s 2025.10 release includes unified development for both robot scripts and AI agent logic.</p>
+<p>This matters for physical infrastructure because RPA agents increasingly interface with operational systems — submitting work orders, adjusting schedules, managing inventory — that have downstream physical effects. The boundary between &ldquo;digital automation&rdquo; and &ldquo;physical control&rdquo; blurs when an agent that processes a purchase order also triggers a warehouse robot to fulfill it.</p>
+<p><strong>Systems controlled</strong>: enterprise software (ERP, CRM, email), with downstream effects on physical logistics.
+<strong>Interfaces</strong>: screen scraping, API integration, database queries, message queues.
+<strong>Safety</strong>: Maestro provides centralized oversight for AI agent orchestration across systems and teams.</p>
+<h2 id="safety-mechanisms-a-cross-domain-analysis">Safety Mechanisms: A Cross-Domain Analysis</h2>
+<p>The single most important question in AI-controlled physical systems is: what prevents the AI from causing physical harm?</p>
+<h3 id="the-hitlhotl-spectrum">The HITL/HOTL Spectrum</h3>
+<p>Industrial AI operates on a spectrum from <strong>Human-in-the-Loop</strong> (HITL) to <strong>Human-on-the-Loop</strong> (HOTL):</p>
+<ul>
+<li><strong>HITL</strong>: the AI recommends; the human approves every action before execution. Current default for SCADA, critical infrastructure, and any system where failure harms people.</li>
+<li><strong>HOTL</strong>: the AI acts autonomously; the human monitors and can override. Used for building HVAC optimization, agricultural irrigation, home automation — domains where failure is annoying or expensive but not dangerous.</li>
+<li><strong>Full autonomy</strong>: the AI acts without human oversight. Only in contained, low-risk systems (hydroponic nutrient dosing within safe pH bounds, home lighting schedules).</li>
+</ul>
+<p>The EU AI Act (Article 14) mandates that high-risk AI systems be designed for effective human oversight. This is not optional for any system deployed in Europe.</p>
+<h3 id="functional-safety-standards">Functional Safety Standards</h3>
+<p>Industrial safety is governed by established standards that predate AI:</p>
+<ul>
+<li><strong>IEC 61508</strong> defines Safety Integrity Levels (SIL 1-4) for electrical/electronic safety-related systems. SIL-rated components guarantee a maximum probability of dangerous failure per hour. AI systems do not currently achieve SIL certification — they operate alongside SIL-rated safety systems, never replacing them.</li>
+<li><strong>IEC 62061</strong> applies IEC 61508 specifically to machinery safety.</li>
+<li><strong>ISO 13849</strong> covers safety of control systems for machinery using a Performance Level (PL) rating.</li>
+</ul>
+<p>The implication: any AI agent controlling physical equipment must treat the SIL-rated safety layer as inviolable. The AI optimizes within the envelope that the safety system defines.</p>
+<h3 id="operating-envelopes">Operating Envelopes</h3>
+<p>The most robust safety pattern across domains is the <strong>operating envelope</strong>: the AI can do whatever it wants within predefined physical bounds, and hard limits prevent it from exceeding those bounds regardless of what the AI decides.</p>
+<p>Examples:</p>
+<ul>
+<li>Grid agents cannot command voltage or frequency outside regulatory limits</li>
+<li>HVAC agents cannot set temperatures outside building code bounds</li>
+<li>Hydroponic agents cannot dose nutrients outside safe pH/EC ranges</li>
+<li>Manufacturing agents cannot exceed machine-rated speeds or pressures</li>
+</ul>
+<p>The envelope is enforced at the actuator level, not the AI level. The PLC, the relay, the valve controller — the dumb hardware — enforces the limit. The AI can request anything; the physical system clips the request to safe bounds.</p>
+<h3 id="simulation-before-execution">Simulation-Before-Execution</h3>
+<p>Digital twins provide a safety mechanism where the AI tests actions in simulation before applying them to real equipment. If the simulated outcome is outside acceptable parameters, the action is blocked. This converts a safety problem (will this action harm the system?) into an engineering problem (is the simulation accurate enough?).</p>
+<h3 id="layered-defense">Layered Defense</h3>
+<p>No single mechanism is sufficient. Production systems stack:</p>
+<ol>
+<li><strong>Input validation</strong> — reject malformed or out-of-range commands</li>
+<li><strong>Operating envelope</strong> — hard physical limits at the actuator</li>
+<li><strong>Simulation check</strong> — test in digital twin first</li>
+<li><strong>HITL/HOTL oversight</strong> — human approval or monitoring</li>
+<li><strong>Anomaly detection</strong> — ML models watching for unexpected behavior</li>
+<li><strong>Independent safety systems</strong> — fire, emergency stop, pressure relief — that operate completely independently of the AI</li>
+</ol>
+<p>The Korean vegetable processing plant incident (2023) — where an AI-driven robotic arm fatally injured a worker after misidentifying him as a box — demonstrates why layered defense is necessary. No single layer would have caught the failure; the combination of better perception, physical barriers, and independent safety interlocks addresses the risk.</p>
+<h3 id="emerging-safety-standards-for-ai">Emerging Safety Standards for AI</h3>
+<p>Classical safety standards (IEC 61508) assume deterministic systems — the same input always produces the same output. AI violates this assumption. New standards are emerging:</p>
+<ul>
+<li><strong>ISO/IEC TS 22440</strong> (2024) — the first AI-specific safety standard. Introduces requirements for learning phase constraints (when can the AI update its models?), continuous drift monitoring (is the AI&rsquo;s behavior changing?), explainability (can operators understand why the AI made a decision?), and human-in-the-loop governance.</li>
+<li><strong>EU Machinery Regulation</strong> (effective 2027) — updates machinery safety requirements to address AI-driven control systems explicitly.</li>
+</ul>
+<h3 id="documented-failure-modes">Documented Failure Modes</h3>
+<p>Production deployments have revealed recurring failure patterns:</p>
+<ul>
+<li><strong>Data distribution shift</strong>: AI trained on spring/fall data fails during heatwaves or cold snaps because operating conditions exceed training distribution</li>
+<li><strong>Integration brittleness</strong>: BMS API changes, firmware updates, or protocol version mismatches break the AI&rsquo;s connection to physical systems</li>
+<li><strong>Sensor spoofing</strong>: compromised sensors feed false data to AI, causing inappropriate actuator commands</li>
+<li><strong>Emergent multi-agent conflicts</strong>: multiple agents optimizing independently create system-level problems (e.g., simultaneous battery charging across a microgrid strains the grid tie-in)</li>
+<li><strong>RPA brittleness</strong>: UI changes break software robot scripts; industry reports 30-50% RPA project failure rates from integration fragility</li>
+</ul>
+<h2 id="patterns-and-gaps">Patterns and Gaps</h2>
+<h3 id="what-works-now">What Works Now</h3>
+<ul>
+<li><strong>AI advising human operators</strong> in manufacturing, SCADA, and grid management</li>
+<li><strong>AI autonomously controlling low-risk systems</strong> — HVAC comfort, lighting, irrigation, hydroponic nutrient dosing</li>
+<li><strong>AI detecting anomalies</strong> in SCADA networks, equipment telemetry, and quality inspection</li>
+<li><strong>MCP as an agent-to-physical-system bridge</strong> via OPC UA and MQTT</li>
+<li><strong>Digital twins as safety sandboxes</strong> for testing AI decisions before physical execution</li>
+</ul>
+<h3 id="what-does-not-yet-exist">What Does Not Yet Exist</h3>
+<ul>
+<li><strong>LLM agents with direct, unsupervised control of safety-critical systems</strong>. No one is running GPT-4 or Claude with direct write access to a nuclear plant&rsquo;s control rods. The reasoning capabilities are not trusted enough, and the failure modes are not well enough understood.</li>
+<li><strong>Mature safety certification for AI agents in physical control</strong>. ISO/IEC TS 22440 (2024) is a first step and the EU Machinery Regulation (2027) will add requirements, but specific certification processes for agentic LLM systems controlling physical infrastructure are still forming.</li>
+<li><strong>Cross-domain agent coordination for physical systems</strong>. An AI agent that manages building HVAC, solar panels, EV charging, and grid interaction as a unified system — rather than isolated agents per domain — is a research topic, not a product.</li>
+<li><strong>Learning from physical consequences at scale</strong>. Reinforcement learning works in simulation (digital twins) and contained environments (hydroponics). Learning from real-world consequences in complex, safety-critical environments remains an open problem.</li>
+</ul>
+<h3 id="the-emerging-architecture">The Emerging Architecture</h3>
+<p>Across all domains surveyed, a common architecture is consolidating:</p>
+<pre tabindex="0"><code>Sensors → Protocol (OPC UA / MQTT / BACnet)
+  → Data layer (historian / broker / database)
+    → AI reasoning layer (LLM agent with MCP tools)
+      → Command layer (validated, bounded commands)
+        → Protocol (OPC UA / MQTT / BACnet)
+          → Actuators
+</code></pre><p>With parallel, independent:</p>
+<pre tabindex="0"><code>Sensors → Safety system (deterministic, not AI)
+  → Emergency actuators (shutdown, relief, alarm)
+</code></pre><p>The AI layer never bypasses the safety system. The safety system never depends on the AI layer. They share sensors but have independent actuation paths.</p>
+<h2 id="implications-for-the-561-system">Implications for the 561 System</h2>
+<p>The 561 system&rsquo;s physical infrastructure integration objective targets printers, hydroponic equipment, servers, and communication networks. Based on this survey:</p>
+<ol>
+<li>
+<p><strong>MQTT is the right starting protocol</strong> for the systems targeted. Hydroponic controllers, 3D printers (via OctoPrint/Klipper), and network equipment all support or can be bridged to MQTT. OPC UA is overkill for this scale.</p>
+</li>
+<li>
+<p><strong>MCP is the right agent interface</strong>. The system already uses MCP for its datastore. Extending MCP tools to cover MQTT-connected physical devices follows the established pattern — the agent uses the same tool-calling interface for files, knowledge graphs, and physical actuators.</p>
+</li>
+<li>
+<p><strong>Hydroponics is the right first target</strong>. It has fast feedback loops, measurable outcomes, contained failure modes, and no safety-critical human exposure. The sensor-AI-actuator pattern is clean and well-documented.</p>
+</li>
+<li>
+<p><strong>Operating envelopes must be designed before agent access</strong>. Before any AI agent gets write access to a physical system, hard limits on what it can command must be enforced at the device level. The AI can request pH adjustment; the dosing pump controller clips the request to safe bounds. This is non-negotiable.</p>
+</li>
+<li>
+<p><strong>The safety system is independent</strong>. If the AI crashes, the physical system must fail safe. Pumps stop, lights go to a known state, printers pause. The AI is an optimization layer on top of a system that works (conservatively) without it.</p>
+</li>
+<li>
+<p><strong>Start HITL, earn HOTL</strong>. Every new physical integration starts with the AI recommending and a human approving. Autonomous operation is earned by demonstrated reliability over time, never assumed.</p>
+</li>
+</ol>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/agentic-industrial-control-survey-2026/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">computing</dd>
+      </div><div class="relation">
+        <dt>See also</dt>
+        <dd property="emsenn:Seealso"><ul><li>../../domains/artificial intelligence/domains/agents/terms/agent.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul></ul></dd>
+      </div><div class="relation">
+        <dt>Text type</dt>
+        <dd property="emsenn:Texttype">survey</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

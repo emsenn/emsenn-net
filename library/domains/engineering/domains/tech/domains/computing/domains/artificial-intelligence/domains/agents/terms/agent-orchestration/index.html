@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "The coordination layer that determines which steps an agentic system executes in what order, under what conditions, and with what state.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">The coordination layer that determines which steps an agentic system executes in what order, under what conditions, and with what state.</span>
+  </div>
+  <div class="e-content">
+    <p>Agent orchestration is the coordination of one or more <a href="./agentic-system.md" class="link-internal">agentic systems</a> through a defined execution topology. The topology determines which steps execute in what order, under what conditions, and with what state. Orchestration sits between the raw <a href="./tool-use.md" class="link-internal">tool use</a> primitive and the goal the system is pursuing.</p>
+<p>The simplest orchestration is a linear chain: call tool A, feed the result to tool B, return. The most complex involve graph-structured workflows with conditional branching, parallel execution, checkpointing, rollback, <a href="./human-in-the-loop.md" class="link-internal">human-in-the-loop</a> pauses, and dynamic subgraph composition.</p>
+<p>Four design decisions define any orchestration:</p>
+<p><strong>State management.</strong> How is the running state represented, persisted, and recovered after failure? The answer ranges from &ldquo;conversation history in memory&rdquo; (volatile, lost on crash) to &ldquo;typed state object checkpointed to a database at every step&rdquo; (durable, resumable, debuggable). Durable state is what separates an orchestration from a script — the system can crash and pick up where it left off.</p>
+<p><strong>Control flow.</strong> Is the execution path predefined or model-directed? Predefined paths are workflows. Model-directed paths are agents. Between them is a spectrum: <a href="./prompt-chaining.md" class="link-internal">prompt chaining</a> (fixed sequence), routing (model classifies, fixed handlers), parallelization (independent subtasks), orchestrator-workers (model delegates), and evaluator-optimizer (model judges its own output). Each step gives the model more control over what happens next.</p>
+<p><strong>Communication.</strong> In multi-agent configurations, how do agents discover each other and exchange messages? MCP standardizes agent-to-tool connections. A2A standardizes agent-to-agent communication. Within a single runtime, frameworks use function calls, shared state, or message queues.</p>
+<p><strong>Observability.</strong> Can the orchestration be inspected, replayed, and debugged? This is not optional — without it, failures in multi-step workflows are opaque. Checkpoint-based systems enable time-travel debugging (restore any prior state). Event-sourced architectures enable deterministic replay.</p>
+<p><strong>Conflict resolution.</strong> When agents produce contradictory outputs or propose actions with safety implications, what reconciles them? Patterns include proposal-based execution (an agent proposes an action with reasoning, a validator checks preconditions before any side effect), multi-agent consensus (a critical decision requires independent agreement from two or more agents before triggering), and threshold-based escalation to human review when confidence falls below a bound. This decision becomes load-bearing in safety-critical deployments — industrial control, medical workflows — where a wrong action is more expensive than no action.</p>
+<p><strong>The orchestration/choreography distinction.</strong> Orchestration is central: one process directs others. Choreography is decentralized: participants follow a shared protocol independently. The W3C Web Services Choreography Description Language (2005) formalized this distinction; Milner&rsquo;s π-calculus (1999) gives the process-algebraic foundation. Most practical systems mix both — a Claude Code session orchestrates subagents (centralized dispatch) while those subagents follow shared conventions encoded in skills and rules (decentralized protocol adherence).</p>
+<p>No existing framework provides formal compositional guarantees — region-restricted execution, provable non-interference between concurrent agents, or skill admissibility conditions. These remain open problems.</p>
+<p>See <a href="../domains/reports/agent-orchestration-ecosystem-2026.md" class="link-internal">Agent Orchestration Ecosystem 2026</a> for the landscape of frameworks, <a href="../texts/agent-reliability-in-production.md" class="link-internal">Agent Reliability in Production</a> for operational patterns, <a href="../texts/multi-agent-orchestration-in-practice.md" class="link-internal">Multi-Agent Orchestration in Practice</a> for how these patterns map to <a href="../../../../humanities/domains/sociology/domains/work/terms/delegation.md" class="link-internal">delegation</a>, <a href="../../../../humanities/domains/sociology/domains/work/domains/governance/terms/role.md" class="link-internal">role</a>, and <a href="../../../../humanities/domains/sociology/domains/work/terms/office.md" class="link-internal">office</a> theory, and <a href="../texts/industrial-ai-agent-architecture-patterns.md" class="link-internal">Industrial AI Agent Architecture Patterns</a> for safety-critical deployments where proposal-based execution and consensus mechanisms become load-bearing.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Assessed by</dt>
+        <dd property="emsenn:Assessedby">agent evaluation, agent observability</dd>
+      </div><div class="relation">
+        <dt>Built from</dt>
+        <dd property="emsenn:Builtfrom"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-use/">tool use</a></dd>
+      </div><div class="relation">
+        <dt>Controlled by</dt>
+        <dd property="emsenn:Controlledby"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/">human in the loop</a></dd>
+      </div><div class="relation">
+        <dt>Coordinates</dt>
+        <dd property="emsenn:Coordinates"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/">agentic system</a></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-04-03">2026-04-03</time></dd>
+      </div><div class="relation">
+        <dt>Decisions</dt>
+        <dd property="emsenn:Decisions">state management, control flow, communication, observability, conflict resolution</dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/">agent orchestration</a></dd>
+      </div><div class="relation">
+        <dt>Frameworks</dt>
+        <dd property="emsenn:Frameworks">langgraph, pydantic ai</dd>
+      </div><div class="relation">
+        <dt>Patterns</dt>
+        <dd property="emsenn:Patterns">prompt chaining, routing, parallelization, orchestrator workers</dd>
+      </div><div class="relation">
+        <dt>Protocols</dt>
+        <dd property="emsenn:Protocols">model context protocol, agent to agent protocol</dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/texts/multi-agent-orchestration-frameworks-2026/">Multi-agent orchestration frameworks 2026</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/texts/non-llm-computation-for-agent-duties/">Non-LLM Computation for Agent Duties</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/multi-agent-orchestration-in-practice/">Multi-Agent Orchestration in Practice</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/activation-trigger/">Activation Trigger</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/durable-execution/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/multi-agent-system/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/prompt-chaining/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-observability/">Agent Observability</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/langgraph/">LangGraph</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/pydantic-ai/">PydanticAI</a></li><li><a href="/library/domains/engineering/domains/tech/terms/orchestration/"></a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

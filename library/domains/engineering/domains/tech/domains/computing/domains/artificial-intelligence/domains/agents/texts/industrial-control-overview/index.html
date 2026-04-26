@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Agents in Industrial Control — Overview - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Survey of how autonomous AI agents are deployed in manufacturing, energy, utilities, and infrastructure control. Covers the physical systems being controlled, enabling technologies, and organizational implications.",
+  "name": "AI Agents in Industrial Control — Overview",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/industrial-control-overview/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/">Texts</a></nav>
+  <h1 class="p-name">AI Agents in Industrial Control — Overview</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Survey of how autonomous AI agents are deployed in manufacturing, energy, utilities, and infrastructure control. Covers the physical systems being controlled, enabling technologies, and organizational implications.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-has-changed">What Has Changed</a></li>
+    <li><a href="#physical-systems-being-controlled">Physical Systems Being Controlled</a>
+      <ul>
+        <li><a href="#manufacturing">Manufacturing</a></li>
+        <li><a href="#power-generation--energy">Power Generation &amp; Energy</a></li>
+        <li><a href="#water--utilities">Water &amp; Utilities</a></li>
+        <li><a href="#telecom-infrastructure">Telecom Infrastructure</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-architecture-that-makes-this-possible">The Architecture That Makes This Possible</a>
+      <ul>
+        <li><a href="#layer-1-deterministic-control-plc--safety-system">Layer 1: Deterministic Control (PLC / Safety System)</a></li>
+        <li><a href="#layer-2-edge-ai-industrial-gateway--ipc">Layer 2: Edge AI (Industrial Gateway / IPC)</a></li>
+        <li><a href="#layer-3-cloud--enterprise-ai">Layer 3: Cloud / Enterprise AI</a></li>
+      </ul>
+    </li>
+    <li><a href="#enabling-technologies">Enabling Technologies</a>
+      <ul>
+        <li><a href="#opc-ua--mqtt-the-data-pipeline">OPC-UA + MQTT: The Data Pipeline</a></li>
+        <li><a href="#semantic-data-models--ontologies">Semantic Data Models &amp; Ontologies</a></li>
+        <li><a href="#model-context-protocol-mcp">Model Context Protocol (MCP)</a></li>
+      </ul>
+    </li>
+    <li><a href="#multi-agent-orchestration">Multi-Agent Orchestration</a></li>
+    <li><a href="#safety--real-world-constraints">Safety &amp; Real-World Constraints</a>
+      <ul>
+        <li><a href="#functional-safety-compliance">Functional Safety Compliance</a></li>
+        <li><a href="#graceful-degradation">Graceful Degradation</a></li>
+        <li><a href="#audit--reversibility">Audit &amp; Reversibility</a></li>
+      </ul>
+    </li>
+    <li><a href="#market-adoption--performance">Market Adoption &amp; Performance</a></li>
+    <li><a href="#vendor-landscape-2025-2026">Vendor Landscape (2025-2026)</a>
+      <ul>
+        <li><a href="#established-automation-vendors">Established Automation Vendors</a></li>
+        <li><a href="#specialized-industrial-ai">Specialized Industrial AI</a></li>
+        <li><a href="#network-infrastructure">Network Infrastructure</a></li>
+      </ul>
+    </li>
+    <li><a href="#organizational-implications">Organizational Implications</a>
+      <ul>
+        <li><a href="#workforce-evolution">Workforce Evolution</a></li>
+        <li><a href="#governance--control">Governance &amp; Control</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-2026-inflection-point">The 2026 Inflection Point</a></li>
+    <li><a href="#see-also">See Also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="ai-agents-in-industrial-control--overview">AI Agents in Industrial Control — Overview</h1>
+<p>As of 2026, AI agents are no longer experimental in industrial control systems. They autonomously manage production lines, power generation, water treatment, and network infrastructure at scale—with documented returns exceeding 250% within 24 months. This marks a transition from automation (following rules) to <strong>autonomy</strong> (reasoning about changing conditions and adapting).</p>
+<h2 id="what-has-changed">What Has Changed</h2>
+<p><strong>The 2015-2020 era</strong>: AI in industry meant predictive maintenance. A model predicts &ldquo;bearing will fail in 7 days,&rdquo; an engineer reads the alert, schedules repairs.</p>
+<p><strong>The 2025-2026 era</strong>: AI agents are <strong>prescriptive and agentic</strong>. The same system says &ldquo;bearing will fail Thursday; part #BR-7654 is in stock; technician TEC-042 is available Wednesday 9am-11am,&rdquo; and schedules the repair <strong>without human intervention at each step</strong>. If parts are unavailable, the agent negotiates with suppliers. If the technician is reassigned, the agent reschedules automatically.</p>
+<p>The shift is from <em>assisting human decision-making</em> to <em>autonomous execution with human oversight</em>.</p>
+<h2 id="physical-systems-being-controlled">Physical Systems Being Controlled</h2>
+<h3 id="manufacturing">Manufacturing</h3>
+<p><strong>Production Lines</strong>: Real-time equipment monitoring, anomaly detection, dynamic rerouting around bottlenecks, defect detection (99%+ accuracy on high-speed lines).</p>
+<p><strong>Specific Equipment</strong>: Compressors, pumps, inkjet printers, robotic arms, drive systems, machine tools.</p>
+<p><strong>Performance Gains</strong>: 40-60% reduction in process cycle times; 43% less unplanned downtime; AI-driven vision systems achieving 99%+ defect detection.</p>
+<h3 id="power-generation--energy">Power Generation &amp; Energy</h3>
+<p><strong>GE Predix APM</strong>: Autonomous condition monitoring for turbines, generators, and heavy equipment. Real-time demand forecasting using weather, consumption trends, and SCADA data. Precision scheduling of power generation and storage.</p>
+<h3 id="water--utilities">Water &amp; Utilities</h3>
+<p><strong>Autonomous Treatment</strong>: Real-time adjustment of chlorine and pH based on flow rate, turbidity, and contamination sensors. Agents optimize dosing for both cost and water quality consistency.</p>
+<h3 id="telecom-infrastructure">Telecom Infrastructure</h3>
+<p><strong>Network Autonomy</strong>: Juniper Marvis AI (80%+ troubleshooting efficacy), Cisco AI Canvas (natural language network troubleshooting), Nokia Event-Driven Automation (intent-based network reconfiguration). Agents autonomously remediate network faults across distributed nodes.</p>
+<h2 id="the-architecture-that-makes-this-possible">The Architecture That Makes This Possible</h2>
+<p>Three-layer pattern emerges as the standard:</p>
+<h3 id="layer-1-deterministic-control-plc--safety-system">Layer 1: Deterministic Control (PLC / Safety System)</h3>
+<p>Microsecond-to-millisecond execution of certified control logic. Manages emergency stops, maintains system invariants, certified to functional safety standards (IEC 61508). AI never runs here.</p>
+<h3 id="layer-2-edge-ai-industrial-gateway--ipc">Layer 2: Edge AI (Industrial Gateway / IPC)</h3>
+<p>1-10 millisecond inference and decision-making on factory-floor edge devices. Anomaly detection, tactical optimization, continues operating if cloud is offline. Runs ML models locally; no network latency for time-critical decisions.</p>
+<h3 id="layer-3-cloud--enterprise-ai">Layer 3: Cloud / Enterprise AI</h3>
+<p>Strategic planning, multi-agent orchestration, learning from feedback, cross-organizational optimization. Seconds-to-hours latency acceptable because these are planning decisions, not emergency responses.</p>
+<p><strong>Key Principle</strong>: Data flows inward (equipment → edge → cloud); decisions flow outward (cloud proposals → edge validation → PLC execution). AI is never on the safety-critical path.</p>
+<h2 id="enabling-technologies">Enabling Technologies</h2>
+<h3 id="opc-ua--mqtt-the-data-pipeline">OPC-UA + MQTT: The Data Pipeline</h3>
+<p><strong>OPC-UA</strong> (Unified Architecture) exposes semantic context from equipment:</p>
+<ul>
+<li>Not just &ldquo;Temperature = 85C&rdquo;</li>
+<li>But &ldquo;Motor::Temperature (current: 85C, warning-threshold: 90C, next_service: 2026-05-15)&rdquo;</li>
+</ul>
+<p><strong>MQTT</strong> (with Sparkplug B standard) distributes this semantic-rich data to multiple agents without modification. All major cloud vendors (AWS, Azure, Google) and automation vendors (Siemens, Beckhoff, Rockwell) support this natively.</p>
+<p><strong>Benefit</strong>: Agents trained on one equipment type can reason about similar equipment without retraining, because all equipment exposes the same semantic structure.</p>
+<h3 id="semantic-data-models--ontologies">Semantic Data Models &amp; Ontologies</h3>
+<p>An ontology is a machine-readable specification of what entities mean:</p>
+<ul>
+<li>Motor, Bearing, Technician, ShiftSchedule are <strong>entities</strong></li>
+<li>Bearing.Condition ∈ {Good, Degrading, Failed} are <strong>properties</strong></li>
+<li>Technician → serves → Motor is a <strong>relation</strong></li>
+</ul>
+<p>When a Maintenance Agent detects bearing degradation, it queries the ontology:</p>
+<ul>
+<li>&ldquo;What technicians are certified for this bearing type?&rdquo;</li>
+<li>&ldquo;What parts are required?&rdquo;</li>
+<li>&ldquo;What is the typical duration?&rdquo;</li>
+</ul>
+<p>All coordinated through shared semantics, no hard-coded routing.</p>
+<h3 id="model-context-protocol-mcp">Model Context Protocol (MCP)</h3>
+<p>Standardized framework (Anthropic, 2024) for agents to access external tools:</p>
+<ul>
+<li>ERP systems (SAP, Workday, Oracle)</li>
+<li>Supplier APIs</li>
+<li>Technician schedules</li>
+<li>Parts inventory</li>
+</ul>
+<p>MCP has grown from ~100k downloads (Nov 2024) to 8M+ (Apr 2025). This is the mechanism that allows agents to orchestrate workflows spanning multiple enterprise systems.</p>
+<h2 id="multi-agent-orchestration">Multi-Agent Orchestration</h2>
+<p>Instead of one monolithic system doing everything, specialized agents with clear roles:</p>
+<ul>
+<li><strong>Anomaly Detector</strong>: Watches sensor data, identifies equipment problems</li>
+<li><strong>Parts Checker</strong>: Queries inventory, validates part availability</li>
+<li><strong>Scheduler</strong>: Coordinates technician availability and shift coverage</li>
+<li><strong>Orchestrator</strong>: Coordinates across agents, enforces approval logic</li>
+</ul>
+<p><strong>Message-based coordination</strong>: Anomaly Detector publishes &ldquo;bearing degradation detected&rdquo; → Parts Checker subscribes, checks inventory, publishes &ldquo;parts available&rdquo; → Scheduler subscribes, schedules repair.</p>
+<p>Each agent is expert in one domain. New agents added without modifying existing ones. Failures in one agent don&rsquo;t cascade to others (if Parts Checker is offline, Anomaly Detector still runs; decision escalates to human).</p>
+<h2 id="safety--real-world-constraints">Safety &amp; Real-World Constraints</h2>
+<h3 id="functional-safety-compliance">Functional Safety Compliance</h3>
+<p>IEC 61508 (safety standards) remain non-negotiable. AI augments safety systems; doesn&rsquo;t replace them.</p>
+<p><strong>Edge AI enables speed without sacrificing safety</strong>:</p>
+<ul>
+<li>Local 1-10ms response to safety-critical conditions</li>
+<li>PLC handles execution of certified control logic</li>
+<li>All AI decisions auditable and reversible</li>
+</ul>
+<h3 id="graceful-degradation">Graceful Degradation</h3>
+<p>When systems fail:</p>
+<ul>
+<li><strong>Cloud offline</strong>: Edge AI continues locally, decisions cached</li>
+<li><strong>Edge device down</strong>: PLC continues its base programming, system operates at reduced intelligence but safely</li>
+<li><strong>Conflicting agent decisions</strong>: Escalate to human orchestrator</li>
+</ul>
+<p>The system degrades gracefully rather than failing catastrophically.</p>
+<h3 id="audit--reversibility">Audit &amp; Reversibility</h3>
+<p>Every autonomous decision is logged with:</p>
+<ul>
+<li>Which agent(s) proposed the action</li>
+<li>Reasoning and evidence</li>
+<li>Approval result</li>
+<li>Execution outcome</li>
+<li>Timestamp</li>
+</ul>
+<p>Enables root cause analysis and supports regulatory compliance.</p>
+<h2 id="market-adoption--performance">Market Adoption &amp; Performance</h2>
+<p><strong>Adoption Trajectory</strong>:</p>
+<ul>
+<li>2025: 25% of enterprises using GenAI deploying autonomous agents</li>
+<li>2027: 50% of enterprises expected to have agentic AI deployed</li>
+<li>2034: Autonomous AI and agents market projected $156 billion</li>
+</ul>
+<p><strong>Returns on Investment</strong> (documented 2025 implementations):</p>
+<ul>
+<li>ROI exceeding 250% within 24 months (predictive maintenance applications)</li>
+<li>10,000+ man-hours saved annually per factory (multi-agent deployments)</li>
+<li>40-60% reduction in process cycle times</li>
+<li>43% reduction in unplanned downtime</li>
+<li>45% reduction in network outages (telecom)</li>
+</ul>
+<p><strong>Caution</strong>: Gartner projects 40% of agentic AI projects will be cancelled by 2027 due to escalating costs, unclear business value, or inadequate risk controls. Requires disciplined implementation and clear ROI metrics.</p>
+<h2 id="vendor-landscape-2025-2026">Vendor Landscape (2025-2026)</h2>
+<h3 id="established-automation-vendors">Established Automation Vendors</h3>
+<p><strong>Siemens</strong>: MindSphere (predictive maintenance), Industrial Copilot (multi-agent orchestration), Planning Copilot (production scheduling), Operations Copilot (shop floor).</p>
+<p><strong>Rockwell Automation</strong>: AADvance (SIL 3 safety systems), Logix SIS (native process + safety integration).</p>
+<p><strong>ABB</strong>: System 800xA (distributed control + safety).</p>
+<p><strong>GE Digital</strong>: Predix APM (asset management for power, oil &amp; gas, aviation).</p>
+<h3 id="specialized-industrial-ai">Specialized Industrial AI</h3>
+<p><strong>Hitachi</strong>: HMAX Industry (launched Dec 2025) — AI agents for equipment maintenance using real-time sensor data + equipment manuals + domain expertise. Initially supporting compressors, pumps, inkjet printers.</p>
+<h3 id="network-infrastructure">Network Infrastructure</h3>
+<p><strong>Juniper Networks (now HPE, post-$14B acquisition July 2025)</strong>: Marvis AI Assistant (80%+ troubleshooting efficacy), autonomous remediation.</p>
+<p><strong>Cisco</strong>: AgenticOps, AI Canvas for cross-domain network troubleshooting.</p>
+<p><strong>Nokia</strong>: Event-Driven Automation with intent-based declarative configuration.</p>
+<h2 id="organizational-implications">Organizational Implications</h2>
+<h3 id="workforce-evolution">Workforce Evolution</h3>
+<p>Workers move from:</p>
+<ul>
+<li><strong>Performing manual data entry</strong> → querying agentic systems</li>
+<li><strong>Repetitive monitoring</strong> → defining intent and verifying quality</li>
+<li><strong>Reactive troubleshooting</strong> → proactive optimization</li>
+</ul>
+<p>Requires:</p>
+<ul>
+<li><strong>Domain expertise</strong> to encode knowledge into agent decision rules</li>
+<li><strong>AI literacy</strong> to understand agent reasoning and edge cases</li>
+<li><strong>Systems thinking</strong> to design orchestration protocols</li>
+</ul>
+<p>Vendors like Hitachi explicitly invest in knowledge transfer mechanisms (HMAX) to address skilled labor shortages.</p>
+<h3 id="governance--control">Governance &amp; Control</h3>
+<p>New operational roles emerge:</p>
+<ul>
+<li><strong>Strategic Orchestrators</strong>: Define agent goals, verify outputs, handle exceptions</li>
+<li><strong>Domain Experts</strong>: Encode manufacturing knowledge into decision logic</li>
+<li><strong>Systems Integrators</strong>: Connect heterogeneous equipment and vendors across enterprises</li>
+<li><strong>AI Operators</strong>: Monitor agent behavior, handle edge cases, support continuous learning</li>
+</ul>
+<h2 id="the-2026-inflection-point">The 2026 Inflection Point</h2>
+<p><strong>Key Technical Stabilizations</strong>:</p>
+<ol>
+<li><strong>OPC-UA + MQTT</strong> is the dominant industrial data pipeline (no longer competing standards)</li>
+<li><strong>Edge-cloud split</strong> is the default architecture (not an optimization, a requirement)</li>
+<li><strong>Semantic ontologies</strong> are necessary for multi-vendor agent reasoning</li>
+<li><strong>MCP</strong> is the universal standard for agent tool access (97M+ SDK downloads, 5,800+ servers)</li>
+<li><strong>Digital twins</strong> are active simulation-based control, not passive monitoring</li>
+</ol>
+<p><strong>Market Maturity Markers</strong>:</p>
+<ul>
+<li>Hitachi, Siemens launching AI agents for industrial equipment</li>
+<li>HPE/Juniper creating $7B networking powerhouse with integrated Marvis AI</li>
+<li>Digital Twin Consortium launching AI Agent Capabilities Periodic Table (standardized evaluation framework)</li>
+<li>Multiple vendors announcing multi-agent orchestration platforms (Microsoft, Siemens)</li>
+</ul>
+<p><strong>Outstanding Challenges</strong>:</p>
+<ol>
+<li>How do we certify agentic systems that learn and adapt? (Current approaches assume static rule sets)</li>
+<li>What prevents 40% project cancellation rate? (Gartner prediction for 2027)</li>
+<li>How do we ensure safety when agents interact with each other in ways designers didn&rsquo;t explicitly anticipate?</li>
+<li>What is the economic break-even: when does autonomous operation cost less than human monitoring?</li>
+</ol>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="./industrial-ai-agent-architecture-patterns.md" class="link-internal">Industrial AI Agent Architecture Patterns</a> — the three-layer technical architecture</li>
+<li><a href="./edge-ai.md" class="link-internal">Edge AI</a> — local ML inference for safety-critical decisions</li>
+<li><a href="./agent-orchestration.md" class="link-internal">Agent Orchestration</a> — coordinating multiple autonomous agents</li>
+<li><a href="./model-context-protocol.md" class="link-internal">Model Context Protocol</a> — standardized agent tool access</li>
+<li><a href="../../../domains/manufacturing/terms/digital-twin.md" class="link-internal">Digital Twin</a> — simulation-based system representation</li>
+<li><a href="../../../domains/manufacturing/terms/opc-ua.md" class="link-internal">OPC Unified Architecture</a> — industrial data protocol</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/industrial-control-overview/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

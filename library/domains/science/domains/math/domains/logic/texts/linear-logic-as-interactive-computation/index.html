@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linear Logic as Interactive Computation - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-06",
+  "datePublished": "2026-04-06",
+  "description": "The Curry-Howard correspondence for linear logic maps proofs to interactive programs — Abramsky showed this in 1993, Hyland-Ong proved game semantics fully models PCF, and Martens built a working interactive fiction language on the result.",
+  "name": "Linear Logic as Interactive Computation",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/science/domains/math/domains/logic/texts/linear-logic-as-interactive-computation/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/">Science</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/">Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/logic/">Logic</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/logic/texts/">Texts</a></nav>
+  <h1 class="p-name">Linear Logic as Interactive Computation</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-06T00:00:00Z">2026-04-06</time>
+    
+    <span class="p-summary">The Curry-Howard correspondence for linear logic maps proofs to interactive programs — Abramsky showed this in 1993, Hyland-Ong proved game semantics fully models PCF, and Martens built a working interactive fiction language on the result.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#abramsky-proofs-as-concurrent-processes">Abramsky: proofs as concurrent processes</a></li>
+    <li><a href="#game-semantics-strategies-as-programs">Game semantics: strategies as programs</a></li>
+    <li><a href="#martens-interactive-fiction-on-linear-logic">Martens: interactive fiction on linear logic</a></li>
+    <li><a href="#what-this-means-for-predication">What this means for predication</a></li>
+    <li><a href="#see-also">See also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>The Curry-Howard correspondence says proofs are programs. For classical logic, proofs correspond to lambda calculus terms — pure functional programs. For <a href="../terms/linear-logic.md" class="link-internal">linear logic</a>, what do proofs correspond to?</p>
+<p>Interactive programs. Programs that consume inputs, produce outputs, respond to messages, and maintain state through resource tracking. This is not a metaphor — it is a theorem with multiple independent proofs.</p>
+<h2 id="abramsky-proofs-as-concurrent-processes">Abramsky: proofs as concurrent processes</h2>
+<p>Abramsky (1993) gave the first systematic computational interpretation of linear logic. He showed two readings:</p>
+<p><strong>Intuitionistic linear logic</strong> corresponds to a refined lambda calculus where every variable is used exactly once. This gives fine control over evaluation order and storage allocation — each argument is consumed, not copied. The <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">!</mo></mrow><annotation encoding="application/x-tex">!</annotation></semantics></math></span> modality (&ldquo;of course&rdquo;) marks resources as reusable, recovering classical behavior selectively.</p>
+<p><strong>Classical linear logic</strong> corresponds to concurrent processes in Berry-Boudol&rsquo;s chemical abstract machine (CHAM). Sequents are multisets of molecules; inference rules are chemical reactions. The tensor <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊗</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \otimes B</annotation></semantics></math></span> is parallel composition. Linear implication <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊸</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \multimap B</annotation></semantics></math></span> is a reaction that consumes <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> and produces <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span>. Cut elimination is computation.</p>
+<p>This means the <a href="../../algebra/terms/residuated-lattice.md" class="link-internal">residuation</a> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⊙</mo><mi>p</mi><msub><mo>≤</mo><mi>t</mi></msub><mi>q</mi></mrow><annotation encoding="application/x-tex">a \odot p \leq_t q</annotation></semantics></math></span> iff <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><msub><mo>≤</mo><mi>t</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mo>⇒</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p \leq_t (a \Rightarrow q)</annotation></semantics></math></span> — the same adjunction that structures <a href="../../information/texts/the-adjoint-structure-of-predication-on-bilattice-valued-fibers.md" class="link-internal">predication on bilattice-valued fibers</a> — has direct computational content. Extending (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo></mrow><annotation encoding="application/x-tex">\odot</annotation></semantics></math></span>) is parallel composition of processes. Restricting (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span>) is a process that consumes one input and produces one output.</p>
+<h2 id="game-semantics-strategies-as-programs">Game semantics: strategies as programs</h2>
+<p>Abramsky and Jagadeesan (1994) proved full completeness for multiplicative linear logic via game semantics: every strategy in a certain class of games corresponds to a proof. Linear logic proofs ARE winning strategies in two-player games where moves are resource exchanges.</p>
+<p>Hyland and Ong (2000) extended this to PCF — a programming language with booleans, natural numbers, conditionals, and recursion. Their game-semantic model is <em>fully abstract</em>: two programs are observationally equivalent if and only if they determine the same strategy. Since PCF is Turing-complete, this means game semantics over linear types models all of sequential computation — including conditional branching, pattern matching, loops, and recursion.</p>
+<p>Conditional branching in game semantics is not simulated or encoded — it is native. A conditional is a game where one player asks a question and the other answers, and the continuation depends on the answer. The game structure IS the branching structure.</p>
+<h2 id="martens-interactive-fiction-on-linear-logic">Martens: interactive fiction on linear logic</h2>
+<p>Chris Martens (2015, CMU; now at Northeastern University) made this concrete. Her dissertation &ldquo;Programming Interactive Worlds with Linear Logic&rdquo; built <strong>Ceptre</strong>, a linear logic programming language for authoring interactive systems.</p>
+<p>In Ceptre:</p>
+<ul>
+<li><strong>Game state</strong> is a multiset of linear logic propositions. A room containing a sword and a lamp is <code>room(west_house), has(sword, west_house), has(lamp, west_house)</code>.</li>
+<li><strong>Player actions</strong> are linear logic inference rules. &ldquo;Take the sword&rdquo; is a rule that consumes <code>has(sword, Location), at(player, Location)</code> and produces <code>carrying(player, sword)</code>. The preconditions are consumed — the sword is no longer in the room.</li>
+<li><strong>Interactive computation</strong> is interactive proof search. The player chooses which rules to apply (which actions to take). The engine finds all applicable rules (available actions) and presents them. Applying a rule transforms the state.</li>
+<li><strong>State machines</strong> are encoded naturally: a door&rsquo;s state is a linear proposition <code>door_state(closed)</code>. Opening it consumes <code>door_state(closed)</code> and produces <code>door_state(open)</code>. The old state is gone — consumed by the action.</li>
+<li><strong>Non-player behavior</strong> is additional rules that fire automatically. An NPC that wanders is a rule <code>at(npc, X), adjacent(X, Y) -o at(npc, Y)</code> that the engine applies non-deterministically.</li>
+</ul>
+<p>Martens tested Ceptre on combat games, social simulations, board games, and interactive storytelling. The state transitions are formally verifiable — linear logic&rsquo;s type system guarantees that resources are neither duplicated nor lost. If the rules are well-typed, the game cannot enter an impossible state.</p>
+<p>She continued this work: &ldquo;Modeling Game Mechanics with Ceptre&rdquo; (IEEE Transactions on Games, 2023) applies the framework to real game design. &ldquo;Finite-Choice Logic Programming&rdquo; (POPL 2025) introduces Dusa, extending the paradigm with constraint-based generation.</p>
+<h2 id="what-this-means-for-predication">What this means for predication</h2>
+<p>The <a href="./the-chu-construction-and-linear-logic.md" class="link-internal">Chu construction</a> proves that every bilattice-valued predicate system is a model of linear logic. The tensor/implication adjunction on the bilattice IS the <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo><mo>⊣</mo><mo>⊸</mo></mrow><annotation encoding="application/x-tex">\otimes \dashv \multimap</annotation></semantics></math></span> adjunction of linear logic. And linear logic, via Curry-Howard, IS a programming language for interactive systems.</p>
+<p>This chain is tight:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Layer</th>
+          <th>What it is</th>
+          <th>Citation</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Bilattice algebra</td>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo><mi mathvariant="normal">/</mi><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\odot / \Rightarrow</annotation></semantics></math></span> on <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi mathvariant="normal">⊥</mi><mo separator="true">,</mo><mi>t</mi><mo separator="true">,</mo><mi>f</mi><mo separator="true">,</mo><mi mathvariant="normal">⊤</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\bot, t, f, \top\}</annotation></semantics></math></span></td>
+          <td>Busaniche-Cignoli 2014</td>
+      </tr>
+      <tr>
+          <td>= Linear logic</td>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo><mi mathvariant="normal">/</mi><mo>⊸</mo></mrow><annotation encoding="application/x-tex">\otimes / \multimap</annotation></semantics></math></span> via Chu construction</td>
+          <td>Jakl 2025</td>
+      </tr>
+      <tr>
+          <td>= Interactive programs</td>
+          <td>Curry-Howard for linear logic</td>
+          <td>Abramsky 1993</td>
+      </tr>
+      <tr>
+          <td>= Game strategies</td>
+          <td>Full abstraction for PCF</td>
+          <td>Hyland-Ong 2000</td>
+      </tr>
+      <tr>
+          <td>= Working game engines</td>
+          <td>Ceptre language</td>
+          <td>Martens 2015</td>
+      </tr>
+  </tbody>
+</table>
+<p>A system that computes via <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo><mi mathvariant="normal">/</mi><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\odot / \Rightarrow</annotation></semantics></math></span> on bilattice-valued fibers is not merely <em>analogous</em> to a programming language for interactive worlds. It IS one, by the chain of theorems above. The question is not whether the algebra can express interactive computation — the question is how to write the specific rules for a specific world.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="./the-chu-construction-and-linear-logic.md" class="link-internal">The Chu Construction and Linear Logic</a> — the bridge between bilattices and linear logic</li>
+<li><a href="./what-is-linear-logic.md" class="link-internal">What Is Linear Logic?</a> — introduction to resource-sensitive reasoning</li>
+<li><a href="../../information/texts/the-adjoint-structure-of-predication-on-bilattice-valued-fibers.md" class="link-internal">The Adjoint Structure of Predication on Bilattice-Valued Fibers</a> — the bilattice algebra that instantiates all of this</li>
+<li><a href="../../information/texts/what-resource-sensitivity-means-for-knowledge.md" class="link-internal">What Resource Sensitivity Means for Knowledge</a> — epistemic states as linear resources</li>
+</ul>
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-abramsky-jagadeesan1994" typeof="CreativeWork" resource="#ref-abramsky-jagadeesan1994">
+    <span class="bib-key">[abramsky-jagadeesan1994]</span>
+      <span property="author">S. Abramsky, R. Jagadeesan</span>.
+      (<span property="datePublished">1994</span>).
+      <cite property="name">Games and Full Completeness for Multiplicative Linear Logic</cite>.
+      <em property="publisher">Journal of Symbolic Logic, 59(2), 543–574</em>.
+  </p><p class="bib-entry" id="ref-abramsky1993" typeof="CreativeWork" resource="#ref-abramsky1993">
+    <span class="bib-key">[abramsky1993]</span>
+      <span property="author">S. Abramsky</span>.
+      (<span property="datePublished">1993</span>).
+      <cite property="name">Computational Interpretations of Linear Logic</cite>.
+      <em property="publisher">Theoretical Computer Science, 111(1–2), 3–57</em>.
+  </p><p class="bib-entry" id="ref-girard1987" typeof="CreativeWork" resource="#ref-girard1987">
+    <span class="bib-key">[girard1987]</span>
+      <span property="author">J.-Y. Girard</span>.
+      (<span property="datePublished">1987</span>).
+      <cite property="name">Linear Logic</cite>.
+      <em property="publisher">Theoretical Computer Science, 50(1), 1–102</em>.
+  </p><p class="bib-entry" id="ref-hyland-ong2000" typeof="CreativeWork" resource="#ref-hyland-ong2000">
+    <span class="bib-key">[hyland-ong2000]</span>
+      <span property="author">M. Hyland, C.-H. L. Ong</span>.
+      (<span property="datePublished">2000</span>).
+      <cite property="name">On Full Abstraction for PCF</cite>.
+      <em property="publisher">Information and Computation, 163(2), 285–408</em>.
+  </p><p class="bib-entry" id="ref-martens2015" typeof="CreativeWork" resource="#ref-martens2015">
+    <span class="bib-key">[martens2015]</span>
+      <span property="author">C. Martens</span>.
+      (<span property="datePublished">2015</span>).
+      <cite property="name">Programming Interactive Worlds with Linear Logic</cite>.
+      <em property="publisher">Ph.D. dissertation, Carnegie Mellon University</em>.
+  </p><p class="bib-entry" id="ref-martens2023" typeof="CreativeWork" resource="#ref-martens2023">
+    <span class="bib-key">[martens2023]</span>
+      <span property="author">C. Martens</span>.
+      (<span property="datePublished">2023</span>).
+      <cite property="name">Modeling Game Mechanics with Ceptre</cite>.
+      <em property="publisher">IEEE Transactions on Games</em>.
+  </p><p class="bib-entry" id="ref-martens2025" typeof="CreativeWork" resource="#ref-martens2025">
+    <span class="bib-key">[martens2025]</span>
+      <span property="author">C. Martens</span>.
+      (<span property="datePublished">2025</span>).
+      <cite property="name">Finite-Choice Logic Programming</cite>.
+      <em property="publisher">POPL 2025</em>.
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/science/domains/math/domains/logic/texts/linear-logic-as-interactive-computation/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Citations</dt>
+        <dd property="emsenn:Citations"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-06">2026-04-06</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li><a href="/library/domains/science/domains/math/domains/logic/terms/linear-logic/">linear logic</a></li><li><a href="/library/domains/science/domains/math/domains/algebra/terms/residuated-lattice/">residuated lattice</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li>curry howard for linear logic</li><li>game semantics</li><li>ceptre</li></ul></dd>
+      </div><div class="relation">
+        <dt>Traditions</dt>
+        <dd property="emsenn:Traditions"><ul><li>proof theory</li><li>game semantics</li><li>programming language theory</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

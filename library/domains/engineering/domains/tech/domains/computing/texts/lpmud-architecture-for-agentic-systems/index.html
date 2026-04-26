@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LPMud Architecture for Agentic Systems - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Source-level analysis of FluffOS and the Discworld mudlib, mapping MUD architectural patterns onto the 561 agentic system. Driver/mudlib, object lifecycle, heartbeat, shadows, commands, guilds, and communication channels.",
+  "name": "LPMud Architecture for Agentic Systems",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/lpmud-architecture-for-agentic-systems/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">LPMud Architecture for Agentic Systems</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Source-level analysis of FluffOS and the Discworld mudlib, mapping MUD architectural patterns onto the 561 agentic system. Driver/mudlib, object lifecycle, heartbeat, shadows, commands, guilds, and communication channels.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-drivermudlib-separation">The Driver/Mudlib Separation</a></li>
+    <li><a href="#object-lifecycle-create-inhabit-destruct">Object Lifecycle: Create, Inhabit, Destruct</a></li>
+    <li><a href="#the-heartbeat-periodic-world-processing">The Heartbeat: Periodic World Processing</a></li>
+    <li><a href="#call_other-inter-object-messaging">call_other(): Inter-Object Messaging</a></li>
+    <li><a href="#shadows-behavioral-overlay-without-modification">Shadows: Behavioral Overlay Without Modification</a></li>
+    <li><a href="#command-parsing-user-input-to-function-dispatch">Command Parsing: User Input to Function Dispatch</a></li>
+    <li><a href="#guilds-and-skills-capability-progression">Guilds and Skills: Capability Progression</a></li>
+    <li><a href="#communication-channels-and-social-points">Communication: Channels and Social Points</a></li>
+    <li><a href="#the-simul_efun-pattern-library-level-primitives">The Simul_Efun Pattern: Library-Level Primitives</a></li>
+    <li><a href="#the-login-flow-onboarding-as-state-machine">The Login Flow: Onboarding as State Machine</a></li>
+    <li><a href="#what-we-should-adopt">What We Should Adopt</a>
+      <ul>
+        <li><a href="#immediate-infrastructure-exists-pattern-is-clear">Immediate (infrastructure exists, pattern is clear)</a></li>
+        <li><a href="#medium-term-requires-design-work">Medium-term (requires design work)</a></li>
+        <li><a href="#long-term-academy--capability-system">Long-term (Academy / capability system)</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="lpmud-architecture-for-agentic-systems">LPMud Architecture for Agentic Systems</h1>
+<p>This text is a source-level analysis of two production LPMud codebases — FluffOS (the C++ driver) and the Discworld mudlib (the LPC world library) — read specifically for patterns applicable to the 561 agentic system. The mapping between MUD architecture and our system is structural, not metaphorical: the same data structures, the same separation of concerns, the same lifecycle patterns.</p>
+<h2 id="the-drivermudlib-separation">The Driver/Mudlib Separation</h2>
+<p>The deepest architectural pattern in LPMud is the clean split between the <strong>driver</strong> (a C/C++ runtime that provides primitives) and the <strong>mudlib</strong> (an LPC library that builds the world from those primitives). FluffOS defines its primitive interface through <code>.spec</code> files in <code>src/packages/</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// core.spec — the contract between driver and mudlib
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>object clone_object <span style="color:#a6e22e">_new</span>(string, ...);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">move_object</span>(object <span style="color:#f92672">|</span> string);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">call_out</span>(string <span style="color:#f92672">|</span> function, <span style="color:#66d9ef">int</span><span style="color:#f92672">|</span><span style="color:#66d9ef">float</span>, ...);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">set_heart_beat</span>(<span style="color:#66d9ef">int</span>);
+</span></span></code></pre></div><p>Each <code>.spec</code> entry maps an LPC function name to a C++ implementation. The compiler validates calls against these specs at compile time. The mudlib never touches driver internals; the driver never assumes mudlib structure.</p>
+<p><strong>The parallel.</strong> <code>mash-engine</code> (our Rust binary) is the driver. It provides session management, the EAVT graph store, event dispatch, and the world-tick. The agentic harness — skills, hooks, agents, commands, rules — is the mudlib. The harness never touches engine internals; the engine never assumes harness structure. The MCP tool interface is our <code>.spec</code> file: a typed contract between layers.</p>
+<p>Where we diverge: LPMud&rsquo;s driver compiles and executes LPC bytecode. Our driver dispatches to external LLM sessions. The execution model differs; the separation of concerns is identical.</p>
+<h2 id="object-lifecycle-create-inhabit-destruct">Object Lifecycle: Create, Inhabit, Destruct</h2>
+<p>Every LPC object follows a lifecycle managed by the driver. FluffOS&rsquo;s <code>simulate.cc</code> implements the core operations:</p>
+<ol>
+<li><strong>Load</strong>: compiled bytecode loaded from disk, linked into the global object list</li>
+<li><strong>Clone</strong>: <code>clone_object()</code> allocates a new object from a master template, calls <code>create()</code> with arguments</li>
+<li><strong>Move</strong>: <code>move_object()</code> updates environment pointers, calls <code>init()</code> on affected objects</li>
+<li><strong>Destruct</strong>: <code>destruct_object()</code> removes from environment tree, marks <code>O_DESTRUCTED</code>, decrements references</li>
+</ol>
+<p>The object structure (<code>object.h</code>) holds it together:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">object_t</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint32_t</span> ref;           <span style="color:#75715e">// reference counting
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">short</span> flags;   <span style="color:#75715e">// O_CLONE, O_DESTRUCTED, O_HEART_BEAT
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>obname;     <span style="color:#75715e">// file path identity
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">program_t</span> <span style="color:#f92672">*</span>prog;        <span style="color:#75715e">// compiled bytecode
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">object_t</span> <span style="color:#f92672">*</span>next_inv;     <span style="color:#75715e">// inventory linked list
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">object_t</span> <span style="color:#f92672">*</span>contains;     <span style="color:#75715e">// head of inventory
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">object_t</span> <span style="color:#f92672">*</span>super;        <span style="color:#75715e">// container/environment
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">svalue_t</span> variables[<span style="color:#ae81ff">1</span>];  <span style="color:#75715e">// variable storage
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><p>Objects exist in an environment tree. Every object has a <code>super</code> (its container) and optionally <code>contains</code> (its inventory). Rooms contain objects, objects contain objects. Movement is pointer reassignment in this tree.</p>
+<p><strong>The parallel.</strong> Our entities in the knowledge graph follow the same pattern. An entity is created (added to the graph), inhabits a context (domain membership, plan containment), and can be destructed (archived or removed). The EAVT store is our global object list. Entity relations — <code>part-of</code>, <code>belongs-to</code>, <code>contains</code> — form the environment tree.</p>
+<p>What we lack: explicit <code>create()</code> and <code>init()</code> hooks on entity creation. When a new term is added to the graph, there is no automatic callback that runs initialization logic (checking for duplicates, validating frontmatter, triggering cross-references). FluffOS does this automatically. We should.</p>
+<h2 id="the-heartbeat-periodic-world-processing">The Heartbeat: Periodic World Processing</h2>
+<p>FluffOS&rsquo;s heartbeat system (<code>heartbeat.cc</code>) provides periodic execution for any object that subscribes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">heart_beat_t</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">object_t</span> <span style="color:#f92672">*</span>ob;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">short</span> heart_beat_ticks;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">short</span> time_to_heart_beat;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Objects call <code>set_heart_beat(1)</code> to subscribe. Every tick (configurable via <code>__RC_HEARTBEAT_INTERVAL_MSEC__</code>), the driver iterates all subscribed objects and calls their <code>heart_beat()</code> function. Objects can set different intervals. The driver handles cleanup of destructed objects automatically.</p>
+<p>The execution loop in <code>call_heart_beat()</code> is methodical: merge pending subscriptions, iterate the queue, skip destructed objects, decrement tick counters, call <code>heart_beat()</code> on objects whose counter reaches zero, catch errors without crashing the loop.</p>
+<p><strong>The parallel.</strong> Our <code>mash-engine</code> has a <code>world_tick</code> that maps directly. The daemon&rsquo;s tick loop is the heartbeat. Scheduled agents, cron triggers, and autonomous loops are objects with heartbeats. The continuous learning observer is a heartbeat subscriber.</p>
+<p>What the MUD does better: fine-grained tick intervals per object. Our world-tick is currently one frequency for everything. An NPC that wanders every 30 seconds and a torch that burns down every 5 minutes can have different heartbeat intervals. Our scheduled agents should support the same — some duties need minute-level polling, others need hourly review.</p>
+<h2 id="call_other-inter-object-messaging">call_other(): Inter-Object Messaging</h2>
+<p>The <code>call_other()</code> efun is how one LPC object invokes a function on another. From <code>efuns_main.cc</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f__call_other</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Validate caller isn&#39;t destructed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (current_object<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">&amp;</span> O_DESTRUCTED) { <span style="color:#a6e22e">push_undefined</span>(); <span style="color:#66d9ef">return</span>; }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Resolve target: object reference, name string, or array of objects
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// Resolve function name
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// Track origin as ORIGIN_CALL_OTHER for security
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// Call via apply() and return result
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Key features: the call tracks its origin (<code>ORIGIN_CALL_OTHER</code> vs <code>ORIGIN_LOCAL</code> vs <code>ORIGIN_DRIVER</code>), supports targeting by name or reference, can broadcast to arrays of objects, and validates that neither caller nor target is destructed.</p>
+<p>The Discworld mudlib builds on this extensively. Handler objects are singletons accessed via macros:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define PLAYER_HANDLER &#34;/obj/handlers/player_handler&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define SKILL_OB &#34;/std/skills&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>PLAYER_HANDLER<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">test_user</span>(<span style="color:#e6db74">&#34;wizard&#34;</span>);
+</span></span></code></pre></div><p><strong>The parallel.</strong> MCP tool calls are <code>call_other()</code>. When the harness calls <code>graph_search</code> on the 561-datastore, that is one object (the agent session) invoking a function on another object (the MCP server) with origin tracking and result return. The typed tool interface is the function signature; the MCP protocol is the calling convention.</p>
+<p>What we should adopt: the origin tracking pattern. FluffOS knows whether a function was called locally, by another object, by the driver, or by a simul_efun. We should track whether a tool call originated from a hook, a skill, an agent, a command, or the user directly. This matters for security policy and for understanding causation in the event log.</p>
+<h2 id="shadows-behavioral-overlay-without-modification">Shadows: Behavioral Overlay Without Modification</h2>
+<p>The shadow system lets objects intercept function calls to another object without modifying it. From FluffOS:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// shadow(target, 1) makes current_object shadow target
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>current_object<span style="color:#f92672">-&gt;</span>shadowing <span style="color:#f92672">=</span> ob;
+</span></span><span style="display:flex;"><span>ob<span style="color:#f92672">-&gt;</span>shadowed <span style="color:#f92672">=</span> current_object;
+</span></span></code></pre></div><p>Shadows form a linked chain. When <code>call_other()</code> targets a shadowed object, the shadow gets the call first. It can intercept (handle the call itself), modify (change arguments and delegate), or pass through (let the call reach the original object). Multiple shadows stack.</p>
+<p>The driver validates shadowing permissions via <code>validate_shadowing()</code> — not any object can shadow any other.</p>
+<p><strong>The parallel.</strong> Our hooks and skills are shadows. A pre-tool-use hook intercepts a tool call before it reaches the target. A skill overlays behavior onto the agent without modifying the agent&rsquo;s core prompt. The hook chain — pre-tool-use hooks fire in sequence before the tool executes — is a shadow chain.</p>
+<p>What we should adopt: the explicit chain model. FluffOS shadows are bidirectional linked lists with clear ordering. Our hooks fire in settings.json order, but we have no formal model of hook priority, no way for one hook to depend on another&rsquo;s output, and no <code>validate_shadowing()</code> equivalent that controls which hooks can intercept which tools.</p>
+<h2 id="command-parsing-user-input-to-function-dispatch">Command Parsing: User Input to Function Dispatch</h2>
+<p>FluffOS provides a two-layer command system. The driver layer (<code>add_action.cc</code>) implements <code>add_action()</code> for verb registration and <code>user_parser()</code> for dispatch:</p>
+<pre tabindex="0"><code>User types &#34;tell wizard hello&#34;
+  → user_parser() extracts verb &#34;tell&#34;
+  → searches environment chain for add_action(&#34;tell&#34;, ...)
+  → calls registered function with &#34;wizard hello&#34; as argument
+</code></pre><p>The environment chain search is spatial: the driver looks for matching actions on the current object, its container, sibling objects, and up through parent containers. Commands are discovered by <em>where you are</em>.</p>
+<p>The Discworld mudlib adds a sophisticated pattern matcher on top (<code>new_parse.c</code>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">add_command</span>(<span style="color:#e6db74">&#34;tell&#34;</span>, <span style="color:#e6db74">&#34;&lt;indirect:player&gt; &lt;string&#39;message&#39;&gt;&#34;</span>, <span style="color:#f92672">:</span>do_tell:);
+</span></span></code></pre></div><p>The pattern <code>&lt;indirect:player&gt;</code> tells the parser to find player objects matching the next word. <code>&lt;string'message'&gt;</code> captures the rest as a string. The parser resolves object references, handles ambiguity (&ldquo;which wizard?&rdquo;), and passes typed arguments to the handler.</p>
+<p><strong>The parallel.</strong> Our slash commands are <code>add_action()</code> registrations. <code>/commit</code>, <code>/standup</code>, <code>/bridge</code> — each registers a verb with a handler function. The CLAUDE.md command table is our action registration file.</p>
+<p>What we should adopt: the pattern-based argument parsing. Currently our commands get raw string arguments. The Discworld pattern system — <code>&lt;indirect:entity&gt;</code>, <code>&lt;direct:object&gt;</code>, <code>&lt;word&gt;</code>, <code>&lt;string&gt;</code> — would let us write commands like:</p>
+<pre tabindex="0"><code>/dispatch &lt;agent:name&gt; &lt;task:id&gt;
+/record-event --action &lt;word&gt; --subject &lt;entity:id&gt;
+</code></pre><p>And have the parser resolve entity references against the knowledge graph before the command handler runs. This is strictly more powerful than string splitting.</p>
+<p>The spatial discovery pattern also applies: in a MUD, the commands available to you depend on the room you are in. In our system, the commands available could depend on the domain you are working in — gardening commands when in the gardening domain, financial commands when in the bookkeeping context.</p>
+<h2 id="guilds-and-skills-capability-progression">Guilds and Skills: Capability Progression</h2>
+<p>The Discworld mudlib implements a hierarchical skill tree (<code>skills.h</code>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// Skill tree structure
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>covert
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">├─</span> <span style="color:#a6e22e">stealth</span> (inside, outside, underwater)
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">├─</span> <span style="color:#a6e22e">hiding</span> (person, object)
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">├─</span> <span style="color:#a6e22e">lockpick</span> (doors, safes, traps)
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">└─</span> <span style="color:#a6e22e">manipulation</span> (palming, passing, sleight<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>hand, stealing)
+</span></span></code></pre></div><p>Each skill tracks level and experience. The living object&rsquo;s <code>query_skill_bonus()</code> computes the effective skill level from raw level + stat bonuses + guild bonuses + race bonuses, with caching for performance.</p>
+<p>Guilds are objects that attach to players and modify their capabilities:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>guild<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">query_skill_bonus</span>(lvl, skill);  <span style="color:#75715e">// Guild modifies effective skill
+</span></span></span></code></pre></div><p>Players join guilds, which unlock skill paths and provide bonuses. Advancement requires practice (XP accumulation) and sometimes training from NPCs (<code>teach_skill()</code>).</p>
+<p><strong>The parallel.</strong> Our Academy concept maps to guilds. An agent&rsquo;s skills (writing-terms, research-survey, etc.) are its skill tree. The continuous learning system — observing sessions, detecting patterns, creating instincts that evolve into skills — is XP accumulation leading to skill advancement.</p>
+<p>What we should adopt:</p>
+<ol>
+<li>
+<p><strong>Skill prerequisites.</strong> The Discworld skill tree has branches — learning <code>lockpick.traps</code> requires some level in <code>lockpick</code>. Our skills are currently flat. Some should depend on others: <code>writing-philosophy-surveys</code> should require familiarity with <code>writing-surveys</code>.</p>
+</li>
+<li>
+<p><strong>Stat bonuses.</strong> A Discworld character&rsquo;s intelligence bonus improves all magic skills. An agent&rsquo;s model tier (haiku/sonnet/opus) should similarly provide baseline capability bonuses — opus gets a bonus on research tasks, haiku on simple lookups.</p>
+</li>
+<li>
+<p><strong>Teaching.</strong> NPCs teach skills to players. Senior agents could teach capabilities to junior agents — an opus agent that develops a new instinct can formalize it as a skill that haiku agents can use.</p>
+</li>
+</ol>
+<h2 id="communication-channels-and-social-points">Communication: Channels and Social Points</h2>
+<p>The Discworld mudlib implements layered communication:</p>
+<ul>
+<li><strong>say</strong>: broadcasts to current room (all objects in the same container hear it)</li>
+<li><strong>tell</strong>: private message to a specific player, costs 1 social point</li>
+<li><strong>shout</strong>: broadcasts to multiple rooms, costs 10 social points</li>
+<li><strong>emote</strong>: action description visible to current room</li>
+</ul>
+<p>Messages are structured as <code>class message</code> objects with text, emote prefix, language, type, and status. The communication system tracks social points — a resource that regenerates over time and limits communication frequency.</p>
+<p>The event system routes messages: <code>event_person_tell()</code>, <code>event_listen_shout()</code>. Objects register for events they care about.</p>
+<p><strong>The parallel.</strong> Our MCP channels are tells (direct tool calls to specific servers). Agent-to-agent messaging via the dispatch system is tell. The event log is say — broadcasting to whoever is listening. The session log is a persistent chat room.</p>
+<p>The social points concept is unexpectedly relevant. In our system, the resource that limits communication is tokens — context window budget. A &ldquo;shout&rdquo; (broadcasting context to all agents) is expensive; a &ldquo;tell&rdquo; (targeted dispatch to one agent) is cheap. We already implicitly have social points; we should make the accounting explicit.</p>
+<h2 id="the-simul_efun-pattern-library-level-primitives">The Simul_Efun Pattern: Library-Level Primitives</h2>
+<p>FluffOS distinguishes between efuns (built-in C++ functions) and simul_efuns (LPC functions that look built-in):</p>
+<table>
+  <thead>
+      <tr>
+          <th>Aspect</th>
+          <th>Efun</th>
+          <th>Simul_Efun</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Implementation</td>
+          <td>C++ in driver</td>
+          <td>LPC in mudlib</td>
+      </tr>
+      <tr>
+          <td>Performance</td>
+          <td>Very fast</td>
+          <td>LPC overhead</td>
+      </tr>
+      <tr>
+          <td>Customization</td>
+          <td>Recompile driver</td>
+          <td>Edit LPC code</td>
+      </tr>
+  </tbody>
+</table>
+<p>The simul_efun object (<code>simul_efun.c</code>) inherits utility modules and makes them available as if they were driver primitives:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>inherit <span style="color:#e6db74">&#34;std/json&#34;</span>;
+</span></span><span style="display:flex;"><span>inherit <span style="color:#e6db74">&#34;std/break_string&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// These functions now callable as if built-in
+</span></span></span></code></pre></div><p><strong>The parallel.</strong> Our efuns are the MCP tools provided by <code>mash-engine</code> — <code>graph_search</code>, <code>record_event</code>, <code>dispatch_report</code>. Our simul_efuns are the JavaScript tools in <code>operations/engineering/fars/</code> — <code>dispatch-work.js</code>, <code>query-library-graph.js</code>. They wrap driver primitives into higher-level operations.</p>
+<p>The distinction matters for the same reason: simul_efuns can be modified without recompiling the driver. Our JS tools can be modified without rebuilding the Rust binary. The install.js script that composes the harness is the simul_efun loader — it makes library-level tools available as if they were primitives.</p>
+<h2 id="the-login-flow-onboarding-as-state-machine">The Login Flow: Onboarding as State Machine</h2>
+<p>The Discworld login system (<code>secure/login.c</code>) implements character creation as a formal state machine:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>class state {
+</span></span><span style="display:flex;"><span>  string name;       <span style="color:#75715e">// state identifier
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  string action;     <span style="color:#75715e">// function to call
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  string write;      <span style="color:#75715e">// text to display
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> noecho;        <span style="color:#75715e">// hide input (passwords)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  mapping events;    <span style="color:#75715e">// event =&gt; next_state transitions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>States transition on events: <code>&quot;input-ok&quot;</code> → next state, <code>&quot;input-fail&quot;</code> → error state. The master object&rsquo;s <code>connect()</code> clones a login object for each new connection, which runs the state machine until the player object is fully initialized.</p>
+<p><strong>The parallel.</strong> Our session start is our login flow. The <code>session-start.js</code> hook, the CLAUDE.md loading, the memory index — these are the login state machine. But ours is ad hoc where the MUD&rsquo;s is formalized.</p>
+<p>What we should adopt: an explicit state machine for session initialization. Instead of a flat hook that dumps everything, a sequence of states:</p>
+<ol>
+<li>Load identity (SOUL.md, AGENTS.md)</li>
+<li>Load memory index</li>
+<li>Check session continuity (previous session log)</li>
+<li>Load relevant context for current task</li>
+<li>Dispatch standing duties</li>
+</ol>
+<p>Each state can branch based on what it finds. A session that continues previous work loads different context than a fresh session.</p>
+<h2 id="what-we-should-adopt">What We Should Adopt</h2>
+<p>The analysis yields concrete adoption targets, ordered by leverage:</p>
+<h3 id="immediate-infrastructure-exists-pattern-is-clear">Immediate (infrastructure exists, pattern is clear)</h3>
+<ol>
+<li>
+<p><strong>Origin tracking on tool calls.</strong> Tag every MCP call with its origin: hook, skill, agent, command, user. Log the origin. Use it in security policy.</p>
+</li>
+<li>
+<p><strong>Per-object heartbeat intervals.</strong> Let scheduled agents and autonomous loops declare their own tick frequency rather than inheriting one global interval.</p>
+</li>
+<li>
+<p><strong>Entity lifecycle hooks.</strong> When a new entity enters the knowledge graph, fire <code>create()</code> callbacks — validate frontmatter, check for duplicates, update indexes. When an entity is removed, fire <code>destruct()</code> callbacks.</p>
+</li>
+</ol>
+<h3 id="medium-term-requires-design-work">Medium-term (requires design work)</h3>
+<ol start="4">
+<li>
+<p><strong>Pattern-based command arguments.</strong> Parse command arguments against the knowledge graph: <code>&lt;entity:id&gt;</code>, <code>&lt;agent:name&gt;</code>, <code>&lt;plan:id&gt;</code> as typed argument slots that resolve before the handler runs.</p>
+</li>
+<li>
+<p><strong>Contextual command discovery.</strong> Make available commands depend on the current working context — domain-specific commands appear when working in that domain.</p>
+</li>
+<li>
+<p><strong>Explicit shadow chain for hooks.</strong> Model hook ordering, priority, and dependency. Let hooks declare what they intercept and what they pass through.</p>
+</li>
+</ol>
+<h3 id="long-term-academy--capability-system">Long-term (Academy / capability system)</h3>
+<ol start="7">
+<li>
+<p><strong>Skill prerequisites and trees.</strong> Structure skills hierarchically with dependencies. <code>writing-philosophy-surveys</code> requires <code>writing-surveys</code> requires <code>writing-texts</code>.</p>
+</li>
+<li>
+<p><strong>Model-tier bonuses.</strong> Formalize that opus agents get bonuses on research and architecture, sonnet on implementation, haiku on lookups and dispatch.</p>
+</li>
+<li>
+<p><strong>Token budgets as social points.</strong> Make context-window consumption an explicit resource with per-action costs and regeneration (new session = full social points).</p>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>The LPMud architecture is not a metaphor for what we are building — it is the architecture we are building, discovered independently through 40 years of multi-user virtual world engineering. FluffOS and the Discworld mudlib are production codebases that solved the same problems: how to separate a runtime engine from its behavior library, how to manage object lifecycles in a persistent world, how to route messages between autonomous entities, how to parse natural-language commands, and how to grow capabilities over time.</p>
+<p>The source code is now available for reference at <code>operations/engineering/fars/src/fluffos/</code> and <code>operations/engineering/fars/src/discworld-mudlib/</code>. These should be consulted whenever designing mash-engine features, harness architecture, or the TUI navigation system.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/lpmud-architecture-for-agentic-systems/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">computing</dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related"><ul><li>../terms/multi user dungeon.md</li><li>the mud as system architecture.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul><li>https://github.com/fluffos/fluffos</li><li>https://github.com/quixadhal/discworld</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

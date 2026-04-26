@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Content-Addressed Storage: IPFS, Arweave, and the Permaweb - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-05",
+  "datePublished": "2026-04-05",
+  "description": "How identity-by-hash enables decentralized, permanent storage and solves the NFT metadata problem.",
+  "name": "Content-Addressed Storage: IPFS, Arweave, and the Permaweb",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/content-addressed-storage/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/">Blockchain</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/">Blockchain Texts</a></nav>
+  <h1 class="p-name">Content-Addressed Storage: IPFS, Arweave, and the Permaweb</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
+    
+    <span class="p-summary">How identity-by-hash enables decentralized, permanent storage and solves the NFT metadata problem.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-address-problem">The Address Problem</a></li>
+    <li><a href="#ipfs-chunking-dags-and-content-identifiers">IPFS: Chunking, DAGs, and Content Identifiers</a></li>
+    <li><a href="#pinning-and-garbage-collection">Pinning and Garbage Collection</a></li>
+    <li><a href="#arweave-permanent-storage-via-economic-incentive">Arweave: Permanent Storage via Economic Incentive</a></li>
+    <li><a href="#bundling-and-irys-scaling-storage-transactions">Bundling and Irys: Scaling Storage Transactions</a></li>
+    <li><a href="#filecoin-verifiable-storage-markets">Filecoin: Verifiable Storage Markets</a></li>
+    <li><a href="#why-content-addressing-matters">Why Content Addressing Matters</a></li>
+    <li><a href="#see-also">See Also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h2 id="the-address-problem">The Address Problem</h2>
+<p>The World Wide Web uses location addressing: URLs point to servers, and the server&rsquo;s location determines the address. This creates dependency on continuous availability and trust in the server operator. If a server goes offline, gets hacked, or its operator decides to change the content, the address breaks.</p>
+<p>In the NFT ecosystem, this became a critical failure mode. An NFT smart contract stores metadata as a URL — typically an IPFS gateway or centralized server. The blockchain only stores the address, not the content. A study sampling almost 500,000 NFTs found that roughly 20% were broken: 76,000 had unresolvable addresses, 4,600 had broken image links, and 19,000 had IPFS links that couldn&rsquo;t resolve. &ldquo;Rug pulls&rdquo; exploit this weakness — creators host metadata on centralized servers, then take them down when the NFT reaches peak value.</p>
+<p>Content addressing solves this by making the address itself a function of the content&rsquo;s hash. If content changes, the address changes. A URL cannot point to two different images.</p>
+<h2 id="ipfs-chunking-dags-and-content-identifiers">IPFS: Chunking, DAGs, and Content Identifiers</h2>
+<p>IPFS (Interplanetary File System) divides files into fixed-size chunks (default 256KB), hashing each chunk and building them into a Merkle Directed Acyclic Graph (DAG). A Merkle DAG is a DAG where each node&rsquo;s identifier is the cryptographic hash of its payload and the hashes of its children. This creates immutability by construction: any change to a node&rsquo;s content changes its hash and thus the hashes of all ancestors.</p>
+<p>A Content Identifier (CID) is a label that points to material on IPFS based on the content itself, not its location. When you add a file to IPFS, each chunk gets a unique CID, and the root node&rsquo;s CID becomes the file&rsquo;s identifier. The CID encodes the hash function used (SHA256), the hash value, and the data structure type (DAG node, raw file, etc.).</p>
+<p><strong>Key property</strong>: The CID of a node is univocally linked to the contents of its entire subtree. Any change in a node would alter its identifier and thus affect all ancestors in the DAG. This self-verifying structure means:</p>
+<ul>
+<li>Verification happens locally by rehashing the content</li>
+<li>No central server is needed to confirm authenticity</li>
+<li>The entire history of changes is cryptographically auditable</li>
+</ul>
+<h2 id="pinning-and-garbage-collection">Pinning and Garbage Collection</h2>
+<p>IPFS nodes can cache resources they download and share them with peers, but storage is finite. Nodes periodically run garbage collection, a process that frees up used resources to make room for new files. Without intervention, cached data ages out and is deleted.</p>
+<p>Pinning prevents data loss during garbage collection. When you pin a file to an IPFS node, you mark it as &ldquo;keep this indefinitely.&rdquo; There are three types of pins:</p>
+<ul>
+<li><strong>Direct pins</strong>: Pin a single block and no others</li>
+<li><strong>Recursive pins</strong>: Pin a block and all of its children (this is the default for <code>ipfs add</code>)</li>
+<li><strong>Indirect pins</strong>: A block pinned as a child of another pinned block</li>
+</ul>
+<p>Pinning services like Pinata operate pinning infrastructure specifically for NFT and application data. Instead of relying on a single node, you distribute pins across multiple nodes to ensure persistence. A well-constructed NFT stores metadata and media on IPFS, uses a pinning service to guarantee files persist, and stores only the IPFS hash (CID) on the blockchain.</p>
+<h2 id="arweave-permanent-storage-via-economic-incentive">Arweave: Permanent Storage via Economic Incentive</h2>
+<p>Arweave takes a different approach: it makes permanent storage economically rational for miners. Instead of one-time payments and explicit pinning, Arweave requires only a single payment upfront, and the network&rsquo;s consensus mechanism incentivizes miners to keep data indefinitely.</p>
+<p>Arweave uses a <strong>blockweave</strong> architecture where each block links to its immediate predecessor and to a randomly chosen &ldquo;recall block&rdquo; from earlier history. To mine a new block, nodes must cryptographically prove they can access the recall block. This proof is called Proof of Access.</p>
+<p>The probability that a node possesses the recall block is proportional to how much of the blockweave&rsquo;s history that node stores. A node with 1% of the network&rsquo;s historical data has a 1% chance of being selected to provide a recall block. To maximize mining rewards, nodes are incentivized to store as much historical data as possible.</p>
+<p>In 2021, Arweave upgraded to <strong>Succinct Proofs of Random Access (SPoRA)</strong>, which adds a &ldquo;proof of work&rdquo; style computation on top of data retrieval. This dual requirement optimizes for both fast data access and competitive mining — nodes must be able to retrieve old data quickly AND perform the computational work to prove it.</p>
+<p>The permaweb is what results: a permanent version of the web where information cannot be altered or deleted, funded by a one-time payment rather than ongoing fees.</p>
+<h2 id="bundling-and-irys-scaling-storage-transactions">Bundling and Irys: Scaling Storage Transactions</h2>
+<p>The problem with Arweave and IPFS is that every file upload requires a transaction, which can be slow or expensive on congested networks. Bundling services batch many uploads into a single transaction.</p>
+<p>Bundlr (now rebranded as Irys) handled over 80% of transactions on Arweave at its peak, bundling thousands of transactions per block. Instead of waiting for your upload to be processed individually, you pay Irys a fee, and Irys guarantees your data will arrive on-chain.</p>
+<p>Irys added a second mission: provenance — a ledger of record for digital information that tracks data origins and modifications. This turns bundling from a pure scaling solution into an infrastructure for combating misinformation at the protocol layer.</p>
+<h2 id="filecoin-verifiable-storage-markets">Filecoin: Verifiable Storage Markets</h2>
+<p>Filecoin extends content addressing by building a market where storage providers bid on the right to store data. Instead of trusting a single provider, clients can distribute files across competing providers who must continuously prove they&rsquo;re storing the data.</p>
+<p>Filecoin uses two proof mechanisms:</p>
+<ul>
+<li>
+<p><strong>Proof of Replication (PoRep)</strong>: A provider proves they hold a unique, encoded replica of the data. This proof happens once at sealing time. The encoding process is intentionally slow and computationally heavy, making it difficult to fake.</p>
+</li>
+<li>
+<p><strong>Proof of Spacetime (PoSt)</strong>: The provider continuously proves they still have the data. There are two variants:</p>
+<ul>
+<li><strong>WinningPoSt</strong>: Used in block consensus — a selected provider proves they have the data at a specific time</li>
+<li><strong>WindowPoSt</strong>: All providers prove they maintain their stored data continuously over time</li>
+</ul>
+</li>
+</ul>
+<p>The market structure:</p>
+<ol>
+<li><strong>Discovery</strong>: Clients identify providers and request prices</li>
+<li><strong>Negotiation</strong>: Both parties agree on terms</li>
+<li><strong>Publishing</strong>: The deal is recorded on-chain</li>
+<li><strong>Handoff</strong>: The provider adds the data to a sector and begins proving storage</li>
+</ol>
+<p>Providers receive a 10x multiplier on storage power for storing &ldquo;verified&rdquo; deals (deals made with verified clients), which increases their block rewards. This incentivizes providers to accept lower prices for verified deals and build reputation.</p>
+<h2 id="why-content-addressing-matters">Why Content Addressing Matters</h2>
+<p>Location addressing assumes:</p>
+<ul>
+<li>Servers are always online</li>
+<li>Content is immutable</li>
+<li>A central operator controls access</li>
+</ul>
+<p>Content addressing assumes:</p>
+<ul>
+<li>Participants are self-interested (miners/nodes store data for rewards)</li>
+<li>Content&rsquo;s identity is determined by its hash</li>
+<li>Peers can serve content from anywhere</li>
+</ul>
+<p>This shift enables:</p>
+<ol>
+<li><strong>Censorship resistance</strong>: No single point of control can remove content</li>
+<li><strong>Provenance</strong>: You can verify that content hasn&rsquo;t been altered since publication</li>
+<li><strong>Redundancy</strong>: Multiple providers can serve the same content by hash</li>
+<li><strong>Long-term preservation</strong>: Incentives can be designed to reward keeping data indefinitely</li>
+</ol>
+<p>The tradeoff: Content addressing requires discipline in the application layer. An NFT that stores a URL to a centralized server gets no benefit from IPFS. An NFT that stores a CID on IPFS but doesn&rsquo;t pin it might lose access when the provider&rsquo;s node goes offline. True permanence requires explicit pinning, and that cost should be borne upfront.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="./merkle-trees-and-verifiable-computation.md" class="link-internal">Merkle Trees and Verifiable Computation</a></li>
+<li><a href="./web3-game-economies.md" class="link-internal">Web3 Game Economies</a></li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/content-addressed-storage/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

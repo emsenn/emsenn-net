@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aider Architecture Analysis - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Analysis of Aider's repo map, git integration, edit formats, model routing, and verification loop — focused on patterns relevant to agentic harness design",
+  "keywords": "agentic-harness, code-editing, ai-pair-programming",
+  "name": "Aider Architecture Analysis",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/aider-architecture-analysis/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">Aider Architecture Analysis</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Analysis of Aider&#39;s repo map, git integration, edit formats, model routing, and verification loop — focused on patterns relevant to agentic harness design</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#repo-map-pagerank-over-a-definition-reference-graph">Repo Map: PageRank Over a Definition-Reference Graph</a>
+      <ul>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#relevance-to-knowledge-graphs">Relevance to Knowledge Graphs</a></li>
+      </ul>
+    </li>
+    <li><a href="#git-integration-auto-commit-with-attribution">Git Integration: Auto-Commit with Attribution</a>
+      <ul>
+        <li><a href="#commit-flow">Commit Flow</a></li>
+        <li><a href="#design-patterns">Design Patterns</a></li>
+      </ul>
+    </li>
+    <li><a href="#edit-formats-a-taxonomy-of-code-change-representations">Edit Formats: A Taxonomy of Code Change Representations</a>
+      <ul>
+        <li><a href="#searchreplace-blocks-editblockcoder-format-diff">SEARCH/REPLACE Blocks (EditBlockCoder, format: &ldquo;diff&rdquo;)</a></li>
+        <li><a href="#unified-diff-udiffcoder-format-udiff">Unified Diff (UdiffCoder, format: &ldquo;udiff&rdquo;)</a></li>
+        <li><a href="#whole-file-wholefilecoder-format-whole">Whole File (WholeFileCoder, format: &ldquo;whole&rdquo;)</a></li>
+        <li><a href="#architect-mode-architectcoder-format-architect">Architect Mode (ArchitectCoder, format: &ldquo;architect&rdquo;)</a></li>
+        <li><a href="#editor-variants">Editor Variants</a></li>
+        <li><a href="#the-search_replacepy-module-flexible-patch-application">The <code>search_replace.py</code> Module: Flexible Patch Application</a></li>
+      </ul>
+    </li>
+    <li><a href="#model-routing">Model Routing</a></li>
+    <li><a href="#linting-and-testing-integration">Linting and Testing Integration</a>
+      <ul>
+        <li><a href="#lint-loop-linterpy">Lint Loop (<code>linter.py</code>)</a></li>
+        <li><a href="#test-integration">Test Integration</a></li>
+        <li><a href="#reflection-loop">Reflection Loop</a></li>
+      </ul>
+    </li>
+    <li><a href="#context-management">Context Management</a>
+      <ul>
+        <li><a href="#chat-files-vs-other-files">Chat Files vs. Other Files</a></li>
+        <li><a href="#message-assembly">Message Assembly</a></li>
+        <li><a href="#summarization">Summarization</a></li>
+      </ul>
+    </li>
+    <li><a href="#architectural-lessons-for-harness-design">Architectural Lessons for Harness Design</a></li>
+    <li><a href="#see-also">See Also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="aider-architecture-analysis">Aider Architecture Analysis</h1>
+<p>Aider is an AI pair programming tool that operates from the terminal. It edits code in a git repository, auto-commits changes, and uses a &ldquo;repo map&rdquo; to give the LLM context about the full codebase without sending every file. This analysis covers the architectural decisions most relevant to agentic harness design: how Aider builds context, structures edits, routes between models, and verifies changes.</p>
+<h2 id="repo-map-pagerank-over-a-definition-reference-graph">Repo Map: PageRank Over a Definition-Reference Graph</h2>
+<p>The repo map (<code>repomap.py</code>) is Aider&rsquo;s most distinctive architectural feature. Rather than dumping file contents into context, it builds a ranked summary of the codebase&rsquo;s structure — which definitions matter most given the current conversation.</p>
+<h3 id="how-it-works">How It Works</h3>
+<ol>
+<li>
+<p><strong>Tag extraction via tree-sitter.</strong> For each source file, Aider parses it with tree-sitter and runs language-specific tag queries (<code>.scm</code> files) to extract two kinds of tags: <code>def</code> (definitions — functions, classes, methods) and <code>ref</code> (references — usages of those names). If tree-sitter&rsquo;s tag queries only produce definitions (as with C++), Aider falls back to Pygments tokenization to backfill references.</p>
+</li>
+<li>
+<p><strong>Graph construction with NetworkX.</strong> The tags form a directed multigraph where nodes are files and edges represent &ldquo;file A references a symbol defined in file B.&rdquo; Edge weights are multiplied by heuristics:</p>
+<ul>
+<li><strong>10x</strong> for identifiers mentioned in the user&rsquo;s current message</li>
+<li><strong>10x</strong> for identifiers that look like real names (snake_case, camelCase, kebab-case, 8+ chars)</li>
+<li><strong>50x</strong> for references originating from files already in the chat</li>
+<li><strong>0.1x</strong> for private names (leading underscore) or names defined in more than 5 files</li>
+<li>Reference counts are square-rooted to prevent high-frequency imports from dominating</li>
+</ul>
+</li>
+<li>
+<p><strong>PageRank with personalization.</strong> The graph is fed to <code>nx.pagerank()</code> with a personalization vector that biases toward files in the chat, files mentioned in the conversation, and files whose path components match mentioned identifiers. This is the core insight: rather than manually selecting &ldquo;relevant&rdquo; files, the algorithm propagates relevance through the actual dependency structure.</p>
+</li>
+<li>
+<p><strong>Rank distribution across definitions.</strong> After PageRank, each node&rsquo;s rank is distributed across its outgoing edges proportional to weight. This produces a ranked list of <code>(file, identifier)</code> pairs — the most relevant definitions in the codebase.</p>
+</li>
+<li>
+<p><strong>Tree context rendering.</strong> The ranked definitions are rendered using <code>grep_ast.TreeContext</code>, which shows each definition with its surrounding structural context (parent scopes, class headers) but elides irrelevant lines. A binary search finds how many ranked tags can fit within the token budget.</p>
+</li>
+<li>
+<p><strong>Token budget management.</strong> The map has a configurable token limit (<code>map_tokens</code>, default 1024). When no files are in the chat, it expands by a multiplier (<code>map_mul_no_files</code>, default 8x) up to the context window minus 4096 padding. Caching kicks in when map generation takes more than 1 second.</p>
+</li>
+</ol>
+<h3 id="relevance-to-knowledge-graphs">Relevance to Knowledge Graphs</h3>
+<p>The repo map is a runtime-generated knowledge graph with PageRank ranking. It solves the same problem our EAVT datastore addresses: given a large corpus, select the most relevant subset for a task. Key differences:</p>
+<ul>
+<li>Aider&rsquo;s graph is code-structural (definitions and references). Our graph is semantic (entities, attributes, relations).</li>
+<li>Aider regenerates per-message. Our graph is persistent and pre-computed.</li>
+<li>Aider uses PageRank for relevance. We could adopt similar graph-based ranking when selecting which entities to include in agent context.</li>
+</ul>
+<h2 id="git-integration-auto-commit-with-attribution">Git Integration: Auto-Commit with Attribution</h2>
+<p>The git layer (<code>repo.py</code>) wraps GitPython and auto-commits after each successful edit round.</p>
+<h3 id="commit-flow">Commit Flow</h3>
+<ol>
+<li><strong>Dirty commit.</strong> Before applying AI edits, Aider optionally commits any pre-existing dirty files to preserve the user&rsquo;s work as a separate commit.</li>
+<li><strong>Diff generation.</strong> <code>get_diffs()</code> computes the diff of specified files against HEAD (or index + working dir for initial commits).</li>
+<li><strong>LLM-generated commit messages.</strong> The diff is sent to a &ldquo;weak model&rdquo; (typically a cheaper model like gpt-4o-mini) with a commit message prompt. The system tries multiple models in sequence if the diff exceeds a model&rsquo;s context window.</li>
+<li><strong>Attribution.</strong> Aider modifies the git author/committer name by appending <code>(aider)</code> — e.g., &ldquo;Jane Doe (aider)&rdquo;. This is controlled by several flags:
+<ul>
+<li><code>--attribute-author</code>: Modify the Author field (default: yes for AI edits)</li>
+<li><code>--attribute-committer</code>: Modify the Committer field (default: yes)</li>
+<li><code>--attribute-co-authored-by</code>: Add a <code>Co-authored-by: aider (&lt;model&gt;) &lt;aider@aider.chat&gt;</code> trailer instead of modifying names</li>
+<li>When co-authored-by is enabled, name modification is suppressed unless explicitly re-enabled</li>
+</ul>
+</li>
+<li><strong>Undo support.</strong> Aider records the commit SHA before each message. The <code>/undo</code> command can revert to that point.</li>
+</ol>
+<h3 id="design-patterns">Design Patterns</h3>
+<ul>
+<li><strong>Each AI turn is one commit.</strong> This makes every change atomic and reversible.</li>
+<li><strong>Separation of AI and human commits.</strong> Dirty user changes are committed separately before AI edits, maintaining a clean attribution trail.</li>
+<li><strong>No branching.</strong> Aider works on the current branch. It doesn&rsquo;t create feature branches or manage parallel workstreams.</li>
+</ul>
+<h2 id="edit-formats-a-taxonomy-of-code-change-representations">Edit Formats: A Taxonomy of Code Change Representations</h2>
+<p>Aider supports multiple &ldquo;edit formats&rdquo; — different ways the LLM can express code changes. Each has a dedicated <code>Coder</code> subclass. The format is selected per-model based on what works best empirically.</p>
+<h3 id="searchreplace-blocks-editblockcoder-format-diff">SEARCH/REPLACE Blocks (EditBlockCoder, format: &ldquo;diff&rdquo;)</h3>
+<p>The primary format. The LLM outputs blocks like:</p>
+<pre tabindex="0"><code>filename.py
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; SEARCH
+old code here
+=======
+new code here
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; REPLACE
+</code></pre><p><strong>Parsing</strong> (<code>editblock_coder.py</code>): Lines are scanned for the <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; SEARCH</code>, <code>=======</code>, and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; REPLACE</code> markers. The filename is extracted from up to 3 lines preceding the SEARCH marker, with fuzzy matching against files in the chat.</p>
+<p><strong>Application</strong> (<code>editblock_coder.py:do_replace</code>): Multiple strategies are tried in order:</p>
+<ol>
+<li><strong>Perfect match</strong> — exact string match of the SEARCH block in the file</li>
+<li><strong>Whitespace normalization</strong> — strip uniform leading whitespace from both blocks and match</li>
+<li><strong>Dotdotdot expansion</strong> — if the SEARCH block contains <code>...</code> lines, treat them as wildcards</li>
+<li><strong>Fuzzy matching</strong> (disabled by default) — SequenceMatcher with 0.8 similarity threshold</li>
+</ol>
+<p><strong>Error recovery</strong>: If a SEARCH block fails to match, Aider tries it against all other files in the chat. If it still fails, it sends the error back to the LLM as a &ldquo;reflected message&rdquo; for self-correction (up to 3 reflections).</p>
+<h3 id="unified-diff-udiffcoder-format-udiff">Unified Diff (UdiffCoder, format: &ldquo;udiff&rdquo;)</h3>
+<p>Used for GPT-4 Turbo models. The LLM outputs standard unified diff format. Application uses <code>search_replace.py</code> with the same flexible strategy cascade.</p>
+<h3 id="whole-file-wholefilecoder-format-whole">Whole File (WholeFileCoder, format: &ldquo;whole&rdquo;)</h3>
+<p>The LLM outputs the entire file content. Simple but expensive for large files. Used as a fallback for less capable models.</p>
+<h3 id="architect-mode-architectcoder-format-architect">Architect Mode (ArchitectCoder, format: &ldquo;architect&rdquo;)</h3>
+<p>A two-phase approach:</p>
+<ol>
+<li><strong>Architect model</strong> (typically a strong reasoning model like o1, Claude Opus, or Deepseek R1) analyzes the request and produces natural language instructions describing what to change.</li>
+<li><strong>Editor model</strong> (typically a faster model like Claude Sonnet or GPT-4o) receives those instructions and produces actual SEARCH/REPLACE blocks.</li>
+</ol>
+<p>The architect never sees the edit format rules — it just describes changes. The editor never sees the user&rsquo;s original request — it just follows the architect&rsquo;s instructions. This separation lets each model do what it&rsquo;s best at.</p>
+<h3 id="editor-variants">Editor Variants</h3>
+<p>Several formats prefix the edit format with &ldquo;editor-&rdquo; (e.g., <code>editor-diff</code>, <code>editor-whole</code>). These are used for the editor phase of architect mode and have slightly different prompting.</p>
+<h3 id="the-search_replacepy-module-flexible-patch-application">The <code>search_replace.py</code> Module: Flexible Patch Application</h3>
+<p>This module contains sophisticated strategies for applying edits even when the LLM&rsquo;s SEARCH text doesn&rsquo;t exactly match the file:</p>
+<ol>
+<li><strong>Literal search-and-replace</strong> — <code>str.replace()</code> if the search text appears exactly once</li>
+<li><strong>Git cherry-pick</strong> — Creates a temporary git repo, commits Original-&gt;Search-&gt;Replace, then cherry-picks Replace onto Original. This leverages git&rsquo;s merge machinery for conflict resolution.</li>
+<li><strong>diff-match-patch line-level</strong> — Google&rsquo;s diff-match-patch library applied at the line level for fuzzy patching</li>
+<li><strong>Relative indentation</strong> — A custom <code>RelativeIndenter</code> that converts absolute indentation to relative (delta from previous line), applies the edit, then converts back. This handles the common case where the LLM gets the indentation level wrong but the relative structure right.</li>
+</ol>
+<p>Each strategy is tried with combinations of preprocessing: strip blank lines, relative indent, reverse lines.</p>
+<h2 id="model-routing">Model Routing</h2>
+<p>Aider uses a YAML configuration (<code>model-settings.yml</code>) to assign capabilities to models. Key settings per model:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Setting</th>
+          <th>Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>edit_format</code></td>
+          <td>Which edit format the model uses (whole, diff, udiff, architect)</td>
+      </tr>
+      <tr>
+          <td><code>weak_model_name</code></td>
+          <td>Cheaper model for commit messages and summarization</td>
+      </tr>
+      <tr>
+          <td><code>editor_model_name</code></td>
+          <td>Model to use as editor in architect mode</td>
+      </tr>
+      <tr>
+          <td><code>editor_edit_format</code></td>
+          <td>Edit format for the editor model</td>
+      </tr>
+      <tr>
+          <td><code>use_repo_map</code></td>
+          <td>Whether this model benefits from the repo map</td>
+      </tr>
+      <tr>
+          <td><code>lazy</code></td>
+          <td>Model tends to omit unchanged code (needs reminders)</td>
+      </tr>
+      <tr>
+          <td><code>cache_control</code></td>
+          <td>Whether to use Anthropic-style prompt caching</td>
+      </tr>
+      <tr>
+          <td><code>use_system_prompt</code></td>
+          <td>Some models (o1) don&rsquo;t support system prompts</td>
+      </tr>
+      <tr>
+          <td><code>reasoning_tag</code></td>
+          <td>Tag name for extended thinking content</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Routing patterns:</strong></p>
+<ul>
+<li><strong>Claude Sonnet models</strong> use <code>diff</code> format (SEARCH/REPLACE) with <code>editor-diff</code> as editor format and themselves as their own editor model</li>
+<li><strong>Claude Opus / o1 / Deepseek R1</strong> use <code>architect</code> format — they reason about changes, then delegate to a Sonnet/GPT-4o editor</li>
+<li><strong>GPT-4o</strong> uses <code>diff</code> format with repo map enabled</li>
+<li><strong>Weaker models</strong> (GPT-3.5) use <code>whole</code> format — they can&rsquo;t reliably produce SEARCH/REPLACE blocks</li>
+</ul>
+<p>The alias system (<code>MODEL_ALIASES</code>) maps short names like &ldquo;sonnet&rdquo;, &ldquo;opus&rdquo;, &ldquo;haiku&rdquo; to canonical model identifiers.</p>
+<h2 id="linting-and-testing-integration">Linting and Testing Integration</h2>
+<h3 id="lint-loop-linterpy">Lint Loop (<code>linter.py</code>)</h3>
+<p>After edits are applied, <code>lint_edited()</code> runs linting on each changed file:</p>
+<ol>
+<li><strong>Language detection</strong> via <code>filename_to_lang()</code> (tree-sitter grammar lookup)</li>
+<li><strong>Built-in basic lint</strong>: tree-sitter parse to find syntax errors (<code>ERROR</code> nodes or <code>is_missing</code> nodes)</li>
+<li><strong>Python-specific</strong>: <code>compile()</code> to catch syntax errors, plus flake8 for fatal errors only (E9, F821, F823, F831, etc.)</li>
+<li><strong>Custom linters</strong>: Users can set per-language or global lint commands via <code>--lint-cmd</code></li>
+</ol>
+<p>Lint errors are formatted with <code>TreeContext</code> to show the error location with surrounding code structure, then fed back to the LLM as a reflection message.</p>
+<h3 id="test-integration">Test Integration</h3>
+<p>Users configure a test command (<code>--test-cmd</code>). After edits (and linting), Aider runs the test command. If tests fail, the output is fed back to the LLM for self-correction.</p>
+<h3 id="reflection-loop">Reflection Loop</h3>
+<p>The <code>run_one()</code> method implements a reflection loop:</p>
+<ol>
+<li>Send message to LLM, get response</li>
+<li>Apply edits (may set <code>reflected_message</code> on failure)</li>
+<li>Lint edited files (may set <code>reflected_message</code> on errors)</li>
+<li>Run tests (may set <code>reflected_message</code> on failure)</li>
+<li>If <code>reflected_message</code> is set, repeat from step 1 (up to <code>max_reflections</code>, default 3)</li>
+</ol>
+<p>This creates a tight feedback loop: edit -&gt; verify -&gt; fix, without human intervention.</p>
+<h2 id="context-management">Context Management</h2>
+<h3 id="chat-files-vs-other-files">Chat Files vs. Other Files</h3>
+<p>Aider distinguishes:</p>
+<ul>
+<li><strong>Chat files</strong> (<code>/add</code>): Full content sent to the LLM, editable</li>
+<li><strong>Read-only files</strong> (<code>/read-only</code>): Full content sent but not editable</li>
+<li><strong>Other files</strong>: Only appear in the repo map as structural summaries</li>
+</ul>
+<h3 id="message-assembly">Message Assembly</h3>
+<p>The <code>ChatChunks</code> system assembles the prompt from:</p>
+<ol>
+<li>System message (edit format rules, examples)</li>
+<li>Repo map (ranked structural summary)</li>
+<li>Read-only file contents</li>
+<li>Chat file contents</li>
+<li>Conversation history (done messages, possibly summarized)</li>
+<li>Current message with reminder</li>
+</ol>
+<h3 id="summarization">Summarization</h3>
+<p>When conversation history grows too long, a background thread summarizes older messages using the weak model, preserving the conversation&rsquo;s key decisions while reducing token count.</p>
+<h2 id="architectural-lessons-for-harness-design">Architectural Lessons for Harness Design</h2>
+<ol>
+<li>
+<p><strong>Graph-based context selection outperforms heuristics.</strong> Aider&rsquo;s PageRank repo map is more principled than &ldquo;send the files the user mentioned.&rdquo; The same approach — build a graph of relationships, rank by relevance — applies to any knowledge corpus.</p>
+</li>
+<li>
+<p><strong>Edit format diversity matters.</strong> Different models have different strengths. Having multiple edit representations and selecting per-model is a form of model routing that significantly affects reliability.</p>
+</li>
+<li>
+<p><strong>Reflection loops with concrete feedback are high-leverage.</strong> The lint -&gt; test -&gt; reflect cycle is simple but effective. The key is that feedback is concrete (actual error messages, actual test output) rather than abstract.</p>
+</li>
+<li>
+<p><strong>Architect/editor separation decomposes the problem well.</strong> Strong reasoning models plan; fast models execute. This is directly analogous to our planner/writer agent split.</p>
+</li>
+<li>
+<p><strong>Git as undo mechanism makes AI edits safe.</strong> Every change is committed, so any change can be reverted. The user never loses work. This is why Aider can be aggressive about applying changes.</p>
+</li>
+<li>
+<p><strong>Flexible patch application is essential.</strong> LLMs don&rsquo;t produce exact matches reliably. The cascade from exact match through whitespace normalization, git cherry-pick, and diff-match-patch handles real-world LLM output gracefully.</p>
+</li>
+</ol>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="./cline-architecture-analysis.md" class="link-internal">Cline Architecture Analysis</a> — VS Code extension with tool-use approach</li>
+<li><a href="./ecc-hook-architecture-analysis.md" class="link-internal">ECC Hook Architecture</a> — Our own harness hook system</li>
+<li><a href="./continuous-learning-in-agentic-harnesses.md" class="link-internal">Continuous Learning in Agentic Harnesses</a> — Learning systems across tools</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/aider-architecture-analysis/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related"><ul><li>cline architecture analysis.md</li><li>ecc hook architecture analysis.md</li><li>continuous learning in agentic harnesses.md</li></ul></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Source</a></dt>
+        <dd property="emsenn:Source">https://github.com/paul gauthier/aider</dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/agentic-harness/">agentic-harness</a></li><li><a href="/tags/code-editing/">code-editing</a></li><li><a href="/tags/ai-pair-programming/">ai-pair-programming</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit Trail - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-03",
+  "datePublished": "2026-04-03",
+  "description": "An immutable sequence of events recording who did what, when, and why — the accountability backbone that makes the operations loop observable and reviewable.",
+  "name": "Audit Trail",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/audit-trail/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/domains/work/">Work</a></nav>
+  <h1 class="p-name">Audit Trail</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-03T00:00:00Z">2026-04-03</time>
+    
+    <span class="p-summary">An immutable sequence of events recording who did what, when, and why — the accountability backbone that makes the operations loop observable and reviewable.</span>
+  </div>
+  <div class="e-content">
+    <p>An audit trail is an immutable sequence of <a href="../../../../terms/event.md" class="link-internal">events</a> recording who did what, when, and why. Each event captures: the actor (agent or user), the action (what was done), the subject (what was acted upon), the previous state, the new state, and optionally the justification (why this act was performed).</p>
+<p>The audit trail is the ground truth of the operations loop. Current state is a derived view — a fold over the event log (Young 2010). You can reconstruct any entity&rsquo;s state at any point in time by replaying events up to that moment. You cannot reconstruct the history from current state alone, because current state discards the path that produced it.</p>
+<p>ISO 15489 (2016) specifies four properties that records in an audit trail must have: <strong>authenticity</strong> (the record is what it claims to be), <strong>reliability</strong> (it accurately represents what happened), <strong>integrity</strong> (it is complete and unaltered), and <strong>usability</strong> (it can be found and interpreted). In a version-controlled system, commit history provides authenticity and integrity. An entity-attribute-value-time (EAVT) datastore provides usability — every fact is queryable by entity, attribute, or time. Reliability depends on the events being captured at the point of action, not reconstructed after the fact.</p>
+<p>In a distributed system, events from different agents may be concurrent — they have no causal ordering (Lamport 1978). The audit trail must handle this: within a session, events are totally ordered by timestamp. Across sessions, events are ordered by commit. Across agents working in parallel (e.g. worktree isolation), events are reconciled at merge time. Transaction IDs provide ordering within one build; version control provides ordering across builds.</p>
+<p>A full audit trail covers all state transitions: task created, task assigned, task started, task completed, plan revised, review held. Every stage of the operations loop both produces events (acts) and consumes them (the tracking stage reads events to compute <a href="./metric.md" class="link-internal">metrics</a>; the review stage reads events to evaluate outcomes).</p>
+<p>See <a href="../texts/tracking-and-measurement-survey.md" class="link-internal">Tracking and Measurement Survey</a> and <a href="../texts/operations-cross-cutting-concepts-survey.md" class="link-internal">Cross-Cutting Concepts Survey</a> for the full theoretical grounding.</p>
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-iso15489" typeof="CreativeWork" resource="#ref-iso15489">
+    <span class="bib-key">[iso15489]</span>
+      <span property="author">ISO</span>.
+      (<span property="datePublished">2016</span>).
+      <cite property="name">ISO 15489-1:2016 Information and documentation — Records management</cite>..
+  </p><p class="bib-entry" id="ref-lamport1978" typeof="CreativeWork" resource="#ref-lamport1978">
+    <span class="bib-key">[lamport1978]</span>
+      <span property="author">Leslie Lamport</span>.
+      (<span property="datePublished">1978</span>).
+      <cite property="name">Time, Clocks, and the Ordering of Events in a Distributed System</cite>.
+      <em property="publisher">Communications of the ACM, 21(7)</em>.
+  </p><p class="bib-entry" id="ref-young2010" typeof="CreativeWork" resource="#ref-young2010">
+    <span class="bib-key">[young2010]</span>
+      <span property="author">Greg Young</span>.
+      (<span property="datePublished">2010</span>).
+      <cite property="name">CQRS and Event Sourcing</cite>..
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/audit-trail/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Contains</a></dt>
+        <dd property="emsenn:Contains"><ul><li><a href="/library/domains/humanities/domains/philosophy/terms/event/">event</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-03">2026-04-03</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/audit-trail/">audit trail</a></dd>
+      </div><div class="relation">
+        <dt>Instance of</dt>
+        <dd property="emsenn:Instanceof"><a href="/library/domains/humanities/domains/philosophy/terms/container/">container</a></dd>
+      </div><div class="relation">
+        <dt>Part of stage</dt>
+        <dd property="emsenn:Partofstage"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/tracking/">tracking</a></dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/terms/chief-medical-officer/">Chief Medical Officer</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

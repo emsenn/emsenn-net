@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Agent Interfaces with Physical Systems — Protocols and Integration Patterns - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Technical reference for how AI agents interface with physical equipment and automation systems — communication protocols, API patterns, data models, and grounding mechanisms",
+  "name": "AI Agent Interfaces with Physical Systems — Protocols and Integration Patterns",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/physical-systems-ai-interfaces-protocols/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/">Texts</a></nav>
+  <h1 class="p-name">AI Agent Interfaces with Physical Systems — Protocols and Integration Patterns</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Technical reference for how AI agents interface with physical equipment and automation systems — communication protocols, API patterns, data models, and grounding mechanisms</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#problem-the-interface-layer">Problem: The Interface Layer</a></li>
+    <li><a href="#hierarchical-protocol-stack">Hierarchical Protocol Stack</a></li>
+    <li><a href="#building-automation-bms-and-hvac-control">Building Automation: BMS and HVAC Control</a>
+      <ul>
+        <li><a href="#communication-pattern">Communication Pattern</a></li>
+        <li><a href="#opc-ua-in-building-systems">OPC UA in Building Systems</a></li>
+      </ul>
+    </li>
+    <li><a href="#agricultural-iot-mqtt-based-field-control">Agricultural IoT: MQTT-Based Field Control</a>
+      <ul>
+        <li><a href="#mqtt-architecture-lightweight-publish-subscribe">MQTT Architecture (Lightweight Publish-Subscribe)</a></li>
+        <li><a href="#control-logic">Control Logic</a></li>
+      </ul>
+    </li>
+    <li><a href="#smart-homes-multi-protocol-integration">Smart Homes: Multi-Protocol Integration</a>
+      <ul>
+        <li><a href="#home-assistant-architecture">Home Assistant Architecture</a></li>
+        <li><a href="#llm-agent-control-flow">LLM Agent Control Flow</a></li>
+        <li><a href="#multi-device-coordination">Multi-Device Coordination</a></li>
+      </ul>
+    </li>
+    <li><a href="#power-grid-control-scada-and-gridmind">Power Grid Control: SCADA and GridMind</a>
+      <ul>
+        <li><a href="#scada-legacy-architecture">SCADA Legacy Architecture</a></li>
+        <li><a href="#gridmind-ai-enhanced-scada">GridMind: AI-Enhanced SCADA</a></li>
+        <li><a href="#protocol-modernization">Protocol Modernization</a></li>
+      </ul>
+    </li>
+    <li><a href="#rpa-and-enterprise-api-integration">RPA and Enterprise API Integration</a>
+      <ul>
+        <li><a href="#rest-api-pattern-for-bot-control">REST API Pattern for Bot Control</a></li>
+        <li><a href="#hybrid-approach-agent--api--rpa">Hybrid Approach: Agent + API + RPA</a></li>
+      </ul>
+    </li>
+    <li><a href="#action-grounding-from-abstract-plans-to-control-signals">Action Grounding: From Abstract Plans to Control Signals</a>
+      <ul>
+        <li><a href="#hierarchical-decomposition-pattern">Hierarchical Decomposition Pattern</a></li>
+        <li><a href="#grounding-variables-environment-constraints">Grounding Variables (Environment Constraints)</a></li>
+        <li><a href="#closed-loop-replanning">Closed-Loop Replanning</a></li>
+      </ul>
+    </li>
+    <li><a href="#safety-constraints-and-validation">Safety Constraints and Validation</a>
+      <ul>
+        <li><a href="#input-validation-observation-layer">Input Validation (Observation Layer)</a></li>
+        <li><a href="#output-validation-action-layer">Output Validation (Action Layer)</a></li>
+        <li><a href="#fallback-and-degradation">Fallback and Degradation</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary-design-principles-for-ai-physical-interfaces">Summary: Design Principles for AI-Physical Interfaces</a></li>
+    <li><a href="#see-also">See Also</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="ai-agent-interfaces-with-physical-systems--protocols-and-integration-patterns">AI Agent Interfaces with Physical Systems — Protocols and Integration Patterns</h1>
+<h2 id="problem-the-interface-layer">Problem: The Interface Layer</h2>
+<p>AI agents reason in symbolic/semantic space (goals, plans, actions). Physical systems operate in deterministic physical space (electrical signals, mechanical states, sensor readings). The interface layer translates between these domains. Three main challenges:</p>
+<ol>
+<li><strong>Semantic grounding</strong>: Agent&rsquo;s &ldquo;turn on light&rdquo; must map to specific voltage/GPIO pin on specific device</li>
+<li><strong>Real-time constraints</strong>: Grid control needs millisecond response; cloud AI inference adds latency</li>
+<li><strong>Determinism vs. adaptation</strong>: Agents learn/adapt, but safety-critical systems require predictable behavior</li>
+</ol>
+<h2 id="hierarchical-protocol-stack">Hierarchical Protocol Stack</h2>
+<p>Physical systems employ a layered stack from equipment upward to AI agents:</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────────┐
+│  AI Agent Reasoning Layer               │
+│  (LLM, RL policy, planning)            │
+├─────────────────────────────────────────┤
+│  Application/Control Logic Layer        │
+│  (Home Assistant, BMS, Grid dispatcher) │
+├─────────────────────────────────────────┤
+│  Protocol Translation Layer             │
+│  (REST API, MQTT publisher/subscriber)  │
+├─────────────────────────────────────────┤
+│  Network Transport                      │
+│  (Ethernet, RS-485, LoRa, cellular)    │
+├─────────────────────────────────────────┤
+│  Equipment Communication                │
+│  (Modbus RTU, Bacnet, EtherNet/IP)     │
+├─────────────────────────────────────────┤
+│  Physical Hardware                      │
+│  (Sensors, actuators, PLCs, controllers)│
+└─────────────────────────────────────────┘
+</code></pre><h2 id="building-automation-bms-and-hvac-control">Building Automation: BMS and HVAC Control</h2>
+<h3 id="communication-pattern">Communication Pattern</h3>
+<pre tabindex="0"><code>BMS ←→ (Modbus TCP / Bacnet) ←→ HVAC Controller
+  ↓
+AI Agent (cloud or edge)
+  ↑
+API interface (REST or direct connection)
+</code></pre><p><strong>Data Flow</strong>:</p>
+<ol>
+<li>Sensors (temperature, humidity, occupancy) → BMS via Modbus TCP / Bacnet</li>
+<li>BMS exposes REST API or webhook interface</li>
+<li>AI agent reads current state: <code>GET /api/sensors</code> → JSON with all current readings</li>
+<li>Agent computes optimal setpoints using RL policy</li>
+<li>Agent writes command: <code>POST /api/hvac/setpoint</code> → <code>{&quot;temperature&quot;: 72, &quot;humidity&quot;: 45}</code></li>
+<li>BMS translates setpoint to HVAC equipment command (Modbus holding register write)</li>
+</ol>
+<p><strong>Key Characteristics</strong>:</p>
+<ul>
+<li><strong>5-15 minute control interval</strong>: Sufficient for systems with high thermal mass</li>
+<li><strong>State atomicity</strong>: Agent reads entire building state before computing action</li>
+<li><strong>Fallback safety</strong>: If API connection fails, BMS maintains last known setpoint</li>
+<li><strong>Actuation pattern</strong>: Setpoints (target values) rather than direct control; equipment PID loops handle fine-grained adjustment</li>
+</ul>
+<h3 id="opc-ua-in-building-systems">OPC UA in Building Systems</h3>
+<p>OPC UA (OLE for Process Control Unified Architecture) is increasingly adopted for:</p>
+<ul>
+<li><strong>Semantic information modeling</strong>: Building structure (floors, zones, equipment hierarchy) represented as object model</li>
+<li><strong>Digital twin sync</strong>: Real physical state automatically mapped to virtual model</li>
+<li><strong>Machine learning input</strong>: Rich context (not just raw sensor values) provided to AI agents</li>
+</ul>
+<p>Digital twin pattern: Sensors → BMS → OPC UA Server → AI Agent sees synchronized building state + historical trends</p>
+<h2 id="agricultural-iot-mqtt-based-field-control">Agricultural IoT: MQTT-Based Field Control</h2>
+<h3 id="mqtt-architecture-lightweight-publish-subscribe">MQTT Architecture (Lightweight Publish-Subscribe)</h3>
+<pre tabindex="0"><code>Soil Moisture Sensor 1 ──┐
+Temperature/Humidity 2 ──┤
+                        ├→ ESP8266 MCU → MQTT Broker ↔ Cloud Analytics
+Light Intensity 3 ───────┤              ↑
+pH Sensor 4 ─────────────┘         Local Control
+                                    (irrigation valves,
+                                     vent fans)
+</code></pre><p><strong>Sensor Stack</strong>:</p>
+<ul>
+<li><strong>Microcontroller</strong>: ESP8266 (WiFi-enabled, low cost)</li>
+<li><strong>Sensors</strong>: Capacitive soil moisture (analog), DHT22 (temperature/humidity), photoresistor (light)</li>
+<li><strong>Protocol</strong>: MQTT publish every 30-60 seconds</li>
+<li><strong>Broker</strong>: Mosquitto (open source), ThingsBoard (cloud), or AWS IoT Core</li>
+</ul>
+<p><strong>MQTT Topics</strong> (example):</p>
+<pre tabindex="0"><code>farm/field1/soil_moisture → 65 (%)
+farm/field1/temperature → 28.5 (°C)
+farm/field1/humidity → 72 (%)
+farm/field1/irrigation_valve → 1 (open/closed)
+farm/field1/vent_fan → 250 (RPM)
+</code></pre><h3 id="control-logic">Control Logic</h3>
+<pre tabindex="0"><code>MQTT Subscriber (Edge AI)
+  ├─ Read: farm/field1/soil_moisture, temperature, humidity
+  ├─ Predict: &#34;plant stress likely in 4 hours based on trend&#34;
+  ├─ Decide: &#34;increase irrigation to 2 hours tomorrow at 4am&#34;
+  └─ Publish: farm/field1/irrigation_schedule → {&#34;start&#34;: &#34;2026-04-05 04:00&#34;, &#34;duration&#34;: 120}
+</code></pre><p><strong>Actuation</strong>:</p>
+<ul>
+<li>Irrigation valve: 12V relay controlled by GPIO pin</li>
+<li>Vent fan: PWM (pulse-width modulation) for speed control</li>
+<li>All controlled via MQTT messages to local controller or directly from edge device</li>
+</ul>
+<p><strong>Learning Loop</strong>:</p>
+<ol>
+<li>Sensor readings + environmental conditions → time-series database</li>
+<li>Outcome data (final yield, disease occurrence) labeled retrospectively</li>
+<li>ML model trained: conditions → optimal actions</li>
+<li>Agent uses model for next season&rsquo;s predictions</li>
+</ol>
+<h2 id="smart-homes-multi-protocol-integration">Smart Homes: Multi-Protocol Integration</h2>
+<h3 id="home-assistant-architecture">Home Assistant Architecture</h3>
+<pre tabindex="0"><code>Device Layer:
+  WiFi Devices (Zigbee, Z-Wave, WiFi)
+    ├─ Philips Hue lights (Zigbee)
+    ├─ Ecobee thermostat (WiFi)
+    ├─ Smart lock (Z-Wave)
+    └─ Occupancy sensors (various)
+         ↓
+Protocol Gateway Layer:
+  ├─ Zigbee Coordinator (USB stick)
+  ├─ Z-Wave Controller (USB stick)
+  ├─ MQTT Broker (mosquitto)
+  └─ WiFi direct
+         ↓
+Home Assistant Core:
+  ├─ Device Registry (maintains all devices)
+  ├─ Entity Manager (sensors, switches, lights, climate)
+  └─ Automation Engine
+         ↓
+LLM Integration Layer:
+  ├─ Local LLM (Ollama)
+  ├─ Cloud LLM (OpenAI, Anthropic)
+  └─ Intent Parser (Assist API)
+         ↓
+User Interaction:
+  Voice → LLM → Action Intent → Home Assistant API → Device Command
+</code></pre><h3 id="llm-agent-control-flow">LLM Agent Control Flow</h3>
+<p><strong>User Command</strong>: &ldquo;It&rsquo;s getting warm, turn on the AC and close the blinds&rdquo;</p>
+<p><strong>Processing Chain</strong>:</p>
+<ol>
+<li><strong>Voice-to-Text</strong>: User speech → transcribed text</li>
+<li><strong>LLM Processing</strong>:
+<ul>
+<li>Input: &ldquo;It&rsquo;s getting warm, turn on the AC and close the blinds&rdquo;</li>
+<li>Context: Current temperature 78°F, AC capable, smart blinds available</li>
+<li>Output: Intent list: <code>[{&quot;action&quot;: &quot;climate.set_mode&quot;, &quot;entity&quot;: &quot;climate.living_room&quot;, &quot;mode&quot;: &quot;cool&quot;}, {&quot;action&quot;: &quot;cover.close&quot;, &quot;entity&quot;: &quot;cover.living_room_blinds&quot;}]</code></li>
+</ul>
+</li>
+<li><strong>Action Grounding</strong>:
+<ul>
+<li>&ldquo;climate.living_room&rdquo; maps to physical Ecobee thermostat at IP 192.168.1.50</li>
+<li>&ldquo;cover.living_room_blinds&rdquo; maps to Zigbee ID 0x1a2b</li>
+</ul>
+</li>
+<li><strong>Execution</strong>:
+<ul>
+<li>REST call to Home Assistant: <code>POST /api/services/climate/set_temperature</code> with target temperature</li>
+<li>Zigbee message: Close cover command to blind device</li>
+</ul>
+</li>
+<li><strong>Feedback</strong>: State updated → LLM confirms &ldquo;AC and blinds adjusted&rdquo;</li>
+</ol>
+<h3 id="multi-device-coordination">Multi-Device Coordination</h3>
+<p><strong>Scenario</strong>: &ldquo;Movie time&rdquo; (custom scene)</p>
+<p>Agent knows from configuration that &ldquo;movie time&rdquo; means:</p>
+<ul>
+<li>Lights dimmed to 20%</li>
+<li>Blind closed</li>
+<li>AC set to 72°F</li>
+<li>TV powered on</li>
+<li>Audio system set to movie mode</li>
+</ul>
+<p>Single natural language command triggers coordinated action across multiple protocols (Zigbee, WiFi, Z-Wave).</p>
+<h2 id="power-grid-control-scada-and-gridmind">Power Grid Control: SCADA and GridMind</h2>
+<h3 id="scada-legacy-architecture">SCADA Legacy Architecture</h3>
+<pre tabindex="0"><code>Power Plants ──┐
+               ├─→ RTU (Remote Terminal Unit)
+Substations ──┤     ├─ Modbus RTU (serial RS-485)
+               │     ├─ DNP3 (dedicated protocol)
+Distribution ─┘     └─ IEC 60870-5-104 (Ethernet)
+                           ↓
+                    Control Center SCADA Master
+                    (Historical Modbus polling, manual operator)
+                           ↑
+                    Human Operator Judgment
+</code></pre><p><strong>Traditional Control Loop</strong>: Operator monitors gauges, makes decision, sends command via SCADA.</p>
+<h3 id="gridmind-ai-enhanced-scada">GridMind: AI-Enhanced SCADA</h3>
+<pre tabindex="0"><code>Data Inputs (Polling every 2-5 seconds):
+  ├─ SCADA RTU readings (power flows, equipment status)
+  ├─ AMI (Advanced Metering Infrastructure) — household consumption
+  ├─ Weather forecast data
+  ├─ Renewable generation (solar, wind) predictions
+  └─ Equipment capability constraints
+         ↓
+        LLM Coordinator Agent
+         ├─ Parses current grid state
+         ├─ Identifies issues (frequency deviation, congestion)
+         ├─ Calls specialized agents:
+         │   ├─ Schedule Agent → runs OPF (Optimal Power Flow) solver
+         │   ├─ Weather Agent → hurricane impact simulation
+         │   ├─ Failure Agent → N-1 contingency analysis
+         │   └─ Reliability Agent → equipment assessment
+         ├─ Validates results (Pydantic schemas)
+         ├─ Cross-checks numbers against solver outputs
+         └─ Recommends strategy to operator
+             ↓
+        Human Operator (final approval)
+         ├─ Reviews LLM reasoning
+         ├─ Can override if judgment differs
+         ├─ Issues dispatch command
+         └─ Command flows back to SCADA
+             ↓
+         RTUs adjust generation, transmission, or load
+</code></pre><p><strong>Key Difference from Traditional AI</strong>:</p>
+<ul>
+<li>AI does not directly control equipment (too risky)</li>
+<li>AI provides explainable reasoning to operator</li>
+<li>Operator maintains final control authority</li>
+<li>Audit trail preserved (decision + reasoning + operator approval)</li>
+</ul>
+<h3 id="protocol-modernization">Protocol Modernization</h3>
+<p><strong>Moving toward</strong>: OPC UA endpoints at RTU level, enabling semantic modeling of grid assets (generator capacity curves, transformer ratings, line thermal limits) that AI systems can interpret directly.</p>
+<h2 id="rpa-and-enterprise-api-integration">RPA and Enterprise API Integration</h2>
+<h3 id="rest-api-pattern-for-bot-control">REST API Pattern for Bot Control</h3>
+<pre tabindex="0"><code>External Event (order, invoice, request)
+         ↓
+LLM Agent (decides routing)
+         ├─ API Integration? → call REST endpoint directly
+         │                    (e.g., GET /invoices/unpaid)
+         ├─ RPA Needed? → call A360 Bot Deploy API
+         │                REST: POST /api/bots/deploy
+         │                Body: {&#34;bot_id&#34;: &#34;invoice_processor&#34;, &#34;params&#34;: {...}}
+         └─ Human? → escalate to human queue
+         ↓
+RPA Bot Executes UI-based task
+         ├─ Login to legacy ERP
+         ├─ Fill form fields
+         ├─ Click buttons (computer vision for locating elements)
+         └─ Extract data from screen
+         ↓
+Return result to agent (success/failure)
+</code></pre><p><strong>API Design for RPA Control</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// A360 Bot Deploy API (Automation Anywhere)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">POST</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">api</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bots</span><span style="color:#f92672">/</span><span style="color:#a6e22e">deploy</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;bot_id&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;invoice_processing_bot&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;trigger_type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;event&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;parameters&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;invoice_id&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;INV-2026-0512&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;customer_id&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;CUST-789&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;amount&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1500.00</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;timeout_seconds&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">300</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Response</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;execution_id&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;exec_abc123&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;status&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;running&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;started_at&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;2026-04-04T14:30:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Poll for completion
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">GET</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">api</span><span style="color:#f92672">/</span><span style="color:#a6e22e">executions</span><span style="color:#f92672">/</span><span style="color:#a6e22e">exec_abc123</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Response</span> (<span style="color:#a6e22e">when</span> <span style="color:#a6e22e">complete</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;execution_id&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;exec_abc123&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;status&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;completed&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;result&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;invoice_processed&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;po_number&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;PO-555&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;approval_status&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pending_manager&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="hybrid-approach-agent--api--rpa">Hybrid Approach: Agent + API + RPA</h3>
+<pre tabindex="0"><code>Request Input
+      ↓
+Agent decides routing:
+  ├─ If data is in REST API → Query directly
+  ├─ If need legacy system → Dispatch RPA bot
+  ├─ If need human judgment → Create task ticket
+  └─ If complex orchestration → Chain multiple bots
+      ↓
+Results aggregated and returned
+</code></pre><p><strong>Safety</strong>: RPA is more secure than API (no credential leakage), but slower. Agent chooses based on risk/speed tradeoff.</p>
+<h2 id="action-grounding-from-abstract-plans-to-control-signals">Action Grounding: From Abstract Plans to Control Signals</h2>
+<h3 id="hierarchical-decomposition-pattern">Hierarchical Decomposition Pattern</h3>
+<p><strong>Robot Example</strong>: &ldquo;Bring me the ball&rdquo;</p>
+<pre tabindex="0"><code>Level 1 (Brain-LLM - Task Planner):
+  Input: &#34;Bring me the ball&#34; + environment_state
+  Output: [&#34;navigate to ball location&#34;, &#34;grasp ball&#34;, &#34;return to user&#34;]
+
+Level 2 (Body-LLM - Motion Planner):
+  Input: [&#34;navigate to ball location&#34;] + current_position + obstacles
+  Output: [sequence of waypoints]
+
+Level 3 (Low-Level Controller - Actuator Commands):
+  Input: waypoints + robot_kinematics
+  Output: motor commands [left_wheel_speed: 50RPM, right_wheel_speed: 48RPM]
+
+Execution Feedback Loop:
+  Sensor readings (encoders, lidar) → perception update
+  → Re-evaluate plan if path blocked
+  → Replan if failure detected
+</code></pre><h3 id="grounding-variables-environment-constraints">Grounding Variables (Environment Constraints)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;available_actions&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;navigate&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;grasp&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;release&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;push&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pull&#34;</span>
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;object_list&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {<span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;ball_1&#34;</span>, <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;ball&#34;</span>, <span style="color:#f92672">&#34;location&#34;</span>: [<span style="color:#ae81ff">5.2</span>, <span style="color:#ae81ff">3.1</span>], <span style="color:#f92672">&#34;size&#34;</span>: <span style="color:#ae81ff">0.15</span>},
+</span></span><span style="display:flex;"><span>    {<span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;table_1&#34;</span>, <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;table&#34;</span>, <span style="color:#f92672">&#34;location&#34;</span>: [<span style="color:#ae81ff">2.0</span>, <span style="color:#ae81ff">4.0</span>], <span style="color:#f92672">&#34;corners&#34;</span>: [<span style="color:#960050;background-color:#1e0010">...</span>]}
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;robot_capabilities&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;max_speed&#34;</span>: <span style="color:#ae81ff">1.5</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;reach&#34;</span>: <span style="color:#ae81ff">1.0</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;grasp_force&#34;</span>: [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">50</span>]
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;constraints&#34;</span>: [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;do_not_collide_with_obstacles&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;do_not_exceed_max_force_on_objects&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;battery_remaining_percent&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">67</span>
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Providing these variables to LLM prevents hallucinations (e.g., agent trying to grasp object it can&rsquo;t reach).</p>
+<h3 id="closed-loop-replanning">Closed-Loop Replanning</h3>
+<pre tabindex="0"><code>Plan: [&#34;navigate_to&#34;, &#34;grasp&#34;, &#34;return&#34;]
+Execute Step 1: navigate_to
+  Sensor feedback: path blocked by obstacle not in original map
+  Status: FAILED
+  
+Replan:
+  Update environment_state with new obstacle
+  Call Brain-LLM with updated state
+  New plan: [&#34;navigate_alternate_route&#34;, &#34;grasp&#34;, &#34;return&#34;]
+  
+Execute new plan with success
+</code></pre><p>This closed-loop pattern substantially increases success rate vs. open-loop single plan execution.</p>
+<h2 id="safety-constraints-and-validation">Safety Constraints and Validation</h2>
+<h3 id="input-validation-observation-layer">Input Validation (Observation Layer)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Before passing to LLM agent</span>
+</span></span><span style="display:flex;"><span>validated_state <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;temperature&#34;</span>: validate_range(raw_temp, min<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, max<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>),  <span style="color:#75715e"># Celsius</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;humidity&#34;</span>: validate_range(raw_humidity, min<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, max<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;occupancy_count&#34;</span>: validate_positive_int(raw_occupancy),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;available_actions&#34;</span>: ALLOWED_ACTIONS,  <span style="color:#75715e"># hardcoded list</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="output-validation-action-layer">Output Validation (Action Layer)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># After LLM generates action</span>
+</span></span><span style="display:flex;"><span>action <span style="color:#f92672">=</span> parse_action_from_llm(llm_response)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> action<span style="color:#f92672">.</span>type <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> ALLOWED_ACTIONS:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Invalid action&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> action<span style="color:#f92672">.</span>equipment_id <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> REGISTERED_EQUIPMENT:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Unknown equipment&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Boundary checking</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> action<span style="color:#f92672">.</span>temperature_setpoint <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">65</span> <span style="color:#f92672">or</span> action<span style="color:#f92672">.</span>temperature_setpoint <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">85</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Temperature outside safe range&#34;</span>)
+</span></span></code></pre></div><h3 id="fallback-and-degradation">Fallback and Degradation</h3>
+<pre tabindex="0"><code>Normal state: AI agent controls system
+  ↓
+Detect anomaly (high error rate, unexpected state)
+  ↓
+Pause AI control, revert to safe default
+  (temperature to comfortable 72°F, lights to 50%, AC to standby)
+  ↓
+Alert human operator
+  ↓
+Human inspects and re-enables AI, or maintains manual control
+</code></pre><h2 id="summary-design-principles-for-ai-physical-interfaces">Summary: Design Principles for AI-Physical Interfaces</h2>
+<ol>
+<li><strong>Separation of concerns</strong>: LLM handles reasoning; deterministic controllers handle low-level execution</li>
+<li><strong>Explicit grounding</strong>: Agent&rsquo;s action space must be defined and validated upfront</li>
+<li><strong>Closed-loop feedback</strong>: Sensor readings and execution outcomes feed back into planning</li>
+<li><strong>Fail-safe defaults</strong>: Systems degrade gracefully to safe predetermined state</li>
+<li><strong>Audit trails</strong>: All decisions logged with reasoning and approval chain</li>
+<li><strong>Real-time capability matching</strong>: Edge devices for millisecond control; cloud for second/minute optimization</li>
+<li><strong>Constraint propagation</strong>: Safety constraints flow from domain (IEC 61508 requirements) → controller code → LLM prompts</li>
+</ol>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../../domains/industrial/terms/opc-ua.md" class="link-internal">OPC UA Standard and Industrial Information Models</a></li>
+<li><a href="../../domains/industrial/terms/mqtt-protocol.md" class="link-internal">MQTT Protocol for IoT</a></li>
+<li><a href="../../domains/industrial/terms/modbus-protocol.md" class="link-internal">Modbus and Legacy Control Protocols</a></li>
+<li><a href="../../domains/software-architecture/texts/rest-api-design.md" class="link-internal">RESTful API Design Patterns</a></li>
+<li><a href="../../domains/industrial/texts/safety-critical-systems.md" class="link-internal">Safety-Critical System Design</a></li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p><a href="https://www.bosch-softwaretechnologies.com/media/documents/downloads/ai_and_bigdata/agentic_ai_on_the_edge.pdf" class="link-external">Agentic AI on the Edge HVAC Control Bosch</a></p>
+<p><a href="https://blog.se.com/buildings/2025/07/01/leveraging-ai-optimization-at-the-edge-in-room-controllers/" class="link-external">Leveraging AI Optimization in Room Controllers Schneider Electric</a></p>
+<p><a href="https://panorad.ai/blog/hvac-ai-agents-smart-building-automation-2025/" class="link-external">HVAC AI Agents Smart Building Automation Panorad</a></p>
+<p><a href="https://heatpumpingtechnologies.org/articles/heat-pumping-technologies-magazine-vol-43-no-3-2025/ai-driven-predictive-control-for-data-center-hvac-systems/" class="link-external">AI-Driven Predictive Control for Data Center HVAC</a></p>
+<p><a href="https://developers.home-assistant.io/docs/core/llm/" class="link-external">Home Assistant LLM Agent API Developer Docs</a></p>
+<p><a href="https://community.home-assistant.io/t/local-llm-for-dummies/769407" class="link-external">Local LLM Integration Home Assistant</a></p>
+<p><a href="https://www.home-assistant.io/blog/2025/07/02/release-20257/" class="link-external">Home Assistant 2025.7 Release Notes</a></p>
+<p><a href="https://www.home-assistant.io/integrations/mqtt/" class="link-external">MQTT Integration Home Assistant</a></p>
+<p><a href="https://thingsboard.io/use-cases/smart-farming/" class="link-external">Smart Farming with ThingsBoard IoT Platform</a></p>
+<p><a href="https://link.springer.com/rwe/10.1007/978-3-030-58675-1_112-1" class="link-external">IoT-Based Smart Farming Using MQTT Protocol ML Algorithms</a></p>
+<p><a href="https://arxiv.org/html/2509.02494v1" class="link-external">GridMind LLMs-Powered Agents for Power System Analysis arxiv</a></p>
+<p><a href="https://www.anl.gov/article/gridmind-powering-the-control-room-of-the-future-with-ai-agents" class="link-external">GridMind Control Room of Future Argonne Lab</a></p>
+<p><a href="https://blog.se.com/industry/2024/09/10/how-edge-computing-and-ai-can-revolutionize-scada-systems-use-cases-in-the-water-wastewater-industry/" class="link-external">Edge Computing AI SCADA Systems Schneider Electric</a></p>
+<p><a href="https://gc-ait.eu/blog/ai-scada-plc-mes-integration.html" class="link-external">AI Integration with SCADA PLC MES Systems GC AIT</a></p>
+<p><a href="https://iotworlds.com/rtu-and-scada-communication-protocols-the-backbone-of-modern-utility-automation/" class="link-external">SCADA RTU Communications Protocols IoT Worlds</a></p>
+<p><a href="https://www.linkedin.com/pulse/deploying-bot-via-automation-anywheres-enterprise-control-steve-ng/" class="link-external">A360 Bot Deploy API Automation Anywhere</a></p>
+<p><a href="https://www.workato.com/the-connector/rpa-vs-api-integration/" class="link-external">RPA vs API Integration Blog Workato</a></p>
+<p><a href="https://arxiv.org/html/2402.08546v3" class="link-external">Grounding Large Language Models Robot Task Planning arxiv</a></p>
+<p><a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-59.html" class="link-external">LLM-based Agents Embodied World Interaction Berkeley EECS</a></p>
+<p><a href="https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1605405/full" class="link-external">Agentic LLM-based Robotic Systems Real-World Frontiers</a></p>
+<p><a href="https://opcfoundation.org/news/press-releases/opc-foundation-launches-new-working-group-opc-ua-for-ai-revolutionizing-manufacturing-solutions/" class="link-external">OPC UA for AI Manufacturing OPC Foundation</a></p>
+<p><a href="https://blog.it-aspdijital.com/post.php?slug=ai-integration-with-opc-ua-systems-revolutionizing-industrial-automation" class="link-external">AI Integration with OPC UA Systems IT-ASP Digital</a></p>
+<p><a href="https://ifactoryapp.com/blog/opc-ua-mqtt-ai-ready-factory-sensor-data/" class="link-external">Using OPC UA and MQTT for AI-Ready Factories iFactory</a></p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/physical-systems-ai-interfaces-protocols/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/humanities/domains/philosophy/terms/relation/">Relations</a></dt>
+        <dd property="emsenn:Relations"><ul></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

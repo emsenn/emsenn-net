@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Composability - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-05",
+  "datePublished": "2026-04-05",
+  "description": "The property of blockchain systems where any smart contract can interact with any other, enabling complex applications built from independent, interoperable components.",
+  "name": "Composability",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/composability/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/">Blockchain</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/">Blockchain Terms</a></nav>
+  <h1 class="p-name">Composability</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
+    
+    <span class="p-summary">The property of blockchain systems where any smart contract can interact with any other, enabling complex applications built from independent, interoperable components.</span>
+  </div>
+  <div class="e-content">
+    <p>Composability is the property of a system where its components can be freely combined, recombined, and built upon by anyone, without coordination with or permission from the original creators. In blockchain systems, composability means any <a href="./smart-contract.md" class="link-internal">smart contract</a> can call any other smart contract&rsquo;s public functions, read any piece of <a href="./on-chain-state.md" class="link-internal">on-chain state</a>, and build new functionality on top of existing protocols.</p>
+<p>The term draws an analogy to Unix pipes, LEGO bricks, or API composition — but blockchain composability is stronger than any of these because it operates on shared, permissionless state. A Unix program can pipe data to another, but both must run on the same machine under the same user&rsquo;s control. A blockchain contract can interact with any other contract deployed by anyone, at any time, without prior agreement.</p>
+<p><strong>How it works</strong>:</p>
+<ol>
+<li><strong>Open state</strong>: All contract storage is publicly readable. A lending protocol can check a user&rsquo;s collateral in a different protocol without any API key or partnership.</li>
+<li><strong>Standardized interfaces</strong>: Token standards (ERC-20, ERC-721) define common function signatures. Any wallet, exchange, or protocol that supports ERC-20 can interact with any ERC-20 <a href="./token.md" class="link-internal">token</a> — thousands of them — using the same code.</li>
+<li><strong>Atomic transactions</strong>: Multiple contract calls within a single transaction either all succeed or all revert. This enables flash loans: borrow, trade, arbitrage, and repay in one atomic transaction — an operation that would be impossible without composability and atomicity.</li>
+</ol>
+<p><strong>DeFi as composability in action</strong>:</p>
+<p>Decentralized finance is the clearest demonstration. A user can deposit ETH into Aave (lending), use the receipt token as collateral in MakerDAO (borrowing), swap the borrowed DAI on Uniswap (trading), and stake the result in Yearn (yield optimization) — all without any of these protocols having formal partnerships. Each protocol reads and writes to shared on-chain state. The community calls these &ldquo;money legos&rdquo; because each protocol is a building block that snaps onto others.</p>
+<p><strong>In autonomous worlds</strong>:</p>
+<p>Composability is what makes <a href="./autonomous-world.md" class="link-internal">autonomous worlds</a> fundamentally different from traditional games. In a traditional game, only the studio can add mechanics. In an autonomous world, any developer can deploy a new contract that reads the world&rsquo;s state and adds functionality — a crafting system, a marketplace, a governance layer — without modifying the original code. The Loot project demonstrated this: 8,000 bags of on-chain text spawned over 40 derivative projects, each composing on the original data.</p>
+<p><strong>Risks</strong>: Composability creates systemic interdependence. A bug or exploit in one protocol can cascade through every protocol that depends on it. The 2022 collapse of Terra/UST propagated through the DeFi ecosystem precisely because protocols were deeply composed with each other. Composability amplifies both innovation and contagion.</p>
+<p>See also: <a href="./smart-contract.md" class="link-internal">smart contract</a>, <a href="./on-chain-state.md" class="link-internal">on-chain state</a>, <a href="./token.md" class="link-internal">token</a>, <a href="./autonomous-world.md" class="link-internal">autonomous world</a></p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/composability/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/composability/">composability</a></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

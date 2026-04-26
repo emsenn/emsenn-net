@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Execution and Monitoring: How Work Gets Done and What Can Go Wrong - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-03",
+  "datePublished": "2026-04-03",
+  "description": "How work transitions through states during execution — from Harel's statecharts through BPMN workflows to Reason's error models, saga patterns for recovery, and real-time monitoring.",
+  "name": "Execution and Monitoring: How Work Gets Done and What Can Go Wrong",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/texts/execution-and-monitoring-survey/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/domains/work/">Work</a></nav>
+  <h1 class="p-name">Execution and Monitoring: How Work Gets Done and What Can Go Wrong</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-03T00:00:00Z">2026-04-03</time>
+    
+    <span class="p-summary">How work transitions through states during execution — from Harel&#39;s statecharts through BPMN workflows to Reason&#39;s error models, saga patterns for recovery, and real-time monitoring.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#state-machines-and-statecharts">State machines and statecharts</a></li>
+    <li><a href="#bpmn-execution-semantics">BPMN execution semantics</a></li>
+    <li><a href="#the-tote-unit">The TOTE unit</a></li>
+    <li><a href="#error-models-reason">Error models: Reason</a></li>
+    <li><a href="#saga-pattern-recovery-from-failure">Saga pattern: recovery from failure</a></li>
+    <li><a href="#flow-dynamics-littles-law">Flow dynamics: Little&rsquo;s Law</a></li>
+    <li><a href="#see-also">See also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>Execution is the sequence of <a href="../../../../terms/act.md" class="link-internal">acts</a> that advances a work entity from &ldquo;assigned&rdquo; toward &ldquo;completed.&rdquo; It is where plans meet reality — where assumptions are tested, errors occur, and the system&rsquo;s resilience is measured.</p>
+<h2 id="state-machines-and-statecharts">State machines and statecharts</h2>
+<p>Execution is state transition. A task starts in one <a href="../../../../terms/state.md" class="link-internal">state</a> and, through a series of acts, reaches another. The execution semantics of the operations loop are defined by which transitions are legal from each state.</p>
+<p>David Harel&rsquo;s statecharts (1987) provide the formal model. A flat state machine has states and transitions — &ldquo;open&rdquo; → &ldquo;in progress&rdquo; → &ldquo;completed.&rdquo; Harel adds three features that flat machines lack:</p>
+<p><strong>Hierarchy</strong> — states nest. &ldquo;In progress&rdquo; has substates: &ldquo;active,&rdquo; &ldquo;blocked,&rdquo; &ldquo;waiting for review.&rdquo; You can describe the coarse state (&ldquo;in progress&rdquo;) without committing to the fine state, and you can describe the fine state without repeating that it&rsquo;s within &ldquo;in progress.&rdquo;</p>
+<p><strong>Orthogonality</strong> — independent aspects of state evolve independently. A task&rsquo;s execution state (active/blocked/done) is orthogonal to its review state (unreviewed/approved/rejected). These can be modeled as parallel regions that don&rsquo;t interfere.</p>
+<p><strong>History</strong> — when a task re-enters a composite state, it can return to the substate it was in when it left. A task that was &ldquo;in progress → active&rdquo; before being blocked returns to &ldquo;active&rdquo; when unblocked, not to the generic &ldquo;in progress&rdquo; start.</p>
+<p>For a flatfile work management system, task status is often flat — &ldquo;open,&rdquo; &ldquo;completed,&rdquo; &ldquo;deferred.&rdquo; The state machine is implicit. Making it explicit means defining: which transitions are legal from each status, what conditions must hold for each transition, and what events each transition produces. A validation layer can enforce some constraints, but the state machine would make all constraints derivable from a single specification.</p>
+<h2 id="bpmn-execution-semantics">BPMN execution semantics</h2>
+<p>The Business Process Model and Notation (OMG 2011) standardizes workflow execution with five core element types: events (things that happen), activities (work performed), gateways (decision/merge points), sequence flows (execution order), and message flows (inter-process communication).</p>
+<p>BPMN&rsquo;s execution semantics are token-based. A token represents a thread of execution. It flows along sequence flows, enters activities (consuming the token until the activity completes), and passes through gateways (which may split one token into many or merge many into one).</p>
+<p>In practice, most operations loops have implicit token flow. A task is created (token enters the system), assigned (token moves to dispatch), started (token moves to execution), completed (token moves to tracking), reviewed (token moves to review). But this flow is typically modeled as status changes on individual records, not as explicit tokens. Making the flow explicit would enable: detecting stalled tokens (tasks stuck in a state), computing flow time (how long between states), and identifying bottleneck states (where tokens accumulate).</p>
+<h2 id="the-tote-unit">The TOTE unit</h2>
+<p>Miller, Galanter, and Pribram&rsquo;s <em>Plans and the Structure of Behavior</em> (1960) propose the TOTE unit as the basic element of purposeful behavior: Test-Operate-Test-Exit.</p>
+<p><strong>Test</strong> — compare current state to goal state. Are they the same?
+<strong>Operate</strong> — if not, perform an action to change the current state.
+<strong>Test</strong> — compare again. Same now?
+<strong>Exit</strong> — if yes, the unit is complete.</p>
+<p>Every TOTE unit is a feedback loop. The agent tests, acts, tests again, and keeps going until the goal state is reached or the unit fails. TOTE units nest: the &ldquo;Operate&rdquo; phase of a high-level unit may itself be a TOTE unit with its own test and operate.</p>
+<p>In practice, every task execution is a TOTE unit. The test is: &ldquo;does the current state satisfy the task&rsquo;s goal?&rdquo; The operate is: &ldquo;do something to advance toward the goal.&rdquo; The exit is: &ldquo;mark the task complete.&rdquo; The nesting is the work hierarchy: completing a task is one operate step in the TOTE unit of completing a plan.</p>
+<h2 id="error-models-reason">Error models: Reason</h2>
+<p>James Reason&rsquo;s <em>Human Error</em> (1990) classifies errors into three types:</p>
+<p><strong>Slips</strong> — the right intention, wrong execution. You meant to type &ldquo;git push&rdquo; but typed &ldquo;git pull.&rdquo; The plan was correct; the action deviated. Slips are detected by monitoring: the system observes the action and catches the discrepancy.</p>
+<p><strong>Lapses</strong> — the right intention, forgotten execution. You meant to update the plan after completing the task but forgot. The plan was correct; the action was omitted. Lapses are detected by tracking: the system notices that an expected state transition didn&rsquo;t occur.</p>
+<p><strong>Mistakes</strong> — the wrong intention. You planned to refactor the database schema when you should have been adding an index. The action was executed correctly, but the plan was wrong. Mistakes are detected by review: comparing outcomes against goals reveals that the right work wasn&rsquo;t done.</p>
+<p>Reason&rsquo;s Swiss cheese model: errors pass through multiple defensive layers. Each layer has holes (vulnerabilities). An error causes harm only when the holes in all layers align. Defensive layers in a work management system include: validation checks (catch structural errors), access control enforcement (prevents bypassing the API), referential integrity checks (catch broken references), and the review stage (catches strategic errors).</p>
+<p>In practice, a layered validation architecture IS the Swiss cheese defense. Each layer is a defensive barrier. The goal is not to make any single layer perfect, but to ensure the holes don&rsquo;t align — that different layers catch different classes of error. Slips are caught by pre-action checks (you&rsquo;re about to do the wrong thing). Lapses are caught by post-action checks (you did something but didn&rsquo;t do the follow-up). Mistakes are caught by the review stage (you did the wrong work).</p>
+<h2 id="saga-pattern-recovery-from-failure">Saga pattern: recovery from failure</h2>
+<p>Garcia-Molina and Salem&rsquo;s saga pattern (1987) addresses the problem of long-running operations that can fail partway through. In a database, a short transaction is atomic — it either fully completes or fully rolls back. But a saga is a sequence of transactions, each of which can succeed or fail independently.</p>
+<p>A saga has two strategies for failure:</p>
+<p><strong>Backward recovery</strong> — when step N fails, run compensating transactions for steps N-1, N-2, &hellip; 1, undoing the work. This requires that every step has a defined compensating action.</p>
+<p><strong>Forward recovery</strong> — when step N fails, retry it or skip it and continue from step N+1. This requires that the saga can tolerate partial completion.</p>
+<p>In practice, plan execution is a saga. Each task is a transaction. If task 3 of 7 fails, you don&rsquo;t automatically undo tasks 1 and 2 — their work has value. But you do need to decide: retry task 3? Skip it? Replan? The saga pattern says: define for each task what happens on failure. Some tasks have compensating actions (undo). Some tasks are retryable. Some tasks, on failure, require replanning the remainder of the saga.</p>
+<p>A task definition could encode this as a failure policy (retry, skip, replan, or compensate). The execution stage checks this policy when a task fails and routes accordingly.</p>
+<h2 id="flow-dynamics-littles-law">Flow dynamics: Little&rsquo;s Law</h2>
+<p>Little&rsquo;s Law (1961) is the fundamental theorem of queuing theory:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>L</mi><mo>=</mo><mi>λ</mi><mi>W</mi></mrow><annotation encoding="application/x-tex">L = \lambda W</annotation></semantics></math></span><p>Average items in system = arrival rate × average time in system. Equivalently: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><mi>L</mi><mi mathvariant="normal">/</mi><mi>λ</mi></mrow><annotation encoding="application/x-tex">W = L / \lambda</annotation></semantics></math></span> — average time in system = items in system / throughput.</p>
+<p>The implication is stark: if you want work to flow faster through the system (reduce W), you must either reduce the number of items in the system (reduce L, i.e., lower WIP) or increase throughput (increase λ). There is no other lever.</p>
+<p>This governs execution directly. An agent with 15 tasks in progress will take longer per task than an agent with 3, even if the agent works the same number of hours. Context switching is the mechanism: every task switch costs cognitive overhead (for humans) or context window space (for AI agents). The cost is not just time — it is quality. Partially-attended work produces more errors.</p>
+<p>In practice, the WIP limit per agent should be explicit and enforced. The dispatch stage should check WIP before assigning new work. The tracking stage should flag WIP violations. Any environment briefing that shows task counts could add a WIP limit check to surface overload before it causes quality degradation.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="./ontology-of-work-operations.md" class="link-internal">The Ontology of Work Operations</a> — the base mapping</li>
+<li><a href="./dispatch-and-delegation-survey.md" class="link-internal">Dispatch and Delegation Survey</a> — what precedes execution</li>
+<li><a href="./tracking-and-measurement-survey.md" class="link-internal">Tracking and Measurement Survey</a> — how execution is observed</li>
+</ul>
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-garcia-molina-salem1987" typeof="CreativeWork" resource="#ref-garcia-molina-salem1987">
+    <span class="bib-key">[garcia-molina-salem1987]</span>
+      <span property="author">Hector Garcia-Molina, Kenneth Salem</span>.
+      (<span property="datePublished">1987</span>).
+      <cite property="name">Sagas</cite>.
+      <em property="publisher">ACM SIGMOD Record, 16(3)</em>.
+  </p><p class="bib-entry" id="ref-harel1987" typeof="CreativeWork" resource="#ref-harel1987">
+    <span class="bib-key">[harel1987]</span>
+      <span property="author">David Harel</span>.
+      (<span property="datePublished">1987</span>).
+      <cite property="name">Statecharts: A Visual Formalism for Complex Systems</cite>.
+      <em property="publisher">Science of Computer Programming, 8(3)</em>.
+  </p><p class="bib-entry" id="ref-little1961" typeof="CreativeWork" resource="#ref-little1961">
+    <span class="bib-key">[little1961]</span>
+      <span property="author">John D. C. Little</span>.
+      (<span property="datePublished">1961</span>).
+      <cite property="name">A Proof for the Queuing Formula: L = λW</cite>.
+      <em property="publisher">Operations Research, 9(3)</em>.
+  </p><p class="bib-entry" id="ref-miller-galanter-pribram1960" typeof="CreativeWork" resource="#ref-miller-galanter-pribram1960">
+    <span class="bib-key">[miller-galanter-pribram1960]</span>
+      <span property="author">George A. Miller, Eugene Galanter, Karl H. Pribram</span>.
+      (<span property="datePublished">1960</span>).
+      <cite property="name">Plans and the Structure of Behavior</cite>.
+      <em property="publisher">Holt, Rinehart and Winston</em>.
+  </p><p class="bib-entry" id="ref-omg-bpmn2011" typeof="CreativeWork" resource="#ref-omg-bpmn2011">
+    <span class="bib-key">[omg-bpmn2011]</span>
+      <span property="author">Object Management Group</span>.
+      (<span property="datePublished">2011</span>).
+      <cite property="name">Business Process Model and Notation (BPMN) Version 2.0</cite>..
+  </p><p class="bib-entry" id="ref-reason1990" typeof="CreativeWork" resource="#ref-reason1990">
+    <span class="bib-key">[reason1990]</span>
+      <span property="author">James Reason</span>.
+      (<span property="datePublished">1990</span>).
+      <cite property="name">Human Error</cite>.
+      <em property="publisher">Cambridge University Press</em>.
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/texts/execution-and-monitoring-survey/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Citations</dt>
+        <dd property="emsenn:Citations"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-03">2026-04-03</time></dd>
+      </div><div class="relation">
+        <dt>Part of</dt>
+        <dd property="schema:isPartOf">ops research foundations</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

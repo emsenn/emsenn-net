@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Companion Tools for OpenClaw, March 2026 - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-09",
+  "datePublished": "2026-03-09",
+  "description": "Survey of the recurring tools and companion services used with OpenClaw in current docs and guide material, with attention to what they reveal about OpenClaw practice.",
+  "keywords": "OpenClaw, AgentInfrastructure, SelfHosting, ToolingEcosystem",
+  "name": "Companion Tools for OpenClaw, March 2026",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/companion-tools-for-openclaw-march-2026/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/">Texts</a></nav>
+  <h1 class="p-name">Companion Tools for OpenClaw, March 2026</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-09T00:00:00Z">2026-03-09</time>
+    
+    <span class="p-summary">Survey of the recurring tools and companion services used with OpenClaw in current docs and guide material, with attention to what they reveal about OpenClaw practice.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#purpose">Purpose</a></li>
+    <li><a href="#what-the-tool-stack-reveals">What the tool stack reveals</a></li>
+    <li><a href="#tailscale-for-private-remote-access">Tailscale for private remote access</a></li>
+    <li><a href="#brave-search-for-web-retrieval">Brave Search for web retrieval</a></li>
+    <li><a href="#model-routers-and-local-model-runtimes">Model routers and local model runtimes</a></li>
+    <li><a href="#qmd-for-local-first-memory-retrieval">QMD for local-first memory retrieval</a></li>
+    <li><a href="#clawhub-for-skill-discovery-and-distribution">ClawHub for skill discovery and distribution</a></li>
+    <li><a href="#openprose-and-hooks-for-repeatable-work">OpenProse and hooks for repeatable work</a></li>
+    <li><a href="#acp-agents-for-specialist-harnesses">ACP agents for specialist harnesses</a></li>
+    <li><a href="#docker-and-isolated-browser-surfaces">Docker and isolated browser surfaces</a></li>
+    <li><a href="#assessment">Assessment</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h2 id="purpose">Purpose</h2>
+<p>This text surveys the tools that most often recur around OpenClaw in
+current official documentation and practical guide material as of March
+9, 2026. The source base does not support exact usage counts, so
+&ldquo;often used&rdquo; here means recurring companions in the current OpenClaw
+ecosystem rather than measured market share.</p>
+<h2 id="what-the-tool-stack-reveals">What the tool stack reveals</h2>
+<p>The current OpenClaw ecosystem is converging on a distinctive practice.
+OpenClaw itself stays as the long-running control plane, memory layer,
+and multi-channel agent surface. Specialized work is pushed outward:</p>
+<ul>
+<li>networking to tools like Tailscale</li>
+<li>search to external providers such as Brave Search</li>
+<li>model routing to gateways such as LiteLLM or OpenRouter</li>
+<li>local inference to runtimes such as Ollama</li>
+<li>memory retrieval to <a href="../terms/qmd.md" class="link-internal">QMD</a></li>
+<li>repeatable workflows to <a href="../terms/openprose.md" class="link-internal">OpenProse</a> and
+<a href="../terms/openclaw-hook.md" class="link-internal">OpenClaw hooks</a></li>
+<li>highly specialized coding work to <a href="../terms/openclaw-acp-agent.md" class="link-internal">OpenClaw ACP agents</a></li>
+</ul>
+<p>That is one of OpenClaw&rsquo;s more important innovations. The product is
+not trying to be a single monolith that owns every capability. It is
+becoming a composable personal-agent platform with typed tools,
+workspace files, plugins, and external runtime bridges.</p>
+<h2 id="tailscale-for-private-remote-access">Tailscale for private remote access</h2>
+<p>Tailscale is the clearest recurring networking companion. The official
+Gateway docs now support Tailscale Serve and Funnel directly. In the
+recommended Serve pattern, the Gateway stays bound to loopback while
+Tailscale provides HTTPS, routing, and identity-aware access.</p>
+<p>This matters because OpenClaw&rsquo;s security posture assumes the Gateway is
+powerful. Community deployment advice converges on the same point: keep
+the Gateway private, then add remote access in a controlled way.
+Tailscale therefore functions as the default remote-access answer for
+operators who want reachability without turning the Gateway into a
+public web service.</p>
+<h2 id="brave-search-for-web-retrieval">Brave Search for web retrieval</h2>
+<p>Brave Search is the recurring search companion because OpenClaw&rsquo;s
+<code>web_search</code> tool is built around it. The onboarding wizard explicitly
+recommends setting up a Brave Search API key early so web search works
+in real tasks.</p>
+<p>This is a small detail, but it reveals a larger practice. Many of
+OpenClaw&rsquo;s useful workflows assume the assistant can retrieve current
+web information. Search is therefore not an optional luxury in the same
+way as an extra voice feature. It is part of the normal operating
+surface for research, monitoring, and briefing.</p>
+<h2 id="model-routers-and-local-model-runtimes">Model routers and local model runtimes</h2>
+<p>Three tools recur around model access:</p>
+<ul>
+<li>LiteLLM for routing, spend control, logging, and failover</li>
+<li>OpenRouter for a simpler multi-provider API surface</li>
+<li>Ollama for local open-weight model execution</li>
+</ul>
+<p>The official LiteLLM docs are especially clear about why operators use
+it: centralized cost tracking, model routing, virtual keys, logs, and
+fallbacks. OpenRouter fills a similar role when the priority is a
+single OpenAI-compatible endpoint rather than a full local routing
+proxy. Ollama appears when the goal is local-first inference on the
+operator&rsquo;s own hardware.</p>
+<p>Taken together, these tools show that current OpenClaw practice is
+increasingly provider-agnostic. Operators want the assistant surface to
+stay stable while the model backend can change under it.</p>
+<h2 id="qmd-for-local-first-memory-retrieval">QMD for local-first memory retrieval</h2>
+<p><a href="../terms/qmd.md" class="link-internal">QMD</a> is a more specialized companion than Tailscale or
+Brave Search, but it is one of the more interesting ones for
+research-heavy OpenClaw use. The official memory docs describe it as an
+experimental backend that swaps the built-in SQLite indexer for a local
+search sidecar combining BM25, vectors, and reranking while keeping
+Markdown as the source of truth.</p>
+<p>This fits the broader OpenClaw method well. Memory stays human-readable
+and reviewable on disk, while retrieval can become more capable without
+turning the assistant&rsquo;s durable record into an opaque database.</p>
+<h2 id="clawhub-for-skill-discovery-and-distribution">ClawHub for skill discovery and distribution</h2>
+<p><a href="../terms/clawhub.md" class="link-internal">ClawHub</a> is the public skill registry for
+OpenClaw and one of the most visible ecosystem tools around it. The
+official skills docs position it as the normal way to discover, install,
+update, and back up skills, and the CLI flows are straightforward:
+search, install, update, sync.</p>
+<p>This matters because OpenClaw&rsquo;s extensibility is moving toward public,
+versioned bundles rather than one-off local hacks. ClawHub makes skill
+distribution legible. It also reinforces a practical pattern: use
+workspace skills for project-local behavior, then use ClawHub when you
+want discovery or reuse across operators.</p>
+<h2 id="openprose-and-hooks-for-repeatable-work">OpenProse and hooks for repeatable work</h2>
+<p><a href="../terms/openprose.md" class="link-internal">OpenProse</a> and
+<a href="../terms/openclaw-hook.md" class="link-internal">OpenClaw hooks</a> are two of the more
+interesting workflow-layer additions in the current docs.</p>
+<p>OpenProse is a markdown-first workflow format that runs through an
+OpenClaw plugin and <code>/prose</code> command. Its documented use cases include
+multi-agent research and synthesis with explicit parallelism, plus
+repeatable approval-safe workflows.</p>
+<p>Hooks provide an event-driven layer inside the Gateway itself. The hook
+system is now directory-discovered, precedence-aware, and manageable by
+CLI. Bundled hooks such as <code>session-memory</code>, <code>bootstrap-extra-files</code>,
+<code>command-logger</code>, and <code>boot-md</code> show where OpenClaw is heading:
+repeatable automation attached to lifecycle events rather than embedded
+as ad hoc prompt habits.</p>
+<p>These two systems together mark a meaningful innovation in OpenClaw
+practice. The agent is no longer only a chat surface. It is becoming a
+workflow host with both explicit programs and event-triggered behavior.</p>
+<h2 id="acp-agents-for-specialist-harnesses">ACP agents for specialist harnesses</h2>
+<p><a href="../terms/openclaw-acp-agent.md" class="link-internal">OpenClaw ACP agents</a> may be the
+clearest sign of OpenClaw&rsquo;s current direction. The official ACP docs
+say OpenClaw can route work to external coding harnesses such as Pi,
+Claude Code, Codex, OpenCode, and Gemini CLI through an ACP backend.</p>
+<p>This matches the stronger community advice from current guides: let
+OpenClaw supervise specialized tools instead of forcing it to do all
+technical work itself. In practice, ACP lets OpenClaw keep the
+long-running thread, channel presence, and session routing while a more
+specialized external runtime handles code-heavy or harness-specific
+tasks.</p>
+<p>That is a substantive innovation. It turns OpenClaw from a personal
+assistant that happens to use tools into an orchestrator that can manage
+other agent runtimes.</p>
+<h2 id="docker-and-isolated-browser-surfaces">Docker and isolated browser surfaces</h2>
+<p>Docker and the managed browser are not universal requirements, but they
+recur whenever operators want stronger isolation.</p>
+<p>The Docker guide is explicit that Docker is optional. It is useful for
+a containerized Gateway or for validating the Docker flow, but it is
+not the fastest normal path. That is consistent with current OpenClaw
+practice: use Docker when isolation or reproducibility matters, not as
+a mandatory wrapper for every installation.</p>
+<p>The browser system shows the same pattern in a different layer. The
+managed browser gives the agent a separate, agent-only browser profile
+that does not touch the operator&rsquo;s personal profile. For remote or
+hosted browser control, the docs also support Browserless and node-host
+proxy flows. This is another sign that OpenClaw is converging on
+segregated control surfaces instead of direct reuse of the operator&rsquo;s
+everyday environment.</p>
+<h2 id="assessment">Assessment</h2>
+<p>The recurring companion stack around OpenClaw is coherent. The current
+ecosystem favors:</p>
+<ul>
+<li>private networking instead of broad exposure</li>
+<li>external search and model-routing services instead of hard-coding one
+provider</li>
+<li>public skill distribution plus local overrides</li>
+<li>local-first retrieval sidecars on top of Markdown memory</li>
+<li>workflow and event layers for repeatability</li>
+<li>specialist external harnesses for exact technical work</li>
+<li>isolated execution surfaces when the assistant needs stronger access</li>
+</ul>
+<p>That pattern makes OpenClaw more interesting than a single assistant
+app. It is becoming a coordination layer for a family of tools,
+services, and runtimes that can be swapped without losing the operator&rsquo;s
+workspace, memory, and channel presence.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>Official Tailscale guide:
+<a href="https://docs.openclaw.ai/gateway/tailscale" class="link-external">docs.openclaw.ai/gateway/tailscale</a></li>
+<li>Official Brave Search guide:
+<a href="https://docs.openclaw.ai/brave-search" class="link-external">docs.openclaw.ai/brave-search</a></li>
+<li>Official LiteLLM provider guide:
+<a href="https://docs.openclaw.ai/providers/litellm" class="link-external">docs.openclaw.ai/providers/litellm</a></li>
+<li>Official Ollama provider guide:
+<a href="https://docs.openclaw.ai/providers/ollama" class="link-external">docs.openclaw.ai/providers/ollama</a></li>
+<li>Official OpenRouter provider guide:
+<a href="https://docs.openclaw.ai/providers/openrouter" class="link-external">docs.openclaw.ai/providers/openrouter</a></li>
+<li>Official browser guide:
+<a href="https://docs.openclaw.ai/tools/browser" class="link-external">docs.openclaw.ai/tools/browser</a></li>
+<li>Official Docker guide:
+<a href="https://docs.openclaw.ai/install/docker" class="link-external">docs.openclaw.ai/install/docker</a></li>
+<li>Official skills guide:
+<a href="https://docs.openclaw.ai/tools/skills" class="link-external">docs.openclaw.ai/tools/skills</a></li>
+<li>Official ClawHub guide:
+<a href="https://docs.openclaw.ai/tools/clawhub" class="link-external">docs.openclaw.ai/tools/clawhub</a></li>
+<li>Official hooks guide:
+<a href="https://docs.openclaw.ai/automation/hooks" class="link-external">docs.openclaw.ai/automation/hooks</a></li>
+<li>Official ACP agents guide:
+<a href="https://docs.openclaw.ai/tools/acp-agents" class="link-external">docs.openclaw.ai/tools/acp-agents</a></li>
+<li>Official OpenProse guide:
+<a href="https://docs.openclaw.ai/prose" class="link-external">docs.openclaw.ai/prose</a></li>
+<li>Official personal assistant setup:
+<a href="https://docs.openclaw.ai/start/openclaw" class="link-external">docs.openclaw.ai/start/openclaw</a></li>
+<li>Official onboarding wizard:
+<a href="https://docs.openclaw.ai/start/wizard" class="link-external">docs.openclaw.ai/start/wizard</a></li>
+<li>Independent guide:
+<a href="https://blog.jasoncochran.io/openclaw-complete-guide/" class="link-external">OpenClaw Complete Guide: Deploy Your Personal AI Assistant</a></li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/companion-tools-for-openclaw-march-2026/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Citations</dt>
+        <dd property="emsenn:Citations"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-09">2026-03-09</time></dd>
+      </div><div class="relation">
+        <dt>Part of</dt>
+        <dd property="schema:isPartOf"><ul><li>openclaw</li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/openclaw/">OpenClaw</a></li><li><a href="/tags/agentinfrastructure/">AgentInfrastructure</a></li><li><a href="/tags/selfhosting/">SelfHosting</a></li><li><a href="/tags/toolingecosystem/">ToolingEcosystem</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

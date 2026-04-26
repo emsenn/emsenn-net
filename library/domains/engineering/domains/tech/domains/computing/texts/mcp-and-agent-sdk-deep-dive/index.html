@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP and Claude Agent SDK: Deep Dive - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Analysis of the Model Context Protocol specification and Claude Agent SDK — what capabilities exist, what we use, what we don't, and how our MCP server and agent harness could be enriched.",
+  "name": "MCP and Claude Agent SDK: Deep Dive",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/mcp-and-agent-sdk-deep-dive/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">MCP and Claude Agent SDK: Deep Dive</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Analysis of the Model Context Protocol specification and Claude Agent SDK — what capabilities exist, what we use, what we don&#39;t, and how our MCP server and agent harness could be enriched.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#part-1-the-model-context-protocol">Part 1: The Model Context Protocol</a>
+      <ul>
+        <li><a href="#the-three-server-primitives">The Three Server Primitives</a></li>
+        <li><a href="#client-side-features-what-the-hostclient-offers-to-servers">Client-Side Features (What the Host/Client Offers to Servers)</a></li>
+        <li><a href="#what-our-561-datastore-server-uses-vs-what-exists">What Our 561-datastore Server Uses vs. What Exists</a></li>
+        <li><a href="#concrete-enrichment-opportunities">Concrete Enrichment Opportunities</a></li>
+      </ul>
+    </li>
+    <li><a href="#part-2-the-claude-agent-sdk">Part 2: The Claude Agent SDK</a>
+      <ul>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#key-capabilities">Key Capabilities</a></li>
+        <li><a href="#what-we-already-do-vs-what-the-sdk-enables">What We Already Do vs. What the SDK Enables</a></li>
+        <li><a href="#orchestration-patterns-from-the-sdk">Orchestration Patterns from the SDK</a></li>
+      </ul>
+    </li>
+    <li><a href="#part-3-how-our-mcp-server-could-be-enriched">Part 3: How Our MCP Server Could Be Enriched</a>
+      <ul>
+        <li><a href="#high-priority">High Priority</a></li>
+        <li><a href="#medium-priority">Medium Priority</a></li>
+        <li><a href="#lower-priority">Lower Priority</a></li>
+      </ul>
+    </li>
+    <li><a href="#part-4-what-the-official-guidance-says-about-multi-agent-orchestration">Part 4: What the Official Guidance Says About Multi-Agent Orchestration</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="mcp-and-claude-agent-sdk-deep-dive">MCP and Claude Agent SDK: Deep Dive</h1>
+<p>This text examines the Model Context Protocol (MCP) specification (version 2025-11-25) and Anthropic&rsquo;s Claude Agent SDK to identify capabilities we are not using, patterns for multi-agent orchestration, and concrete opportunities to enrich our 561-datastore MCP server and agentic harness.</p>
+<h2 id="part-1-the-model-context-protocol">Part 1: The Model Context Protocol</h2>
+<p>MCP is a JSON-RPC 2.0 protocol connecting hosts (LLM applications), clients (connectors within the host), and servers (services providing context). The architecture enforces isolation: each client-server pair is a stateful session, and servers never see the full conversation or each other&rsquo;s state. The host mediates everything.</p>
+<h3 id="the-three-server-primitives">The Three Server Primitives</h3>
+<p>MCP servers expose three kinds of things, each with a different control model:</p>
+<ol>
+<li>
+<p><strong>Resources</strong> (application-controlled): Structured data the host attaches to context. Resources have URIs, MIME types, optional sizes, and support templates (RFC 6570 URI templates), subscriptions (real-time change notifications), and pagination. Resources can be text or binary, and carry annotations for audience (<code>user</code>, <code>assistant</code>), priority (0.0–1.0), and last-modified timestamps. The host decides which resources to include; the model does not directly request them.</p>
+</li>
+<li>
+<p><strong>Prompts</strong> (user-controlled): Templated message sequences with named arguments. These are intended for user-initiated invocation — slash commands, menu items. A prompt returns an array of role/content messages that seed a conversation. Arguments support auto-completion via the completion API.</p>
+</li>
+<li>
+<p><strong>Tools</strong> (model-controlled): Functions the LLM can call. Tools have JSON Schema input definitions, optional output schemas (for structured content validation), annotations, and support both text and structured responses. Tool results can embed resources, return resource links, or include images/audio. The 2025-11-25 spec adds <code>outputSchema</code> for typed structured results, <code>execution.taskSupport</code> for long-running tasks, <code>title</code> and <code>icons</code> fields for UI display, and tool annotations for behavior metadata.</p>
+</li>
+</ol>
+<h3 id="client-side-features-what-the-hostclient-offers-to-servers">Client-Side Features (What the Host/Client Offers to Servers)</h3>
+<p>These are the features our MCP server could <em>request from</em> the host:</p>
+<ol>
+<li>
+<p><strong>Sampling</strong>: Servers can ask the client to make LLM calls on their behalf — no API key needed on the server side. The server sends messages, model preferences (intelligence/speed/cost priority hints plus model name hints), and optionally tools. The client maintains human-in-the-loop approval. This enables <em>agentic server behavior</em>: an MCP server that reasons, not just responds. The 2025-11-25 spec adds tool use within sampling — the server can provide tool definitions and the client&rsquo;s LLM can call them, creating a multi-turn tool loop within a single sampling request.</p>
+</li>
+<li>
+<p><strong>Roots</strong>: Servers can query what filesystem boundaries the client has declared. Roots are <code>file://</code> URIs with optional names. Clients send <code>notifications/roots/list_changed</code> when they change. This lets servers respect workspace boundaries.</p>
+</li>
+<li>
+<p><strong>Elicitation</strong>: Servers can request structured user input. Two modes:</p>
+<ul>
+<li><strong>Form mode</strong>: JSON Schema-constrained form fields (strings, numbers, booleans, enums, multi-select). The client renders a form, validates input, and returns structured data.</li>
+<li><strong>URL mode</strong>: Server directs the user to an external URL for sensitive interactions (OAuth, payment, API key entry). Data never passes through the MCP client. Supports completion notifications.</li>
+</ul>
+</li>
+</ol>
+<h3 id="what-our-561-datastore-server-uses-vs-what-exists">What Our 561-datastore Server Uses vs. What Exists</h3>
+<table>
+  <thead>
+      <tr>
+          <th>MCP Feature</th>
+          <th>Spec Supports</th>
+          <th>Our Server Uses</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Tools</td>
+          <td>Yes</td>
+          <td><strong>Yes</strong> — 16 tools</td>
+      </tr>
+      <tr>
+          <td>Prompts</td>
+          <td>Yes</td>
+          <td><strong>Yes</strong> — 5 prompts</td>
+      </tr>
+      <tr>
+          <td>Resources</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Resource Templates</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Resource Subscriptions</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Sampling</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Roots</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Elicitation</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Tool Output Schemas</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Tool Annotations</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Pagination</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Progress Tracking</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Cancellation</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Logging</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Capability Negotiation</td>
+          <td>Yes</td>
+          <td><strong>Implicit</strong> (no explicit declaration)</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="concrete-enrichment-opportunities">Concrete Enrichment Opportunities</h3>
+<h4 id="1-resources-expose-the-knowledge-graph-as-browsable-resources">1. Resources: Expose the Knowledge Graph as Browsable Resources</h4>
+<p>Instead of requiring tool calls to access entities, expose them as resources with URIs like <code>entity://library/1234</code> or <code>file:///path/to/term.md</code>. Benefits:</p>
+<ul>
+<li>The host can automatically include high-priority resources in context</li>
+<li>Resource templates like <code>entity://library/{id}</code> let the host parameterize access</li>
+<li>Subscriptions would let the host know when the knowledge graph is rebuilt</li>
+<li>Annotations with <code>audience: [&quot;assistant&quot;]</code> and priority scores could guide context inclusion</li>
+</ul>
+<p>Example: a resource template <code>entity://library/{type}/{name}</code> that resolves to entity data, with <code>listChanged</code> notifications when the graph is regenerated.</p>
+<h4 id="2-sampling-let-the-mcp-server-reason">2. Sampling: Let the MCP Server Reason</h4>
+<p>Our server currently executes tools passively. With sampling, the server could:</p>
+<ul>
+<li>Accept a <code>graph_search</code> query, use sampling to ask the LLM to refine the search, and return better results</li>
+<li>Implement a <code>smart_dispatch</code> tool that uses LLM reasoning to match tasks to agents</li>
+<li>Run multi-step graph analysis where the server iterates: search → reason → refine → answer</li>
+<li>Implement a <code>research</code> tool that uses sampling to read sources and synthesize</li>
+</ul>
+<p>This is the biggest architectural shift available: moving from dumb data access to intelligent data access, where the MCP server itself has agency.</p>
+<h4 id="3-elicitation-interactive-workflows">3. Elicitation: Interactive Workflows</h4>
+<p>Our server could use form-mode elicitation for:</p>
+<ul>
+<li>Asking the user to confirm before recording financial transactions</li>
+<li>Requesting classification when triage content is ambiguous</li>
+<li>Collecting task metadata (priority, assignee, deadline) during task creation</li>
+<li>Confirmation dialogs for destructive operations (session termination, data deletion)</li>
+</ul>
+<h4 id="4-tool-output-schemas-typed-structured-responses">4. Tool Output Schemas: Typed Structured Responses</h4>
+<p>Our tools return unstructured text. Adding <code>outputSchema</code> to tools like <code>graph_search</code>, <code>graph_query_attr</code>, and <code>graph_stats</code> would:</p>
+<ul>
+<li>Enable downstream tools and agents to parse results programmatically</li>
+<li>Allow validation of tool outputs</li>
+<li>Provide type information for integration with typed code</li>
+</ul>
+<p>Example: <code>graph_search</code> could return <code>{ results: [{ eid: number, title: string, type: string, path: string, source: string }] }</code> with a matching output schema.</p>
+<h4 id="5-tool-annotations-behavioral-metadata">5. Tool Annotations: Behavioral Metadata</h4>
+<p>Tool annotations let the server declare behavioral properties. We could annotate:</p>
+<ul>
+<li><code>record_event</code> and <code>start_session</code> as having side effects</li>
+<li><code>graph_search</code> and <code>graph_entity</code> as read-only/idempotent</li>
+<li><code>cargo_build</code> as long-running with progress tracking</li>
+</ul>
+<h4 id="6-progress-tracking-and-cancellation">6. Progress Tracking and Cancellation</h4>
+<p>Long operations like <code>cargo_build</code>, <code>install_harness</code>, and <code>run_command</code> should support progress tokens so the client can show build progress and allow cancellation.</p>
+<h4 id="7-logging">7. Logging</h4>
+<p>The MCP spec supports structured logging from server to client. Our server could emit log messages for graph reload events, event recording, and session management — visible in the host&rsquo;s UI rather than buried in stderr.</p>
+<h2 id="part-2-the-claude-agent-sdk">Part 2: The Claude Agent SDK</h2>
+<p>The Agent SDK (Python: <code>claude-agent-sdk</code>, TypeScript: <code>@anthropic-ai/claude-agent-sdk</code>) wraps Claude Code&rsquo;s capabilities into a programmable library. The core API is a <code>query()</code> function that returns an async generator of typed messages as the agent works.</p>
+<h3 id="architecture">Architecture</h3>
+<p>The SDK bundles the Claude Code CLI and communicates with it via subprocess transport. The agent loop — tool selection, execution, retries, context management — is handled internally. You provide a prompt and options; the SDK handles everything else.</p>
+<p>Two interfaces:</p>
+<ul>
+<li><strong><code>query()</code></strong>: Stateless, one-shot. Fire a prompt, consume the stream of messages.</li>
+<li><strong><code>ClaudeSDKClient</code></strong>: Stateful, bidirectional. Maintains conversation context across multiple exchanges. Supports interrupts, session resumption, and forking.</li>
+</ul>
+<h3 id="key-capabilities">Key Capabilities</h3>
+<p><strong>Built-in Tools</strong>: Read, Write, Edit, Bash, Glob, Grep, WebSearch, WebFetch, AskUserQuestion, Agent, and more. These are referenced by string name, not defined as JSON schemas.</p>
+<p><strong>Hooks</strong>: Callback functions at lifecycle points — PreToolUse, PostToolUse, Stop, SessionStart, SessionEnd, UserPromptSubmit. Hooks can validate, log, block, or transform behavior.</p>
+<p><strong>Subagents</strong>: Spawned via the Agent tool. Each runs in an isolated context window. Key properties:</p>
+<ul>
+<li>Context isolation: intermediate tool calls stay inside the subagent; only the final message returns</li>
+<li>Parallelization: multiple subagents can run concurrently</li>
+<li>Tool restriction: subagents can be limited to specific tools</li>
+<li>Model override: each subagent can use a different model tier</li>
+<li>MCP server access: subagents can have their own MCP server connections</li>
+<li>Subagents cannot spawn sub-subagents (single level of nesting)</li>
+<li>Subagent transcripts persist independently and survive main conversation compaction</li>
+</ul>
+<p><strong>Sessions</strong>: Capture session IDs to resume conversations with full context. Sessions can be forked for parallel exploration.</p>
+<p><strong>MCP Integration</strong>: MCP servers are passed as configuration. Tools are namespaced as <code>mcp__&lt;server&gt;__&lt;tool&gt;</code>. In-process MCP servers can be created via <code>create_sdk_mcp_server()</code> with the <code>@tool</code> decorator.</p>
+<p><strong>Permission Modes</strong>: <code>default</code> (prompt for dangerous tools), <code>acceptEdits</code> (auto-accept edits), <code>plan</code> (plan only), <code>bypassPermissions</code>, <code>dontAsk</code>.</p>
+<p><strong>Settings Sources</strong>: Can load Claude Code&rsquo;s filesystem configuration (CLAUDE.md, skills, commands) via <code>setting_sources=[&quot;project&quot;]</code>.</p>
+<p><strong>Task Budgets</strong>: API-side token budgets that make the model aware of remaining capacity so it can pace tool use and wrap up before limits.</p>
+<p><strong>Plugins</strong>: Extend with custom commands, agents, and MCP servers programmatically.</p>
+<h3 id="what-we-already-do-vs-what-the-sdk-enables">What We Already Do vs. What the SDK Enables</h3>
+<table>
+  <thead>
+      <tr>
+          <th>SDK Feature</th>
+          <th>Available</th>
+          <th>We Use (via harness)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Subagents</td>
+          <td>Yes</td>
+          <td><strong>Yes</strong> — 27 agent definitions in <code>.claude/agents/</code></td>
+      </tr>
+      <tr>
+          <td>MCP servers</td>
+          <td>Yes</td>
+          <td><strong>Yes</strong> — 4 servers in <code>.mcp.json</code></td>
+      </tr>
+      <tr>
+          <td>Hooks</td>
+          <td>Yes</td>
+          <td><strong>Yes</strong> — hooks in <code>.claude/settings.json</code></td>
+      </tr>
+      <tr>
+          <td>Skills</td>
+          <td>Yes</td>
+          <td><strong>Yes</strong> — 54 skills in <code>.claude/skills/</code></td>
+      </tr>
+      <tr>
+          <td>Commands</td>
+          <td>Yes</td>
+          <td><strong>Yes</strong> — extensive command set</td>
+      </tr>
+      <tr>
+          <td>Sessions (resume)</td>
+          <td>Yes</td>
+          <td><strong>Partial</strong> — mash-engine dispatches sessions but we don&rsquo;t programmatically resume via SDK</td>
+      </tr>
+      <tr>
+          <td>In-process MCP servers</td>
+          <td>Yes</td>
+          <td><strong>No</strong> — our server is external (Node.js process)</td>
+      </tr>
+      <tr>
+          <td>Task budgets</td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+      </tr>
+      <tr>
+          <td>Dynamic agent definitions</td>
+          <td>Yes</td>
+          <td><strong>No</strong> — agents are filesystem-based, not runtime-configured</td>
+      </tr>
+      <tr>
+          <td>ClaudeSDKClient (bidirectional)</td>
+          <td>Yes</td>
+          <td><strong>No</strong> — we use CLI, not SDK programmatic interface</td>
+      </tr>
+      <tr>
+          <td>Model routing per subagent</td>
+          <td>Yes</td>
+          <td><strong>Yes</strong> — agent definitions specify model</td>
+      </tr>
+      <tr>
+          <td>Hook callbacks (Python/TS)</td>
+          <td>Yes</td>
+          <td><strong>No</strong> — our hooks are shell scripts</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="orchestration-patterns-from-the-sdk">Orchestration Patterns from the SDK</h3>
+<p>The SDK documentation and examples reveal several patterns relevant to our harness:</p>
+<h4 id="1-the-orchestrator-worker-pattern">1. The Orchestrator-Worker Pattern</h4>
+<p>A main agent delegates to specialized subagents. The main agent has broad tool access including the Agent tool. Workers have restricted tools. The orchestrator decides what to delegate based on descriptions.</p>
+<p>This is exactly what we do with our agent harness. The SDK formalizes it.</p>
+<h4 id="2-context-budget-aware-work">2. Context-Budget-Aware Work</h4>
+<p>The <code>TaskBudget</code> feature lets the model know its remaining token budget. This maps directly to our need for autonomous loops that don&rsquo;t run out of context. A mash-engine session could pass a task budget so the agent wraps up cleanly.</p>
+<h4 id="3-session-continuity">3. Session Continuity</h4>
+<p>The SDK supports resuming sessions by ID. Subagents can be resumed by their agent ID within a session. Transcripts persist independently. This suggests our mash-engine dispatch could be enriched to:</p>
+<ul>
+<li>Track session IDs for resume</li>
+<li>Allow follow-up queries to running agents</li>
+<li>Fork sessions for parallel exploration of approaches</li>
+</ul>
+<h4 id="4-in-process-mcp-for-tight-integration">4. In-Process MCP for Tight Integration</h4>
+<p>The <code>create_sdk_mcp_server()</code> pattern lets you define MCP tools as Python functions with the <code>@tool</code> decorator. This is simpler than running a separate Node.js process. If we moved to SDK-based orchestration, we could define our datastore tools as Python functions with direct access to our data structures.</p>
+<h2 id="part-3-how-our-mcp-server-could-be-enriched">Part 3: How Our MCP Server Could Be Enriched</h2>
+<p>Based on the gap analysis above, here is a prioritized list of enrichments:</p>
+<h3 id="high-priority">High Priority</h3>
+<ol>
+<li>
+<p><strong>Add Resources for knowledge graph entities</strong>. Expose terms, texts, plans, and tasks as resources with URIs, MIME types, and annotations. Enable the host to include relevant context automatically rather than requiring explicit tool calls.</p>
+</li>
+<li>
+<p><strong>Add Tool Output Schemas</strong>. Start with <code>graph_search</code>, <code>graph_entity</code>, <code>graph_query_attr</code>, and <code>sessions_list</code>. Return structured JSON alongside text. This makes our tools composable — downstream tools and agents can parse results without string-matching.</p>
+</li>
+<li>
+<p><strong>Add Tool Annotations</strong>. Declare which tools are read-only, which have side effects, which are long-running. This helps the host make better safety and UX decisions.</p>
+</li>
+</ol>
+<h3 id="medium-priority">Medium Priority</h3>
+<ol start="4">
+<li>
+<p><strong>Implement Sampling for intelligent tools</strong>. Create tools that use the host&rsquo;s LLM to reason about data — a <code>smart_search</code> that refines queries, a <code>smart_dispatch</code> that evaluates task-agent fit with reasoning, a <code>summarize_entity</code> that reads and synthesizes.</p>
+</li>
+<li>
+<p><strong>Add Progress Tracking</strong> for <code>cargo_build</code>, <code>install_harness</code>, and other long operations. The MCP spec supports progress tokens — the server sends <code>notifications/progress</code> with <code>progressToken</code>, <code>progress</code>, and <code>total</code>.</p>
+</li>
+<li>
+<p><strong>Expose Resource Templates</strong> for parameterized access: <code>entity://{graph}/{type}/{id}</code>, <code>file:///{path}</code>. This lets the host auto-complete entity access.</p>
+</li>
+</ol>
+<h3 id="lower-priority">Lower Priority</h3>
+<ol start="7">
+<li>
+<p><strong>Add Elicitation</strong> for interactive confirmation of financial transactions and destructive operations.</p>
+</li>
+<li>
+<p><strong>Add Logging</strong> for structured operational visibility — graph reload events, session starts, error conditions.</p>
+</li>
+<li>
+<p><strong>Implement Resource Subscriptions</strong> so the host is notified when the knowledge graph changes, when new sessions start, when tasks change status.</p>
+</li>
+</ol>
+<h2 id="part-4-what-the-official-guidance-says-about-multi-agent-orchestration">Part 4: What the Official Guidance Says About Multi-Agent Orchestration</h2>
+<p>Anthropic&rsquo;s guidance through the SDK reveals a clear vision:</p>
+<p><strong>Single-level delegation</strong>: Subagents cannot spawn sub-subagents. The architecture is orchestrator → workers, not a deep hierarchy. This is deliberate — it keeps context flow predictable and prevents runaway agent chains.</p>
+<p><strong>Description-driven routing</strong>: The orchestrator decides which subagent to invoke based on the subagent&rsquo;s <code>description</code> field. Clear, specific descriptions are the primary routing mechanism. This matches our agent definitions in <code>.claude/agents/</code>.</p>
+<p><strong>Context isolation is a feature</strong>: Subagents get a fresh context window. They don&rsquo;t inherit the parent&rsquo;s conversation history. The only input channel is the Agent tool&rsquo;s prompt string. This means agent prompts must be self-contained with all necessary context — file paths, error messages, decisions.</p>
+<p><strong>Model routing per task</strong>: Different subagents can use different model tiers. This maps to our existing model field in agent definitions. The guidance is to use more capable models for high-stakes work and lighter models for routine tasks.</p>
+<p><strong>MCP servers as agent infrastructure</strong>: Subagents can have their own MCP server connections. This means specialized agents could connect to specialized data sources without polluting the orchestrator&rsquo;s tool list.</p>
+<p><strong>Session persistence over conversation persistence</strong>: Subagent transcripts survive main conversation compaction. This is important for long-running work — the subagent&rsquo;s full context is preserved even as the orchestrator&rsquo;s context is compressed.</p>
+<p><strong>Hook-based control</strong>: Hooks provide the control plane — validating tool calls, logging actions, blocking dangerous operations. The SDK supports Python/TypeScript callback functions as hooks, not just shell scripts. This is more flexible than our current shell-script hooks.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Our current MCP server uses approximately 20% of the MCP specification&rsquo;s capabilities. The largest gaps are Resources (which would let the host manage context inclusion automatically), Sampling (which would let the server reason), and structured outputs (which would make tools composable).</p>
+<p>The Agent SDK formalizes patterns we already use — orchestrator/worker delegation, model routing, tool restriction, context isolation. The main things we don&rsquo;t use are task budgets, session resume, in-process MCP servers, and programmatic hook callbacks.</p>
+<p>The path forward is clear: enrich the MCP server with Resources and structured outputs first (these improve every tool call), then add Sampling for intelligent tools (this changes the server from passive to active), then layer in the SDK&rsquo;s session management for better mash-engine integration.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/mcp-and-agent-sdk-deep-dive/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related"><ul><li>../multi agent orchestration frameworks 2026.md</li><li>../agentic harness landscape 2026.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul><li>https://modelcontextprotocol.io/specification/2025 11 25</li><li>https://platform.claude.com/docs/en/agent sdk/overview</li><li>https://github.com/modelcontextprotocol/modelcontextprotocol</li><li>https://github.com/anthropics/claude agent sdk python</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

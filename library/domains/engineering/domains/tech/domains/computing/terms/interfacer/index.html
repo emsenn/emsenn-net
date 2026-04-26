@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interfacer - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-08",
+  "datePublished": "2026-04-08",
+  "description": "A component that sits at a system boundary and transforms data between internal representation and external format — extracting inward, applying outward. The general concept underlying adapters, bridges, serializers, and format translators.",
+  "name": "Interfacer",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/terms/interfacer/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/terms/">Terms</a></nav>
+  <h1 class="p-name">Interfacer</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-08T00:00:00Z">2026-04-08</time>
+    
+    <span class="p-summary">A component that sits at a system boundary and transforms data between internal representation and external format — extracting inward, applying outward. The general concept underlying adapters, bridges, serializers, and format translators.</span>
+  </div>
+  <div class="e-content">
+    <p>An interfacer is a component that sits at a system boundary and transforms data between the system&rsquo;s internal representation and an external format. Every system that communicates with the outside world has interfacers, whether or not it names them.</p>
+<h2 id="the-two-directions">The two directions</h2>
+<p>An interfacer does exactly two things:</p>
+<ol>
+<li>
+<p><strong>Extract</strong> — read data from the external format into internal representation. A markdown parser extracts structured data from text files. A JSON deserializer extracts objects from strings. A database driver extracts rows from wire protocol. The external world comes in through extract.</p>
+</li>
+<li>
+<p><strong>Apply</strong> — write data from internal representation into the external format. A markdown renderer applies structured data back to text files. A JSON serializer applies objects to strings. A database driver applies commands to wire protocol. The internal state goes out through apply.</p>
+</li>
+</ol>
+<p>These two directions are not symmetric. Extracting is typically lossy (the external format may carry information the internal representation doesn&rsquo;t model). Applying is typically faithful (the internal representation determines the output). The pair extract/apply forms an adjunction in the categorical sense: apply is left adjoint to extract when the round-trip extract(apply(x)) = x holds for all internal representations x.</p>
+<h2 id="the-boundary">The boundary</h2>
+<p>An interfacer is defined by its boundary — the point where the internal system ends and the external world begins. Cockburn&rsquo;s Hexagonal Architecture (2005) makes this explicit: the system&rsquo;s core has &ldquo;ports&rdquo; (abstract interfaces) and &ldquo;adapters&rdquo; (concrete implementations that connect ports to external systems). The adapter IS the interfacer. The port IS the boundary.</p>
+<p>Gamma et al. (1994) catalog several patterns that are interfacers under different names:</p>
+<ul>
+<li><strong>Adapter</strong> — converts the interface of one class to another. This is the interfacer pattern directly.</li>
+<li><strong>Bridge</strong> — separates abstraction from implementation. The bridge&rsquo;s implementor side is an interfacer.</li>
+<li><strong>Facade</strong> — provides a simplified interface to a subsystem. The facade is an interfacer that hides complexity.</li>
+</ul>
+<h2 id="interfacers-compose">Interfacers compose</h2>
+<p>An interfacer for format A can chain with an interfacer for format B to produce an A-to-B transformer: extract from A, apply to B. This composition is the general mechanism behind format conversion, data migration, and multi-format publishing. A system with N interfacers (one per format) supports N² format conversions without N² converters.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="../../../../terms/boundary.md" class="link-internal">Boundary</a> — the concept of where systems meet</li>
+<li><a href="https://en.wikipedia.org/wiki/Adapter_pattern" class="link-external">Adapter pattern</a> — the GoF pattern that IS the interfacer concept</li>
+</ul>
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-gamma1994" typeof="CreativeWork" resource="#ref-gamma1994">
+    <span class="bib-key">[gamma1994]</span>
+      <span property="author">Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides</span>.
+      (<span property="datePublished">1994</span>).
+      <cite property="name">Design Patterns: Elements of Reusable Object-Oriented Software</cite>.
+      <em property="publisher">Addison-Wesley</em>.
+  </p><p class="bib-entry" id="ref-hexagonal" typeof="CreativeWork" resource="#ref-hexagonal">
+    <span class="bib-key">[hexagonal]</span>
+      <span property="author">Alistair Cockburn</span>.
+      (<span property="datePublished">2005</span>).
+      <cite property="name">Hexagonal Architecture</cite>.
+      <em property="publisher">alistair.cockburn.us</em>.
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/terms/interfacer/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-08">2026-04-08</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/terms/interfacer/">interfacer</a></dd>
+      </div><div class="relation">
+        <dt>Has</dt>
+        <dd property="emsenn:Has"><ul><li>extract</li><li>apply</li><li>format</li><li><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/boundary/">boundary</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Instance of</dt>
+        <dd property="emsenn:Instanceof"><ul><li>component</li></ul></dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related"><ul><li><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/boundary/">boundary</a></li><li>adapter pattern</li><li>serialization</li><li>format</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

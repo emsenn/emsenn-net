@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vendor lock-in - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-03",
+  "datePublished": "2026-04-03",
+  "description": "A dependency on a specific vendor's proprietary technology that makes switching to an alternative expensive or impractical.",
+  "name": "vendor lock-in",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/terms/vendor-lock-in/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/terms/">Terms</a></nav>
+  <h1 class="p-name">vendor lock-in</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-03T00:00:00Z">2026-04-03</time>
+    
+    <span class="p-summary">A dependency on a specific vendor&#39;s proprietary technology that makes switching to an alternative expensive or impractical.</span>
+  </div>
+  <div class="e-content">
+    <p><strong>Vendor lock-in</strong> is a condition where a customer depends on a vendor&rsquo;s proprietary technology to the point where switching to an alternative would be prohibitively expensive, time-consuming, or risky. The dependency is created not by contract (though contracts may reinforce it) but by technical coupling — the customer&rsquo;s systems use interfaces, formats, or services that only one vendor provides.</p>
+<p>In computing, lock-in arises from three sources:</p>
+<p><strong>Proprietary APIs.</strong> When an application is built on a vendor-specific service (AWS Lambda, Google BigQuery, Azure Cosmos DB), the application&rsquo;s code contains calls to that vendor&rsquo;s API. Migrating to another provider requires rewriting every integration point. The more services used, the deeper the coupling.</p>
+<p><strong>Proprietary data formats.</strong> When data is stored in a vendor-specific format or database that lacks standard export mechanisms, extracting the data for migration is difficult or lossy. This is especially acute for managed databases and analytics platforms that accept standard SQL for input but use proprietary storage internally.</p>
+<p><strong>Ecosystem integration.</strong> When a vendor&rsquo;s services work well together but poorly with external tools, using one service creates pressure to use others. Each additional service deepens the dependency. Cloud platforms are designed to produce this effect — their managed services integrate tightly with each other and loosely (or not at all) with competitors.</p>
+<p>The cost of lock-in is not the vendor&rsquo;s current pricing — it is the vendor&rsquo;s future pricing, because the customer has lost the ability to leave. Vendors with locked-in customers can raise prices, degrade service, or change terms with limited competitive pressure.</p>
+<p>Countermeasures include <a href="./infrastructure-as-code.md" class="link-internal">infrastructure as code</a> (defining infrastructure in portable configuration), <a href="./software-container.md" class="link-internal">software containers</a> (packaging applications independent of the host environment), open standards (SQL, HTTP, OCI container format), and multi-cloud strategies (distributing workloads across vendors to limit dependency on any one).</p>
+<p>A 2025 trend documented across multiple sources is <strong>cloud repatriation</strong> — organizations moving workloads from hyperscale cloud platforms back to VPS or self-hosted infrastructure, motivated by cost predictability and reduced vendor dependency. The pattern is most pronounced among small teams whose workloads do not require elastic scaling.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/terms/vendor-lock-in/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-03">2026-04-03</time></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

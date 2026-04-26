@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technical Foundations of Compact HEPA Purification - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "A technical survey of the standards, measurement protocols, and technologies underlying portable HEPA air purifier performance.",
+  "name": "Technical Foundations of Compact HEPA Purification",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/domesticity/domains/health/indoor-air-quality/texts/technical-foundations-of-compact-hepa-purification/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/domesticity/">Domesticity</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/domesticity/domains/health/indoor-air-quality/">Indoor Air Quality</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/domesticity/domains/health/indoor-air-quality/texts/">Texts</a></nav>
+  <h1 class="p-name">Technical Foundations of Compact HEPA Purification</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">A technical survey of the standards, measurement protocols, and technologies underlying portable HEPA air purifier performance.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#hepa-filter-standards-en-1822-vs-doe">HEPA Filter Standards: EN 1822 vs. DOE</a></li>
+    <li><a href="#measuring-real-world-performance-cadr">Measuring Real-World Performance: CADR</a></li>
+    <li><a href="#from-performance-to-room-impact-ach">From Performance to Room Impact: ACH</a></li>
+    <li><a href="#complementary-filtration-activated-carbon">Complementary Filtration: Activated Carbon</a></li>
+    <li><a href="#third-party-verification-aham-verifide">Third-Party Verification: AHAM Verifide</a></li>
+    <li><a href="#regulatory-compliance-carb-ozone-emissions">Regulatory Compliance: CARB Ozone Emissions</a></li>
+    <li><a href="#integration-in-compact-design">Integration in Compact Design</a></li>
+    <li><a href="#sources">Sources</a></li>
+    <li><a href="#see-also">See Also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>Portable HEPA air purifiers are evaluated using multiple independent standards and certifications. Understanding these standards—HEPA classification, CADR measurement, ACH calculation, carbon adsorption, AHAM verification, and CARB compliance—provides the foundation for assessing purifier design and selecting devices appropriate for specific applications.</p>
+<h2 id="hepa-filter-standards-en-1822-vs-doe">HEPA Filter Standards: EN 1822 vs. DOE</h2>
+<p>The fundamental specification is the HEPA filter itself. Two major standards define HEPA performance:</p>
+<p>The European standard <strong>EN 1822</strong> (now ISO 29463) classifies HEPA filters by their efficiency at the <strong>Most Penetrating Particle Size (MPPS)</strong>, approximately 0.21 micrometers. This size is chosen because it represents the weakest point in filtration: too small for efficient interception or impaction, too large for diffusion. EN 1822 establishes a hierarchy from H10 (85% at MPPS) through H14 (99.995% at MPPS), with H13 and above receiving individual test certificates.</p>
+<p>The U.S. <strong>DOE standard</strong> specifies HEPA filters must remove 99.97% of particles at 0.3 micrometers. This is a single-point specification rather than a full efficiency curve. The term &ldquo;True HEPA&rdquo; (informal in the US, with no legal definition) typically refers to DOE-compliant filters and is functionally equivalent to EN 1822 H13.</p>
+<p>For compact residential purifiers, both approaches achieve similar performance. H13 filters are standard in quality devices marketed as &ldquo;True HEPA.&rdquo;</p>
+<h2 id="measuring-real-world-performance-cadr">Measuring Real-World Performance: CADR</h2>
+<p>HEPA efficiency in the lab does not directly translate to usable air cleaning. The <strong>Clean Air Delivery Rate (CADR)</strong> standard bridges this gap by measuring how much filtered air a complete device delivers—accounting for both filter efficiency and the device&rsquo;s airflow rate.</p>
+<p>CADR is measured in the ANSI/AHAM AC-1 protocol using a standardized test chamber of 1,008 cubic feet. Three separate scores are reported:</p>
+<ul>
+<li><strong>Smoke CADR</strong> (0.09–1.0 μm particles): Represents fine particulates and often yields the lowest score</li>
+<li><strong>Dust CADR</strong> (0.5–3 μm particles): Represents household dust and dust mites</li>
+<li><strong>Pollen CADR</strong> (5–11 μm particles): Represents larger particles; usually yields the highest score</li>
+</ul>
+<p>The test measures particle removal by comparing how fast particles clear from the chamber when the device is on versus off, using linear regression to calculate CFM of cleaned air.</p>
+<p>A practical guideline: CADR should be at least two-thirds of the room&rsquo;s floor area. A 300 CFM device suits rooms up to about 450 square feet.</p>
+<h2 id="from-performance-to-room-impact-ach">From Performance to Room Impact: ACH</h2>
+<p>While CADR measures device performance, <strong>Air Changes Per Hour (ACH)</strong> translates that performance into room-level air quality change. ACH is calculated as:</p>
+<p><strong>ACH = (CADR × 60) ÷ Room Volume (cubic feet)</strong></p>
+<p>A 300 CFM purifier in a 1,000 cubic foot room delivers (300 × 60) ÷ 1,000 = 18 ACH from recirculation alone.</p>
+<p>Current standards recommend:</p>
+<ul>
+<li><strong>ASHRAE 62.2</strong>: Minimum 0.35 ACH from outdoor ventilation (baseline, pre-pandemic)</li>
+<li><strong>CDC/EPA</strong>: Minimum 5 total ACH for pathogen control (post-2020 guidance)</li>
+<li><strong>ASHRAE 241</strong>: 30–50 CFM per person in residential spaces</li>
+</ul>
+<p>The relationship between ACH and pollution removal is logarithmic: at higher ACH values, contaminant concentration drops faster. Specifically, concentration drops by 63% in a time of 1 ÷ ACH hours. At 5 ACH, this is 12 minutes. At 1 ACH, it is 1 hour.</p>
+<p>Portable purifiers provide <strong>recirculation ACH only</strong>—they clean existing air but do not introduce fresh outdoor air. Optimal IAQ typically requires both outdoor ventilation (low ACH, continuous CO2 and humidity control) and mechanical purification (high CADR/ACH for specific contaminants).</p>
+<h2 id="complementary-filtration-activated-carbon">Complementary Filtration: Activated Carbon</h2>
+<p>HEPA filters remove particles but not gases or volatile organic compounds (VOCs). Activated carbon filters address this gap through <strong>adsorption</strong>, a physical process in which VOCs adhere to the surface of porous carbon material.</p>
+<p>Activated carbon has enormous surface area—up to 3,000 square meters per gram—and can adsorb VOCs at capacities ranging from 5% to 30%+ by weight depending on the compound. Toluene (highly adsorbable) can reach 30% capacity; ammonia (poorly adsorbable) typically remains under 5%. The exact capacity depends on humidity (high humidity competes with VOCs for binding sites), temperature (higher temperatures reduce adsorption), and the carbon&rsquo;s pore structure.</p>
+<p>Breakthrough occurs gradually. Penetration (10% of inlet concentration escaping) to saturation (95% penetrating) may span weeks to months depending on airflow and inlet concentrations. In residential applications, carbon filters typically require replacement every 6–12 months.</p>
+<p>Activated carbon is not regenerated in consumer devices; saturation is invisible and requires scheduled replacement.</p>
+<h2 id="third-party-verification-aham-verifide">Third-Party Verification: AHAM Verifide</h2>
+<p>Manufacturers can claim any CADR number without independent verification. The <strong>AHAM Verifide</strong> certification program mitigates this risk by testing devices in accredited third-party laboratories using the AC-1 standard. Only verified products receive the AHAM seal and are listed in the AHAM directory.</p>
+<p>Certified devices often have lower claimed CADR values than uncertified competitors, yet the certified claims are reliable. This reflects manufacturer testing practices: some companies test aggressively (or selectively report results), while AHAM testing is uniform and transparent.</p>
+<p>AHAM certification does not evaluate noise, energy consumption, filter cost, or longevity. It certifies only that the measured CADR meets the advertised number.</p>
+<h2 id="regulatory-compliance-carb-ozone-emissions">Regulatory Compliance: CARB Ozone Emissions</h2>
+<p>The California Air Resources Board (CARB) enforces a <strong>50 ppb (0.050 ppm) ozone emission limit</strong> on all air cleaners, mechanical or electronic. This regulation protects against secondary ozone pollution from electrostatic precipitators, ionizers, UV devices, and other technologies that generate ozone as a byproduct.</p>
+<p>Mechanical filters (HEPA, pleated) inherently produce no ozone. Electronic filters must be tested and certified to remain below 50 ppb. Because California represents a large market, most manufacturers pursue CARB certification nationwide rather than maintaining separate product lines.</p>
+<p>CARB certification verifies safety and ozone compliance but not air cleaning performance.</p>
+<h2 id="integration-in-compact-design">Integration in Compact Design</h2>
+<p>A compact HEPA purifier integrates these technologies and standards:</p>
+<ol>
+<li><strong>HEPA filter core</strong> (certified to H13 or DOE 99.97%) removes particles efficiently at all sizes</li>
+<li><strong>Activated carbon layer</strong> (often pre-filter or interleaved) removes VOCs and extends HEPA life by reducing non-particle contaminants</li>
+<li><strong>Blower and housing</strong> designed to maximize airflow while containing bypass</li>
+<li><strong>CADR testing</strong> to establish real-world performance in standard chamber</li>
+<li><strong>AHAM Verifide certification</strong> (optional) to verify CADR claims independently</li>
+<li><strong>CARB compliance</strong> to ensure safe operation in ozone-sensitive markets</li>
+</ol>
+<p>The result is a device specified by three numbers—smoke/dust/pollen CADR—and several certifications. These translate to room-level impact through ACH calculation and ASHRAE guidance, providing a complete picture of indoor air quality improvement.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://smartairfilters.com/en/blog/en1822-hepa-filter-standard/" class="link-external">EN 1822 / ISO 29463 Standard</a></li>
+<li><a href="https://ahamverifide.org/ahams-air-filtration-standards/" class="link-external">ANSI/AHAM AC-1 Test Method</a></li>
+<li><a href="https://smartairfilters.com/en/blog/ashrae-per-hour-office-residential-school-virus/" class="link-external">ASHRAE 62.2-2016 Residential Ventilation</a></li>
+<li><a href="https://www.epa.gov/indoor-air-quality-iaq/how-much-ventilation-do-i-need-my-home-improve-indoor-air-quality" class="link-external">EPA Ventilation Guidance</a></li>
+<li><a href="https://www3.epa.gov/ttncatc1/dir1/fadsorb.pdf" class="link-external">Activated Carbon Adsorption</a></li>
+<li><a href="https://ww2.arb.ca.gov/about-indoor-air-cleaning-devices-regulation" class="link-external">CARB Air Cleaner Regulation</a></li>
+<li><a href="https://www.wyndly.com/blogs/learn/hepa-filter" class="link-external">U.S. DOE HEPA Standard</a></li>
+</ul>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../terms/hepa-classification.md" class="link-internal">HEPA Classification</a> — the fundamental filter standard</li>
+<li><a href="../terms/cadr.md" class="link-internal">CADR</a> — how purifier performance is measured</li>
+<li><a href="../terms/ach.md" class="link-internal">Air Changes Per Hour (ACH)</a> — translating CADR to room-level impact</li>
+<li><a href="../terms/activated-carbon-filtration.md" class="link-internal">Activated Carbon Filtration</a> — VOC removal complementary to particle filtration</li>
+<li><a href="../terms/aham-verifide-certification.md" class="link-internal">AHAM Verifide Certification</a> — third-party verification</li>
+<li><a href="../terms/carb-certification.md" class="link-internal">CARB Certification</a> — ozone emissions compliance</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/domesticity/domains/health/indoor-air-quality/texts/technical-foundations-of-compact-hepa-purification/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

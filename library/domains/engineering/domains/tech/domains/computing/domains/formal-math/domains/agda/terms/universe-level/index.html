@@ -17,15 +17,10 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "DefinedTerm",
+  "@type": "Article",
   "dateModified": "2026-03-01",
   "datePublished": "2026-03-01",
-  "description": "In Agda, types are organized into a hierarchy of universes to avoid paradoxes. The base universe is Set (also written Set₀), which contains ordinary types like Nat, Bool, and List Nat. The type Set itself belongs to Set₁, which belongs to Set₂, and so on:\nNat : Set\rSet : Set₁\rSet₁ : Set₂\r... This stratification prevents Russell\u0026rsquo;s paradox: no universe contains itself.\nAgda supports universe polymorphism — definitions can be parameterized over a universe level variable ℓ, allowing them to work at any level:\n",
-  "inDefinedTermSet": {
-    "@type": "DefinedTermSet",
-    "name": "",
-    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/"
-  },
+  "description": "In Agda, types are organized into a hierarchy of universes to avoid paradoxes. The base universe is Set (also written Set₀), which contains ordinary types like Nat, Bool, and List Nat. The type Set itself belongs to Set₁, which belongs to Set₂, and so on:\nNat : Set Set : Set₁ Set₁ : Set₂ ... This stratification prevents Russell\u0026rsquo;s paradox: no universe contains itself.\nAgda supports universe polymorphism — definitions can be parameterized over a universe level variable ℓ, allowing them to work at any level:\n",
   "keywords": "Agda",
   "name": "universe level",
   "publisher": {
@@ -33,7 +28,6 @@
     "name": "emsenn",
     "url": "https://emsenn.net"
   },
-  "termCode": "universe level, universe levels, Set",
   "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/universe-level/"
 }
 </script>
@@ -73,7 +67,7 @@
 
   <main id="content" data-pagefind-body>
     
-<article class="h-entry" data-type="term">
+<article class="h-entry" data-type="page">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/">Formal math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/">Agda</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/">Terms</a></nav>
   <h1 class="p-name">universe level</h1>
   <div class="meta">
@@ -81,13 +75,6 @@
     
     
   </div>
-  
-  <div class="type-meta type-meta--definition">
-    <span class="type-meta-label">Defines</span>
-    <span class="type-meta-value">universe level, universe levels, Set</span>
-  </div>
-  
-  
   <div class="e-content">
     <p>In Agda, types are organized into a hierarchy of universes to avoid paradoxes. The base universe is <code>Set</code> (also written <code>Set₀</code>), which contains ordinary types like <code>Nat</code>, <code>Bool</code>, and <code>List Nat</code>. The type <code>Set</code> itself belongs to <code>Set₁</code>, which belongs to <code>Set₂</code>, and so on:</p>
 <pre tabindex="0"><code>Nat : Set
@@ -96,7 +83,7 @@ Set₁ : Set₂
 ...
 </code></pre><p>This stratification prevents Russell&rsquo;s paradox: no universe contains itself.</p>
 <p>Agda supports <strong>universe polymorphism</strong> — definitions can be parameterized over a universe level variable <code>ℓ</code>, allowing them to work at any level:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">id</span> <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> ℓ<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> A
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">id</span> <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> ℓ<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> A
 </span></span><span style="display:flex;"><span>id x <span style="color:#f92672">=</span> x
 </span></span></code></pre></div><p>This polymorphism avoids duplicating definitions for each universe level. The standard library uses universe polymorphism throughout.</p>
 
@@ -113,9 +100,6 @@ Set₁ : Set₂
         <dt>Defines</dt>
         <dd property="emsenn:Defines"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/universe-level/">universe level</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/universe-level/">universe levels</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/universe-level/">Set</a></li></ul></dd>
       </div><div class="relation">
-        <dt>Readiness</dt>
-        <dd property="emsenn:Readiness">shaped</dd>
-      </div><div class="relation">
         <dt>Tags</dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/agda/">Agda</a></li></ul></dd>
       </div>
@@ -127,17 +111,7 @@ Set₁ : Set₂
   </div>
   </dl>
 </section>
-<section class="cite-this" id="cite-this">
-  <h2>Cite</h2>
-  <pre class="cite-block"><code>@misc{emsenn2026-universe-level,
-  author    = {emsenn},
-  title     = {universe level},
-  year      = {2026},
-  url       = {https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/terms/universe-level/},
-  publisher = {emsenn.net},
-  license   = {CC BY-SA 4.0}
-}</code></pre>
-</section>
+
 
   
 

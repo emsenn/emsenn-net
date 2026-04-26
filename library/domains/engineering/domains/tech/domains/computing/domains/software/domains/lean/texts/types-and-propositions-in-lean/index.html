@@ -17,7 +17,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LearningResource",
+  "@type": "Article",
   "dateModified": "2026-03-01",
   "datePublished": "2026-03-01",
   "description": "Prop and Type Lean distinguishes two sorts:\nType (actually Type u for universe level u) — the sort of computational types. Nat : Type, String : Type, List Nat : Type. Prop — the sort of propositions. 2 + 2 = 4 : Prop, ∀ n, n + 0 = n : Prop. The distinction matters for erasure: values of type Prop are erased at runtime because they carry no computational content — a proof that 2 + 2 = 4 does not affect program execution. This separation lets Lean be both a programming language and a proof assistant without proofs slowing down compiled code.\n",
@@ -28,12 +28,6 @@
     "name": "emsenn",
     "url": "https://emsenn.net"
   },
-  "teaches": [
-    {
-      "@type": "DefinedTerm",
-      "name": "Types and Propositions in Lean"
-    }
-  ],
   "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/types-and-propositions-in-lean/"
 }
 </script>
@@ -73,32 +67,20 @@
 
   <main id="content" data-pagefind-body>
     
-<article class="h-entry" data-type="lesson">
+<article class="h-entry" data-type="page">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/">Lean</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/">Texts</a></nav>
   <h1 class="p-name">Types and Propositions in Lean</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-03-01T00:00:00Z">2026-03-01</time>
     
     
-  </div>
-  
-  <div class="type-meta type-meta--objectives">
-    <span class="type-meta-label">Learning objectives</span>
-    <ul><li>Types and Propositions in Lean</li></ul>
-  </div>
-  
-  
-  <div class="type-meta type-meta--prereqs">
-    <span class="type-meta-label">Prerequisites</span>
-    <ul><li>/technology/disciplines/computing/software/lean/curricula/introduction-to-lean.md</li><li>/mathematics/disciplines/type-theory/curricula/dependent-types.md</li></ul>
-  </div>
-  <details class="toc">
+  </div><details class="toc">
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
     <li><a href="#prop-and-type">Prop and Type</a></li>
     <li><a href="#encoding-mathematical-structures">Encoding mathematical structures</a></li>
-    <li><a href="#encoding-heyting-algebras">Encoding Heyting algebras</a></li>
+    <li><a href="#encoding-heyting-algebras">Encoding <a href="../../../../../../mathematics/concepts/heyting-algebra/index.md">Heyting algebras</a></a></li>
     <li><a href="#propositions-as-types-in-practice">Propositions as types in practice</a></li>
     <li><a href="#classical-reasoning">Classical reasoning</a></li>
     <li><a href="#what-comes-next">What comes next</a></li>
@@ -122,7 +104,7 @@ without proofs slowing down compiled code.</p>
 <p>Mathematical structures in Lean are defined as <code>structure</code> or <code>class</code> declarations —
 bundled records of data and properties.</p>
 <p><strong>Example: <a href="../../../../../../mathematics/objects/posets/terms/partial-order.md" class="link-internal">partial order</a>.</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">class</span> PartialOrder <span style="color:#f92672">(</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">)</span> <span style="color:#f92672">extends</span> LE α <span style="color:#f92672">where</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">class</span> PartialOrder <span style="color:#f92672">(</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">)</span> <span style="color:#f92672">extends</span> LE α <span style="color:#f92672">where</span>
 </span></span><span style="display:flex;"><span>  le_refl  <span style="color:#f92672">:</span> ∀ a<span style="color:#f92672">,</span> a ≤ a
 </span></span><span style="display:flex;"><span>  le_trans <span style="color:#f92672">:</span> ∀ a b c<span style="color:#f92672">,</span> a ≤ b → b ≤ c → a ≤ c
 </span></span><span style="display:flex;"><span>  le_antisymm <span style="color:#f92672">:</span> ∀ a b<span style="color:#f92672">,</span> a ≤ b → b ≤ a → a = b
@@ -130,7 +112,7 @@ bundled records of data and properties.</p>
 reflexivity, transitivity, and antisymmetry. The <code>class</code> keyword enables Lean&rsquo;s type class
 inference to find instances automatically.</p>
 <p><strong>Example: <a href="../../../../../../mathematics/objects/posets/terms/lattice.md" class="link-internal">lattice</a>.</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">class</span> Lattice <span style="color:#f92672">(</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">)</span> <span style="color:#f92672">extends</span> PartialOrder α <span style="color:#f92672">where</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">class</span> Lattice <span style="color:#f92672">(</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">)</span> <span style="color:#f92672">extends</span> PartialOrder α <span style="color:#f92672">where</span>
 </span></span><span style="display:flex;"><span>  inf <span style="color:#f92672">:</span> α → α → α
 </span></span><span style="display:flex;"><span>  sup <span style="color:#f92672">:</span> α → α → α
 </span></span><span style="display:flex;"><span>  inf_le_left  <span style="color:#f92672">:</span> ∀ a b<span style="color:#f92672">,</span> inf a b ≤ a
@@ -145,7 +127,7 @@ an instance of <code>Lattice α</code> requires supplying all of them.</p>
 <p>Mathlib provides <code>HeytingAlgebra</code> and <code>CompleteHeytingAlgebra</code> classes. A
 <a href="../../../../../../mathematics/objects/posets/curricula/heyting-algebras.md" class="link-internal">Heyting algebra</a>
 extends a bounded <a href="../../../../../../mathematics/objects/posets/terms/lattice.md" class="link-internal">lattice</a> with an implication operation:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">class</span> HeytingAlgebra <span style="color:#f92672">(</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">)</span> <span style="color:#f92672">extends</span> Lattice α<span style="color:#f92672">,</span> Top α<span style="color:#f92672">,</span> Bot α <span style="color:#f92672">where</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">class</span> HeytingAlgebra <span style="color:#f92672">(</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">)</span> <span style="color:#f92672">extends</span> Lattice α<span style="color:#f92672">,</span> Top α<span style="color:#f92672">,</span> Bot α <span style="color:#f92672">where</span>
 </span></span><span style="display:flex;"><span>  himp <span style="color:#f92672">:</span> α → α → α
 </span></span><span style="display:flex;"><span>  le_himp_iff <span style="color:#f92672">:</span> ∀ a b c<span style="color:#f92672">,</span> a ≤ himp b c ↔ a ⊓ b ≤ c
 </span></span></code></pre></div><p>The field <code>le_himp_iff</code> encodes the defining <a href="../../../../../../mathematics/disciplines/higher-topos-theory/terms/adjunction.md" class="link-internal">adjunction</a>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>≤</mo><mo stretchy="false">(</mo><mi>a</mi><mo>⇒</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">c \leq (a \Rightarrow b)</annotation></semantics></math></span> iff
@@ -172,7 +154,7 @@ proof of <code>P x</code>.</li>
 <h2 id="classical-reasoning">Classical reasoning</h2>
 <p>Lean&rsquo;s logic is intuitionistic by default — <a href="../../../../../../../../humanities/domains/philosophy/terms/law-of-excluded-middle.md" class="link-internal">excluded middle</a> is not assumed. To use
 classical reasoning:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">open</span> Classical <span style="color:#66d9ef">in</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">open</span> Classical <span style="color:#66d9ef">in</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">theorem</span> em_example <span style="color:#f92672">(</span>P <span style="color:#f92672">:</span> <span style="color:#66d9ef">Prop</span><span style="color:#f92672">)</span> <span style="color:#f92672">:</span> P ∨ ¬P <span style="color:#f92672">:</span>= em P
 </span></span></code></pre></div><p><code>Classical.em</code> provides <a href="../../../../../../../../humanities/domains/philosophy/terms/law-of-excluded-middle.md" class="link-internal">excluded middle</a> as an axiom. Lean also provides <code>Classical.choice</code>
 (a global choice principle). These are available but opt-in: you import them when you need
@@ -194,8 +176,8 @@ step by step</li>
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
       </div><div class="relation">
-        <dt>Readiness</dt>
-        <dd property="emsenn:Readiness">shaped</dd>
+        <dt>Form</dt>
+        <dd property="emsenn:Form"><a href="/library/domains/humanities/domains/education/terms/lesson/">lesson</a></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:educationalAlignment"><ul><li>/technology/disciplines/computing/software/lean/curricula/introduction to lean.md</li><li>/mathematics/disciplines/type theory/curricula/dependent types.md</li></ul></dd>
@@ -208,17 +190,7 @@ step by step</li>
       </div>
   </dl>
 </section>
-<section class="cite-this" id="cite-this">
-  <h2>Cite</h2>
-  <pre class="cite-block"><code>@misc{emsenn2026-types-and-propositions-in-lean,
-  author    = {emsenn},
-  title     = {Types and Propositions in Lean},
-  year      = {2026},
-  url       = {https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/types-and-propositions-in-lean/},
-  publisher = {emsenn.net},
-  license   = {CC BY-SA 4.0}
-}</code></pre>
-</section>
+
 
   
 

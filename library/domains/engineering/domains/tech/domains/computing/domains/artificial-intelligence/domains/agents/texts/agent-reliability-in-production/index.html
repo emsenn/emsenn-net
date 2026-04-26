@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Reliability in Production (March 2026) - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "Synthesis of emerging engineering practices for making agentic systems reliable — error handling, observability, memory architecture, evaluation, and the case for simplicity.",
+  "name": "Agent Reliability in Production (March 2026)",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-reliability-in-production/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/">Texts</a></nav>
+  <h1 class="p-name">Agent Reliability in Production (March 2026)</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">Synthesis of emerging engineering practices for making agentic systems reliable — error handling, observability, memory architecture, evaluation, and the case for simplicity.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-start-with-the-simplest-thing-that-works">1. Start with the simplest thing that works</a></li>
+    <li><a href="#2-errors-compound-in-stateful-systems">2. Errors compound in stateful systems</a></li>
+    <li><a href="#3-observe-everything">3. Observe everything</a></li>
+    <li><a href="#4-multi-agent-coordination-has-a-hard-ceiling">4. Multi-agent coordination has a hard ceiling</a></li>
+    <li><a href="#5-memory-architecture-affects-performance-less-than-expected">5. Memory architecture affects performance less than expected</a></li>
+    <li><a href="#6-instruction-files-must-be-curated">6. Instruction files must be curated</a></li>
+    <li><a href="#7-self-improvement-works-within-bounds">7. Self-improvement works within bounds</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>This text synthesizes what the field has learned about making <a href="../terms/agentic-system.md" class="link-internal">agentic systems</a> reliable as of March 2026. The primary sources are Anthropic&rsquo;s &ldquo;Building Effective Agents&rdquo; (December 2024), Anthropic&rsquo;s engineering blog on their production multi-agent research system (2025), the MASFT multi-agent failure study (arXiv 2503.13657, March 2025), the Letta agent memory benchmarks (2025), and the enterprise agent evaluation framework (arXiv 2511.14136, November 2025).</p>
+<h2 id="1-start-with-the-simplest-thing-that-works">1. Start with the simplest thing that works</h2>
+<p>Anthropic&rsquo;s central recommendation: &ldquo;find the simplest solution possible, and only increase complexity when needed.&rdquo; The most successful implementations they observed used simple, composable patterns — direct LLM API calls, not frameworks — often implementable in a few lines of code.</p>
+<p>The progression of complexity:</p>
+<ol>
+<li>A single LLM call with retrieval and in-context examples (the &ldquo;augmented LLM&rdquo;)</li>
+<li><a href="../terms/prompt-chaining.md" class="link-internal">Prompt chaining</a> — fixed sequence of LLM calls</li>
+<li>Routing — LLM classifies input and directs it to a handler</li>
+<li>Parallelization — independent subtasks run concurrently</li>
+<li>Orchestrator-workers — LLM delegates dynamically</li>
+<li>Autonomous agent — LLM controls its own process</li>
+</ol>
+<p>Each step adds latency, token cost, and failure surface. Move to the next step only when the current step demonstrably fails on the task. Anthropic explicitly warns against frameworks: &ldquo;frameworks often create extra layers of abstraction that can obscure the underlying prompts and responses, making them harder to debug.&rdquo;</p>
+<h2 id="2-errors-compound-in-stateful-systems">2. Errors compound in stateful systems</h2>
+<p>Agents are stateful. A wrong <a href="../terms/tool-use.md" class="link-internal">tool call</a> in step 3 changes the state that step 4 operates on, which changes step 5&rsquo;s plan, which produces an output unrelated to the original goal. This is the fundamental reliability challenge. In Anthropic&rsquo;s words: &ldquo;agents are stateful and errors compound.&rdquo;</p>
+<p>Three defenses:</p>
+<p><strong><a href="../terms/durable-execution.md" class="link-internal">Durable execution</a>.</strong> Build resumable systems. <a href="../terms/langgraph.md" class="link-internal">LangGraph</a> checkpoints state at every step; <a href="../terms/pydantic-ai.md" class="link-internal">PydanticAI</a> integrates with Temporal. On failure, resume from the last completed step. A restarted workflow follows a different trajectory because LLM output is stochastic; a resumed workflow continues from a known state.</p>
+<p><strong>Tool failure adaptation.</strong> Let the agent know when a tool fails and let it adapt. Anthropic&rsquo;s production experience: &ldquo;letting the agent know when a tool is failing and letting it adapt works surprisingly well.&rdquo; Hard crashes are worse than graceful degradation.</p>
+<p><strong><a href="../terms/human-in-the-loop.md" class="link-internal">Human-in-the-loop</a> at high-risk points.</strong> Place review checkpoints before irreversible actions (file deletions, API calls with side effects, deployments). The agent proposes; the human approves or corrects. The cost is latency; the benefit is catching errors before they become state.</p>
+<h2 id="3-observe-everything">3. Observe everything</h2>
+<p><a href="../terms/agent-observability.md" class="link-internal">Agent observability</a> is the prerequisite for reliability improvement. Without traces, failures are anecdotal. With traces, failures are data.</p>
+<p>The minimum instrumentation:</p>
+<ul>
+<li><strong>Token usage per step.</strong> Token usage explains 80% of performance variance on complex tasks (Anthropic production data). Track tokens per tool call, per agent, per workflow. This is the single most informative metric.</li>
+<li><strong>Decision traces.</strong> Record what state the model saw, what action it chose, and what the result was. LangGraph checkpoints provide this automatically.</li>
+<li><strong>Failure classification.</strong> Categorize failures: <a href="../../terms/hallucination.md" class="link-internal">hallucinated</a> tool call, schema validation error, timeout, permission denied, context overflow. Each category has a different remedy.</li>
+<li><strong>Latency breakdown.</strong> Decompose total time into LLM inference, tool execution, retrieval, and coordination. In <a href="../terms/multi-agent-system.md" class="link-internal">multi-agent systems</a>, coordination latency dominates.</li>
+</ul>
+<p>Track decision patterns and interaction structures rather than raw conversation contents. The shape of the trace — which tools were called, in what order, with what result types — is diagnostic. The full text is a privacy liability.</p>
+<h2 id="4-multi-agent-coordination-has-a-hard-ceiling">4. Multi-agent coordination has a hard ceiling</h2>
+<p>The MASFT study (March 2025) analyzed 150+ execution traces across 5 multi-agent frameworks. Multi-agent architectures showed minimal performance gains over single-agent baselines. Some systems performed worse than running a single agent multiple times and taking the best result.</p>
+<p><a href="../terms/coordination-overhead.md" class="link-internal">Coordination overhead</a> — token cost, latency, and error amplification from inter-agent communication — grows approximately quadratically with agent count. The saturation threshold is approximately <strong>4 agents</strong>. Multi-agent systems consume <strong>15x more tokens</strong> than equivalent single-turn interactions (Anthropic production data).</p>
+<p>Multi-agent coordination pays when the task requires isolated tool environments (coding + browsing), benefits from parallel execution, or uses diverse perspectives to reduce <a href="../../terms/hallucination.md" class="link-internal">hallucination</a>. In all other cases, a single agent with good tools and <a href="../../terms/context-engineering.md" class="link-internal">context engineering</a> is cheaper and more reliable.</p>
+<h2 id="5-memory-architecture-affects-performance-less-than-expected">5. Memory architecture affects performance less than expected</h2>
+<p>The Letta agent memory benchmarks (2025) produced a counterintuitive result: agents using simple filesystem operations — grep, search_files, open, close — achieved <strong>74.0% accuracy</strong> on the LoCoMo benchmark, outperforming Mem0&rsquo;s specialized graph memory at 68.5%. The 5.5 percentage point advantage came from using tools the LLM is well-trained on rather than specialized memory APIs.</p>
+<p>The implication for <a href="../terms/agent-memory.md" class="link-internal">agent memory</a> design: start with files. Markdown files with structured frontmatter, readable and writable through standard tools, searchable through grep. Add vector memory or graph memory when file-based retrieval demonstrably fails — typically when the knowledge base exceeds what keyword search can navigate, or when queries require multi-hop relationship traversal (<a href="../../terms/graph-rag.md" class="link-internal">GraphRAG</a> territory).</p>
+<p>For knowledge repositories with semantic frontmatter (<code>uses</code>, <code>related</code>, <code>extends</code> fields), the frontmatter already encodes a graph. A graph index built from existing metadata is cheaper than entity extraction from prose because the entities and relationships are already declared.</p>
+<h2 id="6-instruction-files-must-be-curated">6. Instruction files must be curated</h2>
+<p><a href="../../terms/context-engineering.md" class="link-internal">Context engineering</a> research (February 2026) found that LLM-generated instruction files (auto-generated CLAUDE.md, AGENTS.md) <strong>decrease agent success rates</strong> by ~0.5% compared to no instruction file at all. Human-written, curated files perform better. Stale files — instructions describing a codebase that has changed — actively degrade performance.</p>
+<p>The guidelines:</p>
+<ul>
+<li>Keep instruction files under ~50 lines. Longer files dilute attention to earlier instructions.</li>
+<li>Place the most critical constraints first. The &ldquo;lost in the middle&rdquo; problem produces 30%+ accuracy drop for mid-context information.</li>
+<li>Write instructions in response to observed problems. Every line should solve a failure you encountered.</li>
+<li>Remove instructions when the problem they address no longer applies.</li>
+<li>Prefer structured formats (lists, tables) over prose for procedural content.</li>
+</ul>
+<h2 id="7-self-improvement-works-within-bounds">7. Self-improvement works within bounds</h2>
+<p>The OpenAI cookbook&rsquo;s three-stage pattern — baseline agent, evaluation graders, metaprompt optimizer — improves agent performance on measured criteria without model <a href="../../terms/fine-tuning.md" class="link-internal">fine-tuning</a>. The system prompt changes; the model weights stay fixed.</p>
+<p>The bounds are:</p>
+<ul>
+<li>The improvement loop is only as good as its graders. Start with deterministic checks (schema valid, entities present, length in bounds). Add LLM-as-judge only when deterministic checks are insufficient.</li>
+<li>A single LLM-as-judge prompt produces more consistent evaluations than multiple specialized judges (Anthropic production data).</li>
+<li>20 test queries are enough to reveal dramatic impacts from prompt changes. Start small.</li>
+<li>Human review remains essential before deploying revised instructions. Fully autonomous self-improvement produces infinite loops, hallucinated corrections, and token cost spirals (the AutoGPT lesson, 2023–2025).</li>
+<li>The ICML 2025 position paper argues that current self-improvement approaches are rigid and domain-specific. Truly self-improving agents require intrinsic metacognitive learning — the ability to evaluate and adapt their own learning processes, not just their outputs. No existing system demonstrates this.</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>Anthropic. &ldquo;Building Effective Agents.&rdquo; December 20, 2024.</li>
+<li>Anthropic. &ldquo;Building a Multi-Agent Research System.&rdquo; Engineering Blog, 2025.</li>
+<li>MASFT Study. &ldquo;Why Do Multi-Agent LLM Systems Fail?&rdquo; arXiv 2503.13657, March 2025.</li>
+<li>Letta. &ldquo;Benchmarking AI Agent Memory.&rdquo; 2025.</li>
+<li>Enterprise Agent Evaluation Framework. arXiv 2511.14136, November 2025.</li>
+<li>ICML 2025 Position Paper. &ldquo;Truly Self-Improving Agents Require Intrinsic Metacognitive Learning.&rdquo;</li>
+<li>OpenAI Cookbook. &ldquo;Self-Evolving Agents: Autonomous Agent Retraining.&rdquo; 2025.</li>
+<li>Context Engineering Study. &ldquo;Your CLAUDE.md Is Making Your Agent Dumber.&rdquo; Medium, February 2026.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-reliability-in-production/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/terms/agent/">agents</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/factorization/">Factors through</a></dt>
+        <dd property="emsenn:Factorsthrough">coordination overhead, agent memory, agent self improvement, hallucination, retrieval augmented generation, graph rag, human in the loop, multi agent system</dd>
+      </div><div class="relation">
+        <dt>Governs</dt>
+        <dd property="emsenn:Governs"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/">agentic system</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment">agent observability, agent evaluation, durable execution, context engineering</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -17,7 +17,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "HowTo",
+  "@type": "Article",
   "dateModified": "2026-03-06",
   "datePublished": "2026-03-06",
   "description": "Write a Beancount Importer Beancount\u0026rsquo;s import framework (beancount.ingest) provides a structured way to convert bank CSV or OFX files into Beancount transactions. An importer is a Python class that implements three methods:\nidentify(file) — returns True if this importer can handle the given file (based on filename, headers, or content). file_account(file) — returns the account name this file belongs to (e.g., Assets:Checking). extract(file) — parses the file and returns a list of Beancount directive objects (transactions). Minimal example:\n",
@@ -67,7 +67,7 @@
 
   <main id="content" data-pagefind-body>
     
-<article class="h-entry" data-type="skill">
+<article class="h-entry" data-type="page">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/">Business</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/domains/accounting/">Accounting</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/domains/accounting/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/domains/accounting/domains/software/domains/beancount/">Beancount</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/domains/accounting/domains/software/domains/beancount/texts/">Texts</a></nav>
   <h1 class="p-name">Write a Beancount Importer</h1>
   <div class="meta">
@@ -84,7 +84,7 @@
 <li><code>extract(file)</code> — parses the file and returns a list of Beancount directive objects (transactions).</li>
 </ol>
 <p><strong>Minimal example</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> csv
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> csv
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> beancount.core <span style="color:#f92672">import</span> data
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> beancount.core.amount <span style="color:#f92672">import</span> Amount
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> beancount.core.number <span style="color:#f92672">import</span> D
@@ -122,7 +122,7 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> entries
 </span></span></code></pre></div><p>The <code>!</code> flag marks imported transactions as &ldquo;needs review&rdquo; — the user changes it to <code>*</code> after verifying and categorizing each one.</p>
 <p>Run the importer with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bean-extract config.py bank_download.csv &gt;&gt; ledger.beancount
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bean-extract config.py bank_download.csv &gt;&gt; ledger.beancount
 </span></span></code></pre></div><p>Where <code>config.py</code> registers the importer instances. The importer framework also supports <code>bean-identify</code> (which file goes to which importer) and <code>bean-file</code> (filing downloaded documents into an organized directory structure).</p>
 
   </div>
@@ -135,25 +135,15 @@
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-06">2026-03-06</time></dd>
       </div><div class="relation">
-        <dt>Readiness</dt>
-        <dd property="emsenn:Readiness">shaped</dd>
+        <dt>Introduces</dt>
+        <dd property="emsenn:Introduces"><a href="/library/domains/engineering/domains/tech/terms/skill/">skill</a></dd>
       </div><div class="relation">
         <dt>Tags</dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/accounting/">Accounting</a></li></ul></dd>
       </div>
   </dl>
 </section>
-<section class="cite-this" id="cite-this">
-  <h2>Cite</h2>
-  <pre class="cite-block"><code>@misc{emsenn2026-write-importer,
-  author    = {emsenn},
-  title     = {Write a Beancount Importer},
-  year      = {2026},
-  url       = {https://emsenn.net/library/domains/humanities/domains/business/domains/accounting/domains/software/domains/beancount/texts/write-importer/},
-  publisher = {emsenn.net},
-  license   = {CC BY-SA 4.0}
-}</code></pre>
-</section>
+
 
   
 

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consensus Mechanism - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-05",
+  "datePublished": "2026-04-05",
+  "description": "The protocol by which nodes in a distributed network agree on a single canonical state without a central authority.",
+  "name": "Consensus Mechanism",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/consensus-mechanism/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/">Blockchain</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/">Blockchain Terms</a></nav>
+  <h1 class="p-name">Consensus Mechanism</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
+    
+    <span class="p-summary">The protocol by which nodes in a distributed network agree on a single canonical state without a central authority.</span>
+  </div>
+  <div class="e-content">
+    <p>A consensus mechanism is the protocol by which nodes in a distributed network reach agreement on a single canonical version of the ledger&rsquo;s <a href="./on-chain-state.md" class="link-internal">on-chain state</a>, without requiring a trusted central coordinator.</p>
+<p>The problem a consensus mechanism solves is fundamental: in a network of thousands of independent computers, each receiving transactions in different orders at different times, how does the network agree on which transactions are valid and in what sequence? A centralized database solves this trivially — one server is authoritative. A decentralized network needs a protocol that tolerates dishonest participants, network delays, and conflicting claims.</p>
+<p><strong>Proof of Work (PoW)</strong>:</p>
+<p>Satoshi Nakamoto&rsquo;s Bitcoin whitepaper (2008) introduced the first practical solution. Miners compete to solve a computationally expensive puzzle (finding a hash below a target threshold). The first miner to solve it proposes the next block. Other nodes verify the solution (cheap) and accept the block if valid. The longest chain — the one with the most accumulated computational work — is canonical.</p>
+<p>PoW&rsquo;s security comes from economics: attacking the network requires more computational power than the honest majority, which costs real electricity and hardware. Bitcoin&rsquo;s PoW has been continuously operational since January 2009.</p>
+<p><strong>Proof of Stake (PoS)</strong>:</p>
+<p>Ethereum transitioned from PoW to PoS in September 2022 (the &ldquo;Merge&rdquo;). Instead of expending computation, validators lock cryptocurrency as collateral (32 ETH minimum on Ethereum). Validators are randomly selected to propose blocks, and committees of validators attest to block validity. Dishonest validators lose their stake (slashing).</p>
+<p>PoS eliminates the energy expenditure of PoW (Ethereum&rsquo;s energy consumption dropped ~99.95% after the Merge) but introduces different trust assumptions: validators with more stake have more influence, and the security model depends on the economic value of the staked assets.</p>
+<p><strong>Other mechanisms</strong>:</p>
+<ul>
+<li><strong>Delegated Proof of Stake (DPoS)</strong>: Token holders elect a fixed set of validators (used by EOS, Tron). Faster but more centralized.</li>
+<li><strong>Proof of Authority (PoA)</strong>: Known, trusted validators sign blocks. Used in private/consortium chains where decentralization is less important than throughput.</li>
+<li><strong>Byzantine Fault Tolerance (BFT) variants</strong>: Tendermint (used by Cosmos) achieves instant finality through multi-round voting among a validator set. Tolerates up to one-third malicious validators.</li>
+</ul>
+<p>The choice of consensus mechanism determines a chain&rsquo;s throughput, finality time, energy cost, and degree of decentralization — the parameters that shape what applications are feasible to build on it.</p>
+<p>See also: <a href="./on-chain-state.md" class="link-internal">on-chain state</a>, <a href="./gas-fee.md" class="link-internal">gas fee</a>, <a href="./smart-contract.md" class="link-internal">smart contract</a></p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/consensus-mechanism/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/consensus-mechanism/">consensus mechanism</a></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

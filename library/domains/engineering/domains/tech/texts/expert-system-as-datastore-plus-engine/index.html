@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Expert System Pattern: Knowledge Base and Inference Engine - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Expert systems decompose into a knowledge base (structured facts) and an inference engine (closure operations). This separation maps precisely to the fiber algebra plus nucleus pattern in algebraic logic.",
+  "name": "The Expert System Pattern: Knowledge Base and Inference Engine",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/texts/expert-system-as-datastore-plus-engine/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/texts/">Texts</a></nav>
+  <h1 class="p-name">The Expert System Pattern: Knowledge Base and Inference Engine</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Expert systems decompose into a knowledge base (structured facts) and an inference engine (closure operations). This separation maps precisely to the fiber algebra plus nucleus pattern in algebraic logic.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-classical-pattern">The Classical Pattern</a></li>
+    <li><a href="#the-algebraic-structure">The Algebraic Structure</a></li>
+    <li><a href="#two-orthogonal-nuclei">Two Orthogonal Nuclei</a></li>
+    <li><a href="#why-the-separation-matters">Why the Separation Matters</a></li>
+    <li><a href="#sources">Sources</a></li>
+    <li><a href="#see-also">See also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="the-expert-system-pattern-knowledge-base-and-inference-engine">The Expert System Pattern: Knowledge Base and Inference Engine</h1>
+<p>Every expert system, from MYCIN (1976) to modern production rule engines, decomposes into two components: a <em>knowledge base</em> that stores facts and rules, and an <em>inference engine</em> that derives new facts by applying rules to the knowledge base. This decomposition is not an engineering convenience. It reflects a deep algebraic structure: the knowledge base is a lattice of propositions, and the inference engine is a <em>nucleus</em> — a closure operator on that lattice.</p>
+<h2 id="the-classical-pattern">The Classical Pattern</h2>
+<p>Feigenbaum (1977) formalized the expert system architecture as:</p>
+<ol>
+<li><strong>Knowledge base</strong>: A structured collection of domain facts and rules, typically encoded as production rules (IF-THEN), frames, or semantic networks.</li>
+<li><strong>Inference engine</strong>: A mechanism that applies rules to derive new facts from existing ones. Forward chaining (data-driven) and backward chaining (goal-driven) are the two standard strategies.</li>
+<li><strong>Working memory</strong>: The current state of derived facts, updated as the engine runs.</li>
+</ol>
+<p>The separation is enforced: the knowledge base does not execute, and the inference engine does not store domain knowledge. This allows the same engine to operate over different knowledge bases, and the same knowledge base to be queried by different strategies.</p>
+<p>Jackson (1998) and Giarratano and Riley (2004) codified this as the standard architecture for knowledge-based systems. The pattern persists in modern rule engines (Drools, CLIPS), logic programming (Prolog), and semantic web reasoners (OWL-DL).</p>
+<h2 id="the-algebraic-structure">The Algebraic Structure</h2>
+<p>The expert system pattern has a precise algebraic characterization. The knowledge base, viewed as a set of propositions closed under logical operations, forms a <em>Heyting algebra</em> — a lattice where implication is an internal operation (Johnstone, 1982).</p>
+<p>The inference engine&rsquo;s closure operation — &ldquo;given these facts, derive everything that follows&rdquo; — is a <em>nucleus</em> on this algebra. A nucleus <em>j</em> on a Heyting algebra <em>H</em> is a function <em>j : H → H</em> satisfying:</p>
+<ul>
+<li><strong>Extensive</strong>: <em>a ≤ j(a)</em> for all <em>a</em> (inference only adds, never retracts).</li>
+<li><strong>Idempotent</strong>: <em>j(j(a)) = j(a)</em> (running inference twice gives the same result as once).</li>
+<li><strong>Meet-preserving</strong>: <em>j(a ∧ b) = j(a) ∧ j(b)</em> (inference distributes over conjunction).</li>
+</ul>
+<p>The fixed points of the nucleus — propositions <em>a</em> where <em>j(a) = a</em> — are exactly the <em>saturated</em> propositions: those from which no further inference can derive anything new. The set of fixed points Fix(<em>j</em>) is itself a Heyting algebra, called the <em>quotient</em> of <em>H</em> by <em>j</em> (Borceux, 1994).</p>
+<h2 id="two-orthogonal-nuclei">Two Orthogonal Nuclei</h2>
+<p>Real knowledge-based systems require not one but two closure operations, corresponding to two independent concerns:</p>
+<ol>
+<li>
+<p><strong>Saturation (σ)</strong>: Given current facts, derive everything that holds in stable equilibrium. This is classical forward-chaining inference — apply all rules until no new facts emerge. The fixed points are propositions stable under all inference rules.</p>
+</li>
+<li>
+<p><strong>Translation (Δ)</strong>: Given a fact, determine whether it persists across context boundaries — changes in session, scope, or environment. The fixed points are propositions invariant under context change.</p>
+</li>
+</ol>
+<p>These two nuclei commute: σ(Δ(a)) = Δ(σ(a)). Applying saturation then checking translation gives the same result as checking translation then saturating. The intersection Fix(σ) ∩ Fix(Δ) is the <em>stable core</em> — propositions that are both inference-complete and context-invariant. This is the knowledge the system can rely on unconditionally.</p>
+<p>The commuting dual nucleus structure was identified by Simmons (1978) for locale theory and applied to knowledge representation by Vickers (1989). Lawvere&rsquo;s hyperdoctrine framework (1969, 1970) provides the categorical setting where this structure arises naturally from the adjoint relationship between predicates and their extensions.</p>
+<h2 id="why-the-separation-matters">Why the Separation Matters</h2>
+<p>The knowledge-base/inference-engine separation is not merely good software design. It is algebraically forced by the distinction between:</p>
+<ul>
+<li><strong>Data</strong> (the lattice of propositions) — what the system knows.</li>
+<li><strong>Closure</strong> (the nucleus) — what the system can derive.</li>
+</ul>
+<p>Conflating the two — embedding inference rules inside the data, or hard-coding domain facts into the engine — destroys the algebraic structure. The quotient algebra Fix(<em>j</em>) is well-defined only when <em>j</em> is a proper nucleus on a properly structured lattice. Mix the two, and you lose idempotency (running the system twice gives different results), meet-preservation (conjunction of derivable facts is not derivable), or extensiveness (the system retracts facts during inference).</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>Borceux, F. (1994). <em>Handbook of Categorical Algebra, Vol. 3: Categories of Sheaves</em>. Cambridge University Press.</li>
+<li>Feigenbaum, E. A. (1977). &ldquo;The Art of Artificial Intelligence: Themes and Case Studies of Knowledge Engineering.&rdquo; <em>Proc. IJCAI-5</em>, 1014–1029.</li>
+<li>Giarratano, J. &amp; Riley, G. (2004). <em>Expert Systems: Principles and Programming</em>. 4th ed. Thomson.</li>
+<li>Jackson, P. (1998). <em>Introduction to Expert Systems</em>. 3rd ed. Addison-Wesley.</li>
+<li>Johnstone, P. T. (1982). <em>Stone Spaces</em>. Cambridge University Press.</li>
+<li>Lawvere, F. W. (1969). &ldquo;Adjointness in Foundations.&rdquo; <em>Dialectica</em>, 23(3–4), 281–296.</li>
+<li>Lawvere, F. W. (1970). &ldquo;Equality in Hyperdoctrines and Comprehension Schema as an Adjoint Functor.&rdquo; <em>Proc. AMS Symp. Pure Math.</em>, 17, 1–14.</li>
+<li>Simmons, H. (1978). &ldquo;A Framework for Topology.&rdquo; <em>Logic Colloquium &lsquo;77</em>, North-Holland, 239–251.</li>
+<li>Vickers, S. (1989). <em>Topology via Logic</em>. Cambridge University Press.</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="../../technology/domains/artificial-intelligence/terms/expert-system.md" class="link-internal">Expert System</a> — the term definition</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/texts/expert-system-as-datastore-plus-engine/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">engineering</dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related"><ul><li>double entry</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

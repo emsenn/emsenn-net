@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Per-directory agent instructions: patterns and practices - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-07",
+  "datePublished": "2026-03-07",
+  "description": "Survey of how AI agent instruction files are scoped to directories across tools and ecosystems, with analysis of what these patterns mean for knowledge repositories.",
+  "keywords": "AgentConfiguration, AgentialSemioverse, RepositoryDesign",
+  "name": "Per-directory agent instructions: patterns and practices",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/per-directory-agent-instructions/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/">Texts</a></nav>
+  <h1 class="p-name">Per-directory agent instructions: patterns and practices</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-07T00:00:00Z">2026-03-07</time>
+    
+    <span class="p-summary">Survey of how AI agent instruction files are scoped to directories across tools and ecosystems, with analysis of what these patterns mean for knowledge repositories.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-the-agentsmd-specification">1. The AGENTS.md specification</a></li>
+    <li><a href="#2-cursor-rules">2. Cursor rules</a></li>
+    <li><a href="#3-github-copilot">3. GitHub Copilot</a></li>
+    <li><a href="#4-three-architectural-patterns">4. Three architectural patterns</a></li>
+    <li><a href="#5-monorepo-cascading-analogies">5. Monorepo cascading analogies</a></li>
+    <li><a href="#6-the-codified-context-paper">6. The Codified Context paper</a></li>
+    <li><a href="#7-practical-examples">7. Practical examples</a></li>
+    <li><a href="#8-implications-for-knowledge-repositories">8. Implications for knowledge repositories</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>Agent instruction files — AGENTS.md, CLAUDE.md, .cursorrules, copilot-instructions.md — tell AI agents how to behave when working in a repository. Most start as a single root file. As repositories grow, the question arises: should subdirectories carry their own instructions?</p>
+<p>This text surveys how per-directory agent instructions work across the ecosystem, what the research says about their effectiveness, and how the patterns apply to knowledge repositories (as opposed to code repositories).</p>
+<h2 id="1-the-agentsmd-specification">1. The AGENTS.md specification</h2>
+<p>The AGENTS.md specification, formalized in August 2025 by a consortium including OpenAI, Google, Cursor, Factory, and Sourcegraph (now stewarded by the Agentic AI Foundation under the Linux Foundation), explicitly supports subdirectory placement.</p>
+<p><strong>Cascading mechanics.</strong> The agent walks from the repository root down to the current working directory, checking each level for <code>AGENTS.override.md</code>, then <code>AGENTS.md</code>. Files are concatenated from root downward, joined with blank lines. Files closer to the current directory appear later in the combined prompt, giving them effective precedence through prompt positioning. At most one instruction file is included per directory level. Combined files are capped at 32 KiB by default.</p>
+<p><strong>Override files.</strong> <code>AGENTS.override.md</code> supersedes <code>AGENTS.md</code> at the same level, intended for temporary high-priority contexts like release freezes.</p>
+<p>OpenAI&rsquo;s own repository reportedly uses 88 AGENTS.md files across subcomponents.</p>
+<h2 id="2-cursor-rules">2. Cursor rules</h2>
+<p>Cursor migrated from a single <code>.cursorrules</code> file to a structured <code>.cursor/rules/</code> directory system (0.45 update). Rule files use the <code>.mdc</code> format (markdown with YAML frontmatter) and are scoped to files via gitignore-style glob patterns. Rules are automatically attached when matching files are referenced in chat.</p>
+<p>This is a fundamentally different philosophy from AGENTS.md. Cursor centralizes rules in a dotfile directory using glob-based targeting. AGENTS.md distributes rules via filesystem co-location.</p>
+<h2 id="3-github-copilot">3. GitHub Copilot</h2>
+<p>Copilot supports two tiers. A single <code>.github/copilot-instructions.md</code> applies repository-wide. Multiple <code>.instructions.md</code> files with <code>applyTo</code> YAML frontmatter target specific paths:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">applyTo</span>: <span style="color:#e6db74">&#34;**/*.py&#34;</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Follow PEP 8. Use type hints for all function signatures.</span>
+</span></span></code></pre></div><p>These live in <code>.github/instructions/</code> or its subdirectories. Copilot also supports AGENTS.md natively since August 2025.</p>
+<h2 id="4-three-architectural-patterns">4. Three architectural patterns</h2>
+<p>The ecosystem has converged on three patterns for scoping agent instructions:</p>
+<p><strong>Pattern A — co-located.</strong> Instructions live inside content directories as peer files (AGENTS.md model). Instructions travel with content, the filesystem encodes scope, discoverability is natural.</p>
+<p><strong>Pattern B — centralized with glob targeting.</strong> Instructions live in a separate directory (<code>.cursor/rules/</code>), targeting content via glob patterns. Clean separation of concerns, content directories stay uncluttered, rules are easier to audit as a whole.</p>
+<p><strong>Pattern C — hybrid.</strong> Central instructions with <code>applyTo</code> targeting, plus co-located files possible (Copilot model).</p>
+<p>For knowledge repositories, the evidence favors Pattern A. In a knowledge repository organized by discipline, the boundary between content and meta-content is blurry — an instruction file describing &ldquo;how to reason about quantum mechanics&rdquo; is itself a knowledge artifact. Co-location treats instruction files as a special kind of content rather than as external configuration.</p>
+<h2 id="5-monorepo-cascading-analogies">5. Monorepo cascading analogies</h2>
+<p>The most instructive analogy comes from Bazel&rsquo;s BUILD file model. One BUILD file per directory defines that directory as a &ldquo;package.&rdquo; A package includes all files in its directory plus subdirectories, except those containing their own BUILD file. No file may belong to two packages.</p>
+<p>This maps to knowledge repositories: each discipline module directory is a package with its own BUILD-equivalent (an AGENTS.md), inheriting defaults from the root but defining its own local rules. The Bazel principle that no file may belong to two packages provides useful conceptual clarity: each note belongs to exactly one interpretive context.</p>
+<p>Nx uses <code>nx.json</code> at the root for workspace defaults that cascade down, with per-project overrides. Turborepo uses a single root config — no per-directory cascading.</p>
+<h2 id="6-the-codified-context-paper">6. The Codified Context paper</h2>
+<p>Vasilopoulos (2026) [@vasilopoulos2026codified] presents a three-tier architecture developed across 283 development sessions on a 108,000-line C# system:</p>
+<p><strong>Tier 1 — hot memory (~660 lines).</strong> A constitution loaded into every session: code quality standards, naming conventions, build commands, orchestration protocols.</p>
+<p><strong>Tier 2 — specialized agents (~9,300 lines across 19 agents).</strong> Domain-expert specifications where over half the content is project-domain knowledge (codebase facts, formulas, failure modes) rather than behavioral instructions.</p>
+<p><strong>Tier 3 — cold memory (~16,250 lines across 34 documents).</strong> On-demand specifications retrieved selectively through an MCP service, preventing context window exhaustion.</p>
+<p>The paper treats &ldquo;documentation as infrastructure — load-bearing artifacts that AI agents depend on to produce correct output.&rdquo; This reframes context files from optional guidance into structural dependencies.</p>
+<p><strong>Cautionary finding.</strong> On at least two occasions, outdated context documents caused agents to generate code conflicting with recent refactors. Context drift is a real risk.</p>
+<p>A companion evaluation paper found developer-provided context files only improved agent performance by ~4% on average, while increasing costs by 20%+ due to increased exploration. Quality and specificity of context files matter far more than their mere presence.</p>
+<h2 id="7-practical-examples">7. Practical examples</h2>
+<p><strong>Datadog&rsquo;s monorepo.</strong> The root AGENTS.md acts as a router, not a comprehensive document: &ldquo;To create an email, read @emails/AGENTS.md.&rdquo; Nested AGENTS.md per domain. <code>.agents/</code> directory for cross-cutting concerns. <code>AGENTS.local.md</code> (gitignored) for personal overrides. The principle: give the agent only what it needs right now; point to deeper resources as needed.</p>
+<p><strong>Claude Code.</strong> CLAUDE.md files in subdirectories (e.g., <code>Database/CLAUDE.md</code>, <code>API/CLAUDE.md</code>). <code>.claude/skills/</code> directories in nested packages for monorepo setups.</p>
+<p><strong>GitLab.</strong> Root AGENTS.md included in all conversations; <code>/frontend/AGENTS.md</code> and <code>/backend/AGENTS.md</code> loaded contextually when editing files in those directories.</p>
+<h2 id="8-implications-for-knowledge-repositories">8. Implications for knowledge repositories</h2>
+<p>In code repositories, agent instructions are procedural: &ldquo;use pytest, follow PEP 8, run migrations before testing.&rdquo; The instructions are clearly meta-level — they describe how to work with code, not the code itself.</p>
+<p>In knowledge repositories organized by discipline, the instructions are epistemic. A per-directory agent instruction file for a mathematics directory might say: &ldquo;reason constructively; treat all claims as requiring proof; cross-reference with the formal specifications.&rdquo; For a sociology directory: &ldquo;ground claims in observable structures; cite schools of thought; distinguish analytical from normative statements.&rdquo;</p>
+<p>This distinction — procedural vs. epistemic instructions — means that in a knowledge repository, per-directory instruction files are themselves knowledge artifacts. They express disciplinary epistemology. They should be maintained with the same care as other content, visible in the normal editing workflow, and treated as first-class notes.</p>
+<p>The ASR&rsquo;s <a href="../../mathematics/objects/universes/semiotic-universe/terms/fragment.md" class="link-internal">fragment</a> concept maps directly: each directory-level instruction file defines a bounded interpretive context in the mathematical sense. A fragment is a finitely generated modal subalgebra of the meaning domain — the smallest subset closed under the operations that matter locally. A per-directory AGENTS.md is the concrete realization of this: it declares what vocabulary, what reasoning style, and what interpretive commitments are active in this part of the repository.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://agents.md/" class="link-external">AGENTS.md specification</a></li>
+<li><a href="https://docs.cursor.com/context/rules" class="link-external">Cursor rules documentation</a></li>
+<li><a href="https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot" class="link-external">GitHub Copilot custom instructions</a></li>
+<li><a href="https://dev.to/datadog-frontend-dev/steering-ai-agents-in-monorepos-with-agentsmd-13g0" class="link-external">Datadog: Steering AI agents in monorepos</a></li>
+<li><a href="https://arxiv.org/abs/2602.20478" class="link-external">Codified Context paper (arXiv:2602.20478)</a></li>
+<li><a href="https://arxiv.org/html/2602.11988v1" class="link-external">Evaluating AGENTS.md (arXiv:2602.11988)</a></li>
+<li><a href="https://bazel.build/concepts/build-ref" class="link-external">Bazel: Build concepts</a></li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/per-directory-agent-instructions/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Citations</dt>
+        <dd property="emsenn:Citations"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-07">2026-03-07</time></dd>
+      </div><div class="relation">
+        <dt>Part of</dt>
+        <dd property="schema:isPartOf"><ul><li>reports</li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/agentconfiguration/">AgentConfiguration</a></li><li><a href="/tags/agentialsemioverse/">AgentialSemioverse</a></li><li><a href="/tags/repositorydesign/">RepositoryDesign</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

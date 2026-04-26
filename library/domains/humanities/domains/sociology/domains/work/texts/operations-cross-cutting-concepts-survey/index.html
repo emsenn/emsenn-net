@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cross-Cutting Concepts: Events, State Machines, Flow, Cadence, Records - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-03",
+  "datePublished": "2026-04-03",
+  "description": "Concepts that bind all six stages of the operations loop — events as ground truth, state machines for transitions, flow for throughput, cadence for rhythm, and records for accountability.",
+  "name": "Cross-Cutting Concepts: Events, State Machines, Flow, Cadence, Records",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/texts/operations-cross-cutting-concepts-survey/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/domains/work/">Work</a></nav>
+  <h1 class="p-name">Cross-Cutting Concepts: Events, State Machines, Flow, Cadence, Records</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-03T00:00:00Z">2026-04-03</time>
+    
+    <span class="p-summary">Concepts that bind all six stages of the operations loop — events as ground truth, state machines for transitions, flow for throughput, cadence for rhythm, and records for accountability.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#events-as-ground-truth">Events as ground truth</a></li>
+    <li><a href="#state-machines-as-behavior-specification">State machines as behavior specification</a></li>
+    <li><a href="#flow-as-value-delivery">Flow as value delivery</a></li>
+    <li><a href="#cadence-as-temporal-structure">Cadence as temporal structure</a></li>
+    <li><a href="#records-as-accountability">Records as accountability</a></li>
+    <li><a href="#time-in-distributed-systems">Time in distributed systems</a></li>
+    <li><a href="#see-also">See also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>Some concepts don&rsquo;t belong to one stage of the operations loop — they span all six. Events, state machines, flow, cadence, and records are the connective tissue that makes the loop one integrated system rather than six disconnected tools.</p>
+<h2 id="events-as-ground-truth">Events as ground truth</h2>
+<p>Event sourcing (Young 2010) inverts the traditional data model. Instead of storing the current state and modifying it in place, you store the sequence of events that produced the current state. The current state is a derived view — a fold over the event log.</p>
+<p>An event is an immutable fact: &ldquo;Task-42 was assigned to Agent-7 at 2026-04-03T14:22:00Z.&rdquo; You cannot change an event — you can only append new events that supersede previous ones. The event log is the authoritative record. Every other view (task status, plan progress, agent workload) is a projection computed from events.</p>
+<p>For the operations loop: every act across all six stages should produce an event. Planning creates &ldquo;task-created&rdquo; events. Dispatch creates &ldquo;task-assigned&rdquo; events. Execution creates &ldquo;task-started&rdquo; and &ldquo;task-completed&rdquo; events. Tracking creates &ldquo;metric-computed&rdquo; events. Review creates &ldquo;review-held&rdquo; events. Feedback creates &ldquo;plan-revised&rdquo; events.</p>
+<p>The event log is the audit trail. It is also the data source for all tracking metrics (compute cycle time from events), all reviews (compare planned events to actual events), and all feedback (analyze event patterns to identify improvements).</p>
+<p>An EAVT (Entity-Attribute-Value-Transaction) datastore is naturally event-structured. Each fact has a transaction ID (the T in EAVT) — a monotonically increasing identifier that orders facts by when they were asserted. The transaction IS the event. Adding <code>status: completed</code> to a task is a transaction that records: entity, attribute, value, and the time it happened.</p>
+<h2 id="state-machines-as-behavior-specification">State machines as behavior specification</h2>
+<p>Harel&rsquo;s statecharts (1987) provide a complete specification of what can happen. A state machine defines: every state the system can be in, every transition between states, and the conditions under which each transition fires.</p>
+<p>State machines span all six stages because work entities flow through states across stages. A task in &ldquo;planned&rdquo; state (planning stage) transitions to &ldquo;assigned&rdquo; (dispatch stage) to &ldquo;in progress&rdquo; (execution stage) to &ldquo;completed&rdquo; (execution exit). The state machine doesn&rsquo;t belong to one stage — it describes the entity&rsquo;s lifecycle across all stages.</p>
+<p>The state machine also enables enforcement. If the machine says &ldquo;a task cannot transition from &lsquo;completed&rsquo; back to &lsquo;in progress&rsquo;,&rdquo; a hook can enforce this: block any edit that changes <code>status: completed</code> to <code>status: in progress</code>. The enforcement is derived from the specification, not hardcoded as a special case.</p>
+<p>In practice, the work entity state machine should be specified as a data structure — states, transitions, conditions — stored alongside the work records. Enforcement layers read the specification and enforce it. The specification is a record, not a hardcoded rule. If the state machine changes (new states added, transitions modified), the enforcement automatically adapts because it reads the specification at runtime.</p>
+<h2 id="flow-as-value-delivery">Flow as value delivery</h2>
+<p>Reinertsen&rsquo;s flow model (2009) treats the operations loop as a value stream. Work enters as demand (requests, goals, ideas) and exits as delivered value (completed tasks, shipped features, resolved incidents). The time from entry to exit is lead time. The rate of exit is throughput. The amount in the system at any moment is WIP.</p>
+<p>Flow spans all stages because work flows through all of them. A bottleneck at any stage — slow planning, overloaded dispatch, stalled execution, delayed review — reduces the flow of the entire system. Reinertsen&rsquo;s principle: optimize the system for flow, not for utilization of individual stages.</p>
+<p>The economic framework makes trade-offs explicit. Every decision has a cost of delay — the value lost per unit time while the decision is pending. Prioritize by cost of delay: the work whose delay costs the most gets done first. This applies to planning (which plans to create), dispatch (which tasks to assign), and feedback (which improvements to implement).</p>
+<h2 id="cadence-as-temporal-structure">Cadence as temporal structure</h2>
+<p>Cadence is the rhythm of recurring events. A daily standup. A weekly review. A monthly retrospective. A quarterly planning cycle. Cadence provides predictability — everyone knows when things happen — and creates natural checkpoints for the operations loop.</p>
+<p>Cadence operates at multiple time scales simultaneously:</p>
+<ul>
+<li><strong>Session cadence</strong> — each agent session is a micro-cycle: orient, execute, review</li>
+<li><strong>Daily cadence</strong> — standup, task progress, blocker identification</li>
+<li><strong>Weekly cadence</strong> — plan review, WIP adjustment, priority reassessment</li>
+<li><strong>Monthly cadence</strong> — project health review, resource reallocation</li>
+<li><strong>Quarterly cadence</strong> — goal review, strategy adjustment</li>
+<li><strong>Annual cadence</strong> — charter review, organizational assessment</li>
+</ul>
+<p>Each cadence level feeds the one above it. Daily standups surface weekly themes. Weekly reviews feed monthly assessments. The information flows upward; the direction flows downward.</p>
+<p>In practice, cadence should be encoded as scheduled events. A session-start procedure IS the start of session cadence. A session-end evaluation IS the end of session cadence. Weekly and monthly reviews require their own scheduled triggers — building them is a natural extension of any operations loop.</p>
+<h2 id="records-as-accountability">Records as accountability</h2>
+<p>ISO 15489 (2016) defines a record as &ldquo;information created, received, and maintained as evidence and as an asset by an organization or person, in pursuit of legal obligations or in the transaction of business.&rdquo; Records have four properties:</p>
+<p><strong>Authenticity</strong> — the record is what it claims to be. In a version-controlled system, commit history proves a file existed at a specific time with specific content.</p>
+<p><strong>Reliability</strong> — the record accurately represents the transaction it documents. A well-designed event log captures what actually happened, not what was supposed to happen.</p>
+<p><strong>Integrity</strong> — the record is complete and unaltered. Version control prevents silent alteration. Transaction IDs in a datastore ensure ordering is preserved.</p>
+<p><strong>Usability</strong> — the record can be located, retrieved, and interpreted. A queryable datastore makes all records accessible by any attribute.</p>
+<p>Records span all stages because every stage produces records: plans, assignments, execution logs, metrics, reviews, feedback actions. The records ARE the system&rsquo;s memory. Without them, each cycle of the operations loop starts from scratch.</p>
+<h2 id="time-in-distributed-systems">Time in distributed systems</h2>
+<p>Leslie Lamport&rsquo;s <em>Time, Clocks, and the Ordering of Events in a Distributed System</em> (1978) establishes that in a distributed system, there is no global clock — only the partial ordering of events by causality. Event A happened before event B if and only if A could have causally influenced B.</p>
+<p>This matters for the operations loop because the system is distributed across sessions, agents, and time. Two agents working in parallel may produce events that have no causal ordering — they are concurrent. The system must handle concurrent events correctly: merging partial results, detecting conflicts, and resolving them.</p>
+<p>An EAVT datastore&rsquo;s transaction IDs provide a total ordering within one session. Across sessions, the ordering can be established by version control commits. Across agents working in parallel (via isolated workspaces), the ordering is established at merge time. The event model must accommodate all three cases.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="./ontology-of-work-operations.md" class="link-internal">The Ontology of Work Operations</a> — the base mapping</li>
+<li>All five stage-specific surveys — planning, dispatch, execution, tracking, review, feedback</li>
+</ul>
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-harel1987" typeof="CreativeWork" resource="#ref-harel1987">
+    <span class="bib-key">[harel1987]</span>
+      <span property="author">David Harel</span>.
+      (<span property="datePublished">1987</span>).
+      <cite property="name">Statecharts: A Visual Formalism for Complex Systems</cite>.
+      <em property="publisher">Science of Computer Programming, 8(3)</em>.
+  </p><p class="bib-entry" id="ref-iso15489" typeof="CreativeWork" resource="#ref-iso15489">
+    <span class="bib-key">[iso15489]</span>
+      <span property="author">ISO</span>.
+      (<span property="datePublished">2016</span>).
+      <cite property="name">ISO 15489-1:2016 Information and documentation — Records management</cite>..
+  </p><p class="bib-entry" id="ref-lamport1978" typeof="CreativeWork" resource="#ref-lamport1978">
+    <span class="bib-key">[lamport1978]</span>
+      <span property="author">Leslie Lamport</span>.
+      (<span property="datePublished">1978</span>).
+      <cite property="name">Time, Clocks, and the Ordering of Events in a Distributed System</cite>.
+      <em property="publisher">Communications of the ACM, 21(7)</em>.
+  </p><p class="bib-entry" id="ref-reinertsen2009" typeof="CreativeWork" resource="#ref-reinertsen2009">
+    <span class="bib-key">[reinertsen2009]</span>
+      <span property="author">Donald G. Reinertsen</span>.
+      (<span property="datePublished">2009</span>).
+      <cite property="name">The Principles of Product Development Flow</cite>.
+      <em property="publisher">Celeritas Publishing</em>.
+  </p><p class="bib-entry" id="ref-young2010" typeof="CreativeWork" resource="#ref-young2010">
+    <span class="bib-key">[young2010]</span>
+      <span property="author">Greg Young</span>.
+      (<span property="datePublished">2010</span>).
+      <cite property="name">CQRS and Event Sourcing</cite>..
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/texts/operations-cross-cutting-concepts-survey/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Citations</dt>
+        <dd property="emsenn:Citations"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-03">2026-04-03</time></dd>
+      </div><div class="relation">
+        <dt>Part of</dt>
+        <dd property="schema:isPartOf">ops research foundations</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

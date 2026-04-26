@@ -18,7 +18,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "description": "A Process is a fully determined operation: both its meaning and its execution path are fixed before it runs. Same input always produces same output. Corresponds to Fix(σ)∩Fix(Δ) in the nuclear quartet.",
+  "description": "A Process is a fully determined operation: both its meaning and its execution path are fixed before it runs. Same input always produces same output.",
   "name": "",
   "publisher": {
     "@type": "Person",
@@ -70,73 +70,49 @@
   <div class="meta">
     
     
-    <span class="p-summary">A Process is a fully determined operation: both its meaning and its execution path are fixed before it runs. Same input always produces same output. Corresponds to Fix(σ)∩Fix(Δ) in the nuclear quartet.</span>
+    <span class="p-summary">A Process is a fully determined operation: both its meaning and its execution path are fixed before it runs. Same input always produces same output.</span>
   </div>
   <div class="e-content">
     <h1 id="process">Process</h1>
-<h2 id="formal-definition">Formal definition</h2>
-<p>A <strong>Process</strong> is an element <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span> of the fiber <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">H_t</annotation></semantics></math></span> satisfying both nuclear fixed-point conditions:</p>
-<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>W</mi><mo>∈</mo><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup><mo>=</mo><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">x</mi></mrow><mo stretchy="false">(</mo><msub><mi>σ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>∩</mo><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">x</mi></mrow><mo stretchy="false">(</mo><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W \in H^*_t = \mathrm{Fix}(\sigma_t) \cap \mathrm{Fix}(\Delta_t)</annotation></semantics></math></span><p>
-</p>
-<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>σ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>W</mi><mspace width="1em"/><mtext>and</mtext><mspace width="1em"/><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">\sigma_t(W) = W \quad\text{and}\quad \Delta_t(W) = W</annotation></semantics></math></span><p>As a <a href="skills.md" class="link-internal">Skill</a> type, a Process is a morphism <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f : A \to B</annotation></semantics></math></span> with the guarantee that <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>∈</mo><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">f(a) \in H^*_t</annotation></semantics></math></span> for all inputs — the output is always fully settled before it is inspected.</p>
-<p><strong>The nuclear quartet.</strong> The four positions partition <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">H_t</annotation></semantics></math></span> (excluding <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">\bot</annotation></semantics></math></span>):</p>
+<p>A <strong>process</strong> is a defined, repeatable transformation: given the same input, it always produces the same output. No decisions, no branches, no judgment. The specification fully determines the behavior.</p>
+<p>This is what &ldquo;process&rdquo; means in business process management (ISO 9000), formal methods, and manufacturing: a transformation whose complete behavior is determined by its specification before it runs. Baking a recipe with exact measurements. Running a build script. Executing a SQL query. Multiplying two matrices. In each case, the input and the specification together determine the output.</p>
+<p>For the general concept — grounded in sociology and organizational theory — see <a href="../../sociology/domains/work/terms/process.md" class="link-internal">process</a> in the work taxonomy. That file defines process as one of four work types classified by whether meaning and execution are settled. This file is the FARS formalization: how the general concept maps to the relational framework&rsquo;s algebraic structures.</p>
+<h2 id="the-four-work-types">The four work types</h2>
+<p>A process sits in one position of a 2×2 classification based on what is settled:</p>
 <table>
   <thead>
       <tr>
-          <th>Position</th>
-          <th>Nuclear condition</th>
-          <th>Set</th>
+          <th></th>
+          <th>Execution settled</th>
+          <th>Execution open</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><strong>Process</strong></td>
-          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">\sigma_t(W) = W</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">\Delta_t(W) = W</annotation></semantics></math></span></td>
-          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">H^*_t</annotation></semantics></math></span></td>
+          <td><strong>Meaning settled</strong></td>
+          <td><strong>Process</strong> — fully determined</td>
+          <td><a href="../../sociology/domains/work/terms/procedure.md" class="link-internal">Procedure</a> — branches on conditions</td>
       </tr>
       <tr>
-          <td><a href="procedure.md" class="link-internal"><strong>Procedure</strong></a></td>
-          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">\sigma_t(W) = W</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo mathvariant="normal">≠</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">\Delta_t(W) \neq W</annotation></semantics></math></span></td>
-          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">x</mi></mrow><mo stretchy="false">(</mo><msub><mi>σ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>∖</mo><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">\mathrm{Fix}(\sigma_t) \setminus H^*_t</annotation></semantics></math></span></td>
-      </tr>
-      <tr>
-          <td><a href="derivation.md" class="link-internal"><strong>Derivation</strong></a></td>
-          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo mathvariant="normal">≠</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">\sigma_t(W) \neq W</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">\Delta_t(W) = W</annotation></semantics></math></span></td>
-          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">x</mi></mrow><mo stretchy="false">(</mo><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>∖</mo><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">\mathrm{Fix}(\Delta_t) \setminus H^*_t</annotation></semantics></math></span></td>
-      </tr>
-      <tr>
-          <td><a href="inquiry.md" class="link-internal"><strong>Inquiry</strong></a></td>
-          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo mathvariant="normal">≠</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">\sigma_t(W) \neq W</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo mathvariant="normal">≠</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">\Delta_t(W) \neq W</annotation></semantics></math></span></td>
-          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>t</mi></msub><mo>∖</mo><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">x</mi></mrow><mo stretchy="false">(</mo><msub><mi>σ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>∪</mo><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">x</mi></mrow><mo stretchy="false">(</mo><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H_t \setminus (\mathrm{Fix}(\sigma_t) \cup \mathrm{Fix}(\Delta_t))</annotation></semantics></math></span></td>
+          <td><strong>Meaning open</strong></td>
+          <td><a href="../../sociology/domains/work/terms/derivation.md" class="link-internal">Derivation</a> — follows rules, meaning emerges</td>
+          <td><a href="../../sociology/domains/work/terms/inquiry.md" class="link-internal">Inquiry</a> — open exploration</td>
       </tr>
   </tbody>
 </table>
-<p>The joint projection <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mi>t</mi></msub><mo>=</mo><msub><mi>σ</mi><mi>t</mi></msub><mo>∘</mo><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo>:</mo><msub><mi>H</mi><mi>t</mi></msub><mo>→</mo><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">\pi_t = \sigma_t \circ \Delta_t : H_t \to H^*_t</annotation></semantics></math></span> maps every element into Process position — closing all open questions of meaning and execution. A Process is the fixed point of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\pi_t</annotation></semantics></math></span>.</p>
-<h2 id="what-this-is">What this is</h2>
-<p>A <strong>Process</strong> is a defined, repeatable transformation: given the same input, it always produces the same output.
-This is what the word &ldquo;process&rdquo; names in business process management (ISO 9000) and formal methods alike — a transformation whose complete behavior is determined by its specification before it runs.</p>
-<p>In this system, a Process is <a href="flatfile-agential-resource-system-skillful-work.md" class="link-internal">FlatfileAgentialResourceSystemSkillfulWork</a> in which both closure nuclei have been applied: meaning-closure (σ) and execution-closure (Δ).
-The result is full determination — no open questions about what it is doing or how it will do it.</p>
-<p>The mathematical position is Fix(σ)∩Fix(Δ) — the intersection of both fixed-point sub-algebras in the nuclear quartet (<a href="../math/nuclear-quartet-subalgebra.md" class="link-internal">NuclearQuartetSubalgebra</a>).
-The joint projection π reflects every operation into this position.
-A Process is already there.</p>
-<h2 id="what-full-determination-means">What full determination means</h2>
-<p>Meaning-closure (σ) means the Process knows what it is about.
-Its purpose, its domain, its output type — all settled.
-Execution-closure (Δ) means the Process knows exactly how to proceed.
-No branches, no judgment calls, no conditions to evaluate.
-Every step follows from the previous one without decision.</p>
-<p>An operation that contains conditions is not yet Δ-closed — it is a <a href="procedure.md" class="link-internal">Procedure</a>.
-An operation whose purpose is still being established is not yet σ-closed — it is a <a href="derivation.md" class="link-internal">Derivation</a> or <a href="inquiry.md" class="link-internal">Inquiry</a>.</p>
-<h2 id="the-other-three-positions">The other three positions</h2>
+<p>A process is the doubly-settled position: both meaning (what it produces) and execution (how it proceeds) are fixed.</p>
+<h2 id="fars-algebraic-reading">FARS algebraic reading</h2>
+<p>In the relational framework, this classification maps to fixed-point conditions on two closure operators (nuclei) in a Heyting algebra fiber <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">H_t</annotation></semantics></math></span>:</p>
 <ul>
-<li><a href="procedure.md" class="link-internal">Procedure</a> — meaning-closed, execution-open: knows what, branches on how.</li>
-<li><a href="derivation.md" class="link-internal">Derivation</a> — execution-closed, meaning-open: follows fixed rules, produces a judgment.</li>
-<li><a href="inquiry.md" class="link-internal">Inquiry</a> — neither closed: open exploration.</li>
-<li><a href="flatfile-agential-resource-system-skillful-work.md" class="link-internal">FlatfileAgentialResourceSystemSkillfulWork</a> — all four positions together exhaust the nuclear quartet.</li>
+<li><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_t</annotation></semantics></math></span> (the saturating nucleus) — closure under meaning. <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">\sigma_t(W) = W</annotation></semantics></math></span> means the operation&rsquo;s meaning is settled.</li>
+<li><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\Delta_t</annotation></semantics></math></span> (the transferring nucleus) — closure under execution. <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">\Delta_t(W) = W</annotation></semantics></math></span> means the execution path is settled.</li>
 </ul>
+<p>A process is an element satisfying both:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>W</mi><mo>∈</mo><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup><mo>=</mo><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">x</mi></mrow><mo stretchy="false">(</mo><msub><mi>σ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>∩</mo><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">x</mi></mrow><mo stretchy="false">(</mo><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W \in H^*_t = \mathrm{Fix}(\sigma_t) \cap \mathrm{Fix}(\Delta_t)</annotation></semantics></math></span><p>The joint projection <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mi>t</mi></msub><mo>=</mo><msub><mi>σ</mi><mi>t</mi></msub><mo>∘</mo><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo>:</mo><msub><mi>H</mi><mi>t</mi></msub><mo>→</mo><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">\pi_t = \sigma_t \circ \Delta_t : H_t \to H^*_t</annotation></semantics></math></span> maps any work element into the process position — closing all open questions. A process is already at the fixed point.</p>
+<p>As a <a href="../../sociology/domains/work/terms/skills.md" class="link-internal">Skill</a> type, a process is a morphism <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f : A \to B</annotation></semantics></math></span> where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>∈</mo><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">f(a) \in H^*_t</annotation></semantics></math></span> for all inputs — the output is always fully settled.</p>
 <h2 id="open-questions">Open questions</h2>
 <ul>
+<li>Whether the algebraic model (two nuclei on a Heyting algebra fiber) is the right formalization of the meaning-settled/execution-settled distinction, or whether a simpler algebraic structure suffices.</li>
 <li>Formal proof that σ-closure and Δ-closure together imply determinism for skill work — blocked by: skill-algebra construction.</li>
 </ul>
 
@@ -147,9 +123,6 @@ An operation whose purpose is still being established is not yet σ-closed — i
          vocab="https://emsenn.net/vocab#">
   <h2>Relations</h2>
   <dl><div class="relation">
-        <dt>Ast</dt>
-        <dd property="emsenn:Ast"></dd>
-      </div><div class="relation">
         <dt>Date modified</dt>
         <dd property="emsenn:Datemodified"><time datetime="2026-03-19">2026-03-19</time></dd>
       </div><div class="relation">
@@ -158,18 +131,6 @@ An operation whose purpose is still being established is not yet σ-closed — i
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
         <dd property="emsenn:Extends">FlatfileAgentialResourceSystemSkillfulWork</dd>
-      </div><div class="relation">
-        <dt>Input</dt>
-        <dd property="emsenn:Input">relational universe</dd>
-      </div><div class="relation">
-        <dt>Output</dt>
-        <dd property="emsenn:Output">relational history fiber fixed layer</dd>
-      </div><div class="relation">
-        <dt>Readiness</dt>
-        <dd property="emsenn:Readiness">shaped</dd>
-      </div><div class="relation">
-        <dt><a href="/library/domains/engineering/domains/tech/domains/specification/specification/">Specification</a></dt>
-        <dd property="emsenn:Specification">relational universe morphism</dd>
       </div>
   </dl>
 </section>

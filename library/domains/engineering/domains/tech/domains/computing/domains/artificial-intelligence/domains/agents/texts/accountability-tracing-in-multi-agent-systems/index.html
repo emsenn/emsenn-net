@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accountability Tracing in Multi-Agent Systems - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Following the delegation chain from an action back to who bears accountability. The difference between responsibility (you caused it) and accountability (you answer for it), and why that distinction matters when LLM agents make mistakes.",
+  "name": "Accountability Tracing in Multi-Agent Systems",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/accountability-tracing-in-multi-agent-systems/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/">Texts</a></nav>
+  <h1 class="p-name">Accountability Tracing in Multi-Agent Systems</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Following the delegation chain from an action back to who bears accountability. The difference between responsibility (you caused it) and accountability (you answer for it), and why that distinction matters when LLM agents make mistakes.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#responsibility-vs-accountability">Responsibility vs. Accountability</a></li>
+    <li><a href="#the-delegation-chain-in-multi-agent-systems">The Delegation Chain in Multi-Agent Systems</a></li>
+    <li><a href="#invariants-of-accountability-through-delegation">Invariants of Accountability Through Delegation</a>
+      <ul>
+        <li><a href="#1-totality">1. Totality</a></li>
+        <li><a href="#2-non-transferability">2. Non-Transferability</a></li>
+        <li><a href="#3-installation-anchoring">3. Installation-Anchoring</a></li>
+        <li><a href="#4-scope-exclusivity">4. Scope-Exclusivity</a></li>
+      </ul>
+    </li>
+    <li><a href="#tracing-accountability-through-error-propagation">Tracing Accountability Through Error Propagation</a>
+      <ul>
+        <li><a href="#pattern-1-local-error-unvalidated-output">Pattern 1: Local Error, Unvalidated Output</a></li>
+        <li><a href="#pattern-2-cascading-misalignment">Pattern 2: Cascading Misalignment</a></li>
+        <li><a href="#pattern-3-specification-gap">Pattern 3: Specification Gap</a></li>
+      </ul>
+    </li>
+    <li><a href="#implementation-observability-produces-traceability">Implementation: Observability Produces Traceability</a></li>
+    <li><a href="#accountability-in-the-face-of-ai-unpredictability">Accountability in the Face of AI Unpredictability</a></li>
+    <li><a href="#responsibility-chains-for-compliance-and-audit">Responsibility Chains for Compliance and Audit</a></li>
+    <li><a href="#the-question-that-settles-everything">The Question That Settles Everything</a></li>
+    <li><a href="#see-also">See Also</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="accountability-tracing-in-multi-agent-systems">Accountability Tracing in Multi-Agent Systems</h1>
+<p>When an LLM agent makes an error, who is accountable? Not the agent—the agent has no legal standing, no authority, no capacity to bear accountability. Accountability always attaches to a human officer. The question is which one.</p>
+<p>The answer requires understanding the difference between responsibility and <a href="../../../../../../../../../../humanities/domains/sociology/domains/work/domains/governance/terms/accountability.md" class="link-internal">accountability</a>, tracing the <a href="../../../../../../../../../../humanities/domains/sociology/domains/work/terms/delegation.md" class="link-internal">delegation</a> chain from the error back to the person who installed the system and issued the grant.</p>
+<h2 id="responsibility-vs-accountability">Responsibility vs. Accountability</h2>
+<p>These are not synonymous, and the confusion between them is a major source of governance failures in multi-agent systems.</p>
+<p><strong>Responsibility</strong> is causal and backward-looking: A is responsible for outcome O if A&rsquo;s action caused O, and A had the relevant knowledge or intention. Responsibility attaches to the efficient cause—the actual doer. It can be absent if causation is absent.</p>
+<p><strong>Accountability</strong> is positional and totalizing: A is accountable for outcome O if O falls within A&rsquo;s scope of responsibility, <em>regardless of who caused it</em>. Accountability is the formal structure that says &ldquo;you installed this system, you delegated authority through it, therefore you answer for what happens within its scope.&rdquo; The canonical formulation from U.S. Navy Regulations (Article 0802): &ldquo;delegation of authority shall in no way relieve the commanding officer of continued responsibility.&rdquo;</p>
+<p>A commanding officer is accountable for a navigation error made by a sleeping junior watchstander. The officer did not cause the error. The officer is still accountable for it. Why? Because the officer held the position (installed watchstanders, set standing orders, established the system of watch rotations) that made the error possible.</p>
+<h2 id="the-delegation-chain-in-multi-agent-systems">The Delegation Chain in Multi-Agent Systems</h2>
+<p>In a multi-agent system, the delegation chain runs from a human principal through one or more intermediary agents to a leaf agent that produces the error.</p>
+<p>Consider a simple two-agent research system:</p>
+<pre tabindex="0"><code>Captain
+  |
+  v (delegates research authority)
+Research Agent (orchestrator)
+  |
+  v (delegates literature search)
+Search Agent (tool executor)
+  |
+  v (executes)
+[Calls web search API incorrectly]
+</code></pre><p>The search agent produces an error: it calls the API with a malformed query. Who is accountable?</p>
+<ul>
+<li>The search agent is not accountable. It is not a legal person. It holds authority only derivatively, from a delegation.</li>
+<li>The research agent is not accountable for the error itself—the research agent did not cause the malformation. But the research agent is accountable for failing to validate the search agent&rsquo;s output.</li>
+<li>The captain is accountable for the research agent&rsquo;s failure, because the captain delegated the research authority to the research agent without sufficient oversight.</li>
+</ul>
+<p>The accountability chain goes backward from the error to the top:</p>
+<ol>
+<li><strong>Leaf error</strong>: Search agent produces malformed query.</li>
+<li><strong>First accountability</strong>: Research agent is accountable because it delegated the search task to the search agent and did not validate the result.</li>
+<li><strong>Second accountability</strong>: Captain is accountable because the captain delegated the research authority to the research agent and is answerable for all outcomes in the research domain, regardless of whether the captain is present or aware of the delegation chain.</li>
+</ol>
+<h2 id="invariants-of-accountability-through-delegation">Invariants of Accountability Through Delegation</h2>
+<p>Four formal invariants govern accountability as it propagates through delegation chains:</p>
+<h3 id="1-totality">1. Totality</h3>
+<p>Accountability must be total—every outcome within a scope must be assigned to exactly one accountable party. There must be no &ldquo;accountability gap&rdquo; where an error occurs but no one is accountable for it.</p>
+<p>In multi-agent systems, this means: when an agent makes an error, there must be a chain of delegations that leads backward to a human officer who bears the accountability. If a gap exists (a delegated agent whose delegator is not assigned responsibility for its errors), the system has a structural flaw.</p>
+<p>Example of a gap: A captain delegates authority to an agent A, which delegates to agent B, but does not specify whether the captain is accountable for B&rsquo;s errors or only for A&rsquo;s. Until this is settled, accountability is undefined.</p>
+<h3 id="2-non-transferability">2. Non-Transferability</h3>
+<p>Delegation transfers authority; it does not transfer accountability. A principal cannot give the duty to answer away. When the captain delegates research authority to the research agent, the captain retains the full accountability for the research scope. The fact that the captain delegated does not reduce the captain&rsquo;s answerability.</p>
+<p>This is not a statement about fairness. It is a structural fact. If a subordinate could delegate away their accountability, the entire system of answerability would collapse. The subordinate could create an unbounded chain of sub-delegations and claim they are not answerable for any of them.</p>
+<h3 id="3-installation-anchoring">3. Installation-Anchoring</h3>
+<p>Accountability comes into force at the moment of <a href="../../../../../../../../../../humanities/domains/sociology/domains/work/domains/governance/terms/investiture.md" class="link-internal">investiture</a>—when a person is formally installed in a position that carries a scope. Before installation, the accountability does not apply. After installation, it applies in full until the person is relieved.</p>
+<p>For multi-agent systems, this means accountability for the system attaches at the moment the principal deploys the system with delegated authority. Physical absence, the principal&rsquo;s ignorance of the delegation chain, even the principal&rsquo;s incapacity does not suspend accountability.</p>
+<p>Installation-anchoring applies even to AI agents: when the principal delegates authority to the agent (installs the agent in a role), the principal&rsquo;s accountability begins immediately and does not suspend.</p>
+<h3 id="4-scope-exclusivity">4. Scope-Exclusivity</h3>
+<p>Within a given scope, one and only one person is accountable. Two people cannot both hold the same accountability without creating indeterminacy—ambiguity about who is answerable for which outcomes.</p>
+<p>In multi-agent systems, this means: a given task domain must have a clear apex of accountability. If two agents are both partially responsible for research, and both claim the other is accountable for the error, accountability is diffused and the system has failed.</p>
+<h2 id="tracing-accountability-through-error-propagation">Tracing Accountability Through Error Propagation</h2>
+<p>When a multi-agent system fails, the accountability chain reveals itself through error propagation. Understanding the propagation pattern shows who is accountable where.</p>
+<h3 id="pattern-1-local-error-unvalidated-output">Pattern 1: Local Error, Unvalidated Output</h3>
+<p>The search agent produces a malformed query. The research agent accepts it without checking. The result is wrong.</p>
+<ul>
+<li>Causal responsibility: Research agent (failed to validate before passing downstream)</li>
+<li>Accountability: Captain (delegated research authority to research agent)</li>
+</ul>
+<p>The error originated in the search agent, but the <em>failure point from an accountability perspective</em> is the research agent&rsquo;s validation step. The research agent is where the error could have been caught and was not.</p>
+<h3 id="pattern-2-cascading-misalignment">Pattern 2: Cascading Misalignment</h3>
+<p>Two agents are supposed to coordinate. Agent A produces output in Format X. Agent B expects Format Y. Agent B misinterprets A&rsquo;s output and makes a decision based on the misinterpretation.</p>
+<ul>
+<li>Causal responsibility: Agent B (misinterpreted the input)</li>
+<li>Accountability: The human who delegated to both agents without ensuring they agreed on data format</li>
+</ul>
+<p>The MASFT study (arXiv 2503.13657, March 2025) identified &ldquo;cascading misinterpretation&rdquo; as one of the six core failure modes in multi-agent systems. When one agent&rsquo;s error propagates and amplifies through subsequent agents, the accountability chain usually breaks at the level of <em>coordination oversight</em>—the human (or higher-level agent) responsible for ensuring that agents have compatible expectations.</p>
+<h3 id="pattern-3-specification-gap">Pattern 3: Specification Gap</h3>
+<p>The captain delegates a research task to the research agent with vague instructions: &ldquo;Find good sources on accountability in AI systems.&rdquo; The research agent interprets this as &ldquo;find any sources that mention AI and accountability&rdquo; and misses the most relevant papers because they use different terminology.</p>
+<ul>
+<li>Causal responsibility: Research agent (did not recognize the gap in its instructions)</li>
+<li>Accountability: Captain (delegated with insufficient specification; U.S. Navy Regulations Article 0801 requires delegations be &ldquo;clear and concise&rdquo;)</li>
+</ul>
+<p>This is the specification failure category (FC1) in the MASFT study. The agent system failed at the point where the human delegation was insufficient. Accountability rises to the person who made the delegation.</p>
+<h2 id="implementation-observability-produces-traceability">Implementation: Observability Produces Traceability</h2>
+<p>Making accountability traceable requires observability. You cannot assign accountability to a chain you cannot see.</p>
+<p>The minimum observability requirements:</p>
+<ol>
+<li>
+<p><strong>Full execution trace</strong>: Record every agent invocation, every tool call, every output. The trace must be complete enough to reconstruct the error&rsquo;s origin and the chain of agents and validations that led to it.</p>
+</li>
+<li>
+<p><strong>Decision points recorded</strong>: At each agent&rsquo;s step, log what state it saw, what action it chose, and why (the model&rsquo;s reasoning or policy). This reveals where errors originate (incorrect state perception, incorrect reasoning, incorrect policy).</p>
+</li>
+<li>
+<p><strong>Validation checkpoints</strong>: Log where validation should have occurred (agent B should have checked that agent A&rsquo;s output was in the expected format) and whether it did. A missing validation point is a breach of the delegating principal&rsquo;s answerability.</p>
+</li>
+<li>
+<p><strong>Delegation bounds recorded</strong>: Document what each agent was delegated to do, what authority limits apply, and what outcomes fall within its scope. When an agent acts outside its bounds, the accountability shifts to the principal who failed to enforce the bounds.</p>
+</li>
+</ol>
+<p>The <a href="./agent-reliability-in-production.md" class="link-internal">Agent Reliability in Production</a> text documents current best practices. The core finding: token usage per step, decision traces, and failure classification are the most informative metrics. These are precisely the data needed to trace accountability.</p>
+<h2 id="accountability-in-the-face-of-ai-unpredictability">Accountability in the Face of AI Unpredictability</h2>
+<p>Modern LLM agents are stochastic—the same input can produce different outputs. This creates a tension with traditional accountability structures, which assume predictable agents who can follow orders.</p>
+<p>The structure resolves as follows:</p>
+<ul>
+<li>
+<p><strong>Non-delegable duties</strong>: For irreversible actions (deployments, deletions, entity data modifications), the principal must retain decision authority and place the delegated agent in an advisory role. The <a href="../terms/human-in-the-loop.md" class="link-internal">human-in-the-loop</a> pattern assigns formal authority to the human for the final decision.</p>
+</li>
+<li>
+<p><strong>Bounded delegation with review</strong>: The principal delegates the agent authority to take actions within a bounded scope, with the understanding that the principal will review all outcomes in that scope before they propagate downstream. If an agent&rsquo;s output would violate a constraint or contradict prior guidance, the principal&rsquo;s role is to catch it.</p>
+</li>
+<li>
+<p><strong>Durable execution with checkpointing</strong>: The <a href="../terms/durable-execution.md" class="link-internal">durable-execution</a> pattern (as implemented in LangGraph and PydanticAI) saves the agent&rsquo;s state at each step. On failure, the system resumes from the last good state. The accountability for the failure attaches to the principal who chose not to implement resumable execution.</p>
+</li>
+</ul>
+<h2 id="responsibility-chains-for-compliance-and-audit">Responsibility Chains for Compliance and Audit</h2>
+<p>From a compliance perspective, accountability tracing produces the evidence needed for audit and regulatory response.</p>
+<p>The EU AI Act (requirements in force August 2026) requires that high-risk AI systems maintain post-market monitoring documentation showing:</p>
+<ul>
+<li>What was delegated to the agent, in what scope, with what authority</li>
+<li>What happened (complete execution trace)</li>
+<li>Who is answerable for the outcome (the accountability chain)</li>
+</ul>
+<p>A responsible multi-agent system must be able to answer the question: &ldquo;For this error, who is accountable?&rdquo; by reconstructing the delegation chain and showing where the error originated and where it should have been caught.</p>
+<p>Mulgan&rsquo;s (2000) accountability framework from public administration identifies five forms of accountability: political, legal, administrative, professional, and social. Multi-agent systems must implement at least the administrative and legal forms:</p>
+<ul>
+<li><strong>Administrative accountability</strong>: Documented procedures, delegations, and decision traces sufficient to answer &ldquo;how did this happen?&rdquo;</li>
+<li><strong>Legal accountability</strong>: Clear assignment of responsibility to a named individual or office such that a court or regulator can determine liability.</li>
+</ul>
+<p>Without this clarity, the system has not actually delegated authority—it has abdicated it.</p>
+<h2 id="the-question-that-settles-everything">The Question That Settles Everything</h2>
+<p>When an agent errs, one question settles the accountability chain:</p>
+<p><strong>Did the principal have sufficient visibility into the agent&rsquo;s operation that the error should have been caught?</strong></p>
+<p>If yes: The principal is accountable. The principal had the information and authority to prevent the error and did not.</p>
+<p>If no: The principal is still accountable (accountability does not transfer), but the breach is one of insufficient oversight structure, not insufficient vigilance. The remedy is to add observability and validation checkpoints.</p>
+<p>If the principal had no reasonable way to know: The accountability still attaches to the principal, and the principal&rsquo;s remedy is to restructure the delegation—move the agent into a non-delegable role, require higher oversight, narrow its authority, or replace it with a simpler system that produces predictable output.</p>
+<p>The principal cannot escape accountability by claiming they did not know. The principal can only meet accountability by establishing a system where errors are visible and caught before they propagate.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../../../../../../../../../../humanities/domains/sociology/domains/work/terms/delegation.md" class="link-internal">Delegation</a> — the structure of authority transfer</li>
+<li><a href="../../../../../../../../../../humanities/domains/sociology/domains/work/domains/governance/terms/accountability.md" class="link-internal">Accountability</a> — the formal definition and mathematical structure</li>
+<li><a href="../terms/agent-observability.md" class="link-internal">Agent Observability</a> — how to make agent operations visible</li>
+<li><a href="./multi-agent-failure-modes.md" class="link-internal">Multi-Agent Failure Modes</a> — the MASFT study&rsquo;s taxonomy of failure</li>
+<li><a href="./agent-reliability-in-production.md" class="link-internal">Agent Reliability in Production</a> — engineering practices for reliable agents</li>
+<li><a href="../terms/durable-execution.md" class="link-internal">Durable Execution</a> — checkpointing and resumable agent execution</li>
+<li><a href="../terms/human-in-the-loop.md" class="link-internal">Human-in-the-Loop</a> — patterns for retaining human oversight of delegated agents</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>
+<p>Bovens, M. (2007). &ldquo;Analysing and Assessing Accountability: A Conceptual Framework.&rdquo; <em>European Law Journal</em>, 13, 447–468. Foundational modern framework distinguishing accountability as a relational structure requiring forum, explanation, judgment, and consequences.</p>
+</li>
+<li>
+<p>Mulgan, R. (2000). &ldquo;&lsquo;Accountability&rsquo;: An Ever-Expanding Concept?&rdquo; <em>Public Administration</em>, 78(3), 555–573. Analysis of accountability vs. responsibility in public administration; establishes accountability as distinct from causal responsibility.</p>
+</li>
+<li>
+<p>U.S. Navy Regulations, Article 0802. &ldquo;Delegation of authority shall in no way relieve the commanding officer of continued responsibility.&rdquo; The foundational naval legal statement of non-transferability of accountability.</p>
+</li>
+<li>
+<p>Hohfeld, W. N. (1919). <em>Fundamental Legal Conceptions as Applied in Judicial Reasoning</em>. Yale University Press. Establishes the formal framework of powers, duties, rights, and liabilities that underlies accountability structure.</p>
+</li>
+<li>
+<p>MASFT Study. &ldquo;Why Do Multi-Agent LLM Systems Fail?&rdquo; arXiv 2503.13657, March 2025. Empirical analysis of 14 failure modes in multi-agent coordination, with focus on misalignment and cascading error propagation.</p>
+</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/accountability-tracing-in-multi-agent-systems/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/terms/agent/">agents</a></dd>
+      </div><div class="relation">
+        <dt>Examines</dt>
+        <dd property="emsenn:Examines">multi agent system, delegation, accountability</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/factorization/">Factors through</a></dt>
+        <dd property="emsenn:Factorsthrough">coordination overhead, agent observability, multi agent failure modes</dd>
+      </div><div class="relation">
+        <dt>Governs</dt>
+        <dd property="emsenn:Governs"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/">agentic system</a></dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related">agent reliability in production</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment">delegation, accountability</dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul><li>bovens2007</li><li>mulgan2000</li><li>navy regulations</li><li>hohfeld1919</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

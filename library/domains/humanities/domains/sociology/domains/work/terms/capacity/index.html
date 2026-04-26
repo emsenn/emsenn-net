@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capacity - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-03",
+  "datePublished": "2026-04-03",
+  "description": "The amount of work an agent or system can handle in a given time period — the resource constraint that limits throughput and governs dispatch.",
+  "name": "Capacity",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/capacity/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/domains/work/">Work</a></nav>
+  <h1 class="p-name">Capacity</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-03T00:00:00Z">2026-04-03</time>
+    
+    <span class="p-summary">The amount of work an agent or system can handle in a given time period — the resource constraint that limits throughput and governs dispatch.</span>
+  </div>
+  <div class="e-content">
+    <p>Capacity is the amount of work an agent or system can handle in a given time period. It is a <a href="../../../../terms/quality.md" class="link-internal">quality</a> of the agent — not a property of the work. The same task takes different amounts of capacity from different agents depending on their skills, tools, and context.</p>
+<p>Capacity has two dimensions: <strong>throughput capacity</strong> (how many work units can be completed per period) and <strong>concurrent capacity</strong> (how many work units can be in progress simultaneously). These are related by Little&rsquo;s Law (1961): average items in system equals throughput times average time in system. An agent who can complete 3 tasks per day and handles them sequentially has a concurrent capacity of about 1. An agent who runs 5 tasks in parallel with 2-day cycle times has the same throughput but concurrent capacity of ~3.</p>
+<p>Goldratt (1984) distinguishes between capacity and the constraint. In any system, one resource is the bottleneck — the constraint that limits the system&rsquo;s throughput. Every other resource has excess capacity relative to the constraint. Optimizing a non-constraint&rsquo;s capacity doesn&rsquo;t improve the system. The operations loop must identify which agent, skill, or resource is the constraint and protect its capacity above all else.</p>
+<p>Reinertsen (2009) argues that capacity should not be fully utilized. High utilization increases queue length exponentially — at 90% utilization, queues are roughly 9 times longer than at 50% utilization. Knowledge work systems need slack — uncommitted capacity that absorbs variability. Without slack, any unexpected work (an urgent bug, a changed requirement) cascades into delays across the system.</p>
+<p>Capacity is often operationalized as a WIP limit: the maximum number of tasks an agent should have in progress simultaneously. The dispatch stage checks capacity before creating an <a href="./assignment.md" class="link-internal">assignment</a> — if the agent&rsquo;s current WIP equals or exceeds the limit, no new work is assigned. The tracking stage monitors utilization: WIP / WIP limit. Sustained high utilization (&gt;80%) signals that the constraint needs attention.</p>
+<p>See <a href="../texts/dispatch-and-delegation-survey.md" class="link-internal">Dispatch and Delegation Survey</a> for how capacity constrains assignment.</p>
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-goldratt1984" typeof="CreativeWork" resource="#ref-goldratt1984">
+    <span class="bib-key">[goldratt1984]</span>
+      <span property="author">Eliyahu M. Goldratt, Jeff Cox</span>.
+      (<span property="datePublished">1984</span>).
+      <cite property="name">The Goal: A Process of Ongoing Improvement</cite>.
+      <em property="publisher">North River Press</em>.
+  </p><p class="bib-entry" id="ref-little1961" typeof="CreativeWork" resource="#ref-little1961">
+    <span class="bib-key">[little1961]</span>
+      <span property="author">John D. C. Little</span>.
+      (<span property="datePublished">1961</span>).
+      <cite property="name">A Proof for the Queuing Formula: L = λW</cite>.
+      <em property="publisher">Operations Research, 9(3)</em>.
+  </p><p class="bib-entry" id="ref-reinertsen2009" typeof="CreativeWork" resource="#ref-reinertsen2009">
+    <span class="bib-key">[reinertsen2009]</span>
+      <span property="author">Donald G. Reinertsen</span>.
+      (<span property="datePublished">2009</span>).
+      <cite property="name">The Principles of Product Development Flow</cite>.
+      <em property="publisher">Celeritas Publishing</em>.
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/capacity/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Constrains</dt>
+        <dd property="emsenn:Constrains"><ul><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/assignment/">assignment</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/dispatch/">dispatch</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-03">2026-04-03</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/capacity/">capacity</a></dd>
+      </div><div class="relation">
+        <dt>Instance of</dt>
+        <dd property="emsenn:Instanceof"><a href="/library/domains/humanities/domains/philosophy/terms/quality/">quality</a></dd>
+      </div><div class="relation">
+        <dt>Part of stage</dt>
+        <dd property="emsenn:Partofstage"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/dispatch/">dispatch</a></dd>
+      </div><div class="relation">
+        <dt>Quality of</dt>
+        <dd property="emsenn:Qualityof"><ul><li><a href="/library/domains/engineering/domains/tech/terms/agent/">agent</a></li><li><a href="/library/domains/engineering/domains/games/domains/role-playing-games/terms/system/">system</a></li></ul></dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/terms/counselor/">Counselor</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/effort/">Effort</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/assignment/">Assignment</a></li><li><a href="/library/domains/humanities/domains/philosophy/terms/quality/">Quality</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

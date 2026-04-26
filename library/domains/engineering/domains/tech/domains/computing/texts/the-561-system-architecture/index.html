@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 561 System Architecture - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-05",
+  "datePublished": "2026-04-05",
+  "description": "A comprehensive description of the 561 Group's multi-agent knowledge management and autonomous orchestration system — its layered architecture, mathematical grounding, computation model, and position in the 2026 agentic systems landscape.",
+  "name": "The 561 System Architecture",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/the-561-system-architecture/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">The 561 System Architecture</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
+    
+    <span class="p-summary">A comprehensive description of the 561 Group&#39;s multi-agent knowledge management and autonomous orchestration system — its layered architecture, mathematical grounding, computation model, and position in the 2026 agentic systems landscape.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-what-the-system-is">1. What the system is</a></li>
+    <li><a href="#2-the-layered-architecture">2. The layered architecture</a>
+      <ul>
+        <li><a href="#fars-the-file-layer">FARS: the file layer</a></li>
+        <li><a href="#mash-the-daemon-layer">MASH: the daemon layer</a></li>
+        <li><a href="#the-harness-the-agent-layer">The harness: the agent layer</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-the-three-computation-levels">3. The three computation levels</a>
+      <ul>
+        <li><a href="#llm-inference-opus-sonnet-haiku">LLM inference (Opus, Sonnet, Haiku)</a></li>
+        <li><a href="#deterministic-tools-nodejs-scripts">Deterministic tools (Node.js scripts)</a></li>
+        <li><a href="#the-middle-layer-planned">The middle layer (planned)</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-the-continuous-learning-loop">4. The continuous learning loop</a>
+      <ul>
+        <li><a href="#observe">Observe</a></li>
+        <li><a href="#instinct">Instinct</a></li>
+        <li><a href="#skill">Skill</a></li>
+        <li><a href="#tool">Tool</a></li>
+        <li><a href="#hook">Hook</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-the-office-and-duty-system">5. The office and duty system</a></li>
+    <li><a href="#6-how-it-differs-from-comparable-systems">6. How it differs from comparable systems</a>
+      <ul>
+        <li><a href="#everything-claude-code-ecc">Everything Claude Code (ECC)</a></li>
+        <li><a href="#openclaw">OpenClaw</a></li>
+        <li><a href="#cline">Cline</a></li>
+        <li><a href="#crewai">CrewAI</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-the-mathematical-grounding">7. The mathematical grounding</a>
+      <ul>
+        <li><a href="#the-generative-fibered-relational-trace-universe-gfrtu">The Generative Fibered Relational Trace Universe (GFRTU)</a></li>
+        <li><a href="#the-nuclear-quartet">The nuclear quartet</a></li>
+        <li><a href="#the-bilattice">The bilattice</a></li>
+        <li><a href="#how-the-math-shapes-the-system">How the math shapes the system</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-what-makes-the-system-distinct">8. What makes the system distinct</a>
+      <ul>
+        <li><a href="#the-settlement-path-as-design-principle">The settlement path as design principle</a></li>
+        <li><a href="#algebraic-learning-calculus">Algebraic learning calculus</a></li>
+        <li><a href="#the-organizational-frame">The organizational frame</a></li>
+      </ul>
+    </li>
+    <li><a href="#see-also">See also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="the-561-system-architecture">The 561 System Architecture</h1>
+<p>The 561 system is a multi-agent knowledge management and autonomous orchestration system built as a git repository. It combines a structured library of grounded knowledge, a multi-agent operational harness, a Rust daemon with EAVT graph stores, and a mathematical framework that unifies the system&rsquo;s ontology with its operational dynamics. The system is designed for the 561 Group, a confederacy working toward Black Liberation and Indigenous Sovereignty, and serves as that organization&rsquo;s computer system.</p>
+<p>This text describes the system as it exists in April 2026: what it is architecturally, what principles distinguish it from other agent systems, and how its mathematical grounding shapes its design.</p>
+<h2 id="1-what-the-system-is">1. What the system is</h2>
+<p>The 561 system is three things simultaneously:</p>
+<p><strong>A library.</strong> A domain-organized collection of term definitions and explanatory texts, grounded in real disciplines, cross-referenced by relation, and published as websites. The library contains over 11,000 entities across domains spanning philosophy, mathematics, sociology, botany, computing, and more. Each term defines one concept; each text makes one claim. Content is written for a reader with no background but no tolerance for filler.</p>
+<p><strong>An operations center.</strong> A work management infrastructure that plans, dispatches, executes, tracks, reviews, and learns from work. The system maintains plans with ordered tasks, dispatches typed agents to perform them, tracks completion through sentinel files and event logs, reviews outcomes through automated pipelines, and feeds learnings back into future work.</p>
+<p><strong>A self-modifying agent harness.</strong> A configuration layer that shapes how AI agents interact with the repository. The harness defines 26 specialized agent offices, 60+ skills encoding domain knowledge, 25+ hooks enforcing invariants at the tool level, and 40+ commands composing views from structured data. The harness is itself generated from engineering source and installed by a script — never edited directly.</p>
+<p>These three aspects are not independent modules. The library provides the ontology that the operations center uses to classify work. The operations center produces the events that the harness observes. The harness generates the instincts that become skills that become tools — closing the loop.</p>
+<h2 id="2-the-layered-architecture">2. The layered architecture</h2>
+<p>The system has three architectural layers, each with a distinct purpose and implementation.</p>
+<h3 id="fars-the-file-layer">FARS: the file layer</h3>
+<p>FARS — the Fibered Algebraic Relational System — is the static structure. It is the repository itself: markdown files with YAML frontmatter, organized into domains, each file defining one concept or making one claim. The frontmatter keys are relations — <code>defines</code>, <code>requires</code>, <code>part-of</code>, <code>instance-of</code>, <code>traverses</code> — forming a typed knowledge graph when extracted.</p>
+<p>FARS defines what CAN be: the space of possible states, the valid transitions, the normative positions. It is a library in the classical sense — a structured collection of recorded knowledge — but with one critical addition: every file&rsquo;s frontmatter participates in a computable graph, making the library queryable by machines.</p>
+<p>The mathematical foundation is the bilattice-valued hyperdoctrine described in <a href="../../science/domains/information/texts/the-adjoint-structure-of-predication-on-bilattice-valued-fibers.md" class="link-internal">The Adjoint Structure of Predication on Bilattice-Valued Fibers</a>. Every subject-predicate-object triple in the knowledge graph carries a value in the four-element Belnap bilattice: unknown (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">\bot</annotation></semantics></math></span>), true (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span>), false (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span>), or contradictory (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊤</mi></mrow><annotation encoding="application/x-tex">\top</annotation></semantics></math></span>). The bilattice&rsquo;s two orderings — truth and knowledge — provide independent axes for reasoning about what is established and what is known.</p>
+<p>An installer script (<code>install.js</code>) scans the library and operations directories, extracts frontmatter into EAVT (entity-attribute-value-time) triples, and produces <code>knowledge-graph.json</code> — the computable form of the library. This graph currently holds approximately 11,600 entities with 135,000 facts across 700 attribute types.</p>
+<h3 id="mash-the-daemon-layer">MASH: the daemon layer</h3>
+<p>MASH — the Multi-Agentic Semiotic Hub — is the dynamic layer. It is a Rust binary (<code>mash-engine</code>) that provides persistent state, session management, event ingestion, and a continuous operational loop.</p>
+<p>MASH realizes what IS: which specific states the system actually occupies, in what sequence, along what path through the possibility space defined by FARS. The relationship between FARS and MASH is not a metaphor but a mathematical one: FARS defines the modal geometry (possibility space), and MASH provides the temporal dynamics (actual trajectory through that space).</p>
+<p>The daemon runs two rhythms:</p>
+<ul>
+<li><strong>Heartbeat</strong> (every 10 seconds): checks running agent sessions for completion or failure via sentinel files. Records metrics, writes double-entry accounting transactions, fires events.</li>
+<li><strong>World tick</strong> (every ~5 minutes): ingests JSONL events into the operations graph, detects stale tasks, checks for completed plans, monitors session health. This is the system&rsquo;s ambient intelligence — it notices things without being asked.</li>
+</ul>
+<p>MASH maintains two EAVT graphs:</p>
+<ul>
+<li><strong>Knowledge graph</strong> (<code>knowledge-graph.json</code>): the library content, read-only at runtime, rebuilt by the installer. ~11,600 entities.</li>
+<li><strong>Operations graph</strong> (<code>operations-graph.json</code>): sessions, events, transactions, system state. Read-write. Accumulated by the daemon and MCP server.</li>
+</ul>
+<p>An MCP (Model Context Protocol) server exposes both graphs to agents through 15 typed tools: <code>graph_search</code>, <code>graph_entity</code>, <code>graph_query_attr</code>, <code>sessions_list</code>, <code>ledger_summary</code>, <code>channel</code>, <code>record_event</code>, and others. The MCP server is the primary interface between agents and structured data — agents query the graph rather than parsing files.</p>
+<h3 id="the-harness-the-agent-layer">The harness: the agent layer</h3>
+<p>The harness is the configuration that shapes agent behavior. It is installed from source files in <code>operations/engineering/fars/agentic/</code> into <code>.claude/</code> (for Claude Code) or <code>.codex/</code> (for Codex CLI). The harness consists of:</p>
+<p><strong>Agents</strong> (26 offices): typed specialists with defined action domains, tool allowlists, model tier assignments, and reporting chains. A planner decomposes work. A writer produces content. A build-error-resolver fixes compilation failures. An observer watches for patterns. Each agent has a formal site (what domain it operates in), recognition fibers (what it accepts as input), production fibers (what it outputs), and invariants (what it must not do).</p>
+<p><strong>Skills</strong> (60+): domain knowledge encoded as structured prompts. Skills load on trigger — a writing skill activates when creating content, a research skill activates when surveying a domain. Skills are progressive: they encode what was learned from past work so future work requires less inference.</p>
+<p><strong>Hooks</strong> (25+): shell scripts that fire on tool-call events. PreToolUse hooks enforce invariants (block secrets from being committed, validate frontmatter, protect configuration files). PostToolUse hooks observe (log tool calls, update the knowledge graph, record events, detect loops). Stop hooks run cleanup (evaluate sessions, analyze failures, track costs). Hooks exit 0 to allow, exit 2 to block. They never exit 1.</p>
+<p><strong>Commands</strong> (40+): named operations that compose views from structured data. <code>/bridge</code> shows the operational state. <code>/plan-status</code> rolls up plan progress. <code>/dispatch-work</code> matches ready tasks to available agents. Commands call deterministic scripts, not inference.</p>
+<p><strong>Rules</strong> (6): invariants that load every session. Content conventions, JavaScript conventions, library-vs-operations separation, harness installation policy, command policies, and the read-before-acting rule.</p>
+<h2 id="3-the-three-computation-levels">3. The three computation levels</h2>
+<p>The system uses three levels of computation, allocated by the judgment required:</p>
+<h3 id="llm-inference-opus-sonnet-haiku">LLM inference (Opus, Sonnet, Haiku)</h3>
+<p>Language model inference handles work that requires understanding: novel task decomposition, reading comprehension, synthesis across sources, judgment under ambiguity. The system allocates model tiers by formality: Opus for the fuzziest work (architecture, planning, research, writing), Sonnet for structured work with judgment components (code review, dispatch, library management), Haiku for routine procedural work (bookkeeping, documentation updates, pattern observation).</p>
+<p>This tiering is not arbitrary. The <a href="../../../../../operations/command/endeavor/records/analyses/offices-as-fuzzy-cells.md" class="link-internal">offices-as-fuzzy-cells analysis</a> maps all 26 offices onto a formality scale from F0 (implicit) to F3 (algebraic) and shows that model capability correlates with the fuzziness of the office&rsquo;s recognition and production fibers.</p>
+<h3 id="deterministic-tools-nodejs-scripts">Deterministic tools (Node.js scripts)</h3>
+<p>Sixteen deterministic scripts replace agent inference for structured work:</p>
+<ul>
+<li><code>task-router.js</code>: decision-tree routing of tasks to offices</li>
+<li><code>library-search.js</code>: three-step search (graph, filename, content grep)</li>
+<li><code>query-library-graph.js</code>: Datalog-style graph queries</li>
+<li><code>harness-audit.js</code>: unused component detection</li>
+<li><code>record-hygiene.js</code>: stale record identification</li>
+<li><code>ledger-tool.js</code>: double-entry transaction recording and trial balance</li>
+<li><code>pattern-detector.js</code>: tool-call pattern detection and instinct creation</li>
+<li><code>auto-dispatch.js</code>: config-gated autonomous task dispatch</li>
+<li><code>propagate-dependencies.js</code>: automatic dependency status propagation</li>
+</ul>
+<p>These scripts produce the same output an agent would, at zero inference cost. They read from the EAVT graph and return structured results. The preference hierarchy is explicit: use MCP tools first, then deterministic scripts, then agent inference only when the work requires reasoning.</p>
+<h3 id="the-middle-layer-planned">The middle layer (planned)</h3>
+<p>Between LLM inference and deterministic tools lies a middle layer that the system is actively developing: fine-tuned small models and lightweight classifiers. Tool-call sequences show strong Markov structure (Grep-then-Read occurs 53% of the time; the Read-Edit-Bash edit cycle appears 15 times in 722 tool calls). A bigram model over tool sequences would predict the next tool correctly 40-55% of the time. Task-to-office routing — currently done by LLM — could be handled by a decision tree over frontmatter features (type, domain, work-type). The system&rsquo;s own tool-call logs provide the training data.</p>
+<p>This middle layer represents the <a href="../../../humanities/domains/sociology/domains/work/terms/settlement-path.md" class="link-internal">settlement path</a> applied to computation itself: what begins as LLM inference (inquiry) gets encoded as a skill (procedure), then distilled into a script (process).</p>
+<h2 id="4-the-continuous-learning-loop">4. The continuous learning loop</h2>
+<p>The system learns from its own operation through a five-stage pipeline:</p>
+<h3 id="observe">Observe</h3>
+<p>Every tool call fires the observer hook, which writes to <code>observations.jsonl</code>. PostToolUse events record what tool was called, what parameters were used, and what the outcome was. The observer runs on Haiku (cheapest tier) in the background (async hook, no blocking).</p>
+<h3 id="instinct">Instinct</h3>
+<p>The <code>pattern-detector.js</code> script and observer agent scan observations for recurring patterns. When a pattern appears 3 or more times, it becomes an instinct — a YAML file with a trigger condition, a recommended action, a confidence score, and a domain scope. Instincts are conservative: narrow triggers, no code snippets, and they update existing instincts before creating new ones. Confidence decays over time via <code>instinct-decay.js</code>.</p>
+<h3 id="skill">Skill</h3>
+<p>When instincts cross a confidence threshold (0.8) and prove reliable across multiple contexts, the <code>/evolve</code> command promotes them into skills. A skill is a structured prompt with trigger conditions, procedures, and reference material. Skills load on demand — only the metadata (name + description, ~100 tokens) is always present; the full body loads when triggered.</p>
+<h3 id="tool">Tool</h3>
+<p>Skills that encode fully deterministic procedures become scripts. The <code>doc-updater</code> agent&rsquo;s entire workflow — scan filesystem, diff against indexes, update — could be a script. The <code>harness-cleaner</code>&rsquo;s reference counting is already a script (<code>harness-audit.js</code>). The transition from skill to tool is the point where the work no longer requires language model inference at all.</p>
+<h3 id="hook">Hook</h3>
+<p>The most proven patterns become hooks — code that fires automatically on every relevant tool call without any agent deciding to invoke it. Frontmatter validation, secret detection, configuration protection, and loop detection all started as things agents remembered to do and are now invariants enforced by exit codes. A hook that exits 2 blocks the action. No inference required, no judgment involved, no way to forget.</p>
+<p>This pipeline is the <a href="../../../humanities/domains/sociology/domains/work/terms/settlement-path.md" class="link-internal">settlement path</a> applied to agent behavior: open inquiry (observation) settles into derivation (instinct), then procedure (skill), then process (tool/hook). Each step reduces the inference required. The end state is a system where routine work is deterministic and LLMs are reserved for genuine reasoning.</p>
+<p>The failure path has its own pipeline: failed sessions produce <code>.failure</code> sentinel files, which trigger <code>failure-analyzer.js</code> to dispatch Haiku agents for diagnosis, which feed into <code>diagnosis-to-instinct.js</code> to create instincts from recurring failure modes. The success path has a parallel pipeline under development: completed sessions produce <code>.review</code> files, triaged by the daemon, processed by <code>review-session.js</code>, feeding quality signals back into the learning loop.</p>
+<h2 id="5-the-office-and-duty-system">5. The office and duty system</h2>
+<p>The system organizes agents into 26 offices across three departments: Command (6 offices), Engineering (14 offices), and Science (7 offices, with publisher shared). Each office is defined by:</p>
+<ul>
+<li><strong>Site</strong>: the action domain — what space the office operates in</li>
+<li><strong>Recognition fibers</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span>): what the office accepts as valid input</li>
+<li><strong>Production fibers</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span>): what the office produces as output</li>
+<li><strong>Constructors</strong>: the tools the office is allowed to use (formal allowlists)</li>
+<li><strong>Laws/invariants</strong>: what the office must not do, what it must escalate</li>
+</ul>
+<p>This structure is not arbitrary naming. The <a href="../../../../../operations/command/endeavor/records/analyses/offices-as-fuzzy-cells.md" class="link-internal">offices-as-fuzzy-cells analysis</a> maps each office onto the mathematical concept of a cell from sheaf theory, with formality assessments on each component. Constructors (tool allowlists) are universally at F3 (algebraic) — the one thing the harness already specifies formally. Sites are universally at F1-F2 (prose) — action domains are described in natural language. Recognition and production fibers sit in between.</p>
+<p>The formality assessment reveals a spectrum. Seven offices are near-fully formalizable: bookkeeper (double-entry accounting is algebraic), docs-lookup (search is a query pipeline), graph-analyst (Datalog queries), harness-cleaner (reference counting), doc-updater (filesystem diff), observer (event stream pattern detection), and quartermaster (threshold queries). Five offices are irreducibly fuzzy: architect (design judgment), researcher (reading comprehension), triage-processor (editorial judgment), chief-of-staff (cross-domain synthesis), and planner (novel decomposition).</p>
+<p>The dispatch system matches tasks to offices using structured frontmatter features (type, domain, work-type), selects a model tier proportional to the office&rsquo;s fuzziness, and spawns the agent as an external session via <code>mash-engine start</code>. The session runs in isolation, writes sentinel files on completion, and the daemon picks up the results on its next heartbeat.</p>
+<p>Offices report through a chain of command. Most report to the first officer (the primary agent). Some report to intermediate offices: bookkeeper and quartermaster report to the operations officer; harness-cleaner reports to the harness-optimizer; rust-build-resolver reports to the build-error-resolver. The subsumption relation captures genuine algebraic structure: a subsumed office&rsquo;s recognition and production fibers are subsets of the subsuming office&rsquo;s.</p>
+<h2 id="6-how-it-differs-from-comparable-systems">6. How it differs from comparable systems</h2>
+<h3 id="everything-claude-code-ecc">Everything Claude Code (ECC)</h3>
+<p>ECC is the reference implementation for Claude Code harness structure: 163 skills, 58 commands, 30 agents, with a manifest-driven installation system. The 561 system takes ECC&rsquo;s architecture as a starting point and extends it in three directions. First, grounding: where ECC&rsquo;s skills are procedural prompts, the 561 system&rsquo;s skills are grounded in the repository&rsquo;s own mathematical theory and operational data. Second, continuous learning: ECC has no observation pipeline or instinct system — skills are authored, not evolved. Third, the EAVT datastore: ECC&rsquo;s agents work on files; the 561 system&rsquo;s agents work on a graph that represents those files as typed entities with queryable relations. ECC is a harness. The 561 system is a harness on top of a knowledge management system on top of a mathematical framework.</p>
+<h3 id="openclaw">OpenClaw</h3>
+<p>OpenClaw introduces several patterns the 561 system has adopted or plans to adopt: the <code>SOUL.md</code> identity document, a dreaming system for autonomous memory consolidation, DM Policy input gating, session-memory hooks with LLM-generated descriptive slugs, and a three-layer skill loading architecture (metadata → body → references). Where OpenClaw and the 561 system diverge is in knowledge representation. OpenClaw&rsquo;s memory is flat — key-value pairs with recall counts and recency scores. The 561 system&rsquo;s memory is a typed graph: entities have attribute types, relations have directionality, and queries use Datalog-style patterns rather than keyword matching. OpenClaw optimizes for an individual agent&rsquo;s memory; the 561 system optimizes for organizational knowledge.</p>
+<h3 id="cline">Cline</h3>
+<p>Cline (VS Code extension, 15M+ installs) demonstrates production-grade safety patterns: loop detection with soft and hard thresholds, signature-based tool-call deduplication, structured compaction with a 9-section template and auto-file-loading, and a <code>new_task</code> tool for structured context handoff between sessions. The 561 system has adopted Cline&rsquo;s loop detection pattern (implemented in <code>loop-detection.js</code>) and is implementing structured compaction. Where Cline differs is scope: Cline is a coding assistant that operates within a single IDE session. It has no organizational structure, no dispatch system, no daemon, no knowledge graph, and no multi-agent coordination. The 561 system solves problems Cline does not attempt.</p>
+<h3 id="crewai">CrewAI</h3>
+<p>CrewAI is a multi-agent orchestration framework with role-based agent definitions, task delegation, backstory/persona fields, and structured workflows. The 561 system shares CrewAI&rsquo;s typed-agent-with-defined-roles pattern but differs in how roles are specified. CrewAI defines roles through natural language descriptions: a &ldquo;researcher&rdquo; has a backstory and a goal statement. The 561 system defines roles through formal fibers: a researcher has recognition fibers (what it accepts), production fibers (what it outputs), tool allowlists, and invariant constraints. The difference matters for progressive automation: natural language role descriptions cannot be sharpened toward deterministic execution; fiber-based definitions can be, and the formality assessment provides a roadmap for doing so.</p>
+<p>CrewAI also lacks a persistent knowledge layer. Its agents have short-term memory within a workflow and optional long-term memory via external stores, but no integrated library of grounded knowledge that agents can query and extend. The 561 system&rsquo;s EAVT datastore is both the agents&rsquo; working memory and the organization&rsquo;s institutional knowledge.</p>
+<h2 id="7-the-mathematical-grounding">7. The mathematical grounding</h2>
+<p>Most agent systems are engineering artifacts with no mathematical theory beyond the transformer architecture of their language models. The 561 system is different: it has its own mathematical framework, developed within the repository, that shapes the system&rsquo;s architecture.</p>
+<h3 id="the-generative-fibered-relational-trace-universe-gfrtu">The Generative Fibered Relational Trace Universe (GFRTU)</h3>
+<p>The GFRTU is the mathematical model. It consists of a history monoid <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>T</mi><mo separator="true">,</mo><mo>⋆</mo><mo separator="true">,</mo><mi mathvariant="normal">⊥</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(T, \star, \bot)</annotation></semantics></math></span> — equivalence classes of sequences of independent steps — over which fibers of propositions are indexed. Each fiber <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">H_t</annotation></semantics></math></span> at history <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span> is a Heyting algebra carrying two nuclei (closure operators that preserve finite meets): the saturation nucleus <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_t</annotation></semantics></math></span> and the transfer nucleus <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\Delta_t</annotation></semantics></math></span>.</p>
+<ul>
+<li><strong>Saturation</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_t</annotation></semantics></math></span>): backward closure. It completes what the accumulated history forces. If the history implies something, saturation makes it explicit.</li>
+<li><strong>Transfer</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\Delta_t</annotation></semantics></math></span>): forward closure. It preserves what all one-step extensions agree on. If every possible next step would establish something, transfer pre-establishes it.</li>
+</ul>
+<h3 id="the-nuclear-quartet">The nuclear quartet</h3>
+<p>When the two nuclei commute (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>t</mi></msub><mo>∘</mo><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo>=</mo><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo>∘</mo><msub><mi>σ</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_t \circ \Delta_t = \Delta_t \circ \sigma_t</annotation></semantics></math></span>), their composite <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mi>t</mi></msub><mo>=</mo><msub><mi>σ</mi><mi>t</mi></msub><mo>∘</mo><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\pi_t = \sigma_t \circ \Delta_t</annotation></semantics></math></span> is itself a nucleus, and four canonical sub-algebras emerge:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Sub-algebra</th>
+          <th>Name</th>
+          <th>Contains</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">H_t</annotation></semantics></math></span></td>
+          <td>Free carrier</td>
+          <td>All propositions — neither nucleus has acted</td>
+      </tr>
+      <tr>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Fix</mtext><mo stretchy="false">(</mo><msub><mi>σ</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{Fix}(\sigma_t)</annotation></semantics></math></span></td>
+          <td>Saturation-stable</td>
+          <td>Propositions whose truth is determined by history</td>
+      </tr>
+      <tr>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Fix</mtext><mo stretchy="false">(</mo><msub><mi mathvariant="normal">Δ</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{Fix}(\Delta_t)</annotation></semantics></math></span></td>
+          <td>Transfer-stable</td>
+          <td>Propositions witnessed by every extension</td>
+      </tr>
+      <tr>
+          <td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>H</mi><mi>t</mi><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">H_t^*</annotation></semantics></math></span></td>
+          <td>Fixed fiber</td>
+          <td>Propositions fixed by both — fully settled</td>
+      </tr>
+  </tbody>
+</table>
+<p>This is the <a href="../../../science/domains/math/domains/algebra/terms/nuclear-quartet.md" class="link-internal">nuclear quartet</a>. It classifies every proposition by its settlement status: unsettled, meaning-settled, execution-settled, or fully settled. The quartet is exhaustive — there is no fifth option.</p>
+<h3 id="the-bilattice">The bilattice</h3>
+<p>The system&rsquo;s knowledge representation uses Belnap&rsquo;s four-valued bilattice: unknown (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">\bot</annotation></semantics></math></span>), true (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span>), false (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span>), contradictory (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊤</mi></mrow><annotation encoding="application/x-tex">\top</annotation></semantics></math></span>). This is not Boolean logic. It handles incomplete information (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">\bot</annotation></semantics></math></span>: we have no data) and contradictory information (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊤</mi></mrow><annotation encoding="application/x-tex">\top</annotation></semantics></math></span>: two sources disagree) as first-class values rather than errors. The bilattice carries two orderings — truth and knowledge — providing independent axes for what is established and how much is known.</p>
+<p>On this bilattice, two operations form a residuated pair: extending (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo></mrow><annotation encoding="application/x-tex">\odot</annotation></semantics></math></span>, combining evidence) and restricting (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span>, testing implication). These operations are adjoint: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⊙</mo><mi>p</mi><msub><mo>≤</mo><mi>t</mi></msub><mi>q</mi></mrow><annotation encoding="application/x-tex">a \odot p \leq_t q</annotation></semantics></math></span> if and only if <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><msub><mo>≤</mo><mi>t</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mo>⇒</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p \leq_t (a \Rightarrow q)</annotation></semantics></math></span>. This adjunction — the same one Lambek identified in grammar and Lawvere identified in categorical logic — is the system&rsquo;s primitive operation on knowledge. It lifts to fibers over any system of subject-predicate-object triples, producing a bilattice-valued hyperdoctrine.</p>
+<h3 id="how-the-math-shapes-the-system">How the math shapes the system</h3>
+<p>The mathematical framework is not decorative. It determines concrete design decisions:</p>
+<ul>
+<li><strong>The EAVT datastore</strong> is the fiber: entity-attribute-value triples with time indexing, implementing the presheaf of propositions over histories.</li>
+<li><strong>The daemon&rsquo;s world tick</strong> applies the composite nucleus <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\pi_t</annotation></semantics></math></span>: saturating the accumulated history (ingesting events, recording state) then transferring forward (detecting stale tasks, checking plan completion).</li>
+<li><strong>The settlement path</strong> is the trajectory through the nuclear quartet: a piece of work moves from inquiry (neither nucleus has acted) through derivation and procedure to process (fully settled, both nuclei are identity).</li>
+<li><strong>The formality scale</strong> (F0–F3) measures how close an office&rsquo;s specification is to being algebraically checkable — how far along its own settlement path.</li>
+<li><strong>Progressive automation</strong> is the policy of moving work along the settlement path: every task completion should encode itself so a less capable agent (or a script) can do it next time. This is the operational meaning of closure: applying the training operator until the work reaches its fixed point.</li>
+</ul>
+<h2 id="8-what-makes-the-system-distinct">8. What makes the system distinct</h2>
+<p>Three properties distinguish the 561 system from other agent systems in 2026:</p>
+<h3 id="the-settlement-path-as-design-principle">The settlement path as design principle</h3>
+<p>Other systems optimize for agent capability: make the agent smarter, give it more tools, expand its context window. The 561 system optimizes for agent <em>unnecessity</em>: make each task completable by a less capable agent, then by a script, then by a hook. The ideal endpoint for routine work is not a better agent but no agent at all — a deterministic process that runs without inference.</p>
+<p>This is not anti-AI. It is the recognition that inference is expensive, slow, and non-deterministic, and that using it for work a <code>switch</code> statement could handle is waste. The settlement path — inquiry to derivation to procedure to process — provides a formal framework for deciding which work needs inference and which does not. The continuous learning pipeline (observe → instinct → skill → tool → hook) is the mechanism for moving work along that path.</p>
+<h3 id="algebraic-learning-calculus">Algebraic learning calculus</h3>
+<p>The system does not just learn from experience — it has a mathematical theory of what learning is. <a href="../../../humanities/domains/education/texts/training-as-closure.md" class="link-internal">Training is closure</a>: the agent begins with generators (initial capabilities), a closure operator (the training process) acts on them, and competency is the fixed point where further training produces no change. This applies identically to human apprenticeship (Lave and Wenger 1991), neural network training (loss convergence), and the system&rsquo;s own instinct evolution (observation → confidence threshold → promotion).</p>
+<p>The nuclear quartet provides the fine structure: a piece of learning can be meaning-settled (we know what it is but not how to execute it), execution-settled (we have a procedure but its scope is uncertain), or fully settled (fixed point of both nuclei). The formality assessment of offices — rating each component on the F0-F3 scale — is a concrete measurement of where in the quartet each office&rsquo;s specification sits.</p>
+<p>This is not the kind of &ldquo;learning&rdquo; most agent systems claim, where a memory bank accumulates key-value pairs. It is learning with a convergence criterion: you know when you are done because the closure operator has become identity.</p>
+<h3 id="the-organizational-frame">The organizational frame</h3>
+<p>The 561 system is not an agent or a collection of agents. It is an organization with departments, offices, chains of command, policies, and accounting. Agents are officers who hold offices. Work flows through a six-stage loop: planning, dispatch, execution, tracking, review, feedback. Sessions produce double-entry transactions. Failures accrue as attention debt on a liability account. The system has a trial balance.</p>
+<p>This organizational frame is not a metaphor layered on top of an agent framework. It is the primary design: the system is an organization that happens to use AI agents as officers, not an AI system that happens to use organizational terminology. The distinction matters because organizational infrastructure — governance, accounting, dispatch, review — has centuries of refined practice behind it. The 561 system draws on that practice rather than reinventing it from first principles of agent design.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="./non-llm-computation-for-agent-duties.md" class="link-internal">Non-LLM Computation for Agent Duties</a> — the computation model in detail</li>
+<li><a href="./agentic-harness-landscape-2026.md" class="link-internal">Agentic Harness Landscape, April 2026</a> — the competitive context</li>
+<li><a href="../../science/domains/information/texts/the-adjoint-structure-of-predication-on-bilattice-valued-fibers.md" class="link-internal">The Adjoint Structure of Predication on Bilattice-Valued Fibers</a> — the mathematical foundation</li>
+<li><a href="../../../humanities/domains/sociology/domains/work/terms/settlement-path.md" class="link-internal">Settlement path</a> — the core design principle</li>
+<li><a href="../../../science/domains/math/domains/algebra/terms/nuclear-quartet.md" class="link-internal">Nuclear quartet</a> — the algebraic structure behind stability classification</li>
+<li><a href="../../../humanities/domains/education/texts/training-as-closure.md" class="link-internal">Training as Closure</a> — the learning theory</li>
+<li><a href="../../../../operations/engineering/fars/docs/mash-architecture.md" class="link-internal">MASH Architecture</a> — the daemon implementation spec</li>
+<li><a href="../../../../operations/command/endeavor/records/analyses/offices-as-fuzzy-cells.md" class="link-internal">Offices as Fuzzy Cells</a> — the formality assessment of all 26 offices</li>
+<li><a href="../../../../operations/command/endeavor/records/analyses/cross-system-adoption-priorities.md" class="link-internal">Cross-System Adoption Priorities</a> — what the system is adopting from other systems</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/the-561-system-architecture/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">computing</dd>
+      </div><div class="relation">
+        <dt>Related terms</dt>
+        <dd property="emsenn:Relatedterms"><ul><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/settlement-path/">settlement path</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/progressive-automation/">progressive automation</a></li><li>nuclear quartet</li><li><a href="/library/domains/science/domains/math/domains/order/terms/closure-operator/">closure operator</a></li><li><a href="/library/domains/science/domains/math/domains/algebra/terms/nucleus/">nucleus</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/formality-level/">formality level</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Related texts</dt>
+        <dd property="emsenn:Relatedtexts"><ul><li>non llm computation for agent duties</li><li>agentic harness landscape 2026</li><li>model training as algebraic closure</li><li>the adjoint structure of predication on bilattice valued fibers</li><li>continuous learning in agentic harnesses</li></ul></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul><li>Belnap, N. D. (1977). A Useful Four Valued Logic. Modern Uses of Multiple Valued Logic, Reidel, 5–37.</li><li>Busaniche, M. &amp; Cignoli, R. (2014). The Subvariety of Commutative Residuated Lattices Represented by Twist Products. Algebra Universalis, 71, 5–22.</li><li>Dewey, J. (1938). Logic: The Theory of Inquiry. Henry Holt.</li><li>Fitting, M. (1991). Bilattices and the Semantics of Logic Programming. J. Logic Programming, 11(2), 91–116.</li><li>Lave, J. &amp; Wenger, E. (1991). Situated Learning: Legitimate Peripheral Participation. Cambridge University Press.</li><li>Lawvere, F. W. (1969). Adjointness in Foundations. Dialectica, 23(3–4), 281–296.</li><li>Maruyama, Y. (2021). Fibred Algebraic Semantics for a Variety of Non Classical First Order Logics. J. Symbolic Logic, 86(3), 1189–1213.</li><li>Ong et al. (2024). RouteLLM: Learning to Route LLMs with Preference Data. ICLR. arXiv:2406.18665.</li><li>Shinn, N. et al. (2023). Reflexion: Language Agents with Verbal Reinforcement Learning. NeurIPS.</li></ul></dd>
+      </div><div class="relation">
+        <dt>Text type</dt>
+        <dd property="emsenn:Texttype">survey</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

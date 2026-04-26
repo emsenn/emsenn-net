@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MUD Framework and Autonomous Worlds: On-Chain ECS Architecture - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-05",
+  "datePublished": "2026-04-05",
+  "description": "Analysis of the MUD framework's on-chain ECS architecture and its structural parallels to EAVT-based knowledge systems. How blockchain autonomous worlds and persistent knowledge graphs share the same architectural principles.",
+  "name": "MUD Framework and Autonomous Worlds: On-Chain ECS Architecture",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/mud-framework-autonomous-worlds-analysis/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">MUD Framework and Autonomous Worlds: On-Chain ECS Architecture</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
+    
+    <span class="p-summary">Analysis of the MUD framework&#39;s on-chain ECS architecture and its structural parallels to EAVT-based knowledge systems. How blockchain autonomous worlds and persistent knowledge graphs share the same architectural principles.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#part-one-what-mud-is">Part One: What MUD Is</a></li>
+    <li><a href="#part-two-the-autonomous-world-thesis">Part Two: The Autonomous World Thesis</a></li>
+    <li><a href="#part-three-entity-component-system-ecs-architecture">Part Three: Entity Component System (ECS) Architecture</a></li>
+    <li><a href="#part-four-the-store--on-chain-typed-data">Part Four: The Store — On-Chain Typed Data</a></li>
+    <li><a href="#part-five-the-world-contract--kernel-and-namespace">Part Five: The World Contract — Kernel and Namespace</a></li>
+    <li><a href="#part-six-systems--stateless-logic-operations">Part Six: Systems — Stateless Logic Operations</a></li>
+    <li><a href="#part-seven-modules--composable-extensions">Part Seven: Modules — Composable Extensions</a></li>
+    <li><a href="#part-eight-state-synchronization--on-chain-to-client">Part Eight: State Synchronization — On-Chain to Client</a></li>
+    <li><a href="#part-nine-architectural-parallels-to-eavt-knowledge-systems">Part Nine: Architectural Parallels to EAVT Knowledge Systems</a>
+      <ul>
+        <li><a href="#the-mapping">The Mapping</a></li>
+        <li><a href="#state-both-separate-state-from-logic">State: Both Separate State from Logic</a></li>
+        <li><a href="#composability-multiple-authors-without-centralized-code-control">Composability: Multiple Authors Without Centralized Code Control</a></li>
+        <li><a href="#upgradeability-logic-changes-without-state-migration">Upgradeability: Logic Changes Without State Migration</a></li>
+        <li><a href="#namespacing-logical-separation-with-control-boundaries">Namespacing: Logical Separation with Control Boundaries</a></li>
+        <li><a href="#type-safety-schema-enforcement-at-storage-boundary">Type Safety: Schema Enforcement at Storage Boundary</a></li>
+      </ul>
+    </li>
+    <li><a href="#part-ten-what-each-system-can-learn-from-the-other">Part Ten: What Each System Can Learn From the Other</a>
+      <ul>
+        <li><a href="#mud-could-learn-from-eavt-systems">MUD Could Learn From EAVT Systems</a></li>
+        <li><a href="#eavt-systems-could-learn-from-mud">EAVT Systems Could Learn From MUD</a></li>
+      </ul>
+    </li>
+    <li><a href="#part-eleven-implications-for-future-development">Part Eleven: Implications for Future Development</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="mud-framework-and-autonomous-worlds">MUD Framework and Autonomous Worlds</h1>
+<h2 id="part-one-what-mud-is">Part One: What MUD Is</h2>
+<p>MUD is a framework for building autonomous worlds — fully on-chain applications on Ethereum and EVM chains where game state, logic, and data all persist on the blockchain itself. Built and maintained by Lattice, MUD provides tools, patterns, and infrastructure that make decentralized, composable game worlds practical to build.</p>
+<p>Unlike traditional game architectures where a centralized server holds state and enforces rules, MUD worlds are governed by smart contracts. Every transaction modifies on-chain state. Every player interaction is a blockchain transaction. The world persists without any central authority — it is <strong>autonomous</strong> in the strictest sense.</p>
+<p>First released in 2022, MUD has powered production systems at scale. OPCraft, Lattice&rsquo;s on-chain voxel world built in collaboration with Optimism, demonstrated the viability: built in 1.5 months, the world received 3.5 million transactions in its first two weeks from players who didn&rsquo;t just consume the world but expanded it, creating emergent social structures and extending the game&rsquo;s logic with new components and systems.</p>
+<p>The problem MUD solves is not how to make a game — it is how to make a <strong>persistent, upgradeable, composable system</strong> where multiple authors can contribute logic without coordinating through a single codebase, where the state is cryptographically secured by a blockchain, and where the game world is a proper economic system with real ownership and exchange.</p>
+<h2 id="part-two-the-autonomous-world-thesis">Part Two: The Autonomous World Thesis</h2>
+<p>An <strong>autonomous world</strong> is not merely a world that happens to run on blockchain. It is fundamentally different from client-server games in three ways:</p>
+<ol>
+<li>
+<p><strong>Persistence beyond participation.</strong> In traditional games, the world stops when the server shuts down. In an autonomous world, the world persists on the blockchain. It continues to exist, continues to be queryable, continues to accept transactions even if no players are logged in and even if the game studio goes out of business. A player can stop playing for years and return to find their property, their guilds, their reputation exactly as they left it.</p>
+</li>
+<li>
+<p><strong>Composability.</strong> Because all state is on-chain, any smart contract can interact with any other. A new developer can deploy a contract that reads game state and implements new logic on top without needing permission from the game creators. In OPCraft, players created the Autonomous People&rsquo;s Republic by deploying new MUD components and systems, creating a social structure that no game designer had programmed. The platform enabled social institutions that didn&rsquo;t exist in the code — they emerged purely through players&rsquo; ability to extend the world&rsquo;s logic.</p>
+</li>
+<li>
+<p><strong>Independence from creators.</strong> A traditional game is owned and controlled by the studio that runs it. An autonomous world is governed by the logic encoded in smart contracts and the community that participates in it. Once deployed, a world can be modified only by whoever holds the authority to call upgrade functions or modify state — and that authority is explicitly programmed. Many MUD worlds give up authority entirely, burning ownership by transferring it to address(0), making the world permanently immutable.</p>
+</li>
+</ol>
+<p>This is not a theoretical distinction. The implications are profound. Games become economic systems with real scarcity, real ownership, and real transferability. Worlds become platforms that players build on, not consume. The relationship between game and player inverts: the player is not a user of a service, but a participant in a persistent, shared computational system.</p>
+<h2 id="part-three-entity-component-system-ecs-architecture">Part Three: Entity Component System (ECS) Architecture</h2>
+<p>MUD&rsquo;s core architecture is ECS — a pattern known from game development but here applied on-chain. ECS separates <strong>state</strong> from <strong>logic</strong> completely.</p>
+<p><strong>Entities</strong> are unique identifiers. In MUD, an entity is simply a <code>uint256</code>. There is nothing special about the number itself — it does not encode type or properties. The number is just the key by which an entity is addressed.</p>
+<p><strong>Components</strong> are typed data structures. Each component holds a specific kind of data — a position, a health value, an inventory, ownership information. Components are stored in the <strong>Store</strong> — a global key-value store where the key is <code>(entity_id, component_id)</code> and the value is the component&rsquo;s data. In traditional OOP, you might write <code>player.health = 50</code>. In MUD, you write to the <code>Health</code> component: <code>store.set(Health.tableId, [player_id], { value: 50 })</code>.</p>
+<p>The critical insight: <strong>components are independent</strong>. A Position component exists in the Store without needing a Player component. A Health component can be applied to any entity. You compose entities by assigning them components. An entity that has Position and Velocity but no Health is not a &ldquo;creature&rdquo; — it is something that moves but cannot be damaged. This freedom from inheritance hierarchies is what makes ECS powerful: the same entity type definitions work for players, NPCs, projectiles, terrain features, and mechanisms.</p>
+<p><strong>Systems</strong> are stateless logic processors. A System reads components from the Store, performs computations, and writes modified components back. A Movement System iterates all entities with Position and Velocity components, updates their Position based on Velocity, and writes the new Position back to the Store. A Combat System iterates entities with Health and finds those in proximity, applying damage calculations.</p>
+<p>The separation is absolute: <strong>Systems have no internal state</strong>. They contain no memory of previous computations, no caches of entity properties, no references to other entities. Every time a System runs, it queries the current state from the Store, computes, and writes back. This statelessness is what makes upgrades trivial — you redeploy a new System implementation and register it under the same namespace, and the next call uses the new logic.</p>
+<h2 id="part-four-the-store--on-chain-typed-data">Part Four: The Store — On-Chain Typed Data</h2>
+<p>MUD&rsquo;s Store is a smart contract that manages all world state. Unlike a traditional database, the Store is typed and schema-aware.</p>
+<p><strong>Tables</strong> define the structure of data. A table has two schemas: a <strong>key schema</strong> and a <strong>value schema</strong>. The key schema defines the composite primary key; the value schema defines the fields stored for that key.</p>
+<p>Example: A <code>Position</code> table might have:</p>
+<pre tabindex="0"><code>key schema:   [uint256 entity_id]
+value schema: [int32 x, int32 y, int32 z]
+</code></pre><p>Another table, <code>Owner</code>, might have:</p>
+<pre tabindex="0"><code>key schema:   [uint256 entity_id]
+value schema: [address owner]
+</code></pre><p>And an <code>Inventory</code> table with a composite key:</p>
+<pre tabindex="0"><code>key schema:   [uint256 entity_id, uint256 slot_index]
+value schema: [uint256 item_entity_id]
+</code></pre><p>The Store encodes each table record internally as a bytes32 key (the composite key hashed) paired with bytes32 values (the component data packed into static/dynamic sections). But the Store knows the schema, so it can validate operations: you cannot write 1000000 to an int32 field. You cannot insert into a table without providing values for all required key fields.</p>
+<p>The schema awareness matters because it enables <strong>typed code generation</strong>. MUD&rsquo;s <code>tablegen</code> compiler reads table definitions and generates TypeScript libraries that provide type-safe access:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Generated code
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">position</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Position</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">entityId</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Position</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">entityId</span>, <span style="color:#a6e22e">position</span>);
+</span></span></code></pre></div><p>This is not string keys and generic updates. It is typed, IDE-autocomplete-aware access to world state, generated from the schema. The types enforce correctness at compile time.</p>
+<p><strong>Event synchronization</strong> is the key to connecting on-chain state to client applications. Every time the Store is updated, it emits structured events:</p>
+<ul>
+<li><code>Store_SetRecord</code> — an entire record changed</li>
+<li><code>Store_SpliceStaticData</code> — part of the static data changed</li>
+<li><code>Store_SpliceDynamicData</code> — part of the dynamic data changed</li>
+</ul>
+<p>Events include the table ID, the key, and the new value. Client indexers listen to these events, replicate the Store into a relational database, and serve queries to game clients. The client never needs to decode Solidity ABI or deal with smart contract state variables — it queries a normal database that is synchronized with on-chain state via event replay.</p>
+<h2 id="part-five-the-world-contract--kernel-and-namespace">Part Five: The World Contract — Kernel and Namespace</h2>
+<p>At the center of every MUD application is a single smart contract called <strong>World</strong>. The World is not where state lives (that is the Store) — it is the <strong>access control boundary and namespace registry</strong>.</p>
+<p>The World is a permissionless entry point. Any address can call a System registered in the World. But access control is layered: actions can be restricted to specific addresses, to addresses that have been granted access to a namespace, to addresses that own an entity with a specific component, or to whatever logic the access control System implements.</p>
+<p><strong>Namespaces</strong> are the organizing principle. Every component and system belongs to a namespace. The root namespace is the default. Additional namespaces can be created, and each has an owner. The owner of a namespace controls:</p>
+<ul>
+<li>Which systems can be added to the namespace</li>
+<li>Which components exist in the namespace</li>
+<li>Who has access to call systems in the namespace</li>
+<li>Whether the namespace can be upgraded (by transferring ownership)</li>
+</ul>
+<p>This is clean capability-based access control. In OPCraft, the base game lives in the root namespace owned by Lattice. A player or guild can create their own namespace and deploy custom systems and components there. The player&rsquo;s namespace is separate from the base game but interoperable — systems can read base-game components and compose logic on top.</p>
+<p>Access control is fine-grained. You can grant access at the namespace level (access to all resources in a namespace) or at the resource level (access to a specific component or system). The <code>AccessManagementSystem</code> handles grants and revocations. And you can <strong>burn</strong> namespace ownership by transferring it to address(0), making a namespace permanently immutable and fully permissionless.</p>
+<h2 id="part-six-systems--stateless-logic-operations">Part Six: Systems — Stateless Logic Operations</h2>
+<p>Systems are smart contracts that read and write Store state. They are the <strong>logic layer</strong> of the world.</p>
+<p>A System has read access to all components. Write access must be explicitly granted. When a player wants to move their character, they call the <code>Move</code> system with their entity ID and the destination. The Move system:</p>
+<ol>
+<li>Reads the Position component for that entity</li>
+<li>Reads the Position for the destination to validate it is not blocked</li>
+<li>Reads the Owner component to verify the caller owns the entity</li>
+<li>Writes new Position for the entity</li>
+<li>Writes to an event log or game state to record the move</li>
+</ol>
+<p>Each of these read/write operations is a call back to the World&rsquo;s Store. The system itself holds no state between calls. If the system is upgraded, the new code uses the same data — no migration is needed because state and logic are separate.</p>
+<p>Systems are composed through the World: you can register multiple systems in the same namespace, and they can all read and write the same data. A <code>Combat</code> system and a <code>Defense</code> system can both read Health components and write damage. An <code>Economy</code> system reads Owner components to check who owns what.</p>
+<p>The separation of state and logic is not just an implementation detail — it is a <strong>fundamental design constraint</strong> enforced by the framework. If you need state that persists between calls, you do not put it in the System (that would break the pattern). You create a component and store it in the Store. This forces clear, auditable data flow.</p>
+<h2 id="part-seven-modules--composable-extensions">Part Seven: Modules — Composable Extensions</h2>
+<p>A <strong>Module</strong> is an on-chain installation script that creates resources and their configuration when called by a World. Modules can be deployed and reused across multiple Worlds.</p>
+<p>The typical use of a module is to add functionality to a World without modifying the World&rsquo;s core code. You might create an <code>ERC20Module</code> that installs an ERC20 token into a namespace:</p>
+<pre tabindex="0"><code>Module receives call from World
+├─ Create Balances table (mapping owner → amount)
+├─ Create Allowances table (mapping owner → spender → amount)
+├─ Register Transfer system (read Balances, verify owner, write new Balances)
+├─ Register Mint system (write to Balances)
+└─ Set access control (only the World owner can call Mint)
+</code></pre><p>The module runs once, creates all necessary components and systems, sets up access control, and is done. The World now has ERC20 functionality without duplicating code. Another World can use the same module.</p>
+<p>Lattice provides several pre-built modules:</p>
+<ul>
+<li><strong>ERC20Module</strong> — installs an ERC20 token standard</li>
+<li><strong>ERC721Module</strong> — installs an NFT standard</li>
+<li><strong>PuppetModule</strong> — installs the ability for external contracts to delegate function calls into systems</li>
+</ul>
+<p>But anyone can write modules. An ERC1155 (multi-token) module, a DAO module, a marketplace module — all can be written as modules, deployed once, and used by any World that needs them.</p>
+<p>This is <strong>composable on-chain infrastructure</strong>. The traditional approach: each game reimplements auth, tokens, inventory, and combat from scratch. The MUD approach: proven modules are built once, audited, and reused across ecosystems. Worlds compose functionality by calling existing modules.</p>
+<h2 id="part-eight-state-synchronization--on-chain-to-client">Part Eight: State Synchronization — On-Chain to Client</h2>
+<p>The bridge between on-chain state and client applications is the <strong>indexer</strong>.</p>
+<p>When a system writes to the Store, an event is emitted. The indexer listens to these events, parses them, and writes the changes to a relational database (PostgreSQL, for example). The client&rsquo;s TypeScript code queries this database via an API, not the blockchain.</p>
+<p>This separation is critical for performance. Querying a blockchain via RPC is slow and expensive. Querying a replicated relational database is fast and free. The client synchronizes once on load and then stays in sync by:</p>
+<ol>
+<li>Listening to new Store events</li>
+<li>Updating its local data store (using libraries like Zustand or Recs)</li>
+<li>Rendering the UI based on the local state</li>
+</ol>
+<p>When a player wants to take an action — move, attack, cast a spell — the client sends a transaction to call the appropriate System. The transaction is signed, sent to the blockchain, mined, and emitted as events. The indexer picks up those events and updates the database. The client&rsquo;s state listener sees the database changed and updates the UI.</p>
+<p>The client never issues queries against the Store&rsquo;s complex on-chain data structures. Everything is typed, indexed, and ready to query.</p>
+<h2 id="part-nine-architectural-parallels-to-eavt-knowledge-systems">Part Nine: Architectural Parallels to EAVT Knowledge Systems</h2>
+<p>The 561 system operates on an <strong>Entity-Attribute-Value-Time</strong> (EAVT) knowledge graph — approximately 11,600 entities with 134,868 facts. The architecture parallels MUD&rsquo;s structure in striking ways:</p>
+<h3 id="the-mapping">The Mapping</h3>
+<table>
+  <thead>
+      <tr>
+          <th>MUD Concept</th>
+          <th>EAVT System Concept</th>
+          <th>Function</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Entity</strong> (uint256 entity_id)</td>
+          <td>Entity in knowledge graph</td>
+          <td>Unique identifier for any persistent thing</td>
+      </tr>
+      <tr>
+          <td><strong>Component</strong> (typed data structure)</td>
+          <td>Attribute-value pair with metadata</td>
+          <td>Facts about entities; components are attributes</td>
+      </tr>
+      <tr>
+          <td><strong>Store</strong> (on-chain key-value store)</td>
+          <td>knowledge-graph.json (EAVT facts)</td>
+          <td>Single source of truth for all state</td>
+      </tr>
+      <tr>
+          <td><strong>Table</strong> (schema definition)</td>
+          <td>Entity type + attribute naming conventions</td>
+          <td>Type system that enforces structure</td>
+      </tr>
+      <tr>
+          <td><strong>System</strong> (stateless logic processor)</td>
+          <td>Hook + Tool/Skill</td>
+          <td>Reads state from graph, writes modified state back</td>
+      </tr>
+      <tr>
+          <td><strong>World</strong> (singleton contract + entry point)</td>
+          <td>mash-engine daemon</td>
+          <td>Centralized kernel managing all resources</td>
+      </tr>
+      <tr>
+          <td><strong>Namespace</strong> (access control boundary)</td>
+          <td>Domain + subdomain hierarchy</td>
+          <td>Logical grouping with independent control</td>
+      </tr>
+      <tr>
+          <td><strong>Module</strong> (composable installation script)</td>
+          <td>Skill (domain-specific constructor)</td>
+          <td>Pre-built logic that can be installed anywhere</td>
+      </tr>
+      <tr>
+          <td><strong>Event log</strong> (Store mutations)</td>
+          <td>Event log (operations/engineering/records/events)</td>
+          <td>Immutable record of all state changes</td>
+      </tr>
+      <tr>
+          <td><strong>Indexer</strong> (event → relational DB)</td>
+          <td>Knowledge graph queries</td>
+          <td>Making on-chain state queryable</td>
+      </tr>
+      <tr>
+          <td><strong>Client sync</strong> (Zustand, Recs)</td>
+          <td>Memory system + loaded context</td>
+          <td>Replicated state in the agent&rsquo;s working memory</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="state-both-separate-state-from-logic">State: Both Separate State from Logic</h3>
+<p>MUD: Systems are stateless smart contracts. They read from the Store, compute, write back. They hold no internal memory.</p>
+<p>EAVT: Hooks and tools are stateless scripts. They read from the knowledge graph, compute, write back via tools like <code>record_event</code>, <code>graph_search</code>. They hold no persistent state.</p>
+<p>Both enforce separation of concerns. Logic is portable and upgradeable because it depends only on the data interface, not on persistent memory within the logic itself.</p>
+<h3 id="composability-multiple-authors-without-centralized-code-control">Composability: Multiple Authors Without Centralized Code Control</h3>
+<p>MUD: Multiple namespaces, multiple system authors, no single owner. In OPCraft, players deployed custom components and systems to create a social structure. The game&rsquo;s logic was extended by players, not by Lattice.</p>
+<p>EAVT: Multiple agents operating on shared knowledge. Agents with different skills and capabilities all read and write the same graph. Customs (Autonomous People&rsquo;s Republic in OPCraft) emerge from multiple agents&rsquo; independent actions, not from predefined behavior.</p>
+<h3 id="upgradeability-logic-changes-without-state-migration">Upgradeability: Logic Changes Without State Migration</h3>
+<p>MUD: Redeploy a System, register it under the same namespace. The next call uses new logic. The Store data remains unchanged.</p>
+<p>EAVT: Update a skill, update a hook, update a tool. The next agent session uses the new logic. The knowledge graph remains unchanged.</p>
+<p>No data migration needed. No careful coordination of state schema changes. Logic is ephemeral; data is persistent.</p>
+<h3 id="namespacing-logical-separation-with-control-boundaries">Namespacing: Logical Separation with Control Boundaries</h3>
+<p>MUD: Namespaces provide access control and logical organization. The root namespace is the core game. Secondary namespaces are extensions.</p>
+<p>EAVT: Domains and subdomains provide organization. The library/ structure mirrors the namespace structure. Each domain has its own entities and conventions. Crossing domain boundaries is explicit (related-to links).</p>
+<h3 id="type-safety-schema-enforcement-at-storage-boundary">Type Safety: Schema Enforcement at Storage Boundary</h3>
+<p>MUD: Tables have explicit schemas. The Store validates writes: you cannot write an int32 to a field typed as address. Code generation produces typed accessors.</p>
+<p>EAVT: Entities have type attributes (term, text, plan, task, etc.). Frontmatter YAML enforces structure. The knowledge graph query tools return typed objects. Cross-checks validate that relations point to entities that exist.</p>
+<h2 id="part-ten-what-each-system-can-learn-from-the-other">Part Ten: What Each System Can Learn From the Other</h2>
+<h3 id="mud-could-learn-from-eavt-systems">MUD Could Learn From EAVT Systems</h3>
+<ol>
+<li>
+<p><strong>Relation-centric models.</strong> ECS focuses on component matching (find all entities with Position AND Velocity). EAVT emphasizes relations (find all entities related to X). MUD tables are entity-keyed; EAVT facts are relation-keyed. A relation-aware version of ECS could express complex queries more naturally: &ldquo;all entities in rooms containing dangerous things&rdquo; as a relation traversal rather than as multi-table joins.</p>
+</li>
+<li>
+<p><strong>Temporal queries.</strong> EAVT includes time in facts: (entity, attribute, value, time). This enables &ldquo;what was the state at time T?&rdquo; and &ldquo;what changed since time T?&rdquo; MUD&rsquo;s event log preserves history but querying history requires replaying events. A time-indexed approach would make temporal queries native.</p>
+</li>
+<li>
+<p><strong>Narrative flow.</strong> The EAVT system emphasizes that building is programming and programming is narrative (the Teraum Racket MUD explicitly uses prose descriptions, poetry, and story-like entity definitions). MUD&rsquo;s systems are purely computational. A system that let builders author behavior as composable narrative units — &ldquo;when entity X reaches location Y, trigger event Z, which notifies observing entities&rdquo; — would make world-building more accessible to non-programmers.</p>
+</li>
+</ol>
+<h3 id="eavt-systems-could-learn-from-mud">EAVT Systems Could Learn From MUD</h3>
+<ol>
+<li>
+<p><strong>Fully permissionless state access.</strong> MUD&rsquo;s World contract is permissionless: any address can call any system (subject to fine-grained access control). The 561 system has access control (hooks check permissions) but it is implicit, not explicitly modeled as a capability. Making it explicit — granting agents specific access rights to specific knowledge — would clarify security policies and enable delegation.</p>
+</li>
+<li>
+<p><strong>Modular extension with formal installation.</strong> MUD modules are complete, installable packages. The 561 system has skills that are rich and powerful, but they load implicitly from the harness. A formal module system — packages that install themselves, declare dependencies, register capabilities, and leave audit trails — would enable third-party extensions and make composition clearer.</p>
+</li>
+<li>
+<p><strong>Fine-grained access control hierarchies.</strong> MUD&rsquo;s namespace ownership is binary (owner controls the namespace, or it is burned). The 561 system has domain-level organization but no explicit capability model. A formal hierarchy where agents have typed access (read/write/delegate) to knowledge, skills, and processes would be more secure and auditable.</p>
+</li>
+<li>
+<p><strong>Event-sourced history as first-class interface.</strong> MUD thinks in terms of events: every state change emits an event. The 561 system logs events but does not expose them as a querying interface. Treating the event log as the primary interface — and deriving current state as a projection of that log — would make causality tracing, audit, and undo much cleaner.</p>
+</li>
+</ol>
+<h2 id="part-eleven-implications-for-future-development">Part Eleven: Implications for Future Development</h2>
+<p>The parallel between MUD and EAVT-based systems suggests several concrete directions:</p>
+<ol>
+<li>
+<p><strong>mash-engine should adopt MUD vocabulary.</strong> The driver is not &ldquo;the daemon&rdquo; or &ldquo;the engine&rdquo; — it is the driver. Agents are not &ldquo;AI sessions&rdquo; — they are inhabitants of the world. Skills are not &ldquo;capability modules&rdquo; — they are mudlib. This is not mere terminology; the vocabulary carries architectural knowledge accumulated over 40 years of MUD development.</p>
+</li>
+<li>
+<p><strong>Formalize the Store interface.</strong> MUD&rsquo;s typed Store interface is the single point of communication between logic and data. The 561 system&rsquo;s graph tools (<code>graph_search</code>, <code>graph_entity</code>, etc.) are the equivalent, but they are scattered across different tools. A unified typed interface with explicit schema would make cross-referencing, validation, and type-safe code generation possible.</p>
+</li>
+<li>
+<p><strong>Build a modules system.</strong> Skills are close to modules but not quite. A formal module system — where a skill can declare the entities it creates, the hooks it registers, the tools it needs, and the dependencies it has — would enable composition, rollback, and dependency resolution currently handled ad hoc.</p>
+</li>
+<li>
+<p><strong>Expose the event log as query interface.</strong> The observation log is the source of truth. Client applications (TUI, agents&rsquo; working memory) should query the log and derive state from it, not query current state directly. This reverses the dependency: state becomes a projected view of history.</p>
+</li>
+<li>
+<p><strong>Implement temporal queries.</strong> Add time-awareness to the knowledge graph. Queries should be able to ask &ldquo;what was true at T?&rdquo; and &ldquo;what has changed since T?&rdquo; This would enable audit, rollback, and temporal reasoning about plans and dependencies.</p>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>MUD is not a game framework that happens to use on-chain technology. It is a framework for building <strong>persistent, composable, autonomous systems</strong> where state is clearly separated from logic, where multiple authors can contribute without centralized coordination, and where the world evolves through emergent interaction.</p>
+<p>The 561 system is not a knowledge management system that happens to resemble a MUD. It is a MUD — the same architecture applied to knowledge representation, agent coordination, and system governance instead of games.</p>
+<p>This is not a metaphor. The data structures are the same. The separation of concerns is the same. The problem both systems solve — how to manage a persistent, shared, navigable world where multiple independent agents can operate and build — is the same.</p>
+<p>Understanding both systems through the lens of the other offers concrete value. MUD has 40 years of iteration on how to make persistent worlds work at scale. EAVT has deep theory on how to represent knowledge and reason about time-varying facts. Each has lessons for the other.</p>
+<p>The convergence suggests a broader principle: <strong>architecture follows problem, not technology.</strong> The same architecture emerges whether you are building a blockchain game (MUD) or a knowledge system for agentic coordination (561) because the problem is structurally the same. A world is a world, whether it contains rooms or entities, whether it is navigated by players or agents, whether state is stored in a contract or a graph.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/mud-framework-autonomous-worlds-analysis/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">computing</dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related"><ul><li>../domains/multi user dungeons/the mud as system architecture.md</li><li>../domains/multi user dungeons/lpmud.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

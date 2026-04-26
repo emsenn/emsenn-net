@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "A computational system that acts on its environment through tool use, pursues goals through multi-step planning, and maintains state across interactions.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">A computational system that acts on its environment through tool use, pursues goals through multi-step planning, and maintains state across interactions.</span>
+  </div>
+  <div class="e-content">
+    <p>An agentic system is a computational system that meets three conditions. It acts on its environment through <a href="./tool-use.md" class="link-internal">tool use</a> — it writes files, calls APIs, modifies databases. It pursues goals through multi-step planning — it decomposes objectives into sequences of actions and selects among alternatives. It maintains state that persists across interactions — it remembers what it has done and can resume after interruption.</p>
+<p>All three conditions are necessary. A chatbot generates text but does not act on its environment. A script calls APIs but follows a fixed path — it does not plan. A stateless tool-calling system acts and may plan but forgets between invocations. Each satisfies at most two conditions. An agentic system satisfies all three.</p>
+<p>Each condition is testable. Remove the system and observe whether the state changes it caused remain — that tests environmental action. Present the system with a goal requiring two causally dependent actions and observe whether it identifies and executes the dependency without external specification — that tests planning. Interrupt the system between actions and resume it, observing whether it recovers its context without re-deriving its plan — that tests persistent state.</p>
+<p>Within agentic systems, the locus of control varies. A <strong>workflow</strong> orchestrates tool calls through predefined code paths — the developer specifies the execution order. An <strong>agent</strong> lets the model direct its own tool calls — the model selects and sequences actions. Both satisfy the three conditions. They differ in who controls the path. This is a spectrum, not a binary.</p>
+<p>The term &ldquo;agentic&rdquo; entered AI discourse in 2023-2024. The computer science literature previously used &ldquo;software agent&rdquo; (distributed systems) and &ldquo;autonomous agent&rdquo; (artificial life) with overlapping meanings. The current usage is narrower: LLM-based systems that use tool calling for environmental interaction, orchestrated through frameworks like <a href="./langgraph.md" class="link-internal">LangGraph</a> or <a href="./pydantic-ai.md" class="link-internal">PydanticAI</a> and connected to tools via protocols like MCP and A2A.</p>
+<p>An agentic system is a goal-seeking system with negative feedback: it observes the gap between current state and goal state, selects actions to reduce that gap, and adjusts based on results. This is the cybernetic formulation applied to a new substrate. Contemporary agentic AI differs from classical cybernetic controllers in the generality of goal specification (natural language instead of a reference signal) and the breadth of the action space (arbitrary tool calls instead of a fixed actuator).</p>
+<p>See <a href="../texts/toward-a-falsifiable-definition-of-agentic-systems.md" class="link-internal">Toward a Falsifiable Definition of Agentic Systems</a> for the full survey of competing definitions and the argument for these three conditions.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Acts through</dt>
+        <dd property="emsenn:Actsthrough"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-use/">tool use</a></dd>
+      </div><div class="relation">
+        <dt>Assessed by</dt>
+        <dd property="emsenn:Assessedby">agent evaluation</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/humanities/domains/philosophy/terms/condition/">Conditions</a></dt>
+        <dd property="emsenn:Conditions">environmental action, goal directed planning, persistent state</dd>
+      </div><div class="relation">
+        <dt>Controlled by</dt>
+        <dd property="emsenn:Controlledby"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/">human in the loop</a></dd>
+      </div><div class="relation">
+        <dt>Coordinated by</dt>
+        <dd property="emsenn:Coordinatedby"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/">agent orchestration</a></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/">agentic system</a></dd>
+      </div><div class="relation">
+        <dt>State kept by</dt>
+        <dd property="emsenn:Statekeptby"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-memory/">agent memory</a></dd>
+      </div><div class="relation">
+        <dt>Workflow variant</dt>
+        <dd property="emsenn:Workflowvariant"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/prompt-chaining/">prompt chaining</a></dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/accountability-tracing-in-multi-agent-systems/">Accountability Tracing in Multi-Agent Systems</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/texts/non-llm-computation-for-agent-duties/">Non-LLM Computation for Agent Duties</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-coding/">Agentic Coding</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-code/">Claude Code</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/multi-agent-system/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-evaluation/">Agent Evaluation</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-instruction-file-standards/">Agent Instruction File Standards (March 2026)</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-observability/">Agent Observability</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-reliability-in-production/">Agent Reliability in Production (March 2026)</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-to-agent-protocol/">Agent-to-Agent Protocol</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agents-md/">AGENTS.md</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/model-context-protocol/">Model Context Protocol</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/soul-md/">SOUL.md</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/system-prompt/">System Prompt</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/toward-a-falsifiable-definition-of-agentic-systems/">Toward a Falsifiable Definition of Agentic Systems</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

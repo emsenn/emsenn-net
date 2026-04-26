@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECC Agents and Commands: Structural Analysis and Comparison - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "A comparative analysis of Everything Claude Code's agent definitions, command system, manifest architecture, and model routing against the 561 Group's agentic harness.",
+  "name": "ECC Agents and Commands: Structural Analysis and Comparison",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ecc-agents-and-commands-analysis/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">ECC Agents and Commands: Structural Analysis and Comparison</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">A comparative analysis of Everything Claude Code&#39;s agent definitions, command system, manifest architecture, and model routing against the 561 Group&#39;s agentic harness.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-agent-prompt-structure">1. Agent Prompt Structure</a>
+      <ul>
+        <li><a href="#ecc-pattern">ECC Pattern</a></li>
+        <li><a href="#561-pattern">561 Pattern</a></li>
+        <li><a href="#comparison">Comparison</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-command-coverage">2. Command Coverage</a>
+      <ul>
+        <li><a href="#ecc-commands-we-lack">ECC Commands We Lack</a></li>
+        <li><a href="#ecc-commands-we-already-cover-better">ECC Commands We Already Cover Better</a></li>
+        <li><a href="#eccs-skills-first-migration">ECC&rsquo;s &ldquo;Skills-First&rdquo; Migration</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-the-manifest-system">3. The Manifest System</a>
+      <ul>
+        <li><a href="#level-1-modules-install-modulesjson">Level 1: Modules (<code>install-modules.json</code>)</a></li>
+        <li><a href="#level-2-components-install-componentsjson">Level 2: Components (<code>install-components.json</code>)</a></li>
+        <li><a href="#level-3-profiles-install-profilesjson">Level 3: Profiles (<code>install-profiles.json</code>)</a></li>
+        <li><a href="#the-install-cli">The Install CLI</a></li>
+        <li><a href="#comparison-with-our-install-system">Comparison with Our Install System</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-model-routing">4. Model Routing</a></li>
+    <li><a href="#5-distinctive-ecc-patterns">5. Distinctive ECC Patterns</a>
+      <ul>
+        <li><a href="#the-gan-harness-generator-adversarial-network">The GAN Harness (Generator-Adversarial Network)</a></li>
+        <li><a href="#the-open-source-pipeline">The Open-Source Pipeline</a></li>
+        <li><a href="#session-saveresume-protocol">Session Save/Resume Protocol</a></li>
+        <li><a href="#prp-plan-research-plan-workflow">PRP (Plan-Research-Plan) Workflow</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-recommendations">6. Recommendations</a>
+      <ul>
+        <li><a href="#commands-to-add">Commands to Add</a></li>
+        <li><a href="#agent-patterns-to-adopt">Agent Patterns to Adopt</a></li>
+        <li><a href="#manifest-features-to-build">Manifest Features to Build</a></li>
+        <li><a href="#patterns-not-to-adopt">Patterns NOT to Adopt</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="ecc-agents-and-commands-structural-analysis-and-comparison">ECC Agents and Commands: Structural Analysis and Comparison</h1>
+<p>Everything Claude Code (ECC) is a community plugin providing 38 agents, 72 commands, 156 skills, and automated hooks for Claude Code. This analysis compares its architecture against the 561 Group&rsquo;s agentic harness (27 agents, 80+ commands, 60+ skills) to identify patterns worth adopting, gaps to fill, and design differences that reflect genuinely different needs.</p>
+<h2 id="1-agent-prompt-structure">1. Agent Prompt Structure</h2>
+<h3 id="ecc-pattern">ECC Pattern</h3>
+<p>ECC agents use a consistent four-field YAML frontmatter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">code-reviewer</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">description</span>: <span style="color:#ae81ff">Expert code review specialist...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tools</span>: [<span style="color:#e6db74">&#34;Read&#34;</span>, <span style="color:#e6db74">&#34;Grep&#34;</span>, <span style="color:#e6db74">&#34;Glob&#34;</span>, <span style="color:#e6db74">&#34;Bash&#34;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#f92672">model</span>: <span style="color:#ae81ff">sonnet</span>
+</span></span></code></pre></div><p>The prompt body follows a standard structure: role statement, process/workflow (numbered steps), checklist tables, code examples showing BAD/GOOD patterns, and a success metrics section. ECC agents are self-contained instruction manuals: a senior developer could follow the prompt as a checklist without any agent infrastructure.</p>
+<p>Key characteristics:</p>
+<ul>
+<li><strong>Heavy on examples.</strong> The <code>code-reviewer</code> agent includes full TypeScript code samples for every anti-pattern it detects. The <code>planner</code> includes a complete worked example (Stripe subscriptions) showing the exact output format expected.</li>
+<li><strong>Confidence-based filtering.</strong> The code-reviewer explicitly instructs: &ldquo;report only if &gt;80% confident.&rdquo; This reduces noise but is a prompt-level heuristic, not a structural guarantee.</li>
+<li><strong>No organizational context.</strong> Agents don&rsquo;t know about each other, about the project&rsquo;s mission, or about any hierarchy. Each operates as an isolated specialist.</li>
+</ul>
+<h3 id="561-pattern">561 Pattern</h3>
+<p>Our agents use extended frontmatter that encodes organizational structure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">planner</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">description</span>: <span style="color:#ae81ff">Planning specialist for complex tasks...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">role</span>: <span style="color:#ae81ff">operations</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tools</span>: [<span style="color:#e6db74">&#34;Read&#34;</span>, <span style="color:#e6db74">&#34;Grep&#34;</span>, <span style="color:#e6db74">&#34;Glob&#34;</span>, <span style="color:#e6db74">&#34;Bash&#34;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#f92672">model</span>: <span style="color:#ae81ff">opus</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">department</span>: <span style="color:#ae81ff">command</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">serves</span>: [<span style="color:#ae81ff">operations-loop, endeavor-resource-planning]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">action-domain</span>: <span style="color:#e6db74">&#34;Work decomposition...&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">reports-to</span>: <span style="color:#ae81ff">first-officer</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">autonomous</span>: [<span style="color:#ae81ff">list of what agent can do unsupervised]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">escalates</span>: [<span style="color:#ae81ff">list of what requires human judgment]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">duties</span>: [<span style="color:#ae81ff">survey-before-planning, present-and-wait]</span>
+</span></span></code></pre></div><p>Our prompts carry institutional context: the planner knows it serves the operations loop, reports to the first officer, and must survey the knowledge graph before planning. The architect knows the system &ldquo;is its own theory&rdquo; and that library content governs infrastructure design.</p>
+<h3 id="comparison">Comparison</h3>
+<p>ECC agents are <strong>portable skill cards</strong> — drop them into any project and they work. Ours are <strong>officers in an organization</strong> — they understand their position, their duties, and when to escalate. The tradeoff is clear: ECC agents are immediately useful in any context; ours are deeply effective in <em>this</em> context but would need significant adaptation elsewhere.</p>
+<p><strong>What to adopt:</strong> ECC&rsquo;s worked examples and BAD/GOOD code patterns. Our agents describe what to do but rarely show a complete output example. The planner&rsquo;s Stripe subscriptions example is worth emulating — it removes ambiguity about what &ldquo;a good plan&rdquo; looks like.</p>
+<p><strong>What to preserve:</strong> Our organizational frontmatter (<code>reports-to</code>, <code>escalates</code>, <code>autonomous</code>, <code>serves</code>). This is what makes autonomous dispatch possible. An ECC agent doesn&rsquo;t know when to stop; ours do.</p>
+<h2 id="2-command-coverage">2. Command Coverage</h2>
+<h3 id="ecc-commands-we-lack">ECC Commands We Lack</h3>
+<p>ECC has 72 commands. After filtering out language-specific shims (go-build, kotlin-review, flutter-test, etc.) and legacy shims that just redirect to skills, the commands with no 561 equivalent include:</p>
+<table>
+  <thead>
+      <tr>
+          <th>ECC Command</th>
+          <th>What It Does</th>
+          <th>Our Gap</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>/tdd</code></td>
+          <td>Test-driven development workflow (RED-GREEN-REFACTOR)</td>
+          <td>We have no TDD workflow. Our code review is post-hoc.</td>
+      </tr>
+      <tr>
+          <td><code>/e2e</code></td>
+          <td>End-to-end Playwright testing</td>
+          <td>No E2E testing infrastructure.</td>
+      </tr>
+      <tr>
+          <td><code>/test-coverage</code></td>
+          <td>Analyze coverage, find gaps, generate missing tests</td>
+          <td>No coverage analysis command.</td>
+      </tr>
+      <tr>
+          <td><code>/save-session</code> / <code>/resume-session</code></td>
+          <td>Serialize session state to file, reload in new session</td>
+          <td>We have session logs but no save/resume protocol with structured &ldquo;what worked / what failed / exact next step&rdquo; format.</td>
+      </tr>
+      <tr>
+          <td><code>/refactor-clean</code></td>
+          <td>Dead code detection and safe removal with test verification</td>
+          <td>Our <code>harness-cleaner</code> agent detects dead <em>harness</em> config but not dead <em>code</em>.</td>
+      </tr>
+      <tr>
+          <td><code>/update-codemaps</code></td>
+          <td>Generate token-lean architecture documentation</td>
+          <td>No equivalent. Our library serves a different purpose but we lack generated architecture maps of the codebase itself.</td>
+      </tr>
+      <tr>
+          <td><code>/pm2</code></td>
+          <td>Auto-detect services and generate PM2 process management config</td>
+          <td>No process management command.</td>
+      </tr>
+      <tr>
+          <td><code>/prp-plan</code> / <code>/prp-implement</code> / <code>/prp-prd</code> / <code>/prp-commit</code> / <code>/prp-pr</code></td>
+          <td>Complete feature lifecycle from PRD to PR</td>
+          <td>We have <code>/plan</code> but not the full pipeline from requirements document through implementation to pull request.</td>
+      </tr>
+      <tr>
+          <td><code>/multi-workflow</code></td>
+          <td>Multi-model collaborative development (Claude + Codex + Gemini)</td>
+          <td>No multi-model orchestration.</td>
+      </tr>
+      <tr>
+          <td><code>/gan-design</code> / <code>/gan-build</code></td>
+          <td>GAN-style adversarial design loop (Generator vs Evaluator)</td>
+          <td>No adversarial quality loop.</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="ecc-commands-we-already-cover-better">ECC Commands We Already Cover Better</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Domain</th>
+          <th>ECC</th>
+          <th>561</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Session management</td>
+          <td><code>/sessions</code> (list, alias, info)</td>
+          <td><code>/fleet</code>, <code>/crew</code>, <code>/duty-status</code> + mash-engine daemon for external dispatch</td>
+      </tr>
+      <tr>
+          <td>Planning</td>
+          <td><code>/plan</code> (single command)</td>
+          <td><code>/plan</code>, <code>/plan-status</code>, <code>/critical-path</code>, <code>/plan-variance</code>, <code>/week-plan</code>, <code>/dispatch-work</code></td>
+      </tr>
+      <tr>
+          <td>Reviews</td>
+          <td><code>/code-review</code></td>
+          <td><code>/code-review</code>, <code>/review</code> (periodic), <code>/quality-gate</code>, <code>/verify</code></td>
+      </tr>
+      <tr>
+          <td>Learning</td>
+          <td><code>/learn</code>, <code>/learn-eval</code></td>
+          <td><code>/learn</code>, <code>/learn-eval</code>, <code>/evolve</code>, <code>/instinct-status</code>, <code>/promote</code></td>
+      </tr>
+      <tr>
+          <td>Operations</td>
+          <td>(none)</td>
+          <td><code>/standup</code>, <code>/bridge</code>, <code>/briefing</code>, <code>/tracking-status</code>, <code>/flow-metrics</code>, <code>/monthly-review</code></td>
+      </tr>
+      <tr>
+          <td>Publishing</td>
+          <td>(none)</td>
+          <td><code>/publish</code> with Hugo site pipeline</td>
+      </tr>
+      <tr>
+          <td>Finance</td>
+          <td>(none)</td>
+          <td><code>/balance</code> with full ledger system</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="eccs-skills-first-migration">ECC&rsquo;s &ldquo;Skills-First&rdquo; Migration</h3>
+<p>ECC is actively migrating from commands to skills. Many commands are now &ldquo;legacy shims&rdquo; that redirect to skills. The stated policy: &ldquo;skills/ is the canonical workflow surface. commands/ is a legacy slash-entry compatibility surface.&rdquo; This is the opposite of our approach, where commands are user-facing entry points and skills are agent-facing knowledge.</p>
+<p><strong>Assessment:</strong> ECC&rsquo;s migration makes sense for their context (a plugin installed into arbitrary projects where Claude needs to autonomously find the right workflow). Our approach makes sense for ours (an organizational system where users invoke specific capabilities by name). Neither is wrong — they serve different interaction models.</p>
+<h2 id="3-the-manifest-system">3. The Manifest System</h2>
+<p>ECC&rsquo;s installation system is the most sophisticated component with no 561 equivalent. It operates at three levels:</p>
+<h3 id="level-1-modules-install-modulesjson">Level 1: Modules (<code>install-modules.json</code>)</h3>
+<p>Each module is an atomic unit of installation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;framework-language&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;skills&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Core framework and language skills.&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;paths&#34;</span>: [<span style="color:#e6db74">&#34;skills/android-clean-architecture&#34;</span>, <span style="color:#e6db74">&#34;skills/api-design&#34;</span>, <span style="color:#960050;background-color:#1e0010">...</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;targets&#34;</span>: [<span style="color:#e6db74">&#34;claude&#34;</span>, <span style="color:#e6db74">&#34;cursor&#34;</span>, <span style="color:#e6db74">&#34;antigravity&#34;</span>, <span style="color:#e6db74">&#34;codex&#34;</span>, <span style="color:#e6db74">&#34;opencode&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;dependencies&#34;</span>: [<span style="color:#e6db74">&#34;rules-core&#34;</span>, <span style="color:#e6db74">&#34;agents-core&#34;</span>, <span style="color:#e6db74">&#34;commands-core&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;defaultInstall&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;cost&#34;</span>: <span style="color:#e6db74">&#34;medium&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;stability&#34;</span>: <span style="color:#e6db74">&#34;stable&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Key fields:</p>
+<ul>
+<li><strong><code>targets</code></strong>: Which AI coding tool this module supports. ECC installs into Claude Code, Cursor, Antigravity, Codex, OpenCode, Gemini, and CodeBuddy.</li>
+<li><strong><code>dependencies</code></strong>: Modules that must be installed first.</li>
+<li><strong><code>cost</code></strong>: &ldquo;light&rdquo;, &ldquo;medium&rdquo;, or &ldquo;heavy&rdquo; — a proxy for context window impact.</li>
+<li><strong><code>stability</code></strong>: &ldquo;stable&rdquo; or &ldquo;beta&rdquo;.</li>
+</ul>
+<h3 id="level-2-components-install-componentsjson">Level 2: Components (<code>install-components.json</code>)</h3>
+<p>Components are user-facing selections organized by family:</p>
+<ul>
+<li><strong>baseline</strong>: rules, agents, commands, hooks, platform configs</li>
+<li><strong>language</strong>: TypeScript, Python, Go, Java, Rust, Kotlin, Swift, C++, Perl, C#</li>
+<li><strong>framework</strong>: React, Next.js, Django, Spring Boot, Laravel</li>
+<li><strong>capability</strong>: database, security, research, content, orchestration, media, social, agentic, devops, supply-chain, documents</li>
+</ul>
+<p>Each component maps to one or more modules.</p>
+<h3 id="level-3-profiles-install-profilesjson">Level 3: Profiles (<code>install-profiles.json</code>)</h3>
+<p>Profiles are curated bundles for different user types:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Profile</th>
+          <th>Modules</th>
+          <th>Use Case</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>core</code></td>
+          <td>rules, agents, commands, hooks, platform, quality</td>
+          <td>Minimal baseline</td>
+      </tr>
+      <tr>
+          <td><code>developer</code></td>
+          <td>core + framework-language + database + orchestration</td>
+          <td>Default for engineers</td>
+      </tr>
+      <tr>
+          <td><code>security</code></td>
+          <td>core + security module</td>
+          <td>Security-focused work</td>
+      </tr>
+      <tr>
+          <td><code>research</code></td>
+          <td>core + research-apis + business-content + social</td>
+          <td>Investigation and publishing</td>
+      </tr>
+      <tr>
+          <td><code>full</code></td>
+          <td>everything</td>
+          <td>All 20 modules</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="the-install-cli">The Install CLI</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>install.sh --profile developer              <span style="color:#75715e"># Install a profile</span>
+</span></span><span style="display:flex;"><span>install.sh --modules rules-core,agents-core  <span style="color:#75715e"># Install specific modules</span>
+</span></span><span style="display:flex;"><span>install.sh --with capability:security        <span style="color:#75715e"># Add a component</span>
+</span></span><span style="display:flex;"><span>install.sh --without lang:java               <span style="color:#75715e"># Exclude a component</span>
+</span></span><span style="display:flex;"><span>install.sh --target cursor                   <span style="color:#75715e"># Install for Cursor instead of Claude</span>
+</span></span><span style="display:flex;"><span>install.sh --config ecc-install.json         <span style="color:#75715e"># Load from config file</span>
+</span></span><span style="display:flex;"><span>install.sh --dry-run --json                  <span style="color:#75715e"># Preview as JSON</span>
+</span></span></code></pre></div><p>The installer also tracks state (<code>install-state.json</code>) to know what was previously installed, enabling incremental updates.</p>
+<h3 id="comparison-with-our-install-system">Comparison with Our Install System</h3>
+<p>Our installer (<code>install.js</code>) copies everything from <code>operations/engineering/fars/agentic/</code> to <code>.claude/</code> based on a <code>manifest.json</code> that lists which components to include using glob patterns (<code>&quot;agents&quot;: &quot;*&quot;</code>, <code>&quot;skills&quot;: &quot;*&quot;</code>). There are no profiles, no dependency resolution, no cost tracking, no multi-target support, and no install state.</p>
+<p><strong>What to adopt:</strong></p>
+<ol>
+<li><strong>Cost annotation.</strong> Knowing which skills are &ldquo;heavy&rdquo; (context-expensive) would help us make smarter decisions about what to load.</li>
+<li><strong>Profiles.</strong> Not the same profiles — we&rsquo;d want profiles like &ldquo;research session&rdquo;, &ldquo;engineering session&rdquo;, &ldquo;operations review&rdquo; that load different subsets of our agents, skills, and commands.</li>
+<li><strong>Install state.</strong> Tracking what&rsquo;s installed enables incremental updates and drift detection.</li>
+<li><strong>Dependency declaration.</strong> Some of our skills reference other skills; making those dependencies explicit would catch broken references.</li>
+</ol>
+<p><strong>What NOT to adopt:</strong></p>
+<ul>
+<li>Multi-target support. We&rsquo;re not a plugin. We run on Claude Code only.</li>
+<li>Language/framework modules. Our codebase is Node.js and Rust only.</li>
+</ul>
+<h2 id="4-model-routing">4. Model Routing</h2>
+<p>ECC assigns models to agents explicitly in frontmatter:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Model</th>
+          <th>Agents</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>opus</strong></td>
+          <td>planner, architect, healthcare-reviewer, gan-planner, gan-generator, gan-evaluator</td>
+      </tr>
+      <tr>
+          <td><strong>sonnet</strong></td>
+          <td>code-reviewer, tdd-guide, e2e-runner, refactor-cleaner, security-reviewer, database-reviewer, performance-optimizer, all language-specific reviewers, all build resolvers, opensource-* pipeline, doc-updater, loop-operator, harness-optimizer</td>
+      </tr>
+  </tbody>
+</table>
+<p>The pattern is clear: <strong>opus for reasoning, sonnet for execution.</strong> Agents that need to think about architecture, plan multi-step work, evaluate quality at a deep level, or make judgment calls about clinical safety get opus. Agents that follow checklists, run commands, apply patterns, or do mechanical review get sonnet.</p>
+<p>Our model routing follows the same pattern (planner and architect get opus, most reviewers and processors get sonnet) but we also have haiku-capable agents (observer) and a <code>/model-route</code> command that recommends tiers based on task complexity.</p>
+<p><strong>What to adopt:</strong> ECC&rsquo;s GAN harness demonstrates a specific model-routing pattern worth studying: the planner (opus) generates the spec, the generator (opus) builds it, and the evaluator (opus) tears it apart. All three get opus because adversarial quality requires reasoning at every stage. This is different from our pattern where we&rsquo;d route the reviewer to sonnet. The lesson: when agents are in an adversarial loop, don&rsquo;t downgrade the critic.</p>
+<h2 id="5-distinctive-ecc-patterns">5. Distinctive ECC Patterns</h2>
+<h3 id="the-gan-harness-generator-adversarial-network">The GAN Harness (Generator-Adversarial Network)</h3>
+<p>ECC&rsquo;s most novel contribution is three agents — <code>gan-planner</code>, <code>gan-generator</code>, <code>gan-evaluator</code> — that form an adversarial loop. The evaluator is explicitly instructed to be &ldquo;ruthlessly strict&rdquo; and to &ldquo;fight your natural tendency to be generous.&rdquo; It scores against a weighted rubric, and the generator must address every issue before the next iteration.</p>
+<p>This is structurally similar to our santa-method (two independent reviewers) but more sophisticated: it runs in a loop with iteration tracking, uses Playwright to test the live running application, and adjusts rubric weights for design vs. functionality.</p>
+<h3 id="the-open-source-pipeline">The Open-Source Pipeline</h3>
+<p>Three agents form a chain: <code>opensource-forker</code> (strip secrets, parameterize config) → <code>opensource-sanitizer</code> (verify independently, trust nothing) → <code>opensource-packager</code> (generate README, CLAUDE.md, setup.sh, templates). The sanitizer explicitly &ldquo;never trusts the forker&rsquo;s work&rdquo; — it re-scans everything independently using 20+ regex patterns for secrets.</p>
+<p>This pipeline pattern — sequential agents where each stage audits the previous — is worth studying even if we never open-source fork anything. The principle of independent verification stages applies to any multi-agent pipeline.</p>
+<h3 id="session-saveresume-protocol">Session Save/Resume Protocol</h3>
+<p>ECC&rsquo;s <code>/save-session</code> command produces a structured document with specific sections: &ldquo;What WORKED (with evidence)&rdquo;, &ldquo;What Did NOT Work (and why)&rdquo;, &ldquo;What Has NOT Been Tried Yet&rdquo;, &ldquo;Exact Next Step.&rdquo; The resume command loads this and presents a briefing with &ldquo;WHAT NOT TO RETRY&rdquo; prominently displayed.</p>
+<p>This is more structured than our session logs and addresses a real problem: sessions retrying approaches that already failed. Our session-state system tracks tool calls and events but doesn&rsquo;t capture the editorial judgment of what worked and what didn&rsquo;t.</p>
+<h3 id="prp-plan-research-plan-workflow">PRP (Plan-Research-Plan) Workflow</h3>
+<p>The <code>/prp-plan</code> command is the most detailed planning prompt in ECC. It runs through 6 phases (Detect → Parse → Explore → Research → Design → Architect → Generate) and produces a plan that includes a &ldquo;Mandatory Reading&rdquo; table, a &ldquo;Patterns to Mirror&rdquo; section with actual code snippets from the codebase, and a &ldquo;No Prior Knowledge Test&rdquo; — can a fresh agent implement from this plan alone?</p>
+<p>The &ldquo;Patterns to Mirror&rdquo; approach is particularly clever: instead of telling the agent &ldquo;follow project conventions,&rdquo; it finds and captures actual code patterns with file:line references, then instructs the implementation agent to replicate them exactly. This eliminates style drift.</p>
+<h2 id="6-recommendations">6. Recommendations</h2>
+<h3 id="commands-to-add">Commands to Add</h3>
+<ol>
+<li>
+<p><strong><code>/save-session</code></strong> — Structured session capture with what-worked/what-failed/next-step format. Distinct from our session logs, which capture events rather than editorial judgment.</p>
+</li>
+<li>
+<p><strong><code>/refactor-clean</code></strong> — Dead code detection and safe removal with test verification at each step. Extends our <code>harness-cleaner</code> pattern to application code.</p>
+</li>
+<li>
+<p><strong><code>/test-coverage</code></strong> — Coverage analysis with gap identification. Relevant for our Rust codebase (cargo-llvm-cov) and our hook scripts.</p>
+</li>
+</ol>
+<h3 id="agent-patterns-to-adopt">Agent Patterns to Adopt</h3>
+<ol>
+<li>
+<p><strong>Worked examples in agent prompts.</strong> Every agent that produces structured output should include one complete worked example showing the expected format, level of detail, and quality bar.</p>
+</li>
+<li>
+<p><strong>BAD/GOOD pattern pairs in reviewer agents.</strong> Our code-reviewer lists what to check but doesn&rsquo;t show what violations look like.</p>
+</li>
+<li>
+<p><strong>Adversarial evaluation loops.</strong> Our santa-method skill describes the pattern; we should have a dedicated evaluator agent that can be dropped into any verification loop.</p>
+</li>
+</ol>
+<h3 id="manifest-features-to-build">Manifest Features to Build</h3>
+<ol>
+<li>
+<p><strong>Cost annotation</strong> on skills and agents (<code>light</code> / <code>medium</code> / <code>heavy</code>) to track context window impact.</p>
+</li>
+<li>
+<p><strong>Session profiles</strong> — load different subsets of the harness for different work types (research vs. engineering vs. operations review).</p>
+</li>
+<li>
+<p><strong>Install state tracking</strong> — record what&rsquo;s installed so we can detect drift, do incremental updates, and know when the harness needs reinstallation.</p>
+</li>
+<li>
+<p><strong>Dependency declaration</strong> between skills, so the installer can warn when a skill references another skill that isn&rsquo;t installed.</p>
+</li>
+</ol>
+<h3 id="patterns-not-to-adopt">Patterns NOT to Adopt</h3>
+<ul>
+<li>
+<p><strong>Language-specific agent proliferation.</strong> ECC has 8 language-specific reviewers and 7 build resolvers. We have two languages (JS, Rust) and two corresponding specialists. Adding more would be premature.</p>
+</li>
+<li>
+<p><strong>Skills-first migration.</strong> ECC is moving commands into skills because they&rsquo;re a plugin. Our commands are organizational entry points for a specific system — they should stay as commands.</p>
+</li>
+<li>
+<p><strong>Multi-model orchestration.</strong> ECC&rsquo;s <code>/multi-workflow</code> routes frontend to Gemini and backend to Codex. We&rsquo;re a single-model system and the coordination overhead isn&rsquo;t justified.</p>
+</li>
+<li>
+<p><strong>TDD enforcement.</strong> ECC mandates tests-before-code with 80%+ coverage. Our codebase includes a knowledge library, organizational records, and infrastructure scripts — TDD doesn&rsquo;t apply to most of our work. Where it does (Rust binary, Node.js hooks), we should test but not adopt the ritual.</p>
+</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ecc-agents-and-commands-analysis/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Content role</dt>
+        <dd property="emsenn:Contentrole"><a href="/library/domains/humanities/domains/writing/domains/essay-writing/terms/analysis/">analysis</a></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt>Relates to</dt>
+        <dd property="emsenn:Relatesto"><ul><li>continuous learning in agentic harnesses</li></ul></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Source</a></dt>
+        <dd property="emsenn:Source">operations/engineering/fars/src/everything claude code/</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

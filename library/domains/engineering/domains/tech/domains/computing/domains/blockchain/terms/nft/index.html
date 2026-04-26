@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Non-Fungible Token (NFT) - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-05",
+  "datePublished": "2026-04-05",
+  "description": "A blockchain token with a unique identifier, representing ownership of a distinct digital or physical asset.",
+  "name": "Non-Fungible Token (NFT)",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/nft/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/">Blockchain</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/">Blockchain Terms</a></nav>
+  <h1 class="p-name">Non-Fungible Token (NFT)</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
+    
+    <span class="p-summary">A blockchain token with a unique identifier, representing ownership of a distinct digital or physical asset.</span>
+  </div>
+  <div class="e-content">
+    <p>A non-fungible token (NFT) is a <a href="./token.md" class="link-internal">token</a> where each unit carries a unique identifier, making it distinguishable from every other token in the same contract. Unlike fungible tokens (where one unit equals any other), each NFT represents a specific asset — a piece of art, a game character, a plot of virtual land, a membership credential.</p>
+<p>The ERC-721 standard, authored by William Entriken, Dieter Shirley, Jacob Evans, and Nastassia Sachs in January 2018, formalized this pattern on Ethereum. The contract maps each token ID to exactly one owner address and provides functions for transferring individual tokens. The standard also includes a metadata extension: each token ID can point to a URI describing the asset&rsquo;s properties (name, image, attributes).</p>
+<p><strong>What an NFT actually stores</strong>:</p>
+<p>The token contract itself stores only ownership mappings and metadata URIs — not the asset. A JPEG &ldquo;stored as an NFT&rdquo; typically means the blockchain records who owns token #42 and that token #42 points to a URL or <a href="./content-identifier.md" class="link-internal">content identifier</a> where the image lives. If that URL breaks, the NFT still exists but the art is gone. Projects that store metadata and assets on-chain (like Loot, which stores item descriptions directly in the contract) avoid this fragility but pay higher <a href="./gas-fee.md" class="link-internal">gas</a> costs.</p>
+<p><strong>CryptoKitties (2017)</strong> was the first widely-adopted NFT project, congesting the Ethereum network and demonstrating both the appeal and the scalability limits of on-chain collectibles. Each kitty was an ERC-721 token with genetic attributes determined by its parents&rsquo; traits — an early example of on-chain generative content.</p>
+<p><strong>Applications beyond art</strong>:</p>
+<ul>
+<li><strong>Game assets</strong>: Characters, items, and land in <a href="./autonomous-world.md" class="link-internal">autonomous worlds</a> are NFTs, enabling true ownership and cross-game portability.</li>
+<li><strong>Identity and credentials</strong>: Soulbound tokens (non-transferable NFTs) represent achievements, certifications, or reputation.</li>
+<li><strong>Financial instruments</strong>: NFTs can represent unique positions — a specific liquidity provision range in Uniswap v3, for instance.</li>
+</ul>
+<p>The Loot project demonstrated how NFTs function as composable primitives: 8,000 bags of text-only adventurer gear spawned over 40 derivative projects, each reading from and building on the original contract. The NFT was not the art — it was the shared data layer.</p>
+<p>See also: <a href="./token.md" class="link-internal">token</a>, <a href="./composability.md" class="link-internal">composability</a>, <a href="./on-chain-state.md" class="link-internal">on-chain state</a></p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/nft/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/nft/">nft</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dd property="emsenn:Extends"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/token/">token</a></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

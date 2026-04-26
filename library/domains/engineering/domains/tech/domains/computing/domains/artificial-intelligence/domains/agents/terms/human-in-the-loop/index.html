@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "An orchestration pattern where execution pauses at designated points for human review before continuing — the primary mechanism for maintaining human control over agentic systems.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">An orchestration pattern where execution pauses at designated points for human review before continuing — the primary mechanism for maintaining human control over agentic systems.</span>
+  </div>
+  <div class="e-content">
+    <p>Human-in-the-loop (HITL) is an <a href="./agent-orchestration.md" class="link-internal">agent orchestration</a> pattern where execution pauses at designated points for human review, approval, or modification before the agent continues. The human inspects the agent&rsquo;s proposed action, the current state, or an intermediate result, then approves, edits, or rejects it. Execution resumes with the human&rsquo;s decision incorporated.</p>
+<p>HITL serves two functions. First, it catches errors — <a href="../../../terms/hallucination.md" class="link-internal">hallucinated</a> tool calls, incorrect plans, unsafe actions — before they take effect. Second, it provides a control mechanism: the human retains decision authority over actions that are irreversible, high-stakes, or outside the agent&rsquo;s competence.</p>
+<h3 id="implementation-patterns">Implementation patterns</h3>
+<p><strong>Pre-action review.</strong> The agent proposes an action (a tool call, a file write, a code change) and pauses for approval. The human sees the proposed action and its arguments. This is the most common HITL pattern and the default in tools like Claude Code, where certain operations require explicit user approval.</p>
+<p><strong>Checkpoint review.</strong> The agent executes a sequence of steps, then pauses at a checkpoint for the human to review accumulated state. <a href="./langgraph.md" class="link-internal">LangGraph</a> implements this as a first-class API: execution pauses at designated graph nodes, the checkpoint state is presented for review, and the human can modify state before resuming.</p>
+<p><strong>Exception escalation.</strong> The agent executes autonomously until it encounters a condition it cannot resolve — an ambiguous instruction, a conflicting constraint, an unexpected error — and escalates to the human for guidance. This is HITL triggered by the agent&rsquo;s own uncertainty rather than by a fixed checkpoint.</p>
+<p><strong>Output review.</strong> The agent completes its work and presents the final result for human approval before it takes effect — a pull request for review, a draft for editing, a plan for sign-off.</p>
+<h3 id="the-autonomy-control-trade-off">The autonomy-control trade-off</h3>
+<p>More HITL checkpoints increase human control and reduce error rates. They also reduce throughput — the agent blocks on human response time at every checkpoint. The design question is where to place checkpoints: too few and the agent makes costly mistakes; too many and the human spends more time reviewing than doing the work directly.</p>
+<p>The trend in agentic tooling as of 2026 is toward configurable autonomy: the operator sets a permission level that determines which actions require approval and which proceed automatically. Claude Code&rsquo;s permission modes, <a href="./pydantic-ai.md" class="link-internal">PydanticAI</a>&rsquo;s tool approval mechanisms, and LangGraph&rsquo;s interrupt nodes all implement this pattern.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Controls</dt>
+        <dd property="emsenn:Controls"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/">agentic system</a></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/">human in the loop</a></dd>
+      </div><div class="relation">
+        <dt>Pattern of</dt>
+        <dd property="emsenn:Patternof"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/">agent orchestration</a></dd>
+      </div><div class="relation">
+        <dt>Patterns</dt>
+        <dd property="emsenn:Patterns">pre action review, checkpoint review, exception escalation, output review</dd>
+      </div><div class="relation">
+        <dt>Tradeoff</dt>
+        <dd property="emsenn:Tradeoff">autonomy, control</dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/permission-model/">Permission Model</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/multi-agent-system/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-self-improvement/">Agent Self-Improvement</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/computer-use/">Computer Use</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

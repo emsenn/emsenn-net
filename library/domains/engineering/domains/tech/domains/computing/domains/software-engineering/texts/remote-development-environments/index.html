@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remote Development Environments - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-03",
+  "datePublished": "2026-04-03",
+  "description": "Survey of remote development environment architectures — SSH-based, cloud-hosted, and hybrid — with documented tradeoffs in latency, cost, control, and portability.",
+  "keywords": "RemoteDevelopment, SSH, CloudIDE, DeveloperInfrastructure",
+  "name": "Remote Development Environments",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/remote-development-environments/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/">Software engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/">Texts</a></nav>
+  <h1 class="p-name">Remote Development Environments</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-03T00:00:00Z">2026-04-03</time>
+    
+    <span class="p-summary">Survey of remote development environment architectures — SSH-based, cloud-hosted, and hybrid — with documented tradeoffs in latency, cost, control, and portability.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ssh-based-remote-development">SSH-based remote development</a></li>
+    <li><a href="#cloud-development-environments">Cloud development environments</a></li>
+    <li><a href="#persistent-remote-sessions">Persistent remote sessions</a></li>
+    <li><a href="#tradeoffs">Tradeoffs</a></li>
+    <li><a href="#platform-differences-for-terminal-based-tools">Platform differences for terminal-based tools</a></li>
+    <li><a href="#key-citations">Key citations</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>A remote development environment is any arrangement where the
+developer&rsquo;s editor runs locally but code execution, file storage,
+and tooling run on a separate machine. The practice is older than
+the term — Unix terminals connected to shared servers in the 1970s
+were remote development environments — but the modern form emerged
+around 2019 with VS Code Remote SSH and has since split into three
+distinct architectures.</p>
+<h2 id="ssh-based-remote-development">SSH-based remote development</h2>
+<p>The simplest architecture: a developer connects to a remote machine
+over SSH, and the editor handles the split transparently. The remote
+machine runs the language server, file system, terminal, and build
+tools. The local machine handles rendering and input.</p>
+<p><strong>VS Code Remote SSH</strong> (Microsoft, 2019–present) installs a headless
+server on the remote host and proxies editor operations over SSH.
+As of 2026, it requires glibc 2.28+ on the remote. <strong>JetBrains
+Gateway</strong> (2022–present) does the same for IntelliJ-family IDEs,
+adding TLS 1.3 encryption even within the SSH tunnel. <strong>Neovim
+over SSH</strong> achieves similar results through plugins like
+remote-nvim.nvim (full remote IDE experience), remote-sshfs.nvim
+(SSHFS mount), and remote-ssh.nvim (remote language servers with
+local editing).</p>
+<p>The critical tradeoff is latency. Keystroke responsiveness, file
+operation speed, and editor fluidity all degrade with network
+latency. A 2025 survey found 53% of remote developers cited latency
+as a limiting factor, up from 32% the prior year. Bandwidth matters
+less — a connection with 10 Mbps and 10ms latency outperforms
+100 Mbps with 100ms latency for interactive editing. Geographic
+proximity between developer and server is the primary mitigation.</p>
+<p>SSH-based development adds no platform cost. You pay for the remote
+machine and nothing else. The developer retains full root access
+and can run any software. There is no vendor lock-in beyond the
+SSH protocol itself.</p>
+<h2 id="cloud-development-environments">Cloud development environments</h2>
+<p>Cloud development environments (CDEs) are managed platforms that
+provision remote machines on demand, configured from a specification
+file (typically a devcontainer.json). The developer connects via
+browser or local IDE.</p>
+<p><strong>GitHub Codespaces</strong> (2021–present) provisions machines from
+2 to 32 cores at <span class="math-error">0.18–</span>2.88/hour, with a free tier of 120
+core-hours monthly. Workspaces persist across sessions but require
+network connectivity — developer experience degrades rapidly on
+unstable connections.</p>
+<p><strong>Gitpod</strong> (rebranded Ona, 2025) offers medium workspaces at
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.72</mn><mi mathvariant="normal">/</mi><mi>h</mi><mi>o</mi><mi>u</mi><mi>r</mi><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">0.72/hour (</annotation></semantics></math></span>115/month at 8-hour daily use) and large at <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.44</mn><mi mathvariant="normal">/</mi><mi>h</mi><mi>o</mi><mi>u</mi><mi>r</mi><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">1.44/hour
+(</annotation></semantics></math></span>230/month). Free-tier workspaces auto-delete after 3 days of
+inactivity.</p>
+<p><strong>Coder</strong> (open-source, self-hosted) eliminates platform costs
+by running on your own infrastructure via Terraform and Docker.
+It connects clients to remote environments through WireGuard
+tunnels. The tradeoff is operational burden — your team manages
+the platform.</p>
+<p><strong>DevPod</strong> (open-source, client-only) uses the DevContainer
+specification without any platform component. It provisions
+environments on Docker, Kubernetes, SSH targets, or local machines.
+Zero platform cost, full provider independence.</p>
+<p>The cost divergence between managed and self-hosted CDEs is stark:
+Gitpod at $115–230/month versus DevPod at zero platform cost for
+equivalent capabilities. The managed platforms trade money for
+onboarding speed and operational simplicity.</p>
+<h2 id="persistent-remote-sessions">Persistent remote sessions</h2>
+<p>A pattern distinct from CDEs: maintaining a persistent shell
+session on a remote server using terminal multiplexers. <strong>tmux</strong>
+and <strong>GNU Screen</strong> allow developers to detach from a session and
+reattach later, surviving network disconnections and client
+restarts. The session persists on the server indefinitely unless
+explicitly terminated or the server reboots.</p>
+<p>This pattern is the standard for AI-assisted development tools
+that run in terminals. Claude Code (Anthropic, 2025–present)
+documents SSH + tmux as the production pattern for remote use,
+with print mode (<code>-p</code>) for headless automation. Tailscale SSH
+provides secure, zero-configuration tunneling for this use case.</p>
+<p>The persistent session pattern requires no platform and minimal
+setup. A VPS with SSH access and tmux installed is sufficient.
+The developer can reconnect from any device — including mobile
+terminal clients — and find their session exactly as they left it.</p>
+<h2 id="tradeoffs">Tradeoffs</h2>
+<p>The three architectures trade off along four axes:</p>
+<p><strong>Latency control.</strong> SSH-based and persistent sessions give full
+control — choose a server geographically close. CDEs run where the
+platform provider places them.</p>
+<p><strong>Cost.</strong> SSH and persistent sessions cost only the server (<span class="math-error">4–50/month
+for a VPS). Managed CDEs add platform fees (</span>0.18–2.88/hour) that
+compound quickly for sustained use.</p>
+<p><strong>Operational burden.</strong> Managed CDEs handle provisioning, updates,
+and cleanup. SSH requires maintaining the remote machine yourself.
+Self-hosted CDEs (Coder, DevPod) fall between — no platform vendor,
+but infrastructure management.</p>
+<p><strong>Portability.</strong> SSH works with any server. DevPod works with any
+provider. Codespaces and Gitpod tie you to their platforms. Coder
+requires Terraform but runs on any infrastructure.</p>
+<h2 id="platform-differences-for-terminal-based-tools">Platform differences for terminal-based tools</h2>
+<p>Development tools that operate in the terminal — linters, build
+systems, test runners, and AI coding assistants — perform identically
+on remote and local machines. The only variable is file system
+speed. Networked file systems (SSHFS, NFS) introduce latency on
+every file operation. Tools that run directly on the remote machine
+via SSH or tmux access the local file system at native speed.</p>
+<p>This is why the SSH + tmux pattern dominates for serious remote
+development: the tool runs where the files are, and the network
+carries only terminal I/O.</p>
+<h2 id="key-citations">Key citations</h2>
+<ul>
+<li>Microsoft. &ldquo;Remote Development using SSH.&rdquo; Visual Studio Code
+Documentation, 2026.</li>
+<li>JetBrains. &ldquo;Remote Development Overview.&rdquo; JetBrains Gateway
+Documentation, 2025.</li>
+<li>Coder. &ldquo;Achieving Low Latency Remote Development.&rdquo; Coder Blog, 2025.</li>
+<li>GitHub. &ldquo;About Billing for GitHub Codespaces.&rdquo; GitHub
+Documentation, 2026.</li>
+<li>Loft Labs. &ldquo;Comparing Coder vs Codespaces vs Gitpod vs DevPod.&rdquo;
+vcluster.com, 2024.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/remote-development-environments/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Citations</dt>
+        <dd property="emsenn:Citations"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-03">2026-04-03</time></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/remotedevelopment/">RemoteDevelopment</a></li><li><a href="/tags/ssh/">SSH</a></li><li><a href="/tags/cloudide/">CloudIDE</a></li><li><a href="/tags/developerinfrastructure/">DeveloperInfrastructure</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

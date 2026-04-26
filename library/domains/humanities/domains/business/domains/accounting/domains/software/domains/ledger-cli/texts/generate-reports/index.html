@@ -17,7 +17,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "HowTo",
+  "@type": "Article",
   "dateModified": "2026-03-06",
   "datePublished": "2026-03-06",
   "description": "Generate Balance and Register Reports in Ledger Ledger\u0026rsquo;s two fundamental reports are balance and register.\nBalance report — shows account totals:\nledger -f journal.ledger balance This shows the balance of every account. Narrow it with account patterns:\nledger -f journal.ledger balance Expenses ledger -f journal.ledger balance Assets:Checking Register report — shows individual transactions:\nledger -f journal.ledger register Expenses:Food This shows every transaction that touches Expenses:Food, with a running total.\nCommon flags:\n",
@@ -67,7 +67,7 @@
 
   <main id="content" data-pagefind-body>
     
-<article class="h-entry" data-type="skill">
+<article class="h-entry" data-type="page">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/">Business</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/domains/accounting/">Accounting</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/domains/accounting/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/domains/accounting/domains/software/domains/ledger-cli/">Ledger CLI</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/business/domains/accounting/domains/software/domains/ledger-cli/texts/">Texts</a></nav>
   <h1 class="p-name">Generate Balance and Register Reports in Ledger</h1>
   <div class="meta">
@@ -79,12 +79,12 @@
     <h1 id="generate-balance-and-register-reports-in-ledger">Generate Balance and Register Reports in Ledger</h1>
 <p>Ledger&rsquo;s two fundamental reports are <code>balance</code> and <code>register</code>.</p>
 <p><strong>Balance report</strong> — shows account totals:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ledger -f journal.ledger balance
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ledger -f journal.ledger balance
 </span></span></code></pre></div><p>This shows the balance of every account. Narrow it with account patterns:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ledger -f journal.ledger balance Expenses
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ledger -f journal.ledger balance Expenses
 </span></span><span style="display:flex;"><span>ledger -f journal.ledger balance Assets:Checking
 </span></span></code></pre></div><p><strong>Register report</strong> — shows individual transactions:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ledger -f journal.ledger register Expenses:Food
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ledger -f journal.ledger register Expenses:Food
 </span></span></code></pre></div><p>This shows every transaction that touches <code>Expenses:Food</code>, with a running total.</p>
 <p><strong>Common flags</strong>:</p>
 <ul>
@@ -96,9 +96,9 @@
 <li><code>--empty</code> — show accounts with zero balance</li>
 </ul>
 <p><strong>Income statement</strong> (income and expenses for a period):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ledger -f journal.ledger balance Income Expenses --period <span style="color:#e6db74">&#34;2024&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ledger -f journal.ledger balance Income Expenses --period <span style="color:#e6db74">&#34;2024&#34;</span>
 </span></span></code></pre></div><p><strong>Net worth</strong> (assets minus liabilities):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ledger -f journal.ledger balance Assets Liabilities
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ledger -f journal.ledger balance Assets Liabilities
 </span></span></code></pre></div><p>Reports go to stdout, so they can be piped to other tools: <code>ledger balance | grep Food</code>, redirected to files, or processed with scripts.</p>
 
   </div>
@@ -111,25 +111,15 @@
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-06">2026-03-06</time></dd>
       </div><div class="relation">
-        <dt>Readiness</dt>
-        <dd property="emsenn:Readiness">shaped</dd>
+        <dt>Introduces</dt>
+        <dd property="emsenn:Introduces"><a href="/library/domains/engineering/domains/tech/terms/skill/">skill</a></dd>
       </div><div class="relation">
         <dt>Tags</dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/accounting/">Accounting</a></li></ul></dd>
       </div>
   </dl>
 </section>
-<section class="cite-this" id="cite-this">
-  <h2>Cite</h2>
-  <pre class="cite-block"><code>@misc{emsenn2026-generate-reports,
-  author    = {emsenn},
-  title     = {Generate Balance and Register Reports in Ledger},
-  year      = {2026},
-  url       = {https://emsenn.net/library/domains/humanities/domains/business/domains/accounting/domains/software/domains/ledger-cli/texts/generate-reports/},
-  publisher = {emsenn.net},
-  license   = {CC BY-SA 4.0}
-}</code></pre>
-</section>
+
 
   
 

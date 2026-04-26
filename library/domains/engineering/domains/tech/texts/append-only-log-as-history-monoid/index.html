@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Append-Only Logs Are History Monoids - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Append-only event logs are trace monoids (history monoids) — formal algebraic objects where independent events commute and dependent events do not. This structure is not a metaphor; it is the mathematical identity of event-sourced systems.",
+  "name": "Append-Only Logs Are History Monoids",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/texts/append-only-log-as-history-monoid/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/texts/">Texts</a></nav>
+  <h1 class="p-name">Append-Only Logs Are History Monoids</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Append-only event logs are trace monoids (history monoids) — formal algebraic objects where independent events commute and dependent events do not. This structure is not a metaphor; it is the mathematical identity of event-sourced systems.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-free-monoid-of-events">The Free Monoid of Events</a></li>
+    <li><a href="#the-independence-relation">The Independence Relation</a></li>
+    <li><a href="#the-trace-monoid">The Trace Monoid</a></li>
+    <li><a href="#event-sourcing-and-trace-equivalence">Event Sourcing and Trace Equivalence</a></li>
+    <li><a href="#the-dependence-graph">The Dependence Graph</a></li>
+    <li><a href="#why-this-matters">Why This Matters</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="append-only-logs-are-history-monoids">Append-Only Logs Are History Monoids</h1>
+<p>An append-only event log — the kind used in event sourcing, write-ahead logs, and ledger systems — is not merely a sequence of records. It is a <em>trace monoid</em>: a free partially commutative monoid where independent events may be reordered without changing the system&rsquo;s state, but dependent events must remain in sequence.</p>
+<p>This is not an analogy. The algebraic structure of the log <em>is</em> the trace monoid. Recognizing this turns operational questions (Can I parallelize these events? Does replay order matter? What is the canonical form of this history?) into algebraic computations with known solutions.</p>
+<h2 id="the-free-monoid-of-events">The Free Monoid of Events</h2>
+<p>Any append-only log over an alphabet Σ of event types forms a free monoid Σ*: the set of all finite sequences of events, with concatenation as the operation and the empty sequence as identity. This is the structure you get before imposing any equivalences — every distinct sequence is a distinct history.</p>
+<p>But not all reorderings change the outcome. If event <em>a</em> modifies account X and event <em>b</em> modifies account Y, the final state is the same whether <em>a</em> precedes <em>b</em> or <em>b</em> precedes <em>a</em>. The events are <em>independent</em>.</p>
+<h2 id="the-independence-relation">The Independence Relation</h2>
+<p>Define an independence relation <em>I ⊆ Σ × Σ</em> where (<em>a</em>, <em>b</em>) ∈ <em>I</em> means events <em>a</em> and <em>b</em> commute: applying them in either order yields the same result. The complement <em>D = (Σ × Σ) \ I</em> is the <em>dependence relation</em>: pairs of events whose order matters.</p>
+<p>For event logs, the natural independence relation is:</p>
+<ul>
+<li>Events on <em>different subjects</em> are independent (they touch disjoint state).</li>
+<li>Events on the <em>same subject</em> are dependent (they modify shared state, and order determines the outcome).</li>
+</ul>
+<p>This is exactly the structure identified by Mazurkiewicz (1977) and developed by Diekert and Rozenberg (1995) as the theory of <em>trace monoids</em>.</p>
+<h2 id="the-trace-monoid">The Trace Monoid</h2>
+<p>The trace monoid M(Σ, <em>I</em>) is the quotient of the free monoid Σ* by the congruence generated by <em>I</em>:</p>
+<pre><code>ab ~ ba  whenever (a, b) ∈ I
+</code></pre>
+<p>Two sequences are equivalent (represent the same <em>trace</em>) if one can be obtained from the other by swapping adjacent independent events. Each equivalence class — each trace — represents a <em>partial order</em> of events: dependent events are ordered, independent events are unordered.</p>
+<p>The trace monoid has concrete computational properties:</p>
+<ol>
+<li>
+<p><strong>Normal form</strong>: Every trace has a canonical representative — the lexicographically first sequence in its equivalence class. This gives a canonical serialization of any history.</p>
+</li>
+<li>
+<p><strong>Parallelism</strong>: The <em>Foata normal form</em> (Cartier &amp; Foata, 1969) factors each trace into a sequence of <em>steps</em> — maximal sets of mutually independent events. Each step can execute in parallel. The number of steps is the <em>height</em> of the trace, which is the minimum sequential execution time.</p>
+</li>
+<li>
+<p><strong>Prefix order</strong>: Traces are partially ordered by prefix. The prefix order is the causal history: trace <em>s</em> is a prefix of trace <em>t</em> if every event in <em>s</em> causally precedes the additional events in <em>t</em>.</p>
+</li>
+</ol>
+<h2 id="event-sourcing-and-trace-equivalence">Event Sourcing and Trace Equivalence</h2>
+<p>In event-sourced systems (as described by Fowler, 2005, and codified in systems like EventStore and Kafka), the log is the source of truth. The current state is derived by replaying the log from the beginning.</p>
+<p>The trace monoid structure tells you exactly when replay order matters:</p>
+<ul>
+<li><strong>Replay is deterministic up to trace equivalence</strong>: Any two serializations of the same trace produce the same final state. You can reorder independent events freely during replay.</li>
+<li><strong>Compaction preserves traces</strong>: Removing redundant events (e.g., superseded updates to the same subject) is safe if and only if the removed events are in the same trace equivalence class as shorter sequences.</li>
+<li><strong>Concurrent appends commute</strong>: Two processes appending independent events to the log produce the same trace regardless of which append lands first. This is why event logs tolerate concurrent writers on disjoint subjects without coordination.</li>
+</ul>
+<h2 id="the-dependence-graph">The Dependence Graph</h2>
+<p>Each trace corresponds to a <em>dependence graph</em>: a directed acyclic graph where nodes are events and edges connect dependent events in causal order. The dependence graph is the Hasse diagram of the partial order defined by the trace.</p>
+<p>Lamport&rsquo;s (1978) happened-before relation on distributed events is exactly the dependence order of the trace monoid when Σ is the set of message sends and receives and <em>I</em> relates events at different processes that do not exchange messages. The connection between Mazurkiewicz traces and Lamport causality was made explicit by Pratt (1986) and Winskel (1986).</p>
+<h2 id="why-this-matters">Why This Matters</h2>
+<p>Recognizing event logs as trace monoids turns design questions into algebraic ones:</p>
+<ul>
+<li><strong>&ldquo;Can these events be parallelized?&rdquo;</strong> → Are they independent in <em>I</em>? Compute the Foata normal form.</li>
+<li><strong>&ldquo;Is this replay correct?&rdquo;</strong> → Is the replay sequence in the same trace equivalence class as the original log?</li>
+<li><strong>&ldquo;What is the minimum latency for processing this history?&rdquo;</strong> → What is the height of the trace (number of Foata steps)?</li>
+<li><strong>&ldquo;Can I merge these two logs?&rdquo;</strong> → Are they prefixes of a common trace? Compute the join in the prefix order.</li>
+</ul>
+<p>These are solved problems in trace monoid theory, with efficient algorithms (Diekert &amp; Rozenberg, 1995).</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>Cartier, P. &amp; Foata, D. (1969). <em>Problèmes combinatoires de commutation et réarrangements</em>. Lecture Notes in Mathematics, vol. 85. Springer.</li>
+<li>Diekert, V. &amp; Rozenberg, G. (1995). <em>The Book of Traces</em>. World Scientific.</li>
+<li>Fowler, M. (2005). &ldquo;Event Sourcing.&rdquo; martinfowler.com.</li>
+<li>Lamport, L. (1978). &ldquo;Time, Clocks, and the Ordering of Events in a Distributed System.&rdquo; <em>Communications of the ACM</em>, 21(7), 558–565.</li>
+<li>Mazurkiewicz, A. (1977). &ldquo;Concurrent Program Schemes and their Interpretations.&rdquo; <em>DAIMI Report PB-78</em>, Aarhus University.</li>
+<li>Pratt, V. (1986). &ldquo;Modeling Concurrency with Partial Orders.&rdquo; <em>International Journal of Parallel Programming</em>, 15(1), 33–71.</li>
+<li>Winskel, G. (1986). &ldquo;Event Structures.&rdquo; <em>Petri Nets: Applications and Relationships to Other Models of Concurrency</em>, Lecture Notes in Computer Science, vol. 255, 325–392.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/texts/append-only-log-as-history-monoid/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">engineering</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

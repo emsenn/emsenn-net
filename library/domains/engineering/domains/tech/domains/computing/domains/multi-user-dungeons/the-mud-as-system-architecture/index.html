@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The MUD as System Architecture - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "How the LPMud driver/mudlib pattern provides a concrete architecture for systems where the world is a knowledge base, the users are agents, and building is the primary activity.",
+  "name": "The MUD as System Architecture",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/the-mud-as-system-architecture/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/">Multi user dungeons</a></nav>
+  <h1 class="p-name">The MUD as System Architecture</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">How the LPMud driver/mudlib pattern provides a concrete architecture for systems where the world is a knowledge base, the users are agents, and building is the primary activity.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-pattern">The Pattern</a></li>
+    <li><a href="#what-this-maps-to">What This Maps To</a></li>
+    <li><a href="#why-this-matters-architecturally">Why This Matters Architecturally</a></li>
+    <li><a href="#the-teraum-precedent">The Teraum Precedent</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>The <a href="./mud.md" class="link-internal">MUD</a> tradition solved a problem that most software architectures never encounter: how to build a persistent, shared, navigable world where every object is simultaneously content (something you read), structure (something that connects to other things), and behavior (something that does things on its own). The <a href="./lpmud.md" class="link-internal">LPMud</a> lineage solved it most cleanly, with the <a href="./mud-libraries.md" class="link-internal">driver/mudlib separation</a> — the engine provides infrastructure and a language; the world is an application written in that language.</p>
+<p>This text argues that the MUD architecture is not a game pattern that happens to resemble other systems. It is a general system architecture that happens to have been discovered first in games.</p>
+<h2 id="the-pattern">The Pattern</h2>
+<p>A MUD has five structural elements:</p>
+<ol>
+<li>
+<p><strong>The driver</strong> — handles connections, object lifecycle, the interpreter, I/O. It knows nothing about what the world contains. In LPMud, this is the C binary (MudOS, FluffOS). It provides the runtime.</p>
+</li>
+<li>
+<p><strong>The mudlib</strong> — written in the driver&rsquo;s language (LPC), defines every object type: rooms, weapons, NPCs, spells. It is the world&rsquo;s type system and its standard library. A room is a constructor that takes a name, description, exits, contents, actions, and trivia. A person is a constructor that takes a name, description, contents, and behavior.</p>
+</li>
+<li>
+<p><strong>The map</strong> — a flat registry of named locations, each defined by its exits (pointers to other locations by name). Navigation is following named relations between entities. The map is not a spatial data structure — it is a graph of typed entities with directed labeled edges.</p>
+</li>
+<li>
+<p><strong>Recipes</strong> — domain-specific constructors that specialize the mudlib&rsquo;s base types. A city defines <code>district</code> as a specialization of <code>area/outdoors</code> that injects city-specific trivia. An inn is a specialization of <code>area/room</code> that comes pre-furnished. Recipes compose: each layer adds its own context without replacing what&rsquo;s below.</p>
+</li>
+<li>
+<p><strong>Builders</strong> — people (or programs) who use recipes to create the world. The builder interface IS the programming interface. <a href="./world-building-as-programming.md" class="link-internal">World-building is programming</a>.</p>
+</li>
+</ol>
+<h2 id="what-this-maps-to">What This Maps To</h2>
+<p>Consider a system with a knowledge graph of 11,000+ entities, each with typed attributes (name, description, type, relations to other entities). The entities are organized into domains. There are agents that navigate the graph, read entities, create new ones, and modify existing ones. There is a daemon that monitors state and derives work. There is a TUI through which a human operator observes and directs.</p>
+<p>This is a MUD. Specifically:</p>
+<table>
+  <thead>
+      <tr>
+          <th>MUD concept</th>
+          <th>System equivalent</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Driver</td>
+          <td>The daemon binary — handles connections, sessions, I/O, the runtime</td>
+      </tr>
+      <tr>
+          <td>Mudlib</td>
+          <td>The type conventions — term, text, plan, task, project, goal, policy</td>
+      </tr>
+      <tr>
+          <td>Map</td>
+          <td>The knowledge graph — entities with typed relations, navigable by name</td>
+      </tr>
+      <tr>
+          <td>Room</td>
+          <td>A domain, a plan, a project — anything with contents and exits to other things</td>
+      </tr>
+      <tr>
+          <td>Object</td>
+          <td>A term, a text, a task — anything containable with a description</td>
+      </tr>
+      <tr>
+          <td>Person</td>
+          <td>An agent session — something that moves through the world and acts</td>
+      </tr>
+      <tr>
+          <td>NPC</td>
+          <td>A daemon loop, a scheduled process — something that acts on its own</td>
+      </tr>
+      <tr>
+          <td>Exits</td>
+          <td>Relations between entities — <code>relates-to</code>, <code>serves</code>, <code>blocks</code>, <code>part-of</code></td>
+      </tr>
+      <tr>
+          <td>Recipes</td>
+          <td>Skills — domain-specific constructors (<code>writing-terms</code>, <code>writing-texts</code>, type conventions)</td>
+      </tr>
+      <tr>
+          <td>Builder</td>
+          <td>An agent using skills to create entities in the world</td>
+      </tr>
+      <tr>
+          <td>Trivia</td>
+          <td>Accreting metadata — each domain layer adds its own context</td>
+      </tr>
+      <tr>
+          <td>Look</td>
+          <td>Query — read an entity&rsquo;s description, contents, exits</td>
+      </tr>
+      <tr>
+          <td>Go</td>
+          <td>Navigate — follow a relation to another entity</td>
+      </tr>
+      <tr>
+          <td>Build</td>
+          <td>Write — create a new entity using the appropriate recipe</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="why-this-matters-architecturally">Why This Matters Architecturally</h2>
+<p>The MUD pattern answers architectural questions that are otherwise hard:</p>
+<p><strong>How do you navigate a knowledge base?</strong> The same way you navigate a MUD: you are &ldquo;in&rdquo; an entity, you see its description and contents, and you follow exits to related entities. This is not a metaphor — it is a concrete interaction pattern with 40 years of iteration behind it.</p>
+<p><strong>How do you make agents spatial?</strong> An agent has a location (the entity it&rsquo;s currently focused on). It can look (read), go (follow a relation), take (claim a task), build (create an entity), and tell (communicate with other agents in the same location). The MUD verb system maps directly to tool use.</p>
+<p><strong>How do you compose domain knowledge?</strong> The recipe pattern. Base types provide the universal structure. Domain recipes specialize them. Sub-domain recipes specialize further. Each layer adds its own trivia (metadata, conventions, defaults) without touching the layers below. This is exactly how a Teraum inn inherits from <code>area/room/inn</code> which inherits from <code>area/room</code> which inherits from <code>area</code>.</p>
+<p><strong>How do you handle the driver/application boundary?</strong> The same way LPMud does: the driver knows about entities, attributes, connections, and sessions. It does NOT know about what the entities mean. The mudlib (skills, type conventions, domain rules) defines meaning. This separation means the driver can be small, fast, and stable while the world grows without limit.</p>
+<h2 id="the-teraum-precedent">The Teraum Precedent</h2>
+<p>The Teraum Racket MUD codebase (<code>operations/engineering/triage/software/teraum-racket-mud/</code>) demonstrates this pattern in ~300 lines of Racket. The base <code>recipes.rkt</code> defines <code>area</code>, <code>object</code>, <code>person</code> — each a constructor taking keyword arguments for qualities. The teraum-level recipes layer adds world-specific trivia and specializations (goblin, giant-spider, inn, rural-road). City-level recipes add city-specific trivia and types (district, street, store). Individual rooms are one-liners that invoke the appropriate recipe with a name, description, and exits.</p>
+<p>The entire world is declarative. A room file is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-racket" data-lang="racket"><span style="display:flex;"><span>(<span style="color:#66d9ef">define</span> copper-ward
+</span></span><span style="display:flex;"><span>  (district
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">#:name</span> <span style="color:#e6db74">&#34;Copper Ward&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">#:description</span> <span style="color:#e6db74">&#34;This is the Copper Ward, a district of the city of Ack.&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">#:exits</span> <span style="color:#f92672">&#39;</span>((<span style="color:#e6db74">north</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">green-delta/game/ack/red-ward</span>)
+</span></span><span style="display:flex;"><span>             (<span style="color:#e6db74">east</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">green-delta/game/ack/brass-ward</span>))))<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>This is the same structure as a library term file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Copper Ward&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">introduces</span>: <span style="color:#ae81ff">term</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;This is the Copper Ward, a district of the city of Ack.&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">relates-to</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">red-ward</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">brass-ward</span>
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><p>The formats differ. The data model is identical.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/the-mud-as-system-architecture/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt>Relates to</dt>
+        <dd property="emsenn:Relatesto"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/mud/">mud</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/lpmud/">lpmud</a></li><li>mud libraries</li><li>world building as programming</li><li>convergence through minimum viable instance</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

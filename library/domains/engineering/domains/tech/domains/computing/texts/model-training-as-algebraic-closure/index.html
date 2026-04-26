@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model Training as Algebraic Closure - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "The mathematical structure of LLM training maps onto algebraic closure operators: pre-training closes over a corpus, fine-tuning applies an additional nucleus, in-context learning temporarily extends the generator set, and the trained model is the fixed point.",
+  "name": "Model Training as Algebraic Closure",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/model-training-as-algebraic-closure/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">Model Training as Algebraic Closure</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">The mathematical structure of LLM training maps onto algebraic closure operators: pre-training closes over a corpus, fine-tuning applies an additional nucleus, in-context learning temporarily extends the generator set, and the trained model is the fixed point.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#pre-training-closure-over-the-corpus">Pre-training: closure over the corpus</a></li>
+    <li><a href="#fine-tuning-an-additional-nucleus">Fine-tuning: an additional nucleus</a></li>
+    <li><a href="#in-context-learning-temporary-generators">In-context learning: temporary generators</a></li>
+    <li><a href="#the-correspondence">The correspondence</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="model-training-as-algebraic-closure">Model Training as Algebraic Closure</h1>
+<p>A closure operator on a set is a function <em>cl</em> that is extensive (<em>S</em> is a subset of <em>cl(S)</em>), monotone (if <em>S</em> is a subset of <em>T</em> then <em>cl(S)</em> is a subset of <em>cl(T)</em>), and idempotent (<em>cl(cl(S))</em> = <em>cl(S)</em>). The elements of <em>cl(S)</em> that were not in <em>S</em> are the consequences generated by closing over <em>S</em>. A fixed point of <em>cl</em> is any set <em>F</em> where <em>cl(F)</em> = <em>F</em> &mdash; closure adds nothing new.</p>
+<p>This structure describes LLM training exactly.</p>
+<h2 id="pre-training-closure-over-the-corpus">Pre-training: closure over the corpus</h2>
+<p>The training corpus is a generator set <em>G</em>. Each document contributes token sequences that define the empirical distribution <em>P(token | context)</em>. Pre-training applies a closure operator <em>T</em> to <em>G</em>: starting from random weights <em>W_0</em>, each gradient step moves the model toward a state where its predicted distribution matches the empirical one. The loss function is cross-entropy: <em>L = -log(p_correct)</em>, and each update adjusts weights proportional to the gradient of this loss (Vaswani et al., 2017).</p>
+<p>The process is extensive: the model&rsquo;s representational capacity encompasses the training data. It is monotone: adding data to the corpus can only expand what the model captures. It is idempotent: once the model has converged to weights <em>W*</em> where the training loss is minimized, reapplying the same training process yields <em>T(W*) = W*</em>. The trained model IS the fixed point.</p>
+<p>Convergence means the model has internalized not just individual sequences but the statistical regularities across the entire corpus &mdash; the closure of <em>G</em> under next-token prediction includes all the distributional consequences that follow from the generator set.</p>
+<h2 id="fine-tuning-an-additional-nucleus">Fine-tuning: an additional nucleus</h2>
+<p>A nucleus (in the algebraic sense) is a closure operator applied to an already-closed object, producing a sub-fixed-point that satisfies additional constraints. Fine-tuning does exactly this.</p>
+<p><strong>LoRA</strong> (Hu et al., 2021) makes the structure visible: weight updates are confined to a low-rank subspace, decomposed as <em>delta-W = BA</em> where <em>B</em> and <em>A</em> have rank <em>r</em> much smaller than the model dimension. The pre-trained weights stay frozen. The nucleus acts within a constrained subspace, tightening the fixed point without rebuilding it. The result is a new fixed point <em>W**</em> satisfying both the original pre-training closure and the fine-tuning constraint.</p>
+<p><strong>RLHF</strong> (Ouyang et al., 2022) applies a preference-based nucleus. A reward model <em>r</em> encodes human judgments, and PPO optimization finds weights that maximize reward while a KL-divergence penalty prevents drifting too far from the pre-trained fixed point. The penalty is the algebraic constraint: the nucleus must produce a sub-fixed-point of the original closure, not an arbitrary new one.</p>
+<p><strong>DPO</strong> (Rafailov et al., 2023) compresses this into a single operator by expressing preference satisfaction directly in terms of the policy, eliminating the intermediate reward model. The composite closure &mdash; pre-training followed by preference alignment &mdash; reaches its fixed point in one pass.</p>
+<p>In each case, fine-tuning does not reopen the original closure. It applies a second closure operator whose fixed points are a subset of the first&rsquo;s.</p>
+<h2 id="in-context-learning-temporary-generators">In-context learning: temporary generators</h2>
+<p>In-context learning changes the model&rsquo;s behavior without changing its weights. A prompt containing examples or instructions temporarily extends the generator set: instead of computing <em>P(y | x)</em> from the fixed weights alone, the model computes <em>P(y | x, prompt)</em>. The weights <em>W*</em> remain the stable fixed point. The prompt is an ephemeral addition to <em>G</em> that shifts the output distribution for the duration of the context window.</p>
+<p>This is not a new closure. It is the same closure operator applied to a temporarily enlarged generator set. When the context window ends, the extension vanishes and the model returns to its base fixed point. No weights changed; no new fixed point was established.</p>
+<h2 id="the-correspondence">The correspondence</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Algebra</th>
+          <th>ML</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Generator set <em>G</em></td>
+          <td>Training corpus</td>
+      </tr>
+      <tr>
+          <td>Closure operator <em>cl</em></td>
+          <td>Training process (SGD on cross-entropy loss)</td>
+      </tr>
+      <tr>
+          <td>Fixed point <em>cl(G)</em> = <em>cl(cl(G))</em></td>
+          <td>Converged model weights <em>W*</em></td>
+      </tr>
+      <tr>
+          <td>Nucleus on fixed point</td>
+          <td>Fine-tuning (LoRA, RLHF, DPO)</td>
+      </tr>
+      <tr>
+          <td>Sub-fixed-point</td>
+          <td>Fine-tuned model <em>W**</em></td>
+      </tr>
+      <tr>
+          <td>Temporary generator extension</td>
+          <td>In-context learning (prompt)</td>
+      </tr>
+  </tbody>
+</table>
+<p>The CCE specification operationalizes this pattern for structured cells: its <code>apply</code> function is a closure operator, its layered expansion is the iterative construction of <em>cl(G)</em>, and its fuel bounds ensure termination. The voidmath normalization process (Act F3.1 applied until Thing F5.3 is reached) is the same structure: generators produce histories, closure normalizes them, and the fixed point is the fully settled layer.</p>
+<p>The claim is not metaphorical. Pre-training satisfies the three axioms of a closure operator. Fine-tuning satisfies the definition of a nucleus. In-context learning satisfies the definition of generator-set extension. The trained model satisfies the definition of a fixed point. The mathematics is the same mathematics.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Vaswani, A., et al. &ldquo;Attention Is All You Need.&rdquo; <em>NeurIPS</em>, 2017.</li>
+<li>Hu, E. J., et al. &ldquo;LoRA: Low-Rank Adaptation of Large Language Models.&rdquo; <em>ICLR</em>, 2022.</li>
+<li>Ouyang, L., et al. &ldquo;Training Language Models to Follow Instructions with Human Feedback.&rdquo; <em>NeurIPS</em>, 2022.</li>
+<li>Rafailov, R., et al. &ldquo;Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.&rdquo; <em>NeurIPS</em>, 2023.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/model-training-as-algebraic-closure/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt>In domain</dt>
+        <dd property="emsenn:Indomain">engineering/tech/computing</dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul><li>Vaswani et al., &#39;Attention Is All You Need,&#39; NeurIPS 2017</li><li>Hu et al., &#39;LoRA: Low Rank Adaptation of Large Language Models,&#39; ICLR 2022 (arXiv 2021)</li><li>Ouyang et al., &#39;Training Language Models to Follow Instructions with Human Feedback,&#39; NeurIPS 2022</li><li>Rafailov et al., &#39;Direct Preference Optimization,&#39; NeurIPS 2023</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

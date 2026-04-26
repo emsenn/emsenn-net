@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Continuous Learning in Agentic Harnesses - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "A survey of how AI agent harness systems learn from experience across sessions — observation capture, pattern detection, instinct and skill creation, memory persistence, and quality gates.",
+  "name": "Continuous Learning in Agentic Harnesses",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/continuous-learning-in-agentic-harnesses/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">Continuous Learning in Agentic Harnesses</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">A survey of how AI agent harness systems learn from experience across sessions — observation capture, pattern detection, instinct and skill creation, memory persistence, and quality gates.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-systems">The Systems</a>
+      <ul>
+        <li><a href="#everything-claude-code-ecc">Everything Claude Code (ECC)</a></li>
+        <li><a href="#openclaw">OpenClaw</a></li>
+        <li><a href="#cline">Cline</a></li>
+        <li><a href="#voyager">Voyager</a></li>
+        <li><a href="#reflexion">Reflexion</a></li>
+        <li><a href="#lats">LATS</a></li>
+      </ul>
+    </li>
+    <li><a href="#cross-system-comparison">Cross-System Comparison</a></li>
+    <li><a href="#patterns-across-systems">Patterns Across Systems</a></li>
+    <li><a href="#what-the-561-harness-does-differently">What the 561 Harness Does Differently</a></li>
+    <li><a href="#open-questions">Open Questions</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="continuous-learning-in-agentic-harnesses">Continuous Learning in Agentic Harnesses</h1>
+<p>Agentic harness systems face a fundamental problem: LLM agents lose all behavioral context at session boundaries. Each new session starts from the same base prompt, ignorant of what worked or failed in prior sessions. Continuous learning is the set of mechanisms by which a harness captures experience during sessions and converts it into durable behavioral changes that persist across sessions — without retraining the underlying model.</p>
+<p>This survey compares six systems that address this problem, ranging from production harnesses (Everything Claude Code, OpenClaw, Cline) to research frameworks (Voyager, Reflexion, LATS). The comparison reveals a shared architecture — observe, detect, persist, validate, promote — instantiated differently in each system.</p>
+<h2 id="the-systems">The Systems</h2>
+<h3 id="everything-claude-code-ecc">Everything Claude Code (ECC)</h3>
+<p>ECC&rsquo;s continuous learning system, now at v2.1, is the most fully specified among the production harnesses surveyed. Its architecture has four stages:</p>
+<p><strong>Observation.</strong> Hooks on <code>PreToolUse</code> and <code>PostToolUse</code> events capture every tool call — input, output, timing, and project context — into a JSONL file. Hooks fire deterministically (100% capture rate), unlike skill-based observation in v1 which fired probabilistically (~50-80%) based on LLM judgment. Observations are scoped per-project using a hash of the git remote URL.</p>
+<p><strong>Pattern detection.</strong> A background observer agent (running on Haiku for cost efficiency) analyzes accumulated observations on a configurable interval (default: 5 minutes, minimum 20 observations). It detects four pattern types: user corrections (&ldquo;No, use X instead of Y&rdquo;), error resolutions (error followed by fix), repeated workflows (same tool sequence recurring), and tool preferences (consistent choice of one tool over another).</p>
+<p><strong>Instinct creation.</strong> Detected patterns become instincts — atomic behavioral units with a trigger, an action, a confidence score, a domain tag, and evidence. Instincts start at confidence 0.3 (one observation) and increase with confirmation (+0.05 per confirming observation), decrease with contradiction (-0.1), and decay without reinforcement (-0.02 per week). This is a notable design: behavior that is not continuously validated degrades automatically.</p>
+<p><strong>Evolution and promotion.</strong> The <code>/evolve</code> command clusters related instincts into higher-order artifacts — skills (auto-triggered behaviors), commands (user-triggered actions), agents (multi-step processes requiring isolation), or hooks (deterministic checks at confidence &gt;= 0.9). Project-scoped instincts are promoted to global scope when the same pattern appears in 2+ projects with average confidence &gt;= 0.8.</p>
+<p><strong>Quality gates.</strong> The <code>/learn-eval</code> command extends basic pattern extraction with a checklist-based quality gate: grep existing skills for overlap, check memory for redundancy, confirm reusability, then render a holistic verdict (Save, Improve then Save, Absorb into existing, or Drop). The system explicitly avoids numeric scoring rubrics, noting that frontier models produce better verdicts through unconstrained judgment than through forced quantization.</p>
+<p>ECC also maintains curated &ldquo;inherited&rdquo; instincts — pre-packaged behavioral patterns for specific repositories that can be imported via <code>/instinct-import</code>. These function as a knowledge transfer mechanism between projects and teams.</p>
+<h3 id="openclaw">OpenClaw</h3>
+<p>OpenClaw achieves behavioral evolution through six integrated mechanisms rather than a single continuous learning pipeline:</p>
+<p><strong>Memory persistence.</strong> Two-layer file system: <code>MEMORY.md</code> holds curated long-term facts, while dated <code>memory/YYYY-MM-DD.md</code> files create a session-by-session audit trail. Memory is file-first and auditable — not hidden in a database. Memory plugins (exclusive plugin slots where only one implementation loads) provide search capabilities without replacing the underlying files.</p>
+<p><strong>Skill autonomy.</strong> Agents can write new skills during execution. Each skill is a directory containing <code>SKILL.md</code> (metadata), tools, examples, and tests. When an agent encounters a problem it cannot solve with existing capabilities, it can write a skill, save it to the workspace, and gain that capability immediately. The skill persists; future sessions inherit it. A public registry (CrawHub) enables community sharing.</p>
+<p><strong>Proactive monitoring.</strong> The <code>HEARTBEAT.md</code> file defines what the agent checks when idle — tasks written in natural language (&ldquo;Every Monday at 9 AM, check action items&rdquo;). Running in isolated sessions cuts token costs by 60-80% while maintaining persistent memory as context. This enables continuous monitoring without conversation history overhead.</p>
+<p><strong>Hook-driven learning.</strong> Directory-discovered event handlers that fire on lifecycle events. Hooks contain metadata (<code>HOOK.md</code>) and implementation. They intercept commands, capture observations, and trigger downstream learning — all without rebuilding the agent.</p>
+<p><strong>Behavioral boundaries.</strong> <code>SOUL.md</code> defines identity, style, values, and guardrails. Unlike skills (persistent code artifacts) or memory (accumulated facts), SOUL.md is prescriptive. Changes take effect in the next cycle.</p>
+<p><strong>Input gating.</strong> The DM Policy controls inbound messages through four modes (pairing, allowlist, open, disabled), shaping the distribution of inputs the agent learns from.</p>
+<p>OpenClaw does not have a formal instinct-to-skill evolution pipeline like ECC. Instead, it relies on the combination of persistent memory files and autonomous skill creation to achieve behavioral improvement over time. The learning is less structured but more autonomous — agents can directly create capabilities rather than waiting for pattern accumulation.</p>
+<h3 id="cline">Cline</h3>
+<p>Cline, the VS Code autonomous coding agent, takes a deliberately manual approach to cross-session learning through its Memory Bank methodology:</p>
+<p><strong>Memory Bank.</strong> Five structured markdown files stored in the repository: <code>projectbrief.md</code> (foundation), <code>productContext.md</code> (why the project exists), <code>activeContext.md</code> (current work focus and recent changes), <code>systemPatterns.md</code> (architecture and design patterns), and <code>techContext.md</code> (technologies and constraints). These files are designed specifically for AI consumption — more comprehensive than a README.</p>
+<p><strong>Persistent configuration.</strong> The <code>.clinerules</code> file serves as a project-scoped learning journal, capturing patterns, preferences, and project intelligence as version-controlled markdown. Over time, <code>.clinerules</code> becomes a project-specific instruction set.</p>
+<p><strong>Context window management.</strong> The <code>new_task</code> tool allows Cline to recognize when its context window is approaching saturation and cleanly end the current session, starting a new one with the Memory Bank threading state across boundaries. Plan Mode reads the Memory Bank on resume to assess current state before implementing changes.</p>
+<p><strong>What Cline lacks.</strong> No automatic behavioral adaptation, no pattern detection, no instinct creation, no cross-project learning transfer. Learning is entirely manual: users must identify patterns, document them in <code>.clinerules</code>, and validate them. The trade-off is full auditability — users can inspect everything Cline &ldquo;knows&rdquo; by reading markdown files.</p>
+<h3 id="voyager">Voyager</h3>
+<p>Voyager (Wang et al., 2023), a Minecraft agent, demonstrates persistent compositional learning through an explicit skill library:</p>
+<p><strong>Observation.</strong> Environment observations (task state changes, crafting requirements), execution errors (invalid JavaScript), and self-verification by a second LLM instance that critiques whether the task succeeded.</p>
+<p><strong>Skill creation.</strong> New skills are executable JavaScript code snippets indexed by semantic embeddings of their descriptions. Skills reference and build on earlier skills, creating a compositional hierarchy. Persistence is non-parametric — skills exist as executable code, not weight updates.</p>
+<p><strong>Retrieval and reuse.</strong> When encountering a new task, Voyager retrieves relevant skills via embedding similarity, allowing complex behaviors to be composed from prior learnings. This approach obtains 3.3x more unique items and reaches tech milestones up to 15.3x faster than prior systems.</p>
+<p><strong>Quality gate.</strong> Multi-signal feedback: environment state verification, execution error detection, and LLM-based self-critique. Skills that fail verification are iteratively refined through successive prompting rounds.</p>
+<h3 id="reflexion">Reflexion</h3>
+<p>Reflexion (Shinn et al., 2023) uses linguistic feedback loops rather than skill libraries:</p>
+<p><strong>Observation.</strong> An evaluator produces scalar reward from task outcomes.</p>
+<p><strong>Pattern detection.</strong> A self-reflection module converts reward signals into natural language summaries: &ldquo;You failed because X; remember to Y next time.&rdquo;</p>
+<p><strong>Persistence.</strong> Textual reflections are prepended to the actor&rsquo;s context in the next episode, forming an episodic memory buffer.</p>
+<p><strong>Quality gate.</strong> Reflection only occurs when performance feedback is available. Achieved 91% pass@1 on HumanEval, outperforming GPT-4&rsquo;s 80%.</p>
+<p><strong>Limitation.</strong> As episodic memory grows, it consumes the context window. Unlike Voyager&rsquo;s indexed skill library, Reflexion&rsquo;s memory becomes less efficient at scale.</p>
+<h3 id="lats">LATS</h3>
+<p>Language Agent Tree Search (Zhou et al., 2023) embeds Monte Carlo Tree Search within the agent loop:</p>
+<p><strong>Observation.</strong> Action generation samples plausible next steps; an LLM-based critic estimates expected future reward.</p>
+<p><strong>Pattern detection.</strong> Self-critique at multiple decision points within a trajectory, not just at episode boundaries like Reflexion.</p>
+<p><strong>Persistence.</strong> Successful trajectories through the decision tree serve as learned artifacts for future search.</p>
+<p><strong>Quality gates.</strong> Value function confidence (only deep-dive on high-value branches), environment feedback (external signals terminate or redirect search), and reflection consistency (self-critiques contradicting prior reasoning are flagged). Achieves 92.7% pass@1 on HumanEval.</p>
+<h2 id="cross-system-comparison">Cross-System Comparison</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Dimension</th>
+          <th>ECC</th>
+          <th>OpenClaw</th>
+          <th>Cline</th>
+          <th>Voyager</th>
+          <th>Reflexion</th>
+          <th>LATS</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Observation</strong></td>
+          <td>Deterministic hooks (100%)</td>
+          <td>Hooks + heartbeat</td>
+          <td>Manual documentation</td>
+          <td>Environment + self-verification</td>
+          <td>Evaluator reward</td>
+          <td>Action sampling + critic</td>
+      </tr>
+      <tr>
+          <td><strong>Pattern detection</strong></td>
+          <td>Background agent (Haiku)</td>
+          <td>Agent autonomy</td>
+          <td>None (manual)</td>
+          <td>Execution feedback</td>
+          <td>Self-reflection module</td>
+          <td>Multi-point self-critique</td>
+      </tr>
+      <tr>
+          <td><strong>Persistence format</strong></td>
+          <td>YAML instincts + JSONL</td>
+          <td>Markdown files + skill dirs</td>
+          <td>Markdown Memory Bank</td>
+          <td>Embedded code library</td>
+          <td>Episodic text buffer</td>
+          <td>Trajectory cache</td>
+      </tr>
+      <tr>
+          <td><strong>Quality gate</strong></td>
+          <td>Checklist + holistic verdict</td>
+          <td>Skill test suites</td>
+          <td>Human review</td>
+          <td>Multi-signal verification</td>
+          <td>Reward availability</td>
+          <td>Value confidence + env feedback</td>
+      </tr>
+      <tr>
+          <td><strong>Scope management</strong></td>
+          <td>Project vs global hash</td>
+          <td>Per-workspace</td>
+          <td>Per-project</td>
+          <td>Per-world</td>
+          <td>Per-task</td>
+          <td>Per-search tree</td>
+      </tr>
+      <tr>
+          <td><strong>Evolution path</strong></td>
+          <td>Instinct -&gt; skill -&gt; hook</td>
+          <td>Memory -&gt; skill (autonomous)</td>
+          <td>None</td>
+          <td>Simple skills -&gt; composite</td>
+          <td>Buffer growth</td>
+          <td>Tree depth growth</td>
+      </tr>
+      <tr>
+          <td><strong>Confidence tracking</strong></td>
+          <td>Numeric 0.3-0.9 with decay</td>
+          <td>None explicit</td>
+          <td>None</td>
+          <td>Implicit via reuse</td>
+          <td>None</td>
+          <td>Value estimates</td>
+      </tr>
+      <tr>
+          <td><strong>Cross-project transfer</strong></td>
+          <td>Promotion at 2+ projects</td>
+          <td>CrawHub registry</td>
+          <td>None</td>
+          <td>World transfer</td>
+          <td>None</td>
+          <td>None</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="patterns-across-systems">Patterns Across Systems</h2>
+<p>Three elements appear necessary for cross-session learning without retraining:</p>
+<ol>
+<li>
+<p><strong>Structured observation capture.</strong> Every system that learns automatically (ECC, OpenClaw, Voyager, Reflexion, LATS) captures experience in a structured format — JSONL events, environment state, reward signals. Cline&rsquo;s manual approach demonstrates the cost of omitting this: no automation, full burden on the user.</p>
+</li>
+<li>
+<p><strong>Persistent indexing.</strong> Captured experience must be stored in a way that enables retrieval. The mechanisms vary — semantic embeddings (Voyager), file system organization (ECC, OpenClaw, Cline), episodic buffers (Reflexion), tree caches (LATS) — but all systems that learn must solve the storage-retrieval problem.</p>
+</li>
+<li>
+<p><strong>Quality validation before reuse.</strong> Every system includes some gate between observation and behavioral change. ECC uses checklist-based holistic verdicts. Voyager uses multi-signal verification. Reflexion gates on reward availability. Without validation, learned behaviors degrade the system — ECC&rsquo;s curated instinct guidelines explicitly warn against bulk-generated, duplicated, or contradictory instincts.</p>
+</li>
+</ol>
+<p>Two additional patterns distinguish the more sophisticated systems:</p>
+<ol start="4">
+<li>
+<p><strong>Confidence decay.</strong> ECC&rsquo;s instincts decay at -0.02 per week without reinforcement. This prevents stale patterns from persisting indefinitely — an important property when project conventions change. Most other systems lack this mechanism.</p>
+</li>
+<li>
+<p><strong>Scope isolation with promotion.</strong> ECC and OpenClaw both isolate learned behaviors by project, with mechanisms for promoting universal patterns to broader scope. This prevents cross-project contamination while still allowing genuine generalizations to propagate.</p>
+</li>
+</ol>
+<h2 id="what-the-561-harness-does-differently">What the 561 Harness Does Differently</h2>
+<p>The 561 Group&rsquo;s continuous learning system (described in <code>continuous-learning-v2.md</code> and the <code>cl-pipeline</code> plan) shares ECC&rsquo;s basic architecture — observations, instincts, confidence scores, evolution into skills — but extends it in several ways:</p>
+<p><strong>Settlement path framing.</strong> The 561 system maps the learning pipeline onto a theoretical framework: observations are inquiry, instincts are derivation, skills are procedure, hooks are process. This is not mere labeling — it connects to the library&rsquo;s work taxonomy, providing a principled answer to &ldquo;what kind of work does this pattern represent?&rdquo; that guides evolution decisions.</p>
+<p><strong>Failure-driven learning.</strong> The <code>cl-pipeline</code> plan specifies a closed loop: failures produce diagnoses, diagnoses produce instincts, instincts produce duty updates. The balance check (if waste/failed-sessions grows but instincts don&rsquo;t, the pipeline is broken) treats learning as an operational metric, not an optional enhancement.</p>
+<p><strong>Structured offices.</strong> Where ECC and OpenClaw have generic agents, the 561 system has typed officers with defined duties. Instincts don&rsquo;t just become &ldquo;skills&rdquo; — they become updates to specific officer duties, making the learning loop tighter because the target of improvement is well-defined.</p>
+<p><strong>What to consider adopting.</strong> Several patterns from other systems are worth evaluating:</p>
+<ul>
+<li><strong>Autonomous skill creation</strong> (OpenClaw): agents writing their own capabilities during execution, rather than waiting for post-session analysis.</li>
+<li><strong>Semantic embedding retrieval</strong> (Voyager): instinct retrieval by embedding similarity rather than trigger matching could improve recall.</li>
+<li><strong>Confidence decay</strong> is already specified but the decay rate and reinforcement mechanisms could be tuned against Voyager&rsquo;s compositional reuse patterns.</li>
+<li><strong>Heartbeat monitoring</strong> (OpenClaw): periodic proactive checks that run in isolated sessions, useful for the 561 system&rsquo;s duty officer model.</li>
+<li><strong>Memory Bank documentation</strong> (Cline): the structured project context files are a simpler version of what the 561 system achieves through its library and frontmatter system, but the explicit &ldquo;designed for AI consumption&rdquo; framing is worth noting.</li>
+</ul>
+<h2 id="open-questions">Open Questions</h2>
+<p>Several problems remain unsolved across all systems surveyed:</p>
+<ol>
+<li>
+<p><strong>Catastrophic forgetting in instinct stores.</strong> When should an instinct be deleted rather than decayed? No system has a principled answer beyond &ldquo;user curation.&rdquo;</p>
+</li>
+<li>
+<p><strong>Cross-project generalization.</strong> ECC promotes instincts seen in 2+ projects, but the threshold is arbitrary. What makes a pattern genuinely universal versus coincidentally repeated?</p>
+</li>
+<li>
+<p><strong>Evaluation of learning quality.</strong> How do you measure whether a continuous learning system is actually making the agent better? ECC&rsquo;s quality gates evaluate individual instincts, but no system evaluates the learning pipeline itself.</p>
+</li>
+<li>
+<p><strong>Compositional skill hierarchies.</strong> Voyager&rsquo;s skills reference earlier skills, creating depth. Production harnesses (ECC, OpenClaw, 561) keep skills flat. The relationship between learned skills remains implicit rather than structured.</p>
+</li>
+</ol>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/continuous-learning-in-agentic-harnesses/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">computing</dd>
+      </div><div class="relation">
+        <dt>See also</dt>
+        <dd property="emsenn:Seealso"><ul><li>../../terms/agent.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul></ul></dd>
+      </div><div class="relation">
+        <dt>Text type</dt>
+        <dd property="emsenn:Texttype">survey</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Algebraic Structure of Work: Free Algebras, Ground Terms, and Operational Signatures - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-03",
+  "datePublished": "2026-04-03",
+  "description": "How universal algebra formalizes the work taxonomy — operations as signatures, work as term application, work units as ground terms, and the settlement path as substitution closure.",
+  "name": "The Algebraic Structure of Work: Free Algebras, Ground Terms, and Operational Signatures",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/texts/algebraic-structure-of-work/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/domains/work/">Work</a></nav>
+  <h1 class="p-name">The Algebraic Structure of Work: Free Algebras, Ground Terms, and Operational Signatures</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-03T00:00:00Z">2026-04-03</time>
+    
+    <span class="p-summary">How universal algebra formalizes the work taxonomy — operations as signatures, work as term application, work units as ground terms, and the settlement path as substitution closure.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-operational-signature">The operational signature</a></li>
+    <li><a href="#free-algebras-and-terms">Free algebras and terms</a></li>
+    <li><a href="#substitution-as-settlement">Substitution as settlement</a></li>
+    <li><a href="#structure-of-a-work-unit">Structure of a work unit</a></li>
+    <li><a href="#compositionality">Compositionality</a></li>
+    <li><a href="#open-questions">Open questions</a></li>
+    <li><a href="#see-also">See also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>The <a href="../terms/work.md" class="link-internal">work taxonomy</a> distinguishes operations, work, and work units by their degree of specification. This text shows that the same distinction has a precise formalization in universal algebra: operations are signatures, work is term application, work units are ground terms, and the settlement of open work into determined work is the closure of free variables by substitution.</p>
+<h2 id="the-operational-signature">The operational signature</h2>
+<p>Given a signature <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math></span> — a set of operation symbols, each with an arity — the work domain defines the operations available. An operation symbol <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">\omega \in \Sigma</annotation></semantics></math></span> with arity <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> is the abstract type: &ldquo;review&rdquo; is a binary operation (takes a reviewer and a document), &ldquo;write&rdquo; is a binary operation (takes a writer and a topic), &ldquo;dispatch&rdquo; is a ternary operation (takes a task, an agent, and a capability check).</p>
+<p>The hierarchy:</p>
+<ul>
+<li><strong>Operation</strong> is an operation symbol <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">\omega \in \Sigma</annotation></semantics></math></span> with arity <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> — the abstract type</li>
+<li><strong><a href="../terms/work.md" class="link-internal">Work</a></strong> is an application <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega(a_1, \ldots, a_n)</annotation></semantics></math></span> where the <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span> may be variables — the operation being enacted</li>
+<li><strong><a href="../terms/work-unit.md" class="link-internal">Work unit</a></strong> is a ground application <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo stretchy="false">(</mo><msub><mi>c</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>c</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega(c_1, \ldots, c_n)</annotation></semantics></math></span> where every <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">c_i</annotation></semantics></math></span> is a closed, concrete value — the fully determined instance</li>
+</ul>
+<h2 id="free-algebras-and-terms">Free algebras and terms</h2>
+<p>Given a signature <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math></span> and a variable set <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span>, the <strong>free algebra</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T(\Sigma, X)</annotation></semantics></math></span> is the set of all well-formed terms built from operation symbols in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math></span> and variables in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span>. A <strong>ground term</strong> is an element of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi mathvariant="normal">∅</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T(\Sigma, \emptyset)</annotation></semantics></math></span> — the free algebra with no variables. Every symbol in a ground term is bound to a concrete value; nothing is left open.</p>
+<p>A work unit is a ground term in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi mathvariant="normal">∅</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T(\Sigma, \emptyset)</annotation></semantics></math></span>. It names exactly one invocation of exactly one operation on exactly specified inputs. Two work units with the same operation but different parameter values are different ground terms and therefore different work units.</p>
+<p>A work description with free variables — &ldquo;review [some document] by [some date]&rdquo; — is an open term in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T(\Sigma, X)</annotation></semantics></math></span>. It is a template, not a work unit. Templates are what skill definitions and task descriptions typically look like before they are fully specified.</p>
+<h2 id="substitution-as-settlement">Substitution as settlement</h2>
+<p>The act of binding free variables is a <strong>substitution</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>T</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi mathvariant="normal">∅</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma: X \to T(\Sigma, \emptyset)</annotation></semantics></math></span> — a map from variables to ground terms. Applying <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span> to an open term closes it: the result is a ground term (a work unit).</p>
+<p>This is exactly the settlement path applied to work:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Work type</th>
+          <th>Algebraic characterization</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="../terms/inquiry.md" class="link-internal">Inquiry</a></td>
+          <td>Open term with unbound operation AND arguments — <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span> both contain variables</td>
+      </tr>
+      <tr>
+          <td><a href="../terms/derivation.md" class="link-internal">Derivation</a></td>
+          <td>Operation is determined but arguments have free variables — <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math></span> is fixed, some <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>∈</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">a_i \in X</annotation></semantics></math></span></td>
+      </tr>
+      <tr>
+          <td><a href="../terms/procedure.md" class="link-internal">Procedure</a></td>
+          <td>All arguments are bound but execution admits branching — ground term, but the operation&rsquo;s semantics include choice points</td>
+      </tr>
+      <tr>
+          <td><a href="../terms/process.md" class="link-internal">Process</a></td>
+          <td>Fully ground term with deterministic semantics — <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo stretchy="false">(</mo><msub><mi>c</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>c</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mo>∈</mo><mi>T</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi mathvariant="normal">∅</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega(c_1, \ldots, c_n) \in T(\Sigma, \emptyset)</annotation></semantics></math></span> with no branching</td>
+      </tr>
+  </tbody>
+</table>
+<p>The settlement of inquiry → derivation → procedure → process corresponds to the progressive application of substitutions that close variables. Each substitution step commits to more, reducing the degrees of freedom in the term.</p>
+<h2 id="structure-of-a-work-unit">Structure of a work unit</h2>
+<p>Every work unit is characterized by four components, corresponding to the ground term&rsquo;s structure:</p>
+<ul>
+<li><strong>takes</strong>: the input type — what goes in (the domain of the operation)</li>
+<li><strong>affected</strong>: which aspect of the input changes (the field being modified, not the whole carrier)</li>
+<li><strong>operation</strong>: the operation symbol <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math></span> being invoked (references a skill or names the operation directly)</li>
+<li><strong>parameters</strong>: the concrete values <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>c</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">c_1, \ldots, c_n</annotation></semantics></math></span> instantiating this invocation — what closes the open term into a ground term</li>
+</ul>
+<p>A work unit without fully specified parameters is not yet a work unit; it is an open term awaiting substitution.</p>
+<h2 id="compositionality">Compositionality</h2>
+<p>Because the work hierarchy is built on a free algebra, it inherits the free algebra&rsquo;s compositionality: complex work composes from simpler work units in exactly the ways the signature permits. A <a href="../terms/workflow.md" class="link-internal">workflow</a> is a composite term — a structured expression in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T(\Sigma, X)</annotation></semantics></math></span> where some subterms may themselves be compound operations. The fact that this composition is free (no equations imposed beyond the signature) means that work units compose without side conditions: any well-typed composition is valid.</p>
+<p>When the system imposes equations — &ldquo;review must happen after drafting,&rdquo; &ldquo;dispatch requires capability matching&rdquo; — those equations define a quotient of the free algebra. The quotient algebra <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi>X</mi><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">T(\Sigma, X) / E</annotation></semantics></math></span> is the algebra of work <em>modulo the system&rsquo;s constraints</em>. This is the formal content of what plan dependencies encode: each <code>depends-on</code> constraint is an equation in the quotient.</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Whether work unit parameters correspond to the substitution <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>T</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi mathvariant="normal">∅</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma: X \to T(\Sigma, \emptyset)</annotation></semantics></math></span> in the free algebra — whether parameterization is formally a substitution homomorphism.</li>
+<li>Whether a work unit IS the Term kind for executable work, making the term/work-unit distinction a typing distinction within <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi mathvariant="normal">∅</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T(\Sigma, \emptyset)</annotation></semantics></math></span>.</li>
+<li>Whether the settlement path (inquiry → process) has a lattice structure isomorphic to the lattice of congruences on the free algebra — whether &ldquo;settling&rdquo; a work type is the same as imposing equations that quotient the term algebra.</li>
+<li>Whether the <code>depends-on</code> graph of a plan generates the congruence that defines the quotient algebra of that plan&rsquo;s work — whether plan structure and algebraic structure are the same thing.</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="../terms/work.md" class="link-internal">work</a> — the base concept</li>
+<li><a href="../terms/work-unit.md" class="link-internal">work unit</a> — the ground term concept this text formalizes</li>
+<li><a href="./formal-planning-theory.md" class="link-internal">Formal Planning Theory</a> — the AI planning formalism for the plan concept</li>
+<li><a href="./work-type-classification-survey.md" class="link-internal">Work Type Classification Survey</a> — how work types are classified across disciplines</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/texts/algebraic-structure-of-work/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-03">2026-04-03</time></dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related"><ul><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/work/">work</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/work/">work unit</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/process/">process</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/procedure/">procedure</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/derivation/">derivation</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/inquiry/">inquiry</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

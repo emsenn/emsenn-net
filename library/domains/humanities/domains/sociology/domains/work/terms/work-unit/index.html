@@ -20,7 +20,7 @@
   "@type": "Article",
   "dateModified": "2026-03-18",
   "datePublished": "2026-03-18",
-  "description": "A WorkUnit is a ground term in the free algebra over the operational signature — a fully instantiated Work invocation with no free variables, where all parameters are bound to concrete values.",
+  "description": "A concrete, fully specified instance of work — all parameters bound, one operation, one output. The most atomic executable thing in the work hierarchy.",
   "name": "",
   "publisher": {
     "@type": "Person",
@@ -67,41 +67,37 @@
   <main id="content" data-pagefind-body>
     
 <article class="h-entry" data-type="page">
-  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a></nav>
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/domains/work/">Work</a></nav>
   <h1 class="p-name"></h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-03-18T00:00:00Z">2026-03-18</time>
     
-    <span class="p-summary">A WorkUnit is a ground term in the free algebra over the operational signature — a fully instantiated Work invocation with no free variables, where all parameters are bound to concrete values.</span>
+    <span class="p-summary">A concrete, fully specified instance of work — all parameters bound, one operation, one output. The most atomic executable thing in the work hierarchy.</span>
   </div>
   <div class="e-content">
-    <h1 id="workunit">WorkUnit</h1>
-<h2 id="what-this-is">What this is</h2>
-<p>A <strong>WorkUnit</strong> is a ground term in the free algebra over the operational signature — a Work invocation with all variables substituted by concrete values.</p>
-<p>The mathematical invariant comes from universal algebra and the theory of free algebras. Given a signature Σ and a variable set X, the <strong>free algebra</strong> T(Σ, X) is the set of all well-formed terms built from operation symbols in Σ and variables in X. A <strong>ground term</strong> is an element of T(Σ, ∅) — the free algebra with no variables. Every symbol in a ground term is bound to a concrete value; nothing is left open.</p>
-<p>The hierarchy:</p>
+    <h1 id="work-unit">Work Unit</h1>
+<p>A work unit is a concrete, fully specified instance of <a href="./work.md" class="link-internal">work</a>. All parameters are bound to specific values: who does it, what they do it to, what operation they perform, and what output they produce. Nothing is left open.</p>
+<h2 id="what-makes-something-a-work-unit">What makes something a work unit</h2>
+<p>The defining property is <strong>complete specification</strong>. A work unit names:</p>
 <ul>
-<li><strong><a href="operation.md" class="link-internal">Operation</a></strong> is an operation symbol ω ∈ Σ with arity n — the abstract type.</li>
-<li><strong><a href="work.md" class="link-internal">Work</a></strong> is an application ω(a₁,&hellip;,aₙ) where the aᵢ may be variables — the operation being enacted.</li>
-<li><strong>WorkUnit</strong> is a ground application ω(c₁,&hellip;,cₙ) where every cᵢ is a closed, concrete value — T(Σ, ∅). No variables remain.</li>
+<li><strong>What goes in</strong> — the specific input or material being worked on</li>
+<li><strong>What operation is performed</strong> — the specific transformation applied</li>
+<li><strong>What comes out</strong> — the specific output produced</li>
+<li><strong>What parameters govern execution</strong> — the concrete values that distinguish this instance from any other</li>
 </ul>
-<p>A WorkUnit is <strong>completely determined</strong>: it names exactly one invocation of exactly one operation on exactly specified inputs. Two WorkUnits with the same operation but different parameter values are different ground terms and therefore different WorkUnits.</p>
-<p>A WorkUnit with free variables is a <strong>template</strong> (an open term in T(Σ, X)), not a WorkUnit. Templates are skill definitions; WorkUnits are instances.</p>
-<h2 id="structure">Structure</h2>
-<p>Every WorkUnit is characterized by four fields, corresponding to the ground term&rsquo;s components:</p>
-<ul>
-<li><strong>takes</strong>: the input type — what goes in (the domain of the operation)</li>
-<li><strong>affected</strong>: which aspect of the input changes (the field being modified, not the whole carrier)</li>
-<li><strong>operation</strong>: the operation symbol ω being invoked (references a skill type or names the operation directly)</li>
-<li><strong>parameters</strong>: the concrete values c₁,&hellip;,cₙ instantiating this invocation — what closes the open term into a ground term</li>
-</ul>
-<p>A WorkUnit without fully specified parameters is not yet a WorkUnit; it is an open term awaiting substitution.</p>
+<p>A task like &ldquo;review the dispatch survey&rdquo; is a work unit: the input (dispatch survey), the operation (review), and the expected output (review findings) are all specified. A task like &ldquo;improve the documentation&rdquo; is not a work unit — it leaves the operation and scope open.</p>
+<h2 id="relationship-to-tasks">Relationship to tasks</h2>
+<p>A <a href="./task.md" class="link-internal">task</a> becomes a work unit when all of its parameters are bound. Many tasks are written as work units from the start. Others start partial (&ldquo;research scheduling theory&rdquo;) and become work units as the plan is refined (&ldquo;write a survey text covering CPM, PERT, and Goldratt, producing scheduling-theory-survey.md&rdquo;).</p>
 <h2 id="atomicity">Atomicity</h2>
-<p>A WorkUnit is the most atomic executable thing in the system. It cannot be decomposed further without losing what makes it a unit: a single named output produced by a single named operation on named inputs. Decomposition that preserves the ground-term property produces sub-WorkUnits, not the same WorkUnit.</p>
-<h2 id="open-questions">Open questions</h2>
+<p>A work unit is the most atomic executable thing in the work hierarchy. It cannot be decomposed further without losing its identity as a single operation producing a single output. If decomposition is needed, the result is multiple work units, not subdivisions of the original.</p>
+<h2 id="work-type">Work type</h2>
+<p>Every work unit has a <a href="./work.md" class="link-internal">work type</a> — it is either a <a href="./process.md" class="link-internal">process</a> (fully determined), a <a href="./procedure.md" class="link-internal">procedure</a> (execution varies), a <a href="./derivation.md" class="link-internal">derivation</a> (output follows from rules but is not predetermined), or an <a href="./inquiry.md" class="link-internal">inquiry</a> (both meaning and execution are open). The work type determines how the unit should be dispatched, monitored, and reviewed.</p>
+<h2 id="see-also">See also</h2>
 <ul>
-<li>Whether WorkUnit parameters correspond to the substitution σ: X → T(Σ, ∅) in the free algebra — i.e., whether parameterization is formally a substitution homomorphism.</li>
-<li>Whether a WorkUnit IS the Term kind for executable work, making the term/work-unit distinction a typing distinction within T(Σ, ∅).</li>
+<li><a href="./work.md" class="link-internal">work</a> — the base concept</li>
+<li><a href="./task.md" class="link-internal">task</a> — the planning-level container that may or may not be fully specified</li>
+<li><a href="./work-item.md" class="link-internal">work-item</a> — the tracking-level representation of work in a queue</li>
+<li><a href="../texts/algebraic-structure-of-work.md" class="link-internal">The Algebraic Structure of Work</a> — free algebras, ground terms, and how the settlement path maps to substitution closure</li>
 </ul>
 
   </div>
@@ -111,23 +107,17 @@
          vocab="https://emsenn.net/vocab#">
   <h2>Relations</h2>
   <dl><div class="relation">
-        <dt><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Component of</a></dt>
-        <dd property="emsenn:Componentof"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/operation-item/">OperationItem</a></dd>
-      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-18">2026-03-18</time></dd>
       </div><div class="relation">
         <dt>Date modified</dt>
-        <dd property="emsenn:Datemodified"><time datetime="2026-03-18">2026-03-18</time></dd>
+        <dd property="emsenn:Datemodified"><time datetime="2026-04-03">2026-04-03</time></dd>
       </div><div class="relation">
         <dt>Defines</dt>
-        <dd property="emsenn:Defines"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/work-unit/">WorkUnit</a></dd>
+        <dd property="emsenn:Defines"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/work-unit/">Work Unit</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
-        <dd property="emsenn:Extends"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/work/">Work</a></dd>
-      </div><div class="relation">
-        <dt>Readiness</dt>
-        <dd property="emsenn:Readiness">shaped</dd>
+        <dt>Related</dt>
+        <dd property="emsenn:Related">Work, Task, Process, Procedure</dd>
       </div>
   </dl>
 </section>

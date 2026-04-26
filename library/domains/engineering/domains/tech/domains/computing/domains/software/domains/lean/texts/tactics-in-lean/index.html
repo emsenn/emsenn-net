@@ -17,7 +17,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LearningResource",
+  "@type": "Article",
   "dateModified": "2026-03-01",
   "datePublished": "2026-03-01",
   "description": "What tactics do A tactic transforms a proof goal into simpler subgoals. The proof state consists of:\nContext: named hypotheses and local definitions. Goal: the type (proposition) that remains to be proved. Each tactic inspects the goal and context, then either closes the goal (producing a proof term) or splits it into subgoals. When all goals are closed, the proof is complete and Lean\u0026rsquo;s kernel checks the assembled proof term.\nCore tactics Introducing hypotheses intro moves a universally quantified variable or implication antecedent from the goal into the context:\n",
@@ -28,12 +28,6 @@
     "name": "emsenn",
     "url": "https://emsenn.net"
   },
-  "teaches": [
-    {
-      "@type": "DefinedTerm",
-      "name": "Tactics in Lean"
-    }
-  ],
   "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/"
 }
 </script>
@@ -73,26 +67,14 @@
 
   <main id="content" data-pagefind-body>
     
-<article class="h-entry" data-type="lesson">
+<article class="h-entry" data-type="page">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/">Lean</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/">Texts</a></nav>
   <h1 class="p-name">Tactics in Lean</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-03-01T00:00:00Z">2026-03-01</time>
     
     
-  </div>
-  
-  <div class="type-meta type-meta--objectives">
-    <span class="type-meta-label">Learning objectives</span>
-    <ul><li>Tactics in Lean</li></ul>
-  </div>
-  
-  
-  <div class="type-meta type-meta--prereqs">
-    <span class="type-meta-label">Prerequisites</span>
-    <ul><li>/technology/disciplines/computing/software/lean/curricula/types-and-propositions-in-lean.md</li></ul>
-  </div>
-  <details class="toc">
+  </div><details class="toc">
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -131,7 +113,7 @@ Lean&rsquo;s kernel checks the assembled proof term.</p>
 <h3 id="introducing-hypotheses">Introducing hypotheses</h3>
 <p><code>intro</code> moves a universally quantified variable or implication antecedent from the goal
 into the context:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: ∀ n : Nat, n = n</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: ∀ n : Nat, n = n</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: intro n</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Context: n : Nat</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal: n = n</span>
@@ -139,26 +121,26 @@ into the context:</p>
 <h3 id="applying-lemmas">Applying lemmas</h3>
 <p><code>apply</code> works backward from the goal. If the goal is <code>Q</code> and you have a lemma
 <code>lem : P → Q</code>, then <code>apply lem</code> changes the goal to <code>P</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: b ≤ c</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: b ≤ c</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: apply le_trans (b := middle)</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal 1: b ≤ middle</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal 2: middle ≤ c</span>
 </span></span></code></pre></div><h3 id="supplying-exact-terms">Supplying exact terms</h3>
 <p><code>exact</code> closes a goal by providing the proof term directly:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Context: h : P</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Context: h : P</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal: P</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: exact h</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- (goal closed)</span>
 </span></span></code></pre></div><h3 id="rewriting">Rewriting</h3>
 <p><code>rw</code> replaces occurrences of one side of an equation with the other:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Context: h : a = b</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Context: h : a = b</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal: f a = f b</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: rw [h]</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal: f b = f b</span>
 </span></span></code></pre></div><p><code>rw [← h]</code> rewrites right-to-left. Multiple rewrites: <code>rw [h₁, h₂, h₃]</code>.</p>
 <h3 id="case-analysis">Case analysis</h3>
 <p><code>cases</code> splits an inductive value into its constructors:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Context: h : P ∨ Q</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Context: h : P ∨ Q</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal: R</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: cases h with</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- | inl hp =&gt; -- Context: hp : P, Goal: R</span>
@@ -166,7 +148,7 @@ into the context:</p>
 </span></span></code></pre></div><p>For natural numbers, <code>cases n</code> splits into <code>zero</code> and <code>succ m</code>.</p>
 <h3 id="induction">Induction</h3>
 <p><code>induction</code> is <code>cases</code> with an induction hypothesis:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: ∀ n, 0 + n = n</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: ∀ n, 0 + n = n</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: intro n; induction n with</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- | zero =&gt; -- Goal: 0 + 0 = 0</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- | succ m ih =&gt; -- Context: ih : 0 + m = m, Goal: 0 + succ m = succ m</span>
@@ -174,13 +156,13 @@ into the context:</p>
 <p><code>simp</code> applies a set of rewriting lemmas (marked with <code>@[simp]</code>) repeatedly until no
 more apply. It handles routine algebraic simplification, arithmetic, and definitional
 unfolding:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: 0 + n = n</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: 0 + n = n</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: simp</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- (goal closed)</span>
 </span></span></code></pre></div><p><code>simp [custom_lemma]</code> adds a lemma to the simp set for this call.</p>
 <h3 id="constructor">Constructor</h3>
 <p><code>constructor</code> applies the constructor of an inductive type when the goal matches:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: P ∧ Q</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: P ∧ Q</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: constructor</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal 1: P</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal 2: Q</span>
@@ -202,14 +184,14 @@ the machine handles bookkeeping.</p>
 <h2 id="combining-tactics">Combining tactics</h2>
 <p>Tactics compose sequentially (separated by newlines or <code>;</code>) and branch with <code>&lt;;&gt;</code> (apply
 a tactic to all remaining goals) or structured syntax:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">theorem</span> example_proof <span style="color:#f92672">(</span>P Q <span style="color:#f92672">:</span> <span style="color:#66d9ef">Prop</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>hp <span style="color:#f92672">:</span> P<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>hq <span style="color:#f92672">:</span> Q<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> P ∧ Q <span style="color:#f92672">:</span>= <span style="color:#66d9ef">by</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">theorem</span> example_proof <span style="color:#f92672">(</span>P Q <span style="color:#f92672">:</span> <span style="color:#66d9ef">Prop</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>hp <span style="color:#f92672">:</span> P<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>hq <span style="color:#f92672">:</span> Q<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> P ∧ Q <span style="color:#f92672">:</span>= <span style="color:#66d9ef">by</span>
 </span></span><span style="display:flex;"><span>  constructor
 </span></span><span style="display:flex;"><span>  · exact hp
 </span></span><span style="display:flex;"><span>  · exact hq
 </span></span></code></pre></div><p>The <code>·</code> focuses on a specific subgoal. This structured style keeps proofs readable.</p>
 <h2 id="a-worked-example">A worked example</h2>
 <p>Prove that meet is commutative in a <a href="../../../../../../mathematics/objects/posets/terms/lattice.md" class="link-internal">lattice</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">theorem</span> inf_comm <span style="color:#f92672">{</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">}</span> <span style="color:#f92672">[</span>Lattice α<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>a b <span style="color:#f92672">:</span> α<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> a ⊓ b = b ⊓ a <span style="color:#f92672">:</span>= <span style="color:#66d9ef">by</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">theorem</span> inf_comm <span style="color:#f92672">{</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">}</span> <span style="color:#f92672">[</span>Lattice α<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>a b <span style="color:#f92672">:</span> α<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> a ⊓ b = b ⊓ a <span style="color:#f92672">:</span>= <span style="color:#66d9ef">by</span>
 </span></span><span style="display:flex;"><span>  apply le_antisymm
 </span></span><span style="display:flex;"><span>  · apply le_inf
 </span></span><span style="display:flex;"><span>    · exact inf_le_right
@@ -250,8 +232,8 @@ try to write a complete tactic block from memory.</li>
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
       </div><div class="relation">
-        <dt>Readiness</dt>
-        <dd property="emsenn:Readiness">shaped</dd>
+        <dt>Form</dt>
+        <dd property="emsenn:Form"><a href="/library/domains/humanities/domains/education/terms/lesson/">lesson</a></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:educationalAlignment"><ul><li>/technology/disciplines/computing/software/lean/curricula/types and propositions in lean.md</li></ul></dd>
@@ -264,17 +246,7 @@ try to write a complete tactic block from memory.</li>
       </div>
   </dl>
 </section>
-<section class="cite-this" id="cite-this">
-  <h2>Cite</h2>
-  <pre class="cite-block"><code>@misc{emsenn2026-tactics-in-lean,
-  author    = {emsenn},
-  title     = {Tactics in Lean},
-  year      = {2026},
-  url       = {https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/},
-  publisher = {emsenn.net},
-  license   = {CC BY-SA 4.0}
-}</code></pre>
-</section>
+
 
   
 

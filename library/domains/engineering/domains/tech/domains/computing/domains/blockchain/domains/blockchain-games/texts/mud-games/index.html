@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MUD-Based Games: OPCraft, Sky Strife, and the Next Generation of Autonomous Worlds - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-05",
+  "datePublished": "2026-04-05",
+  "description": "Survey of production games built on the MUD framework, including OPCraft (voxel world), Sky Strife (RTS), and others. What these games demonstrate about scalability, composability, and player-driven governance in autonomous worlds.",
+  "name": "MUD-Based Games: OPCraft, Sky Strife, and the Next Generation of Autonomous Worlds",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/texts/mud-games/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/">Blockchain</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/">Blockchain Games</a></nav>
+  <h1 class="p-name">MUD-Based Games: OPCraft, Sky Strife, and the Next Generation of Autonomous Worlds</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
+    
+    <span class="p-summary">Survey of production games built on the MUD framework, including OPCraft (voxel world), Sky Strife (RTS), and others. What these games demonstrate about scalability, composability, and player-driven governance in autonomous worlds.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#opcraft-a-minecraft-like-on-chain-universe">OPCraft: A Minecraft-Like On-Chain Universe</a>
+      <ul>
+        <li><a href="#the-game">The Game</a></li>
+        <li><a href="#technical-achievement">Technical Achievement</a></li>
+        <li><a href="#permissionless-governance-the-communist-society">Permissionless Governance: The Communist Society</a></li>
+      </ul>
+    </li>
+    <li><a href="#sky-strife-a-real-time-strategy-game">Sky Strife: A Real-Time Strategy Game</a>
+      <ul>
+        <li><a href="#the-game-1">The Game</a></li>
+        <li><a href="#technical-innovation">Technical Innovation</a></li>
+        <li><a href="#redstone-specialized-infrastructure">Redstone: Specialized Infrastructure</a></li>
+      </ul>
+    </li>
+    <li><a href="#other-mud-based-games">Other MUD-Based Games</a></li>
+    <li><a href="#lessons-from-production-games">Lessons from Production Games</a>
+      <ul>
+        <li><a href="#scalability-tradeoffs">Scalability Tradeoffs</a></li>
+        <li><a href="#composability-in-practice">Composability in Practice</a></li>
+        <li><a href="#economics-and-incentives">Economics and Incentives</a></li>
+        <li><a href="#client-experience">Client Experience</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-path-forward">The Path Forward</a></li>
+    <li><a href="#see-also">See Also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="mud-based-games-opcraft-sky-strife-and-the-next-generation">MUD-Based Games: OPCraft, Sky Strife, and the Next Generation</h1>
+<p>With the release of MUD v1 in late 2022, Lattice began building production games to validate the framework. These games—OPCraft, Sky Strife, and others—serve as both proof-of-concept and laboratories for autonomous world design, demonstrating what MUD enables and what challenges remain.</p>
+<h2 id="opcraft-a-minecraft-like-on-chain-universe">OPCraft: A Minecraft-Like On-Chain Universe</h2>
+<p>OPCraft was a voxel-based world deployed on Optimism (an Ethereum Layer 2), built by Lattice in just 1.5 months using MUD v1. The game is essentially Minecraft run on-chain: a 3D world composed of destructible/placeable blocks where players can mine, build, and craft.</p>
+<h3 id="the-game">The Game</h3>
+<ul>
+<li><strong>World size</strong>: A 3D voxel space (manageable but infinite in principle)</li>
+<li><strong>Mechanics</strong>: Mine blocks, craft tools, place structures, explore</li>
+<li><strong>Ownership</strong>: Players own their creations as on-chain data</li>
+<li><strong>Extensibility</strong>: Third-party developers can extend through plugins and custom clients</li>
+</ul>
+<h3 id="technical-achievement">Technical Achievement</h3>
+<p>OPCraft validated that MUD could handle real-time 3D gameplay with millions of entities:</p>
+<ul>
+<li>Millions of blocks (entities) represented in tables</li>
+<li>Thousands of player interactions per day</li>
+<li>Complex spatial queries (what blocks are in this region?)</li>
+<li>Efficient indexing and client synchronization</li>
+</ul>
+<p>The fact that Lattice built it in 1.5 months showed that MUD dramatically reduces development friction compared to building a blockchain game from scratch.</p>
+<h3 id="permissionless-governance-the-communist-society">Permissionless Governance: The Communist Society</h3>
+<p>OPCraft demonstrated the power of permissionless composability through an emergent social phenomenon. One player, SupremeLeaderOP, created an on-chain guild with rules encoded in smart contracts. Members could opt in to the guild, and by doing so, agreed to a binding rule: all their mined resources would be pooled and distributed equally.</p>
+<p>This was not a social promise or a Discord agreement. The guild rules were enforced by code. Players who opted in literally could not keep their own resources; transactions attempting to withdraw them would revert.</p>
+<p>This kind of emergent governance is unique to autonomous worlds:</p>
+<ul>
+<li>In a traditional game, such a mechanic would be impossible. The developer controls all logic; players cannot unilaterally create new rules.</li>
+<li>In Dark Forest, players had custom clients but no access to on-chain logic.</li>
+<li>In OPCraft, anyone can deploy a new smart contract that reads and writes to the world&rsquo;s tables, creating new economic systems.</li>
+</ul>
+<p>The communist society was not planned by Lattice. It emerged from the permissionless architecture. This is the promise of autonomous worlds: systems and behaviors emerge that the original designers never imagined.</p>
+<h2 id="sky-strife-a-real-time-strategy-game">Sky Strife: A Real-Time Strategy Game</h2>
+<p>Sky Strife is an RTS-inspired game developed by Lattice, deployed on testnet and later on Redstone (a specialized rollup optimized for autonomous worlds). Players battle in turn-based, real-time matches to destroy opponents&rsquo; settlements while defending their own.</p>
+<h3 id="the-game-1">The Game</h3>
+<ul>
+<li><strong>Genre</strong>: Turn-based RTS (blends real-time and turn-based mechanics)</li>
+<li><strong>Scale</strong>: Smaller matches (16-32 players typical) in distinct game instances</li>
+<li><strong>Strategy</strong>: Build settlement, produce units, attack and defend, manage resources</li>
+<li><strong>Composition</strong>: Multiple game &ldquo;seasons&rdquo; with different rule sets and cosmetics</li>
+</ul>
+<h3 id="technical-innovation">Technical Innovation</h3>
+<p>Sky Strife demonstrates key improvements over OPCraft:</p>
+<ol>
+<li><strong>Larger player bases</strong> — Designed for hundreds to thousands of concurrent players, not just dozens</li>
+<li><strong>Higher update frequency</strong> — Real-time gameplay with quick state changes</li>
+<li><strong>ECS patterns at scale</strong> — Hundreds of thousands of entity-component records per match</li>
+<li><strong>Client-side prediction</strong> — The client predicts actions optimistically, then reconciles with on-chain truth</li>
+</ol>
+<p>Sky Strife also showcases account delegation: players can authorize a burner wallet to sign transactions on their behalf, reducing friction for mobile play and managing gas costs.</p>
+<h3 id="redstone-specialized-infrastructure">Redstone: Specialized Infrastructure</h3>
+<p>Sky Strife runs on Redstone, an EVM-compatible rollup designed specifically for autonomous worlds. Redstone prioritizes:</p>
+<ul>
+<li><strong>High throughput</strong> — Designed for 1000s of TPS, far higher than Ethereum</li>
+<li><strong>Low latency</strong> — Faster blocks to enable real-time interaction</li>
+<li><strong>Affordable execution</strong> — Gas costs are lower for intensive state operations</li>
+</ul>
+<p>This shows a key insight: autonomous worlds may not need Ethereum directly. Layer 2 rollups and specialized chains can provide the scalability and cost-efficiency needed for real-time gameplay while inheriting Ethereum&rsquo;s security model.</p>
+<h2 id="other-mud-based-games">Other MUD-Based Games</h2>
+<p>Beyond OPCraft and Sky Strife, the MUD ecosystem includes:</p>
+<ul>
+<li><strong>Word3</strong>: A word game demonstrating turn-based, asynchronous gameplay</li>
+<li><strong>Imminent Solace</strong>: A battle royale game using ZK fog of war mechanics (similar to Dark Forest)</li>
+<li><strong>2048 On-Chain</strong>: A fully on-chain clone of the popular puzzle game, built by the community to learn MUD</li>
+<li><strong>Loot Survivor</strong> (Dojo): A Roguelike adventure game on Starknet</li>
+<li><strong>Biomes</strong>: A Minecraft-like sandbox on Redstone</li>
+</ul>
+<h2 id="lessons-from-production-games">Lessons from Production Games</h2>
+<h3 id="scalability-tradeoffs">Scalability Tradeoffs</h3>
+<p>MUD games reveal a spectrum of scalability choices:</p>
+<ul>
+<li><strong>Pure Ethereum</strong>: Works for turn-based, asynchronous games with modest entity counts (Dark Forest, Word3)</li>
+<li><strong>Layer 2 (OP, ARB)</strong>: Supports real-time games with high TPS but latency of a few seconds (early OPCraft)</li>
+<li><strong>Specialized rollups (Redstone)</strong>: Designed for autonomous worlds; can handle real-time RTS gameplay</li>
+</ul>
+<p>The cost-latency-decentralization tradeoff is inescapable. Choosing Ethereum means higher costs and latency but maximum security and decentralization. Choosing Redstone means faster, cheaper gameplay but reliance on a specialized rollup operator.</p>
+<h3 id="composability-in-practice">Composability in Practice</h3>
+<p>MUD&rsquo;s permissionless extension model is powerful but presents challenges:</p>
+<ul>
+<li><strong>Namespace collisions</strong>: If two developers deploy incompatible systems under the same namespace, conflicts arise</li>
+<li><strong>Upgrade coordination</strong>: Changing core systems (e.g., introducing a new currency) requires coordination or hard forking the world</li>
+<li><strong>Fragmentation</strong>: Different versions of a world can exist; players must choose which version to play</li>
+</ul>
+<p>Despite these challenges, permissionless extension has proven valuable. OPCraft&rsquo;s custom clients (2D isometric views, 3D visualizations) were created by the community without any Lattice coordination. This would be impossible in traditional games.</p>
+<h3 id="economics-and-incentives">Economics and Incentives</h3>
+<p>MUD games must solve an incentive problem: why should players play?</p>
+<ul>
+<li><strong>Rewards</strong> — Cosmetics, NFTs, or tokens that have real value</li>
+<li><strong>Play-to-earn</strong> — Players earn tokens by playing, which can be sold on exchanges</li>
+<li><strong>Community ownership</strong> — Players feel invested in a world they co-create</li>
+</ul>
+<p>Sky Strife uses cosmetics and seasonal rewards. OPCraft used on-chain asset ownership (players&rsquo; creations are permanent NFTs). The model that works best remains unclear, and different games are experimenting.</p>
+<h3 id="client-experience">Client Experience</h3>
+<p>One challenge MUD games face is that the on-chain source of truth is always slower than a traditional client. Solutions include:</p>
+<ul>
+<li><strong>Optimistic updates</strong> — The client assumes an action will succeed and updates immediately; if it fails, revert</li>
+<li><strong>Indexers</strong> — Off-chain databases that replicate on-chain state with low latency for reads</li>
+<li><strong>Rollups</strong> — Faster block times reduce latency to game-playable levels</li>
+</ul>
+<p>None of these eliminate the inherent latency of blockchain; they just make it tolerable.</p>
+<h2 id="the-path-forward">The Path Forward</h2>
+<p>MUD games are transitioning from novelty to playable experiences. Sky Strife has attracted thousands of players. OPCraft demonstrated that a full 3D world is feasible. These games show that autonomous worlds are not just theoretical; they are becoming practical.</p>
+<p>The next phase will likely involve:</p>
+<ol>
+<li><strong>Specialized infrastructure</strong> — More chains (like Redstone) optimized for games rather than forcing games onto general-purpose L2s</li>
+<li><strong>Cross-game composability</strong> — Assets and achievements spanning multiple worlds</li>
+<li><strong>AI agents</strong> — Bots playing within autonomous worlds, creating new economic dynamics</li>
+<li><strong>Creator economies</strong> — Built-in support for creator cosmetics, streaming, and sponsorships</li>
+</ol>
+<p>The vision is that autonomous worlds become a new category of digital infrastructure: not owned by any company, but shared by a community, with player creativity and commerce flowing naturally across permissionless boundaries.</p>
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="./mud-framework-architecture.md" class="link-internal">MUD Framework Architecture</a> — the technical foundation enabling these games</li>
+<li><a href="./autonomous-worlds-concept.md" class="link-internal">Autonomous Worlds</a> — the conceptual vision that OPCraft and Sky Strife embody</li>
+<li><a href="./dark-forest-zero-knowledge-games.md" class="link-internal">Dark Forest</a> — the precursor game that proved on-chain gaming is possible</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/texts/mud-games/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">blockchain games</dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul></ul></dd>
+      </div><div class="relation">
+        <dt>Subjects</dt>
+        <dd property="emsenn:Subjects"><ul><li>mud games</li><li>opcrafr</li><li>sky strife</li><li>voxel games</li><li>real time strategy</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

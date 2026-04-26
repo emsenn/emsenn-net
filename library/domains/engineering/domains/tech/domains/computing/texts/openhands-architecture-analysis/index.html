@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenHands Architecture Analysis - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Analysis of OpenHands (formerly OpenDevin) — runtime isolation, event streams, state management, and multi-agent delegation",
+  "keywords": "agentic-systems, architecture-analysis, open-source",
+  "name": "OpenHands Architecture Analysis",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/openhands-architecture-analysis/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">OpenHands Architecture Analysis</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Analysis of OpenHands (formerly OpenDevin) — runtime isolation, event streams, state management, and multi-agent delegation</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#runtime-isolation">Runtime Isolation</a></li>
+    <li><a href="#event-stream-architecture">Event Stream Architecture</a></li>
+    <li><a href="#the-observation-action-loop">The Observation-Action Loop</a></li>
+    <li><a href="#state-management">State Management</a></li>
+    <li><a href="#memory-and-context-management">Memory and Context Management</a></li>
+    <li><a href="#multi-agent-delegation">Multi-Agent Delegation</a></li>
+    <li><a href="#patterns-worth-adopting">Patterns Worth Adopting</a></li>
+    <li><a href="#patterns-to-avoid">Patterns to Avoid</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="openhands-architecture-analysis">OpenHands Architecture Analysis</h1>
+<p>OpenHands (formerly OpenDevin) is an open-source AI software development platform. This analysis covers the V0 architecture (deprecated April 2026, with V1 migrating to a separate Software Agent SDK). The patterns here remain instructive regardless of version.</p>
+<h2 id="runtime-isolation">Runtime Isolation</h2>
+<p>OpenHands isolates agent execution inside Docker containers. Each agent session gets a dedicated container (<code>openhands-runtime-{session_id}</code>) with its own filesystem, network, and process namespace. The container runs as a dedicated non-root user (<code>openhands</code>, UID 42420) to prevent UID conflicts with the host.</p>
+<p>The architecture splits into two sides:</p>
+<ul>
+<li><strong>Host side</strong> (<code>ActionExecutionClient</code>): sends HTTP POST requests to the container&rsquo;s <code>/execute_action</code> endpoint with JSON-serialized actions. A semaphore ensures one action at a time.</li>
+<li><strong>Container side</strong> (<code>ActionExecutor</code>): a FastAPI server inside the sandbox that executes commands via tmux-based bash sessions, Jupyter kernels, a file editor, and a browser environment.</li>
+</ul>
+<p>Communication uses dynamic port mapping (range 30000-39999) with thread-safe port locks. Every request requires an <code>X-Session-API-Key</code> header — a per-session cryptographic token injected as an environment variable when the container starts. Only <code>/alive</code> and <code>/server_info</code> bypass authentication.</p>
+<p>File system access uses controlled Docker volume mounts with three modes: <code>rw</code> (read-write, default), <code>ro</code> (read-only), and <code>overlay</code> (copy-on-write — the host path is the lower read-only layer, with a per-container upper layer capturing writes). This overlay pattern allows multiple containers to share a read-only source while maintaining independent modifications.</p>
+<p>Pluggable security analyzers inspect actions before execution: an LLM-based risk assessor, an invariant analyzer (detects secret leaks and dangerous commands), and a Gray Swan integration for AI safety monitoring. Each returns LOW/MEDIUM/HIGH/UNKNOWN risk; HIGH-risk actions require user confirmation.</p>
+<p>Key files: <code>openhands/runtime/impl/docker/docker_runtime.py</code> (container lifecycle, volume mounts), <code>openhands/runtime/action_execution_server.py</code> (FastAPI server inside sandbox), <code>openhands/runtime/utils/bash.py</code> (tmux session management).</p>
+<h2 id="event-stream-architecture">Event Stream Architecture</h2>
+<p>The EventStream is the central communication hub. Every component — agent controller, runtime, memory system, server — subscribes to it and receives events asynchronously.</p>
+<p>Events divide into two types:</p>
+<ul>
+<li><strong>Actions</strong>: what the agent or user wants to happen. Types include <code>CmdRunAction</code>, <code>FileReadAction</code>, <code>FileEditAction</code>, <code>MessageAction</code>, <code>AgentDelegateAction</code>, <code>AgentFinishAction</code>, <code>IPythonRunCellAction</code>, <code>BrowseInteractiveAction</code>, and <code>MCPAction</code>.</li>
+<li><strong>Observations</strong>: what actually happened. Types include <code>CmdOutputObservation</code>, <code>FileReadObservation</code>, <code>ErrorObservation</code>, <code>AgentDelegateObservation</code>, <code>RecallObservation</code>, and <code>AgentCondensationObservation</code>.</li>
+</ul>
+<p>Each event carries an <code>id</code> (position in stream), <code>timestamp</code>, <code>source</code> (AGENT, USER, or ENVIRONMENT), and <code>cause</code> (ID of the triggering event, enabling causality tracking). LLM call metrics attach to events that triggered LLM usage.</p>
+<p>The flow:</p>
+<ol>
+<li>Event added to stream with timestamp and sequential ID</li>
+<li>Serialized to dict with secret masking</li>
+<li>Cached in a write page, then persisted to file storage</li>
+<li>Queued for async distribution to all subscribers</li>
+<li>Each subscriber&rsquo;s callbacks execute in a dedicated thread pool with its own event loop</li>
+</ol>
+<p>Thread safety is enforced via <code>threading.Lock</code> on cache page management and ID assignment. Subscribers are identified by role: AGENT_CONTROLLER, RESOLVER, SERVER, RUNTIME, MEMORY, MAIN, TEST.</p>
+<p>Key files: <code>openhands/events/event.py</code> (base Event class), <code>openhands/events/stream.py</code> (EventStream with subscription and distribution), <code>openhands/events/action/</code> and <code>openhands/events/observation/</code> (type hierarchies).</p>
+<h2 id="the-observation-action-loop">The Observation-Action Loop</h2>
+<p>The <code>AgentController</code> orchestrates the loop. It subscribes to the EventStream and responds to events:</p>
+<ol>
+<li><strong>Trigger</strong>: a user message or runtime observation arrives</li>
+<li><strong>should_step()</strong>: determines if the agent should act (yes for user messages, observations, delegate completions; no if a delegate is active or state is not RUNNING)</li>
+<li><strong>_step()</strong>: the core execution method:
+<ul>
+<li>Checks agent state is RUNNING and no pending action blocks progress</li>
+<li>Runs stuck detection (loop detection) if enabled</li>
+<li>Checks iteration and budget control flags</li>
+<li>Calls <code>agent.step(state)</code> to get the next action from the LLM</li>
+<li>Runs security analysis on runnable actions</li>
+<li>Publishes the action to the EventStream</li>
+</ul>
+</li>
+<li><strong>Runtime execution</strong>: the runtime subscriber receives the action, executes it in the sandbox, and publishes an observation</li>
+<li><strong>Cycle repeats</strong>: the observation triggers the next <code>should_step()</code> evaluation</li>
+</ol>
+<p>Error handling wraps the entire step in exception catching for LLM errors (authentication, rate limits, context window exceeded, content policy violations), mapping them to appropriate state transitions and error messages.</p>
+<p>Key file: <code>openhands/controller/agent_controller.py</code> (lines 863-1038 for <code>_step()</code>, 413-452 for <code>should_step()</code>).</p>
+<h2 id="state-management">State Management</h2>
+<p>The <code>State</code> object tracks execution context:</p>
+<ul>
+<li><code>history</code>: filtered list of events (excludes NullAction/Observation and hidden events)</li>
+<li><code>agent_state</code>: current AgentState enum (LOADING, RUNNING, PAUSED, FINISHED, ERROR, etc.)</li>
+<li><code>iteration_flag</code> and <code>budget_flag</code>: control flags with current/max values, shared across delegation levels</li>
+<li><code>delegate_level</code>: depth of agent delegation nesting</li>
+<li><code>start_id</code> and <code>end_id</code>: event stream range boundaries for this controller&rsquo;s scope</li>
+<li><code>metrics</code>: LLM call metrics, shared globally across all delegates</li>
+</ul>
+<p>State persists via pickle + base64 encoding to a FileStore. History is not pickled — it reconstructs from the EventStream on restore. The <code>StateTracker</code> manages this persistence, filtering events and tracking stream boundaries.</p>
+<p>The <code>View</code> system provides a memory-aware lens over history. It tracks <code>forgotten_event_ids</code> from condensation actions and filters them from the agent&rsquo;s visible history, inserting summary observations at the appropriate offset.</p>
+<p>Key files: <code>openhands/controller/state/state.py</code>, <code>openhands/controller/state/state_tracker.py</code>, <code>openhands/memory/view.py</code>.</p>
+<h2 id="memory-and-context-management">Memory and Context Management</h2>
+<p>Three layers handle memory:</p>
+<p><strong>ConversationMemory</strong> (<code>openhands/memory/conversation_memory.py</code>): converts event history into LLM message format. Handles tool call actions in function-calling mode, respects forgotten event IDs from condensation, truncates large observations to <code>max_message_chars</code>, and supports vision/image URLs.</p>
+<p><strong>Condenser</strong> (<code>openhands/memory/condenser/condenser.py</code>): abstract interface for history reduction. When the LLM raises a ContextWindowExceededError, the controller publishes a <code>CondensationRequestAction</code>. The condenser processes this, producing a condensed view that preserves essential context while reducing token usage. Multiple condenser implementations are configurable.</p>
+<p><strong>Memory Component</strong> (<code>openhands/memory/memory.py</code>): subscribes to the EventStream as the MEMORY subscriber. Listens for <code>RecallAction</code> events and retrieves workspace context or knowledge based on <code>recall_type</code>, publishing <code>RecallObservation</code> responses. This is the microagent knowledge retrieval system.</p>
+<h2 id="multi-agent-delegation">Multi-Agent Delegation</h2>
+<p>Delegation uses a parent-child controller pattern:</p>
+<ol>
+<li><strong>Initiation</strong>: the agent emits an <code>AgentDelegateAction</code> with a target agent name and input parameters</li>
+<li><strong>start_delegate()</strong>: the parent controller creates a new agent instance from the registry, a new <code>AgentController</code> with <code>is_delegate=True</code>, and an isolated <code>State</code> with:
+<ul>
+<li>Incremented <code>delegate_level</code></li>
+<li>New <code>start_id</code> in the event stream (scoping the delegate&rsquo;s history)</li>
+<li>Shared <code>metrics</code>, <code>iteration_flag</code>, and <code>budget_flag</code> objects</li>
+</ul>
+</li>
+<li><strong>Event forwarding</strong>: while a delegate is active, the parent forwards all events to it and skips its own <code>should_step()</code> (returns false)</li>
+<li><strong>end_delegate()</strong>: when the delegate reaches FINISHED/ERROR/REJECTED, the parent collects results into an <code>AgentDelegateObservation</code>, synchronizes iteration counts and metrics, destroys the delegate, and resumes its own execution</li>
+</ol>
+<p>Delegates do not subscribe directly to the EventStream — the parent acts as a proxy, preventing duplicate event processing. This is a clean single-subscriber-per-level design.</p>
+<p>Available agents: CodeActAgent (primary, tool-use via function calling), ReadOnlyAgent (read-only file exploration), BrowsingAgent (web browsing via BrowserGym), LocAgent (lines-of-code analysis), DummyAgent (deterministic testing). Agents register via <code>Agent.register('Name', Class)</code> and instantiate via <code>Agent.get_cls('Name')</code>.</p>
+<p>Prompt management uses Jinja2 templates with dynamic filename selection (e.g., <code>system_prompt_long_horizon.j2</code> when plan mode is enabled). Tool composition is config-driven: each agent assembles its tool list based on enabled features (<code>enable_cmd</code>, <code>enable_jupyter</code>, <code>enable_browsing</code>, etc.).</p>
+<p>Key files: <code>openhands/controller/agent_controller.py</code> (lines 735-861 for delegation), <code>openhands/controller/agent.py</code> (base class and registry), <code>openhands/agenthub/</code> (agent implementations).</p>
+<h2 id="patterns-worth-adopting">Patterns Worth Adopting</h2>
+<p><strong>Event stream as single source of truth.</strong> All communication flows through one EventStream with typed events, causality tracking, and persistent storage. This gives full observability and replay capability. Our system uses separate event logs, session files, and tool call records — a unified stream would simplify debugging and enable replay.</p>
+<p><strong>Structured action/observation types.</strong> Every agent action and every runtime response has a typed dataclass with known fields. This constrains the action space and makes it parseable. Our hooks use JSON on stdin/stdout but without a formal type hierarchy.</p>
+<p><strong>Condensation as a first-class operation.</strong> When context overflows, OpenHands emits a <code>CondensationAction</code> that flows through the same event stream, is tracked with an ID, and produces a summary that replaces forgotten events in the view. This is more principled than our auto-compaction, which happens outside the agent&rsquo;s awareness.</p>
+<p><strong>Delegate isolation with shared budgets.</strong> Delegates get scoped history (new <code>start_id</code>) but share iteration and budget counters with the parent. This prevents delegates from consuming unbounded resources while giving them clean context. Our subagents currently inherit the full context window cost without explicit budget sharing.</p>
+<p><strong>Overlay filesystem for sandboxing.</strong> The copy-on-write overlay mount pattern (read-only lower layer from host, writable upper layer per container) is a clean way to let agents modify files without affecting the source. Worth considering if we move toward containerized execution.</p>
+<p><strong>Security analysis in the loop.</strong> Pluggable security analyzers that inspect actions before execution — not as a hook that blocks, but as a typed risk assessment that can trigger confirmation flows. This is more granular than our safety-guard hook.</p>
+<h2 id="patterns-to-avoid">Patterns to Avoid</h2>
+<p><strong>Pickle-based state persistence.</strong> State serializes via pickle + base64, which is fragile across versions (they have explicit backward-compatibility shims in <code>__getstate__</code>/<code>__setstate__</code>). Our JSON/markdown approach is more durable.</p>
+<p><strong>Monolithic controller class.</strong> <code>AgentController</code> at ~1000 lines handles event routing, delegation, security, stuck detection, error handling, and state management. This makes it hard to reason about any single concern.</p>
+<p><strong>Port range allocation.</strong> Dynamic port mapping with ranges (30000-39999) and lock files is operationally fragile. Unix domain sockets or a reverse proxy would be simpler.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/openhands-architecture-analysis/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">computing</dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul><li>https://github.com/All Hands AI/OpenHands</li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/agentic-systems/">agentic-systems</a></li><li><a href="/tags/architecture-analysis/">architecture-analysis</a></li><li><a href="/tags/open-source/">open-source</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

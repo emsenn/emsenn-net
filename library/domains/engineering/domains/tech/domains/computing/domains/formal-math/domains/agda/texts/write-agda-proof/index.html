@@ -67,7 +67,7 @@
 
   <main id="content" data-pagefind-body>
     
-<article class="h-entry" data-type="operational">
+<article class="h-entry" data-type="page">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/">Formal math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/">Agda</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/">Texts</a></nav>
   <h1 class="p-name"></h1>
   <div class="meta">
@@ -128,7 +128,7 @@ Auto-case split with <code>C-c C-c</code> in an Agda-mode editor.</p>
 </li>
 <li>
 <p><strong>Verify type-checking:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>LC_ALL<span style="color:#f92672">=</span>C.UTF-8 agda SemioticUniverse/Everything.agda
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>LC_ALL<span style="color:#f92672">=</span>C.UTF-8 agda SemioticUniverse/Everything.agda
 </span></span></code></pre></div></li>
 </ol>
 <h2 id="common-agda-patterns">Common Agda patterns</h2>
@@ -142,11 +142,11 @@ Fix: <code>open import Level renaming (suc to lsuc)</code>.</p>
 <li><code>open record-value</code> to bring fields into scope</li>
 </ul>
 <p><strong>Parameterized modules (our pattern):</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">module</span> Fragments <span style="color:#f92672">{</span>ℓ <span style="color:#f92672">:</span> Level<span style="color:#f92672">}</span> <span style="color:#f92672">(</span>H <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> ℓ<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>_⊓_ <span style="color:#f92672">:</span> H <span style="color:#f92672">→</span> H <span style="color:#f92672">→</span> H<span style="color:#f92672">)</span> <span style="color:#f92672">...</span> <span style="color:#66d9ef">where</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">module</span> Fragments <span style="color:#f92672">{</span>ℓ <span style="color:#f92672">:</span> Level<span style="color:#f92672">}</span> <span style="color:#f92672">(</span>H <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> ℓ<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>_⊓_ <span style="color:#f92672">:</span> H <span style="color:#f92672">→</span> H <span style="color:#f92672">→</span> H<span style="color:#f92672">)</span> <span style="color:#f92672">...</span> <span style="color:#66d9ef">where</span>
 </span></span></code></pre></div><p>This factors common parameters across all definitions in the module.
 Consumers open with <code>open Fragments H _⊓_ ...</code>.</p>
 <p><strong>Equational reasoning chains:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">open</span> <span style="color:#66d9ef">import</span> Relation.Binary.PropositionalEquality <span style="color:#66d9ef">using</span> <span style="color:#f92672">(</span>begin_; _≡⟨_⟩_; _∎<span style="color:#f92672">)</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">open</span> <span style="color:#66d9ef">import</span> Relation.Binary.PropositionalEquality <span style="color:#66d9ef">using</span> <span style="color:#f92672">(</span>begin_; _≡⟨_⟩_; _∎<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>proof <span style="color:#f92672">=</span> begin
 </span></span><span style="display:flex;"><span>  lhs       ≡⟨ step1 ⟩
 </span></span><span style="display:flex;"><span>  middle     ≡⟨ step2 ⟩
@@ -215,11 +215,14 @@ say &ldquo;UNVERIFIED&rdquo; explicitly.</li>
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
       </div><div class="relation">
-        <dt>Date updated</dt>
-        <dd property="schema:dateModified"><time datetime="2026-03-07">2026-03-07</time></dd>
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-03-07">2026-03-07</time></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/ethics/domains/care-ethics/terms/dependency/">Dependencies</a></dt>
         <dd property="emsenn:Dependencies"><ul><li>/technology/disciplines/computing/software/agda/curricula/index.md</li><li>/mathematics/disciplines/type theory/curricula/dependent types.md</li><li>/mathematics/concepts/proof/skills/write formal proof/SKILL.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Form</dt>
+        <dd property="emsenn:Form">operational</dd>
       </div><div class="relation">
         <dt>Inputs</dt>
         <dd property="emsenn:Inputs"><ul><li>A mathematical statement in natural language or informal notation</li><li>The relevant spec section (e.g., §1.2 of semiotic universe.md)</li></ul></dd>
@@ -230,11 +233,8 @@ say &ldquo;UNVERIFIED&rdquo; explicitly.</li>
         <dt>Part of</dt>
         <dd property="schema:isPartOf">technology/disciplines/computing/software/agda</dd>
       </div><div class="relation">
-        <dt>Produces</dt>
+        <dt><a href="/library/domains/engineering/domains/tech/terms/produces/">Produces</a></dt>
         <dd property="emsenn:Produces"><ul><li>An Agda module containing the type signature and proof term</li></ul></dd>
-      </div><div class="relation">
-        <dt>Readiness</dt>
-        <dd property="emsenn:Readiness">shaped</dd>
       </div><div class="relation">
         <dt>Region</dt>
         <dd property="emsenn:Region"></dd>
@@ -247,18 +247,7 @@ say &ldquo;UNVERIFIED&rdquo; explicitly.</li>
       </div>
   </dl>
 </section>
-<section class="cite-this" id="cite-this">
-  <h2>Cite</h2>
-  <pre class="cite-block"><code>@misc{emsenn2026-write-agda-proof,
-  author    = {emsenn},
-  title     = {},
-  year      = {2026},
-  note      = {Translate a mathematical statement into Agda and produce a verified proof term. Always check the write-formal-proof skill first for the anti-slop protocol.},
-  url       = {https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/write-agda-proof/},
-  publisher = {emsenn.net},
-  license   = {CC BY-SA 4.0}
-}</code></pre>
-</section>
+
 
   
 

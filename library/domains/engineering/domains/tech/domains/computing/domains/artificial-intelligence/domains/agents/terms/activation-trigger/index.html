@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Activation Trigger - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-31",
+  "datePublished": "2026-03-31",
+  "description": "The mechanism by which an agentic system decides to load a skill or invoke an agent based on matching a description field against the current context.",
+  "name": "Activation Trigger",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/activation-trigger/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/">Terms</a></nav>
+  <h1 class="p-name">Activation Trigger</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-31T00:00:00Z">2026-03-31</time>
+    
+    <span class="p-summary">The mechanism by which an agentic system decides to load a skill or invoke an agent based on matching a description field against the current context.</span>
+  </div>
+  <div class="e-content">
+    <p>An activation trigger is the mechanism by which an agentic system decides — without explicit user instruction — to load a skill, invoke an agent, or modify its behavior. The system matches a description field in the skill or agent&rsquo;s metadata against the current conversational context. If the description matches, the skill loads. If it does not, the skill stays inert. The description is therefore load-bearing infrastructure, not documentation.</p>
+<p>The mechanism works by semantic matching, not keyword lookup. A skill described as &ldquo;Use when writing Python test files&rdquo; will activate when the user asks to add tests to a Python module, even if they never say the word &ldquo;skill.&rdquo; The model reads the description, reads the context, and decides whether the skill is relevant. This means the quality of the description directly determines whether the skill fires at the right time, fires at the wrong time, or never fires at all.</p>
+<p>Two activation modes exist. Explicit activation is when a user invokes a skill by name — typing <code>/write-term</code> in a Claude Code session, for instance. Automatic activation is when the system loads a skill because its description matches the current task. Explicit activation is reliable but requires the user to know what&rsquo;s available. Automatic activation is convenient but depends entirely on the description being well-written. Most mature agentic systems use both: automatic activation for common patterns, explicit invocation for specialized workflows.</p>
+<p>The description field has a specific anatomy that determines activation quality. It must state what the skill does, when it should activate, and on what kind of input. Descriptions that say &ldquo;Use PROACTIVELY when users request feature implementation&rdquo; activate more reliably than descriptions that say &ldquo;Planning tool.&rdquo; The word &ldquo;proactively&rdquo; signals to the model that it should invoke the skill without waiting to be asked. The trigger conditions (&ldquo;when users request feature implementation&rdquo;) give the model a matching criterion. Vague descriptions produce vague activation.</p>
+<p>This creates a design tension. A description broad enough to catch all relevant contexts will also fire on irrelevant ones. A description narrow enough to avoid false positives will miss valid cases. The practical solution is to err toward specificity and provide a &ldquo;When to Activate&rdquo; section in the skill body that lists concrete scenarios. The description handles coarse matching; the body handles fine-grained guidance.</p>
+<p>Activation triggers are the mechanism that makes progressive disclosure work. A system can have hundreds of skills without overwhelming the user or the model, because only the relevant ones load. The cost of each additional skill is near zero — it only consumes context when activated. This is why the everything-claude-code project can ship over 130 skills without degrading performance: most of them are dormant in any given session.</p>
+<p>The concept extends beyond skills to agents. An agent&rsquo;s description field determines when the orchestrator delegates work to it. A planner agent described as &ldquo;Use PROACTIVELY when users request feature implementation, architectural changes, or complex refactoring&rdquo; will be invoked automatically when the user asks to build something complex. The activation trigger is the same mechanism operating at a different level of the system.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/activation-trigger/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/action/">Acts on</a></dt>
+        <dd property="emsenn:Actson"><ul><li><a href="/library/domains/engineering/domains/tech/terms/skill/">skill</a></li><li><a href="/library/domains/engineering/domains/tech/terms/agent/">agent</a></li><li><a href="/library/domains/engineering/domains/tech/terms/command/">command</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Contrasts with</dt>
+        <dd property="emsenn:Contrastswith">explicit invocation</dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-31">2026-03-31</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/activation-trigger/">activation trigger</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/terms/agent/">agents</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
+        <dd property="emsenn:Enables"><ul><li>proactive delegation</li><li>progressive disclosure</li></ul></dd>
+      </div><div class="relation">
+        <dt>Mechanism</dt>
+        <dd property="emsenn:Mechanism">description matching</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li><a href="/library/domains/engineering/domains/tech/terms/skill/">skill</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/">agent orchestration</a></li></ul></dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/how-to-write-a-skill/">How to Write an Effective Skill</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

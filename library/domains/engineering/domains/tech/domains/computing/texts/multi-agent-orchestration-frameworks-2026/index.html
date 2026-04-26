@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multi-agent orchestration frameworks 2026 - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Comparative analysis of CrewAI, AutoGen 0.4, and LangGraph — three leading frameworks for building multi-agent AI systems. Covers agent definition, task delegation, communication patterns, result composition, learning, process types, failure handling, and architecture.",
+  "name": "Multi-agent orchestration frameworks 2026",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/multi-agent-orchestration-frameworks-2026/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">Multi-agent orchestration frameworks 2026</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Comparative analysis of CrewAI, AutoGen 0.4, and LangGraph — three leading frameworks for building multi-agent AI systems. Covers agent definition, task delegation, communication patterns, result composition, learning, process types, failure handling, and architecture.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#framework-overview">Framework Overview</a>
+      <ul>
+        <li><a href="#crewai">CrewAI</a></li>
+        <li><a href="#autogen-04">AutoGen 0.4</a></li>
+        <li><a href="#langgraph">LangGraph</a></li>
+      </ul>
+    </li>
+    <li><a href="#agent-definition">Agent Definition</a>
+      <ul>
+        <li><a href="#crewai-1">CrewAI</a></li>
+        <li><a href="#autogen-04-agentchat-api">AutoGen 0.4 (AgentChat API)</a></li>
+        <li><a href="#langgraph-1">LangGraph</a></li>
+      </ul>
+    </li>
+    <li><a href="#task-assignment-and-delegation">Task Assignment and Delegation</a>
+      <ul>
+        <li><a href="#crewai-2">CrewAI</a></li>
+        <li><a href="#autogen-04-agentchat-api-1">AutoGen 0.4 (AgentChat API)</a></li>
+        <li><a href="#langgraph-2">LangGraph</a></li>
+      </ul>
+    </li>
+    <li><a href="#agent-communication">Agent Communication</a>
+      <ul>
+        <li><a href="#crewai-3">CrewAI</a></li>
+        <li><a href="#autogen-04-1">AutoGen 0.4</a></li>
+        <li><a href="#langgraph-3">LangGraph</a></li>
+      </ul>
+    </li>
+    <li><a href="#result-composition">Result Composition</a>
+      <ul>
+        <li><a href="#crewai-4">CrewAI</a></li>
+        <li><a href="#autogen-04-2">AutoGen 0.4</a></li>
+        <li><a href="#langgraph-4">LangGraph</a></li>
+      </ul>
+    </li>
+    <li><a href="#learning-and-memory">Learning and Memory</a>
+      <ul>
+        <li><a href="#crewai-5">CrewAI</a></li>
+        <li><a href="#autogen-04-3">AutoGen 0.4</a></li>
+        <li><a href="#langgraph-5">LangGraph</a></li>
+      </ul>
+    </li>
+    <li><a href="#process-types">Process Types</a>
+      <ul>
+        <li><a href="#crewai-6">CrewAI</a></li>
+        <li><a href="#autogen-04-4">AutoGen 0.4</a></li>
+        <li><a href="#langgraph-6">LangGraph</a></li>
+      </ul>
+    </li>
+    <li><a href="#failure-and-retry">Failure and Retry</a>
+      <ul>
+        <li><a href="#crewai-7">CrewAI</a></li>
+        <li><a href="#autogen-04-5">AutoGen 0.4</a></li>
+        <li><a href="#langgraph-7">LangGraph</a></li>
+      </ul>
+    </li>
+    <li><a href="#language-and-platform-support">Language and Platform Support</a>
+      <ul>
+        <li><a href="#crewai-8">CrewAI</a></li>
+        <li><a href="#autogen-04-6">AutoGen 0.4</a></li>
+        <li><a href="#langgraph-8">LangGraph</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary-table">Summary Table</a></li>
+    <li><a href="#comparison-officeduty-structure-vs-framework-patterns">Comparison: Office/Duty Structure vs. Framework Patterns</a></li>
+    <li><a href="#design-implications">Design Implications</a></li>
+    <li><a href="#see-also">See Also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="multi-agent-orchestration-frameworks-2026">Multi-agent Orchestration Frameworks 2026</h1>
+<p>Three frameworks have emerged as dominant platforms for building multi-agent AI systems as of 2026: <strong>CrewAI</strong>, <strong>AutoGen 0.4</strong>, and <strong>LangGraph</strong>. Each represents a different design philosophy and targets different use cases. Understanding their core differences is essential for choosing the right orchestration layer for a given problem.</p>
+<h2 id="framework-overview">Framework Overview</h2>
+<h3 id="crewai">CrewAI</h3>
+<p><strong>Architecture</strong>: Python-only, high-level, role-playing oriented. Independent of LangChain, built entirely from scratch as a lean, lightning-fast framework.</p>
+<p><strong>Core metaphor</strong>: A crew of specialists, each with a role, goal, backstory, and set of tools. Tasks flow through the crew sequentially or hierarchically, with agents executing against LLM-backed personas.</p>
+<p><strong>Typical use case</strong>: Content generation, research analysis, business process automation where clear role-based delegation fits the problem.</p>
+<h3 id="autogen-04">AutoGen 0.4</h3>
+<p><strong>Architecture</strong>: Complete rewrite from 0.2, adopting asynchronous, event-driven design. Two-layer API: Core (low-level actor framework) and AgentChat (high-level task API). Python-first with .NET support; TypeScript support under development.</p>
+<p><strong>Core metaphor</strong>: Teams of agents collaborating through message-passing. Groups can be round-robin (all agents speak in turns), hierarchical (manager orchestrates), or swarm-based (agents hand off based on capabilities).</p>
+<p><strong>Typical use case</strong>: Interactive multi-step workflows, code generation and execution, human-in-the-loop scenarios with flexible team structures.</p>
+<h3 id="langgraph">LangGraph</h3>
+<p><strong>Architecture</strong>: Graph-based, state-machine oriented. Low-level, explicit state management with reducers and checkpointers. Python and JavaScript/TypeScript versions maintain parity of concepts but differ in API details.</p>
+<p><strong>Core metaphor</strong>: Directed graph where nodes are computation steps, edges are control flow, and state flows through the graph as reducer-managed updates. Compilation produces a runnable app with persistence.</p>
+<p><strong>Typical use case</strong>: Complex, long-running stateful workflows, research agents with tool loops, applications requiring explicit state tracking and checkpoint persistence.</p>
+<hr>
+<h2 id="agent-definition">Agent Definition</h2>
+<h3 id="crewai-1">CrewAI</h3>
+<p>Agents are defined with <strong>role</strong>, <strong>goal</strong>, <strong>backstory</strong>, and <strong>tools</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Data Analyst&#39;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Extract actionable insights&#39;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;You&#39;re a data analyst at a large company...&#34;&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[tool1, tool2],
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span>my_llm,
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    allow_delegation<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><ul>
+<li><strong>Role</strong>: Professional identity and function (e.g., &ldquo;Senior Researcher&rdquo;).</li>
+<li><strong>Goal</strong>: Primary objective guiding decision-making (e.g., &ldquo;Find patterns in dataset&rdquo;).</li>
+<li><strong>Backstory</strong>: Character depth and context, influencing the agent&rsquo;s thinking style.</li>
+<li><strong>Tools</strong>: Executable capabilities (API calls, file reads, web searches, vector DB queries).</li>
+<li><strong>allow_delegation</strong>: Whether the agent can hand off work to other agents.</li>
+</ul>
+<p>Behind the scenes, CrewAI constructs a rich prompt incorporating role, goal, and backstory into the system prompt sent to the LLM.</p>
+<h3 id="autogen-04-agentchat-api">AutoGen 0.4 (AgentChat API)</h3>
+<p>Agents are defined as instances of predefined classes or by extending base agents. Key agent types:</p>
+<ul>
+<li><strong>AssistantAgent</strong>: LLM-backed agent with tool support, initialized with a model client and system message.</li>
+<li><strong>UserProxyAgent</strong>: Represents human input and can execute code or approve decisions.</li>
+<li><strong>Custom agents</strong>: Extend <code>BaseAgent</code> to define custom behavior.</li>
+</ul>
+<p>Example (WeatherAgent):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> autogen_agentchat.agents <span style="color:#f92672">import</span> AssistantAgent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> autogen_ext.models.openai <span style="color:#f92672">import</span> OpenAIChatCompletionClient
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>weather_agent <span style="color:#f92672">=</span> AssistantAgent(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;WeatherAgent&#34;</span>,
+</span></span><span style="display:flex;"><span>    model_client<span style="color:#f92672">=</span>OpenAIChatCompletionClient(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4&#34;</span>),
+</span></span><span style="display:flex;"><span>    system_message<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;You are a helpful AI assistant. You are good at using tools to solve tasks.&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[get_weather],  <span style="color:#75715e"># async function</span>
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;An intelligent agent that provides weather information&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>Agents have properties: <strong>name</strong>, <strong>model_client</strong>, <strong>system_message</strong>, <strong>tools</strong>, <strong>description</strong>. The framework handles message routing and tool invocation.</p>
+<h3 id="langgraph-1">LangGraph</h3>
+<p>LangGraph does not define agents as objects. Instead, agents are implicitly defined by nodes in the graph. A node is a function (sync or async) that:</p>
+<ol>
+<li>Takes the current state as input.</li>
+<li>Performs computation or tool calls.</li>
+<li>Returns an updated state.</li>
+</ol>
+<p>Example node:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langgraph.graph <span style="color:#f92672">import</span> StateGraph, START, END
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">agent_node</span>(state):
+</span></span><span style="display:flex;"><span>    messages <span style="color:#f92672">=</span> state[<span style="color:#e6db74">&#34;messages&#34;</span>]
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> llm<span style="color:#f92672">.</span>invoke(messages)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;messages&#34;</span>: messages <span style="color:#f92672">+</span> [response]}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>graph <span style="color:#f92672">=</span> StateGraph(AgentState)
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>add_node(<span style="color:#e6db74">&#34;agent&#34;</span>, agent_node)
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>add_edge(START, <span style="color:#e6db74">&#34;agent&#34;</span>)
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#34;agent&#34;</span>, END)
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> graph<span style="color:#f92672">.</span>compile()
+</span></span></code></pre></div><p>The &ldquo;agent&rdquo; is implicitly defined by its node function. Multiple nodes can represent different agents or roles, with edges defining how they collaborate.</p>
+<hr>
+<h2 id="task-assignment-and-delegation">Task Assignment and Delegation</h2>
+<h3 id="crewai-2">CrewAI</h3>
+<p>Tasks are explicit, first-class objects with a description, expected output, and an assigned agent:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Task
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>task <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Research the topic&#34;</span>,
+</span></span><span style="display:flex;"><span>    expected_output<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A comprehensive report&#34;</span>,
+</span></span><span style="display:flex;"><span>    agent<span style="color:#f92672">=</span>research_agent
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>crew <span style="color:#f92672">=</span> Crew(agents<span style="color:#f92672">=</span>[agent1, agent2], tasks<span style="color:#f92672">=</span>[task1, task2])
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> crew<span style="color:#f92672">.</span>kickoff()
+</span></span></code></pre></div><p>In <strong>sequential</strong> process, tasks run in order, with each task&rsquo;s output becoming context for the next.</p>
+<p>In <strong>hierarchical</strong> process, a manager agent (LLM-backed or explicitly provided) oversees all tasks, plans execution, delegates based on agent capabilities, and validates completion.</p>
+<p>Output from one task flows automatically into the next as context. You can also explicitly specify which tasks&rsquo; outputs should be used as context for a given task.</p>
+<h3 id="autogen-04-agentchat-api-1">AutoGen 0.4 (AgentChat API)</h3>
+<p>Tasks are submitted to a <strong>Team</strong>, which orchestrates agents to solve the task. A Team is a group of agents with defined collaboration patterns.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> autogen_agentchat.teams <span style="color:#f92672">import</span> RoundRobinGroupChat
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>team <span style="color:#f92672">=</span> RoundRobinGroupChat(
+</span></span><span style="display:flex;"><span>    agents<span style="color:#f92672">=</span>[agent1, agent2, agent3],
+</span></span><span style="display:flex;"><span>    model_client<span style="color:#f92672">=</span>model_client,
+</span></span><span style="display:flex;"><span>    termination_condition<span style="color:#f92672">=</span>MaxMessageTermination(max_messages<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>task_result <span style="color:#f92672">=</span> team<span style="color:#f92672">.</span>run_sync(task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Analyze this data&#34;</span>)
+</span></span></code></pre></div><p><strong>Team types</strong>:</p>
+<ul>
+<li><strong>RoundRobinGroupChat</strong>: Agents take turns speaking, all receive context from previous turns.</li>
+<li><strong>SelectorGroupChat</strong>: An LLM selects which agent should speak next based on task progress.</li>
+<li><strong>Swarm</strong>: Agents can hand off to each other based on capabilities, implementing OpenAI&rsquo;s Swarm pattern.</li>
+</ul>
+<p>Tasks are strings (natural language) submitted to the team. The team determines who speaks, in what order, and how long to continue based on termination conditions.</p>
+<h3 id="langgraph-2">LangGraph</h3>
+<p>Tasks are implicit in graph execution. There is no task object; instead, the workflow itself IS the task. The graph structure encodes how work flows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>graph <span style="color:#f92672">=</span> StateGraph(AgentState)
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>add_node(<span style="color:#e6db74">&#34;researcher&#34;</span>, research_node)
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>add_node(<span style="color:#e6db74">&#34;analyst&#34;</span>, analysis_node)
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#34;researcher&#34;</span>, <span style="color:#e6db74">&#34;analyst&#34;</span>)
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#34;analyst&#34;</span>, END)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> graph<span style="color:#f92672">.</span>compile()
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> app<span style="color:#f92672">.</span>invoke({<span style="color:#e6db74">&#34;messages&#34;</span>: [HumanMessage(content<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Research topic X&#34;</span>)]})
+</span></span></code></pre></div><p>Work flows from node to node based on edges (conditional or fixed). If conditional edges are used, the graph can route to different nodes based on state:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">should_continue</span>(state):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> state[<span style="color:#e6db74">&#34;iteration&#34;</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;researcher&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> END
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>add_conditional_edges(<span style="color:#e6db74">&#34;analyst&#34;</span>, should_continue)
+</span></span></code></pre></div><p>There is no explicit delegation: routing is determined by edges and state.</p>
+<hr>
+<h2 id="agent-communication">Agent Communication</h2>
+<h3 id="crewai-3">CrewAI</h3>
+<p>Communication is <strong>implicit and hierarchical</strong>.</p>
+<ul>
+<li>In sequential process: agents do not directly communicate; context flows through task output.</li>
+<li>In hierarchical process: the manager agent communicates with all team members, collecting reports and deciding next steps.</li>
+</ul>
+<p>Agents are not aware of each other; they receive context as part of their task prompt.</p>
+<h3 id="autogen-04-1">AutoGen 0.4</h3>
+<p>Communication is <strong>message-based and explicit</strong>.</p>
+<p>In <strong>RoundRobinGroupChat</strong>, all agents see the conversation history. When an agent speaks, the message is broadcast to all other agents, who can respond in the next round. This creates a shared conversational context.</p>
+<p>In <strong>Swarm</strong>, agents send <strong>handoff messages</strong> to request task transfer to a specific agent, enabling more explicit delegation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># In agent code, request handoff</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;I need to hand this off to the WebResearchAgent&#34;</span>
+</span></span></code></pre></div><p>The framework routes the handoff, and the target agent takes over.</p>
+<p>In <strong>SelectorGroupChat</strong>, an LLM-driven selector decides which agent should respond next based on the conversation state.</p>
+<h3 id="langgraph-3">LangGraph</h3>
+<p>Communication is <strong>state-based and implicit</strong>.</p>
+<p>There are no direct messages between nodes. Instead, nodes update shared state, and downstream nodes read that state.</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">researcher_node</span>(state):
+</span></span><span style="display:flex;"><span>    research_result <span style="color:#f92672">=</span> llm<span style="color:#f92672">.</span>invoke(state[<span style="color:#e6db74">&#34;messages&#34;</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;research&#34;</span>: research_result}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">analyzer_node</span>(state):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Read research output from state</span>
+</span></span><span style="display:flex;"><span>    research <span style="color:#f92672">=</span> state[<span style="color:#e6db74">&#34;research&#34;</span>]
+</span></span><span style="display:flex;"><span>    analysis <span style="color:#f92672">=</span> llm<span style="color:#f92672">.</span>invoke(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Analyze: </span><span style="color:#e6db74">{</span>research<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;analysis&#34;</span>: analysis}
+</span></span></code></pre></div><p>The research result flows through state, not through direct message passing. This decoupling allows complex workflows without explicit handoff logic.</p>
+<p>If multi-agent interaction is needed, use the <strong>messages</strong> field in state to accumulate messages (with appropriate reducers) and have nodes read and respond to them.</p>
+<hr>
+<h2 id="result-composition">Result Composition</h2>
+<h3 id="crewai-4">CrewAI</h3>
+<p>Results are composed via the <strong>CrewOutput</strong> class:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>result <span style="color:#f92672">=</span> crew<span style="color:#f92672">.</span>kickoff()
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>raw)          <span style="color:#75715e"># Raw text output</span>
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>json_dict)    <span style="color:#75715e"># Structured JSON</span>
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>pydantic)     <span style="color:#75715e"># Pydantic model instance</span>
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>usage_metrics) <span style="color:#75715e"># Token usage</span>
+</span></span></code></pre></div><p>Each task produces a <strong>TaskOutput</strong> with:</p>
+<ul>
+<li>Raw output (agent&rsquo;s response)</li>
+<li>JSON output (if task specified <code>output_json=True</code>)</li>
+<li>Pydantic model (if task specified <code>output_pydantic=MyModel</code>)</li>
+</ul>
+<p>In sequential process, outputs chain: task N+1 receives task N&rsquo;s output as context.</p>
+<p>In hierarchical process, the manager collects outputs from all tasks and synthesizes a final result based on the original request.</p>
+<p>The final CrewOutput aggregates all task outputs, optionally formatting the final result according to the crew&rsquo;s output specification.</p>
+<h3 id="autogen-04-2">AutoGen 0.4</h3>
+<p>Results come from <strong>team.run_sync()</strong> or <strong>team.run()</strong> (async), returning a <strong>TaskResult</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>result <span style="color:#f92672">=</span> team<span style="color:#f92672">.</span>run_sync(task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Task description&#34;</span>)
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>messages)      <span style="color:#75715e"># Full message history</span>
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>final_message) <span style="color:#75715e"># Last message from agents</span>
+</span></span></code></pre></div><p>The TaskResult contains the full conversation history and can be parsed for final outputs. Since agents communicate through messages, the result is the full dialogue plus any extracted final answer.</p>
+<p>For structured results, agents are instructed to output JSON or other structured formats, which must be parsed from the message.</p>
+<h3 id="langgraph-4">LangGraph</h3>
+<p>Results come from <strong>app.invoke()</strong> or <strong>app.stream()</strong>, returning the final state:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>result <span style="color:#f92672">=</span> app<span style="color:#f92672">.</span>invoke({<span style="color:#e6db74">&#34;messages&#34;</span>: [HumanMessage(<span style="color:#f92672">...</span>)]})
+</span></span><span style="display:flex;"><span>print(result[<span style="color:#e6db74">&#34;messages&#34;</span>])      <span style="color:#75715e"># All messages (reduced via add_messages)</span>
+</span></span><span style="display:flex;"><span>print(result[<span style="color:#e6db74">&#34;analysis&#34;</span>])      <span style="color:#75715e"># Custom state field</span>
+</span></span><span style="display:flex;"><span>print(result[<span style="color:#e6db74">&#34;final_answer&#34;</span>])  <span style="color:#75715e"># Another custom field</span>
+</span></span></code></pre></div><p>The result is the entire final state. You design state fields to hold intermediate results:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AgentState</span>(TypedDict):
+</span></span><span style="display:flex;"><span>    messages: Annotated[list[BaseMessage], add_messages]
+</span></span><span style="display:flex;"><span>    research: str
+</span></span><span style="display:flex;"><span>    analysis: str
+</span></span><span style="display:flex;"><span>    final_answer: str
+</span></span></code></pre></div><p>Nodes can write to any state field. Results are composed by examining the final state&rsquo;s relevant fields.</p>
+<hr>
+<h2 id="learning-and-memory">Learning and Memory</h2>
+<h3 id="crewai-5">CrewAI</h3>
+<p>CrewAI provides a <strong>unified Memory</strong> system with three components:</p>
+<ol>
+<li>
+<p><strong>Short-term memory</strong>: Stored in ChromaDB with RAG. Records task outputs and interactions within the current session. When the next task starts, the system queries this memory for relevant recent context.</p>
+</li>
+<li>
+<p><strong>Long-term memory</strong>: Stored in SQLite3. Persists insights and task results across multiple runs, enabling agents to learn what approaches worked and refine their knowledge base.</p>
+</li>
+<li>
+<p><strong>Entity memory</strong>: Uses RAG to capture and recall details about mentioned entities (e.g., &ldquo;Lisbon,&rdquo; &ldquo;May trip&rdquo;). If an entity is referenced again, the system can provide stored context.</p>
+</li>
+</ol>
+<p>Memory is configurable and persists to <code>./.crewai/memory</code> by default.</p>
+<p>Advanced feature: <strong>@human_feedback(learn=True)</strong> distills corrections into generalizable lessons stored in memory. On the next run, the system recalls and applies those lessons before human review.</p>
+<p>Learning is <strong>outcome-oriented</strong>: the system stores what worked, not just conversation history.</p>
+<h3 id="autogen-04-3">AutoGen 0.4</h3>
+<p>Memory in AutoGen 0.4 is <strong>weak relative to other frameworks</strong>. The system provides:</p>
+<ul>
+<li><strong>Chat history</strong>: The stream of messages exchanged between agents.</li>
+<li><strong>Persistent storage via ChromaDBVectorMemory</strong>: Optional integration for semantic memory.</li>
+<li><strong>State save/load</strong>: Teams and agents can save and load state via <code>save_state()</code> and <code>load_state()</code>.</li>
+</ul>
+<p>However, AutoGen 0.4 does <strong>not enforce</strong> a robust memory module by default. The framework provides hooks to integrate external memory systems (Zep, Mem0, MongoDB), but developers must select and configure the backend themselves.</p>
+<p>Learning mechanisms are not built-in; memory integration is external.</p>
+<h3 id="langgraph-5">LangGraph</h3>
+<p>LangGraph uses <strong>reducers and checkpointers</strong> as the core memory mechanism.</p>
+<p><strong>Short-term memory</strong> (thread-scoped):</p>
+<ul>
+<li>Implemented via state managed by reducers.</li>
+<li>The <strong>add_messages reducer</strong> accumulates messages: <code>{&quot;messages&quot;: add_messages}</code> combines new messages with existing ones instead of replacing them.</li>
+<li>Any state field can have a reducer to implement custom accumulation.</li>
+</ul>
+<p><strong>Long-term memory</strong> (across threads):</p>
+<ul>
+<li>Implemented via <strong>Store</strong>: A key-value store that persists independently of graph state.</li>
+<li>Agents can write to and read from Store at any time using the <code>store.put()</code> and <code>store.get()</code> methods.</li>
+</ul>
+<p><strong>Checkpointers</strong>:</p>
+<ul>
+<li>Save the entire state graph periodically (after each node execution or on demand).</li>
+<li>Support backends: SQLite, Redis, Postgres, MongoDB.</li>
+<li>Enable recovery from failures and resumption of long-running workflows.</li>
+</ul>
+<p><strong>Learning</strong>:</p>
+<ul>
+<li><strong>Episodic memory</strong>: Implement via few-shot examples in system prompts, learning from past sequences.</li>
+<li><strong>Semantic memory</strong>: Use tools to store facts about users/entities in Store and retrieve them in future interactions.</li>
+<li><strong>Procedural memory</strong>: Embed in system prompts and optimize with feedback.</li>
+</ul>
+<p>LangGraph does <strong>not</strong> implement learning as automatic behavior improvement; memory is explicit and must be managed by the application.</p>
+<hr>
+<h2 id="process-types">Process Types</h2>
+<h3 id="crewai-6">CrewAI</h3>
+<p>CrewAI defines <strong>processes</strong> as the orchestration pattern for task execution:</p>
+<ol>
+<li>
+<p><strong>Sequential</strong>: Tasks execute in order. Output of task N becomes input for task N+1. No parallelism. Simplest to understand and debug.</p>
+</li>
+<li>
+<p><strong>Hierarchical</strong>: A manager agent (LLM-backed, automatically created or explicitly provided) oversees all tasks. The manager:</p>
+<ul>
+<li>Plans the work.</li>
+<li>Delegates tasks to agents based on their capabilities.</li>
+<li>Reviews outputs.</li>
+<li>Decides if a task needs to be reassigned or if work is complete.</li>
+</ul>
+<p>The manager agent receives a manager_llm parameter and is given a view of all agents&rsquo; capabilities.</p>
+</li>
+<li>
+<p><strong>Consensual</strong>: Planned for future release. Will enable democratic decision-making among agents on task execution order and approach.</p>
+</li>
+</ol>
+<p>The process is specified when creating the Crew:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Crew, Process
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>crew <span style="color:#f92672">=</span> Crew(
+</span></span><span style="display:flex;"><span>    agents<span style="color:#f92672">=</span>[<span style="color:#f92672">...</span>],
+</span></span><span style="display:flex;"><span>    tasks<span style="color:#f92672">=</span>[<span style="color:#f92672">...</span>],
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">=</span>Process<span style="color:#f92672">.</span>HIERARCHICAL,  <span style="color:#75715e"># or SEQUENTIAL</span>
+</span></span><span style="display:flex;"><span>    manager_llm<span style="color:#f92672">=</span>my_llm  <span style="color:#75715e"># for HIERARCHICAL</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="autogen-04-4">AutoGen 0.4</h3>
+<p>AutoGen 0.4 defines <strong>Team types</strong> as the orchestration pattern:</p>
+<ol>
+<li>
+<p><strong>RoundRobinGroupChat</strong>: Agents take turns speaking in a fixed rotation. Each agent sees the full conversation history and can respond in turn. Continues until termination condition is met. Good for collaborative problem-solving.</p>
+</li>
+<li>
+<p><strong>SelectorGroupChat</strong>: An LLM-driven selector examines the conversation and decides which agent should speak next based on task progress. More flexible than round-robin but requires the selector to understand agent capabilities and current state.</p>
+</li>
+<li>
+<p><strong>Swarm</strong>: Agents can hand off to each other based on capabilities. An agent decides which other agent is better suited for the current sub-task and hands off via a special message. OpenAI&rsquo;s Swarm pattern adapted for AutoGen.</p>
+</li>
+<li>
+<p><strong>Hierarchical teams</strong> (via Swarm): A manager agent can coordinate others by handing off work based on agent descriptions.</p>
+</li>
+</ol>
+<p>Teams are instantiated with agents and a termination condition:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>team <span style="color:#f92672">=</span> RoundRobinGroupChat(
+</span></span><span style="display:flex;"><span>    agents<span style="color:#f92672">=</span>[agent1, agent2],
+</span></span><span style="display:flex;"><span>    termination_condition<span style="color:#f92672">=</span>MaxMessageTermination(max_messages<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="langgraph-6">LangGraph</h3>
+<p>LangGraph does not define named process types. Instead, the graph structure itself encodes the process:</p>
+<ul>
+<li>
+<p><strong>Sequential</strong>: Linear chain of nodes with fixed edges. <code>add_edge(&quot;node1&quot;, &quot;node2&quot;)</code> creates sequential flow.</p>
+</li>
+<li>
+<p><strong>Branching</strong>: Conditional edges route based on state. <code>add_conditional_edges(&quot;node&quot;, router_fn)</code> branches to different nodes.</p>
+</li>
+<li>
+<p><strong>Looping</strong>: Edges can loop back. An agent node that outputs <code>{&quot;continue&quot;: True}</code> can route back to itself via conditional edge, implementing iteration.</p>
+</li>
+<li>
+<p><strong>Parallel/Map-Reduce</strong>: Using <strong>Send API</strong>, one node can distribute updates to multiple node instances. For example, &ldquo;call tool X on each item in a list&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">map_node</span>(state):
+</span></span><span style="display:flex;"><span>    items <span style="color:#f92672">=</span> state[<span style="color:#e6db74">&#34;items&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [Send(<span style="color:#e6db74">&#34;process_item&#34;</span>, {<span style="color:#e6db74">&#34;item&#34;</span>: item}) <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> items]
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Hierarchical</strong>: Structure the graph so one &ldquo;manager&rdquo; node reads state, decides next steps, and routes to worker nodes.</p>
+</li>
+</ul>
+<p>The process emerges from the graph topology. No predefined process types; full control through explicit graph structure.</p>
+<hr>
+<h2 id="failure-and-retry">Failure and Retry</h2>
+<h3 id="crewai-7">CrewAI</h3>
+<p>Error handling:</p>
+<ul>
+<li>
+<p><strong>LLM output parsing errors</strong>: Agents retry automatically (default max_retry_limit=2). If an agent outputs malformed action/final-answer, it receives the error and retries.</p>
+</li>
+<li>
+<p><strong>Tool execution errors</strong>: If a tool raises an exception, the agent receives the error message and can attempt correction or provide alternative solutions.</p>
+</li>
+<li>
+<p><strong>Code execution errors</strong>: The coding agent feature includes error handling. If executed code raises an exception, the error is reported back to the agent.</p>
+</li>
+<li>
+<p><strong>Custom error handling</strong>: Implement via custom LLM classes inheriting from the base client, adding retry logic, fallback models, and structured logging.</p>
+</li>
+<li>
+<p><strong>Task-level retries</strong>: Specify <code>max_retry_limit</code> on tasks. If a task fails, it can be retried up to the limit.</p>
+</li>
+</ul>
+<p>No built-in timeout handling at the framework level; use <code>max_execution_time</code> on agents to constrain execution.</p>
+<h3 id="autogen-04-5">AutoGen 0.4</h3>
+<p>Termination conditions are the primary failure/stopping mechanism:</p>
+<ul>
+<li><strong>MaxMessageTermination</strong>: Stop after N messages.</li>
+<li><strong>TextMentionTermination</strong>: Stop when specific text (e.g., &ldquo;TASK COMPLETE&rdquo;) is mentioned.</li>
+<li><strong>TokenUsageTermination</strong>: Stop when token budget is exceeded.</li>
+<li><strong>TimeoutTermination</strong>: Stop after specified duration.</li>
+<li><strong>SourceMatchTermination</strong>: Stop when a specific agent has the last message.</li>
+<li><strong>HandoffTermination</strong>: Stop when a handoff to a specific target is requested.</li>
+</ul>
+<p>Error handling for exceptions in agent code:</p>
+<ul>
+<li>If a custom agent raises an exception, the error is processed, but the agent continues (known limitation). There is no built-in exception propagation or retry.</li>
+</ul>
+<p>External memory (Mem0, Zep) can provide recovery context, but this is application-managed.</p>
+<h3 id="langgraph-7">LangGraph</h3>
+<p>Error handling is <strong>explicit in node code</strong>:</p>
+<ul>
+<li>
+<p><strong>Try/except blocks</strong>: Wrap logic in nodes with try/except to catch errors, log them, update state with error info, and decide next steps via conditional edges.</p>
+</li>
+<li>
+<p><strong>Retry policies</strong>: Attach a <code>RetryPolicy</code> to any node:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>add_node(<span style="color:#e6db74">&#34;agent&#34;</span>, agent_node, retry<span style="color:#f92672">=</span>RetryPolicy(max_retries<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, backoff<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;exponential&#34;</span>))
+</span></span></code></pre></div><p>Automatically retries on failure with exponential backoff.</p>
+</li>
+<li>
+<p><strong>Fallback strategies</strong>:</p>
+<ul>
+<li>Use conditional edges to route to a fallback node on error.</li>
+<li>Chain LLM models with <code>.with_fallbacks()</code>: try primary model, on error try backup.</li>
+</ul>
+</li>
+<li>
+<p><strong>Tool error handling</strong>: The <code>ToolNode</code> in LangGraph automatically captures tool execution errors and reports them to the LLM, allowing it to self-correct.</p>
+</li>
+<li>
+<p><strong>Bounded retries and circuit breakers</strong>: Implement via state tracking (e.g., <code>state[&quot;retry_count&quot;]</code>) and conditional edges that break the loop when retry limit is exceeded.</p>
+</li>
+</ul>
+<p>Checkpoints enable recovery: if a workflow fails partway through, you can resume from the last checkpoint with updated inputs.</p>
+<hr>
+<h2 id="language-and-platform-support">Language and Platform Support</h2>
+<h3 id="crewai-8">CrewAI</h3>
+<ul>
+<li><strong>Language</strong>: Python only.</li>
+<li><strong>LLM providers</strong>: OpenAI (GPT-4o default), Anthropic (Claude 3.5), Google (Gemini), Meta (Llama API), and any provider supported by LiteLLM.</li>
+<li><strong>Local models</strong>: Ollama integration for local LLM inference.</li>
+<li><strong>Deployment</strong>: Typically Python backend; API generation is planned.</li>
+</ul>
+<h3 id="autogen-04-6">AutoGen 0.4</h3>
+<ul>
+<li><strong>Language</strong>: Python primary, .NET support (C#), TypeScript support is under development.</li>
+<li><strong>LLM providers</strong>: OpenAI, Azure, Anthropic, Google, and others via extensible client interface.</li>
+<li><strong>Runtime</strong>: Event-driven, async-first architecture. Supports both in-process and distributed agents.</li>
+<li><strong>Deployment</strong>: Python backend, can be wrapped in REST APIs.</li>
+</ul>
+<h3 id="langgraph-8">LangGraph</h3>
+<ul>
+<li><strong>Languages</strong>: Python and JavaScript/TypeScript. Both versions maintain conceptual parity (StateGraph, nodes, edges, checkpoints), but API details differ.</li>
+<li><strong>LLM providers</strong>: Works with any LLM via LangChain&rsquo;s model integration layer (OpenAI, Anthropic, Cohere, Ollama, etc.).</li>
+<li><strong>Deployment</strong>:
+<ul>
+<li>Python: LangServe for REST API wrapping.</li>
+<li>JavaScript: HTTP server via Node.js.</li>
+<li>LangGraph Cloud: Commercial platform for hosting and management.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="summary-table">Summary Table</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Aspect</th>
+          <th>CrewAI</th>
+          <th>AutoGen 0.4</th>
+          <th>LangGraph</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Agent Definition</strong></td>
+          <td>Role, goal, backstory, tools</td>
+          <td>Name, model client, system message, tools</td>
+          <td>Implicit (node functions)</td>
+      </tr>
+      <tr>
+          <td><strong>Task Model</strong></td>
+          <td>Explicit Task objects, assigned to agents</td>
+          <td>Natural language string to Team</td>
+          <td>Implicit (graph routing)</td>
+      </tr>
+      <tr>
+          <td><strong>Process Types</strong></td>
+          <td>Sequential, Hierarchical, Consensual (planned)</td>
+          <td>RoundRobin, Selector, Swarm</td>
+          <td>Graph topology (sequential, branching, looping, map-reduce, hierarchical)</td>
+      </tr>
+      <tr>
+          <td><strong>Communication</strong></td>
+          <td>Implicit, hierarchical or sequential</td>
+          <td>Message-based, broadcast/handoff</td>
+          <td>State-based, implicit</td>
+      </tr>
+      <tr>
+          <td><strong>Result Composition</strong></td>
+          <td>CrewOutput (raw, JSON, Pydantic)</td>
+          <td>TaskResult (message history)</td>
+          <td>Final state (custom fields)</td>
+      </tr>
+      <tr>
+          <td><strong>Memory/Learning</strong></td>
+          <td>Short-term, long-term, entity memory; feedback distillation</td>
+          <td>Weak; chat history + external integrations</td>
+          <td>Reducers, checkpoints, Store; manual episodic/semantic/procedural</td>
+      </tr>
+      <tr>
+          <td><strong>Error Handling</strong></td>
+          <td>Auto-retry on parse errors, tool errors logged</td>
+          <td>Termination conditions, limited exception handling</td>
+          <td>Try/except in nodes, RetryPolicy, conditional fallback</td>
+      </tr>
+      <tr>
+          <td><strong>Language</strong></td>
+          <td>Python only</td>
+          <td>Python, .NET, TypeScript (dev)</td>
+          <td>Python, JavaScript/TypeScript</td>
+      </tr>
+      <tr>
+          <td><strong>LLM Support</strong></td>
+          <td>OpenAI, Anthropic, Google, Meta, Ollama</td>
+          <td>OpenAI, Azure, Anthropic, Google, etc.</td>
+          <td>Any LangChain integration</td>
+      </tr>
+      <tr>
+          <td><strong>Typical Use Case</strong></td>
+          <td>Content generation, business process automation with roles</td>
+          <td>Interactive multi-step workflows, code generation, human-in-loop</td>
+          <td>Complex stateful workflows, research agents, explicit control</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="comparison-officeduty-structure-vs-framework-patterns">Comparison: Office/Duty Structure vs. Framework Patterns</h2>
+<p>The 561 Group&rsquo;s agent harness uses an <strong>office/duty</strong> model: named agents (librarian, researcher, operations-officer, etc.) each have a defined role, tools, and standing instructions. Work is dispatched to agents via the helmsman or duty-officer command. This maps most directly to CrewAI&rsquo;s approach, but with significant differences.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Dimension</th>
+          <th>561 Office Model</th>
+          <th>CrewAI</th>
+          <th>AutoGen 0.4</th>
+          <th>LangGraph</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Agent identity</strong></td>
+          <td>Named office with role description, tools, model tier</td>
+          <td>Role + goal + backstory persona</td>
+          <td>Name + system message + tools</td>
+          <td>Implicit (node function)</td>
+      </tr>
+      <tr>
+          <td><strong>Task routing</strong></td>
+          <td>Helmsman dispatches based on task type; duty-officer for external</td>
+          <td>Crew assigns tasks to agents by capability</td>
+          <td>Team type determines turn order or handoff</td>
+          <td>Graph edges determine flow</td>
+      </tr>
+      <tr>
+          <td><strong>Delegation</strong></td>
+          <td>Agent can spawn subagents via Agent tool</td>
+          <td><code>allow_delegation=True</code> enables inter-agent handoff</td>
+          <td>Swarm handoff or Selector routing</td>
+          <td>Conditional edges to other nodes</td>
+      </tr>
+      <tr>
+          <td><strong>Memory</strong></td>
+          <td>File-based memory system, instinct learning, session records</td>
+          <td>Three-tier memory (short/long/entity) + feedback distillation</td>
+          <td>Weak; external integrations</td>
+          <td>Checkpoints + Store</td>
+      </tr>
+      <tr>
+          <td><strong>Process</strong></td>
+          <td>Flexible — sequential plans, parallel dispatch, orchestrated workflows</td>
+          <td>Sequential or Hierarchical (fixed)</td>
+          <td>RoundRobin, Selector, Swarm (fixed)</td>
+          <td>Any graph topology</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>What CrewAI&rsquo;s persona model offers that we lack</strong>: Backstory as a first-class property. Our agent definitions have role descriptions but no narrative persona shaping the agent&rsquo;s reasoning style. CrewAI&rsquo;s finding is that backstory meaningfully improves role adherence — the agent &ldquo;thinks like&rdquo; its character. This could be added to our agent frontmatter.</p>
+<p><strong>What we have that these frameworks lack</strong>: The office model treats agents as persistent organizational roles, not ephemeral instances. Our agents accumulate instincts, have standing orders, and participate in reviews. CrewAI crews are instantiated per run; our offices persist across sessions. The instinct/observation learning loop is closer to CrewAI&rsquo;s feedback distillation than anything in AutoGen or LangGraph, but operates at the harness level rather than the framework level.</p>
+<p><strong>What LangGraph&rsquo;s state machine offers that we should adopt</strong>: Explicit state with typed reducers. Our current dispatch is fire-and-forget — we dispatch an agent, it returns a result. LangGraph&rsquo;s model of accumulating state through a graph with checkpoints would enable resumable multi-step workflows and better failure recovery than our current session-based approach.</p>
+<p><strong>What AutoGen&rsquo;s team patterns offer</strong>: The Swarm handoff pattern — where an agent decides mid-task that another agent is better suited — maps to what our agents do informally when they spawn subagents. Making this a first-class pattern with explicit handoff protocols would improve traceability.</p>
+<h2 id="design-implications">Design Implications</h2>
+<ol>
+<li>
+<p><strong>Add backstory/persona to agent definitions</strong> — CrewAI&rsquo;s evidence suggests this improves role adherence. Low cost to implement in our agent frontmatter.</p>
+</li>
+<li>
+<p><strong>Typed state for orchestrated workflows</strong> — Adopt LangGraph&rsquo;s pattern of explicit state fields with reducers for multi-agent workflows that need to accumulate results.</p>
+</li>
+<li>
+<p><strong>Formalize handoff protocols</strong> — AutoGen&rsquo;s Swarm pattern should inform how our agents delegate mid-task. Currently informal; should be a structured handoff document.</p>
+</li>
+<li>
+<p><strong>Memory convergence</strong> — CrewAI&rsquo;s three-tier memory (short/long/entity) maps to what we&rsquo;re building with session records, file-based memory, and the knowledge graph. The feedback distillation pattern (<code>@human_feedback(learn=True)</code>) is worth studying for our instinct system.</p>
+</li>
+<li>
+<p><strong>Don&rsquo;t adopt framework-level LLM abstraction</strong> — All three frameworks wrap LLM calls in their own abstraction layers. Our harness talks directly to Claude via Claude Code. This is simpler and avoids the abstraction tax.</p>
+</li>
+</ol>
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../../domains/artificial-intelligence/domains/agents/texts/orchestration-vs-choreography-survey.md" class="link-internal">Orchestration vs choreography survey</a> — Centralized vs decentralized coordination patterns</li>
+<li><a href="../../domains/artificial-intelligence/domains/agents/texts/multi-agent-orchestration-in-practice.md" class="link-internal">Multi-agent orchestration in practice</a> — Concrete patterns from our own dispatch system</li>
+<li><a href="../../domains/artificial-intelligence/domains/agents/texts/multi-agent-failure-modes.md" class="link-internal">Multi-agent failure modes</a> — MASFT taxonomy of 14 failure modes across 3 categories</li>
+<li><a href="../../domains/artificial-intelligence/domains/agents/texts/accountability-tracing-in-multi-agent-systems.md" class="link-internal">Accountability tracing in multi-agent systems</a> — Responsibility invariants for agent systems</li>
+<li><a href="../../domains/artificial-intelligence/domains/agents/terms/langgraph.md" class="link-internal">LangGraph</a> — Term definition with checkpoint persistence details</li>
+<li><a href="../../domains/artificial-intelligence/domains/agents/terms/multi-agent-system.md" class="link-internal">Multi-agent system</a> — Four coordination patterns and three open problems</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/multi-agent-orchestration-frameworks-2026/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/humanities/domains/philosophy/terms/relation/">Relations</a></dt>
+        <dd property="emsenn:Relations"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/">orchestration</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/multi-agent-system/">multi agent systems</a></li><li>agent architecture</li></ul></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul><li>https://docs.crewai.com</li><li>https://docs.crewai.com/en/concepts/agents</li><li>https://docs.crewai.com/en/concepts/processes</li><li>https://docs.crewai.com/en/concepts/llms</li><li>https://docs.crewai.com/en/concepts/memory</li><li>https://microsoft.github.io/autogen/</li><li>https://microsoft.github.io/autogen/stable/user guide/agentchat user guide/tutorial/agents.html</li><li>https://microsoft.github.io/autogen/stable/user guide/agentchat user guide/tutorial/teams.html</li><li>https://microsoft.github.io/autogen/stable/user guide/agentchat user guide/tutorial/termination.html</li><li>https://microsoft.github.io/autogen/stable/user guide/agentchat user guide/memory.html</li><li>https://devblogs.microsoft.com/autogen/autogen reimagined launching autogen 0 4/</li><li>https://langchain ai.github.io/langgraph/</li><li>https://docs.langchain.com/oss/python/langgraph/overview</li><li>https://docs.langchain.com/oss/python/langgraph/graph api</li><li>https://docs.langchain.com/oss/python/langgraph/add memory</li><li>https://docs.langchain.com/oss/javascript/langgraph/overview</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

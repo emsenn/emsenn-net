@@ -111,7 +111,7 @@
 <h3 id="term-mode-syntactic-proof">Term-mode (syntactic proof)</h3>
 <p>A <strong>term-mode proof</strong> of proposition <code>P</code> is a Lean term <code>t</code> of type <code>P</code>. The term <code>t</code> is a direct construction of <code>P</code> as a fixed-fiber element: it provides <code>P ∈ Fix(saturation-nucleus) ∩ Fix(transfer-nucleus)</code> without requiring nuclear closure steps to be applied at verification time. Lean&rsquo;s kernel accepts <code>t</code> by checking that it type-checks under the reduction rules (beta, delta, eta, iota) — normalization is the kernel&rsquo;s only operation.</p>
 <p>Example: to prove <code>P ∧ Q → Q ∧ P</code>, the term-mode proof is</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#66d9ef">fun</span> h =&gt; ⟨h.<span style="color:#ae81ff">2</span><span style="color:#f92672">,</span> h.<span style="color:#ae81ff">1</span>⟩
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#66d9ef">fun</span> h =&gt; ⟨h.<span style="color:#ae81ff">2</span><span style="color:#f92672">,</span> h.<span style="color:#ae81ff">1</span>⟩
 </span></span></code></pre></div><p>The lambda constructs a function (the implication is entered by transfer-nucleus); the anonymous constructor <code>⟨_, _⟩</code> assembles the conjunction (the connective is assembled by saturation-nucleus); <code>h.2</code> and <code>h.1</code> are projections extracting the components (elimination by transfer-nucleus). The term is fully explicit — the kernel does not search; it checks.</p>
 <p><strong>Definitional equality</strong>: Two terms <code>t₁</code> and <code>t₂</code> that normalize to the same term under Lean&rsquo;s reduction rules are <strong>definitionally equal</strong> — they occupy the same fixed-fiber position. The kernel treats them as identical without proof. This is not propositional equality (which requires an explicit proof term of type <code>t₁ = t₂</code>); it is the kernel&rsquo;s judgment that two expressions compute to the same normal form. Definitional equality is nuclear idempotence: applying the reduction rules to a term already in normal form produces no change, exactly as applying a nucleus to a fixed-fiber element produces no change.</p>
 <h3 id="tactic-mode-goal-directed-proof">Tactic-mode (goal-directed proof)</h3>
@@ -229,13 +229,13 @@
 </ol>
 <p>The <strong>ExtendIsExtension</strong> axiom guarantees that <code>Extend(c, e)</code> strictly extends <code>c</code> in the carrier order, so the induction is well-founded: the base case is reached in finitely many unfoldings.</p>
 <p>Lean encodes this via the <strong>recursor</strong> generated for each inductive type. For <code>Nat</code>, the recursor is:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span>Nat.rec <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>motive <span style="color:#f92672">:</span> Nat → <span style="color:#66d9ef">Sort</span> u<span style="color:#f92672">}</span> →
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span>Nat.rec <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>motive <span style="color:#f92672">:</span> Nat → <span style="color:#66d9ef">Sort</span> u<span style="color:#f92672">}</span> →
 </span></span><span style="display:flex;"><span>  motive <span style="color:#ae81ff">0</span> →
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">((</span>n <span style="color:#f92672">:</span> Nat<span style="color:#f92672">)</span> → motive n → motive <span style="color:#f92672">(</span>n + <span style="color:#ae81ff">1</span><span style="color:#f92672">))</span> →
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">(</span>n <span style="color:#f92672">:</span> Nat<span style="color:#f92672">)</span> → motive n
 </span></span></code></pre></div><p>The <code>motive</code> is the predicate <code>P</code>; the first argument is the base case; the second is the step; the result is <code>P n</code> for all <code>n</code>. This is the CarrierInduction schema with <code>Nat</code> as the carrier and <code>Nat.succ</code> as the Extend function.</p>
 <p>An inductive proof of <code>∀ n : Nat, 0 + n = n</code> by <code>induction n</code> in tactic mode:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">theorem</span> zero_add <span style="color:#f92672">(</span>n <span style="color:#f92672">:</span> Nat<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span> + n = n <span style="color:#f92672">:</span>= <span style="color:#66d9ef">by</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">theorem</span> zero_add <span style="color:#f92672">(</span>n <span style="color:#f92672">:</span> Nat<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span> + n = n <span style="color:#f92672">:</span>= <span style="color:#66d9ef">by</span>
 </span></span><span style="display:flex;"><span>  induction n <span style="color:#66d9ef">with</span>
 </span></span><span style="display:flex;"><span>  | zero      =&gt; rfl
 </span></span><span style="display:flex;"><span>  | succ n ih =&gt; simp <span style="color:#f92672">[</span>Nat.add_succ<span style="color:#f92672">,</span> ih<span style="color:#f92672">]</span>
@@ -374,12 +374,12 @@
 <p><strong>Burstall (1969)</strong> introduced structural induction as a systematic method for proving properties of programs defined by recursive equations over inductively defined data. The method: prove the property for base cases, then prove it for compound cases assuming it holds for the immediate sub-structures. This is the first explicit formulation of the principle now expressed as CarrierInduction in the RelationalOrder.</p>
 <p><strong>Gentzen (1936)</strong> proves the consistency of Peano arithmetic by transfinite induction up to the ordinal epsilon-zero. The key insight: induction on the structure of proofs (cut elimination) shows that every proof can be put in a normal (cut-free) form. This is the prototype for Lean&rsquo;s normalization theorem: every tactic proof assembles to a kernel-verifiable term, and every term reduces to a unique normal form.</p>
 <p>In Lean, every inductive type comes with a <strong>recursor</strong> generated automatically. For a type <code>T</code> with constructors <code>c₁ : A₁ → T</code>, &hellip;, <code>cₙ : Aₙ → T</code>, the recursor has type:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span>T.rec <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>motive <span style="color:#f92672">:</span> T → <span style="color:#66d9ef">Sort</span> u<span style="color:#f92672">}</span> →
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span>T.rec <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>motive <span style="color:#f92672">:</span> T → <span style="color:#66d9ef">Sort</span> u<span style="color:#f92672">}</span> →
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">(</span>case₁ <span style="color:#f92672">:</span> ...<span style="color:#f92672">)</span> → ... → <span style="color:#f92672">(</span>caseₙ <span style="color:#f92672">:</span> ...<span style="color:#f92672">)</span> →
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">(</span>t <span style="color:#f92672">:</span> T<span style="color:#f92672">)</span> → motive t
 </span></span></code></pre></div><p>Each <code>case_i</code> provides the proof obligation for the <code>i</code>-th constructor. The recursor is definitionally equal to pattern-matching on <code>t</code>: for any specific constructor <code>cᵢ a</code>, <code>T.rec _ ... case_i ... (cᵢ a)</code> reduces by the iota rule to <code>case_i a</code>. This reduction is the iota rule — CarrierInduction applied to a specific carrier element to produce the fixed-fiber value at that position.</p>
 <p><strong>Recursive definitions</strong> (<code>def</code> with pattern matching) use the same recursor mechanism. A function <code>f : Nat → α</code> defined by</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">def</span> f <span style="color:#f92672">:</span> Nat → α
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">def</span> f <span style="color:#f92672">:</span> Nat → α
 </span></span><span style="display:flex;"><span>  | <span style="color:#ae81ff">0</span>     =&gt; base
 </span></span><span style="display:flex;"><span>  | n + <span style="color:#ae81ff">1</span> =&gt; step n <span style="color:#f92672">(</span>f n<span style="color:#f92672">)</span>
 </span></span></code></pre></div><p>is definitionally equal to <code>Nat.rec base (fun n ih =&gt; step n ih)</code>. The function <code>f</code> is a fixed-fiber element at every carrier position: <code>f n</code> is the value at carrier position <code>n</code>, and the definition by recursion establishes this value simultaneously for all positions via the recursor.</p>
@@ -510,34 +510,19 @@ When a tactic fails, the proof state is abandoned: the goal has not been advance
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-22">2026-03-22</time></dd>
       </div><div class="relation">
-        <dt>Date modified</dt>
-        <dd property="emsenn:Datemodified"><time datetime="2026-03-22">2026-03-22</time></dd>
-      </div><div class="relation">
         <dt>Defines</dt>
         <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/terms/lean/">Lean</a></dd>
-      </div><div class="relation">
-        <dt>Inductive mode</dt>
-        <dd property="emsenn:Inductivemode">relational history carrier induction</dd>
       </div><div class="relation">
         <dt>Minimum math</dt>
         <dd property="emsenn:Minimummath">relational history carrier induction nuclear heyting doctrine</dd>
       </div><div class="relation">
-        <dt>Output</dt>
-        <dd property="emsenn:Output">relational history fiber fixed proposition</dd>
-      </div><div class="relation">
         <dt>Related</dt>
         <dd property="emsenn:Related">Assertion, Machine, System</dd>
-      </div><div class="relation">
-        <dt>Tactic mode</dt>
-        <dd property="emsenn:Tacticmode">relational history fiber nuclear closure sequence</dd>
-      </div><div class="relation">
-        <dt>Term mode</dt>
-        <dd property="emsenn:Termmode">relational history fiber fixed proposition</dd>
       </div>
   <div class="relation">
     <dt>Referenced by</dt>
     <dd>
-      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/introduction-to-lean/">Introduction to Lean</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/terms/mathlib/">Mathlib</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/terms/tactic/">tactic</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/">Tactics in Lean</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/terms/theorem/">theorem</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/types-and-propositions-in-lean/">Types and Propositions in Lean</a></li><li><a href="/library/reference/unsorted/terms/lean/">lean</a></li></ul>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/introduction-to-lean/">Introduction to Lean</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/terms/mathlib/">Mathlib</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/terms/tactic/">tactic</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/">Tactics in Lean</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/terms/theorem/">theorem</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/types-and-propositions-in-lean/">Types and Propositions in Lean</a></li></ul>
     </dd>
   </div>
   </dl>

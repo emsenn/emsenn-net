@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merkle Trees, Merkle Patricia Tries, and Verifiable Computation - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-05",
+  "datePublished": "2026-04-05",
+  "description": "How cryptographic proofs enable light clients, scalable rollups, and fog of war in on-chain games.",
+  "name": "Merkle Trees, Merkle Patricia Tries, and Verifiable Computation",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/merkle-trees-and-verifiable-computation/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/">Blockchain</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/">Blockchain Texts</a></nav>
+  <h1 class="p-name">Merkle Trees, Merkle Patricia Tries, and Verifiable Computation</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
+    
+    <span class="p-summary">How cryptographic proofs enable light clients, scalable rollups, and fog of war in on-chain games.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#merkle-trees-in-blockchains">Merkle Trees in Blockchains</a></li>
+    <li><a href="#merkle-patricia-tries-ethereums-state-tree">Merkle Patricia Tries: Ethereum&rsquo;s State Tree</a></li>
+    <li><a href="#zero-knowledge-proofs-for-verifiable-computation">Zero-Knowledge Proofs for Verifiable Computation</a>
+      <ul>
+        <li><a href="#zk-snarks">zk-SNARKs</a></li>
+        <li><a href="#zk-starks">zk-STARKs</a></li>
+      </ul>
+    </li>
+    <li><a href="#rollups-optimistic-vs-zero-knowledge">Rollups: Optimistic vs. Zero-Knowledge</a>
+      <ul>
+        <li><a href="#optimistic-rollups">Optimistic Rollups</a></li>
+        <li><a href="#zk-rollups">ZK Rollups</a></li>
+      </ul>
+    </li>
+    <li><a href="#dark-forest-fog-of-war-via-zero-knowledge-proofs">Dark Forest: Fog of War via Zero-Knowledge Proofs</a></li>
+    <li><a href="#verifiable-computation-in-practice">Verifiable Computation in Practice</a></li>
+    <li><a href="#see-also">See Also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h2 id="merkle-trees-in-blockchains">Merkle Trees in Blockchains</h2>
+<p>A Merkle tree is a binary tree where each leaf is a data item and each non-leaf node is the hash of its two children. The root hash, called the Merkle root, is a compact fingerprint of the entire tree.</p>
+<p>In Bitcoin, all transactions in a block are arranged into a Merkle tree. The block header stores only the Merkle root, not the full list of transactions. This enables two critical properties:</p>
+<ol>
+<li>
+<p><strong>Tamper detection</strong>: Changing a single transaction changes its leaf hash, which cascades upward through all ancestor nodes, resulting in a completely different Merkle root. Altering even one transaction is immediately apparent.</p>
+</li>
+<li>
+<p><strong>Efficient verification</strong>: A light client (a device with limited storage) doesn&rsquo;t need to download the entire block. To verify that a specific transaction is in a block, it needs only a &ldquo;Merkle proof&rdquo; — a logarithmic number of hashes along the path from that transaction to the root. For a block with 1,000 transactions, a Merkle proof requires about 10 hashes, not 1,000.</p>
+</li>
+</ol>
+<p>The amount of proof data scales logarithmically: proof size = log₂(number of transactions). This is why Merkle trees are the cryptographic backbone of scalable blockchains.</p>
+<h2 id="merkle-patricia-tries-ethereums-state-tree">Merkle Patricia Tries: Ethereum&rsquo;s State Tree</h2>
+<p>Ethereum stores state (all account balances, smart contract storage, code) in a Merkle Patricia Trie (MPT), a data structure that combines three ideas:</p>
+<ul>
+<li><strong>Trie</strong> (prefix tree): Keys are organized by shared prefixes, enabling fast lookups</li>
+<li><strong>Merkle</strong>: Every node is hashed, creating a cryptographic fingerprint of the entire state</li>
+<li><strong>Patricia</strong>: A radix tree that compresses paths where nodes have a single child, reducing depth and improving efficiency</li>
+</ul>
+<p>A &ldquo;nibble&rdquo; is a 4-bit unit (a hex digit). Nodes in an MPT can have up to 16 children (one per hex digit), so they&rsquo;re represented as 17-element arrays: 16 children plus a value element, called &ldquo;branch nodes.&rdquo;</p>
+<p>The MPT has three key properties:</p>
+<ol>
+<li>
+<p><strong>Deterministic</strong>: Given a set of key-value pairs, there is exactly one valid MPT. Two identical states must produce the same root hash.</p>
+</li>
+<li>
+<p><strong>Cryptographically verifiable</strong>: The only way to generate a state root is by computing it from each piece of state. No spoofing is possible.</p>
+</li>
+<li>
+<p><strong>Updatable in logarithmic time</strong>: Adding, removing, or changing a value requires only O(log n) operations.</p>
+</li>
+</ol>
+<p>Ethereum maintains <strong>three MPTs per block</strong>, each with a root hash stored in the block header:</p>
+<ul>
+<li><strong>State Trie</strong>: The full state. The key is the Keccak-256 hash of an account address; the value is the account (nonce, balance, storage root, code hash).</li>
+<li><strong>Transaction Trie</strong>: All transactions in the block.</li>
+<li><strong>Receipt Trie</strong>: Transaction receipts (logs, gas used, status).</li>
+</ul>
+<p>This design lets light clients verify facts about the chain by checking only the root hashes in block headers, not the entire state. A light client can prove &ldquo;account X has balance Y&rdquo; by obtaining the Merkle proof from a full node.</p>
+<h2 id="zero-knowledge-proofs-for-verifiable-computation">Zero-Knowledge Proofs for Verifiable Computation</h2>
+<p>A zero-knowledge proof is a protocol where one party (the prover) convinces another (the verifier) that a statement is true without revealing any information beyond the truth of the statement itself.</p>
+<p>This enables <strong>verifiable computation</strong>: you can outsource expensive computation to an untrusted party, and they can prove the result is correct without you redoing the work.</p>
+<h3 id="zk-snarks">zk-SNARKs</h3>
+<p>zk-SNARK stands for &ldquo;Zero Knowledge Succinct Non-Interactive Argument of Knowledge.&rdquo;</p>
+<ul>
+<li><strong>Succinct</strong>: The proof is small and quick to verify, regardless of computation size</li>
+<li><strong>Non-interactive</strong>: No back-and-forth between prover and verifier; the proof is a single message</li>
+<li><strong>Argument of knowledge</strong>: The prover is asserting knowledge of a solution</li>
+</ul>
+<p>The tradeoff: zk-SNARKs require a <strong>trusted setup</strong> ceremony. Both the prover and verifier use a shared public parameter (the Common Reference String, or CRS) that was generated by a trusted party. If that party keeps a copy of the randomness used to generate the CRS, they could forge proofs. To mitigate this, multi-party computation is used: many participants each contribute random values, and the CRS is secure as long as at least one participant is honest.</p>
+<p>zk-SNARKs generate proofs 68x faster with 123x smaller proof sizes than alternatives, but verify slower and require trusted setup.</p>
+<h3 id="zk-starks">zk-STARKs</h3>
+<p>zk-STARK stands for &ldquo;Zero Knowledge Scalable Transparent Argument of Knowledge,&rdquo; introduced in 2018 as an alternative to SNARKs.</p>
+<p>The key difference: zk-STARKs are <strong>transparent</strong> — they require no trusted setup. The public parameters are generated using publicly verifiable randomness, so there&rsquo;s no secret that could be weaponized.</p>
+<p>The tradeoff: zk-STARK proofs are larger and generation is slower than SNARKs. But verification is faster, and they&rsquo;re post-quantum secure (resistant to attacks from quantum computers).</p>
+<h2 id="rollups-optimistic-vs-zero-knowledge">Rollups: Optimistic vs. Zero-Knowledge</h2>
+<p>Both optimistic and ZK rollups compress transactions off-chain and submit a proof to the main chain, reducing on-chain computation.</p>
+<h3 id="optimistic-rollups">Optimistic Rollups</h3>
+<p>Optimistic rollups <strong>assume all transactions are valid by default</strong> and only verify them if someone challenges them. The system includes a dispute period (typically 7 days) where anyone can submit a &ldquo;fraud proof&rdquo; to challenge a transaction batch.</p>
+<p>A fraud proof proves that a specific transaction is invalid — that the post-transaction state doesn&rsquo;t match what was claimed. This requires showing a counterexample, which can be substantial.</p>
+<p><strong>Pros</strong>: Simple to implement, no complex cryptography required, cheap to submit batches (40,000 gas per batch).</p>
+<p><strong>Cons</strong>: Long withdrawal times (users must wait for the dispute period), and if a dishonest sequencer submits an invalid batch, the entire system must halt and reorg to fix it.</p>
+<h3 id="zk-rollups">ZK Rollups</h3>
+<p>ZK rollups compute a zero-knowledge proof for each transaction batch that cryptographically proves the batch is valid. The proof is submitted on-chain and verified by a smart contract.</p>
+<p>Every new batch comes with a zk-SNARK or zk-STARK proving the batch computation produces the correct new state root.</p>
+<p><strong>Pros</strong>: Fast finality (withdrawals are instantaneous because transactions are already validated), and no dispute period needed.</p>
+<p><strong>Cons</strong>: Complex to implement, expensive per batch due to proof verification (500,000 gas for a zk-SNARK batch), and the trusted setup (for SNARKs) creates a governance risk.</p>
+<p>The practical difference: Optimistic is simpler but slower to exit; ZK is more complex but enables instant finality.</p>
+<h2 id="dark-forest-fog-of-war-via-zero-knowledge-proofs">Dark Forest: Fog of War via Zero-Knowledge Proofs</h2>
+<p>Dark Forest is an MMO space-conquest game where players discover and conquer planets in a procedurally-generated, cryptographically-specified infinite universe. The game uses zk-SNARKs to implement &ldquo;cryptographic fog of war&rdquo; — a game state where information is hidden not by a central server withholding it, but by mathematics.</p>
+<p>In a traditional MMO, the server knows all player positions and uses that to decide what each player sees. A cheater can modify the client to request all data. In Dark Forest, the blockchain itself can&rsquo;t see where players are.</p>
+<p>The mechanism:</p>
+<ol>
+<li>
+<p><strong>Commitment</strong>: A player doesn&rsquo;t submit planet coordinates directly. Instead, they submit the hash of (coordinates || secret). This commitment is public but cryptographically binds them to specific coordinates.</p>
+</li>
+<li>
+<p><strong>Hidden movement</strong>: When a player moves from one planet to another, they submit the hash of the starting planet and the hash of the destination, along with a zero-knowledge proof that:</p>
+<ul>
+<li>The move is from a hashed coordinate they previously published</li>
+<li>The destination is within valid range</li>
+<li>No rules are violated</li>
+</ul>
+</li>
+<li>
+<p><strong>Discovery</strong>: The only way to find other players is through brute force. Players hash regions of the game universe looking for coordinates that match published hashes. This computable search is the &ldquo;fog of war&rdquo; — you can only see what you compute.</p>
+</li>
+</ol>
+<p>The result: the smart contract can verify moves are valid without ever knowing player positions. The blockchain is the source of truth for game state, but that state is mathematically hidden until players choose to reveal it.</p>
+<p>This demonstrates a critical insight: <strong>zero-knowledge proofs enable decentralized game logic</strong>. The server no longer needs to be trusted to know or conceal player positions. The proof mechanism itself enforces the rules.</p>
+<h2 id="verifiable-computation-in-practice">Verifiable Computation in Practice</h2>
+<p>The shift from &ldquo;everyone computes the same thing&rdquo; to &ldquo;one party computes and everyone verifies the proof&rdquo; is profound:</p>
+<ol>
+<li>
+<p><strong>Efficiency</strong>: Computation is expensive; verification is cheap. Scale computation once, verify it many times.</p>
+</li>
+<li>
+<p><strong>Privacy</strong>: The prover can keep inputs private while proving the output is correct. A company can prove their accounting is correct without revealing all transactions.</p>
+</li>
+<li>
+<p><strong>Decentralization</strong>: Instead of relying on a trusted server, participants can verify proofs locally.</p>
+</li>
+<li>
+<p><strong>Incentive alignment</strong>: Provers are economically incentivized to be correct because invalid proofs can be detected and punished.</p>
+</li>
+</ol>
+<p>The tradeoff: the overhead of generating proofs can be substantial. For some applications (especially simple ones), the cost of proof generation outweighs the savings from efficient verification. But for complex computation — especially on-chain state updates — the math becomes favorable quickly.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="./content-addressed-storage.md" class="link-internal">Content-Addressed Storage: IPFS, Arweave, and the Permaweb</a></li>
+<li><a href="./web3-game-economies.md" class="link-internal">Web3 Game Economies: From Play-to-Earn Collapse to Sustainable Design</a></li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/merkle-trees-and-verifiable-computation/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

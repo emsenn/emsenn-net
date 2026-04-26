@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "Output from a language model that conforms to a predefined schema — JSON, typed records, or other machine-parseable formats — rather than free-form text.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/structured-output/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">Output from a language model that conforms to a predefined schema — JSON, typed records, or other machine-parseable formats — rather than free-form text.</span>
+  </div>
+  <div class="e-content">
+    <p>Structured output is output from a <a href="../../../on-device-inference/terms/large-language-model.md" class="link-internal">large language model</a> that conforms to a predefined schema — a <a href="../../../../terms/json-schema.md" class="link-internal">JSON Schema</a>, a typed record, or another machine-parseable format — rather than free-form text. The model generates text that happens to be valid JSON (or XML, or YAML) because it has been <a href="../../../terms/fine-tuning.md" class="link-internal">fine-tuned</a> on examples of schema-conformant output and, in some implementations, because the decoding process constrains token selection to only those tokens that maintain schema validity.</p>
+<p>Structured output is what makes <a href="./tool-use.md" class="link-internal">tool use</a> work. When a model calls a tool, it produces a JSON object specifying the function name and arguments. That object must conform to the tool&rsquo;s input schema — correct field names, correct types, required fields present. If the output is malformed, the tool call fails. Structured output turns a text generator into a system that can interface with typed APIs.</p>
+<h3 id="implementation-approaches">Implementation approaches</h3>
+<p><strong>Schema-guided decoding.</strong> The provider constrains the model&rsquo;s token sampling at each step to only emit tokens that produce schema-valid output. OpenAI&rsquo;s &ldquo;Structured Outputs&rdquo; mode (August 2024) and Anthropic&rsquo;s tool use both implement this. The model cannot produce invalid JSON because invalid tokens are masked during generation. This guarantees conformance but adds latency.</p>
+<p><strong>Post-hoc validation with retry.</strong> The model generates output freely, and a validator checks it against the schema afterward. If validation fails, the errors are fed back to the model and it tries again. <a href="./pydantic-ai.md" class="link-internal">PydanticAI</a> uses this approach: Pydantic models validate the output, and validation errors become part of the next prompt. This is more flexible (works with any model) but does not guarantee first-attempt conformance.</p>
+<p><strong>Fine-tuning.</strong> Models are trained on datasets containing schema-conformant outputs to increase the probability of valid generation without runtime constraints. All major providers fine-tune their models for JSON output; open-weight models vary in quality.</p>
+<p>These approaches compose: a model can be fine-tuned for JSON output, constrained during decoding to a specific schema, and validated post-hoc with retry as a safety net.</p>
+<h3 id="scope">Scope</h3>
+<p>Structured output extends beyond tool use. It applies to any case where an application needs machine-readable model output: extracting entities from text into typed records, classifying inputs into predefined categories, generating API payloads, or producing configuration files. In <a href="./agentic-system.md" class="link-internal">agentic systems</a>, structured output is the interface between the statistical text generator and the deterministic execution environment.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/structured-output/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/structured-output/">structured output</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
+        <dd property="emsenn:Enables"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-use/">tool use</a></dd>
+      </div><div class="relation">
+        <dt>Enforcement</dt>
+        <dd property="emsenn:Enforcement">schema guided decoding, post hoc validation, fine tuning</dd>
+      </div><div class="relation">
+        <dt>Produced by</dt>
+        <dd property="emsenn:Producedby">language model</dd>
+      </div><div class="relation">
+        <dt>Schema format</dt>
+        <dd property="emsenn:Schemaformat">json schema</dd>
+      </div><div class="relation">
+        <dt>Validated by</dt>
+        <dd property="emsenn:Validatedby">pydantic ai</dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/prompt-chaining/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/terms/json-schema/">JSON Schema</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/pydantic-ai/">PydanticAI</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/terms/type-safety/">Type Safety</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

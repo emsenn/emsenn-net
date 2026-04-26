@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Using OpenClaw on Windows, March 2026 - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-09",
+  "datePublished": "2026-03-09",
+  "description": "Practical guidance for using OpenClaw on Windows, drawn from official docs and independent expert guides as of March 2026.",
+  "keywords": "OpenClaw, Windows, SelfHosting, AgentOperations",
+  "name": "Using OpenClaw on Windows, March 2026",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/using-openclaw-on-windows-march-2026/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/">Texts</a></nav>
+  <h1 class="p-name">Using OpenClaw on Windows, March 2026</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-09T00:00:00Z">2026-03-09</time>
+    
+    <span class="p-summary">Practical guidance for using OpenClaw on Windows, drawn from official docs and independent expert guides as of March 2026.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#purpose">Purpose</a></li>
+    <li><a href="#baseline-treat-windows-as-a-wsl2-host">Baseline: treat Windows as a WSL2 host</a></li>
+    <li><a href="#first-use-advice-that-matters-on-windows">First-use advice that matters on Windows</a></li>
+    <li><a href="#write-the-boot-files-early">Write the boot files early</a></li>
+    <li><a href="#security-posture-on-a-windows-machine">Security posture on a Windows machine</a></li>
+    <li><a href="#a-practical-windows-deployment-path">A practical Windows deployment path</a></li>
+    <li><a href="#windows-specific-usage-pattern">Windows-specific usage pattern</a></li>
+    <li><a href="#assessment">Assessment</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h2 id="purpose">Purpose</h2>
+<p>This text collects practical advice for using OpenClaw on Windows as of
+March 9, 2026. The source base combines official OpenClaw
+documentation with two independent guides that contain operational
+advice rather than only product description.</p>
+<h2 id="baseline-treat-windows-as-a-wsl2-host">Baseline: treat Windows as a WSL2 host</h2>
+<p>The official OpenClaw guidance is consistent: on Windows, run OpenClaw
+through WSL2, with Ubuntu recommended. The Windows page states that
+native Windows installs are untested and more problematic, while the
+CLI and Gateway are expected to run inside Linux.</p>
+<p>That makes WSL2 the default Windows pattern rather than an advanced
+optimization. On a Windows machine, the stable starting point is:</p>
+<ul>
+<li>install OpenClaw inside WSL2</li>
+<li>run <code>openclaw onboard --install-daemon</code> inside WSL2</li>
+<li>treat the WSL2 environment as the Gateway host</li>
+<li>use Windows as the surrounding desktop, not as the OpenClaw runtime</li>
+</ul>
+<p>This is also the path the onboarding wizard is designed around. The
+official wizard documentation explicitly calls out Windows via WSL2 and
+puts the browser dashboard first as the fastest way to verify a working
+Gateway.</p>
+<h2 id="first-use-advice-that-matters-on-windows">First-use advice that matters on Windows</h2>
+<p>The official wizard recommends two early moves that are easy to skip:</p>
+<ul>
+<li>open the Control UI first with <code>openclaw dashboard</code></li>
+<li>configure a search provider early, especially Brave Search, so
+<code>web_search</code> works during real tasks</li>
+</ul>
+<p>On Windows this matters more because WSL2 already adds one extra layer
+of operational complexity. The dashboard gives a clean first signal
+that the Gateway is alive before channel setup, and early web-search
+configuration prevents a common failure mode where the assistant feels
+broken when it is only under-provisioned.</p>
+<p>The strongest independent guide makes a similar argument from the
+operator side: learn the CLI early. That advice is not Windows-specific,
+but it is especially relevant on Windows because troubleshooting
+usually happens inside WSL2, where service status, config edits, and
+repair flows remain terminal-first.</p>
+<h2 id="write-the-boot-files-early">Write the boot files early</h2>
+<p>The best expert guides converge on one practical point: do not stop at
+&ldquo;OpenClaw responds.&rdquo; The next useful layer is the boot-file set:</p>
+<ul>
+<li><a href="../terms/openclaw-soul-md.md" class="link-internal">OpenClaw SOUL.md</a></li>
+<li><code>USER.md</code></li>
+<li><a href="../terms/openclaw-heartbeat.md" class="link-internal">OpenClaw HEARTBEAT.md</a></li>
+<li><a href="../terms/openclaw-memory.md" class="link-internal">OpenClaw memory</a></li>
+</ul>
+<p>Carl Vellotti&rsquo;s setup guide treats <code>SOUL.md</code> and <code>USER.md</code> as the first
+two priorities after install. That matches the official bootstrapping
+docs, which say first-run setup writes <code>USER.md</code> and <code>SOUL.md</code> into the
+workspace on the Gateway host. On Windows, that means the authoritative
+files live inside the WSL2-hosted workspace, not in a separate Windows
+application layer.</p>
+<h2 id="security-posture-on-a-windows-machine">Security posture on a Windows machine</h2>
+<p>The official personal-assistant guide says to start conservative. It
+specifically recommends allowlists for WhatsApp access, a dedicated
+WhatsApp number, and disabling heartbeats until the setup is trusted.
+Those are good general defaults, but they are even more important on a
+Windows workstation because that machine often holds browsers,
+documents, credentials, and notes for many other tasks.</p>
+<p>Community guidance adds two more operator rules that fit the official
+security posture:</p>
+<ul>
+<li>give the assistant access incrementally</li>
+<li>do not leave the Gateway openly exposed on the network</li>
+</ul>
+<p>The official Windows page documents <code>portproxy</code> for exposing WSL
+services over a LAN. That is useful for local networking, but the
+stronger remote-access advice from independent deployment guides is to
+use a private tunnel such as Tailscale rather than exposing the Gateway
+publicly. This is consistent with OpenClaw&rsquo;s own security model around
+pairing and <a href="../terms/openclaw-dm-policy.md" class="link-internal">OpenClaw DM policy</a>.</p>
+<h2 id="a-practical-windows-deployment-path">A practical Windows deployment path</h2>
+<p>Carl Vellotti&rsquo;s deployment guide describes a progression that fits
+Windows well:</p>
+<ol>
+<li>Start local.</li>
+<li>Move to Docker locally if you want reproducibility.</li>
+<li>Move to a VPS when you want true 24/7 availability.</li>
+<li>Add Tailscale if you want private remote access.</li>
+</ol>
+<p>For a Windows operator, the local phase usually means WSL2. That is the
+right place to learn configuration, channels, and memory behavior
+before adding a separate server. If the goal is an always-on assistant,
+the evidence from both official docs and expert guides points away from
+&ldquo;leave the Windows laptop awake forever&rdquo; and toward a remote Gateway.</p>
+<h2 id="windows-specific-usage-pattern">Windows-specific usage pattern</h2>
+<p>The strongest Windows pattern is therefore split-role operation:</p>
+<ul>
+<li>run the Gateway inside WSL2 or on a remote Linux host</li>
+<li>use the browser dashboard and messaging channels from Windows</li>
+<li>keep security boundaries conservative</li>
+<li>let OpenClaw coordinate long-running assistant work</li>
+</ul>
+<p>For coding, research, or mathematical work, the most credible community
+advice is not to force OpenClaw to do everything itself. Jason
+Cochran&rsquo;s guide recommends having OpenClaw plan and supervise more
+specialized tools rather than owning the whole task directly. That is a
+useful bridge to research and math-assistant workflows.</p>
+<h2 id="assessment">Assessment</h2>
+<p>The expert consensus is fairly narrow. On Windows, OpenClaw is best
+used as a Linux-hosted system that happens to be operated from Windows.
+The fastest path is WSL2 plus the dashboard. The safest path is
+conservative channel access plus private networking. The most effective
+path is to write the boot files early and learn the CLI soon enough to
+debug the Gateway when WSL2 adds friction.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>Official Windows guide:
+<a href="https://docs.openclaw.ai/windows" class="link-external">docs.openclaw.ai/windows</a></li>
+<li>Official install guide:
+<a href="https://docs.openclaw.ai/install/index" class="link-external">docs.openclaw.ai/install/index</a></li>
+<li>Official onboarding wizard:
+<a href="https://docs.openclaw.ai/start/wizard" class="link-external">docs.openclaw.ai/start/wizard</a></li>
+<li>Official personal assistant setup:
+<a href="https://docs.openclaw.ai/start/openclaw" class="link-external">docs.openclaw.ai/start/openclaw</a></li>
+<li>Learn OpenClaw:
+<a href="https://learnopenclaw.com/getting-started/first-24-hours" class="link-external">Your First 24 Hours with OpenClaw</a></li>
+<li>Learn OpenClaw:
+<a href="https://learnopenclaw.com/advanced/deployment" class="link-external">Deployment - Running OpenClaw in Production</a></li>
+<li>Jason Cochran:
+<a href="https://blog.jasoncochran.io/openclaw-complete-guide/" class="link-external">OpenClaw Complete Guide: Deploy Your Personal AI Assistant</a></li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/using-openclaw-on-windows-march-2026/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Citations</dt>
+        <dd property="emsenn:Citations"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-09">2026-03-09</time></dd>
+      </div><div class="relation">
+        <dt>Part of</dt>
+        <dd property="schema:isPartOf"><ul><li>openclaw</li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/openclaw/">OpenClaw</a></li><li><a href="/tags/windows/">Windows</a></li><li><a href="/tags/selfhosting/">SelfHosting</a></li><li><a href="/tags/agentoperations/">AgentOperations</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

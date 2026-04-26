@@ -18,7 +18,9 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "description": "A Project is a named set of Plans with a stated goal and an optional DefaultPlan list. The top-level container for all work in a locale or across the system.",
+  "dateModified": "2026-03-20",
+  "datePublished": "2026-03-20",
+  "description": "A named container of related plans oriented toward a single stated goal. The highest-level grouping of work below organizational goals.",
   "name": "",
   "publisher": {
     "@type": "Person",
@@ -65,60 +67,48 @@
   <main id="content" data-pagefind-body>
     
 <article class="h-entry" data-type="page">
-  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a></nav>
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/domains/work/">Work</a></nav>
   <h1 class="p-name"></h1>
   <div class="meta">
+    <time class="dt-published" datetime="2026-03-20T00:00:00Z">2026-03-20</time>
     
-    
-    <span class="p-summary">A Project is a named set of Plans with a stated goal and an optional DefaultPlan list. The top-level container for all work in a locale or across the system.</span>
+    <span class="p-summary">A named container of related plans oriented toward a single stated goal. The highest-level grouping of work below organizational goals.</span>
   </div>
   <div class="e-content">
     <h1 id="project">Project</h1>
-<h2 id="what-it-is">What it is</h2>
-<p>A <strong>Project</strong> is a named set of <a href="plan.md" class="link-internal">Plans</a> oriented toward a single stated goal.
-It is the top-level work container: Projects contain Plans, Plans contain <a href="task.md" class="link-internal">Tasks</a>, Tasks contain <a href="operation-item.md" class="link-internal">OperationItems</a>.</p>
-<p>A Project MUST have a stated goal — without one it cannot be known when the Project is complete.
-A Project MUST name its Plans explicitly — Plans do not self-assign to Projects.
-A Project MUST have at most one DefaultPlan sort function — multiple sort functions conflict.
-A Project CANNOT have an unnamed goal.
-A Project CANNOT share a Plan with another Project — each Plan has exactly one owning Project.</p>
-<p>A Project has:</p>
+<p>A project is a named container of related <a href="./plan.md" class="link-internal">plans</a> oriented toward a single stated goal. It is the highest-level grouping of work below organizational goals — a project says &ldquo;this is the thing we are trying to accomplish&rdquo; and the plans within it say how.</p>
+<h2 id="what-makes-something-a-project">What makes something a project</h2>
+<p>A project has three defining properties:</p>
+<ol>
+<li>
+<p><strong>A stated goal.</strong> The goal says what success looks like when the project is complete. Without a goal, a project is just a label on a pile of work — there is no way to know when it is finished.</p>
+</li>
+<li>
+<p><strong>A bounded set of plans.</strong> A project names its plans explicitly. Plans do not self-assign to projects. Each plan belongs to exactly one project, establishing clear ownership and preventing scope confusion.</p>
+</li>
+<li>
+<p><strong>Completion criteria.</strong> A project is complete when its plans are complete and its goal is satisfied. Because plans contain <a href="./task.md" class="link-internal">tasks</a> with defined completion states, project completion rolls up deterministically.</p>
+</li>
+</ol>
+<h2 id="default-work">Default work</h2>
+<p>Some projects designate certain plans as &ldquo;default&rdquo; — work to fall back to when no other task is urgent. Default plans capture north-star work: important, perpetually open, never urgent, but always worth doing when the active queue is clear. This prevents the system from idling when all urgent work is done.</p>
+<h2 id="hierarchy">Hierarchy</h2>
+<p>Projects sit between goals and plans in the work hierarchy:</p>
 <ul>
-<li>A <strong>name</strong> — human-readable identifier</li>
-<li>A <strong>goal</strong> — one sentence: what success looks like when the Project is complete</li>
-<li>A <strong>set of Plans</strong> — the Plans that constitute this Project&rsquo;s work</li>
-<li>An optional <strong>DefaultPlan list</strong> — Plans to work on when the normal task queue is empty; may include an optional sort function to prioritize among them</li>
+<li><strong>Goal</strong> → the organizational ambition (e.g., &ldquo;modernize the records management system&rdquo;)</li>
+<li><strong><a href="./objective.md" class="link-internal">Objective</a></strong> → a measurable target that serves a goal</li>
+<li><strong>Project</strong> → a named body of work toward a goal, containing plans</li>
+<li><strong><a href="./plan.md" class="link-internal">Plan</a></strong> → a structured commitment to actions, containing tasks</li>
+<li><strong><a href="./task.md" class="link-internal">Task</a></strong> → a concrete unit of work</li>
 </ul>
-<h2 id="defaultplan">DefaultPlan</h2>
-<p>A DefaultPlan is not a special kind of Plan.
-It is a designation: this Project&rsquo;s Plans to fall back to when no other work is urgent.
-A Project can designate zero or more of its Plans as default.
-When multiple Plans are default, an optional sort function determines priority (for example, prefer the Plan with the most open OperationItems, or always start with a specific Plan).</p>
-<p>The DefaultPlan concept captures &ldquo;north star&rdquo; work: important, perpetually open, never urgent — but always worth doing when the queue is otherwise clear.</p>
-<h2 id="structure-conceptual">Structure (conceptual)</h2>
-<pre tabindex="0"><code>Project: {name}
-  goal: {one sentence — what success looks like}
-  plans:
-    - {plan-id}          # references PLANS_*.md files or named plan units
-    - {plan-id}
-  default_plans:
-    - plan: {plan-id}
-      sort: {optional: &#34;by_open_count&#34; | &#34;by_added_date&#34; | none}
-</code></pre><p>Projects are not currently serialized as a separate file type.
-The immediate representation is via <code>ProjectContent</code> in the Unit store and the locale directory structure (one locale ≈ one Project).</p>
-<h2 id="relationship-to-the-repo-structure">Relationship to the repo structure</h2>
-<p>The repo currently treats each locale (math, proof, spec, src, root) as an implicit Project.
-The <code>PLANS_*.md</code> files are that Project&rsquo;s Plans.
-Making Projects explicit allows:</p>
+<p>A single goal may have multiple projects. A project may have multiple plans. This hierarchy allows work to be tracked at every level — from &ldquo;is the organization making progress on its mission?&rdquo; down to &ldquo;is this specific task done?&rdquo;</p>
+<h2 id="coordination">Coordination</h2>
+<p>Projects serve as coordination boundaries. Different agents can work on different plans within a project without stepping on each other, because the project&rsquo;s goal provides shared context and the plan boundaries prevent interference. Cross-project dependencies are possible but should be explicit and minimized.</p>
+<h2 id="see-also">See also</h2>
 <ul>
-<li>Cross-locale Projects (for example, &ldquo;relational machine v1&rdquo;) that own Plans in multiple locales</li>
-<li>Explicit DefaultPlan designation at the repo level (currently <code>texture-c4-components</code>)</li>
-<li>Project-level status: goal achieved when all Plans are complete</li>
-</ul>
-<h2 id="open-questions">Open questions</h2>
-<ul>
-<li>Formal serialization format for Project metadata (currently implicit in directory structure; may become a <code>PROJECT.md</code> file per locale or a root-level registry)</li>
-<li>Whether the repo-level &ldquo;work anywhere when queue is empty&rdquo; policy should be a single root Project or a cross-cutting DefaultPlan designation</li>
+<li><a href="./plan.md" class="link-internal">plan</a> — the structured commitment within a project</li>
+<li><a href="./task.md" class="link-internal">task</a> — the unit of work within a plan</li>
+<li><a href="./work.md" class="link-internal">work</a> — the base concept</li>
 </ul>
 
   </div>
@@ -128,27 +118,45 @@ Making Projects explicit allows:</p>
          vocab="https://emsenn.net/vocab#">
   <h2>Relations</h2>
   <dl><div class="relation">
-        <dt>Ast</dt>
-        <dd property="emsenn:Ast"></dd>
+        <dt>Can be part of</dt>
+        <dd property="emsenn:Canbepartof"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/campaign/">campaign</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Contains</a></dt>
+        <dd property="emsenn:Contains"><a href="/library/domains/engineering/domains/tech/terms/plan/">plan</a></dd>
+      </div><div class="relation">
+        <dt>Coordinated by takes</dt>
+        <dd property="emsenn:Coordinatedbytakes"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/campaign/">campaign</a></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-20">2026-03-20</time></dd>
+      </div><div class="relation">
+        <dt>Date modified</dt>
+        <dd property="emsenn:Datemodified"><time datetime="2026-04-06">2026-04-06</time></dd>
       </div><div class="relation">
         <dt>Defines</dt>
         <dd property="emsenn:Defines"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/project/">Project</a></dd>
       </div><div class="relation">
-        <dt>Goal</dt>
-        <dd property="emsenn:Goal">relational universe</dd>
+        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dd property="emsenn:Extends"><ul><li><a href="/library/domains/humanities/domains/philosophy/terms/container/">container</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/work/">work</a></li></ul></dd>
       </div><div class="relation">
-        <dt>Output</dt>
-        <dd property="emsenn:Output">relational universe</dd>
+        <dt>Has</dt>
+        <dd property="emsenn:Has"><ul><li>status</li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/goal/">goal</a></li><li>completion criteria</li></ul></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/engineering/domains/tech/terms/plan/">Plans</a></dt>
-        <dd property="emsenn:Plans">relational universe</dd>
+        <dt>Related</dt>
+        <dd property="emsenn:Related">Plan, Task, Goal, Objective, Campaign</dd>
       </div><div class="relation">
-        <dt>Readiness</dt>
-        <dd property="emsenn:Readiness">shaped</dd>
+        <dt><a href="/library/domains/science/domains/math/domains/topology/terms/restriction/">Restricts</a></dt>
+        <dd property="emsenn:Restricts"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/endeavor/">endeavor</a></dd>
       </div><div class="relation">
-        <dt>Uses</dt>
-        <dd property="emsenn:Uses"><a href="/library/domains/engineering/domains/tech/terms/plan/">Plan</a></dd>
+        <dt>Serves</dt>
+        <dd property="emsenn:Serves"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/goal/">goal</a></dd>
       </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/goal/"></a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/observation/"></a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/terms/duty-of-plan-stewardship/">Duty of Plan Stewardship</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/planning/">Planning</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/campaign/"></a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/completed/">Completed</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/horizon/">Horizon</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/phase/">Phase</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/shift/">Shift</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/metric/">Metric</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/review/">Review</a></li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/plan/"></a></li></ul>
+    </dd>
+  </div>
   </dl>
 </section>
 

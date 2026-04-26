@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "The mechanisms by which an agentic system persists information across interactions — satisfying the persistent-state condition.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-memory/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">The mechanisms by which an agentic system persists information across interactions — satisfying the persistent-state condition.</span>
+  </div>
+  <div class="e-content">
+    <p>Agent memory is the set of mechanisms by which an <a href="./agentic-system.md" class="link-internal">agentic system</a> persists information across interactions. Persistent state is one of the three conditions defining an agentic system; agent memory is how that condition is satisfied in practice.</p>
+<h3 id="memory-types">Memory types</h3>
+<p><strong>Conversation history.</strong> The simplest form: the full sequence of messages exchanged between user and agent, maintained in the <a href="../../../terms/context-window.md" class="link-internal">context window</a>. This is immediate and high-fidelity but bounded — when the conversation exceeds the window, older messages must be dropped or summarized. Conversation history is volatile; it is lost when the process terminates unless explicitly persisted.</p>
+<p><strong>Session state / checkpoints.</strong> The agent&rsquo;s working state serialized to a persistent store. <a href="./langgraph.md" class="link-internal">LangGraph</a> checkpoints the full graph state at every step, enabling recovery after crashes and time-travel debugging. This is durable (survives process termination) and structured (the state object has a schema), but scoped to a single workflow execution.</p>
+<p><strong>Vector memory.</strong> Information stored as <a href="../../../terms/embedding.md" class="link-internal">embeddings</a> in a vector database and retrieved by semantic similarity. When the agent encounters a query, it searches its vector memory for relevant past experiences, retrieved documents, or accumulated facts. This scales to large volumes and supports fuzzy matching but loses the precision and structure of the original information — retrieval returns approximate matches, not exact records.</p>
+<p><strong>Structured knowledge.</strong> Information stored in databases, knowledge graphs, or structured files (Markdown with frontmatter, JSON, RDF). The agent reads and writes structured records through <a href="./tool-use.md" class="link-internal">tool use</a> or <a href="../domains/model-context-protocol/terms/model-context-protocol.md" class="link-internal">MCP</a> resources. This is the most durable and precise form of memory — records are typed, queryable, and version-controllable — but requires explicit schema design and read/write operations.</p>
+<p><strong>File-based memory.</strong> A pattern used by Claude Code, <a href="./soul-md.md" class="link-internal">SOUL.md</a>, and similar systems: the agent reads and writes Markdown files (MEMORY.md, working notes, plans) that persist on disk. The files are human-readable, version-controllable (via git), and survive indefinitely. The trade-off is that the agent must re-read files into the context window to access their content — file-based memory is persistent but not instantly available.</p>
+<h3 id="the-memory-management-problem">The memory management problem</h3>
+<p>Every memory type trades off between capacity, precision, latency, and durability. Conversation history is fast and precise but small and volatile. Vector memory is large and durable but imprecise. Structured knowledge is precise and durable but requires explicit schema design.</p>
+<p>In practice, agentic systems combine multiple memory types. A coding agent keeps the current file in its context window (conversation history), persists its plan in a Markdown file (file-based memory), stores past tool results in checkpoints (session state), and retrieves relevant documentation through search (vector memory or <a href="../../../terms/retrieval-augmented-generation.md" class="link-internal">RAG</a>). Orchestration frameworks manage these layers; no single memory mechanism satisfies all requirements.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-memory/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Accessed through</dt>
+        <dd property="emsenn:Accessedthrough"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-use/">tool use</a></dd>
+      </div><div class="relation">
+        <dt>Bounded by</dt>
+        <dd property="emsenn:Boundedby">context window</dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-memory/">agent memory</a></dd>
+      </div><div class="relation">
+        <dt>Retrieval via</dt>
+        <dd property="emsenn:Retrievalvia">embedding, retrieval augmented generation</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/engineering/domains/tech/terms/satisfies/">Satisfies</a></dt>
+        <dd property="emsenn:Satisfies">persistent state</dd>
+      </div><div class="relation">
+        <dt>Types</dt>
+        <dd property="emsenn:Types">conversation history, session checkpoint, vector memory, structured knowledge, file based memory</dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/terms/memory/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/">Retrieval-Augmented Generation</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

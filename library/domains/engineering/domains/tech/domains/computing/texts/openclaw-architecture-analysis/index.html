@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenClaw Architecture Analysis - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Architecture analysis of OpenClaw — SOUL.md/HEARTBEAT.md prescriptive identity, plugin slot system, autonomous skill creation, file-backed memory with dreaming, DM Policy input gating, ClawHub community registry, and patterns relevant to our harness.",
+  "name": "OpenClaw Architecture Analysis",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/openclaw-architecture-analysis/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">OpenClaw Architecture Analysis</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Architecture analysis of OpenClaw — SOUL.md/HEARTBEAT.md prescriptive identity, plugin slot system, autonomous skill creation, file-backed memory with dreaming, DM Policy input gating, ClawHub community registry, and patterns relevant to our harness.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#soulmd-and-heartbeatmd-prescriptive-identity--proactive-monitoring">SOUL.md and HEARTBEAT.md: Prescriptive Identity + Proactive Monitoring</a>
+      <ul>
+        <li><a href="#soulmd-identity-as-configuration">SOUL.md: Identity as Configuration</a></li>
+        <li><a href="#heartbeatmd-proactive-monitoring">HEARTBEAT.md: Proactive Monitoring</a></li>
+      </ul>
+    </li>
+    <li><a href="#plugin-architecture-slots-capabilities-and-exclusive-selection">Plugin Architecture: Slots, Capabilities, and Exclusive Selection</a>
+      <ul>
+        <li><a href="#discovery-and-loading-pipeline">Discovery and Loading Pipeline</a></li>
+        <li><a href="#capability-model">Capability Model</a></li>
+        <li><a href="#exclusive-slots">Exclusive Slots</a></li>
+        <li><a href="#plugin-sdk-boundary">Plugin SDK Boundary</a></li>
+      </ul>
+    </li>
+    <li><a href="#memory-persistence-two-layer-files-with-dreaming">Memory Persistence: Two-Layer Files with Dreaming</a>
+      <ul>
+        <li><a href="#two-layer-structure">Two-Layer Structure</a></li>
+        <li><a href="#session-memory-hook">Session Memory Hook</a></li>
+        <li><a href="#dreaming-autonomous-memory-consolidation">Dreaming: Autonomous Memory Consolidation</a></li>
+        <li><a href="#security-boundary">Security Boundary</a></li>
+      </ul>
+    </li>
+    <li><a href="#dm-policy-input-gating-and-access-control">DM Policy: Input Gating and Access Control</a>
+      <ul>
+        <li><a href="#policy-modes">Policy Modes</a></li>
+        <li><a href="#group-policy">Group Policy</a></li>
+        <li><a href="#command-gating">Command Gating</a></li>
+        <li><a href="#how-this-shapes-learning">How This Shapes Learning</a></li>
+      </ul>
+    </li>
+    <li><a href="#clawhub-community-skill-sharing">ClawHub: Community Skill Sharing</a>
+      <ul>
+        <li><a href="#skill-creator-autonomous-skill-authorship">Skill-Creator: Autonomous Skill Authorship</a></li>
+      </ul>
+    </li>
+    <li><a href="#hooks-system-event-driven-extensibility">Hooks System: Event-Driven Extensibility</a>
+      <ul>
+        <li><a href="#internal-hooks">Internal Hooks</a></li>
+        <li><a href="#managed-hooks-hookmd">Managed Hooks (HOOK.md)</a></li>
+        <li><a href="#policy-and-lifecycle">Policy and Lifecycle</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-we-should-adopt">What We Should Adopt</a>
+      <ul>
+        <li><a href="#1-exclusive-slot-mechanism">1. Exclusive Slot Mechanism</a></li>
+        <li><a href="#2-heartbeatmd-style-proactive-monitoring">2. HEARTBEAT.md-Style Proactive Monitoring</a></li>
+        <li><a href="#3-dreaming-autonomous-memory-consolidation">3. Dreaming: Autonomous Memory Consolidation</a></li>
+        <li><a href="#4-progressive-disclosure-in-skill-design">4. Progressive Disclosure in Skill Design</a></li>
+        <li><a href="#5-session-memory-with-descriptive-slugs">5. Session Memory with Descriptive Slugs</a></li>
+        <li><a href="#6-dm-policy-as-a-pattern-for-input-gating">6. DM Policy as a Pattern for Input Gating</a></li>
+        <li><a href="#what-not-to-adopt">What Not to Adopt</a></li>
+      </ul>
+    </li>
+    <li><a href="#comparison-to-our-harness">Comparison to Our Harness</a></li>
+    <li><a href="#see-also">See Also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="openclaw-architecture-analysis">OpenClaw Architecture Analysis</h1>
+<p>OpenClaw is an open-source personal AI assistant that runs on user devices and answers through messaging channels (WhatsApp, Telegram, Slack, Discord, iMessage, Matrix, and more). Unlike coding-focused harnesses such as Claude Code or Cline, OpenClaw targets the &ldquo;always-on personal assistant&rdquo; use case — a gateway that manages channels, tools, memory, and proactive behaviors across a persistent agent lifecycle. The source is TypeScript (ESM), Node 22+, with a plugin architecture that makes most capabilities optional.</p>
+<p>This analysis reads the source at <code>operations/engineering/fars/src/openclaw/</code> to extract patterns relevant to our harness design. OpenClaw&rsquo;s architectural decisions are oriented around a different problem than ours (multi-channel messaging vs. repository engineering), but several mechanisms are directly transferable.</p>
+<h2 id="soulmd-and-heartbeatmd-prescriptive-identity--proactive-monitoring">SOUL.md and HEARTBEAT.md: Prescriptive Identity + Proactive Monitoring</h2>
+<p>OpenClaw&rsquo;s workspace bootstrap loads a fixed set of markdown files in a defined order:</p>
+<ol>
+<li><strong>SOUL.md</strong> — who the agent is: tone, opinions, boundaries, behavioral stance</li>
+<li><strong>USER.md</strong> — who the human is: preferences, context, relationship to the agent</li>
+<li><strong>AGENTS.md</strong> — operational rules: file organization, tool usage, safety constraints</li>
+<li><strong>MEMORY.md</strong> — long-term curated memory (loaded only in &ldquo;main sessions,&rdquo; not group chats)</li>
+<li><strong>HEARTBEAT.md</strong> — proactive monitoring checklist</li>
+<li><strong>BOOTSTRAP.md</strong> — first-run instructions (self-deleting after execution)</li>
+</ol>
+<p>The <code>bootstrap-extra-files</code> hook (<code>src/hooks/bundled/bootstrap-extra-files/</code>) allows injecting additional files from glob patterns, enabling monorepo-style context loading without changing the workspace root.</p>
+<h3 id="soulmd-identity-as-configuration">SOUL.md: Identity as Configuration</h3>
+<p>SOUL.md is injected into normal sessions and shapes agent behavior at the system-prompt level. The template (<code>docs/reference/templates/SOUL.md</code>) establishes five principles: be genuinely helpful, have opinions, be resourceful before asking, earn trust through competence, and remember you&rsquo;re a guest.</p>
+<p>The key architectural insight is that SOUL.md is <em>mutable by the agent</em>. The agent is encouraged to evolve its own SOUL.md as it learns who it is, with the constraint that changes must be disclosed to the user. This creates a feedback loop where the agent&rsquo;s personality develops over time rather than being static configuration.</p>
+<p>The companion concept doc (<code>docs/concepts/soul.md</code>) provides a &ldquo;Molty prompt&rdquo; — a meta-prompt the agent can run against itself to rewrite SOUL.md with stronger personality. This is a lightweight form of self-modification: the agent rewrites its own identity file through normal tool use.</p>
+<h3 id="heartbeatmd-proactive-monitoring">HEARTBEAT.md: Proactive Monitoring</h3>
+<p>HEARTBEAT.md defines a checklist of periodic tasks. The heartbeat system (<code>src/infra/heartbeat-runner.ts</code> and related files) is substantial infrastructure:</p>
+<ul>
+<li><strong>Configurable interval</strong> (<code>agents.defaults.heartbeat.every</code>) with a default cadence</li>
+<li><strong>Active hours</strong> (<code>heartbeat-active-hours.ts</code>) — respects quiet periods (e.g. 23:00–08:00)</li>
+<li><strong>Event-driven wake</strong> (<code>heartbeat-wake.ts</code>) — tasks can request immediate heartbeat runs</li>
+<li><strong>Task parsing</strong> (<code>parseHeartbeatTasks</code>) — HEARTBEAT.md entries become structured tasks with due-time tracking</li>
+<li><strong>Visibility control</strong> (<code>heartbeat-visibility.ts</code>) — determines whether heartbeat output goes to channels or stays internal</li>
+<li><strong>Delivery targeting</strong> — heartbeat responses can route to specific channels (Telegram, Discord, etc.)</li>
+<li><strong>Heartbeat state tracking</strong> — <code>memory/heartbeat-state.json</code> records what was checked and when</li>
+</ul>
+<p>The heartbeat is where OpenClaw&rsquo;s &ldquo;always-on&rdquo; nature shows: the agent periodically wakes, reads its checklist, checks email/calendar/mentions/weather, and either acts or replies <code>HEARTBEAT_OK</code> to stay quiet.</p>
+<p>The system distinguishes heartbeats from cron jobs: heartbeats batch multiple checks with conversational context and can drift in timing, while cron jobs are for exact schedules, isolated execution, and direct channel delivery.</p>
+<h2 id="plugin-architecture-slots-capabilities-and-exclusive-selection">Plugin Architecture: Slots, Capabilities, and Exclusive Selection</h2>
+<p>OpenClaw&rsquo;s plugin system (<code>src/plugins/</code>) is the most architecturally sophisticated component. It uses a manifest-first approach where plugin metadata is readable without executing plugin code.</p>
+<h3 id="discovery-and-loading-pipeline">Discovery and Loading Pipeline</h3>
+<ol>
+<li><strong>Manifest validation</strong> — <code>openclaw.plugin.json</code> is read and validated against JSON schema before any code runs</li>
+<li><strong>Discovery</strong> (<code>src/plugins/discovery.ts</code>) — finds plugins from bundled directory, npm packages, and workspace paths</li>
+<li><strong>Loader</strong> (<code>src/plugins/loader.ts</code>) — resolves and loads plugin entrypoints lazily</li>
+<li><strong>Registry</strong> (<code>src/plugins/registry.ts</code>) — assembles the runtime plugin registry with capability registrations</li>
+<li><strong>Contract enforcement</strong> (<code>src/plugins/contracts/</code>) — validates that plugin registrations match declared interfaces</li>
+</ol>
+<h3 id="capability-model">Capability Model</h3>
+<p>Every plugin registers against one or more capability types through typed registration methods:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Capability</th>
+          <th>Registration</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Text inference</td>
+          <td><code>api.registerProvider(...)</code></td>
+      </tr>
+      <tr>
+          <td>Speech</td>
+          <td><code>api.registerSpeechProvider(...)</code></td>
+      </tr>
+      <tr>
+          <td>Media understanding</td>
+          <td><code>api.registerMediaUnderstandingProvider(...)</code></td>
+      </tr>
+      <tr>
+          <td>Image generation</td>
+          <td><code>api.registerImageGenerationProvider(...)</code></td>
+      </tr>
+      <tr>
+          <td>Web search</td>
+          <td><code>api.registerWebSearchProvider(...)</code></td>
+      </tr>
+      <tr>
+          <td>Channel / messaging</td>
+          <td><code>api.registerChannel(...)</code></td>
+      </tr>
+      <tr>
+          <td>Memory</td>
+          <td><code>api.registerMemoryRuntime(...)</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>Plugins are classified by shape: <strong>plain-capability</strong> (one type), <strong>hybrid-capability</strong> (multiple types), or <strong>legacy hook-only</strong> (no capabilities, just hooks).</p>
+<h3 id="exclusive-slots">Exclusive Slots</h3>
+<p>The slot system (<code>src/plugins/slots.ts</code>) enforces that certain plugin kinds are exclusive — only one can be active at a time. Currently two slot kinds exist:</p>
+<ul>
+<li><strong>memory</strong> — default: <code>memory-core</code></li>
+<li><strong>contextEngine</strong> — default: <code>legacy</code></li>
+</ul>
+<p>When a new plugin claims an exclusive slot, <code>applyExclusiveSlotSelection()</code> automatically disables all other plugins of the same kind. The selection is stored in config (<code>plugins.slots.memory = &quot;memory-lancedb&quot;</code>) and the system emits warnings when slots switch.</p>
+<p>This is a clean solution to the &ldquo;which memory backend?&rdquo; problem. Rather than feature flags or conditional imports, the slot mechanism makes it a first-class config choice with automatic mutual exclusion.</p>
+<h3 id="plugin-sdk-boundary">Plugin SDK Boundary</h3>
+<p>The Plugin SDK (<code>src/plugin-sdk/</code>) is the only public contract surface for plugins. Extensions import from <code>openclaw/plugin-sdk/*</code> subpaths; direct imports from <code>src/**</code> are prohibited. This boundary is enforced through import rules, test coverage, and CI architecture gates (<code>check-additional</code>).</p>
+<p>Each bundled plugin exposes two local barrels:</p>
+<ul>
+<li><code>api.ts</code> — light metadata surface for cross-package consumption</li>
+<li><code>runtime-api.ts</code> — heavier runtime surface, loaded lazily</li>
+</ul>
+<p>This progressive loading discipline keeps startup fast: discovery and config validation work from manifest metadata alone, with runtime imports deferred until actual execution.</p>
+<h2 id="memory-persistence-two-layer-files-with-dreaming">Memory Persistence: Two-Layer Files with Dreaming</h2>
+<p>OpenClaw&rsquo;s memory system is a file-backed, two-layer architecture implemented as a plugin (<code>extensions/memory-core/</code>).</p>
+<h3 id="two-layer-structure">Two-Layer Structure</h3>
+<ol>
+<li><strong>Daily notes</strong> — <code>memory/YYYY-MM-DD.md</code> files capture raw session events. These are append-only logs of what happened during each day.</li>
+<li><strong>Long-term memory</strong> — <code>MEMORY.md</code> is curated, distilled knowledge. The agent reviews daily notes and promotes significant items to MEMORY.md.</li>
+</ol>
+<p>This maps directly to short-term vs. long-term memory. Daily files are high-volume, low-curation; MEMORY.md is low-volume, high-curation. The separation means the agent can always recover context (daily files exist) while keeping its active working memory lean (MEMORY.md stays small).</p>
+<h3 id="session-memory-hook">Session Memory Hook</h3>
+<p>The <code>session-memory</code> hook (<code>src/hooks/bundled/session-memory/</code>) fires on <code>/new</code> or <code>/reset</code> commands. It reads the last N messages from the ending session, generates a descriptive filename slug via LLM, and saves to <code>memory/YYYY-MM-DD-slug.md</code>. This creates an automatic archive of every conversation with meaningful filenames.</p>
+<h3 id="dreaming-autonomous-memory-consolidation">Dreaming: Autonomous Memory Consolidation</h3>
+<p>The memory-core plugin implements a &ldquo;dreaming&rdquo; system (<code>extensions/memory-core/src/dreaming.ts</code>) that runs as a managed cron job. Dreaming modes:</p>
+<ul>
+<li><strong>off</strong> — no automatic promotion</li>
+<li><strong>core</strong> — daily at 3am, promotes up to 10 candidates with min score 0.75</li>
+<li><strong>deep</strong> — every 12 hours, stricter thresholds (min score 0.8, min 3 recalls, min 3 unique queries)</li>
+<li><strong>rem</strong> — every 6 hours, most aggressive promotion</li>
+</ul>
+<p>The promotion pipeline (<code>short-term-promotion.ts</code>) ranks short-term memory candidates by a weighted score combining recall count, unique query diversity, and recency. Candidates meeting the threshold are promoted to long-term storage. This is fully automatic — the agent consolidates its own memory while &ldquo;sleeping.&rdquo;</p>
+<p>The system also supports embedding-based search (<code>memory/embeddings.ts</code>, <code>memory/hybrid.ts</code>) with multiple embedding providers, temporal decay scoring (<code>memory/temporal-decay.ts</code>), and MMR (Maximum Marginal Relevance) diversification (<code>memory/mmr.ts</code>). Tools exposed to the agent: <code>memory_search</code> (semantic search across memories) and <code>memory_get</code> (retrieve specific memory by path).</p>
+<h3 id="security-boundary">Security Boundary</h3>
+<p>MEMORY.md is loaded only in &ldquo;main sessions&rdquo; (direct chat with the human). In group chats, Discord channels, and multi-user contexts, long-term memory is withheld to prevent data leakage. This is a simple but effective privacy control.</p>
+<h2 id="dm-policy-input-gating-and-access-control">DM Policy: Input Gating and Access Control</h2>
+<p>The DM Policy system (<code>src/security/dm-policy-shared.ts</code>) controls who can interact with the agent through messaging channels. This is OpenClaw&rsquo;s answer to the &ldquo;who gets to talk to my AI?&rdquo; question.</p>
+<h3 id="policy-modes">Policy Modes</h3>
+<ul>
+<li><strong>open</strong> — anyone can message the agent (no restrictions)</li>
+<li><strong>pairing</strong> — unknown senders trigger a pairing flow (like Bluetooth pairing) where the user must approve the connection</li>
+<li><strong>allowlist</strong> — only explicitly listed identifiers can interact</li>
+<li><strong>disabled</strong> — DMs are completely blocked</li>
+</ul>
+<p>The default is <code>pairing</code>, which balances accessibility with control. The allowlist merges from three sources: static config, pairing store (runtime approvals), and group-specific overrides.</p>
+<h3 id="group-policy">Group Policy</h3>
+<p>Separate from DM policy, groups have their own access model:</p>
+<ul>
+<li><strong>open</strong> — anyone in the group can interact</li>
+<li><strong>allowlist</strong> — only listed members</li>
+<li><strong>disabled</strong> — agent ignores group messages entirely</li>
+</ul>
+<h3 id="command-gating">Command Gating</h3>
+<p>On top of message access, control commands (<code>/new</code>, <code>/reset</code>, <code>/stop</code>) have additional authorization. The <code>resolveControlCommandGate()</code> function checks whether the sender is authorized for administrative operations, preventing group members from resetting sessions they don&rsquo;t own.</p>
+<h3 id="how-this-shapes-learning">How This Shapes Learning</h3>
+<p>DM Policy indirectly shapes what the agent learns. In <code>pairing</code> mode, the agent only builds memory from approved contacts. In <code>allowlist</code> mode, memory is constrained to known users. In <code>open</code> mode, anyone&rsquo;s messages can influence the agent&rsquo;s memory — a potential contamination vector that the system acknowledges through its security docs.</p>
+<h2 id="clawhub-community-skill-sharing">ClawHub: Community Skill Sharing</h2>
+<p>ClawHub (<code>clawhub.com</code>) is OpenClaw&rsquo;s community registry for skills. The <code>skills/clawhub/SKILL.md</code> provides the CLI integration:</p>
+<pre tabindex="0"><code>clawhub search &#34;postgres backups&#34;  # Find skills
+clawhub install my-skill           # Install to workspace
+clawhub publish ./my-skill         # Publish from local directory
+clawhub update --all               # Update all installed skills
+</code></pre><p>Skills are distributed as <code>.skill</code> files (zip archives with <code>.skill</code> extension) containing <code>SKILL.md</code> plus optional <code>scripts/</code>, <code>references/</code>, and <code>assets/</code> directories. The packaging process (<code>scripts/package_skill.py</code>) validates structure, frontmatter, naming conventions, and description quality before allowing distribution.</p>
+<p>The architectural principle is that <strong>core stays lean</strong> — new skills should be published to ClawHub first, not added to the bundled set. Core skill additions require a strong product or security reason. This keeps the base install small while allowing community-driven capability expansion.</p>
+<h3 id="skill-creator-autonomous-skill-authorship">Skill-Creator: Autonomous Skill Authorship</h3>
+<p>The <code>skill-creator</code> skill (<code>skills/skill-creator/SKILL.md</code>) is a meta-skill that guides the agent through creating new skills. The process is structured:</p>
+<ol>
+<li><strong>Understand</strong> — gather concrete usage examples</li>
+<li><strong>Plan</strong> — identify reusable resources (scripts, references, assets)</li>
+<li><strong>Initialize</strong> — run <code>init_skill.py</code> to scaffold the skill directory</li>
+<li><strong>Edit</strong> — implement resources and write SKILL.md</li>
+<li><strong>Package</strong> — validate and bundle into a <code>.skill</code> file</li>
+<li><strong>Iterate</strong> — improve based on real usage</li>
+</ol>
+<p>The skill emphasizes <strong>progressive disclosure</strong> in SKILL.md design: metadata (name + description) is always in context (~100 tokens), the body loads only when triggered (&lt;5k tokens), and bundled resources load only when needed (unlimited, since scripts can execute without being read into context). This is context-window-aware design: skills explicitly compete for limited attention and must justify their token cost.</p>
+<h2 id="hooks-system-event-driven-extensibility">Hooks System: Event-Driven Extensibility</h2>
+<p>OpenClaw&rsquo;s hook system (<code>src/hooks/</code>) provides event-driven extensibility through two layers.</p>
+<h3 id="internal-hooks">Internal Hooks</h3>
+<p>The internal hook system (<code>src/hooks/internal-hooks.ts</code>) defines five event types:</p>
+<ul>
+<li><strong>command</strong> — user commands (<code>/new</code>, <code>/reset</code>, <code>/stop</code>)</li>
+<li><strong>session</strong> — session lifecycle (start, end)</li>
+<li><strong>agent</strong> — agent events (bootstrap)</li>
+<li><strong>gateway</strong> — gateway lifecycle (startup)</li>
+<li><strong>message</strong> — inbound/outbound messages (received, sent, before-send)</li>
+</ul>
+<p>Hooks register against typed event signatures with full context objects. The <code>agent:bootstrap</code> event, for example, provides workspace directory, bootstrap files, config, session key, and agent ID.</p>
+<h3 id="managed-hooks-hookmd">Managed Hooks (HOOK.md)</h3>
+<p>External hooks use the HOOK.md format (<code>src/hooks/types.ts</code>). Each hook is a directory containing:</p>
+<ul>
+<li><code>HOOK.md</code> — frontmatter metadata (name, description, events, requirements)</li>
+<li><code>handler.ts</code> — the executable handler</li>
+</ul>
+<p>The frontmatter declares what events the hook handles, what binaries/env/config it requires, and how to install dependencies. Example from the <code>session-memory</code> hook:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">openclaw</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">events</span>: [<span style="color:#e6db74">&#34;command:new&#34;</span>, <span style="color:#e6db74">&#34;command:reset&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requires</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>: [<span style="color:#e6db74">&#34;workspace.dir&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">install</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">id</span>: <span style="color:#ae81ff">bundled</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">bundled</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">label</span>: <span style="color:#e6db74">&#34;Bundled with OpenClaw&#34;</span>
+</span></span></code></pre></div><p>Hooks can come from four sources: <code>openclaw-bundled</code> (shipped with core), <code>openclaw-managed</code> (installed via hook system), <code>openclaw-workspace</code> (workspace-local), and <code>openclaw-plugin</code> (provided by plugins).</p>
+<h3 id="policy-and-lifecycle">Policy and Lifecycle</h3>
+<p>Hook policy (<code>src/hooks/policy.ts</code>) determines which hooks are eligible to run based on platform, available binaries, environment variables, and config state. The loader (<code>src/hooks/loader.ts</code>) parses HOOK.md frontmatter, resolves handler paths, and validates requirements before registration.</p>
+<p>Plugin-contributed hooks (<code>src/hooks/plugin-hooks.ts</code>) integrate through the plugin lifecycle — plugins register hooks during their <code>register()</code> call, and these hooks are merged into the global hook registry.</p>
+<h2 id="what-we-should-adopt">What We Should Adopt</h2>
+<h3 id="1-exclusive-slot-mechanism">1. Exclusive Slot Mechanism</h3>
+<p>Our harness has similar &ldquo;only one should be active&rdquo; situations (e.g., which memory backend, which publishing pipeline). The slot pattern — declare exclusive kinds, auto-disable competitors on selection, store the choice in config — is cleaner than ad-hoc feature flags.</p>
+<p><strong>Concrete application</strong>: Our memory system currently writes to <code>operations/engineering/records/memory/</code>. If we add alternative memory backends (graph-based, embedding-based), the slot pattern would let us switch cleanly.</p>
+<h3 id="2-heartbeatmd-style-proactive-monitoring">2. HEARTBEAT.md-Style Proactive Monitoring</h3>
+<p>Our observer agent runs reactively on session events. OpenClaw&rsquo;s heartbeat system adds a periodic wake cycle with active-hours awareness, state tracking, and batched checks. We could implement this through our existing cron infrastructure to run periodic reviews of stale plans, overdue tasks, and session health — similar to what <code>/standup</code> does but automated.</p>
+<p><strong>Concrete application</strong>: A <code>HEARTBEAT.md</code> equivalent that lists periodic checks (stale plans, orphaned files, failed sessions) with due-time tracking through <code>heartbeat-state.json</code>.</p>
+<h3 id="3-dreaming-autonomous-memory-consolidation">3. Dreaming: Autonomous Memory Consolidation</h3>
+<p>Our continuous-learning system creates instincts from observations, but lacks a consolidation cycle. OpenClaw&rsquo;s dreaming system — ranked candidates promoted on a cron schedule — could be adapted for our instinct evolution. Instincts that cross a confidence threshold could auto-promote to skills without human intervention.</p>
+<p><strong>Concrete application</strong>: A nightly cron that runs <code>/evolve</code> logic automatically, promoting high-confidence instincts to skills and archiving decayed ones.</p>
+<h3 id="4-progressive-disclosure-in-skill-design">4. Progressive Disclosure in Skill Design</h3>
+<p>OpenClaw&rsquo;s three-level loading (metadata → body → resources) is a disciplined approach to context window management. Our skills currently load the full body on trigger. Splitting into light metadata descriptions and heavier reference files would reduce context consumption, especially as our skill count grows.</p>
+<p><strong>Concrete application</strong>: Move detailed reference content from skill bodies into <code>references/</code> subdirectories, keeping SKILL.md bodies under 500 lines with pointers to the fuller documentation.</p>
+<h3 id="5-session-memory-with-descriptive-slugs">5. Session Memory with Descriptive Slugs</h3>
+<p>Our session logs record events but don&rsquo;t create human-readable summaries. OpenClaw&rsquo;s session-memory hook — extract last N messages, LLM-generate a slug, save to dated file — creates an auditable, browsable history that&rsquo;s useful for cross-session context.</p>
+<p><strong>Concrete application</strong>: A hook on session end that writes <code>operations/engineering/records/sessions/YYYY-MM-DD-slug.md</code> with conversation highlights and key decisions.</p>
+<h3 id="6-dm-policy-as-a-pattern-for-input-gating">6. DM Policy as a Pattern for Input Gating</h3>
+<p>While we don&rsquo;t have messaging channels, the DM Policy pattern generalizes to &ldquo;who/what gets to trigger agent work.&rdquo; We could apply similar gating to our dispatch system — which tasks auto-dispatch, which require human approval, which are blocked entirely — using the same open/pairing/allowlist/disabled taxonomy.</p>
+<h3 id="what-not-to-adopt">What Not to Adopt</h3>
+<p>OpenClaw&rsquo;s multi-channel messaging architecture, provider plugin system, and gateway infrastructure solve problems we don&rsquo;t have. The agent shape classification (plain-capability, hybrid-capability, legacy hook-only) adds complexity that&rsquo;s only justified by their plugin ecosystem scale. Their AGENTS.md-as-CLAUDE.md symlink convention and Mintlify docs hosting are project-specific patterns with no transfer value.</p>
+<h2 id="comparison-to-our-harness">Comparison to Our Harness</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Concern</th>
+          <th>OpenClaw</th>
+          <th>561 Harness</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Identity</td>
+          <td>SOUL.md (mutable by agent)</td>
+          <td>SOUL.md (read-only reference)</td>
+      </tr>
+      <tr>
+          <td>Proactive work</td>
+          <td>HEARTBEAT.md + heartbeat runner</td>
+          <td>Observer agent (reactive only)</td>
+      </tr>
+      <tr>
+          <td>Plugin model</td>
+          <td>Capability registration + exclusive slots</td>
+          <td>Agent/skill/command taxonomy</td>
+      </tr>
+      <tr>
+          <td>Memory</td>
+          <td>Two-layer files + embedding search + dreaming</td>
+          <td>Flat memory files with manual curation</td>
+      </tr>
+      <tr>
+          <td>Input gating</td>
+          <td>DM Policy (open/pairing/allowlist/disabled)</td>
+          <td>No formal input gating</td>
+      </tr>
+      <tr>
+          <td>Skill sharing</td>
+          <td>ClawHub registry</td>
+          <td>Local skills only</td>
+      </tr>
+      <tr>
+          <td>Hook format</td>
+          <td>HOOK.md with frontmatter metadata</td>
+          <td>JavaScript hooks with settings.json config</td>
+      </tr>
+      <tr>
+          <td>Context management</td>
+          <td>Three-level progressive disclosure</td>
+          <td>Full body on trigger</td>
+      </tr>
+  </tbody>
+</table>
+<p>OpenClaw optimizes for the personal assistant use case: persistent across sessions, multi-channel, proactive. Our harness optimizes for the engineering assistant use case: repository-aware, plan-driven, research-grounded. The transferable patterns are in the infrastructure layer — slot exclusion, memory consolidation, proactive monitoring, and context-aware skill loading — not in the application layer.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="./continuous-learning-in-agentic-harnesses.md" class="link-internal">Continuous Learning in Agentic Harnesses</a> — pattern comparison across harnesses</li>
+<li><a href="./cline-architecture-analysis.md" class="link-internal">Cline Architecture Analysis</a> — VS Code extension architecture patterns</li>
+<li><a href="./agentic-harness-landscape-2026.md" class="link-internal">Agentic Harness Landscape 2026</a> — broader landscape survey</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/openclaw-architecture-analysis/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related"><ul><li>continuous learning in agentic harnesses.md</li><li>cline architecture analysis.md</li><li>agentic harness landscape 2026.md</li></ul></dd>
+      </div><div class="relation">
+        <dt>Source repo</dt>
+        <dd property="emsenn:Sourcerepo">operations/engineering/fars/src/openclaw/</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

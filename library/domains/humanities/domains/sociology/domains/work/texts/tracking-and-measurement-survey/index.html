@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracking and Measurement: How You Know What State Work Is In - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-03",
+  "datePublished": "2026-04-03",
+  "description": "How organizations observe and measure work state — from Earned Value Management through kanban flow metrics to Stevens' measurement scales, audit trails, and the dangers of Goodhart's Law.",
+  "name": "Tracking and Measurement: How You Know What State Work Is In",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/texts/tracking-and-measurement-survey/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/domains/work/">Work</a></nav>
+  <h1 class="p-name">Tracking and Measurement: How You Know What State Work Is In</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-03T00:00:00Z">2026-04-03</time>
+    
+    <span class="p-summary">How organizations observe and measure work state — from Earned Value Management through kanban flow metrics to Stevens&#39; measurement scales, audit trails, and the dangers of Goodhart&#39;s Law.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#earned-value-management">Earned Value Management</a></li>
+    <li><a href="#flow-metrics-kanban">Flow metrics: kanban</a></li>
+    <li><a href="#scales-of-measurement-stevens">Scales of measurement: Stevens</a></li>
+    <li><a href="#visual-display-tufte">Visual display: Tufte</a></li>
+    <li><a href="#audit-trails-and-provenance">Audit trails and provenance</a></li>
+    <li><a href="#goodharts-law-and-perverse-incentives">Goodhart&rsquo;s Law and perverse incentives</a></li>
+    <li><a href="#see-also">See also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>Tracking is the continuous observation of work entity states. It does not act — it observes and reports. The tracking stage reads the operational state, computes derived metrics, surfaces anomalies, and feeds the review stage with data for comparison against plans.</p>
+<h2 id="earned-value-management">Earned Value Management</h2>
+<p>Earned Value Management (Fleming and Koppelman 2010) is the standard costing methodology for project tracking. It answers three questions simultaneously: how much work was planned? How much was done? How much did it cost?</p>
+<p>Three baseline measurements:</p>
+<ul>
+<li><strong>Planned Value (PV)</strong> — the budgeted cost of work scheduled by now. What you said you&rsquo;d do.</li>
+<li><strong>Earned Value (EV)</strong> — the budgeted cost of work actually completed. What you actually did, priced at the plan rate.</li>
+<li><strong>Actual Cost (AC)</strong> — what you actually spent to do what you did.</li>
+</ul>
+<p>From these, two variances:</p>
+<ul>
+<li><strong>Schedule Variance (SV) = EV − PV</strong> — positive means ahead, negative means behind</li>
+<li><strong>Cost Variance (CV) = EV − AC</strong> — positive means under budget, negative means over</li>
+</ul>
+<p>And two performance indices:</p>
+<ul>
+<li><strong>Schedule Performance Index (SPI) = EV / PV</strong> — above 1.0 means ahead of schedule</li>
+<li><strong>Cost Performance Index (CPI) = EV / AC</strong> — above 1.0 means under budget</li>
+</ul>
+<p>EVM works when work is quantifiable and the plan is stable. For knowledge work — where the scope changes frequently and &ldquo;percent complete&rdquo; is hard to measure — EVM is less directly applicable. But the principle holds: track what you planned to do, what you actually did, and what it cost you. The three-way comparison is the foundation of all tracking.</p>
+<p>In a work management system: PV is the plan (tasks and their estimated effort). EV is task completion progress. AC is the actual cost of work (time, resources, or tokens consumed). SPI tells you whether you&rsquo;re advancing tasks at the planned rate. CPI tells you whether each task costs more or less than expected. These are computable from any datastore that tracks plans, completions, and costs.</p>
+<h2 id="flow-metrics-kanban">Flow metrics: kanban</h2>
+<p>Where EVM measures against a baseline plan, kanban metrics (Anderson 2010, Reinertsen 2009) measure the flow of work through the system regardless of plan.</p>
+<p><strong>Cycle time</strong> — how long from work starting to work completing. A task created Monday and completed Wednesday has a 2-day cycle time. Short cycle times mean the system processes work quickly.</p>
+<p><strong>Lead time</strong> — how long from work entering the system (created or requested) to work completing. Lead time includes queue time (waiting to be started) plus cycle time. Lead time is what the customer experiences; cycle time is what the worker experiences.</p>
+<p><strong>Work in progress (WIP)</strong> — how many items are actively being worked on at this moment. High WIP means more context switching, more partial work, longer cycle times. Little&rsquo;s Law: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Average Lead Time</mtext><mo>=</mo><mfrac><mtext>WIP</mtext><mtext>Throughput</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{Average Lead Time} = \frac{\text{WIP}}{\text{Throughput}}</annotation></semantics></math></span>. To reduce lead time, either reduce WIP or increase throughput. Reducing WIP is usually easier and has immediate effect.</p>
+<p><strong>Throughput</strong> — how many items complete per unit time. Tasks per session, tasks per week, plans completed per month. Throughput is the system&rsquo;s output rate.</p>
+<p><strong>Flow efficiency</strong> — what fraction of lead time is active work vs. waiting. If a task sits in a queue for 3 days and takes 1 day of work, flow efficiency is 25%. Most knowledge work systems have flow efficiency under 15% — the vast majority of time is spent waiting, not working.</p>
+<p>In practice, all of these are computable from a datastore plus event history. Task creation timestamps, status change timestamps, and session associations give you cycle time, lead time, and throughput. WIP is a point-in-time count of tasks with status &ldquo;in progress.&rdquo; Flow efficiency requires tracking when tasks transition from &ldquo;waiting&rdquo; to &ldquo;active&rdquo; — which any event log can provide.</p>
+<h2 id="scales-of-measurement-stevens">Scales of measurement: Stevens</h2>
+<p>S. S. Stevens&rsquo; <em>On the Theory of Scales of Measurement</em> (1946) defines four levels of measurement, each supporting different statistical operations:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Scale</th>
+          <th>Property</th>
+          <th>Examples in work tracking</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Nominal</strong></td>
+          <td>Equality (=, ≠)</td>
+          <td>Task type (bug, feature, research). Status labels (open, closed).</td>
+      </tr>
+      <tr>
+          <td><strong>Ordinal</strong></td>
+          <td>Order (&lt;, &gt;)</td>
+          <td>Priority (high, medium, low). Task ordering in a plan.</td>
+      </tr>
+      <tr>
+          <td><strong>Interval</strong></td>
+          <td>Equal intervals</td>
+          <td>Calendar dates. Temperature. Sprint numbers.</td>
+      </tr>
+      <tr>
+          <td><strong>Ratio</strong></td>
+          <td>True zero</td>
+          <td>Task count. Cost. Duration. Tokens consumed.</td>
+      </tr>
+  </tbody>
+</table>
+<p>The distinction matters because you can only do certain operations at certain scales. You can count nominals (3 bugs, 5 features). You can rank ordinals (high &gt; medium &gt; low). You can subtract intervals (5 days between reviews). You can divide ratios (cost per task = total cost / task count).</p>
+<p>A common tracking error: treating ordinals as ratios. &ldquo;Priority 3&rdquo; is not three times as important as &ldquo;priority 1&rdquo; — it&rsquo;s just higher in the ordering. Averaging priorities is meaningless. Averaging costs is meaningful. Stevens tells you which operations your data supports.</p>
+<p>In practice: task status is nominal. Priority is ordinal. Dates are interval. Counts, costs, and durations are ratio. The tracking stage should use the appropriate scale for each metric and avoid operations that the scale doesn&rsquo;t support.</p>
+<h2 id="visual-display-tufte">Visual display: Tufte</h2>
+<p>Edward Tufte&rsquo;s <em>The Visual Display of Quantitative Information</em> (2001) establishes principles for presenting data honestly and efficiently:</p>
+<p><strong>Data-ink ratio</strong> — maximize the proportion of ink (or pixels, or characters) that represents data. Remove chartjunk, decorative elements, and redundant labels. In a text-based system, this means: status output should be dense with information and sparse with formatting.</p>
+<p><strong>Small multiples</strong> — show the same structure repeated across different data. Plan status for all plans, shown the same way, lets you compare at a glance. A consistent status table is a small multiple.</p>
+<p><strong>Lie factor</strong> — the ratio of the effect shown to the effect in the data. A progress bar that shows 50% when 10% of tasks are done (because 50% of the timeline has elapsed) has a lie factor of 5. Show what&rsquo;s measured, not what&rsquo;s estimated.</p>
+<p>For a text-based work management system, tracking output should be dense (every line carries information) and comparable (all plans shown the same way). The principle: don&rsquo;t invent visualization formats. Use consistent, comparable, data-dense output that can be composed from the datastore.</p>
+<h2 id="audit-trails-and-provenance">Audit trails and provenance</h2>
+<p>An audit trail is an immutable record of who did what, when, and why. Every state change in the operations loop should produce an audit event: task created, task assigned, task started, task completed, plan revised, review held, feedback applied.</p>
+<p>Audit events have a fixed schema: timestamp, actor, action, subject, previous state, new state, justification. The sequence of events IS the history of the work. Any question about &ldquo;what happened?&rdquo; is answered by querying the event log.</p>
+<p>In practice, a raw activity log (recording tool calls with timestamps and session IDs) is a proto-audit trail. The full audit trail requires capturing state transitions as first-class events. When a task status changes from &ldquo;open&rdquo; to &ldquo;completed,&rdquo; that should produce an event record with: who completed it (agent or user), when (timestamp), what changed (status: open -&gt; completed), and optionally why (reference to the session or commit that did the work).</p>
+<p>An event log combined with a structured datastore gives you full provenance: for any entity, you can trace its history — when each attribute was set, by whom, in what session. This is the audit backbone that makes any operations loop observable and reviewable.</p>
+<h2 id="goodharts-law-and-perverse-incentives">Goodhart&rsquo;s Law and perverse incentives</h2>
+<p>Marilyn Strathern&rsquo;s generalization of Goodhart&rsquo;s Law (1997): &ldquo;When a measure becomes a target, it ceases to be a good measure.&rdquo; If you measure programmers by lines of code, they write verbose code. If you measure doctors by patient throughput, they rush appointments. If you measure agents by tasks completed, they break large tasks into trivial subtasks.</p>
+<p>This is not a reason to avoid measurement. It is a reason to measure carefully:</p>
+<ul>
+<li>Measure outcomes, not outputs. &ldquo;Did the plan achieve its goal?&rdquo; not &ldquo;How many tasks were completed?&rdquo;</li>
+<li>Use multiple metrics that cross-check each other. High throughput with low quality is worse than moderate throughput with high quality.</li>
+<li>Keep metrics descriptive, not prescriptive. The tracking stage observes and reports. The review stage judges. Don&rsquo;t let the tracking metrics become the judgment.</li>
+</ul>
+<p>In practice, the plan completion percentage (tasks done / total tasks) is a useful tracking metric. But it should never be the sole evaluation criterion. A plan at 100% where every task was trivially defined is worse than a plan at 40% where each completed task produced real value. The review stage must evaluate quality, not just count.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="./ontology-of-work-operations.md" class="link-internal">The Ontology of Work Operations</a> — the base mapping</li>
+<li><a href="./planning-and-scheduling-survey.md" class="link-internal">Planning and Scheduling Survey</a> — what tracking observes</li>
+<li><a href="./dispatch-and-delegation-survey.md" class="link-internal">Dispatch and Delegation Survey</a> — what tracking monitors</li>
+</ul>
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-anderson2010" typeof="CreativeWork" resource="#ref-anderson2010">
+    <span class="bib-key">[anderson2010]</span>
+      <span property="author">David J. Anderson</span>.
+      (<span property="datePublished">2010</span>).
+      <cite property="name">Kanban: Successful Evolutionary Change for Your Technology Business</cite>.
+      <em property="publisher">Blue Hole Press</em>.
+  </p><p class="bib-entry" id="ref-fleming-koppelman2010" typeof="CreativeWork" resource="#ref-fleming-koppelman2010">
+    <span class="bib-key">[fleming-koppelman2010]</span>
+      <span property="author">Quentin W. Fleming, Joel M. Koppelman</span>.
+      (<span property="datePublished">2010</span>).
+      <cite property="name">Earned Value Project Management</cite>.
+      <em property="publisher">Project Management Institute</em>.
+  </p><p class="bib-entry" id="ref-reinertsen2009" typeof="CreativeWork" resource="#ref-reinertsen2009">
+    <span class="bib-key">[reinertsen2009]</span>
+      <span property="author">Donald G. Reinertsen</span>.
+      (<span property="datePublished">2009</span>).
+      <cite property="name">The Principles of Product Development Flow</cite>.
+      <em property="publisher">Celeritas Publishing</em>.
+  </p><p class="bib-entry" id="ref-stevens1946" typeof="CreativeWork" resource="#ref-stevens1946">
+    <span class="bib-key">[stevens1946]</span>
+      <span property="author">S. S. Stevens</span>.
+      (<span property="datePublished">1946</span>).
+      <cite property="name">On the Theory of Scales of Measurement</cite>.
+      <em property="publisher">Science, 103(2684)</em>.
+  </p><p class="bib-entry" id="ref-strathern1997" typeof="CreativeWork" resource="#ref-strathern1997">
+    <span class="bib-key">[strathern1997]</span>
+      <span property="author">Marilyn Strathern</span>.
+      (<span property="datePublished">1997</span>).
+      <cite property="name">&#39;Improving Ratings&#39;: Audit in the British University System</cite>.
+      <em property="publisher">European Review, 5(3)</em>.
+  </p><p class="bib-entry" id="ref-tufte2001" typeof="CreativeWork" resource="#ref-tufte2001">
+    <span class="bib-key">[tufte2001]</span>
+      <span property="author">Edward R. Tufte</span>.
+      (<span property="datePublished">2001</span>).
+      <cite property="name">The Visual Display of Quantitative Information</cite>.
+      <em property="publisher">Graphics Press</em>.
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/texts/tracking-and-measurement-survey/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Citations</dt>
+        <dd property="emsenn:Citations"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-03">2026-04-03</time></dd>
+      </div><div class="relation">
+        <dt>Part of</dt>
+        <dd property="schema:isPartOf">ops research foundations</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

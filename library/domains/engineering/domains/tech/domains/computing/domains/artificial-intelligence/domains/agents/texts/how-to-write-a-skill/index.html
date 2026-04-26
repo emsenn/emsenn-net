@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Write an Effective Skill - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-31",
+  "datePublished": "2026-03-31",
+  "description": "Practical guide to writing skill definition files that activate reliably, provide useful guidance, and compose well with other skills.",
+  "keywords": "agents, skills, activation-trigger",
+  "name": "How to Write an Effective Skill",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/how-to-write-a-skill/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/">Texts</a></nav>
+  <h1 class="p-name">How to Write an Effective Skill</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-31T00:00:00Z">2026-03-31</time>
+    
+    <span class="p-summary">Practical guide to writing skill definition files that activate reliably, provide useful guidance, and compose well with other skills.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-anatomy-of-a-skill-file">The anatomy of a skill file</a>
+      <ul>
+        <li><a href="#frontmatter">Frontmatter</a></li>
+        <li><a href="#body">Body</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-write-an-activation-trigger">How to write an activation trigger</a></li>
+    <li><a href="#choosing-the-right-mechanism">Choosing the right mechanism</a></li>
+    <li><a href="#content-guidelines">Content guidelines</a></li>
+    <li><a href="#common-failure-modes">Common failure modes</a></li>
+    <li><a href="#testing-a-skill">Testing a skill</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>A skill is a markdown file that loads into an agent&rsquo;s context when the agent decides it is relevant. The file has YAML frontmatter for metadata and a markdown body for instructions. The agent reads the frontmatter to decide whether to load the skill. If it loads, the agent follows the body&rsquo;s instructions. If it does not load, the skill costs nothing — it is inert.</p>
+<p>This guide covers how to write skills that activate at the right time and provide useful guidance when they do.</p>
+<h2 id="the-anatomy-of-a-skill-file">The anatomy of a skill file</h2>
+<p>A skill lives in a directory named after it, containing a single <code>SKILL.md</code> file:</p>
+<pre tabindex="0"><code>skills/
+└── your-skill-name/
+    └── SKILL.md
+</code></pre><p>The file has two parts: frontmatter and body.</p>
+<h3 id="frontmatter">Frontmatter</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">your-skill-name</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">description</span>: <span style="color:#ae81ff">Brief description used for activation matching</span>
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><p>The <code>name</code> field identifies the skill. The <code>description</code> field is the activation trigger — the text the agent matches against the current context to decide whether this skill is relevant. The description is load-bearing infrastructure. A vague description produces unreliable activation; a precise description produces reliable activation.</p>
+<h3 id="body">Body</h3>
+<p>The body follows a consistent structure:</p>
+<ol>
+<li><strong>Title and overview</strong> — what this skill covers, in one paragraph</li>
+<li><strong>When to Activate</strong> — concrete scenarios where this skill should fire</li>
+<li><strong>Core guidance</strong> — the actual instructions, organized by section</li>
+<li><strong>Anti-patterns</strong> — what NOT to do, with examples</li>
+<li><strong>Related skills</strong> — links to complementary skills</li>
+</ol>
+<p>The &ldquo;When to Activate&rdquo; section is the most important section in the body. It gives the agent fine-grained matching criteria beyond the coarse description. List specific scenarios:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#75715e">## When to Activate
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> When the user asks to write a new term definition
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> When editing an existing term file in <span style="color:#e6db74">`library/*/terms/`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> When reviewing whether a term follows repository conventions
+</span></span></code></pre></div><h2 id="how-to-write-an-activation-trigger">How to write an activation trigger</h2>
+<p>The description field determines when the skill loads. It must answer three questions: what does this skill do, when should it activate, and on what kind of input.</p>
+<p><strong>Effective trigger:</strong></p>
+<blockquote>
+<p>&ldquo;Conventions for writing term definition files. Covers structure, voice, frontmatter, and patterns for simple, lesson-style, and formal terms.&rdquo;</p></blockquote>
+<p>This fires reliably because it names the content type (term definitions), the scope (structure, voice, frontmatter, patterns), and the variants (simple, lesson-style, formal).</p>
+<p><strong>Ineffective trigger:</strong></p>
+<blockquote>
+<p>&ldquo;Writing guidelines.&rdquo;</p></blockquote>
+<p>This fires on everything or nothing. It gives the agent no matching criterion.</p>
+<p><strong>Proactive trigger:</strong></p>
+<blockquote>
+<p>&ldquo;Use PROACTIVELY when users request feature implementation, architectural changes, or complex refactoring.&rdquo;</p></blockquote>
+<p>The word &ldquo;proactively&rdquo; signals the agent should invoke this skill without being asked. The trigger conditions give matching criteria. This pattern is used for agents more than skills, but the principle is the same.</p>
+<h2 id="choosing-the-right-mechanism">Choosing the right mechanism</h2>
+<p>Skills are one of several extensibility mechanisms. Choose based on what the content does:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Mechanism</th>
+          <th>What it is</th>
+          <th>When to use</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Skill</strong></td>
+          <td>Guidance that loads on demand</td>
+          <td>Domain knowledge, workflow procedures, style conventions</td>
+      </tr>
+      <tr>
+          <td><strong>Command</strong></td>
+          <td>User-invoked workflow</td>
+          <td>Multi-step interactive procedures</td>
+      </tr>
+      <tr>
+          <td><strong>Agent</strong></td>
+          <td>Specialized role with its own tools</td>
+          <td>Autonomous tasks requiring delegation</td>
+      </tr>
+      <tr>
+          <td><strong>Rule</strong></td>
+          <td>Guidance that loads every session</td>
+          <td>Constraints that always apply</td>
+      </tr>
+      <tr>
+          <td><strong>Hook</strong></td>
+          <td>Shell command on tool lifecycle events</td>
+          <td>Mechanical guardrails, validation, formatting</td>
+      </tr>
+  </tbody>
+</table>
+<p>Skills are for reference knowledge — how to do something. Commands are for procedures — do this thing now. The difference is whether the user is asking &ldquo;how should I do this?&rdquo; (skill) or &ldquo;do this for me&rdquo; (command).</p>
+<h2 id="content-guidelines">Content guidelines</h2>
+<p><strong>Show, don&rsquo;t tell.</strong> Include concrete examples. A skill that says &ldquo;use descriptive variable names&rdquo; is less useful than one that shows a before-and-after.</p>
+<p><strong>Include anti-patterns.</strong> Knowing what NOT to do is as valuable as knowing what to do. Mark anti-patterns clearly so the agent does not confuse them with instructions.</p>
+<p><strong>Use checklists and decision trees.</strong> These give the agent structured reasoning paths instead of open-ended prose to interpret.</p>
+<p><strong>Keep it focused.</strong> One skill covers one domain. A skill that covers &ldquo;frontend development&rdquo; is too broad. A skill that covers &ldquo;React component patterns&rdquo; is focused. A skill that covers &ldquo;writing term definitions for this repository&rdquo; is focused.</p>
+<p><strong>Stay under 500 lines.</strong> 200-400 lines is typical. If a skill exceeds 800 lines, it is trying to cover too much and should be split.</p>
+<h2 id="common-failure-modes">Common failure modes</h2>
+<p><strong>The ghost skill.</strong> The description is too vague to match any context. The skill exists but never activates. Fix: write a specific description and a &ldquo;When to Activate&rdquo; section.</p>
+<p><strong>The false positive.</strong> The description is too broad and the skill fires on irrelevant tasks. Fix: narrow the description and add &ldquo;When NOT to Activate&rdquo; conditions.</p>
+<p><strong>The encyclopedia.</strong> The skill tries to cover an entire domain in one file. The agent loads 800 lines of context when it needs 50. Fix: split into focused skills and link them with &ldquo;Related Skills.&rdquo;</p>
+<p><strong>The orphan.</strong> The skill provides useful guidance but references concepts, tools, or conventions that are not defined anywhere in the system. Fix: ensure prerequisites exist as terms, other skills, or documentation before publishing.</p>
+<p><strong>The stale skill.</strong> The skill was written for a workflow that has since changed. It fires and provides outdated guidance. Fix: review skills periodically and update or remove ones that no longer match the current system.</p>
+<h2 id="testing-a-skill">Testing a skill</h2>
+<p>Before committing a skill:</p>
+<ol>
+<li>Verify the YAML frontmatter parses correctly</li>
+<li>Confirm the name follows the convention (lowercase-with-hyphens)</li>
+<li>Check that the description is specific enough to activate on the right contexts</li>
+<li>Read the body as if you were the agent — are the instructions clear enough to follow without external context?</li>
+<li>Verify any file paths, commands, or references in the body are current</li>
+<li>Ensure no sensitive data (API keys, tokens, credentials) appears in the file</li>
+</ol>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/how-to-write-a-skill/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Citations</dt>
+        <dd property="emsenn:Citations"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-31">2026-03-31</time></dd>
+      </div><div class="relation">
+        <dt>Form</dt>
+        <dd property="emsenn:Form"><a href="/library/domains/humanities/domains/education/terms/lesson/">lesson</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/activation-trigger/">activation trigger</a></li><li>slash commands</li></ul></dd>
+      </div><div class="relation">
+        <dt>Tags</dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/agents/">agents</a></li><li><a href="/tags/skills/">skills</a></li><li><a href="/tags/activation-trigger/">activation-trigger</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Teaches</dt>
+        <dd property="emsenn:Teaches"><ul><li>How to structure a SKILL.md file</li><li>How to write activation triggers that fire reliably</li><li>How to choose between skills, agents, commands, and rules</li><li>Common failure modes in skill design</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

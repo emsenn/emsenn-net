@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zero-Knowledge Proof - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-05",
+  "datePublished": "2026-04-05",
+  "description": "A cryptographic method allowing one party to prove a statement is true to another party without revealing any information used in the proof. In blockchain gaming, enables private state and fog of war on public ledgers.",
+  "name": "Zero-Knowledge Proof",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/terms/zero-knowledge-proof/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/">Blockchain</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/">Blockchain Games</a></nav>
+  <h1 class="p-name">Zero-Knowledge Proof</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
+    
+    <span class="p-summary">A cryptographic method allowing one party to prove a statement is true to another party without revealing any information used in the proof. In blockchain gaming, enables private state and fog of war on public ledgers.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#example-knowing-a-discrete-logarithm">Example: Knowing a Discrete Logarithm</a></li>
+    <li><a href="#zksnarks-succinct-non-interactive-arguments-of-knowledge">zkSNARKs: Succinct Non-Interactive Arguments of Knowledge</a></li>
+    <li><a href="#application-in-gaming-cryptographic-fog-of-war">Application in Gaming: Cryptographic Fog of War</a></li>
+    <li><a href="#computational-cost">Computational Cost</a></li>
+    <li><a href="#limitations-and-alternatives">Limitations and Alternatives</a></li>
+    <li><a href="#see-also">See Also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="zero-knowledge-proof">Zero-Knowledge Proof</h1>
+<p>A zero-knowledge proof (ZKP) is a cryptographic protocol in which one party (the prover) convinces another party (the verifier) that a statement is true without revealing any information used to construct the proof.</p>
+<p>Formally, a ZKP protocol has three properties:</p>
+<ol>
+<li><strong>Completeness</strong> — If the statement is true, the prover can construct a proof that the verifier will accept</li>
+<li><strong>Soundness</strong> — If the statement is false, the prover cannot construct a valid proof (except with negligible probability)</li>
+<li><strong>Zero-knowledge</strong> — The verifier learns nothing except that the statement is true; the proof reveals no additional information</li>
+</ol>
+<h2 id="example-knowing-a-discrete-logarithm">Example: Knowing a Discrete Logarithm</h2>
+<p>Suppose Alice claims to know a value x such that g^x = y (where g and y are public). Alice wants to prove she knows x without revealing x.</p>
+<p>A simple ZKP protocol:</p>
+<ol>
+<li>Alice picks a random r and sends g^r to Bob</li>
+<li>Bob sends a random challenge bit c</li>
+<li>Alice sends z = r + c*x</li>
+<li>Bob checks: g^z = g^r * y^c</li>
+</ol>
+<p>If Alice knows x, she can always satisfy step 4. If she doesn&rsquo;t know x but commits to g^r, she cannot respond correctly to both c=0 and c=1 (she&rsquo;d have to guess Bob&rsquo;s challenge beforehand). Bob is convinced and learns nothing about x.</p>
+<h2 id="zksnarks-succinct-non-interactive-arguments-of-knowledge">zkSNARKs: Succinct Non-Interactive Arguments of Knowledge</h2>
+<p>Most blockchain applications use zkSNARKs (zero-knowledge succinct non-interactive arguments of knowledge):</p>
+<ul>
+<li><strong>Succinct</strong> — The proof is very small (a few hundred bytes) and quick to verify, regardless of computation size</li>
+<li><strong>Non-interactive</strong> — No back-and-forth between prover and verifier; one message suffices</li>
+<li><strong>Arguments of knowledge</strong> — Computationally sound; an adversary with polynomial time cannot forge a proof</li>
+</ul>
+<p>Common zkSNARK constructions:</p>
+<ul>
+<li><strong>Groth16</strong> — Used in Dark Forest; compact proofs and fast verification, but requires a trusted setup</li>
+<li><strong>Plonk</strong> — More recent; universal trusted setup, more flexible circuit design</li>
+<li><strong>STARKs</strong> — Newer alternative; post-quantum secure, no trusted setup, but larger proofs</li>
+</ul>
+<h2 id="application-in-gaming-cryptographic-fog-of-war">Application in Gaming: Cryptographic Fog of War</h2>
+<p>Zero-knowledge proofs enable private game state on public blockchains.</p>
+<p>In Dark Forest, planets are identified by coordinates. Instead of storing coordinates on-chain, only hashes are public. A player who discovers a planet (by brute-force searching for coordinates that hash to a known value) can prove they know valid coordinates without revealing them.</p>
+<p>The player submits a zkSNARK asserting: &ldquo;I know a coordinate pair that hashes to this hash, and moving energy from planet A to planet B follows the game rules.&rdquo; The blockchain verifies the proof without learning the coordinates, and the move is recorded. Other players see that an attack happened but not from where or to where (until they discover the planets themselves).</p>
+<p>This is the core insight: ZKPs decouple private information from public verification. The game state is public, but strategic information remains private.</p>
+<h2 id="computational-cost">Computational Cost</h2>
+<p>Generating zkSNARK proofs is computationally expensive:</p>
+<ul>
+<li><strong>Prover</strong> — Must execute the computation being proven, then perform additional cryptographic operations. A 1-2 minute computation for a typical game move.</li>
+<li><strong>Verifier</strong> — On-chain verification is much cheaper (100k-500k gas for a Groth16 proof) but still significant compared to a simple state read.</li>
+</ul>
+<p>This means:</p>
+<ul>
+<li>Players generate proofs on their client before submitting transactions</li>
+<li>Proof generation is a user-facing latency cost (can be mitigated with proof delegation—a server generates proofs on behalf of the user)</li>
+<li>Verification on-chain is a gas cost that must be paid</li>
+</ul>
+<h2 id="limitations-and-alternatives">Limitations and Alternatives</h2>
+<p><strong>Trusted setup</strong> — Groth16 requires a trusted setup phase where a trusted ceremony is run to generate public parameters. If the ceremony is compromised, proofs can be forged. Subsequent schemes (Plonk, Halo2) eliminate this with universal or transparent setups.</p>
+<p><strong>Circuit complexity</strong> — Writing the circuit (the logic being proven) is complex and error-prone. Circuit languages (Circom, Noir) aim to simplify this, but it remains specialized work.</p>
+<p><strong>Practicality for large computations</strong> — Proving very large computations is still expensive. Games are typically constrained to game-logic proofs (move validity, not entire physics simulation).</p>
+<p><strong>Proof size</strong> — While zkSNARK proofs are smaller than STARKs, they are still hundreds of bytes, adding to transaction size and cost.</p>
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../texts/dark-forest-zero-knowledge-games.md" class="link-internal">Dark Forest</a> — pioneering use of ZKPs in gaming</li>
+<li><a href="../texts/mud-games.md" class="link-internal">Imminent Solace</a> — modern MUD game using ZK fog of war</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/terms/zero-knowledge-proof/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">blockchain games</dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul></ul></dd>
+      </div><div class="relation">
+        <dt>Subjects</dt>
+        <dd property="emsenn:Subjects"><ul><li>cryptography</li><li>privacy</li><li>blockchain</li><li>game design</li></ul></dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/zero-knowledge-proof/">Zero-Knowledge Proof</a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

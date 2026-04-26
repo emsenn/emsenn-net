@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tool Call - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-30",
+  "datePublished": "2026-03-30",
+  "description": "The atomic unit of agent-environment interaction — a structured invocation of a named function with parameters, executed by the runtime and returning a result to the model.",
+  "name": "Tool Call",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-call/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/">Terms</a></nav>
+  <h1 class="p-name">Tool Call</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-30T00:00:00Z">2026-03-30</time>
+    
+    <span class="p-summary">The atomic unit of agent-environment interaction — a structured invocation of a named function with parameters, executed by the runtime and returning a result to the model.</span>
+  </div>
+  <div class="e-content">
+    <p>A tool call is the atomic unit of interaction between an AI <a href="./agentic-system.md" class="link-internal">agent</a> and its environment. The model generates a structured request — a tool name and a set of parameters conforming to a schema — and the host runtime executes the request against the environment and returns a result. The model then reasons about the result and may issue further tool calls. This call-observe-reason-call loop is the basic rhythm of <a href="./agentic-system.md" class="link-internal">agentic</a> behavior.</p>
+<p>A tool call is distinct from <a href="./tool-use.md" class="link-internal">tool use</a> as a capability: tool use is the model&rsquo;s ability to generate tool calls; a tool call is a single instance of that ability being exercised. The relationship is analogous to &ldquo;language&rdquo; (capability) versus &ldquo;utterance&rdquo; (instance).</p>
+<p>The structure of a tool call is fixed across providers and protocols:</p>
+<ol>
+<li><strong>Name</strong> — identifies which tool to invoke (e.g., <code>Read</code>, <code>Bash</code>, <code>Edit</code>)</li>
+<li><strong>Parameters</strong> — a JSON object conforming to the tool&rsquo;s input schema</li>
+<li><strong>Execution</strong> — the runtime (not the model) performs the action</li>
+<li><strong>Result</strong> — the output is returned to the model as a message</li>
+</ol>
+<p>The model never executes a tool call directly. The runtime mediates: it validates the parameters against the schema, checks permissions, executes the call, and returns the result. This separation between intent (the model&rsquo;s generated request) and execution (the runtime&rsquo;s action) is what makes <a href="../software/domains/claude-code/terms/permission-model.md" class="link-internal">permission models</a> and <a href="../software/domains/claude-code/terms/hooks.md" class="link-internal">hooks</a> possible — they intercept the call at the runtime layer.</p>
+<p>In <a href="../software/domains/claude-code/terms/claude-code.md" class="link-internal">Claude Code</a>, tool calls are the events that <a href="../software/domains/claude-code/terms/hooks.md" class="link-internal">hooks</a> attach to: PreToolUse fires before execution, PostToolUse fires after. In the <a href="../domains/model-context-protocol/terms/model-context-protocol.md" class="link-internal">Model Context Protocol</a>, tool calls are JSON-RPC requests from the MCP client to the MCP server. In both cases, the structure is the same: name, parameters, execute, result.</p>
+
+  </div>
+  <section class="bibliography" id="bibliography"
+         vocab="https://schema.org/" typeof="ItemList">
+  <h2>References</h2><p class="bib-entry" id="ref-anthropic-tool-use" typeof="CreativeWork" resource="#ref-anthropic-tool-use">
+    <span class="bib-key">[anthropic-tool-use]</span>
+      <span property="author">Anthropic</span>.
+      (<span property="datePublished">2025</span>).
+      <cite property="name">Tool use with Claude</cite>.
+      <em property="publisher">Claude API Docs</em>.
+      <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use/overview">https://docs.anthropic.com/en/docs/build-with-claude/tool-use/overview</a>
+  </p>
+</section>
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-call/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/action/">Acts on</a></dt>
+        <dd property="emsenn:Actson">external environment</dd>
+      </div><div class="relation">
+        <dt>Citations</dt>
+        <dd property="emsenn:Citations"></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-30">2026-03-30</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-call/">Tool Call</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/terms/agent/">agents</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dd property="emsenn:Extends"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-use/">tool use</a></dd>
+      </div><div class="relation">
+        <dt>Governed by</dt>
+        <dd property="emsenn:Governedby">permission model</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/engineering/domains/tech/terms/produces/">Produces</a></dt>
+        <dd property="emsenn:Produces">tool result</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:educationalAlignment">large language model</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

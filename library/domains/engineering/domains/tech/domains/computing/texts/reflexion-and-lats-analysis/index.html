@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reflexion and LATS — Verbal Reinforcement and Tree Search for Language Agents - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Source analysis of Reflexion's verbal self-reflection loop and LATS's Monte Carlo tree search over action spaces, with implications for continuous learning pipelines",
+  "name": "Reflexion and LATS — Verbal Reinforcement and Tree Search for Language Agents",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/reflexion-and-lats-analysis/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">Reflexion and LATS — Verbal Reinforcement and Tree Search for Language Agents</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Source analysis of Reflexion&#39;s verbal self-reflection loop and LATS&#39;s Monte Carlo tree search over action spaces, with implications for continuous learning pipelines</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#reflexion-failure-becomes-language-becomes-behavior-change">Reflexion: failure becomes language becomes behavior change</a>
+      <ul>
+        <li><a href="#the-core-loop">The core loop</a></li>
+        <li><a href="#the-self-reflection-prompt">The self-reflection prompt</a></li>
+        <li><a href="#episodic-memory-buffer">Episodic memory buffer</a></li>
+        <li><a href="#the-evaluator">The evaluator</a></li>
+        <li><a href="#what-reflexion-does-not-do">What Reflexion does not do</a></li>
+      </ul>
+    </li>
+    <li><a href="#lats-monte-carlo-tree-search-over-action-space">LATS: Monte Carlo tree search over action space</a>
+      <ul>
+        <li><a href="#the-architecture">The architecture</a></li>
+        <li><a href="#the-search-cycle-lats_search">The search cycle (<code>lats_search</code>)</a></li>
+        <li><a href="#the-uct-formula">The UCT formula</a></li>
+        <li><a href="#the-llm-evaluator">The LLM evaluator</a></li>
+        <li><a href="#self-reflection-in-lats">Self-reflection in LATS</a></li>
+        <li><a href="#the-programming-variant-programmingmctspy">The programming variant (<code>programming/mcts.py</code>)</a></li>
+      </ul>
+    </li>
+    <li><a href="#evaluator-designs-compared">Evaluator designs compared</a></li>
+    <li><a href="#what-to-adopt">What to adopt</a>
+      <ul>
+        <li><a href="#self-reflection-on-failure--our-cl-pipeline">Self-reflection on failure → our CL pipeline</a></li>
+        <li><a href="#episodic-memory-buffer--instinct-memory">Episodic memory buffer → instinct memory</a></li>
+        <li><a href="#tree-search-for-plan-evaluation">Tree search for plan evaluation</a></li>
+        <li><a href="#structured-failure-feedback">Structured failure feedback</a></li>
+      </ul>
+    </li>
+    <li><a href="#connection-to-algebraic-learning-calculus">Connection to algebraic learning calculus</a></li>
+    <li><a href="#see-also">See also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="reflexion-and-lats--verbal-reinforcement-and-tree-search-for-language-agents">Reflexion and LATS — Verbal Reinforcement and Tree Search for Language Agents</h1>
+<p>Two systems from the same Princeton research lineage (Shinn, Yao, Narasimhan) that solve the same problem differently: how does a language agent learn from failure without gradient updates?</p>
+<h2 id="reflexion-failure-becomes-language-becomes-behavior-change">Reflexion: failure becomes language becomes behavior change</h2>
+<h3 id="the-core-loop">The core loop</h3>
+<p>Reflexion implements a three-component cycle — actor, evaluator, self-reflection — that runs across <em>trials</em> (not within a single episode). The agent attempts a task, fails, reflects on <em>why</em> it failed in natural language, then uses that reflection as additional context on the next attempt.</p>
+<p>The implementation (<code>hotpotqa_runs/agents.py</code>) makes this concrete:</p>
+<ol>
+<li><strong>Actor</strong> executes a reasoning trace (CoT or ReAct) and produces an answer.</li>
+<li><strong>Evaluator</strong> checks the answer against ground truth via exact match (<code>EM()</code> function). Binary signal: correct or not.</li>
+<li><strong>Self-reflection module</strong> takes the failed reasoning trace and generates a natural language diagnosis: &ldquo;I searched one of the prime ministers, then attempted to answer right away. I should have searched each of the prime ministers.&rdquo;</li>
+<li>The reflection is appended to an <strong>episodic memory buffer</strong> — a simple <code>List[str]</code> stored on the agent object (<code>self.reflections</code>).</li>
+<li>On the next trial, reflections are injected into the prompt via <code>format_reflections()</code>, preceded by: &ldquo;You have attempted to answer following question before and failed. The following reflection(s) give a plan to avoid failing to answer the question in the same way you did previously.&rdquo;</li>
+</ol>
+<h3 id="the-self-reflection-prompt">The self-reflection prompt</h3>
+<p>The reflection prompt (<code>prompts.py:117</code>) asks the model to:</p>
+<ul>
+<li>Diagnose a possible reason for failure</li>
+<li>Devise a new, concise, high-level plan that aims to mitigate the same failure</li>
+</ul>
+<p>This is not free-form journaling. The prompt constrains the output to be <em>actionable</em> — a plan, not a summary. Few-shot examples reinforce this: the example reflections are 1-2 sentences identifying a specific tactical error and proposing a specific alternative.</p>
+<h3 id="episodic-memory-buffer">Episodic memory buffer</h3>
+<p>The memory is strikingly simple. In the HotPotQA variant, <code>self.reflections</code> is a list of strings. Each new reflection is appended. They compose by concatenation with bullet formatting:</p>
+<pre tabindex="0"><code>Reflections:
+- [reflection from trial 1]
+- [reflection from trial 2]
+</code></pre><p>In AlfWorld (<code>generate_reflections.py</code>), the memory has a sliding window: only the last 3 reflections are used. This prevents prompt bloat but also means old lessons are forgotten.</p>
+<p>In the programming variant (<code>programming_runs/reflexion.py</code>), the structure is richer. Each iteration stores:</p>
+<ul>
+<li>The current implementation</li>
+<li>Test feedback (which tests passed/failed, with actual vs expected output)</li>
+<li>A self-reflection explaining why the implementation is wrong</li>
+</ul>
+<p>The reflection for code (<code>generators/py_generate.py:152</code>) is more specific than for QA: &ldquo;Your goal is to write a few sentences to explain why your implementation is wrong as indicated by the tests. You will need this as a hint when you try again later.&rdquo;</p>
+<h3 id="the-evaluator">The evaluator</h3>
+<p>Reflexion uses different evaluators per domain:</p>
+<ul>
+<li><strong>QA (HotPotQA)</strong>: Exact string match after normalization — remove articles, punctuation, lowercase, whitespace fix. Binary.</li>
+<li><strong>Decision-making (AlfWorld)</strong>: Environment reward signal — task success or failure. Binary.</li>
+<li><strong>Programming</strong>: Two-stage. First, internal unit tests (LLM-generated or provided) produce pass/fail with feedback strings. If internal tests pass, the solution is evaluated against held-out tests. The feedback from failing tests is what drives reflection.</li>
+</ul>
+<p>The programming evaluator is the most sophisticated because it produces <em>structured</em> failure information: which tests failed, what the actual output was, and what was expected. This structured feedback is what makes code reflection effective.</p>
+<h3 id="what-reflexion-does-not-do">What Reflexion does not do</h3>
+<ul>
+<li>No persistent memory across tasks. Reflections are per-question, discarded between questions.</li>
+<li>No generalization. A reflection about search strategy on one HotPotQA question does not inform behavior on a different question.</li>
+<li>No confidence scoring. Each reflection is treated equally.</li>
+<li>No reflection on <em>success</em>. The system only reflects when the evaluator returns failure.</li>
+</ul>
+<h2 id="lats-monte-carlo-tree-search-over-action-space">LATS: Monte Carlo tree search over action space</h2>
+<h3 id="the-architecture">The architecture</h3>
+<p>LATS extends Reflexion by adding tree search. Instead of a linear sequence of trial-reflect-retry, LATS builds a tree of possible reasoning trajectories and uses UCT (Upper Confidence Bounds applied to Trees) to explore the most promising branches.</p>
+<p>The core structure (<code>hotpot/lats.py</code>) uses:</p>
+<ul>
+<li><strong>Nodes</strong> representing states (thought, action, observation triples)</li>
+<li><strong>UCT selection</strong> for balancing exploration vs exploitation</li>
+<li><strong>LLM-based value function</strong> for evaluating partial trajectories</li>
+<li><strong>Rollout</strong> for simulating trajectory completions</li>
+<li><strong>Backpropagation</strong> for updating node values up the tree</li>
+</ul>
+<h3 id="the-search-cycle-lats_search">The search cycle (<code>lats_search</code>)</h3>
+<p>Each iteration:</p>
+<ol>
+<li><strong>Select</strong>: Walk down the tree from root using UCT (<code>node.uct()</code>) to find the most promising unexplored node.</li>
+<li><strong>Expand</strong>: Generate <code>n_generate_sample</code> new action continuations from the selected node. Each continuation involves an LLM call that produces a thought-action pair.</li>
+<li><strong>Evaluate</strong>: Use an LLM-based value function to score each new child. The value prompt asks the model to assess trajectory correctness on a 1-10 scale.</li>
+<li><strong>Rollout</strong>: From the highest-valued child, simulate forward to a terminal state (max depth 4).</li>
+<li><strong>Backpropagate</strong>: Update visit counts and values up the tree from the terminal node.</li>
+</ol>
+<h3 id="the-uct-formula">The UCT formula</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">uct</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>visits <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>value
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>value <span style="color:#f92672">/</span> self<span style="color:#f92672">.</span>visits <span style="color:#f92672">+</span> np<span style="color:#f92672">.</span>sqrt(<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>log(self<span style="color:#f92672">.</span>parent<span style="color:#f92672">.</span>visits) <span style="color:#f92672">/</span> self<span style="color:#f92672">.</span>visits)
+</span></span></code></pre></div><p>Standard UCB1 with exploration constant sqrt(2). Unvisited nodes return their initial value (from the LLM evaluation), which seeds them with an informed prior rather than infinity.</p>
+<h3 id="the-llm-evaluator">The LLM evaluator</h3>
+<p>This is where LATS diverges most from Reflexion. The value function (<code>hotpotqa.py:value_prompt_wrap</code>) asks the LLM to assess a partial trajectory&rsquo;s correctness. The output is parsed as a 1-10 score (<code>value_outputs_unwrap</code> — a cascade of string-contains checks, crude but functional).</p>
+<p>When failed trajectories exist, they are included in the value prompt with their reflections as negative examples: &ldquo;This trajectory is incorrect as [reflection]. Thus the correctness score is 1.&rdquo; This biases the evaluator away from known-bad paths.</p>
+<h3 id="self-reflection-in-lats">Self-reflection in LATS</h3>
+<p>LATS inherits Reflexion&rsquo;s self-reflection but applies it differently. Failed terminal trajectories are collected, and reflections are generated over batches of unique failures (<code>generate_self_reflection</code> in <code>hotpotqa.py</code>). These reflections then inform <em>both</em> the expansion (via the <code>cot_prompt_wrap</code>) and the evaluation (via the <code>value_prompt_wrap</code>).</p>
+<p>The reflection integration is more structural than Reflexion&rsquo;s simple concatenation. Failed trajectories with their reflections are formatted as negative examples with explicit &ldquo;FAILED TRAJECTORY&rdquo; markers, showing the model what to avoid.</p>
+<h3 id="the-programming-variant-programmingmctspy">The programming variant (<code>programming/mcts.py</code>)</h3>
+<p>The code LATS variant is cleaner architecturally:</p>
+<ul>
+<li><code>gather_context_from_tree()</code> walks up from a node collecting all ancestor feedback and reflections</li>
+<li>Reward is computed as fraction of internal tests passed (continuous, not binary)</li>
+<li>Each child node stores its own <code>test_feedback</code> and <code>reflection</code>, making the tree a structured memory of all attempted solutions and their failure analyses</li>
+</ul>
+<h2 id="evaluator-designs-compared">Evaluator designs compared</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Aspect</th>
+          <th>Reflexion</th>
+          <th>LATS</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Signal type</strong></td>
+          <td>Binary (correct/incorrect)</td>
+          <td>Continuous (1-10 score from LLM)</td>
+      </tr>
+      <tr>
+          <td><strong>Source</strong></td>
+          <td>Ground truth or environment</td>
+          <td>LLM judgment + environment</td>
+      </tr>
+      <tr>
+          <td><strong>Granularity</strong></td>
+          <td>Per-trial</td>
+          <td>Per-node (partial trajectories)</td>
+      </tr>
+      <tr>
+          <td><strong>Feedback</strong></td>
+          <td>Structured for code; binary for QA</td>
+          <td>Always includes trajectory context</td>
+      </tr>
+      <tr>
+          <td><strong>Cost</strong></td>
+          <td>1 LLM call per reflection</td>
+          <td>n_evaluate_sample calls per node evaluation</td>
+      </tr>
+  </tbody>
+</table>
+<p>LATS pays significantly more in LLM calls for richer signal. Reflexion is cheaper but can only learn from complete failures.</p>
+<h2 id="what-to-adopt">What to adopt</h2>
+<h3 id="self-reflection-on-failure--our-cl-pipeline">Self-reflection on failure → our CL pipeline</h3>
+<p>Our continuous learning system (observations → instincts → skills) already captures <em>that</em> something happened, but not <em>why</em> it failed. Reflexion&rsquo;s self-reflection prompt pattern maps directly:</p>
+<p>Current: observation records what happened, confidence score tracks frequency.
+Missing: a reflection step that diagnoses <em>why</em> a pattern failed and produces an actionable correction.</p>
+<p>The reflection prompt template is directly applicable: &ldquo;You were unsuccessful. Diagnose a possible reason for failure and devise a new, concise, high-level plan that aims to mitigate the same failure.&rdquo; This should fire when an instinct&rsquo;s predicted action leads to a user correction or a failed outcome.</p>
+<h3 id="episodic-memory-buffer--instinct-memory">Episodic memory buffer → instinct memory</h3>
+<p>Reflexion&rsquo;s memory is per-task. Ours needs to be per-office (situated in a practice community). But the composition pattern — reflections as a formatted list injected into the action prompt — maps to how instincts already compose in agent prompts.</p>
+<p>The AlfWorld sliding window (last 3 reflections) is relevant for our context budget concerns. LATS&rsquo;s tree-based <code>gather_context_from_tree()</code> is more sophisticated — walking up the decision tree to collect relevant ancestor context. For multi-step plans, the tree walk pattern is better than flat concatenation.</p>
+<h3 id="tree-search-for-plan-evaluation">Tree search for plan evaluation</h3>
+<p>LATS&rsquo;s approach to exploring before committing is directly applicable to plan evaluation. Instead of generating one plan and executing it, we could:</p>
+<ol>
+<li>Generate multiple plan variants (expansion)</li>
+<li>Use LLM evaluation to score each variant (evaluation)</li>
+<li>Select the most promising one (selection via UCT or simpler ranking)</li>
+<li>If it fails, backpropagate the failure and try the next-best branch</li>
+</ol>
+<p>This is heavier than our current plan-then-execute pattern but would catch more failures before they waste execution time.</p>
+<h3 id="structured-failure-feedback">Structured failure feedback</h3>
+<p>Reflexion&rsquo;s programming variant shows the value of <em>structured</em> failure feedback. &ldquo;Tests failed: assert add(1,2) == 3 # output: -1&rdquo; is far more useful than &ldquo;the task failed.&rdquo; Our hook system already produces structured output (blocked messages, error logs). The gap is in feeding that structure into the reflection step rather than just recording it.</p>
+<h2 id="connection-to-algebraic-learning-calculus">Connection to algebraic learning calculus</h2>
+<p>Reflexion treats reflection as string concatenation. LATS treats it as tree-valued search. Neither has a <em>theory</em> of what learning means.</p>
+<p>The <a href="../../../../../../operations/command/ideas/algebraic-learning-calculus.md" class="link-internal">algebraic learning calculus</a> idea identifies what&rsquo;s missing:</p>
+<ol>
+<li>
+<p><strong>Closure, not accumulation.</strong> Reflexion appends reflections without checking convergence. An instinct that keeps generating new reflections without settling has not learned — it is oscillating. The closure operator test (does applying the training operator again produce the same result?) would detect this.</p>
+</li>
+<li>
+<p><strong>Bilattice composition, not concatenation.</strong> A reflection has both content (&ldquo;search each prime minister separately&rdquo;) and context (&ldquo;when answering multi-entity questions&rdquo;). Reflexion&rsquo;s flat list loses the context dimension. Bilattice-valued relevance scoring would preserve it.</p>
+</li>
+<li>
+<p><strong>Competency, not visit count.</strong> LATS uses visit counts for UCT exploration weighting. Reflexion uses trial count implicitly (more trials = more reflections). Neither measures whether the agent has actually <em>demonstrated</em> the skill the reflection teaches. PQS-style qualification gates would replace both.</p>
+</li>
+<li>
+<p><strong>Formality progression.</strong> A Reflexion reflection is always prose (F1). LATS&rsquo;s tree structure is closer to F2 (structured). Neither reaches F3 (algebraic). The progression from &ldquo;don&rsquo;t search just one prime minister&rdquo; to &ldquo;for multi-entity questions, enumerate all entities before answering&rdquo; to a pattern-matching rule is the F0→F3 trajectory.</p>
+</li>
+</ol>
+<p>The concrete next step: implement a reflection-on-failure hook that fires when an instinct leads to a correction, using Reflexion&rsquo;s prompt pattern. Store the reflection alongside the instinct. When the instinct next fires, include relevant reflections (sliding window, most recent 3). Track whether reflections actually prevent the failure from recurring — that&rsquo;s the closure test.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="./continuous-learning-in-agentic-harnesses.md" class="link-internal">Continuous Learning in Agentic Harnesses</a></li>
+<li><a href="./voyager-skill-library-analysis.md" class="link-internal">Voyager Skill Library Analysis</a></li>
+<li><a href="../../../../../../operations/command/ideas/algebraic-learning-calculus.md" class="link-internal">Algebraic Learning Calculus</a> (idea)</li>
+<li><a href="../../../../../../../library/domains/humanities/domains/education/texts/training-as-closure.md" class="link-internal">Training as Closure</a></li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/reflexion-and-lats-analysis/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Connects to</dt>
+        <dd property="emsenn:Connectsto"><ul><li>continuous learning in agentic harnesses</li><li>algebraic learning calculus</li><li>training as closure</li><li>voyager skill library analysis</li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul><li>Shinn et al., &#39;Reflexion: Language Agents with Verbal Reinforcement Learning&#39; (NeurIPS 2023)</li><li>Zhou et al., &#39;Language Agent Tree Search Unifies Reasoning Acting and Planning in Language Models&#39; (ICML 2024)</li><li>https://github.com/noahshinn/reflexion</li><li>https://github.com/lapisrocks/LanguageAgentTreeSearch</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

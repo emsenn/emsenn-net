@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entity Component System - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-05",
+  "datePublished": "2026-04-05",
+  "description": "An architectural pattern in game development that separates data (components) from behavior (systems), using composition over inheritance. Applied to blockchains in MUD for fully on-chain games.",
+  "name": "Entity Component System",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/terms/entity-component-system/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/">Blockchain</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/">Blockchain Games</a></nav>
+  <h1 class="p-name">Entity Component System</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
+    
+    <span class="p-summary">An architectural pattern in game development that separates data (components) from behavior (systems), using composition over inheritance. Applied to blockchains in MUD for fully on-chain games.</span>
+  </div>
+  <div class="e-content">
+    <h1 id="entity-component-system">Entity Component System</h1>
+<p>An Entity Component System (ECS) is a software architecture for games and simulations where:</p>
+<ul>
+<li><strong>Entities</strong> are containers (typically just unique identifiers) with no inherent properties</li>
+<li><strong>Components</strong> are data attached to entities (e.g., Position, Health, Velocity)</li>
+<li><strong>Systems</strong> are functions that operate on entities with specific components (e.g., MovementSystem reads Position and Velocity, writes new Position)</li>
+</ul>
+<p>ECS uses composition over inheritance: instead of defining a class hierarchy (Player &lt; Creature &lt; Entity), every entity is just an ID, and behavior emerges from the set of components attached to it.</p>
+<h2 id="core-principle">Core Principle</h2>
+<p>Traditional OOP game design creates type hierarchies:</p>
+<pre tabindex="0"><code>Entity
+  ├── Creature
+  │   ├── Monster
+  │   └── Player
+  └── Item
+      ├── Weapon
+      └── Armor
+</code></pre><p>This creates problems: a player might be able to polymorph into a monster; a monster might pick up a weapon. The hierarchy becomes brittle.</p>
+<p>ECS inverts this: instead of asking &ldquo;what is this thing?&rdquo;, ask &ldquo;what components does it have?&rdquo;</p>
+<pre tabindex="0"><code>Entity 1: {Position, Health, Inventory, PlayerControl}
+Entity 2: {Position, Health, MonsterAI}
+Entity 3: {Position, Weapon}
+</code></pre><p>A system that heals checks for the Health component; it doesn&rsquo;t care whether the entity is a Player or Monster. A system that applies AI only runs on entities with MonsterAI.</p>
+<h2 id="benefits">Benefits</h2>
+<ol>
+<li><strong>Flexibility</strong> — Add or remove capabilities by adding/removing components. No special classes needed.</li>
+<li><strong>Performance</strong> — In traditional game engines, components are laid out contiguously in memory (cache-friendly). Systems iterate only over entities with relevant components.</li>
+<li><strong>Modularity</strong> — Systems are independent. A new system can be added without modifying existing code.</li>
+<li><strong>Testability</strong> — Systems are pure functions (given components, produce components). Easy to unit test.</li>
+</ol>
+<h2 id="ecs-in-traditional-game-engines">ECS in Traditional Game Engines</h2>
+<p>ECS is standard in modern game development:</p>
+<ul>
+<li><strong>Bevy</strong> (Rust) — ECS-first engine</li>
+<li><strong>Unity DOTS</strong> — Data-Oriented Technology Stack, ECS for high-performance games</li>
+<li><strong>Unreal Engine</strong> — Entity Subsystem framework uses ECS principles</li>
+<li><strong>Godot</strong> — Node-based scene system is ECS-adjacent</li>
+</ul>
+<h2 id="ecs-on-blockchains">ECS on Blockchains</h2>
+<p>MUD applies ECS to Solidity smart contracts. Instead of the engine managing entity-component data, smart contracts do:</p>
+<ul>
+<li><strong>Entities</strong> are keys in tables (e.g., player address)</li>
+<li><strong>Components</strong> are table columns (e.g., Position, Health stored in separate tables)</li>
+<li><strong>Systems</strong> are smart contracts that read and write to tables</li>
+</ul>
+<p>The pattern is the same, but implementation differs because:</p>
+<ul>
+<li>Blockchain storage is permanent and costly (gas), not volatile</li>
+<li>Access is mediated by the World contract and access control rules</li>
+<li>All state is public and cryptographically verifiable</li>
+</ul>
+<p>This allows games to be fully on-chain: all state is stored in smart contracts, all logic is encoded in Systems, and the world persists indefinitely regardless of client or server status.</p>
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../texts/mud-framework-architecture.md" class="link-internal">MUD Framework Architecture</a> — ECS applied to blockchain</li>
+<li><a href="../texts/autonomous-worlds-concept.md" class="link-internal">Autonomous Worlds</a> — games built on ECS architectures</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/terms/entity-component-system/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">blockchain games</dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul></ul></dd>
+      </div><div class="relation">
+        <dt>Subjects</dt>
+        <dd property="emsenn:Subjects"><ul><li>game architecture</li><li>design patterns</li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/programming/terms/composition/">composition</a></li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voyager Skill Library Analysis - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "Architecture analysis of the Voyager open-ended embodied agent — skill library, self-verification, automatic curriculum, and compositional skills.",
+  "name": "Voyager Skill Library Analysis",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/voyager-skill-library-analysis/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">Voyager Skill Library Analysis</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">Architecture analysis of the Voyager open-ended embodied agent — skill library, self-verification, automatic curriculum, and compositional skills.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#architecture-overview">Architecture Overview</a></li>
+    <li><a href="#the-skill-library">The Skill Library</a>
+      <ul>
+        <li><a href="#storage">Storage</a></li>
+        <li><a href="#semantic-indexing">Semantic Indexing</a></li>
+        <li><a href="#description-generation">Description Generation</a></li>
+        <li><a href="#retrieval-flow">Retrieval Flow</a></li>
+      </ul>
+    </li>
+    <li><a href="#self-verification-the-critic-agent">Self-Verification: The Critic Agent</a>
+      <ul>
+        <li><a href="#what-the-critic-sees">What the Critic Sees</a></li>
+        <li><a href="#what-the-critic-catches">What the Critic Catches</a></li>
+        <li><a href="#design-choice-state-based-not-trace-based">Design Choice: State-Based, Not Trace-Based</a></li>
+      </ul>
+    </li>
+    <li><a href="#automatic-curriculum">Automatic Curriculum</a>
+      <ul>
+        <li><a href="#inputs">Inputs</a></li>
+        <li><a href="#warm-up-mechanism">Warm-Up Mechanism</a></li>
+        <li><a href="#task-proposal-logic">Task Proposal Logic</a></li>
+        <li><a href="#qa-system">QA System</a></li>
+        <li><a href="#task-decomposition">Task Decomposition</a></li>
+      </ul>
+    </li>
+    <li><a href="#compositional-skills">Compositional Skills</a>
+      <ul>
+        <li><a href="#how-skills-reference-earlier-skills">How Skills Reference Earlier Skills</a></li>
+        <li><a href="#the-programs-property">The Programs Property</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-we-should-adopt">What We Should Adopt</a>
+      <ul>
+        <li><a href="#1-semantic-retrieval-for-instincts">1. Semantic Retrieval for Instincts</a></li>
+        <li><a href="#2-automatic-curriculum-for-dispatch">2. Automatic Curriculum for Dispatch</a></li>
+        <li><a href="#3-compositional-skill-hierarchies">3. Compositional Skill Hierarchies</a></li>
+        <li><a href="#4-state-based-verification">4. State-Based Verification</a></li>
+        <li><a href="#5-description-first-indexing">5. Description-First Indexing</a></li>
+      </ul>
+    </li>
+    <li><a href="#limitations-worth-noting">Limitations Worth Noting</a></li>
+    <li><a href="#see-also">See Also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="voyager-skill-library-analysis">Voyager Skill Library Analysis</h1>
+<p>Voyager is an LLM-powered agent for Minecraft that learns an open-ended repertoire of skills without human intervention. It demonstrates three mechanisms directly relevant to our harness: a semantic skill library, a self-verification critic, and an automatic curriculum. This analysis is based on the source code at <code>MineDojo/Voyager</code> (commit as of 2026-04-04).</p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>Voyager&rsquo;s main loop (<code>voyager.py:learn</code>) runs indefinitely:</p>
+<ol>
+<li><strong>Curriculum agent</strong> proposes the next task based on the agent&rsquo;s current state, completed tasks, and failed tasks.</li>
+<li><strong>Action agent</strong> generates JavaScript code to execute the task in Minecraft, receiving relevant skills from the library as context.</li>
+<li><strong>Critic agent</strong> inspects the post-execution game state and judges whether the task succeeded, providing critique if it failed.</li>
+<li>On success, the <strong>skill manager</strong> extracts the working code, generates a natural-language description, and stores both in the skill library.</li>
+<li>On failure, the curriculum agent records the failure and proposes a different task.</li>
+</ol>
+<p>The loop has no terminal condition except an iteration cap. This is true open-ended learning — there is no predefined goal list.</p>
+<h2 id="the-skill-library">The Skill Library</h2>
+<h3 id="storage">Storage</h3>
+<p>The skill library is a flat dictionary (<code>skills.json</code>) mapping skill names to <code>{code, description}</code> pairs. Each skill is also persisted as two separate files:</p>
+<ul>
+<li><code>skill/code/{name}.js</code> — the executable JavaScript function</li>
+<li><code>skill/description/{name}.txt</code> — the LLM-generated natural-language description</li>
+</ul>
+<p>When a skill is overwritten (same name, improved code), the old version is archived as <code>{name}V{n}.js</code>, preserving history. The library from trial 1 contains 57 learned skills, ranging from <code>mineWoodLog</code> to <code>craftIronPickaxe</code> to <code>killOneEnderman</code>.</p>
+<h3 id="semantic-indexing">Semantic Indexing</h3>
+<p>Skills are indexed in a Chroma vector database. The embedding key is the <strong>description</strong>, not the code. When the agent needs skills for a new task, it queries the vector store with the task context as the search string and retrieves the top-k most similar skill descriptions (<code>retrieval_top_k=5</code> by default).</p>
+<p>This is the critical insight: <strong>retrieval is by semantic similarity of what the skill does, not by name matching or category</strong>. The query is the natural-language task context (e.g., &ldquo;How to craft an iron pickaxe in Minecraft?&rdquo;), and the descriptions are natural-language summaries of the skill&rsquo;s behavior.</p>
+<h3 id="description-generation">Description Generation</h3>
+<p>The <code>SkillManager.generate_skill_description</code> method sends the raw JavaScript code to a separate LLM call with a prompt that asks for a plain-English summary of the function&rsquo;s behavior in 6 sentences or fewer. The description is formatted as a comment inside a function stub:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">craftIronPickaxe</span>(<span style="color:#a6e22e">bot</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// The function checks if there are enough iron ingots and sticks...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>This formatting means the description is itself valid JavaScript that can be injected into a prompt as a code example without breaking syntax highlighting.</p>
+<h3 id="retrieval-flow">Retrieval Flow</h3>
+<p>In <code>voyager.py:reset</code>, before the action agent starts working on a task:</p>
+<ol>
+<li>The skill manager queries the vector store with <code>self.context</code> (the task context from the curriculum agent).</li>
+<li>The top-k skill <strong>code</strong> bodies are retrieved and injected into the action agent&rsquo;s system prompt.</li>
+<li>After each iteration step, skills are re-retrieved using an augmented query that includes a summary of execution errors from the chat log.</li>
+</ol>
+<p>This means the agent&rsquo;s available skill context adapts within a single task attempt — if initial code fails because it needs a crafting table, the re-query may surface <code>craftCraftingTable</code> for the next iteration.</p>
+<h2 id="self-verification-the-critic-agent">Self-Verification: The Critic Agent</h2>
+<p>The critic agent (<code>critic.py</code>) is a separate LLM that receives the post-execution game state and the original task, then returns a JSON verdict:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;reasoning&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;success&#34;</span>: <span style="color:#66d9ef">true</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;critique&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="what-the-critic-sees">What the Critic Sees</h3>
+<p>The critic receives: biome, time, nearby blocks, health, hunger, position, equipment, inventory contents, chest contents, the task description, and task context. It does <strong>not</strong> see the generated code or the execution trace — only the resulting game state.</p>
+<h3 id="what-the-critic-catches">What the Critic Catches</h3>
+<p>The prompt includes 7 few-shot examples covering:</p>
+<ul>
+<li>Counting items across categories (2 oak logs + 2 spruce logs = 4 wood logs → success)</li>
+<li>Having materials but not having crafted the target (has planks and sticks but no pickaxe → failure with critique)</li>
+<li>Item name transformations (mining iron_ore yields raw_iron)</li>
+<li>Placement verification via nearby blocks</li>
+<li>Mob kill verification via dropped items</li>
+<li>Eating verification via hunger level</li>
+<li>Deposit tasks verified by inventory slot count</li>
+</ul>
+<p>The critique text is fed back to the action agent as part of the next iteration&rsquo;s human message, creating a feedback loop: critic identifies what went wrong, action agent adjusts code.</p>
+<h3 id="design-choice-state-based-not-trace-based">Design Choice: State-Based, Not Trace-Based</h3>
+<p>The critic judges success solely from the resulting state, not from observing the execution. This is robust — it doesn&rsquo;t matter how the agent achieved the result, only whether the result was achieved. But it means the critic cannot diagnose <em>process</em> failures (e.g., &ldquo;you used the wrong pickaxe type&rdquo; or &ldquo;you walked in circles for 30 seconds&rdquo;).</p>
+<h2 id="automatic-curriculum">Automatic Curriculum</h2>
+<p>The curriculum agent (<code>curriculum.py</code>) decides what to learn next. This is Voyager&rsquo;s answer to the exploration-exploitation problem.</p>
+<h3 id="inputs">Inputs</h3>
+<p>The curriculum agent receives:</p>
+<ul>
+<li>Current game state (biome, time, blocks, entities, health, hunger, position, equipment, inventory)</li>
+<li>Completed tasks list</li>
+<li>Failed tasks list</li>
+<li>QA context: answers to questions about the current biome (what blocks, items, and mobs are available)</li>
+</ul>
+<h3 id="warm-up-mechanism">Warm-Up Mechanism</h3>
+<p>The curriculum uses a <strong>warm-up schedule</strong> that progressively reveals information. Early in training (&lt; 15 completed tasks), the agent sees minimal context — just nearby blocks and basic stats. As it completes more tasks, additional observation types are unlocked:</p>
+<ul>
+<li>Context QA unlocks at task 15</li>
+<li>Biome info at task 10</li>
+<li>Other blocks at task 10</li>
+<li>Nearby entities at task 5</li>
+<li>Health/hunger at task 15</li>
+</ul>
+<p>This prevents the agent from being overwhelmed by information early on and mimics a pedagogical principle: <strong>start simple, add complexity as competence grows</strong>.</p>
+<p>Additionally, observations that have passed the warm-up threshold are included with 80% probability (random dropout), preventing the agent from over-relying on any single observation type.</p>
+<h3 id="task-proposal-logic">Task Proposal Logic</h3>
+<ol>
+<li><strong>First task is hardcoded</strong>: &ldquo;Mine 1 wood log&rdquo; — every playthrough starts the same way.</li>
+<li><strong>Inventory management triggers</strong>: If inventory is ≥ 33/36 full, the agent is directed to deposit items or craft/place a chest. This is a survival constraint, not a learning goal.</li>
+<li><strong>LLM-proposed tasks</strong>: The curriculum prompt instructs the LLM to act as a &ldquo;mentor&rdquo; that guides the agent toward novel, appropriately difficult tasks. The prompt includes constraints:
+<ul>
+<li>Tasks must be specific (&ldquo;Mine 3 iron ore&rdquo;, not &ldquo;explore&rdquo;)</li>
+<li>Tasks should be novel — avoid repetition</li>
+<li>Tasks should not require visual confirmation (no building, planting)</li>
+<li>Tasks should be achievable given current resources</li>
+</ul>
+</li>
+</ol>
+<h3 id="qa-system">QA System</h3>
+<p>The curriculum agent runs a two-step QA process to ground its proposals in Minecraft knowledge:</p>
+<ol>
+<li><strong>Step 1 — Ask questions</strong>: Given the current state, an LLM generates questions about what&rsquo;s possible in the current biome. Plus 3 hardcoded questions about blocks, items, and mobs in the current biome.</li>
+<li><strong>Step 2 — Answer questions</strong>: A second LLM call answers each question. Answers are cached in a vector store to avoid re-answering similar questions.</li>
+</ol>
+<p>The QA answers are injected as context into the curriculum&rsquo;s task proposal, ensuring the agent proposes tasks that are actually possible in its current environment (e.g., it won&rsquo;t try to mine diamonds in a plains biome at the surface).</p>
+<h3 id="task-decomposition">Task Decomposition</h3>
+<p>For inference mode (not learning), the curriculum agent can decompose a complex task into subtasks using a separate prompt. This is used when a human gives a high-level goal like &ldquo;get diamond gear&rdquo; and the agent needs to plan the prerequisite chain.</p>
+<h2 id="compositional-skills">Compositional Skills</h2>
+<h3 id="how-skills-reference-earlier-skills">How Skills Reference Earlier Skills</h3>
+<p>Learned skills compose by calling <strong>control primitives</strong> — the base skill layer. These are hardcoded JavaScript functions:</p>
+<ul>
+<li><code>exploreUntil(bot, direction, duration, callback)</code> — move until a condition is met</li>
+<li><code>mineBlock(bot, blockName, count)</code> — find and mine blocks</li>
+<li><code>craftItem(bot, itemName, count)</code> — craft using a recipe</li>
+<li><code>placeItem(bot, itemName, position)</code> — place a block</li>
+<li><code>smeltItem(bot, inputItem, fuel, count)</code> — smelt in a furnace</li>
+<li><code>killMob(bot, mobName, timeout)</code> — find and kill a mob</li>
+<li><code>useChest(bot, chestPosition, action, items)</code> — chest operations</li>
+</ul>
+<p>When the action agent generates code for a new task, it receives both the control primitive signatures and the retrieved learned skills as context. It can call any of them. For example, <code>craftIronPickaxe</code> calls <code>mineBlock</code>, <code>smeltItem</code>, <code>craftItem</code>, and <code>placeItem</code> — all control primitives.</p>
+<p>However, <strong>learned skills do not directly call other learned skills</strong>. The composition is indirect: a learned skill&rsquo;s code may replicate patterns from previously learned skills (because those skills were in the prompt context), but it calls control primitives, not the learned skill functions. This is because all learned skills are injected into the execution environment as available functions via <code>self.skill_manager.programs</code>, but the action agent&rsquo;s prompt primarily demonstrates control primitives and retrieved skills as examples to pattern-match from.</p>
+<p>In practice, the skill library acts as a <strong>pattern memory</strong> more than a <strong>call hierarchy</strong>. The agent sees &ldquo;here&rsquo;s how <code>mineFiveIronOres</code> does it&rdquo; and writes similar code that reuses the same primitives, rather than calling <code>mineFiveIronOres</code> directly.</p>
+<h3 id="the-programs-property">The Programs Property</h3>
+<p>All learned skills are concatenated with all control primitives into a single <code>programs</code> string that is passed to the Minecraft environment for execution. This means every learned skill is technically callable, but the compositional pattern is: control primitives as the API, learned skills as examples.</p>
+<h2 id="what-we-should-adopt">What We Should Adopt</h2>
+<h3 id="1-semantic-retrieval-for-instincts">1. Semantic Retrieval for Instincts</h3>
+<p>Our instinct system stores observations and patterns, but retrieval is currently file-based (grep, glob). Voyager&rsquo;s approach — generate a natural-language description of each skill, embed it, and retrieve by semantic similarity to the current task — would dramatically improve instinct relevance.</p>
+<p><strong>Concrete application</strong>: When a session starts a task, embed the task description and retrieve the top-k most semantically similar instincts, rather than loading all instincts or relying on filename matching. This is exactly what the <code>SkillManager.retrieve_skills(query)</code> method does.</p>
+<p><strong>Key detail</strong>: The embedding is on the <em>description</em>, not the <em>code</em>. Our equivalent would be embedding the instinct&rsquo;s <code>description</code> frontmatter field, not the full file content.</p>
+<h3 id="2-automatic-curriculum-for-dispatch">2. Automatic Curriculum for Dispatch</h3>
+<p>Voyager&rsquo;s curriculum agent is the closest existing implementation to what our dispatch system needs. The parallels:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Voyager</th>
+          <th>Our System</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Game state observation</td>
+          <td>Datastore state (plans, tasks, events)</td>
+      </tr>
+      <tr>
+          <td>Completed tasks list</td>
+          <td>Completed tasks from records</td>
+      </tr>
+      <tr>
+          <td>Failed tasks list</td>
+          <td>Failed/blocked tasks</td>
+      </tr>
+      <tr>
+          <td>QA context about current biome</td>
+          <td>Domain knowledge from library</td>
+      </tr>
+      <tr>
+          <td>Warm-up schedule</td>
+          <td>Progressive capability unlocking</td>
+      </tr>
+      <tr>
+          <td>&ldquo;Novel and interesting&rdquo; constraint</td>
+          <td>Leverage-based task selection (Policy 009)</td>
+      </tr>
+  </tbody>
+</table>
+<p>The warm-up mechanism is particularly relevant: our system currently throws the full organizational state at dispatch decisions. Voyager demonstrates that <strong>progressive information revelation</strong> produces better task selection — start with what&rsquo;s immediately actionable, add strategic context as the agent matures.</p>
+<p>The 80% random inclusion of observation types is also worth considering — it would prevent our dispatch from over-fitting to whichever metric happens to be most salient.</p>
+<h3 id="3-compositional-skill-hierarchies">3. Compositional Skill Hierarchies</h3>
+<p>Voyager&rsquo;s pattern — hardcoded primitives as the base layer, learned patterns as examples — maps directly to our architecture:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Voyager</th>
+          <th>Our System</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Control primitives (<code>mineBlock</code>, <code>craftItem</code>)</td>
+          <td>Tools and MCP methods</td>
+      </tr>
+      <tr>
+          <td>Learned skills in prompt context</td>
+          <td>Skills and instincts in agent prompts</td>
+      </tr>
+      <tr>
+          <td>Skill descriptions as retrieval keys</td>
+          <td>Skill <code>description</code> field as retrieval key</td>
+      </tr>
+      <tr>
+          <td><code>programs</code> concatenation for execution</td>
+          <td>Skill content loaded into agent context</td>
+      </tr>
+  </tbody>
+</table>
+<p>The key lesson is that <strong>composition happens through example, not through call chains</strong>. Skills don&rsquo;t need to invoke each other; they need to demonstrate patterns that the action agent can recombine. This validates our current approach where skills are prompt content rather than executable functions.</p>
+<h3 id="4-state-based-verification">4. State-Based Verification</h3>
+<p>The critic pattern — a separate LLM that judges success from state, not from observing the process — could improve our review and verification flows. Currently our reviewer examines the changes made (the process). A Voyager-style critic would ask: &ldquo;given the current state of the repository, has the task been accomplished?&rdquo; This is more robust to unexpected implementation paths.</p>
+<h3 id="5-description-first-indexing">5. Description-First Indexing</h3>
+<p>Every skill in Voyager is stored with an LLM-generated description that serves as the semantic key. Our skills have <code>description</code> fields in frontmatter, but they&rsquo;re hand-written and inconsistently detailed. Generating standardized, retrievable descriptions — using an LLM to summarize what each skill enables — would make semantic retrieval viable.</p>
+<h2 id="limitations-worth-noting">Limitations Worth Noting</h2>
+<ul>
+<li><strong>No skill deprecation</strong>: Skills accumulate forever. There&rsquo;s no mechanism to prune skills that are superseded by better ones.</li>
+<li><strong>Flat retrieval</strong>: No hierarchy in the vector store — simple skills and complex skills compete equally for the top-k slots.</li>
+<li><strong>No dependency tracking</strong>: The system doesn&rsquo;t know that <code>craftIronPickaxe</code> depends on having learned to smelt iron. Composition is emergent, not explicit.</li>
+<li><strong>Single-agent</strong>: No multi-agent coordination. The curriculum, action, and critic agents are sequential, not parallel.</li>
+<li><strong>Hardcoded warm-up</strong>: The warm-up schedule is manually tuned, not learned from experience.</li>
+</ul>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="./continuous-learning-in-agentic-harnesses.md" class="link-internal">Continuous Learning in Agentic Harnesses</a></li>
+<li><a href="./ecc-skill-system-analysis.md" class="link-internal">ECC Skill System Analysis</a></li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/voyager-skill-library-analysis/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt>Relates to</dt>
+        <dd property="emsenn:Relatesto"><ul><li>continuous learning in agentic harnesses</li><li>ecc skill system analysis</li></ul></dd>
+      </div><div class="relation">
+        <dt>Source paper</dt>
+        <dd property="emsenn:Sourcepaper">Voyager: An Open Ended Embodied Agent with Large Language Models (Wang et al., 2023)</dd>
+      </div><div class="relation">
+        <dt>Source system</dt>
+        <dd property="emsenn:Sourcesystem">https://github.com/MineDojo/Voyager</dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

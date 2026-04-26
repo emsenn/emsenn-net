@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-29",
+  "datePublished": "2026-03-29",
+  "description": "The simplest orchestration pattern — a fixed sequence of LLM calls where each call's output becomes the next call's input.",
+  "name": "",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/prompt-chaining/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/">Terms</a></nav>
+  <h1 class="p-name"></h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
+    
+    <span class="p-summary">The simplest orchestration pattern — a fixed sequence of LLM calls where each call&#39;s output becomes the next call&#39;s input.</span>
+  </div>
+  <div class="e-content">
+    <p>Prompt chaining is the simplest <a href="./agent-orchestration.md" class="link-internal">agent orchestration</a> pattern: a fixed sequence of LLM calls where each call&rsquo;s output becomes the next call&rsquo;s input. Between steps, the application may transform the output, validate it against a schema, call a tool, or inject additional context. The sequence is predefined by the developer; the LLM controls the content of each step but not the execution path.</p>
+<p>Anthropic&rsquo;s &ldquo;Building Effective Agents&rdquo; (December 2024) places prompt chaining at the low-autonomy end of the orchestration spectrum:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Pattern</th>
+          <th>Model autonomy</th>
+          <th>Control flow</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Prompt chaining</strong></td>
+          <td>None — fixed sequence</td>
+          <td>Developer-specified</td>
+      </tr>
+      <tr>
+          <td>Routing</td>
+          <td>Selection — model picks a branch</td>
+          <td>Developer-specified branches</td>
+      </tr>
+      <tr>
+          <td>Orchestrator-workers</td>
+          <td>Delegation — model assigns subtasks</td>
+          <td>Model-directed</td>
+      </tr>
+      <tr>
+          <td>Autonomous agent</td>
+          <td>Full — model directs all steps</td>
+          <td>Model-directed</td>
+      </tr>
+  </tbody>
+</table>
+<p>A prompt chain is a pipeline. Step 1 generates a plan, step 2 executes each item in the plan, step 3 reviews the results. Each step has its own <a href="../../../terms/system-prompt.md" class="link-internal">system prompt</a> tailored to its role. The developer writes the steps; the model fills them in.</p>
+<h3 id="when-prompt-chaining-works">When prompt chaining works</h3>
+<p>Prompt chaining works when the task decomposes into a fixed number of steps with known dependencies. Translating a document (extract → translate → format), generating structured reports (gather data → analyze → write sections → assemble), or processing forms (extract fields → validate → store) all fit the pattern.</p>
+<h3 id="when-prompt-chaining-breaks">When prompt chaining breaks</h3>
+<p>Prompt chaining breaks when the number of steps or their order depends on the input. A debugging task requires an unknown number of investigate-hypothesize-test cycles. A research task requires following leads that may or may not pan out. These tasks need model-directed control flow — the model must decide whether to continue, branch, or stop — which is where <a href="./agent-orchestration.md" class="link-internal">agent orchestration</a> frameworks like <a href="./langgraph.md" class="link-internal">LangGraph</a> take over.</p>
+<p>Prompt chaining also does not satisfy the definition of an <a href="./agentic-system.md" class="link-internal">agentic system</a> by itself: it lacks goal-directed planning (condition 2) because the execution path is developer-specified. A prompt chain that includes a tool call satisfies condition 1 (environmental action) but fails condition 2 unless the model selects which tools to call and in what order.</p>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/prompt-chaining/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt><a href="/library/domains/humanities/domains/sociology/domains/critical-theory/domains/anarchism/terms/autonomy/">Autonomy</a></dt>
+        <dd property="emsenn:Autonomy">none</dd>
+      </div><div class="relation">
+        <dt>Contrasts with</dt>
+        <dd property="emsenn:Contrastswith">multi agent system, agentic system</dd>
+      </div><div class="relation">
+        <dt>Control flow</dt>
+        <dd property="emsenn:Controlflow">developer specified</dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
+      </div><div class="relation">
+        <dt>Defines</dt>
+        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/prompt-chaining/">prompt chaining</a></dd>
+      </div><div class="relation">
+        <dt>Pattern of</dt>
+        <dd property="emsenn:Patternof"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/">agent orchestration</a></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/engineering/domains/tech/terms/uses/">Uses</a></dt>
+        <dd property="emsenn:Uses"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/structured-output/">structured output</a></dd>
+      </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/coordination-overhead/"></a></li></ul>
+    </dd>
+  </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

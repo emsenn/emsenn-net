@@ -67,7 +67,7 @@
 
   <main id="content" data-pagefind-body>
     
-<article class="h-entry" data-type="text">
+<article class="h-entry" data-type="page">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/">On device inference</a></nav>
   <h1 class="p-name">The Two-Format Problem in Local Inference</h1>
   <div class="meta">
@@ -75,7 +75,6 @@
     
     
   </div>
-  
   <div class="e-content">
     <p>A user who wants to run <a href="terms/large-language-model.md" class="link-internal">large language models</a> locally on a machine with both a CPU and an <a href="../../terms/neural-processing-unit.md" class="link-internal">NPU</a> faces an awkward reality: the two processors require different model formats, and no practical conversion exists between them. This means downloading the same model twice, in two representations, to use both processors.</p>
 <h2 id="two-paths-to-the-same-destination">Two paths to the same destination</h2>
@@ -92,7 +91,7 @@
 </ul>
 <p>There is no way to avoid this duplication with current tooling. The two ecosystems developed independently — GGUF from the llama.cpp community optimizing for CPU, ONNX from the ML industry standardizing for hardware acceleration — and they solved different problems in incompatible ways.</p>
 <h2 id="what-might-change">What might change</h2>
-<p>Windows ML aims to be a unifying runtime that abstracts over hardware, but it consumes ONNX models, not GGUF. If the llama.cpp QNN backend matures (see <a href="npu-llm-inference.md" class="link-internal">NPU LLM inference</a>), it could allow GGUF models to run on NPUs directly — eliminating the need for separate ONNX downloads. This is the most likely path to convergence, but as of early 2026 the QNN backend remains experimental.</p>
+<p>Windows ML aims to be a unifying runtime that abstracts over hardware, but it consumes ONNX models, not GGUF. If the llama.cpp QNN backend matures (see <a href="./npu-llm-inference.md" class="link-internal">NPU LLM inference</a>), it could allow GGUF models to run on NPUs directly — eliminating the need for separate ONNX downloads. This is the most likely path to convergence, but as of early 2026 the QNN backend remains experimental.</p>
 <p>Until then, local inference on heterogeneous hardware means maintaining two model stores.</p>
 
   </div>
@@ -105,25 +104,12 @@
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-08">2026-03-08</time></dd>
       </div><div class="relation">
-        <dt>Readiness</dt>
-        <dd property="emsenn:Readiness">shaped</dd>
-      </div><div class="relation">
         <dt>Tags</dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/essay/">essay</a></li></ul></dd>
       </div>
   </dl>
 </section>
-<section class="cite-this" id="cite-this">
-  <h2>Cite</h2>
-  <pre class="cite-block"><code>@article{emsenn2026-two-format-problem,
-  author    = {emsenn},
-  title     = {The Two-Format Problem in Local Inference},
-  year      = {2026},
-  url       = {https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/two-format-problem/},
-  publisher = {emsenn.net},
-  license   = {CC BY-SA 4.0}
-}</code></pre>
-</section>
+
 
   
 

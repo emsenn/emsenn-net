@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Double-Entry Bookkeeping as Detailed Balance - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "The trial balance in double-entry bookkeeping instantiates the detailed balance condition from Markov chain theory. Conservation of quantity across accounts is the same conservation law that governs equilibrium in stochastic systems.",
+  "name": "Double-Entry Bookkeeping as Detailed Balance",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/domesticity/domains/logistics/bookkeeping/texts/double-entry-as-detailed-balance/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/domesticity/">Domesticity</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/domesticity/domains/logistics/bookkeeping/">Bookkeeping</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/domesticity/domains/logistics/bookkeeping/texts/">Texts</a></nav>
+  <h1 class="p-name">Double-Entry Bookkeeping as Detailed Balance</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">The trial balance in double-entry bookkeeping instantiates the detailed balance condition from Markov chain theory. Conservation of quantity across accounts is the same conservation law that governs equilibrium in stochastic systems.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-detailed-balance-condition">The Detailed Balance Condition</a></li>
+    <li><a href="#the-trial-balance-as-partition-function">The Trial Balance as Partition Function</a></li>
+    <li><a href="#why-this-is-not-an-analogy">Why This Is Not an Analogy</a></li>
+    <li><a href="#the-depth-filtration">The Depth Filtration</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="double-entry-bookkeeping-as-detailed-balance">Double-Entry Bookkeeping as Detailed Balance</h1>
+<p>Double-entry bookkeeping is not merely a convention for keeping records straight. It is a conservation law — the same conservation law that governs equilibrium distributions in stochastic processes. The trial balance is a partition function evaluation: it sums across all accounts and must yield zero.</p>
+<h2 id="the-detailed-balance-condition">The Detailed Balance Condition</h2>
+<p>In Markov chain theory, a system is in <em>detailed balance</em> when, for every pair of states <em>i</em> and <em>j</em>, the flow from <em>i</em> to <em>j</em> exactly equals the flow from <em>j</em> to <em>i</em>:</p>
+<pre><code>π(i) · P(i→j) = π(j) · P(j→i)
+</code></pre>
+<p>where π is the stationary distribution and P is the transition matrix. Detailed balance is stronger than mere equilibrium: it requires that <em>every pairwise exchange</em> is balanced, not just the aggregate (Kelly, 1979; Norris, 1997).</p>
+<p>A double-entry transaction satisfies this condition exactly. When a transaction moves quantity <em>q</em> from account <em>A</em> to account <em>B</em>, it records both a debit to <em>A</em> and a credit to <em>B</em> of the same amount. The flow from <em>A</em> to <em>B</em> is matched by an equal and opposite accounting flow. No transaction can move value in one direction without recording the compensating movement.</p>
+<h2 id="the-trial-balance-as-partition-function">The Trial Balance as Partition Function</h2>
+<p>The trial balance sums all account balances and checks that the result is zero. This is a partition function evaluation in the statistical mechanics sense: a sum over all states of the system, weighted by their current measure.</p>
+<p>The partition function in statistical mechanics is:</p>
+<pre><code>Z(β) = Σ_n g(n) · exp(-βn)
+</code></pre>
+<p>where <em>g(n)</em> counts the number of microstates at energy level <em>n</em>, and <em>β</em> is the inverse temperature. When Z converges, the system has a well-defined equilibrium.</p>
+<p>In double-entry bookkeeping, account types correspond to depth levels of organizational commitment. Budget accounts are shallow (uncommitted resources), active accounts are intermediate (resources in use), and settled accounts are deep (completed transactions). The trial balance sums across these depth levels. If it balances to zero, the system is in equilibrium — every resource extracted from one depth appears at another.</p>
+<h2 id="why-this-is-not-an-analogy">Why This Is Not an Analogy</h2>
+<p>The correspondence is structural, not metaphorical. Both systems satisfy the same axioms:</p>
+<ol>
+<li>
+<p><strong>Conservation</strong>: Every transaction conserves total quantity. No value is created or destroyed in a transfer — it is relocated. This is the accounting equation (assets = liabilities + equity) and also the conservation of probability in a stochastic system.</p>
+</li>
+<li>
+<p><strong>Pairwise balance</strong>: Every flow between two accounts is fully compensated. This is stronger than global conservation: it holds for each individual transaction, not just in aggregate.</p>
+</li>
+<li>
+<p><strong>Equilibrium detection</strong>: The trial balance detects whether the system is in equilibrium by evaluating a sum over all states. A nonzero trial balance indicates a violation of conservation — the system is out of equilibrium.</p>
+</li>
+</ol>
+<p>The connection between bookkeeping and statistical mechanics was noted by Mattessich (1964) in his formalization of accounting as a measurement system, and has been developed in the econophysics literature by Yakovenko and Rosser (2009), who showed that the distribution of money in transaction systems obeys Boltzmann-Gibbs statistics under conservation constraints.</p>
+<h2 id="the-depth-filtration">The Depth Filtration</h2>
+<p>Account hierarchies in bookkeeping (assets, liabilities, equity, revenue, expenses) form a natural <em>depth filtration</em>. Resources at different depths have different degrees of commitment:</p>
+<ul>
+<li><strong>Depth 0</strong>: Budget or planned resources — uncommitted, high entropy.</li>
+<li><strong>Depth 1</strong>: Active or encumbered resources — partially committed.</li>
+<li><strong>Depth 2</strong>: Settled or historical resources — fully committed, low entropy.</li>
+</ul>
+<p>The inverse temperature <em>β</em> in the partition function corresponds to the organization&rsquo;s commitment threshold: how readily resources move from shallow (planned) to deep (settled) accounts. At low <em>β</em> (high temperature), resources flow freely between depths. At high <em>β</em> (low temperature), resources are frozen at their current depth.</p>
+<p>The critical point — where the partition function behavior changes qualitatively — corresponds to the moment when all shallow resources have been committed. Every budget line has been allocated. The system transitions from a fluid state (resources available for reallocation) to a frozen state (all resources locked in commitments).</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>Kelly, F. P. (1979). <em>Reversibility and Stochastic Networks</em>. Wiley.</li>
+<li>Mattessich, R. (1964). <em>Accounting and Analytical Methods</em>. Irwin.</li>
+<li>Norris, J. R. (1997). <em>Markov Chains</em>. Cambridge University Press.</li>
+<li>Yakovenko, V. M. &amp; Rosser, J. B. (2009). &ldquo;Colloquium: Statistical mechanics of money, wealth, and income.&rdquo; <em>Reviews of Modern Physics</em>, 81(4), 1703–1725.</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/domesticity/domains/logistics/bookkeeping/texts/double-entry-as-detailed-balance/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dd property="emsenn:Domain">engineering/domesticity/bookkeeping</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dd property="emsenn:Extends"><ul><li>double entry</li></ul></dd>
+      </div><div class="relation">
+        <dt>Related</dt>
+        <dd property="emsenn:Related"><ul><li>account reconciliation</li><li>financial statements</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

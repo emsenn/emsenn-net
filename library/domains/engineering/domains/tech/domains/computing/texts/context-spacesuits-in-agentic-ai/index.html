@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Context Spacesuits in Agentic AI - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-06",
+  "datePublished": "2026-04-06",
+  "description": "Survey of how agentic AI systems package context at session start — the structural pattern, implementations in current systems, efficiency costs, and the three-domain convergence with military kits and RPG loadouts.",
+  "name": "Context Spacesuits in Agentic AI",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/context-spacesuits-in-agentic-ai/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
+  <h1 class="p-name">Context Spacesuits in Agentic AI</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-06T00:00:00Z">2026-04-06</time>
+    
+    <span class="p-summary">Survey of how agentic AI systems package context at session start — the structural pattern, implementations in current systems, efficiency costs, and the three-domain convergence with military kits and RPG loadouts.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-current-systems-implement-it">How current systems implement it</a></li>
+    <li><a href="#the-structural-pattern">The structural pattern</a></li>
+    <li><a href="#the-three-domain-convergence">The three-domain convergence</a></li>
+    <li><a href="#the-cost-problem">The cost problem</a></li>
+    <li><a href="#see-also">See also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>Every agentic AI system that operates in a repository, codebase, or organizational context must solve the same problem: before the model can do anything useful, it must be told what it&rsquo;s looking at, what tools are available, what rules apply, and what happened before. This package — the <a href="../terms/context-spacesuit.md" class="link-internal">context spacesuit</a> — is loaded at session start and determines the agent&rsquo;s perceivable world for the duration of the session.</p>
+<h2 id="how-current-systems-implement-it">How current systems implement it</h2>
+<p><strong>Claude Code</strong> loads a layered suit: a system prompt (~3K tokens) defining role and tools, then CLAUDE.md files (project instructions, checked into the codebase), then rules (from <code>.claude/rules/</code>), then tool definitions, then session state including git status and recent context. Skills load on demand when invoked. The total can reach 25-30K tokens before any user input.</p>
+<p><strong>Cursor IDE</strong> assembles context from system-level rules (<code>.mdc</code> files with glob patterns for file-type-specific instructions), intent context (what the user is trying to do), state context (current file, workspace structure, diagnostics), and surgical <code>@-mentions</code> that pull specific files or documentation into scope.</p>
+<p><strong>Cline</strong> expands a system prompt with workspace state, environment variables, custom rules (<code>.clinerules</code>), MCP tool definitions, and conversation history before each model call. The expansion is aggressive — Cline aims for the model to have complete situational awareness.</p>
+<p><strong>Devin</strong> (Cognition&rsquo;s autonomous agent) builds a detailed environment representation including directory structure, test harnesses, API documentation, dependency graphs, and prior session state. The suit is designed for long-running autonomous sessions where the agent must navigate without human guidance.</p>
+<h2 id="the-structural-pattern">The structural pattern</h2>
+<p>Despite different implementations, all four systems assemble the same structural components:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Component</th>
+          <th>What it provides</th>
+          <th>Claude Code</th>
+          <th>Cursor</th>
+          <th>Cline</th>
+          <th>Devin</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Identity</td>
+          <td>Who am I?</td>
+          <td>System prompt</td>
+          <td>System rules</td>
+          <td>System prompt</td>
+          <td>Agent definition</td>
+      </tr>
+      <tr>
+          <td>Constraints</td>
+          <td>What can&rsquo;t I do?</td>
+          <td>Rules, hooks</td>
+          <td>.mdc files</td>
+          <td>.clinerules</td>
+          <td>Safety bounds</td>
+      </tr>
+      <tr>
+          <td>Capabilities</td>
+          <td>What can I do?</td>
+          <td>Tool defs, skills</td>
+          <td>Extensions</td>
+          <td>MCP tools</td>
+          <td>Tool inventory</td>
+      </tr>
+      <tr>
+          <td>Perception</td>
+          <td>What do I see?</td>
+          <td>Git status, files</td>
+          <td>Workspace state</td>
+          <td>Environment</td>
+          <td>Dir structure</td>
+      </tr>
+      <tr>
+          <td>Memory</td>
+          <td>What happened before?</td>
+          <td>CLAUDE.md, session</td>
+          <td>Conversation</td>
+          <td>History</td>
+          <td>Prior sessions</td>
+      </tr>
+      <tr>
+          <td>Mission</td>
+          <td>What should I do?</td>
+          <td>User message</td>
+          <td>User intent</td>
+          <td>User request</td>
+          <td>Task spec</td>
+      </tr>
+  </tbody>
+</table>
+<p>The first five components are the suit. The sixth — the mission — is what the suited agent encounters.</p>
+<h2 id="the-three-domain-convergence">The three-domain convergence</h2>
+<p>The context spacesuit solves the same structural problem that military operations and role-playing games solved independently:</p>
+<p><strong>Military briefing kit.</strong> The five-paragraph order (SMEAC: Situation, Mission, Execution, Administration/Logistics, Command/Signal) structures everything an officer needs before deploying. Situation = perception (what do I see?). Mission = the task. Execution = capabilities (what tools and tactics?). Admin/Logistics = constraints (what resources, what limits?). Command/Signal = identity and authority (who am I, who do I report to?). The officer who doesn&rsquo;t receive the briefing cannot parse the mission. The officer who receives a different briefing sees a different war.</p>
+<p><strong>RPG character loadout.</strong> A character sheet carries ability scores (base capacities), skills (learned aptitudes), inventory (equipment and resources), quest log (mission state), and character description (identity and constraints). The composition of the loadout determines what the character can attempt in the dungeon. A wizard and a barbarian in the same room have different available actions — not because the room is different, but because the loadout is different.</p>
+<p><strong>OS process context.</strong> Every Unix process inherits environment variables (PATH, HOME, configuration), file descriptors (stdin/stdout/stderr), a working directory, process limits (ulimit), and a privilege level (uid/gid). The process cannot access files outside its permissions, cannot find executables outside PATH, cannot exceed its CPU quota. The context is not the execution; it is the bounded space in which execution is possible.</p>
+<p>All three are fiber compositions: the predicates an entity carries into a composition determine what it can perceive and do. The convergence is not metaphorical — all three domains discovered that agents operating in complex environments need a structured package of context that determines their perceivable world.</p>
+<h2 id="the-cost-problem">The cost problem</h2>
+<p>Context spacesuits are expensive. The Settlingday Architecture Synthesis found that the current 561 system loads 515 tokens of context per 1 token of fresh input — a 515x overhead ratio. 82% of sessions have extreme overhead. 85% of total cost goes to sessions that load massive context to make small decisions.</p>
+<p>This overhead is the same problem in all three domains:</p>
+<ul>
+<li><strong>Military:</strong> an over-briefed officer spends more time reading than acting</li>
+<li><strong>RPG:</strong> a character sheet so complex that turns take 20 minutes of bookkeeping</li>
+<li><strong>OS:</strong> a process whose environment setup takes longer than its computation</li>
+</ul>
+<p>The settlement path reduces suit size by moving work from the expensive shell (LLM with full context) to a deterministic kernel (zero tokens) and trained micromodels (near-zero marginal cost). The minimal suit loads ~1.5K tokens: task definition, core rules, and essential directives. Everything else is handled by the kernel or looked up on demand.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="../terms/context-spacesuit.md" class="link-internal">Context spacesuit</a> — the term definition</li>
+<li><a href="system-prompt.md" class="link-internal">System prompt</a> — the core identity layer of the suit</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/context-spacesuits-in-agentic-ai/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-06">2026-04-06</time></dd>
+      </div><div class="relation">
+        <dt>Sources</dt>
+        <dd property="emsenn:Sources"><ul><li>Claude Code documentation — system prompt, CLAUDE.md, tool definitions, rules</li><li>Cursor IDE — .mdc files, @ mentions, workspace state</li><li>Cline — system prompt expansion, MCP tool definitions, workspace state</li><li>Devin (Cognition) — environment representation, directory structure, test harnesses</li><li>Settlingday Architecture Synthesis (operations/command/endeavor/records/analyses/settlingday architecture synthesis.md)</li><li>Wikipedia: Five Paragraph Order (SMEAC)</li><li>Wikipedia: Environment Variable</li></ul></dd>
+      </div><div class="relation">
+        <dt>Terms used</dt>
+        <dd property="emsenn:Termsused"><ul><li>context spacesuit</li><li><a href="/library/domains/science/domains/information/terms/predicate-fiber/">fiber</a></li><li>system prompt</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

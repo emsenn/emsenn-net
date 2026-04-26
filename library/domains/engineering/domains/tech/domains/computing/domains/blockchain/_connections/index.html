@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connections in Blockchain Design - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-05",
+  "datePublished": "2026-04-05",
+  "description": "How cryptographic primitives, storage infrastructure, and economic design interact in practice.",
+  "name": "Connections in Blockchain Design",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/_connections/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/">Blockchain</a></nav>
+  <h1 class="p-name">Connections in Blockchain Design</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
+    
+    <span class="p-summary">How cryptographic primitives, storage infrastructure, and economic design interact in practice.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#verification-enables-decentralization">Verification Enables Decentralization</a></li>
+    <li><a href="#storage-requires-economic-incentives">Storage Requires Economic Incentives</a></li>
+    <li><a href="#economic-design-requires-verification">Economic Design Requires Verification</a></li>
+    <li><a href="#composability-emerges-from-all-three">Composability Emerges from All Three</a></li>
+    <li><a href="#the-core-insight">The Core Insight</a></li>
+    <li><a href="#see-also">See Also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <p>The three major domains of blockchain engineering — cryptographic verification, storage, and economic incentives — are deeply interdependent.</p>
+<h2 id="verification-enables-decentralization">Verification Enables Decentralization</h2>
+<p>Merkle trees and zero-knowledge proofs don&rsquo;t just provide security; they enable decentralization by eliminating the need for a trusted third party to verify claims.</p>
+<p>In IPFS, the Merkle DAG structure means any peer can verify that downloaded content matches the CID you requested. There&rsquo;s no central server to confirm authenticity — the hash itself is the proof.</p>
+<p>In Dark Forest, zero-knowledge proofs allow the blockchain to verify that moves are valid without a server controlling game logic. Players can prove facts about their state without revealing it.</p>
+<p>In Filecoin, Proof of Replication and Proof of Spacetime create verifiable storage markets where clients don&rsquo;t need to trust providers — the proofs are the trust mechanism.</p>
+<p><strong>The pattern</strong>: Cryptography replaces trust in institutions with mathematical certainty.</p>
+<h2 id="storage-requires-economic-incentives">Storage Requires Economic Incentives</h2>
+<p>Cryptographic proofs alone don&rsquo;t guarantee storage. A Merkle hash is worthless if no one maintains a copy of the data.</p>
+<p>IPFS relies on pinning services (and their economic incentives) to ensure persistence. Arweave builds permanence into its consensus: miners must prove they have random historical blocks to earn rewards. Filecoin creates a market where providers compete to store data and prove its availability.</p>
+<p>Without economic incentives aligned correctly, storage fails. The Axie Infinity NFTs were hosted on centralized servers that their creators controlled — even though the blockchain recorded their hashes, the data disappeared when servers went offline.</p>
+<p><strong>The pattern</strong>: Cryptographic proofs create verifiability, but economic incentives create persistence.</p>
+<h2 id="economic-design-requires-verification">Economic Design Requires Verification</h2>
+<p>For token economies to avoid Axie Infinity&rsquo;s collapse, they need:</p>
+<ol>
+<li>
+<p><strong>Verifiable scarcity</strong>: A cap on token supply that can&rsquo;t be changed without consensus. Ethereum stores this in code; anyone can verify that no more ETH than promised can ever be minted.</p>
+</li>
+<li>
+<p><strong>Verifiable transactions</strong>: Every transaction is verified by the network. No one can spend coins they don&rsquo;t own. This is enforced by Merkle trees and digital signatures.</p>
+</li>
+<li>
+<p><strong>Verifiable state</strong>: The state trie (Merkle Patricia Trie in Ethereum) creates a cryptographic commitment to account balances. You can prove you own X tokens without a central database.</p>
+</li>
+</ol>
+<p>Without verification, a token economy becomes a ledger run by a company. The company can change the rules (Axie Infinity did this repeatedly), print more tokens (all unsustainable play-to-earn games do this), or shut down entirely (the risk with any centralized service).</p>
+<p><strong>The pattern</strong>: Cryptographic verification gives economic guarantees real teeth.</p>
+<h2 id="composability-emerges-from-all-three">Composability Emerges from All Three</h2>
+<p>Loot succeeded where Axie Infinity failed because it combined all three principles:</p>
+<ol>
+<li>
+<p><strong>Storage</strong>: Loot data is stored on-chain (Merkle state tree), making it verifiably permanent and accessible.</p>
+</li>
+<li>
+<p><strong>Verification</strong>: Any developer can query the contract and verify what items a Loot bag contains. The contract&rsquo;s hash commitment means the data cannot be forged.</p>
+</li>
+<li>
+<p><strong>Economic incentives</strong>: Every derivative (Realms, Adventure Gold, etc.) increases the utility of owning Loot, which increases Loot&rsquo;s value. New economic layers don&rsquo;t compete with the original — they compound.</p>
+</li>
+</ol>
+<p>This is composability: new projects can build on Loot&rsquo;s primitives because the data is verifiable and permanent.</p>
+<p>In contrast, Axie Infinity&rsquo;s game state is centralized. Only Axie Infinity can determine what breeding costs, what SLP is worth, or whether a player&rsquo;s account is valid. Other developers can&rsquo;t build on top of Axie because they have no cryptographic guarantees about state.</p>
+<h2 id="the-core-insight">The Core Insight</h2>
+<p>Blockchain engineering is about replacing trust in institutions with:</p>
+<ol>
+<li>Cryptographic proofs (verification)</li>
+<li>Economic incentives (persistence)</li>
+<li>Open data (composability)</li>
+</ol>
+<p>When any of these is missing, the system fails:</p>
+<ul>
+<li>Missing verification: centralized control, rug pulls, censorship</li>
+<li>Missing incentives: data loss, network collapse, abandoned infrastructure</li>
+<li>Missing openness: vendor lock-in, inability to compose, monopolistic control</li>
+</ul>
+<p>The most durable Web3 systems (Bitcoin, Ethereum, Loot) have all three. Most failures (Axie Infinity, centralized exchanges, proprietary rollups) miss at least one.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="texts/content-addressed-storage.md" class="link-internal">Content-Addressed Storage: IPFS, Arweave, and the Permaweb</a></li>
+<li><a href="texts/merkle-trees-and-verifiable-computation.md" class="link-internal">Merkle Trees, Merkle Patricia Tries, and Verifiable Computation</a></li>
+<li><a href="texts/web3-game-economies.md" class="link-internal">Web3 Game Economies: From Play-to-Earn Collapse to Sustainable Design</a></li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/_connections/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Survey of MCP servers for knowledge repositories - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-03-08",
+  "datePublished": "2026-03-08",
+  "description": "A survey of model context protocol (MCP) servers relevant to managing knowledge repositories.",
+  "name": "Survey of MCP servers for knowledge repositories",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/mcp-ecosystem-for-knowledge-repositories/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/">Texts</a></nav>
+  <h1 class="p-name">Survey of MCP servers for knowledge repositories</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-03-08T00:00:00Z">2026-03-08</time>
+    
+    <span class="p-summary">A survey of model context protocol (MCP) servers relevant to managing knowledge repositories.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#purpose">Purpose</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li><a href="#existing-servers-by-category">Existing servers by category</a>
+      <ul>
+        <li><a href="#rdf--knowledge-graph">RDF / Knowledge graph</a></li>
+        <li><a href="#markdown--frontmatter">Markdown / Frontmatter</a></li>
+        <li><a href="#proof-assistants">Proof assistants</a></li>
+        <li><a href="#code--filesystem-search">Code / Filesystem search</a></li>
+      </ul>
+    </li>
+    <li><a href="#recommendations-for-the-emsemioverse">Recommendations for the emsemioverse</a>
+      <ul>
+        <li><a href="#immediate-phase-1">Immediate (Phase 1)</a></li>
+        <li><a href="#short-term-phase-2">Short-term (Phase 2)</a></li>
+        <li><a href="#medium-term-phase-3">Medium-term (Phase 3)</a></li>
+        <li><a href="#long-term-phase-4">Long-term (Phase 4)</a></li>
+      </ul>
+    </li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h2 id="purpose">Purpose</h2>
+<p>This text surveys the Model Context Protocol (MCP) server ecosystem as of March 2026, focused on what&rsquo;s useful for managing a knowledge
+repository like the emsemioverse: ~3000 markdown files with YAML frontmatter, a predicate graph, skills, and formal proof formalizations in Lean 4 and Agda.</p>
+<h2 id="configuration">Configuration</h2>
+<p>MCP servers for Claude Code are configured in three scopes:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Scope</th>
+          <th>Location</th>
+          <th>Shared?</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Project</td>
+          <td><code>.mcp.json</code> (project root)</td>
+          <td>Yes, version-controlled</td>
+      </tr>
+      <tr>
+          <td>Local</td>
+          <td><code>~/.claude.json</code> (per-project)</td>
+          <td>No, personal</td>
+      </tr>
+      <tr>
+          <td>User</td>
+          <td><code>~/.claude.json</code> (global)</td>
+          <td>No, all projects</td>
+      </tr>
+  </tbody>
+</table>
+<p>CLI management: <code>claude mcp add|list|remove|get</code>.</p>
+<h2 id="existing-servers-by-category">Existing servers by category</h2>
+<h3 id="rdf--knowledge-graph">RDF / Knowledge graph</h3>
+<ul>
+<li>
+<p><strong>mcp-rdf-explorer</strong></p>
+<ul>
+<li>Python, conversational interface for RDF/Turtle knowledge graphs. <code>text_to_sparql</code>, full-text search, federated queries. Supports local Turtle files and remote SPARQL endpoints. Most relevant to the emsemioverse predicate graph (github.com/emekaokoye/mcp-rdf-explorer).</li>
+</ul>
+</li>
+<li>
+<p><strong>mcp-jena</strong></p>
+<ul>
+<li>Node.js bridge to Apache Jena Fuseki. SPARQL queries and updates. Requires a running Fuseki server — heavier than needed for our scale.</li>
+</ul>
+</li>
+</ul>
+<h3 id="markdown--frontmatter">Markdown / Frontmatter</h3>
+<ul>
+<li>
+<p><strong>markdown-frontmatter-mcp</strong> — Extracts YAML frontmatter,
+returns structured results. Single tool (<code>query_recent_notes</code>).
+Designed for Obsidian vaults. Simplistic but directly relevant.
+(github.com/caffeinatedwes/markdown-frontmatter-mcp)</p>
+</li>
+<li>
+<p><strong>mcp-obsidian-tools</strong> — Rich read-only toolkit:
+<code>obsidian_get_frontmatter</code>, <code>obsidian_list_tags</code>,
+<code>obsidian_query</code>. Works with any markdown directory.
+(github.com/dp-veritas/mcp-obsidian-tools)</p>
+</li>
+<li>
+<p><strong>markdown-editor-mcp-server</strong> — 15 tools for structured
+markdown editing. Parses to JSON AST with semantic paths.
+Can update/add YAML frontmatter.
+(pypi.org/project/markdown-editor-mcp-server)</p>
+</li>
+</ul>
+<h3 id="proof-assistants">Proof assistants</h3>
+<ul>
+<li>
+<p><strong>lean-lsp-mcp</strong> (INSTALLED) — Bridges Lean 4 LSP with MCP over
+stdio. 304 GitHub stars, beta, MIT licensed. ~20 tools organized
+in three categories:</p>
+<ul>
+<li><em>File/LSP</em>: <code>lean_file_outline</code>, <code>lean_diagnostic_messages</code>,
+<code>lean_goal</code>, <code>lean_term_goal</code>, <code>lean_hover_info</code>,
+<code>lean_declaration_file</code>, <code>lean_completions</code>, <code>lean_run_code</code>,
+<code>lean_multi_attempt</code>, <code>lean_code_actions</code>, <code>lean_profile_proof</code>,
+<code>lean_verify</code>, <code>lean_get_widgets</code></li>
+<li><em>Search</em>: <code>lean_local_search</code> (ripgrep), <code>lean_leansearch</code>
+(natural language), <code>lean_loogle</code> (type-based), <code>lean_leanfinder</code>
+(semantic), <code>lean_state_search</code> (proof state),
+<code>lean_hammer_premise</code></li>
+<li><em>Project</em>: <code>lean_build</code>
+Install: <code>uvx lean-lsp-mcp</code> (41 packages). Requires elan + Lean 4
+toolchain. Supports <code>--repl</code> for ~5x speedup. Environment variables:
+<code>LEAN_PROJECT_PATH</code>, <code>LEAN_REPL</code>, <code>LEAN_LOG_LEVEL</code>.
+(github.com/oOo0oOo/lean-lsp-mcp)</li>
+</ul>
+</li>
+<li>
+<p><strong>LeanTool</strong> — &ldquo;Code interpreter&rdquo; for Lean. Python library, CLI,
+OpenAI-compatible API, or MCP server. Lets LLMs talk directly to
+the Lean compiler. (github.com/GasStationManager/LeanTool)</p>
+</li>
+<li>
+<p><strong>lean-aristotle-mcp</strong> — Wraps Harmonic&rsquo;s Aristotle automated
+theorem prover. Can fill <code>sorry</code> statements, verify lemmas,
+formalize natural language to Lean. Cloud-based, requires API key.
+(github.com/septract/lean-aristotle-mcp)</p>
+</li>
+<li>
+<p><strong>agda-mcp</strong> (NOT YET INSTALLABLE) — Haskell-based MCP server for
+interactive Agda development. 24 interactive commands: proof search,
+case splitting, module exploration, goal listing, type checking.
+Persistent REPL session. HTTP transport on localhost:3000/mcp.
+<strong>Blockers</strong>: requires Nix with flakes for building (patches
+upstream <code>mcp-server</code> Haskell library); uses HTTP transport, not
+stdio; early-stage (22 commits, single author, BSD-3-Clause). Links
+against Agda&rsquo;s Haskell API (&gt;= 2.8.0) directly. GHC 9.10 required
+(provided by Nix flake).
+(github.com/faezs/agda-mcp)</p>
+</li>
+</ul>
+<h3 id="code--filesystem-search">Code / Filesystem search</h3>
+<ul>
+<li>
+<p><strong>Code-Index-MCP</strong> — Local-first code indexer with hybrid search,
+48-language support, sub-100ms queries.</p>
+</li>
+<li>
+<p><strong>DeepContext MCP</strong> — Symbol-aware semantic search via Tree-sitter
+AST parsing + vector search + BM25 + reranker.</p>
+</li>
+</ul>
+<h2 id="recommendations-for-the-emsemioverse">Recommendations for the emsemioverse</h2>
+<h3 id="immediate-phase-1">Immediate (Phase 1)</h3>
+<p>Build a custom MCP server wrapping our existing Python scripts.
+One server, ~7 tools. Already done (<code>scripts/mcp-server.py</code>).
+Configure in <code>.mcp.json</code>.</p>
+<h3 id="short-term-phase-2">Short-term (Phase 2)</h3>
+<p>Add <code>rdflib</code>-based SPARQL queries to the MCP server. Build the
+RDF graph from frontmatter at startup. This gives structured
+graph queries over the predicate graph without needing an external
+database.</p>
+<h3 id="medium-term-phase-3">Medium-term (Phase 3)</h3>
+<p><strong>lean-lsp-mcp</strong> is installed and configured in <code>.mcp.json</code>. It
+points at the semiotic universe Lean formalization. Once <code>lake build</code>
+succeeds, the agent gains ~20 tools for interactive proof development:
+diagnostics, goal inspection, tactic search, theorem verification.</p>
+<p><strong>agda-mcp</strong> is blocked on Nix availability. When Nix is available,
+installation is straightforward via <code>nix develop &amp;&amp; cabal build</code>. The
+server uses HTTP transport (not stdio), which requires a slightly
+different configuration pattern.</p>
+<h3 id="long-term-phase-4">Long-term (Phase 4)</h3>
+<p>Evaluate whether mcp-rdf-explorer or a Fuseki-backed system would
+be worth the infrastructure cost at our current scale (~3000 files).
+Probably not until the graph is large enough that in-memory rdflib
+becomes slow.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>modelcontextprotocol.io — official MCP documentation</li>
+<li>github.com/modelcontextprotocol/servers — official server catalog</li>
+<li>github.com/jlowin/fastmcp — FastMCP v3.0 (Python SDK)</li>
+<li>github.com/emekaokoye/mcp-rdf-explorer</li>
+<li>github.com/dp-veritas/mcp-obsidian-tools</li>
+<li>github.com/caffeinatedwes/markdown-frontmatter-mcp</li>
+<li>pypi.org/project/markdown-editor-mcp-server</li>
+<li>github.com/oOo0oOo/lean-lsp-mcp</li>
+<li>github.com/GasStationManager/LeanTool</li>
+<li>github.com/septract/lean-aristotle-mcp</li>
+<li>github.com/faezs/agda-mcp</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/mcp-ecosystem-for-knowledge-repositories/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-03-08">2026-03-08</time></dd>
+      </div><div class="relation">
+        <dt>Survey</dt>
+        <dd property="emsenn:Survey"><ul><li>model context protocol servers</li></ul></dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/humanities/domains/sociology/domains/work/terms/task/">Tasks</a></dt>
+        <dd property="emsenn:Tasks"><ul><li>rewrite as public resource</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

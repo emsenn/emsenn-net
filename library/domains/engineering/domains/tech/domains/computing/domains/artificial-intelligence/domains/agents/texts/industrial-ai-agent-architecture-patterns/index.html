@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Industrial AI Agent Architecture Patterns - emsenn.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "dateModified": "2026-04-04",
+  "datePublished": "2026-04-04",
+  "description": "How AI agents interface with physical infrastructure through control systems, data protocols, and safety-certified hardware. The foundational architecture pattern emerging in manufacturing, energy, and infrastructure control systems.",
+  "name": "Industrial AI Agent Architecture Patterns",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/industrial-ai-agent-architecture-patterns/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/">home</a>
+    <a href="/library/">library</a>
+    <a href="/letters/">letters</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    
+<article class="h-entry" data-type="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/">Texts</a></nav>
+  <h1 class="p-name">Industrial AI Agent Architecture Patterns</h1>
+  <div class="meta">
+    <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
+    
+    <span class="p-summary">How AI agents interface with physical infrastructure through control systems, data protocols, and safety-certified hardware. The foundational architecture pattern emerging in manufacturing, energy, and infrastructure control systems.</span>
+  </div><details class="toc">
+      <summary>Table of contents</summary>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-three-layer-pattern">The Three-Layer Pattern</a>
+      <ul>
+        <li><a href="#layer-1-deterministic-control-plc--safety-system">Layer 1: Deterministic Control (PLC / Safety System)</a></li>
+        <li><a href="#layer-2-edge-ai-local-gateway--ipc">Layer 2: Edge AI (Local Gateway / IPC)</a></li>
+        <li><a href="#layer-3-cloud--enterprise-ai-planning--reasoning">Layer 3: Cloud / Enterprise AI (Planning &amp; Reasoning)</a></li>
+      </ul>
+    </li>
+    <li><a href="#data-flow-opc-ua--mqtt">Data Flow: OPC-UA + MQTT</a>
+      <ul>
+        <li><a href="#opc-ua-semantic-structuring">OPC-UA: Semantic Structuring</a></li>
+        <li><a href="#mqtt-scalable-distribution">MQTT: Scalable Distribution</a></li>
+      </ul>
+    </li>
+    <li><a href="#semantic-data-models--multi-agent-reasoning">Semantic Data Models &amp; Multi-Agent Reasoning</a></li>
+    <li><a href="#model-context-protocol-mcp-for-tool-access">Model Context Protocol (MCP) for Tool Access</a></li>
+    <li><a href="#safety--separation-of-concerns">Safety &amp; Separation of Concerns</a>
+      <ul>
+        <li><a href="#why">Why?</a></li>
+        <li><a href="#how">How?</a></li>
+        <li><a href="#safety-standards">Safety Standards</a></li>
+      </ul>
+    </li>
+    <li><a href="#real-time-latency-budgets">Real-Time Latency Budgets</a></li>
+    <li><a href="#failure-modes--graceful-degradation">Failure Modes &amp; Graceful Degradation</a></li>
+    <li><a href="#the-emerging-architecture-2026">The Emerging Architecture (2026)</a></li>
+    <li><a href="#see-also">See Also</a></li>
+  </ul>
+</nav>
+    </details>
+  <div class="e-content">
+    <h1 id="industrial-ai-agent-architecture-patterns">Industrial AI Agent Architecture Patterns</h1>
+<p>The defining challenge of AI agents in industrial control is not reasoning, but timing. A cloud-hosted neural network can reason about what to do; a safety-critical manufacturing system must <em>do it in 10 milliseconds</em>. The architecture that solves this problem is clear: <strong>separate concerns across three layers</strong>, each optimized for its constraint.</p>
+<h2 id="the-three-layer-pattern">The Three-Layer Pattern</h2>
+<h3 id="layer-1-deterministic-control-plc--safety-system">Layer 1: Deterministic Control (PLC / Safety System)</h3>
+<p>The PLC (Programmable Logic Controller) or Safety Instrumented System (SIS) remains the safest tool for time-critical, safety-critical decisions. It runs deterministic control loops at microsecond granularity, certified to functional safety standards like IEC 61508.</p>
+<p><strong>Role</strong>: Execute immediate commands, implement emergency stops, maintain system invariants.</p>
+<p><strong>Latency</strong>: Microseconds to milliseconds.</p>
+<p><strong>Certification</strong>: IEC 61508 (SIL ratings), IEC 62061 (machinery safety), OSHA, industry-specific.</p>
+<p><strong>Examples</strong>: Bearing resonance triggers immediate spindle shutdown. Pressure exceeds threshold → emergency relief valve opens. No AI reasoning; certified automation.</p>
+<h3 id="layer-2-edge-ai-local-gateway--ipc">Layer 2: Edge AI (Local Gateway / IPC)</h3>
+<p>Industrial gateways and Intelligent Programmable Controllers (IPCs) run inference models locally. This layer detects anomalies, makes tactical decisions, and orchestrates commands to the PLC when human timescale is acceptable (seconds to minutes).</p>
+<p><strong>Role</strong>: Continuous monitoring, anomaly detection, tactical optimization, local decision-making when cloud connectivity fails.</p>
+<p><strong>Latency</strong>: 1–10 milliseconds.</p>
+<p><strong>Hardware</strong>: Multi-core CPUs, NPUs (neural processing units), real-time GPUs. Examples: NVIDIA IGX Thor, industrial x86 gateways.</p>
+<p><strong>Autonomy</strong>: Can operate standalone; continues monitoring and adaptation if cloud link drops.</p>
+<p><strong>Examples</strong>: Bearing vibration sensor feeds ML model → detects degradation pattern not in training data → generates maintenance alert → schedules technician (via local interface to ERP cache) → generates work order.</p>
+<h3 id="layer-3-cloud--enterprise-ai-planning--reasoning">Layer 3: Cloud / Enterprise AI (Planning &amp; Reasoning)</h3>
+<p>Strategic planning, resource optimization, multi-agent orchestration, and learning happen in cloud or on-premises data centers. These systems consume historical data, coordinate across factories, and train models on patterns at scale. Latency is acceptable (seconds to hours).</p>
+<p><strong>Role</strong>: Multi-step workflow orchestration, learning from feedback, cross-organizational optimization.</p>
+<p><strong>Latency</strong>: Seconds to hours.</p>
+<p><strong>Connectivity</strong>: Enterprise networks; resilience via caching at edge.</p>
+<p><strong>Examples</strong>: &ldquo;Given this bearing failure pattern, how should we replan production for the next shift?&rdquo; Coordinate with suppliers for parts. Optimize technician schedule across three factories.</p>
+<h2 id="data-flow-opc-ua--mqtt">Data Flow: OPC-UA + MQTT</h2>
+<p>The industrial data pipeline is now standardized around a pattern: <strong>OPC-UA organizes the data; MQTT moves it.</strong></p>
+<h3 id="opc-ua-semantic-structuring">OPC-UA: Semantic Structuring</h3>
+<p>OPC Unified Architecture defines a machine-readable information model for industrial equipment and processes. Instead of raw sensor values, OPC-UA exposes semantic context:</p>
+<pre tabindex="0"><code>OPC-UA NodeSet for a Motor:
+├── Motor::Status (Running | Idle | Error)
+├── Motor::Temperature (current: 75C, warning-threshold: 85C, shutdown-threshold: 95C)
+├── Motor::Vibration 
+│   ├── RMS (current: 2.1mm/s, normal-range: 0-3mm/s)
+│   └── Bearing_Health_Score (0-100, derived from FFT)
+├── Motor::Maintenance
+│   ├── Last_Service (2026-02-15)
+│   ├── Service_Interval_Days (90)
+│   └── Next_Due (2026-05-15)
+└── Motor::Commands
+    ├── StartMotor (requires: key=authorized_user)
+    ├── StopMotor
+    └── DiagnosticScan
+</code></pre><p>Semantic richness enables AI agents to reason <em>across equipment types</em>. A maintenance agent trained on motors, pumps, and compressors can apply learned patterns because all expose <code>Status</code>, <code>Maintenance.Next_Due</code>, and <code>Bearing_Health_Score</code> in consistent ontologies.</p>
+<h3 id="mqtt-scalable-distribution">MQTT: Scalable Distribution</h3>
+<p>MQTT (Message Queuing Telemetry Transport) publishes OPC-UA data to a message broker, where multiple subscribers (agents, analytics, archives) consume it.</p>
+<p><strong>Sparkplug B</strong> (MQTT standard for industrial data) adds structure:</p>
+<ul>
+<li>Consistent message schema across vendors</li>
+<li>Timestamp and sequence guarantees</li>
+<li>Birth/death messages for system resilience</li>
+<li>Native support in AWS, Azure, Google Cloud, Siemens, Beckhoff, Rockwell</li>
+</ul>
+<p><strong>Architecture</strong>:</p>
+<pre tabindex="0"><code>[Factory Floor]
+├─ Motor (OPC-UA server)
+├─ Pump (OPC-UA server)
+└─ Compressor (OPC-UA server)
+        ↓
+[Edge Gateway / IPC]
+├─ OPC-UA Client (pulls data from all equipment)
+└─ MQTT Publisher (Sparkplug B format)
+        ↓
+[MQTT Broker]
+├─ Agent-1 (Edge AI model for anomaly detection)
+├─ Agent-2 (ERP integration)
+├─ Agent-3 (Predictive model training)
+└─ Archive (Data lake for historical analysis)
+</code></pre><p><strong>Why this pattern wins</strong>:</p>
+<ul>
+<li>Single data source of truth (PLC/equipment publishes once)</li>
+<li>Multiple agents consume the same semantic-rich stream</li>
+<li>New agents added without modifying source equipment</li>
+<li>Security is orthogonal (mTLS on MQTT transport)</li>
+<li>Backward compatible with legacy SCADA via OPC-UA bridges</li>
+</ul>
+<h2 id="semantic-data-models--multi-agent-reasoning">Semantic Data Models &amp; Multi-Agent Reasoning</h2>
+<p>For agents to reason <em>together</em>, they must share ontologies. An ontology is a machine-readable specification of:</p>
+<ul>
+<li><strong>Entities</strong>: Motor, Bearing, Technician, ShiftSchedule</li>
+<li><strong>Properties</strong>: Motor.Bearing → Bearing.Condition ∈ {Good, Degrading, Failed}</li>
+<li><strong>Relations</strong>: Bearing → Location → Motor → ProductionLine</li>
+<li><strong>Permitted Actions</strong>: Technician.Reschedule (requires: shift_coverage &gt; 1.0)</li>
+</ul>
+<p><strong>OPC-UA Enrichment</strong>:</p>
+<p>OPC-UA information models can be formally extended using RDF (Resource Description Framework) and OWL (Web Ontology Language):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-turtle" data-lang="turtle"><span style="display:flex;"><span><span style="color:#75715e"># OPC-UA NodeSet enriched with formal semantics</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Motor</span> ex:<span style="color:#f92672">hasComponent</span> <span style="color:#960050;background-color:#1e0010">Bearing</span> .
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Bearing</span> ex:<span style="color:#f92672">hasCondition</span> <span style="color:#960050;background-color:#1e0010">Condition</span> .
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Condition</span> rdf:<span style="color:#f92672">type</span> owl:<span style="color:#f92672">Class</span> ;
+</span></span><span style="display:flex;"><span>  owl:<span style="color:#f92672">oneOf</span> (<span style="color:#960050;background-color:#1e0010">Good</span> <span style="color:#960050;background-color:#1e0010">Degrading</span> <span style="color:#960050;background-color:#1e0010">Failed</span>) .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Technician</span> ex:<span style="color:#f92672">canService</span> <span style="color:#960050;background-color:#1e0010">Motor</span> .
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">MaintenanceTask</span> ex:<span style="color:#f92672">requires</span> <span style="color:#960050;background-color:#1e0010">Technician</span> ;
+</span></span><span style="display:flex;"><span>  ex:<span style="color:#f92672">requires</span> <span style="color:#960050;background-color:#1e0010">Part</span> ;
+</span></span><span style="display:flex;"><span>  ex:<span style="color:#f92672">mustComplete</span> ex:<span style="color:#f92672">before</span> <span style="color:#960050;background-color:#1e0010">DateTime</span> .
+</span></span></code></pre></div><p><strong>Multi-Agent Coordination</strong>:</p>
+<p>When a Predictive Maintenance Agent detects bearing degradation:</p>
+<ol>
+<li>Query ontology: &ldquo;What bearing is this?&rdquo;</li>
+<li>Query further: &ldquo;What technicians are certified for this bearing type?&rdquo;</li>
+<li>Query ERP: &ldquo;Is replacement part in stock?&rdquo;</li>
+<li>Query Scheduling Agent: &ldquo;Can we schedule replacement before shift deadline?&rdquo;</li>
+<li>If yes → propose action. If no → escalate to human dispatcher.</li>
+</ol>
+<p>Each agent uses the same ontology. No custom mappings. New agents added to the system immediately understand the data.</p>
+<h2 id="model-context-protocol-mcp-for-tool-access">Model Context Protocol (MCP) for Tool Access</h2>
+<p>Agents need access to external tools: ERP systems, supplier APIs, technician schedules, spare parts inventory. <strong>Model Context Protocol</strong> (Anthropic, 2024) standardizes this access.</p>
+<p>Instead of each agent building custom integrations, MCP defines:</p>
+<ul>
+<li><strong>Server</strong>: Exposes tools and data (e.g., &ldquo;SAP ERP server&rdquo; or &ldquo;Supplier parts API&rdquo;)</li>
+<li><strong>Client</strong>: Agent that calls tools</li>
+<li><strong>Tools</strong>: Function definitions with input/output schemas</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;server&#34;</span>: <span style="color:#e6db74">&#34;erp-tool&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tools&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;query_parts_inventory&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Check if spare parts are in stock&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;inputSchema&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;part_number&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span> },
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;warehouse_id&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span> }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;schedule_technician&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Reserve a technician for a job&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;inputSchema&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;technician_id&#34;</span>: { <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span> },
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;job_type&#34;</span>: { <span style="color:#f92672">&#34;enum&#34;</span>: [<span style="color:#e6db74">&#34;bearing_replacement&#34;</span>, <span style="color:#e6db74">&#34;motor_overhaul&#34;</span>] },
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;preferred_shift&#34;</span>: { <span style="color:#f92672">&#34;enum&#34;</span>: [<span style="color:#e6db74">&#34;morning&#34;</span>, <span style="color:#e6db74">&#34;afternoon&#34;</span>, <span style="color:#e6db74">&#34;night&#34;</span>] }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>When maintenance agents run, they call these tools via MCP. If the ERP API changes, only the MCP server changes; agent code is unchanged.</p>
+<h2 id="safety--separation-of-concerns">Safety &amp; Separation of Concerns</h2>
+<p>The critical principle: <strong>Do not run AI on safety-critical hardware.</strong></p>
+<h3 id="why">Why?</h3>
+<ul>
+<li>AI models can be adversarially fooled or behave unpredictably on out-of-distribution inputs</li>
+<li>ML training is statistical; safety systems must be deterministic</li>
+<li>A crashed AI process should never disable SCADA</li>
+</ul>
+<h3 id="how">How?</h3>
+<p><strong>Data flows one direction</strong>: Equipment → OPC-UA → MQTT → AI → <em>local decision cache</em></p>
+<p><strong>Commands flow back through certified systems</strong>: Agent proposal → Edge gateway (approval logic) → PLC command execution</p>
+<p>The PLC remains the authority on what actually happens. If an edge agent proposes an unsafe command (e.g., &ldquo;spin motor backward during power generation&rdquo;), the gateway&rsquo;s safety checks reject it.</p>
+<h3 id="safety-standards">Safety Standards</h3>
+<ul>
+<li><strong>IEC 61508</strong>: Functional safety of electrical/electronic/programmable systems (SIL 1-4)</li>
+<li><strong>IEC 62061</strong>: Safety of machinery (control systems)</li>
+<li><strong>ISA/ANSI standards</strong>: Industrial control system security and safety</li>
+</ul>
+<p>Modern equipment (Rockwell AADvance, ABB System 800xA, Siemens S7-1200F) has native SIL-rated safety functions built-in. AI augments these, never replaces them.</p>
+<h2 id="real-time-latency-budgets">Real-Time Latency Budgets</h2>
+<p>Why edge AI exists:</p>
+<ul>
+<li><strong>Cloud latency</strong>: 50–500ms (network round-trip, processing)</li>
+<li><strong>Edge latency</strong>: 1–10ms (local inference, no network)</li>
+<li><strong>PLC latency</strong>: microseconds (deterministic hardware)</li>
+</ul>
+<p><strong>Use case: Bearing failure detection</strong></p>
+<p>Bearing resonance emerges over hours but becomes critical within seconds.</p>
+<ul>
+<li><strong>Detection (edge AI)</strong>: Sensor → FFT → ML model → anomaly score in 5ms</li>
+<li><strong>Decision (edge logic)</strong>: Is score &gt; threshold AND is this equipment safe to stop? If yes → trigger stop. If no → wait and re-check. ~10ms total</li>
+<li><strong>Execution (PLC)</strong>: Stop spindle with certified emergency procedures. ~1ms</li>
+</ul>
+<p>Total: bearing hazard detected and mitigated in 16ms. Acceptable for human safety.</p>
+<p>By contrast: Send sensor data to cloud → train model → get decision back is 100+ms of additional risk.</p>
+<h2 id="failure-modes--graceful-degradation">Failure Modes &amp; Graceful Degradation</h2>
+<p>Industrial systems must degrade gracefully. When things fail:</p>
+<p><strong>Cloud connectivity lost</strong>:</p>
+<ul>
+<li>Edge AI continues running locally</li>
+<li>Cached ERP data used for decisions</li>
+<li>Anomalies still detected and logged</li>
+<li>Safety functions fully operational</li>
+</ul>
+<p><strong>Edge device crashes</strong>:</p>
+<ul>
+<li>PLC continues its programmed control</li>
+<li>Equipment operates at reduced intelligence (no anomaly detection) but safely</li>
+<li>Alert triggered to replace/restart edge device</li>
+</ul>
+<p><strong>Conflicting agent decisions</strong>:</p>
+<ul>
+<li>Orchestrator (central coordinator) has final authority</li>
+<li>If agents disagree on action, escalate to human</li>
+<li>All proposals logged with reasoning</li>
+</ul>
+<h2 id="the-emerging-architecture-2026">The Emerging Architecture (2026)</h2>
+<p>The industrial AI agent architecture is stabilizing around:</p>
+<ol>
+<li><strong>Semantic data layer</strong> (OPC-UA + ontologies): Equipment exposes context, not raw bits</li>
+<li><strong>Multi-agent orchestration</strong> (MCP + Sparkplug B): Agents collaborate via standardized tools and messages</li>
+<li><strong>Edge-cloud split</strong> (determinism vs. reasoning): Safety-critical operations stay local; strategic planning in cloud</li>
+<li><strong>Graceful degradation</strong> (multi-layer fallback): Lose cloud → edge still works. Lose edge → PLC safety functions work.</li>
+<li><strong>Audit &amp; reversibility</strong>: Every autonomous decision is logged with reasoning; humans can always override or roll back</li>
+</ol>
+<p>This architecture scales from a single motor to a thousand-machine factory because the interfaces remain unchanged; only the number of agents grows.</p>
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../../../terms/agentic-ai.md" class="link-internal">Agentic AI</a> — autonomous reasoning, planning, and action</li>
+<li><a href="../../../domains/manufacturing/terms/opc-ua.md" class="link-internal">OPC Unified Architecture</a> — industrial data structuring standard</li>
+<li><a href="../../../domains/manufacturing/terms/digital-twin.md" class="link-internal">Digital Twin</a> — simulation-based system representation</li>
+<li><a href="../terms/multi-agent-systems.md" class="link-internal">Multi-Agent Systems</a> — coordinated autonomous agents</li>
+<li><a href="../../../domains/safety/terms/functional-safety.md" class="link-internal">Functional Safety</a> — IEC 61508 and certification</li>
+</ul>
+
+  </div>
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/industrial-ai-agent-architecture-patterns/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>
