@@ -95,8 +95,7 @@
 </nav>
     </details>
   <div class="e-content">
-    <h1 id="discworld-mud-messaging-systems">Discworld MUD Messaging Systems</h1>
-<p>The Discworld MUD implements a layered communication architecture running atop the FluffOS LPC driver. All messaging — whether room-scoped speech, distance communication, direct player-to-player tells, or out-of-character channels — routes through the same underlying object system. The architecture reflects four distinct message scopes, each implemented as a broadcast/delivery primitive in the Discworld mudlib, with the FluffOS driver providing the raw efuns: <code>say()</code>, <code>tell_object()</code>, <code>tell_room()</code>, and <code>message()</code>.</p>
+    <p>The Discworld MUD implements a layered communication architecture running atop the FluffOS LPC driver. All messaging — whether room-scoped speech, distance communication, direct player-to-player tells, or out-of-character channels — routes through the same underlying object system. The architecture reflects four distinct message scopes, each implemented as a broadcast/delivery primitive in the Discworld mudlib, with the FluffOS driver providing the raw efuns: <code>say()</code>, <code>tell_object()</code>, <code>tell_room()</code>, and <code>message()</code>.</p>
 <h2 id="local-say-room-scoped-broadcasting">Local Say: Room-Scoped Broadcasting</h2>
 <p>The <strong>say</strong> command broadcasts a message to all objects in the speaker&rsquo;s current room. In LPC terms, this is implemented via the <code>say()</code> efun:</p>
 <pre tabindex="0"><code>say(&#34;Hello room&#34;);

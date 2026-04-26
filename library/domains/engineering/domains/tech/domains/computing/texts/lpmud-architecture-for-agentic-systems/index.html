@@ -99,8 +99,7 @@
 </nav>
     </details>
   <div class="e-content">
-    <h1 id="lpmud-architecture-for-agentic-systems">LPMud Architecture for Agentic Systems</h1>
-<p>This text is a source-level analysis of two production LPMud codebases — FluffOS (the C++ driver) and the Discworld mudlib (the LPC world library) — read specifically for patterns applicable to the 561 agentic system. The mapping between MUD architecture and our system is structural, not metaphorical: the same data structures, the same separation of concerns, the same lifecycle patterns.</p>
+    <p>This text is a source-level analysis of two production LPMud codebases — FluffOS (the C++ driver) and the Discworld mudlib (the LPC world library) — read specifically for patterns applicable to the 561 agentic system. The mapping between MUD architecture and our system is structural, not metaphorical: the same data structures, the same separation of concerns, the same lifecycle patterns.</p>
 <h2 id="the-drivermudlib-separation">The Driver/Mudlib Separation</h2>
 <p>The deepest architectural pattern in LPMud is the clean split between the <strong>driver</strong> (a C/C++ runtime that provides primitives) and the <strong>mudlib</strong> (an LPC library that builds the world from those primitives). FluffOS defines its primitive interface through <code>.spec</code> files in <code>src/packages/</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// core.spec — the contract between driver and mudlib

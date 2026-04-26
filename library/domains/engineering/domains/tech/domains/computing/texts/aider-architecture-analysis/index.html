@@ -121,8 +121,7 @@
 </nav>
     </details>
   <div class="e-content">
-    <h1 id="aider-architecture-analysis">Aider Architecture Analysis</h1>
-<p>Aider is an AI pair programming tool that operates from the terminal. It edits code in a git repository, auto-commits changes, and uses a &ldquo;repo map&rdquo; to give the LLM context about the full codebase without sending every file. This analysis covers the architectural decisions most relevant to agentic harness design: how Aider builds context, structures edits, routes between models, and verifies changes.</p>
+    <p>Aider is an AI pair programming tool that operates from the terminal. It edits code in a git repository, auto-commits changes, and uses a &ldquo;repo map&rdquo; to give the LLM context about the full codebase without sending every file. This analysis covers the architectural decisions most relevant to agentic harness design: how Aider builds context, structures edits, routes between models, and verifies changes.</p>
 <h2 id="repo-map-pagerank-over-a-definition-reference-graph">Repo Map: PageRank Over a Definition-Reference Graph</h2>
 <p>The repo map (<code>repomap.py</code>) is Aider&rsquo;s most distinctive architectural feature. Rather than dumping file contents into context, it builds a ranked summary of the codebase&rsquo;s structure — which definitions matter most given the current conversation.</p>
 <h3 id="how-it-works">How It Works</h3>

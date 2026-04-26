@@ -136,8 +136,7 @@
 </nav>
     </details>
   <div class="e-content">
-    <h1 id="openclaw-architecture-analysis">OpenClaw Architecture Analysis</h1>
-<p>OpenClaw is an open-source personal AI assistant that runs on user devices and answers through messaging channels (WhatsApp, Telegram, Slack, Discord, iMessage, Matrix, and more). Unlike coding-focused harnesses such as Claude Code or Cline, OpenClaw targets the &ldquo;always-on personal assistant&rdquo; use case — a gateway that manages channels, tools, memory, and proactive behaviors across a persistent agent lifecycle. The source is TypeScript (ESM), Node 22+, with a plugin architecture that makes most capabilities optional.</p>
+    <p>OpenClaw is an open-source personal AI assistant that runs on user devices and answers through messaging channels (WhatsApp, Telegram, Slack, Discord, iMessage, Matrix, and more). Unlike coding-focused harnesses such as Claude Code or Cline, OpenClaw targets the &ldquo;always-on personal assistant&rdquo; use case — a gateway that manages channels, tools, memory, and proactive behaviors across a persistent agent lifecycle. The source is TypeScript (ESM), Node 22+, with a plugin architecture that makes most capabilities optional.</p>
 <p>This analysis reads the source at <code>operations/engineering/fars/src/openclaw/</code> to extract patterns relevant to our harness design. OpenClaw&rsquo;s architectural decisions are oriented around a different problem than ours (multi-channel messaging vs. repository engineering), but several mechanisms are directly transferable.</p>
 <h2 id="soulmd-and-heartbeatmd-prescriptive-identity--proactive-monitoring">SOUL.md and HEARTBEAT.md: Prescriptive Identity + Proactive Monitoring</h2>
 <p>OpenClaw&rsquo;s workspace bootstrap loads a fixed set of markdown files in a defined order:</p>

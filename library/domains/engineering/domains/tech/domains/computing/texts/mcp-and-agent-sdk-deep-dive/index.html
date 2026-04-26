@@ -106,8 +106,7 @@
 </nav>
     </details>
   <div class="e-content">
-    <h1 id="mcp-and-claude-agent-sdk-deep-dive">MCP and Claude Agent SDK: Deep Dive</h1>
-<p>This text examines the Model Context Protocol (MCP) specification (version 2025-11-25) and Anthropic&rsquo;s Claude Agent SDK to identify capabilities we are not using, patterns for multi-agent orchestration, and concrete opportunities to enrich our 561-datastore MCP server and agentic harness.</p>
+    <p>This text examines the Model Context Protocol (MCP) specification (version 2025-11-25) and Anthropic&rsquo;s Claude Agent SDK to identify capabilities we are not using, patterns for multi-agent orchestration, and concrete opportunities to enrich our 561-datastore MCP server and agentic harness.</p>
 <h2 id="part-1-the-model-context-protocol">Part 1: The Model Context Protocol</h2>
 <p>MCP is a JSON-RPC 2.0 protocol connecting hosts (LLM applications), clients (connectors within the host), and servers (services providing context). The architecture enforces isolation: each client-server pair is a stateful session, and servers never see the full conversation or each other&rsquo;s state. The host mediates everything.</p>
 <h3 id="the-three-server-primitives">The Three Server Primitives</h3>

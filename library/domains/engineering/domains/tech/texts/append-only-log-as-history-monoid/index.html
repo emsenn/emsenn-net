@@ -88,8 +88,7 @@
 </nav>
     </details>
   <div class="e-content">
-    <h1 id="append-only-logs-are-history-monoids">Append-Only Logs Are History Monoids</h1>
-<p>An append-only event log — the kind used in event sourcing, write-ahead logs, and ledger systems — is not merely a sequence of records. It is a <em>trace monoid</em>: a free partially commutative monoid where independent events may be reordered without changing the system&rsquo;s state, but dependent events must remain in sequence.</p>
+    <p>An append-only event log — the kind used in event sourcing, write-ahead logs, and ledger systems — is not merely a sequence of records. It is a <em>trace monoid</em>: a free partially commutative monoid where independent events may be reordered without changing the system&rsquo;s state, but dependent events must remain in sequence.</p>
 <p>This is not an analogy. The algebraic structure of the log <em>is</em> the trace monoid. Recognizing this turns operational questions (Can I parallelize these events? Does replay order matter? What is the canonical form of this history?) into algebraic computations with known solutions.</p>
 <h2 id="the-free-monoid-of-events">The Free Monoid of Events</h2>
 <p>Any append-only log over an alphabet Σ of event types forms a free monoid Σ*: the set of all finite sequences of events, with concatenation as the operation and the empty sequence as identity. This is the structure you get before imposing any equivalences — every distinct sequence is a distinct history.</p>
