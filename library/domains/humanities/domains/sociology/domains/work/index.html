@@ -8,7 +8,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
@@ -20,108 +24,6 @@
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "description": "The domain of work, labor, organization, and social practices around production and collaboration.",
-  "hasPart": [
-    {
-      "@type": "CreativeWork",
-      "name": "Goal",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/goal/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/adjustment/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/finding/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/observation/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/record/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Dispatch",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/dispatch/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Execution",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/execution/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Feedback",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/feedback/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Planning",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/planning/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Tracking",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/tracking/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Blocked",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/blocked/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Campaign",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/campaign/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Completed",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/completed/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Convergent Enrichment",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/convergent-enrichment/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Failed",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/failed/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "In Progress",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/in-progress/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Open",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/open/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/formality-level/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/progressive-automation/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "",
-      "url": "https://emsenn.net/library/domains/humanities/domains/sociology/domains/work/terms/settlement-path/"
-    }
-  ],
   "name": "Work",
   "publisher": {
     "@type": "Person",
@@ -146,6 +48,13 @@
     <a href="/blog/">blog</a>
     <a href="/library/">library</a>
   </nav>
+  <div id="search"></div>
+  <script src="/pagefind/pagefind-ui.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      new PagefindUI({ element: "#search", showSubResults: true });
+    });
+  </script>
   <details class="site-about">
     <summary>About this site</summary>
     <ul>
@@ -167,34 +76,22 @@
 
   <main id="content" data-pagefind-body>
     
-<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a></nav>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/">Sociology</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/sociology/domains/">Subdomains</a></nav>
 <h1 class="p-name">Work</h1>
 <div class="h-feed">
 
 
-<h2 id="work">Work</h2>
-<p>Work encompasses the practices, structures, and relationships through which humans organize productive activity. This domain includes:</p>
-<ul>
-<li><strong>Governance</strong>: decision-making, authority, and accountability</li>
-<li><strong>Labor</strong>: forms of work, compensation, and obligation</li>
-<li><strong>Organization</strong>: institutional structures and coordination</li>
-<li><strong>Practice</strong>: the actual conduct of work and craft</li>
-</ul>
-<h3 id="key-terms">Key terms</h3>
-<ul>
-<li><a href="terms/endeavor.md" class="link-internal">Endeavor</a> — sustained, failure-open striving toward an aim</li>
-<li><a href="terms/enterprise.md" class="link-internal">Enterprise</a> — aim-generative organized activity</li>
-<li><a href="terms/capital.md" class="link-internal">Capital</a> — field-specific accumulated resource that generates returns</li>
-<li><a href="terms/settlement-path.md" class="link-internal">Settlement path</a> — the trajectory from inquiry to process</li>
-<li><a href="terms/work.md" class="link-internal">Work</a> — the base concept</li>
-</ul>
-<h3 id="key-texts">Key texts</h3>
-<ul>
-<li><a href="texts/philosophy-of-endeavor.md" class="link-internal">Philosophy of Endeavor</a> — Chisholm, Hornsby, O&rsquo;Shaughnessy on intentional action</li>
-<li><a href="texts/the-settlement-path.md" class="link-internal">The Settlement Path</a> — the organizing principle of a settlement-carrier system</li>
-<li><a href="texts/temporality-of-endeavors.md" class="link-internal">Temporality of Endeavors</a> — temporal structure of endeavors</li>
-</ul>
-<p>See also: [[sociology]], [[economics]], [[labor]]</p>
+<p>Work encompasses the practices, structures, and relationships through which humans organize productive activity, organized into governance (decision-making, authority, accountability), labor (forms of work, compensation, obligation), organization (institutional structures and coordination), and practice (the actual conduct of work and craft).</p>
+
+
+
+
+
+
+<dl class="domain-panel">
+  <dt>Teleology</dt><dd>The goal of work as a domain of study is to understand how humans organize productive activity — the practices, structures, and relationships through which collective effort coheres into outcomes.</dd>
+  <dt>Method</dt><dd>The method of work studies is comparative analysis of organizational forms and labor practices, drawing on philosophy of action, organizational theory, and ethnographic study of how work is actually done.</dd>
+</dl>
 
 
 
@@ -208,10 +105,42 @@
 
 
 
-
-
-
-
+<section class="featured-texts">
+  <h2>Featured texts</h2>
+  <dl>
+    
+    
+    
+      <dt><a href="/library/domains/humanities/domains/sociology/domains/work/texts/philosophy-of-endeavor/">Philosophy of Endeavor</a></dt>
+      <dd>The philosophical grounding of endeavor in Chisholm&#39;s analysis of intentional action, Hornsby&#39;s trying-events, and O&#39;Shaughnessy&#39;s sustained trying.</dd>
+    
+    
+    
+    
+      <dt><a href="/library/domains/humanities/domains/sociology/domains/work/texts/the-settlement-path/">The Settlement Path</a></dt>
+      <dd>The settlement path — from inquiry to process — is the organizing principle of a settlement-carrier system. Every piece of infrastructure serves the movement from uncertainty to determinism.</dd>
+    
+    
+    
+    
+      <dt><a href="/library/domains/humanities/domains/sociology/domains/work/texts/temporality-of-endeavors/">The Temporality of Endeavors</a></dt>
+      <dd>How an endeavor&#39;s temporal character — aim-terminated, indefinite, or aim-open — determines the shape of its operational infrastructure: which planning horizons apply, what cadences are structurally necessary, how urgency manifests, and why multi-scale operations are required.</dd>
+    
+    
+    
+    
+      <dt><a href="/library/domains/humanities/domains/sociology/domains/work/texts/formal-structure-of-office/">The Office as Normative Presheaf: Fiber Doctrine, Roman Law, and Constitutional Opposition</a></dt>
+      <dd>The formal model of office as a normative presheaf with nuclear doctrine — fiber Heyting algebras, the munus/honor/dignitas trinity from Roman law, Kantorowicz&#39;s body politic, and Madison&#39;s separation of powers as nuclear insulation.</dd>
+    
+    
+    
+    
+      <dt><a href="/library/domains/humanities/domains/sociology/domains/work/texts/algebraic-structure-of-work/">The Algebraic Structure of Work: Free Algebras, Ground Terms, and Operational Signatures</a></dt>
+      <dd>How universal algebra formalizes the work taxonomy — operations as signatures, work as term application, work units as ground terms, and the settlement path as substitution closure.</dd>
+    
+    
+  </dl>
+</section>
 
 
 
@@ -220,8 +149,8 @@
   <h2>Subdomains</h2>
   <dl>
     
-    <dt><a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/">Governance</a></dt>
-    <dd>Governance as a domain of work and social organization. Includes governance structures, authority, accountability, and decision-making across diverse traditions and frameworks.</dd>
+    <dt><a href="/library/domains/humanities/domains/sociology/domains/work/domains/">Subdomains</a></dt>
+    
     
   </dl>
 </section>
@@ -229,6 +158,14 @@
 
 
 
+  
+  <p class="section-link"><a href="/library/domains/humanities/domains/sociology/domains/work/terms/">Terms (89) &rsaquo;</a></p>
+  
+
+
+  
+  <p class="section-link"><a href="/library/domains/humanities/domains/sociology/domains/work/texts/">Texts (18) &rsaquo;</a></p>
+  
 
 
 
@@ -236,6 +173,25 @@
 
 
 
+
+<section class="see-also">
+  <h2>See also</h2>
+  <dl>
+    
+    
+    
+      <dt><a href="/library/domains/humanities/domains/sociology/">Sociology</a></dt>
+      <dd>The study of human society, social institutions, relationships, and the forces that shape collective behavior and social change.</dd>
+    
+    
+    
+    
+      <dt><a href="/library/domains/humanities/domains/economics/">Economics</a></dt>
+      <dd>The study of how people, firms, and societies allocate scarce resources -- how prices form, markets function, and incentives shape behavior.</dd>
+    
+    
+  </dl>
+</section>
 
 
 
@@ -248,8 +204,14 @@
          vocab="https://emsenn.net/vocab#">
   <h2>Relations</h2>
   <dl><div class="relation">
-        <dt>Form</dt>
-        <dd property="emsenn:Form">index</dd>
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="emsenn:Componentof">sociology</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Contains</a></dt>
+        <dd property="emsenn:Contains"><ul><li>governance</li><li><a href="/library/domains/humanities/domains/sociology/domains/critical-theory/domains/anarchism/terms/labor/">labor</a></li><li>organization</li><li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/practice/">practice</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Locates</dt>
+        <dd property="emsenn:Locates"><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">domain</a></dd>
       </div>
   </dl>
 </section>

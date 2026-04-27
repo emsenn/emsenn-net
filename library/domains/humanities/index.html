@@ -8,7 +8,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
@@ -43,6 +47,13 @@
     <a href="/blog/">blog</a>
     <a href="/library/">library</a>
   </nav>
+  <div id="search"></div>
+  <script src="/pagefind/pagefind-ui.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      new PagefindUI({ element: "#search", showSubResults: true });
+    });
+  </script>
   <details class="site-about">
     <summary>About this site</summary>
     <ul>
@@ -64,7 +75,7 @@
 
   <main id="content" data-pagefind-body>
     
-<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a></nav>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a></nav>
 <h1 class="p-name">Humanities</h1>
 <div class="h-feed">
 
@@ -95,35 +106,8 @@
   <h2>Subdomains</h2>
   <dl>
     
-    <dt><a href="/library/domains/humanities/domains/business/">Business</a></dt>
-    <dd>The study and practice of organizing resources, people, and capital to create and sustain commercial enterprises.</dd>
+    <dt><a href="/library/domains/humanities/domains/">Subdomains</a></dt>
     
-    <dt><a href="/library/domains/humanities/domains/divination/">Divination</a></dt>
-    <dd>Interpretive practices that seek insight through the reading of patterns, signs, or chance events.</dd>
-    
-    <dt><a href="/library/domains/humanities/domains/economics/">Economics</a></dt>
-    <dd>The study of how people, firms, and societies allocate scarce resources -- how prices form, markets function, and incentives shape behavior.</dd>
-    
-    <dt><a href="/library/domains/humanities/domains/education/">Education</a></dt>
-    <dd>The discipline concerned with how knowledge is transmitted, how learning occurs, and how teaching is designed.</dd>
-    
-    <dt><a href="/library/domains/humanities/domains/media/">Media</a></dt>
-    <dd>The study of narrative, fictional, and communicative forms -- how stories are built, worlds are constructed, and meaning is transmitted through various media.</dd>
-    
-    <dt><a href="/library/domains/humanities/domains/music/">Music</a></dt>
-    <dd>The study of how sound is organized into meaningful structure across traditions, encompassing theory, ethnomusicology, and the relational principles that underlie musical practice.</dd>
-    
-    <dt><a href="/library/domains/humanities/domains/philosophy/">Philosophy</a></dt>
-    <dd>The study of fundamental questions about existence, knowledge, values, reason, mind, and language. Organized here by tradition of origin, not by Western academic subdiscipline.</dd>
-    
-    <dt><a href="/library/domains/humanities/domains/sociology/">Sociology</a></dt>
-    <dd>The study of human society, social institutions, relationships, and the forces that shape collective behavior and social change.</dd>
-    
-    <dt><a href="/library/domains/humanities/domains/spirituality/">Spirituality</a></dt>
-    <dd>Traditions and practices oriented toward transcendence, meaning, and the inner life -- currently covering Christianity and Solomonic occultism.</dd>
-    
-    <dt><a href="/library/domains/humanities/domains/writing/">Writing</a></dt>
-    <dd>The craft and discipline of composing text -- its forms, cognitive mechanisms, and techniques for producing meaning through language.</dd>
     
   </dl>
 </section>

@@ -8,7 +8,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
@@ -20,28 +24,6 @@
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "description": "The cluster of 20th-century French thinkers — Bataille, Baudrillard, Deleuze, Guattari, Lyotard — whose work circulated through American academia as 'theory' and reshaped the humanities.",
-  "hasPart": [
-    {
-      "@type": "CreativeWork",
-      "name": "Accursed Share",
-      "url": "https://emsenn.net/library/domains/humanities/domains/philosophy/domains/western/domains/continental/domains/french-theory/terms/accursed-share/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Simulacra",
-      "url": "https://emsenn.net/library/domains/humanities/domains/philosophy/domains/western/domains/continental/domains/french-theory/terms/simulacra/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Affective Process",
-      "url": "https://emsenn.net/library/domains/humanities/domains/philosophy/domains/western/domains/continental/domains/french-theory/terms/affective-process/"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "Libidinal Investment",
-      "url": "https://emsenn.net/library/domains/humanities/domains/philosophy/domains/western/domains/continental/domains/french-theory/terms/libidinal-investment/"
-    }
-  ],
   "name": "French Theory",
   "publisher": {
     "@type": "Person",
@@ -66,6 +48,13 @@
     <a href="/blog/">blog</a>
     <a href="/library/">library</a>
   </nav>
+  <div id="search"></div>
+  <script src="/pagefind/pagefind-ui.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      new PagefindUI({ element: "#search", showSubResults: true });
+    });
+  </script>
   <details class="site-about">
     <summary>About this site</summary>
     <ul>
@@ -87,7 +76,7 @@
 
   <main id="content" data-pagefind-body>
     
-<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/philosophy/">Philosophy</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/philosophy/domains/western/">Western Philosophy</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/philosophy/domains/western/domains/continental/">Continental Philosophy</a></nav>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/">Humanities</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/philosophy/">Philosophy</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/philosophy/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/philosophy/domains/western/">Western Philosophy</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/philosophy/domains/western/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/philosophy/domains/western/domains/continental/">Continental Philosophy</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/humanities/domains/philosophy/domains/western/domains/continental/domains/">Subdomains</a></nav>
 <h1 class="p-name">French Theory</h1>
 <div class="h-feed">
 
@@ -117,23 +106,13 @@
 
 
 
-
-
-
-
   
-  <ul class="pages">
-    
-    <li><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/continental/domains/french-theory/terms/accursed-share/">Accursed Share</a> <span class="meta">2026-03-03</span></li>
-    
-    <li><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/continental/domains/french-theory/terms/affective-process/">Affective Process</a> <span class="meta">2026-03-02</span></li>
-    
-    <li><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/continental/domains/french-theory/terms/libidinal-investment/">Libidinal Investment</a> <span class="meta">2026-03-02</span></li>
-    
-    <li><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/continental/domains/french-theory/terms/simulacra/">Simulacra</a> <span class="meta">2026-03-03</span></li>
-    
-  </ul>
+  <p class="section-link"><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/continental/domains/french-theory/terms/">Terms (4) &rsaquo;</a></p>
   
+
+
+
+
 
 
 
@@ -150,6 +129,9 @@
          vocab="https://emsenn.net/vocab#">
   <h2>Relations</h2>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="emsenn:Componentof">continental</dd>
+      </div><div class="relation">
         <dt><a href="/library/domains/humanities/domains/philosophy/domains/western/domains/metaphysics/domains/ontology/terms/mereology/">Contains</a></dt>
         <dd property="emsenn:Contains"><ul><li>baudrillard</li><li>bataille</li><li>deleuze guattari</li></ul></dd>
       </div>
