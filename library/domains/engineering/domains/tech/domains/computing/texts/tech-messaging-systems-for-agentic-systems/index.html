@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tech Messaging Systems as Models for Agentic Coordination - emsenn.net</title>
+
+
+<meta name="description" content="Survey of real-world messaging infrastructure — Kafka, NATS, RabbitMQ, ActivityPub, Matrix, Erlang/OTP, IPFS, event sourcing, CRDTs — mining patterns that apply to heterogeneous agentic coordination at nation-scale.">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/tech-messaging-systems-for-agentic-systems/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Tech Messaging Systems as Models for Agentic Coordination">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/tech-messaging-systems-for-agentic-systems/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Survey of real-world messaging infrastructure — Kafka, NATS, RabbitMQ, ActivityPub, Matrix, Erlang/OTP, IPFS, event sourcing, CRDTs — mining patterns that apply to heterogeneous agentic coordination at nation-scale.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-05T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-05T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tech Messaging Systems as Models for Agentic Coordination">
+<meta name="twitter:description" content="Survey of real-world messaging infrastructure — Kafka, NATS, RabbitMQ, ActivityPub, Matrix, Erlang/OTP, IPFS, event sourcing, CRDTs — mining patterns that apply to heterogeneous agentic coordination at nation-scale.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/tech-messaging-systems-for-agentic-systems/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/tech-messaging-systems-for-agentic-systems/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/tech-messaging-systems-for-agentic-systems/",
   "@type": "Article",
   "dateModified": "2026-04-05",
   "datePublished": "2026-04-05",
   "description": "Survey of real-world messaging infrastructure — Kafka, NATS, RabbitMQ, ActivityPub, Matrix, Erlang/OTP, IPFS, event sourcing, CRDTs — mining patterns that apply to heterogeneous agentic coordination at nation-scale.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/",
+    "@type": "CreativeWork",
+    "name": "computing",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/"
+  },
   "keywords": "messaging, distributed-systems, event-sourcing, federation, agentic-systems, pubsub, actor-model",
   "name": "Tech Messaging Systems as Models for Agentic Coordination",
   "publisher": {
@@ -46,46 +97,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:computing, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
   <h1 class="p-name">Tech Messaging Systems as Models for Agentic Coordination</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
     
     <span class="p-summary">Survey of real-world messaging infrastructure — Kafka, NATS, RabbitMQ, ActivityPub, Matrix, Erlang/OTP, IPFS, event sourcing, CRDTs — mining patterns that apply to heterogeneous agentic coordination at nation-scale.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -103,45 +131,76 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>For a distributed heterogeneous agentic system at nation-scale, message-passing is the primary concern: how do agents coordinate when they run in different processes, at different times, under different models, across different sites? Real-world messaging systems have solved slices of this problem. Each brings a pattern the 561 system can adopt.</p>
-<h2 id="apache-kafka--log-based-messaging">Apache Kafka — log-based messaging</h2>
+<h2 id="apache-kafka--log-based-messaging"><a href="#apache-kafka--log-based-messaging" class="heading-anchor" aria-label="Link to this section">¶</a>Apache Kafka — log-based messaging
+</h2>
 <p>Kafka stores messages as an <strong>append-only log partitioned across brokers</strong>. Producers write to topics; consumers read by offset, replay at will. The log IS the state — downstream systems derive their view by consuming the log from offset 0. Retention is time-bounded (hours to forever). Ordering is guaranteed within a partition, not across.</p>
 <p><strong>Pattern:</strong> event-log-as-source-of-truth. Derived state is always rebuildable from replaying the log. 561&rsquo;s <code>events.jsonl</code> already implements this pattern in miniature — one JSONL file as the append-only log, knowledge graph as derived view.</p>
 <p><strong>Applicable:</strong> the entire EAVT graph is Kafka-style: knowledge-graph.json is consumers&rsquo; materialized view of events.jsonl. Multi-log partitioning could enable per-channel append-only files (plans-log, terms-log, decisions-log) without a single contention point.</p>
-<h2 id="nats--subject-based-pubsub">NATS — subject-based pub/sub</h2>
+<h2 id="nats--subject-based-pubsub"><a href="#nats--subject-based-pubsub" class="heading-anchor" aria-label="Link to this section">¶</a>NATS — subject-based pub/sub
+</h2>
 <p>NATS is a lightweight broker with <strong>hierarchical subjects</strong> (<code>agents.researcher.dispatched</code>) and wildcard subscriptions (<code>agents.*.dispatched</code>). Messages are typed by subject; subscribers express interest via subject patterns. Default delivery is at-most-once (fast, no persistence); JetStream adds durable streams.</p>
 <p><strong>Pattern:</strong> hierarchical channel naming + subscriber-pattern matching. Channels form a tree; subscriptions are cut-patterns on the tree.</p>
 <p><strong>Applicable:</strong> 561&rsquo;s implicit channels (bridge, fleet, engineering, failures) could be expressed as NATS-style subjects (<code>ops.planning.dispatched</code>, <code>ops.engineering.failed</code>). Office subscriptions could be declared as patterns, making subscription routing mechanical.</p>
-<h2 id="rabbitmq--amqp-exchanges-and-routing">RabbitMQ — AMQP exchanges and routing</h2>
+<h2 id="rabbitmq--amqp-exchanges-and-routing"><a href="#rabbitmq--amqp-exchanges-and-routing" class="heading-anchor" aria-label="Link to this section">¶</a>RabbitMQ — AMQP exchanges and routing
+</h2>
 <p>RabbitMQ decouples publishers from queues via <strong>exchanges</strong>: publishers send to an exchange, which routes to queues by type (fanout, direct, topic, headers). Consumers bind queues to exchanges with routing keys. Messages acknowledge explicitly; rejected messages retry or dead-letter.</p>
 <p><strong>Pattern:</strong> routing as a first-class concern, separate from delivery. A message&rsquo;s destination is computed from its routing-key + exchange-binding, not baked into the message.</p>
 <p><strong>Applicable:</strong> 561&rsquo;s dispatch-routing is currently implicit (first-officer computes which office matches a task). An AMQP-style exchange would make routing rules explicit and queryable — task.requires routes through a binding that selects offices, rather than inference.</p>
-<h2 id="activitypub--federated-social-messaging">ActivityPub — federated social messaging</h2>
+<h2 id="activitypub--federated-social-messaging"><a href="#activitypub--federated-social-messaging" class="heading-anchor" aria-label="Link to this section">¶</a>ActivityPub — federated social messaging
+</h2>
 <p>ActivityPub uses <strong>HTTP POST to each actor&rsquo;s <code>inbox</code></strong>, with actor profiles served at stable URLs. Activities (<code>Create</code>, <code>Follow</code>, <code>Like</code>, <code>Announce</code>) are typed JSON-LD objects. Federation works via HTTP signatures: server A delivers to server B by signing and POST-ing. No central authority. Each server maintains its own state; federation is eventually consistent.</p>
 <p><strong>Pattern:</strong> federation through typed HTTP endpoints with cryptographic provenance. Each participant is sovereign; federation is optional and asymmetric (you can follow without being followed back).</p>
 <p><strong>Applicable:</strong> 561&rsquo;s deployment model (infrastructure for Black Liberation + Indigenous Sovereignty) requires federation without central authority. ActivityPub&rsquo;s inbox/outbox pattern maps directly: each 561 instance serves its own records, federates selectively with allied instances, signs deliveries with instance keys. The <code>activitypub.md</code> idea file in triage already sketches this.</p>
-<h2 id="matrix--federated-eventual-consistency-event-graphs">Matrix — federated eventual-consistency event graphs</h2>
+<h2 id="matrix--federated-eventual-consistency-event-graphs"><a href="#matrix--federated-eventual-consistency-event-graphs" class="heading-anchor" aria-label="Link to this section">¶</a>Matrix — federated eventual-consistency event graphs
+</h2>
 <p>Matrix treats rooms as <strong>directed acyclic graphs of events</strong>. Each event references its parents; the DAG is gossipped across federating servers. State is computed by resolving the DAG (state-resolution algorithm v2). End-to-end encryption (Olm/Megolm) is first-class. Federation is many-to-many, not hub-and-spoke.</p>
 <p><strong>Pattern:</strong> state-as-DAG-fold. The room state at any point is the fold over all events up to that point. Concurrent edits resolve deterministically via canonical ordering.</p>
 <p><strong>Applicable:</strong> 561&rsquo;s events.jsonl is linear; Matrix&rsquo;s event-DAG handles concurrent writes from multiple agents/sessions. If two officers append to the same channel simultaneously, Matrix&rsquo;s model gives a canonical resolution. For a future where FARS instances federate, event-DAG + state-resolution is a proven pattern.</p>
-<h2 id="erlangotp--actor-model-with-supervision">Erlang/OTP — actor model with supervision</h2>
+<h2 id="erlangotp--actor-model-with-supervision"><a href="#erlangotp--actor-model-with-supervision" class="heading-anchor" aria-label="Link to this section">¶</a>Erlang/OTP — actor model with supervision
+</h2>
 <p>Erlang processes are <strong>isolated, communicate only via asynchronous message-passing</strong>. Each process has a mailbox; <code>receive</code> pattern-matches on incoming messages. Supervisor trees restart failed processes (&ldquo;let it crash&rdquo;). Distribution is transparent — a message to a process on another node uses the same syntax as local.</p>
 <p><strong>Pattern:</strong> isolation + asynchronous message-passing as fault-tolerance mechanism. Failures are contained to a single actor; the supervisor decides restart policy.</p>
 <p><strong>Applicable:</strong> 561 officers are actors — each session is an isolated process with its own context, communicating via messages (dispatch prompts, event records, return values). Supervisor hierarchy is the dispatch chain (first-officer supervises crew; captain supervises first-officer). Let-it-crash applies: failed sessions don&rsquo;t corrupt the shared state because all state flows through the event log.</p>
-<h2 id="ipfs--libp2p--content-addressed-pubsub">IPFS / libp2p — content-addressed pubsub</h2>
+<h2 id="ipfs--libp2p--content-addressed-pubsub"><a href="#ipfs--libp2p--content-addressed-pubsub" class="heading-anchor" aria-label="Link to this section">¶</a>IPFS / libp2p — content-addressed pubsub
+</h2>
 <p>IPFS identifies every object by <strong>content hash (CID)</strong>. The same content has the same address everywhere. Objects are distributed via DHT; pubsub (GossipSub) flood-propagates messages across peers subscribing to the same topic. No central server, no global ordering.</p>
 <p><strong>Pattern:</strong> content-addressing + gossip-based pubsub. Identity is derived from content, not assigned; subscribers receive from peers, not a broker.</p>
 <p><strong>Applicable:</strong> 561&rsquo;s <code>project_capability-composition-insight.md</code> already flagged content-addressing (canonical triple-set hash) as the path to stable entity identity. IPFS-style CIDs for messages would make cross-instance federation trivial: two 561 instances citing the same message refer to the same CID, regardless of which instance originated it.</p>
-<h2 id="event-sourcing-greg-young-2010--pattern-not-system">Event sourcing (Greg Young, 2010) — pattern, not system</h2>
+<h2 id="event-sourcing-greg-young-2010--pattern-not-system"><a href="#event-sourcing-greg-young-2010--pattern-not-system" class="heading-anchor" aria-label="Link to this section">¶</a>Event sourcing (Greg Young, 2010) — pattern, not system
+</h2>
 <p>Event sourcing stores <strong>every state change as an event</strong>, deriving current state by replaying events. No update-in-place. Queries run against a projected view (materialized from event fold). The event log is the source of truth; projections are caches.</p>
 <p><strong>Pattern:</strong> mutation = append new event; state = fold of event log. Enables time-travel debugging, audit trails, replay-for-testing.</p>
 <p><strong>Applicable:</strong> 561 already uses this shape. Making it complete means: every record creation/mutation MUST produce an event; the knowledge graph MUST be regeneratable from the event log alone; invariants become assertions on folds.</p>
-<h2 id="crdts-shapiro-et-al-2011--conflict-free-replicated-data-types">CRDTs (Shapiro et al., 2011) — conflict-free replicated data types</h2>
+<h2 id="crdts-shapiro-et-al-2011--conflict-free-replicated-data-types"><a href="#crdts-shapiro-et-al-2011--conflict-free-replicated-data-types" class="heading-anchor" aria-label="Link to this section">¶</a>CRDTs (Shapiro et al., 2011) — conflict-free replicated data types
+</h2>
 <p>CRDTs are data structures where <strong>concurrent updates merge deterministically without coordination</strong>. State-based CRDTs (G-Counter, OR-Set, LWW-Register, RGA) have mathematical join operations; operation-based CRDTs broadcast commutative ops. Two replicas converging eventually see the same state.</p>
 <p><strong>Pattern:</strong> merge as a categorical operation (commutative, associative, idempotent). No consensus protocol needed.</p>
 <p><strong>Applicable:</strong> when two officers edit the same record concurrently (or two FARS instances federate), CRDT merge rules would resolve conflicts without a lock. A task&rsquo;s <code>status:</code> could be a LWW-Register; a task&rsquo;s <code>depends-on:</code> could be an OR-Set. CRDTs turn eventual consistency into a correctness property.</p>
-<h2 id="synthesis--which-patterns-apply-to-561">Synthesis — which patterns apply to 561</h2>
+<h2 id="synthesis--which-patterns-apply-to-561"><a href="#synthesis--which-patterns-apply-to-561" class="heading-anchor" aria-label="Link to this section">¶</a>Synthesis — which patterns apply to 561
+</h2>
 <table>
   <thead>
       <tr>
@@ -203,7 +262,8 @@
 <li><strong>Event-sourcing-pattern</strong> as the unifying philosophy (state is the fold of the log)</li>
 </ul>
 <p><strong>What&rsquo;s missing from the patterns:</strong> provenance-at-message-level for accountability-through-delegation. A message from an officer must carry the chain of authority that authorized its sending. Closest analogs: Matrix&rsquo;s event-signatures, ActivityPub&rsquo;s HTTP signatures. Neither carries <strong>authority-provenance</strong> (the delegation-chain) alongside identity-provenance (who signed). The 561 system&rsquo;s governance-theoretic grounding (office, delegation, authority) requires extending message envelopes with a delegation-chain field — this appears to be a novel requirement emerging from the 561 context.</p>
-<h2 id="see-also">See also</h2>
+<h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See also
+</h2>
 <ul>
 <li>Adjoint paper (<code>the-adjoint-structure-of-predication-on-bilattice-valued-fibers.md</code>) — history monoid T = message log; fiber H_t = channel schema at time t</li>
 <li><a href="../../../../../science/domains/information/terms/channel.md" class="link-internal">channel</a> — medium with capacity, bandwidth, noise</li>
@@ -215,35 +275,85 @@
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-05">April 5, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/tech-messaging-systems-for-agentic-systems/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/tech-messaging-systems-for-agentic-systems/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
-        <dd property="emsenn:Domain">computing</dd>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
       </div><div class="relation">
-        <dt>Sources</dt>
+        <dt><a href="/library/references/sources/">Sources</a></dt>
         <dd property="emsenn:Sources"><ul></ul></dd>
       </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/messaging/">messaging</a></li><li><a href="/tags/distributed-systems/">distributed-systems</a></li><li><a href="/tags/event-sourcing/">event-sourcing</a></li><li><a href="/tags/federation/">federation</a></li><li><a href="/tags/agentic-systems/">agentic-systems</a></li><li><a href="/tags/pubsub/">pubsub</a></li><li><a href="/tags/actor-model/">actor-model</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

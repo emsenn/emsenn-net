@@ -1,30 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tactics in Lean - emsenn.net</title>
+
+
+<meta name="description" content="¶What tactics do A tactic transforms a proof goal into simpler subgoals. The proof state consists of:
+Context: named hypotheses and local definitions. Goal: the type (proposition) that remains to be proved. Each tactic inspects the goal and context, then either closes the goal (producing a proof …">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Tactics in Lean">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="¶What tactics do A tactic transforms a proof goal into simpler subgoals. The proof state consists of:
+Context: named hypotheses and local definitions. Goal: the type (proposition) that remains to be proved. Each tactic inspects the goal and context, then either closes the goal (producing a proof …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-03-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-03-01T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tactics in Lean">
+<meta name="twitter:description" content="¶What tactics do A tactic transforms a proof goal into simpler subgoals. The proof state consists of:
+Context: named hypotheses and local definitions. Goal: the type (proposition) that remains to be proved. Each tactic inspects the goal and context, then either closes the goal (producing a proof …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/",
   "@type": "Article",
   "dateModified": "2026-03-01",
   "datePublished": "2026-03-01",
-  "description": "What tactics do A tactic transforms a proof goal into simpler subgoals. The proof state consists of:\nContext: named hypotheses and local definitions. Goal: the type (proposition) that remains to be proved. Each tactic inspects the goal and context, then either closes the goal (producing a proof term) or splits it into subgoals. When all goals are closed, the proof is complete and Lean\u0026rsquo;s kernel checks the assembled proof term.\nCore tactics Introducing hypotheses intro moves a universally quantified variable or implication antecedent from the goal into the context:\n",
+  "description": "¶What tactics do A tactic transforms a proof goal into simpler subgoals. The proof state consists of:\nContext: named hypotheses and local definitions. Goal: the type (proposition) that remains to be proved. Each tactic inspects the goal and context, then either closes the goal (producing a proof term) or splits it into subgoals. When all goals are closed, the proof is complete and Lean\u0026rsquo;s kernel checks the assembled proof term.\n",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/terms/lean/",
+    "@type": "CreativeWork",
+    "name": "lean",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/terms/lean/"
+  },
   "keywords": "lean",
   "name": "Tactics in Lean",
   "publisher": {
@@ -46,46 +100,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:lean, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/">Lean</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/">Texts</a></nav>
   <h1 class="p-name">Tactics in Lean</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-03-01T00:00:00Z">2026-03-01</time>
     
     
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -109,8 +140,30 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
-    <h2 id="what-tactics-do">What tactics do</h2>
+    <h2 id="what-tactics-do"><a href="#what-tactics-do" class="heading-anchor" aria-label="Link to this section">¶</a>What tactics do
+</h2>
 <p>A <a href="../terms/tactic.md" class="link-internal">tactic</a> transforms a proof goal into simpler subgoals. The proof
 state consists of:</p>
 <ul>
@@ -120,8 +173,10 @@ state consists of:</p>
 <p>Each tactic inspects the goal and context, then either closes the goal (producing a proof
 term) or splits it into subgoals. When all goals are closed, the proof is complete and
 Lean&rsquo;s kernel checks the assembled proof term.</p>
-<h2 id="core-tactics">Core tactics</h2>
-<h3 id="introducing-hypotheses">Introducing hypotheses</h3>
+<h2 id="core-tactics"><a href="#core-tactics" class="heading-anchor" aria-label="Link to this section">¶</a>Core tactics
+</h2>
+<h3 id="introducing-hypotheses"><a href="#introducing-hypotheses" class="heading-anchor" aria-label="Link to this section">¶</a>Introducing hypotheses
+</h3>
 <p><code>intro</code> moves a universally quantified variable or implication antecedent from the goal
 into the context:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: ∀ n : Nat, n = n</span>
@@ -129,27 +184,31 @@ into the context:</p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Context: n : Nat</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal: n = n</span>
 </span></span></code></pre></div><p><code>intro h</code> names the introduced hypothesis <code>h</code>. Multiple introductions: <code>intro a b h</code>.</p>
-<h3 id="applying-lemmas">Applying lemmas</h3>
+<h3 id="applying-lemmas"><a href="#applying-lemmas" class="heading-anchor" aria-label="Link to this section">¶</a>Applying lemmas
+</h3>
 <p><code>apply</code> works backward from the goal. If the goal is <code>Q</code> and you have a lemma
 <code>lem : P → Q</code>, then <code>apply lem</code> changes the goal to <code>P</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: b ≤ c</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: apply le_trans (b := middle)</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal 1: b ≤ middle</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal 2: middle ≤ c</span>
-</span></span></code></pre></div><h3 id="supplying-exact-terms">Supplying exact terms</h3>
+</span></span></code></pre></div><h3 id="supplying-exact-terms"><a href="#supplying-exact-terms" class="heading-anchor" aria-label="Link to this section">¶</a>Supplying exact terms
+</h3>
 <p><code>exact</code> closes a goal by providing the proof term directly:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Context: h : P</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal: P</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: exact h</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- (goal closed)</span>
-</span></span></code></pre></div><h3 id="rewriting">Rewriting</h3>
+</span></span></code></pre></div><h3 id="rewriting"><a href="#rewriting" class="heading-anchor" aria-label="Link to this section">¶</a>Rewriting
+</h3>
 <p><code>rw</code> replaces occurrences of one side of an equation with the other:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Context: h : a = b</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal: f a = f b</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: rw [h]</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal: f b = f b</span>
 </span></span></code></pre></div><p><code>rw [← h]</code> rewrites right-to-left. Multiple rewrites: <code>rw [h₁, h₂, h₃]</code>.</p>
-<h3 id="case-analysis">Case analysis</h3>
+<h3 id="case-analysis"><a href="#case-analysis" class="heading-anchor" aria-label="Link to this section">¶</a>Case analysis
+</h3>
 <p><code>cases</code> splits an inductive value into its constructors:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Context: h : P ∨ Q</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal: R</span>
@@ -157,13 +216,15 @@ into the context:</p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- | inl hp =&gt; -- Context: hp : P, Goal: R</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- | inr hq =&gt; -- Context: hq : Q, Goal: R</span>
 </span></span></code></pre></div><p>For natural numbers, <code>cases n</code> splits into <code>zero</code> and <code>succ m</code>.</p>
-<h3 id="induction">Induction</h3>
+<h3 id="induction"><a href="#induction" class="heading-anchor" aria-label="Link to this section">¶</a>Induction
+</h3>
 <p><code>induction</code> is <code>cases</code> with an induction hypothesis:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: ∀ n, 0 + n = n</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: intro n; induction n with</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- | zero =&gt; -- Goal: 0 + 0 = 0</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- | succ m ih =&gt; -- Context: ih : 0 + m = m, Goal: 0 + succ m = succ m</span>
-</span></span></code></pre></div><h3 id="simplification">Simplification</h3>
+</span></span></code></pre></div><h3 id="simplification"><a href="#simplification" class="heading-anchor" aria-label="Link to this section">¶</a>Simplification
+</h3>
 <p><code>simp</code> applies a set of rewriting lemmas (marked with <code>@[simp]</code>) repeatedly until no
 more apply. It handles routine algebraic simplification, arithmetic, and definitional
 unfolding:</p>
@@ -171,13 +232,15 @@ unfolding:</p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: simp</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- (goal closed)</span>
 </span></span></code></pre></div><p><code>simp [custom_lemma]</code> adds a lemma to the simp set for this call.</p>
-<h3 id="constructor">Constructor</h3>
+<h3 id="constructor"><a href="#constructor" class="heading-anchor" aria-label="Link to this section">¶</a>Constructor
+</h3>
 <p><code>constructor</code> applies the constructor of an inductive type when the goal matches:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#75715e">-- Goal: P ∧ Q</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- After: constructor</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal 1: P</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal 2: Q</span>
-</span></span></code></pre></div><h2 id="mathlib-tactics">Mathlib tactics</h2>
+</span></span></code></pre></div><h2 id="mathlib-tactics"><a href="#mathlib-tactics" class="heading-anchor" aria-label="Link to this section">¶</a>Mathlib tactics
+</h2>
 <p><a href="../terms/Mathlib.md" class="link-internal">Mathlib</a> extends Lean&rsquo;s tactic set with specialized automation:</p>
 <ul>
 <li><code>ring</code> — closes goals that follow from ring axioms (commutativity, associativity,
@@ -192,7 +255,8 @@ cases, etc.) to close goals.</li>
 </ul>
 <p>These tactics automate routine proof steps, letting the human focus on the key ideas while
 the machine handles bookkeeping.</p>
-<h2 id="combining-tactics">Combining tactics</h2>
+<h2 id="combining-tactics"><a href="#combining-tactics" class="heading-anchor" aria-label="Link to this section">¶</a>Combining tactics
+</h2>
 <p>Tactics compose sequentially (separated by newlines or <code>;</code>) and branch with <code>&lt;;&gt;</code> (apply
 a tactic to all remaining goals) or structured syntax:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">theorem</span> example_proof <span style="color:#f92672">(</span>P Q <span style="color:#f92672">:</span> <span style="color:#66d9ef">Prop</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>hp <span style="color:#f92672">:</span> P<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>hq <span style="color:#f92672">:</span> Q<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> P ∧ Q <span style="color:#f92672">:</span>= <span style="color:#66d9ef">by</span>
@@ -200,7 +264,8 @@ a tactic to all remaining goals) or structured syntax:</p>
 </span></span><span style="display:flex;"><span>  · exact hp
 </span></span><span style="display:flex;"><span>  · exact hq
 </span></span></code></pre></div><p>The <code>·</code> focuses on a specific subgoal. This structured style keeps proofs readable.</p>
-<h2 id="a-worked-example">A worked example</h2>
+<h2 id="a-worked-example"><a href="#a-worked-example" class="heading-anchor" aria-label="Link to this section">¶</a>A worked example
+</h2>
 <p>Prove that meet is commutative in a <a href="../../../../../../mathematics/objects/posets/terms/lattice.md" class="link-internal">lattice</a>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">theorem</span> inf_comm <span style="color:#f92672">{</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">}</span> <span style="color:#f92672">[</span>Lattice α<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>a b <span style="color:#f92672">:</span> α<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> a ⊓ b = b ⊓ a <span style="color:#f92672">:</span>= <span style="color:#66d9ef">by</span>
 </span></span><span style="display:flex;"><span>  apply le_antisymm
@@ -219,7 +284,8 @@ below both components) combined with the <a href="../../../../../../mathematics/
 </ol>
 <p>In Mathlib, this theorem already exists as <code>inf_comm</code>, and <code>simp</code> or <code>exact inf_comm</code>
 would close the goal directly. The explicit proof shows the tactic structure.</p>
-<h2 id="practical-advice">Practical advice</h2>
+<h2 id="practical-advice"><a href="#practical-advice" class="heading-anchor" aria-label="Link to this section">¶</a>Practical advice
+</h2>
 <ul>
 <li><strong>Read the goal.</strong> Before choosing a tactic, read the proof state. The goal&rsquo;s shape
 determines which tactic applies.</li>
@@ -235,38 +301,85 @@ try to write a complete tactic block from memory.</li>
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-03-01">March 1, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/terms/lean/">lean</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
       </div><div class="relation">
-        <dt>Form</dt>
-        <dd property="emsenn:Form"><a href="/library/domains/humanities/domains/education/terms/lesson/">lesson</a></dd>
-      </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment"><ul><li>/technology/disciplines/computing/software/lean/curricula/types and propositions in lean.md</li></ul></dd>
+        <dd property="schema:isBasedOn"><ul><li>/technology/disciplines/computing/software/lean/curricula/types and propositions in lean.md</li></ul></dd>
       </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/lean/">lean</a></li></ul></dd>
       </div><div class="relation">
         <dt>Teaches</dt>
-        <dd property="emsenn:Teaches"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/">Tactics in Lean</a></li></ul></dd>
+        <dd property="schema:teaches"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/tactics-in-lean/">Tactics in Lean</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

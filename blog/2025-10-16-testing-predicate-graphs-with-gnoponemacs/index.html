@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testing predicate graphs with GnoponEmacs - emsenn.net</title>
+
+
+<meta name="description" content="(defun gpe/ritm/collect-predicates-from-node (node) (let* ((raw-rd (alist-get &#34;NODE-RELATIONS&#34; (org-roam-node-properties node) nil nil #&#39;string=)) (alist (when raw-rd (ignore-errors (read raw-rd))))) (when alist (cl-loop for (pred . obj) in alist collect (let* ((parse-link (lambda (s) …">
+<link rel="canonical" href="https://emsenn.net/blog/2025-10-16-testing-predicate-graphs-with-gnoponemacs/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Testing predicate graphs with GnoponEmacs">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/blog/2025-10-16-testing-predicate-graphs-with-gnoponemacs/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="(defun gpe/ritm/collect-predicates-from-node (node) (let* ((raw-rd (alist-get &#34;NODE-RELATIONS&#34; (org-roam-node-properties node) nil nil #&#39;string=)) (alist (when raw-rd (ignore-errors (read raw-rd))))) (when alist (cl-loop for (pred . obj) in alist collect (let* ((parse-link (lambda (s) …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:author" content="emsenn">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Testing predicate graphs with GnoponEmacs">
+<meta name="twitter:description" content="(defun gpe/ritm/collect-predicates-from-node (node) (let* ((raw-rd (alist-get &#34;NODE-RELATIONS&#34; (org-roam-node-properties node) nil nil #&#39;string=)) (alist (when raw-rd (ignore-errors (read raw-rd))))) (when alist (cl-loop for (pred . obj) in alist collect (let* ((parse-link (lambda (s) …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/blog/2025-10-16-testing-predicate-graphs-with-gnoponemacs/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/blog/2025-10-16-testing-predicate-graphs-with-gnoponemacs/index.jsonld">
+
+
+<script type="application/ld+json">
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/blog/2025-10-16-testing-predicate-graphs-with-gnoponemacs/",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net/authors/emsenn/"
+  },
+  "description": "(defun gpe/ritm/collect-predicates-from-node (node) (let* ((raw-rd (alist-get \u0026#34;NODE-RELATIONS\u0026#34; (org-roam-node-properties node) nil nil #\u0026#39;string=)) (alist (when raw-rd (ignore-errors (read raw-rd))))) (when alist (cl-loop for (pred . obj) in alist collect (let* ((parse-link (lambda (s) (when (string-match \u0026#34;\\\\[\\\\[id:\\\\([^]]+\\\\)\\\\]\\\\[\\\\([^]]+\\\\)\\\\]\\\\]\u0026#34; s) (list :id (match-string 1 s) :sign (match-string 2 s))))) (pred-str (replace-regexp-in-string \u0026#34;] \\\\[\u0026#34; \u0026#34;][\u0026#34; (format \u0026#34;%s\u0026#34; pred))) (obj-str (replace-regexp-in-string \u0026#34;] \\\\[\u0026#34; \u0026#34;][\u0026#34; (format \u0026#34;%s\u0026#34; obj))) (pred-link (funcall parse-link pred-str)) (obj-link (funcall parse-link obj-str))) (list :subject-id id :subject-sign title :predicate-id (plist-get pred-link :id) :predicate-sign (plist-get pred-link :sign) :object-id (plist-get obj-link :id) :object-sign (plist-get obj-link :sign))))))) (defun gpe/ritm/build-predicate-graph () (cl-loop for (id file level pos todo priority scheduled deadline title props) in (org-roam-db-query [:select [id file level pos todo priority scheduled deadline title properties] :from nodes :where (or (like properties \u0026#39;\u0026#34;%NODE-RELATIONS%\u0026#34;) (like properties \u0026#39;\u0026#34;%node-relations%\u0026#34;))]) for node = (org-roam-node-from-id id) collect (gpe/ritm/collect-predicates-from-node node))) (defun gpe/ritm/filter-predicates-by (predicates predicate-id object-id) (cl-loop for entry in predicates when (and (string= (plist-get (car entry) :predicate-id) predicate-id) (string= (plist-get (car entry) :object-id) object-id)) collect (plist-get (car entry) :subject-id))) (defun gpe/ritm/render-list-of-matches (pairs) (let ((graph (gpe/ritm/build-predicate-graph))) (mapconcat (lambda (pair) (let* ((predicate-id (car pair)) (object-id (cdr pair)) (ids (gpe/ritm/filter-predicates-by graph predicate-id object-id)) (nodes (mapcar #\u0026#39;org-roam-node-from-id ids)) (output (mapconcat (lambda (node) (format \u0026#34;- [[id:%s][%s]]\u0026#34; (org-roam-node-id node) (org-roam-node-title node))) nodes \u0026#34;\\n\u0026#34;))) output)) pairs \u0026#34;\\n\\n\u0026#34;))) #+RESULTS: gpe/ritm/render-list-of-matches (gpe/ritm/filter-predicates-by (gpe/ritm/build-predicate-graph) \u0026#34;bee496e1-139b-4a7f-8a24-d4c14e6084c6\u0026#34; \u0026#34;d542e8d2-3512-47a0-adbb-4a393e161ecb\u0026#34;) #+RESULTS: | 442470fd-62e2-4378-903f-6ed3ba005d10 | 1abdc5ad-2bb7-448d-af49-3e257c915685 |\n",
+  "keywords": "gnopon-emacs, fregean-predicates",
+  "name": "Testing predicate graphs with GnoponEmacs",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/blog/2025-10-16-testing-predicate-graphs-with-gnoponemacs/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/writing/">writing</a>
+    <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
+  </nav>
+</header>
+
+  <main id="content" data-pagefind-body>
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, section:blog">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/blog/">emsenn&#39;s blog</a></nav>
+  <h1 class="p-name">Testing predicate graphs with GnoponEmacs</h1>
+  <div class="meta">
+    
+    <span>by <span class="p-author">emsenn</span></span>
+    
+  </div>
+  <div class="e-content">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(defun gpe/ritm/collect-predicates-from-node (node)
+</span></span><span style="display:flex;"><span>  (let* ((raw-rd (alist-get <span style="color:#e6db74">&#34;NODE-RELATIONS&#34;</span>
+</span></span><span style="display:flex;"><span>			    (org-roam-node-properties node) <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">nil</span> <span style="color:#a6e22e">#&#39;</span>string=))
+</span></span><span style="display:flex;"><span>	 (alist (when raw-rd (ignore-errors (<span style="color:#a6e22e">read</span> raw-rd)))))
+</span></span><span style="display:flex;"><span>    (when alist
+</span></span><span style="display:flex;"><span>      (cl-loop
+</span></span><span style="display:flex;"><span>       for (pred <span style="color:#f92672">.</span> obj) in alist
+</span></span><span style="display:flex;"><span>       collect
+</span></span><span style="display:flex;"><span>       (let* ((parse-link
+</span></span><span style="display:flex;"><span>	       (lambda (s)
+</span></span><span style="display:flex;"><span>		 (when (<span style="color:#a6e22e">string-match</span> <span style="color:#e6db74">&#34;\\[\\[id:\\([^]]+\\)\\]\\[\\([^]]+\\)\\]\\]&#34;</span> s)
+</span></span><span style="display:flex;"><span>		   (<span style="color:#a6e22e">list</span> :id (match-string <span style="color:#ae81ff">1</span> s)
+</span></span><span style="display:flex;"><span>			 :sign (match-string <span style="color:#ae81ff">2</span> s)))))
+</span></span><span style="display:flex;"><span>	      (pred-str
+</span></span><span style="display:flex;"><span>	       (replace-regexp-in-string <span style="color:#e6db74">&#34;] \\[&#34;</span> <span style="color:#e6db74">&#34;][&#34;</span>
+</span></span><span style="display:flex;"><span>					 (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;%s&#34;</span> pred)))
+</span></span><span style="display:flex;"><span>	     (obj-str
+</span></span><span style="display:flex;"><span>	      (replace-regexp-in-string <span style="color:#e6db74">&#34;] \\[&#34;</span> <span style="color:#e6db74">&#34;][&#34;</span>
+</span></span><span style="display:flex;"><span>					(<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;%s&#34;</span> obj)))
+</span></span><span style="display:flex;"><span>	     (pred-link (<span style="color:#a6e22e">funcall</span> parse-link pred-str))
+</span></span><span style="display:flex;"><span>	     (obj-link  (<span style="color:#a6e22e">funcall</span> parse-link obj-str)))
+</span></span><span style="display:flex;"><span>	(<span style="color:#a6e22e">list</span>
+</span></span><span style="display:flex;"><span>           :subject-id id
+</span></span><span style="display:flex;"><span>           :subject-sign title
+</span></span><span style="display:flex;"><span>           :predicate-id (<span style="color:#a6e22e">plist-get</span> pred-link :id)
+</span></span><span style="display:flex;"><span>           :predicate-sign (<span style="color:#a6e22e">plist-get</span> pred-link :sign)
+</span></span><span style="display:flex;"><span>           :object-id (<span style="color:#a6e22e">plist-get</span> obj-link :id)
+</span></span><span style="display:flex;"><span>           :object-sign (<span style="color:#a6e22e">plist-get</span> obj-link :sign)))))))
+</span></span><span style="display:flex;"><span>(defun gpe/ritm/build-predicate-graph ()
+</span></span><span style="display:flex;"><span>  (cl-loop
+</span></span><span style="display:flex;"><span>   for (id file level pos todo priority scheduled deadline title props)
+</span></span><span style="display:flex;"><span>   in (org-roam-db-query
+</span></span><span style="display:flex;"><span>       [:select [id file level pos todo priority scheduled deadline title properties]
+</span></span><span style="display:flex;"><span>		:from nodes
+</span></span><span style="display:flex;"><span>		:where (or (like properties <span style="color:#f92672">&#39;</span><span style="color:#e6db74">&#34;%NODE-RELATIONS%&#34;</span>)
+</span></span><span style="display:flex;"><span>			   (like properties <span style="color:#f92672">&#39;</span><span style="color:#e6db74">&#34;%node-relations%&#34;</span>))])
+</span></span><span style="display:flex;"><span>   for node <span style="color:#a6e22e">=</span> (org-roam-node-from-id id)
+</span></span><span style="display:flex;"><span>   collect (gpe/ritm/collect-predicates-from-node node)))
+</span></span><span style="display:flex;"><span>(defun gpe/ritm/filter-predicates-by (predicates predicate-id object-id)
+</span></span><span style="display:flex;"><span>  (cl-loop for entry in predicates
+</span></span><span style="display:flex;"><span>	   when (and (string= (<span style="color:#a6e22e">plist-get</span> (<span style="color:#a6e22e">car</span> entry) :predicate-id)
+</span></span><span style="display:flex;"><span>			      predicate-id)
+</span></span><span style="display:flex;"><span>		     (string= (<span style="color:#a6e22e">plist-get</span> (<span style="color:#a6e22e">car</span> entry) :object-id)
+</span></span><span style="display:flex;"><span>			      object-id))
+</span></span><span style="display:flex;"><span>	   collect (<span style="color:#a6e22e">plist-get</span> (<span style="color:#a6e22e">car</span> entry) :subject-id)))
+</span></span><span style="display:flex;"><span>(defun gpe/ritm/render-list-of-matches (pairs)
+</span></span><span style="display:flex;"><span>  (let ((graph (gpe/ritm/build-predicate-graph)))
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">mapconcat</span>
+</span></span><span style="display:flex;"><span>     (lambda (pair)
+</span></span><span style="display:flex;"><span>       (let* ((predicate-id (<span style="color:#a6e22e">car</span> pair))
+</span></span><span style="display:flex;"><span>	      (object-id (<span style="color:#a6e22e">cdr</span> pair))
+</span></span><span style="display:flex;"><span>	      (ids
+</span></span><span style="display:flex;"><span>	       (gpe/ritm/filter-predicates-by
+</span></span><span style="display:flex;"><span>		graph predicate-id object-id))
+</span></span><span style="display:flex;"><span>	      (nodes (<span style="color:#a6e22e">mapcar</span> <span style="color:#a6e22e">#&#39;</span>org-roam-node-from-id ids))
+</span></span><span style="display:flex;"><span>	      (output
+</span></span><span style="display:flex;"><span>	       (<span style="color:#a6e22e">mapconcat</span>
+</span></span><span style="display:flex;"><span>		(lambda (node)
+</span></span><span style="display:flex;"><span>		  (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;- [[id:%s][%s]]&#34;</span>
+</span></span><span style="display:flex;"><span>			  (org-roam-node-id node)
+</span></span><span style="display:flex;"><span>			  (org-roam-node-title node)))
+</span></span><span style="display:flex;"><span>		nodes
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#34;\n&#34;</span>)))
+</span></span><span style="display:flex;"><span>	      output))
+</span></span><span style="display:flex;"><span>     pairs
+</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">&#34;\n\n&#34;</span>)))
+</span></span></code></pre></div><dl>
+<dt>#+RESULTS:</dt>
+<dd>gpe/ritm/render-list-of-matches</dd>
+</dl>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(gpe/ritm/filter-predicates-by (gpe/ritm/build-predicate-graph)     <span style="color:#e6db74">&#34;bee496e1-139b-4a7f-8a24-d4c14e6084c6&#34;</span> <span style="color:#e6db74">&#34;d542e8d2-3512-47a0-adbb-4a393e161ecb&#34;</span>)
+</span></span></code></pre></div><p>#+RESULTS:
+| 442470fd-62e2-4378-903f-6ed3ba005d10 | 1abdc5ad-2bb7-448d-af49-3e257c915685 |</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(gpe/ritm/render-list-of-matches <span style="color:#f92672">&#39;</span>((<span style="color:#e6db74">&#34;bee496e1-139b-4a7f-8a24-d4c14e6084c6&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;d542e8d2-3512-47a0-adbb-4a393e161ecb&#34;</span>)))
+</span></span></code></pre></div><p>#+RESULTS:</p>
+<ul>
+<li>Testing predicate graphs with GnoponEmacs</li>
+<li>Planning March 28th, 2025</li>
+</ul>
+
+  </div>
+  
+  
+</article>
+<details class="page-relations" resource="https://emsenn.net/blog/2025-10-16-testing-predicate-graphs-with-gnoponemacs/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <summary><h2>Relations</h2></summary>
+  <dl><div class="relation">
+        <dt><a href="/authors/">Authors</a></dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2025-01-01">2025-01-01</time></dd>
+      </div><div class="relation">
+        <dt>Publish to</dt>
+        <dd property="emsenn:Publishto"><ul><li>emsenn net</li></ul></dd>
+      </div><div class="relation">
+        <dt>Specialization</dt>
+        <dd property="emsenn:Specialization">babble</dd>
+      </div><div class="relation">
+        <dt><a href="/tags/">Tags</a></dt>
+        <dd property="schema:keywords"><ul><li><a href="/tags/gnopon-emacs/">gnopon-emacs</a></li><li><a href="/tags/fregean-predicates/">fregean-predicates</a></li></ul></dd>
+      </div>
+  </dl>
+</details>
+
+
+  
+
+
+  </main>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How to Verify a Residuation - emsenn.net</title>
+
+
+<meta name="description" content="A how-to guide: given two operations on a finite set, check whether they form a residuated pair by testing the adjunction law on every triple.">
+<link rel="canonical" href="https://emsenn.net/library/domains/science/domains/math/domains/algebra/texts/how-to-verify-a-residuation/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="How to Verify a Residuation">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/science/domains/math/domains/algebra/texts/how-to-verify-a-residuation/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="A how-to guide: given two operations on a finite set, check whether they form a residuated pair by testing the adjunction law on every triple.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-03-31T00:00:00Z">
+<meta property="article:modified_time" content="2026-03-31T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Verify a Residuation">
+<meta name="twitter:description" content="A how-to guide: given two operations on a finite set, check whether they form a residuated pair by testing the adjunction law on every triple.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/science/domains/math/domains/algebra/texts/how-to-verify-a-residuation/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/science/domains/math/domains/algebra/texts/how-to-verify-a-residuation/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/science/domains/math/domains/algebra/texts/how-to-verify-a-residuation/",
   "@type": "Article",
   "dateModified": "2026-03-31",
   "datePublished": "2026-03-31",
   "description": "A how-to guide: given two operations on a finite set, check whether they form a residuated pair by testing the adjunction law on every triple.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/science/domains/math/domains/algebra/",
+    "@type": "CreativeWork",
+    "name": "algebra",
+    "url": "https://emsenn.net/library/domains/science/domains/math/domains/algebra/"
+  },
   "name": "How to Verify a Residuation",
   "publisher": {
     "@type": "Person",
@@ -45,46 +96,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:algebra, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/">Science</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/">Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/algebra/">Algebra</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/algebra/texts/">Texts</a></nav>
   <h1 class="p-name">How to Verify a Residuation</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-03-31T00:00:00Z">2026-03-31</time>
     
     <span class="p-summary">A how-to guide: given two operations on a finite set, check whether they form a residuated pair by testing the adjunction law on every triple.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -98,19 +126,43 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>You have two operations, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo></mrow><annotation encoding="application/x-tex">\odot</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span>, on a finite ordered set. You want to know: do they form a <a href="../terms/residuated-lattice.md" class="link-internal">residuated pair</a>? That is, does the adjunction law hold?</p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>⊙</mo><mi>p</mi><mo>≤</mo><mi>q</mi><mspace width="1em"/><mtext>if and only if</mtext><mspace width="1em"/><mi>p</mi><mo>≤</mo><mo stretchy="false">(</mo><mi>a</mi><mo>⇒</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a \odot p \leq q \quad\text{if and only if}\quad p \leq (a \Rightarrow q)</annotation></semantics></math></span><p>Here is how to check.</p>
-<h2 id="step-1-write-out-the-operation-tables">Step 1: Write out the operation tables</h2>
+<h2 id="step-1-write-out-the-operation-tables"><a href="#step-1-write-out-the-operation-tables" class="heading-anchor" aria-label="Link to this section">¶</a>Step 1: Write out the operation tables
+</h2>
 <p>List every element of your set. Compute <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⊙</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \odot b</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⇒</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \Rightarrow b</annotation></semantics></math></span> for every pair. Arrange the results in two tables.</p>
 <p>For the four-valued <a href="../terms/bilattice.md" class="link-internal">bilattice</a> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi mathvariant="normal">⊥</mi><mo separator="true">,</mo><mi>t</mi><mo separator="true">,</mo><mi>f</mi><mo separator="true">,</mo><mi mathvariant="normal">⊤</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\bot, t, f, \top\}</annotation></semantics></math></span> with the Busaniche-Cignoli operations, the tables are:</p>
 <pre tabindex="0"><code>⊙  |  ⊥   t   f   ⊤        ⇒  |  ⊥   t   f   ⊤
----|----------------        ---|----------------
+---|----------------        ---|-------------
+---
 ⊥  |  f   ⊥   f   ⊥        ⊥  |  t   t   ⊥   ⊥
 t  |  ⊥   t   f   t        t  |  ⊥   t   f   f
 f  |  f   f   f   f        f  |  t   t   t   t
 ⊤  |  ⊥   t   f   ⊤        ⊤  |  ⊥   t   f   ⊤
-</code></pre><h2 id="step-2-write-out-the-ordering">Step 2: Write out the ordering</h2>
+</code></pre><h2 id="step-2-write-out-the-ordering"><a href="#step-2-write-out-the-ordering" class="heading-anchor" aria-label="Link to this section">¶</a>Step 2: Write out the ordering
+</h2>
 <p>You need to know which elements are <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span> which. For a residuation, you must use the correct ordering — the one the adjunction is claimed to hold on.</p>
 <p>For the bilattice, the residuation holds on the <strong>truth ordering</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>≤</mo><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\leq_t</annotation></semantics></math></span> (the twist-product order), not the knowledge ordering:</p>
 <ul>
@@ -120,28 +172,33 @@ f  |  f   f   f   f        f  |  t   t   t   t
 </ul>
 <p>Write out all pairs <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y)</annotation></semantics></math></span> where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><msub><mo>≤</mo><mi>t</mi></msub><mi>y</mi></mrow><annotation encoding="application/x-tex">x \leq_t y</annotation></semantics></math></span>:</p>
 <p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>f</mi><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(f, f)</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>f</mi><mo separator="true">,</mo><mi mathvariant="normal">⊥</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(f, \bot)</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>f</mi><mo separator="true">,</mo><mi mathvariant="normal">⊤</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(f, \top)</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>f</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(f, t)</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">⊥</mi><mo separator="true">,</mo><mi mathvariant="normal">⊥</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\bot, \bot)</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">⊥</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\bot, t)</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">⊤</mi><mo separator="true">,</mo><mi mathvariant="normal">⊤</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\top, \top)</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">⊤</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\top, t)</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>t</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(t, t)</annotation></semantics></math></span>.</p>
-<h2 id="step-3-check-every-triple">Step 3: Check every triple</h2>
+<h2 id="step-3-check-every-triple"><a href="#step-3-check-every-triple" class="heading-anchor" aria-label="Link to this section">¶</a>Step 3: Check every triple
+</h2>
 <p>For every triple <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>p</mi><mo separator="true">,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, p, q)</annotation></semantics></math></span> of elements, compute both sides of the biconditional:</p>
 <ul>
 <li><strong>Left side</strong>: Is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⊙</mo><mi>p</mi><msub><mo>≤</mo><mi>t</mi></msub><mi>q</mi></mrow><annotation encoding="application/x-tex">a \odot p \leq_t q</annotation></semantics></math></span>? Look up <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⊙</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">a \odot p</annotation></semantics></math></span> in the <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo></mrow><annotation encoding="application/x-tex">\odot</annotation></semantics></math></span> table, then check whether the result is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>≤</mo><mi>t</mi></msub><mi>q</mi></mrow><annotation encoding="application/x-tex">\leq_t q</annotation></semantics></math></span>.</li>
 <li><strong>Right side</strong>: Is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><msub><mo>≤</mo><mi>t</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mo>⇒</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p \leq_t (a \Rightarrow q)</annotation></semantics></math></span>? Look up <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⇒</mo><mi>q</mi></mrow><annotation encoding="application/x-tex">a \Rightarrow q</annotation></semantics></math></span> in the <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math></span> table, then check whether <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><msub><mo>≤</mo><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">p \leq_t</annotation></semantics></math></span> that result.</li>
 </ul>
 <p>If the left side and right side agree (both true or both false) for every triple, the residuation holds.</p>
-<h2 id="example-checking-one-triple">Example: checking one triple</h2>
+<h2 id="example-checking-one-triple"><a href="#example-checking-one-triple" class="heading-anchor" aria-label="Link to this section">¶</a>Example: checking one triple
+</h2>
 <p>Take <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">a = t</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">p = \bot</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">q = t</annotation></semantics></math></span>.</p>
 <p>Left side: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>⊙</mo><mi mathvariant="normal">⊥</mi><mo>=</mo><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">t \odot \bot = \bot</annotation></semantics></math></span> (from the table). Is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi><msub><mo>≤</mo><mi>t</mi></msub><mi>t</mi></mrow><annotation encoding="application/x-tex">\bot \leq_t t</annotation></semantics></math></span>? Yes. Left side: TRUE.</p>
 <p>Right side: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>⇒</mo><mi>t</mi><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">t \Rightarrow t = t</annotation></semantics></math></span> (from the table). Is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi><msub><mo>≤</mo><mi>t</mi></msub><mi>t</mi></mrow><annotation encoding="application/x-tex">\bot \leq_t t</annotation></semantics></math></span>? Yes. Right side: TRUE.</p>
 <p>Both true. This triple checks out.</p>
-<h2 id="example-a-triple-where-both-sides-are-false">Example: a triple where both sides are false</h2>
+<h2 id="example-a-triple-where-both-sides-are-false"><a href="#example-a-triple-where-both-sides-are-false" class="heading-anchor" aria-label="Link to this section">¶</a>Example: a triple where both sides are false
+</h2>
 <p>Take <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">a = t</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">p = t</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>=</mo><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">q = \bot</annotation></semantics></math></span>.</p>
 <p>Left side: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>⊙</mo><mi>t</mi><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">t \odot t = t</annotation></semantics></math></span>. Is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><msub><mo>≤</mo><mi>t</mi></msub><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">t \leq_t \bot</annotation></semantics></math></span>? No (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span> is above <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">\bot</annotation></semantics></math></span>). Left side: FALSE.</p>
 <p>Right side: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>⇒</mo><mi mathvariant="normal">⊥</mi><mo>=</mo><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">t \Rightarrow \bot = \bot</annotation></semantics></math></span>. Is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><msub><mo>≤</mo><mi>t</mi></msub><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">t \leq_t \bot</annotation></semantics></math></span>? No. Right side: FALSE.</p>
 <p>Both false. Still checks out — the biconditional holds when both sides agree, regardless of which value they agree on.</p>
-<h2 id="step-4-count-violations">Step 4: Count violations</h2>
+<h2 id="step-4-count-violations"><a href="#step-4-count-violations" class="heading-anchor" aria-label="Link to this section">¶</a>Step 4: Count violations
+</h2>
 <p>On a set with <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> elements, there are <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">n^3</annotation></semantics></math></span> triples to check. For the four-valued bilattice, that is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>4</mn><mn>3</mn></msup><mo>=</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">4^3 = 64</annotation></semantics></math></span> triples.</p>
 <p>If the violation count is 0, the residuation holds. If there are violations, the operations are not a residuated pair (at least not on this ordering — check whether a different ordering works).</p>
 <p>The computation script at <code>operations/science/research/2026-03-30-predication-bilattices/dynamics.py</code> automates this for the four-valued bilattice: it checks all 64 triples on the full set and all 27 on the post-<a href="../terms/closure.md" class="link-internal">closure</a> set <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>t</mi><mo separator="true">,</mo><mi>f</mi><mo separator="true">,</mo><mi mathvariant="normal">⊤</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{t, f, \top\}</annotation></semantics></math></span>. Both come back with 0 violations.</p>
-<h2 id="common-mistakes">Common mistakes</h2>
+<h2 id="common-mistakes"><a href="#common-mistakes" class="heading-anchor" aria-label="Link to this section">¶</a>Common mistakes
+</h2>
 <ul>
 <li><strong>Wrong ordering.</strong> The Busaniche-Cignoli residuation holds on the truth ordering, not the knowledge ordering. Checking against <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>≤</mo><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">\leq_k</annotation></semantics></math></span> gives 21 violations. The ordering matters.</li>
 <li><strong>Forgetting incomparable pairs.</strong> In a <a href="../../order/terms/partial-order.md" class="link-internal">partial order</a>, some pairs are incomparable: neither <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≤</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x \leq y</annotation></semantics></math></span> nor <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>≤</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">y \leq x</annotation></semantics></math></span>. When computing &ldquo;is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≤</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x \leq y</annotation></semantics></math></span>?&rdquo;, incomparable means NO — the answer is false, not undefined.</li>
@@ -150,32 +207,82 @@ f  |  f   f   f   f        f  |  t   t   t   t
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-03-31">March 31, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/science/domains/math/domains/algebra/texts/how-to-verify-a-residuation/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/science/domains/math/domains/algebra/texts/how-to-verify-a-residuation/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/science/domains/math/domains/algebra/">algebra</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-31">2026-03-31</time></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment"><ul><li><a href="/library/domains/science/domains/math/domains/algebra/terms/binary-operation/">binary operation</a></li><li>partial order</li></ul></dd>
+        <dd property="schema:isBasedOn"><ul><li><a href="/library/domains/science/domains/math/domains/algebra/terms/binary-operation/">binary operation</a></li><li><a href="/library/domains/science/domains/math/domains/order/terms/partial-order/">partial order</a></li></ul></dd>
       </div><div class="relation">
         <dt>Teaches</dt>
-        <dd property="emsenn:Teaches"><ul><li><a href="/library/domains/science/domains/math/domains/algebra/terms/residuated-lattice/">residuated lattice</a></li></ul></dd>
+        <dd property="schema:teaches"><ul><li><a href="/library/domains/science/domains/math/domains/algebra/terms/residuated-lattice/">residuated lattice</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

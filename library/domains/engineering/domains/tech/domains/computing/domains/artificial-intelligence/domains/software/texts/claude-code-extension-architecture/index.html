@@ -1,30 +1,151 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Extension Architecture in Claude Code - emsenn.net</title>
+
+
+<meta name="description" content="How Claude Code&#39;s four extension mechanisms — CLAUDE.md, skills, hooks, and MCP servers — operate at different levels and complement each other in practice.">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/claude-code-extension-architecture/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Extension Architecture in Claude Code">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/claude-code-extension-architecture/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="How Claude Code&#39;s four extension mechanisms — CLAUDE.md, skills, hooks, and MCP servers — operate at different levels and complement each other in practice.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-03-30T00:00:00Z">
+<meta property="article:modified_time" content="2026-03-30T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Extension Architecture in Claude Code">
+<meta name="twitter:description" content="How Claude Code&#39;s four extension mechanisms — CLAUDE.md, skills, hooks, and MCP servers — operate at different levels and complement each other in practice.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/claude-code-extension-architecture/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/claude-code-extension-architecture/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/claude-code-extension-architecture/",
   "@type": "Article",
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Anthropic"
+        }
+      ],
+      "datePublished": "2025",
+      "identifier": "anthropic-best-practices",
+      "name": "Claude Code Best Practices",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Anthropic Engineering"
+      },
+      "url": "https://www.anthropic.com/engineering/claude-code-best-practices"
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Anthropic"
+        }
+      ],
+      "datePublished": "2025",
+      "identifier": "anthropic-hooks-docs",
+      "name": "Hooks reference",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Claude Code Docs"
+      },
+      "url": "https://docs.anthropic.com/en/docs/claude-code/hooks"
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Anthropic"
+        }
+      ],
+      "datePublished": "2025",
+      "identifier": "anthropic-plugins",
+      "name": "Customize Claude Code with plugins",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Anthropic Blog"
+      },
+      "url": "https://www.anthropic.com/news/claude-code-plugins"
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Anthropic"
+        }
+      ],
+      "datePublished": "2025",
+      "identifier": "anthropic-skills-docs",
+      "name": "Extend Claude with skills",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Claude Code Docs"
+      },
+      "url": "https://docs.anthropic.com/en/docs/claude-code/slash-commands"
+    }
+  ],
   "dateModified": "2026-03-30",
   "datePublished": "2026-03-30",
   "description": "How Claude Code's four extension mechanisms — CLAUDE.md, skills, hooks, and MCP servers — operate at different levels and complement each other in practice.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/",
+    "@type": "CreativeWork",
+    "name": "software",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/"
+  },
   "keywords": "claude-code, extension-architecture, agent-design",
   "name": "Extension Architecture in Claude Code",
   "publisher": {
@@ -46,46 +167,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:software, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial Intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/">Software</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/">Texts</a></nav>
   <h1 class="p-name">Extension Architecture in Claude Code</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-03-30T00:00:00Z">2026-03-30</time>
     
     <span class="p-summary">How Claude Code&#39;s four extension mechanisms — CLAUDE.md, skills, hooks, and MCP servers — operate at different levels and complement each other in practice.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -97,9 +195,31 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p><a href="../terms/claude-code.md" class="link-internal">Claude Code</a> is extensible through four mechanisms. They operate at different levels of the system and serve different purposes. Understanding which mechanism to use for a given customization is the central design decision when configuring Claude Code for a project.</p>
-<h2 id="the-four-mechanisms">The four mechanisms</h2>
+<h2 id="the-four-mechanisms"><a href="#the-four-mechanisms" class="heading-anchor" aria-label="Link to this section">¶</a>The four mechanisms
+</h2>
 <table>
   <thead>
       <tr>
@@ -141,16 +261,19 @@
       </tr>
   </tbody>
 </table>
-<h2 id="the-distinction-that-matters">The distinction that matters</h2>
+<h2 id="the-distinction-that-matters"><a href="#the-distinction-that-matters" class="heading-anchor" aria-label="Link to this section">¶</a>The distinction that matters
+</h2>
 <p>The four mechanisms split along two axes:</p>
 <p><strong>Advisory vs. mandatory.</strong> CLAUDE.md and skills shape the model&rsquo;s reasoning — they tell it what to do, but the model ultimately decides how to interpret and follow those instructions. Hooks execute deterministically on events, regardless of what the model decides. MCP servers are hybrid: their availability is deterministic (the tools exist or they don&rsquo;t), but whether the model invokes a tool is its decision.</p>
 <p><strong>Always-loaded vs. on-demand.</strong> CLAUDE.md at the project root loads on every session, consuming <a href="../../../../../terms/context-window.md" class="link-internal">context</a> whether relevant or not. Skills load only when invoked. Hooks are configured but consume no context (they are settings, not prompt content). MCP server tool definitions load at session start.</p>
-<h2 id="when-to-use-each">When to use each</h2>
+<h2 id="when-to-use-each"><a href="#when-to-use-each" class="heading-anchor" aria-label="Link to this section">¶</a>When to use each
+</h2>
 <p><strong>Use CLAUDE.md</strong> for rules the agent should follow on every request: build commands, architectural constraints, style rules, what not to touch. Keep it short — everything in CLAUDE.md competes for attention with the user&rsquo;s actual request.</p>
 <p><strong>Use skills</strong> for task-specific instructions that only matter when that task is being performed: commit conventions, review checklists, deployment procedures, domain-specific workflows. Skills implement <a href="../terms/progressive-disclosure.md" class="link-internal">progressive disclosure</a>: the instructions exist in the project but don&rsquo;t load until needed.</p>
 <p><strong>Use hooks</strong> for guardrails and automation that must execute regardless of model behavior: blocking dangerous shell commands (PreToolUse), logging all file edits for audit (PostToolUse), sending notifications when Claude is idle (Notification). If a behavior must happen, it belongs in a hook, not in CLAUDE.md — the model can misinterpret or ignore instructions, but it cannot suppress a hook.</p>
 <p><strong>Use MCP servers</strong> for connecting Claude to external data and tools: databases, APIs, file-format parsers, specialized computation. MCP extends what Claude can <em>do</em>; the other mechanisms shape <em>how</em> it does things.</p>
-<h2 id="how-they-compose">How they compose</h2>
+<h2 id="how-they-compose"><a href="#how-they-compose" class="heading-anchor" aria-label="Link to this section">¶</a>How they compose
+</h2>
 <p>In practice, these mechanisms layer:</p>
 <ol>
 <li><strong>CLAUDE.md</strong> establishes the session context — &ldquo;this is a Python project, use pytest, don&rsquo;t modify the migrations directory.&rdquo;</li>
@@ -159,72 +282,120 @@
 <li><strong>Hooks</strong> enforce invariants throughout — every Bash command is validated against a blocklist, every file edit is logged.</li>
 </ol>
 <p>The plugin system (late 2025) bundles all four into installable packages: a plugin might include a SKILL.md, an MCP server configuration, a hook, and a CLAUDE.md snippet, all installed with <code>/plugin</code>. This does not change the underlying architecture — it packages existing mechanisms for distribution.</p>
-<h2 id="common-mistakes">Common mistakes</h2>
+<h2 id="common-mistakes"><a href="#common-mistakes" class="heading-anchor" aria-label="Link to this section">¶</a>Common mistakes
+</h2>
 <p><strong>Putting guardrails in CLAUDE.md instead of hooks.</strong> &ldquo;Never run rm -rf&rdquo; in CLAUDE.md is advice the model might forget under context pressure. A PreToolUse hook that rejects <code>rm -rf</code> in Bash commands is a hard gate.</p>
 <p><strong>Putting everything in root CLAUDE.md instead of skills.</strong> A 500-line CLAUDE.md with deployment procedures, review conventions, and testing protocols loads on every request, diluting relevance. Move each to a skill; the root file should point to them, not contain them.</p>
 <p><strong>Using MCP when a skill suffices.</strong> If the customization is instructions (what to do), use a skill. If it&rsquo;s capabilities (tools and data the model needs access to), use MCP. A skill that just wraps a curl command is better as an MCP server; a set of deployment steps is better as a skill.</p>
 
   </div>
-  <section class="bibliography" id="bibliography"
+  
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-03-30">March 30, 2026</time>.</p>
+  
+  <details class="bibliography" id="bibliography" open
          vocab="https://schema.org/" typeof="ItemList">
-  <h2>References</h2><p class="bib-entry" id="ref-anthropic-best-practices" typeof="CreativeWork" resource="#ref-anthropic-best-practices">
+  <summary><h2>References</h2></summary><p class="bib-entry h-cite" id="ref-anthropic-best-practices" typeof="CreativeWork" resource="#ref-anthropic-best-practices">
     <span class="bib-key">[anthropic-best-practices]</span>
-      <span property="author">Anthropic</span>.
-      (<span property="datePublished">2025</span>).<cite property="name">Claude Code Best Practices</cite>.
-      <em property="publisher">Anthropic Engineering</em>.
-      <a href="https://www.anthropic.com/engineering/claude-code-best-practices">https://www.anthropic.com/engineering/claude-code-best-practices</a>
-  </p><p class="bib-entry" id="ref-anthropic-hooks-docs" typeof="CreativeWork" resource="#ref-anthropic-hooks-docs">
+      <span class="p-author" property="author">Anthropic</span>.
+      (<time class="dt-published" property="datePublished" datetime="2025">2025</time>).<cite class="p-name" property="name">Claude Code Best Practices</cite>.
+      <em class="p-publisher" property="publisher">Anthropic Engineering</em>.
+      <a class="u-url" href="https://www.anthropic.com/engineering/claude-code-best-practices">https://www.anthropic.com/engineering/claude-code-best-practices</a>
+  </p><p class="bib-entry h-cite" id="ref-anthropic-hooks-docs" typeof="CreativeWork" resource="#ref-anthropic-hooks-docs">
     <span class="bib-key">[anthropic-hooks-docs]</span>
-      <span property="author">Anthropic</span>.
-      (<span property="datePublished">2025</span>).<cite property="name">Hooks reference</cite>.
-      <em property="publisher">Claude Code Docs</em>.
-      <a href="https://docs.anthropic.com/en/docs/claude-code/hooks">https://docs.anthropic.com/en/docs/claude-code/hooks</a>
-  </p><p class="bib-entry" id="ref-anthropic-plugins" typeof="CreativeWork" resource="#ref-anthropic-plugins">
+      <span class="p-author" property="author">Anthropic</span>.
+      (<time class="dt-published" property="datePublished" datetime="2025">2025</time>).<cite class="p-name" property="name">Hooks reference</cite>.
+      <em class="p-publisher" property="publisher">Claude Code Docs</em>.
+      <a class="u-url" href="https://docs.anthropic.com/en/docs/claude-code/hooks">https://docs.anthropic.com/en/docs/claude-code/hooks</a>
+  </p><p class="bib-entry h-cite" id="ref-anthropic-plugins" typeof="CreativeWork" resource="#ref-anthropic-plugins">
     <span class="bib-key">[anthropic-plugins]</span>
-      <span property="author">Anthropic</span>.
-      (<span property="datePublished">2025</span>).<cite property="name">Customize Claude Code with plugins</cite>.
-      <em property="publisher">Anthropic Blog</em>.
-      <a href="https://www.anthropic.com/news/claude-code-plugins">https://www.anthropic.com/news/claude-code-plugins</a>
-  </p><p class="bib-entry" id="ref-anthropic-skills-docs" typeof="CreativeWork" resource="#ref-anthropic-skills-docs">
+      <span class="p-author" property="author">Anthropic</span>.
+      (<time class="dt-published" property="datePublished" datetime="2025">2025</time>).<cite class="p-name" property="name">Customize Claude Code with plugins</cite>.
+      <em class="p-publisher" property="publisher">Anthropic Blog</em>.
+      <a class="u-url" href="https://www.anthropic.com/news/claude-code-plugins">https://www.anthropic.com/news/claude-code-plugins</a>
+  </p><p class="bib-entry h-cite" id="ref-anthropic-skills-docs" typeof="CreativeWork" resource="#ref-anthropic-skills-docs">
     <span class="bib-key">[anthropic-skills-docs]</span>
-      <span property="author">Anthropic</span>.
-      (<span property="datePublished">2025</span>).<cite property="name">Extend Claude with skills</cite>.
-      <em property="publisher">Claude Code Docs</em>.
-      <a href="https://docs.anthropic.com/en/docs/claude-code/slash-commands">https://docs.anthropic.com/en/docs/claude-code/slash-commands</a>
+      <span class="p-author" property="author">Anthropic</span>.
+      (<time class="dt-published" property="datePublished" datetime="2025">2025</time>).<cite class="p-name" property="name">Extend Claude with skills</cite>.
+      <em class="p-publisher" property="publisher">Claude Code Docs</em>.
+      <a class="u-url" href="https://docs.anthropic.com/en/docs/claude-code/slash-commands">https://docs.anthropic.com/en/docs/claude-code/slash-commands</a>
   </p>
-</section>
+</details>
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/claude-code-extension-architecture/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/claude-code-extension-architecture/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
-        <dt>Citations</dt>
-        <dd property="emsenn:Citations"></dd>
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/">software</a></dd>
       </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-30">2026-03-30</time></dd>
       </div><div class="relation">
         <dt>Part of</dt>
-        <dd property="schema:isPartOf"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-code/">claude code</a></li></ul></dd>
+        <dd property="schema:isPartOf"><ul><li><a href="/tags/claude-code/">claude code</a></li></ul></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-code/">claude code</a></li><li>claude md</li><li>slash commands</li><li><a href="/library/domains/engineering/domains/tech/terms/hook/">hooks</a></li><li>model context protocol</li></ul></dd>
+        <dd property="schema:isBasedOn"><ul><li><a href="/tags/claude-code/">claude code</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-md/">claude md</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/slash-commands/">slash commands</a></li><li><a href="/tags/hooks/">hooks</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/model-context-protocol/">model context protocol</a></li></ul></dd>
       </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/claude-code/">claude-code</a></li><li><a href="/tags/extension-architecture/">extension-architecture</a></li><li><a href="/tags/agent-design/">agent-design</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

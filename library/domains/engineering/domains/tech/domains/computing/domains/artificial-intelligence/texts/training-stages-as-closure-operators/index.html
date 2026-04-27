@@ -1,30 +1,225 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LLM Training Stages as Algebraic Closure Operators - emsenn.net</title>
+
+
+<meta name="description" content="A trained language model is a closure fixed point: an element of a poset that is stable under further application of the training operator. LLM training stages form a sequence of increasingly constrained closure operators, each adding an additional constraint without rebuilding from scratch.
+¶Model …">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/training-stages-as-closure-operators/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="LLM Training Stages as Algebraic Closure Operators">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/training-stages-as-closure-operators/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="A trained language model is a closure fixed point: an element of a poset that is stable under further application of the training operator. LLM training stages form a sequence of increasingly constrained closure operators, each adding an additional constraint without rebuilding from scratch.
+¶Model …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-04T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-04T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LLM Training Stages as Algebraic Closure Operators">
+<meta name="twitter:description" content="A trained language model is a closure fixed point: an element of a poset that is stable under further application of the training operator. LLM training stages form a sequence of increasingly constrained closure operators, each adding an additional constraint without rebuilding from scratch.
+¶Model …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/training-stages-as-closure-operators/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/training-stages-as-closure-operators/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/training-stages-as-closure-operators/",
   "@type": "Article",
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Edward J. Hu"
+        },
+        {
+          "@type": "Person",
+          "name": "Yelong Shen"
+        },
+        {
+          "@type": "Person",
+          "name": "Phillip Wallis"
+        },
+        {
+          "@type": "Person",
+          "name": "Zeyuan Allen-Zhu"
+        },
+        {
+          "@type": "Person",
+          "name": "Yuanzhi Li"
+        },
+        {
+          "@type": "Person",
+          "name": "Shean Wang"
+        },
+        {
+          "@type": "Person",
+          "name": "Lu Wang"
+        },
+        {
+          "@type": "Person",
+          "name": "Weizhu Chen"
+        }
+      ],
+      "datePublished": "2021",
+      "identifier": "hu2021lora",
+      "name": "LoRA: Low-Rank Adaptation of Large Language Models",
+      "publisher": {
+        "@type": "Organization",
+        "name": "International Conference on Learning Representations"
+      },
+      "url": "https://arxiv.org/abs/2106.09685"
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Long Ouyang"
+        },
+        {
+          "@type": "Person",
+          "name": "Jeff Wu"
+        },
+        {
+          "@type": "Person",
+          "name": "Xu Jiang"
+        },
+        {
+          "@type": "Person",
+          "name": "Diogo Almeida"
+        },
+        {
+          "@type": "Person",
+          "name": "Carroll L. Wainwright"
+        },
+        {
+          "@type": "Person",
+          "name": "Pamela Mishkin"
+        },
+        {
+          "@type": "Person",
+          "name": "Chong Zhang"
+        },
+        {
+          "@type": "Person",
+          "name": "Sandhini Agarwal"
+        },
+        {
+          "@type": "Person",
+          "name": "Katarina Slama"
+        },
+        {
+          "@type": "Person",
+          "name": "Alex Ray"
+        },
+        {
+          "@type": "Person",
+          "name": "et al."
+        }
+      ],
+      "datePublished": "2022",
+      "identifier": "ouyang2022instructgpt",
+      "name": "Training language models to follow instructions with human feedback",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Advances in Neural Information Processing Systems"
+      },
+      "url": "https://arxiv.org/abs/2203.02155"
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Rafael Rafailov"
+        },
+        {
+          "@type": "Person",
+          "name": "Archit Sharma"
+        },
+        {
+          "@type": "Person",
+          "name": "Eric Mitchell"
+        },
+        {
+          "@type": "Person",
+          "name": "Christopher D Manning"
+        },
+        {
+          "@type": "Person",
+          "name": "Stefano Ermon"
+        },
+        {
+          "@type": "Person",
+          "name": "Chelsea Finn"
+        }
+      ],
+      "datePublished": "2023",
+      "identifier": "rafailov2023dpo",
+      "name": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Advances in Neural Information Processing Systems"
+      },
+      "url": "https://arxiv.org/abs/2305.18290"
+    }
+  ],
   "dateModified": "2026-04-04",
   "datePublished": "2026-04-04",
-  "description": "A trained language model is a closure fixed point: an element of a poset that is stable under further application of the training operator. LLM training stages form a sequence of increasingly constrained closure operators, each adding an additional constraint without rebuilding from scratch.\nModel weights as fixed points A language model\u0026rsquo;s weights represent a stable equilibrium under the training process. Once pre-training converges, reapplying the same training process to the same data produces negligible change. This is precisely what a closure fixed point is: an element WW such that applying the closure operator again yields c(W)≈Wc(W) \\approx W.\n",
+  "description": "A trained language model is a closure fixed point: an element of a poset that is stable under further application of the training operator. LLM training stages form a sequence of increasingly constrained closure operators, each adding an additional constraint without rebuilding from scratch.\n¶Model weights as fixed points A language model\u0026rsquo;s weights represent a stable equilibrium under the training process. Once pre-training converges, reapplying the same training process to the same data produces negligible change. This is precisely what a closure fixed point is: an element WW such that applying the closure operator again yields c(W)≈Wc(W) \\approx W.\n",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/",
+    "@type": "CreativeWork",
+    "name": "artificial-intelligence",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/"
+  },
   "name": "LLM Training Stages as Algebraic Closure Operators",
   "publisher": {
     "@type": "Person",
@@ -45,46 +240,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:artificial-intelligence, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial Intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/">Texts</a></nav>
   <h1 class="p-name">LLM Training Stages as Algebraic Closure Operators</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
     
     
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -98,16 +270,40 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>A trained language model is a <a href="../../../../science/domains/math/domains/order/texts/closure-operators.md" class="link-internal">closure</a> fixed point: an element of a poset that is stable under further application of the training operator. LLM training stages form a sequence of increasingly constrained <a href="../../../../science/domains/math/domains/order/texts/closure-operators.md" class="link-internal">closure operators</a>, each adding an additional constraint without rebuilding from scratch.</p>
-<h2 id="model-weights-as-fixed-points">Model weights as fixed points</h2>
+<h2 id="model-weights-as-fixed-points"><a href="#model-weights-as-fixed-points" class="heading-anchor" aria-label="Link to this section">¶</a>Model weights as fixed points
+</h2>
 <p>A language model&rsquo;s weights represent a stable equilibrium under the training process. Once pre-training converges, reapplying the same training process to the same data produces negligible change. This is precisely what a <a href="../../../../science/domains/math/domains/order/texts/closure-operators.md" class="link-internal">closure</a> fixed point is: an element <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span> such that applying the closure operator again yields <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>≈</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">c(W) \approx W</annotation></semantics></math></span>.</p>
 <p>In the language model setting, let the training operator be <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mtext>pretrain</mtext></msub></mrow><annotation encoding="application/x-tex">T_{\text{pretrain}}</annotation></semantics></math></span>: the process of updating weights on large-scale text data. Convergence means reaching weights <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>W</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">W^*</annotation></semantics></math></span> such that <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mtext>pretrain</mtext></msub><mo stretchy="false">(</mo><msup><mi>W</mi><mo>∗</mo></msup><mo stretchy="false">)</mo><mo>≈</mo><msup><mi>W</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">T_{\text{pretrain}}(W^*) \approx W^*</annotation></semantics></math></span>. This is the <a href="../../../../science/domains/math/domains/order/texts/closure-operators.md" class="link-internal">least fixed point</a> of the pre-training closure — the minimal model stable under next-token prediction on the training corpus.</p>
-<h2 id="fine-tuning-as-constrained-closure">Fine-tuning as constrained closure</h2>
+<h2 id="fine-tuning-as-constrained-closure"><a href="#fine-tuning-as-constrained-closure" class="heading-anchor" aria-label="Link to this section">¶</a>Fine-tuning as constrained closure
+</h2>
 <p><a href="../terms/fine-tuning.md" class="link-internal">Fine-tuning</a> applies a second closure operator to the already-closed pre-trained model. Rather than starting from random initialization and training from scratch, fine-tuning freezes most of the model&rsquo;s structure and applies additional constraints. The key insight is that fine-tuning does not unbind the pre-training fixed point; it tightens it.</p>
 <p><strong>LoRA (Low-Rank Adaptation; Hu et al., 2021)</strong> makes this structure explicit. During fine-tuning, the weight update is decomposed as <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>W</mi><mo>=</mo><mi>B</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\Delta W = B A</annotation></semantics></math></span>, where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> are low-rank matrices (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>r</mi><mo>×</mo><mi>d</mi></mrow></msup></mrow><annotation encoding="application/x-tex">A \in \mathbb{R}^{r \times d}</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>d</mi><mo>×</mo><mi>r</mi></mrow></msup></mrow><annotation encoding="application/x-tex">B \in \mathbb{R}^{d \times r}</annotation></semantics></math></span>, with <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>≪</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">r \ll d</annotation></semantics></math></span>). The base weights are frozen: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mtext>adapted</mtext></msub><mo>=</mo><msup><mi>W</mi><mo>∗</mo></msup><mo>+</mo><mi mathvariant="normal">Δ</mi><mi>W</mi><mo>=</mo><msup><mi>W</mi><mo>∗</mo></msup><mo>+</mo><mi>B</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">W_{\text{adapted}} = W^* + \Delta W = W^* + BA</annotation></semantics></math></span>.</p>
 <p>This is a constrained transformation: instead of freely updating a <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>×</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">d \times d</annotation></semantics></math></span> weight matrix (which requires <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>d</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">d^2</annotation></semantics></math></span> parameters), the update is confined to a rank-<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span> subspace, reducing trainable parameters by orders of magnitude (e.g., from 7B to 60M for a 7B parameter model). The closure operator for fine-tuning is thus inflationary (extends the pre-trained fixed point) and monotone (task-specific data pulls the model in a consistent direction) but constrained to operate only in the low-rank complement.</p>
-<h2 id="rlhf-and-preference-based-closure">RLHF and preference-based closure</h2>
+<h2 id="rlhf-and-preference-based-closure"><a href="#rlhf-and-preference-based-closure" class="heading-anchor" aria-label="Link to this section">¶</a>RLHF and preference-based closure
+</h2>
 <p>Reinforcement Learning from Human Feedback (Ouyang et al., 2022) applies a third closure operator, further constraining the model.</p>
 <p>The RLHF pipeline has three stages:</p>
 <ol>
@@ -123,12 +319,14 @@
 </ol>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>PPO</mtext></msub><mo>=</mo><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><msub><mi>r</mi><mi>ϕ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>−</mo><mi>β</mi><mo>⋅</mo><mi>K</mi><mi>L</mi><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">(</mo><mi>y</mi><mo>∣</mo><mi>x</mi><mo separator="true">,</mo><mi>W</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∥</mi><mi>P</mi><mo stretchy="false">(</mo><mi>y</mi><mo>∣</mo><mi>x</mi><mo separator="true">,</mo><msub><mi>W</mi><mtext>SFT</mtext></msub><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{PPO}} = \mathbb{E}[r_\phi(x, y) - \beta \cdot KL(P(y \mid x, W) \| P(y \mid x, W_{\text{SFT}})]</annotation></semantics></math></span><p>where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span> is the penalty weight and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">KL</annotation></semantics></math></span> is Kullback-Leibler divergence.</p>
 <p>The KL constraint is the operator&rsquo;s idempotent condition: applying the closure a second time should add nothing new. If the model has already converged under the reward model while staying within the KL ball around the SFT distribution, further optimization produces no change. The closure is thus extensive (pushes the model toward higher rewards), monotone (consistent preference direction), and idempotent in the limit (stabilizes when no improvement without exceeding the KL bound).</p>
-<h2 id="dpo-as-simplified-closure">DPO as simplified closure</h2>
+<h2 id="dpo-as-simplified-closure"><a href="#dpo-as-simplified-closure" class="heading-anchor" aria-label="Link to this section">¶</a>DPO as simplified closure
+</h2>
 <p>Direct Preference Optimization (Rafailov et al., 2023) eliminates the separate reward model by directly optimizing policy on preference pairs. It uses the Bradley-Terry model of preference — assuming human judgments follow</p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>y</mi><mi>w</mi></msub><mo>≻</mo><msub><mi>y</mi><mi>l</mi></msub><mo>∣</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>σ</mi><mo stretchy="false">(</mo><msup><mi>r</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><msub><mi>y</mi><mi>w</mi></msub><mo stretchy="false">)</mo><mo>−</mo><msup><mi>r</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><msub><mi>y</mi><mi>l</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(y_w \succ y_l \mid x) = \sigma(r^*(x, y_w) - r^*(x, y_l))</annotation></semantics></math></span><p>where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">r^*</annotation></semantics></math></span> is the ground-truth reward function. The key mathematical insight is a change of variables: instead of fitting <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">r^*</annotation></semantics></math></span> explicitly, DPO derives an optimal policy directly from preference data via maximum likelihood:</p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="script">L</mi><mtext>DPO</mtext></msub><mo>=</mo><mo>−</mo><mi>log</mi><mo>⁡</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>β</mi><mi>log</mi><mo>⁡</mo><mfrac><mrow><msub><mi>P</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>y</mi><mi>w</mi></msub><mo>∣</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><msub><mi>P</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>y</mi><mi>l</mi></msub><mo>∣</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mfrac><mo>−</mo><mi>β</mi><mi>log</mi><mo>⁡</mo><mfrac><mrow><msub><mi>P</mi><mtext>ref</mtext></msub><mo stretchy="false">(</mo><msub><mi>y</mi><mi>w</mi></msub><mo>∣</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><msub><mi>P</mi><mtext>ref</mtext></msub><mo stretchy="false">(</mo><msub><mi>y</mi><mi>l</mi></msub><mo>∣</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mfrac><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{DPO}} = -\log \sigma(\beta \log \frac{P_\theta(y_w \mid x)}{P_\theta(y_l \mid x)} - \beta \log \frac{P_{\text{ref}}(y_w \mid x)}{P_{\text{ref}}(y_l \mid x)})</annotation></semantics></math></span><p>where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>θ</mi></msub></mrow><annotation encoding="application/x-tex">P_\theta</annotation></semantics></math></span> is the policy being optimized and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mtext>ref</mtext></msub></mrow><annotation encoding="application/x-tex">P_{\text{ref}}</annotation></semantics></math></span> is the SFT reference model. The closed element under this closure is the policy that maximizes the log-likelihood of observed human preferences while remaining close to the reference distribution.</p>
 <p>DPO is a <a href="../../../../science/domains/math/domains/order/texts/closure-operators.md" class="link-internal">composite</a> of two constraints — preference satisfaction and reference proximity — expressed as a single operator that skips the intermediate reward model stage. It is inflationary (moves toward preferred outputs), monotone (consistent preference direction), and idempotent (stops when preferences are satisfied up to the reference distance).</p>
-<h2 id="in-context-learning-as-temporary-extension">In-context learning as temporary extension</h2>
+<h2 id="in-context-learning-as-temporary-extension"><a href="#in-context-learning-as-temporary-extension" class="heading-anchor" aria-label="Link to this section">¶</a>In-context learning as temporary extension
+</h2>
 <p>In-context learning operates differently: it does not constrain the <a href="../../../../science/domains/math/domains/order/texts/closure-operators.md" class="link-internal">closure</a> fixed point, but extends the generator set that drives the model&rsquo;s output. Given a fixed set of weights <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>W</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">W^*</annotation></semantics></math></span>, including demonstrations in the prompt changes the model&rsquo;s conditional distribution <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>y</mi><mo>∣</mo><mi>x</mi><mo separator="true">,</mo><mtext>prompt</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(y \mid x, \text{prompt})</annotation></semantics></math></span> without modifying <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>W</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">W^*</annotation></semantics></math></span> itself.</p>
 <p>The distinction is crucial. In <a href="../../../../science/domains/math/domains/order/texts/closure-operators.md" class="link-internal">closure operator</a> terms:</p>
 <ul>
@@ -136,11 +334,13 @@
 <li>In-context learning modifies the input to the operator — the generator set — without changing <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span> itself.</li>
 </ul>
 <p>The prompts act as a temporary expansion of the context window, creating a temporary shift in the model&rsquo;s behavior. When the context window closes, the model reverts to its original fixed point. The weights remain the persistent <a href="../../../../science/domains/math/domains/order/texts/closure-operators.md" class="link-internal">closure</a> fixed point; context is ephemeral.</p>
-<h2 id="composing-operators-in-multi-stage-training">Composing operators in multi-stage training</h2>
+<h2 id="composing-operators-in-multi-stage-training"><a href="#composing-operators-in-multi-stage-training" class="heading-anchor" aria-label="Link to this section">¶</a>Composing operators in multi-stage training
+</h2>
 <p>These operators compose naturally. If <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">c_1</annotation></semantics></math></span> is the pre-training closure, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">c_2</annotation></semantics></math></span> is the SFT fine-tuning closure, and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">c_3</annotation></semantics></math></span> is the RLHF closure, their composite <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>3</mn></msub><mo>∘</mo><msub><mi>c</mi><mn>2</mn></msub><mo>∘</mo><msub><mi>c</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">c_3 \circ c_2 \circ c_1</annotation></semantics></math></span> is monotone and inflationary. By Knaster-Tarski, the composition has a <a href="../../../../science/domains/math/domains/order/texts/closure-operators.md" class="link-internal">least fixed point</a> — the smallest model stable under all three operators simultaneously.</p>
 <p>This fixed point is precisely what practitioners call a &ldquo;fully trained&rdquo; instruction-following aligned language model: a set of weights that satisfies the pre-training objective (next-token prediction on diverse text), the instruction-following objective (SFT demonstrations), and the preference objective (RLHF reward). The iterative construction gives the training procedure a dynamic reading: start with random initialization, apply the composite operator, stabilize through convergence, and halt when no further improvement emerges.</p>
 <p>The elegance of the formulation is that each stage tightens the constraint without requiring knowledge of the previous stages&rsquo; details. <a href="../terms/fine-tuning.md" class="link-internal">Fine-tuning</a> doesn&rsquo;t need to know how pre-training works; RLHF doesn&rsquo;t need to know the structure of the fine-tuning closure. Each closure is inflationary and monotone, and their composition is guaranteed to have a fixed point by the Knaster-Tarski theorem.</p>
-<h2 id="see-also">See also</h2>
+<h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See also
+</h2>
 <ul>
 <li><a href="../../../../science/domains/math/domains/order/texts/closure-operators.md" class="link-internal">Closure operators</a></li>
 <li><a href="../terms/fine-tuning.md" class="link-internal">Fine-tuning</a></li>
@@ -148,57 +348,104 @@
 </ul>
 
   </div>
-  <section class="bibliography" id="bibliography"
+  
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-04">April 4, 2026</time>.</p>
+  
+  <details class="bibliography" id="bibliography" open
          vocab="https://schema.org/" typeof="ItemList">
-  <h2>References</h2><p class="bib-entry" id="ref-hu2021lora" typeof="CreativeWork" resource="#ref-hu2021lora">
+  <summary><h2>References</h2></summary><p class="bib-entry h-cite" id="ref-hu2021lora" typeof="CreativeWork" resource="#ref-hu2021lora">
     <span class="bib-key">[hu2021lora]</span>
-      <span property="author">Edward J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, Weizhu Chen</span>.
-      (<span property="datePublished">2021</span>).<cite property="name">LoRA: Low-Rank Adaptation of Large Language Models</cite>.
-      <em property="publisher">International Conference on Learning Representations</em>.
-      <a href="https://arxiv.org/abs/2106.09685">https://arxiv.org/abs/2106.09685</a>
-  </p><p class="bib-entry" id="ref-ouyang2022instructgpt" typeof="CreativeWork" resource="#ref-ouyang2022instructgpt">
+      <span class="p-author" property="author">Edward J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, Weizhu Chen</span>.
+      (<time class="dt-published" property="datePublished" datetime="2021">2021</time>).<cite class="p-name" property="name">LoRA: Low-Rank Adaptation of Large Language Models</cite>.
+      <em class="p-publisher" property="publisher">International Conference on Learning Representations</em>.
+      <a class="u-url" href="https://arxiv.org/abs/2106.09685">https://arxiv.org/abs/2106.09685</a>
+  </p><p class="bib-entry h-cite" id="ref-ouyang2022instructgpt" typeof="CreativeWork" resource="#ref-ouyang2022instructgpt">
     <span class="bib-key">[ouyang2022instructgpt]</span>
-      <span property="author">Long Ouyang, Jeff Wu, Xu Jiang, Diogo Almeida, Carroll L. Wainwright, Pamela Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, et al.</span>.
-      (<span property="datePublished">2022</span>).<cite property="name">Training language models to follow instructions with human feedback</cite>.
-      <em property="publisher">Advances in Neural Information Processing Systems</em>.
-      <a href="https://arxiv.org/abs/2203.02155">https://arxiv.org/abs/2203.02155</a>
-  </p><p class="bib-entry" id="ref-rafailov2023dpo" typeof="CreativeWork" resource="#ref-rafailov2023dpo">
+      <span class="p-author" property="author">Long Ouyang, Jeff Wu, Xu Jiang, Diogo Almeida, Carroll L. Wainwright, Pamela Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, et al.</span>.
+      (<time class="dt-published" property="datePublished" datetime="2022">2022</time>).<cite class="p-name" property="name">Training language models to follow instructions with human feedback</cite>.
+      <em class="p-publisher" property="publisher">Advances in Neural Information Processing Systems</em>.
+      <a class="u-url" href="https://arxiv.org/abs/2203.02155">https://arxiv.org/abs/2203.02155</a>
+  </p><p class="bib-entry h-cite" id="ref-rafailov2023dpo" typeof="CreativeWork" resource="#ref-rafailov2023dpo">
     <span class="bib-key">[rafailov2023dpo]</span>
-      <span property="author">Rafael Rafailov, Archit Sharma, Eric Mitchell, Christopher D Manning, Stefano Ermon, Chelsea Finn</span>.
-      (<span property="datePublished">2023</span>).<cite property="name">Direct Preference Optimization: Your Language Model is Secretly a Reward Model</cite>.
-      <em property="publisher">Advances in Neural Information Processing Systems</em>.
-      <a href="https://arxiv.org/abs/2305.18290">https://arxiv.org/abs/2305.18290</a>
+      <span class="p-author" property="author">Rafael Rafailov, Archit Sharma, Eric Mitchell, Christopher D Manning, Stefano Ermon, Chelsea Finn</span>.
+      (<time class="dt-published" property="datePublished" datetime="2023">2023</time>).<cite class="p-name" property="name">Direct Preference Optimization: Your Language Model is Secretly a Reward Model</cite>.
+      <em class="p-publisher" property="publisher">Advances in Neural Information Processing Systems</em>.
+      <a class="u-url" href="https://arxiv.org/abs/2305.18290">https://arxiv.org/abs/2305.18290</a>
   </p>
-</section>
+</details>
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/training-stages-as-closure-operators/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/training-stages-as-closure-operators/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
-        <dt>Citations</dt>
-        <dd property="emsenn:Citations"></dd>
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">artificial intelligence</a></dd>
       </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
-        <dd property="emsenn:Domain">artificial intelligence</dd>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">artificial intelligence</a></dd>
       </div><div class="relation">
         <dt>Relates to</dt>
         <dd property="emsenn:Relatesto"><ul><li>../terms/fine tuning.md</li><li>../terms/rlhf.md</li><li>../../../../../../science/domains/math/domains/order/texts/closure operators.md</li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

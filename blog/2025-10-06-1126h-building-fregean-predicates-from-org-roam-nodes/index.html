@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2025-10-06, 1126h, Building Fregean predicates from org-roam nodes - emsenn.net</title>
+
+
+<meta name="description" content="So I didn&rsquo;t do a good job writing much about it in my archive as I was reading about it, but I recently did a lot of reading into the Semantic Web, which led me to reading about resource description format and finally onto things like Fregean first-order predicates. This all coalesced around …">
+<link rel="canonical" href="https://emsenn.net/blog/2025-10-06-1126h-building-fregean-predicates-from-org-roam-nodes/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="2025-10-06, 1126h, Building Fregean predicates from org-roam nodes">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/blog/2025-10-06-1126h-building-fregean-predicates-from-org-roam-nodes/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="So I didn&rsquo;t do a good job writing much about it in my archive as I was reading about it, but I recently did a lot of reading into the Semantic Web, which led me to reading about resource description format and finally onto things like Fregean first-order predicates. This all coalesced around …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:author" content="emsenn">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2025-10-06, 1126h, Building Fregean predicates from org-roam nodes">
+<meta name="twitter:description" content="So I didn&rsquo;t do a good job writing much about it in my archive as I was reading about it, but I recently did a lot of reading into the Semantic Web, which led me to reading about resource description format and finally onto things like Fregean first-order predicates. This all coalesced around …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/blog/2025-10-06-1126h-building-fregean-predicates-from-org-roam-nodes/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/blog/2025-10-06-1126h-building-fregean-predicates-from-org-roam-nodes/index.jsonld">
+
+
+<script type="application/ld+json">
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/blog/2025-10-06-1126h-building-fregean-predicates-from-org-roam-nodes/",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net/authors/emsenn/"
+  },
+  "description": "So I didn\u0026rsquo;t do a good job writing much about it in my archive as I was reading about it, but I recently did a lot of reading into the Semantic Web, which led me to reading about resource description format and finally onto things like Fregean first-order predicates. This all coalesced around something I\u0026rsquo;d been slowly doing in my nodes anyway, which was writing a property into each Org-roam node, which has changed name and shape a few times, but I\u0026rsquo;m currently calling it the node-description property.\n",
+  "name": "2025-10-06, 1126h, Building Fregean predicates from org-roam nodes",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/blog/2025-10-06-1126h-building-fregean-predicates-from-org-roam-nodes/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/writing/">writing</a>
+    <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
+  </nav>
+</header>
+
+  <main id="content" data-pagefind-body>
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, section:blog">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/blog/">emsenn&#39;s blog</a></nav>
+  <h1 class="p-name">2025-10-06, 1126h, Building Fregean predicates from org-roam nodes</h1>
+  <div class="meta">
+    
+    <span>by <span class="p-author">emsenn</span></span>
+    
+  </div>
+  <div class="e-content">
+    <p>So I didn&rsquo;t do a good job writing much about it in my archive as I was reading about it, but I recently did a lot of reading into the Semantic Web, which led me to reading about resource description format and finally onto things like Fregean first-order predicates.
+This all coalesced around something I&rsquo;d been slowly doing in my nodes anyway, which was writing a <a href="../../../sociology/terms/property.md" class="link-internal">property</a> into each Org-roam node, which has changed name and shape a few times, but I&rsquo;m currently calling it the <del>node-description</del> <a href="../../../sociology/terms/property.md" class="link-internal">property</a>.</p>
+<p>One way I&rsquo;m thinking of this <a href="../../../sociology/terms/property.md" class="link-internal">property</a> is as a node&rsquo;s secondary intension toward relational dynamics, and given that, the structure that seemed best was Fregian <del>subject-predicate-object</del> triplets, where each part of the triplet is another node in the database.</p>
+<p>Conveniently, this lines up with where a lot of contemporary Web and large language model technologies are moving.</p>
+<p>Here&rsquo;s a demonstration of what a node&rsquo;s <a href="../../../sociology/terms/property.md" class="link-internal">property</a> drawer looks like, in GnoponEmacs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-org" data-lang="org"><span style="display:flex;"><span><span style="color:#75715e">  :PROPERTIES:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">  :ID:       39a3beb3-898b-4494-b1d2-144c7a38c3dd
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  :node-description: ((resource type . babble) (author . emsenn) (publication . emsenn.net) (creation date . 2025-10-06)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">  :END:</span>
+</span></span></code></pre></div><p>That probably isn&rsquo;t super readable like that. To the computer, it can parse as a list of two-part items: a predicate and an object, and it knows the subject for each is the ID, forming that <del>subject-predicate-object</del> triplet.</p>
+<p>But in plainer rendering, here&rsquo;s what that says the node description is:</p>
+<ul>
+<li>resource type :: babble</li>
+<li>author :: emsenn</li>
+<li>publication :: emsenn.net</li>
+<li>creation date :: 2025-10-06</li>
+</ul>
+<p>As you can see, every part of every triplet is itself has two parts: an <del>ID</del> and <del><a href="../../../linguistics/topics/semiotics/terms/sign.md" class="link-internal">sign</a></del> (<del>d542&hellip;ecb</del> and <del>babble</del>).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>  (defun gpe/build-predicates ()
+</span></span><span style="display:flex;"><span>    (cl-loop
+</span></span><span style="display:flex;"><span>     for (id file level pos todo priority scheduled deadline title props)
+</span></span><span style="display:flex;"><span>     in (org-roam-db-query
+</span></span><span style="display:flex;"><span>         [:select [id file level pos todo priority scheduled deadline title properties]
+</span></span><span style="display:flex;"><span>  		:from nodes
+</span></span><span style="display:flex;"><span>  		:where (like properties <span style="color:#f92672">&#39;</span><span style="color:#e6db74">&#34;%resource-description%&#34;</span>)])
+</span></span><span style="display:flex;"><span>     collect 
+</span></span><span style="display:flex;"><span>     (let* ((raw-rd (alist-get <span style="color:#e6db74">&#34;RESOURCE-DESCRIPTION&#34;</span> props <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">nil</span> <span style="color:#a6e22e">#&#39;</span>string=))
+</span></span><span style="display:flex;"><span>  	  (alist (when raw-rd (ignore-errors (<span style="color:#a6e22e">read</span> raw-rd)))))
+</span></span><span style="display:flex;"><span>       (when alist
+</span></span><span style="display:flex;"><span>         (cl-loop
+</span></span><span style="display:flex;"><span>        for (pred <span style="color:#f92672">.</span> obj) in alist
+</span></span><span style="display:flex;"><span>        collect
+</span></span><span style="display:flex;"><span>        (let* ((parse-link
+</span></span><span style="display:flex;"><span>  	      (lambda (s)
+</span></span><span style="display:flex;"><span>  		(when (<span style="color:#a6e22e">string-match</span> <span style="color:#e6db74">&#34;\\[\\[id:\\([^]]+\\)\\]\\[\\([^]]+\\)\\]\\]&#34;</span> s)
+</span></span><span style="display:flex;"><span>  		  (<span style="color:#a6e22e">list</span> :id (match-string <span style="color:#ae81ff">1</span> s)
+</span></span><span style="display:flex;"><span>  			:sign (match-string <span style="color:#ae81ff">2</span> s)))))
+</span></span><span style="display:flex;"><span>  	     (pred-str (replace-regexp-in-string <span style="color:#e6db74">&#34;] \\[&#34;</span> <span style="color:#e6db74">&#34;][&#34;</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;%s&#34;</span> pred)))
+</span></span><span style="display:flex;"><span>  	     (obj-str  (replace-regexp-in-string <span style="color:#e6db74">&#34;] \\[&#34;</span> <span style="color:#e6db74">&#34;][&#34;</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;%s&#34;</span> obj)))
+</span></span><span style="display:flex;"><span>  	     (pred-link (<span style="color:#a6e22e">funcall</span> parse-link pred-str))
+</span></span><span style="display:flex;"><span>  	     (obj-link  (<span style="color:#a6e22e">funcall</span> parse-link obj-str)))
+</span></span><span style="display:flex;"><span>  	(<span style="color:#a6e22e">list</span>
+</span></span><span style="display:flex;"><span>           :subject-id id
+</span></span><span style="display:flex;"><span>           :subject-sign title
+</span></span><span style="display:flex;"><span>           :predicate-id (<span style="color:#a6e22e">plist-get</span> pred-link :id)
+</span></span><span style="display:flex;"><span>           :predicate-sign (<span style="color:#a6e22e">plist-get</span> pred-link :sign)
+</span></span><span style="display:flex;"><span>           :object-id (<span style="color:#a6e22e">plist-get</span> obj-link :id)
+</span></span><span style="display:flex;"><span>           :object-sign (<span style="color:#a6e22e">plist-get</span> obj-link :sign))))))))
+</span></span><span style="display:flex;"><span>  (gpe/build-predicates)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>  (defun gpe/collect-predicates-from-node (node)
+</span></span><span style="display:flex;"><span>    (let* ((raw-rd (alist-get <span style="color:#e6db74">&#34;RESOURCE-DESCRIPTION&#34;</span>
+</span></span><span style="display:flex;"><span>  			    (org-roam-node-properties node) <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">nil</span> <span style="color:#a6e22e">#&#39;</span>string=))
+</span></span><span style="display:flex;"><span>  	 (alist (when raw-rd (ignore-errors (<span style="color:#a6e22e">read</span> raw-rd)))))
+</span></span><span style="display:flex;"><span>      (when alist
+</span></span><span style="display:flex;"><span>        (cl-loop
+</span></span><span style="display:flex;"><span>         for (pred <span style="color:#f92672">.</span> obj) in alist
+</span></span><span style="display:flex;"><span>         collect
+</span></span><span style="display:flex;"><span>         (let* ((parse-link
+</span></span><span style="display:flex;"><span>  	       (lambda (s)
+</span></span><span style="display:flex;"><span>  		 (when (<span style="color:#a6e22e">string-match</span> <span style="color:#e6db74">&#34;\\[\\[id:\\([^]]+\\)\\]\\[\\([^]]+\\)\\]\\]&#34;</span> s)
+</span></span><span style="display:flex;"><span>  		   (<span style="color:#a6e22e">list</span> :id (match-string <span style="color:#ae81ff">1</span> s)
+</span></span><span style="display:flex;"><span>  			 :sign (match-string <span style="color:#ae81ff">2</span> s)))))
+</span></span><span style="display:flex;"><span>  	      (pred-str
+</span></span><span style="display:flex;"><span>  	       (replace-regexp-in-string <span style="color:#e6db74">&#34;] \\[&#34;</span> <span style="color:#e6db74">&#34;][&#34;</span>
+</span></span><span style="display:flex;"><span>  					 (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;%s&#34;</span> pred)))
+</span></span><span style="display:flex;"><span>  	     (obj-str
+</span></span><span style="display:flex;"><span>  	      (replace-regexp-in-string <span style="color:#e6db74">&#34;] \\[&#34;</span> <span style="color:#e6db74">&#34;][&#34;</span>
+</span></span><span style="display:flex;"><span>  					(<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;%s&#34;</span> obj)))
+</span></span><span style="display:flex;"><span>  	     (pred-link (<span style="color:#a6e22e">funcall</span> parse-link pred-str))
+</span></span><span style="display:flex;"><span>  	     (obj-link  (<span style="color:#a6e22e">funcall</span> parse-link obj-str)))
+</span></span><span style="display:flex;"><span>  	(<span style="color:#a6e22e">list</span>
+</span></span><span style="display:flex;"><span>           :subject-id id
+</span></span><span style="display:flex;"><span>           :subject-sign title
+</span></span><span style="display:flex;"><span>           :predicate-id (<span style="color:#a6e22e">plist-get</span> pred-link :id)
+</span></span><span style="display:flex;"><span>           :predicate-sign (<span style="color:#a6e22e">plist-get</span> pred-link :sign)
+</span></span><span style="display:flex;"><span>           :object-id (<span style="color:#a6e22e">plist-get</span> obj-link :id)
+</span></span><span style="display:flex;"><span>           :object-sign (<span style="color:#a6e22e">plist-get</span> obj-link :sign)))))))
+</span></span><span style="display:flex;"><span>  (defun gpe/filter-predicates-by (predicates predicate-id object-id)
+</span></span><span style="display:flex;"><span>    (cl-loop for entry in predicates
+</span></span><span style="display:flex;"><span>  	   when (and (string= (<span style="color:#a6e22e">plist-get</span> (<span style="color:#a6e22e">car</span> entry) :predicate-id)
+</span></span><span style="display:flex;"><span>  			      predicate-id)
+</span></span><span style="display:flex;"><span>  		     (string= (<span style="color:#a6e22e">plist-get</span> (<span style="color:#a6e22e">car</span> entry) :object-id)
+</span></span><span style="display:flex;"><span>  			      object-id))
+</span></span><span style="display:flex;"><span>  	   collect (<span style="color:#a6e22e">plist-get</span> (<span style="color:#a6e22e">car</span> entry) :subject-id)))
+</span></span><span style="display:flex;"><span>  (let* ((ids
+</span></span><span style="display:flex;"><span>         (gpe/filter-predicates-by
+</span></span><span style="display:flex;"><span>  	(gpe/build-predicates)
+</span></span><span style="display:flex;"><span>  	<span style="color:#e6db74">&#34;edaef069-c68d-46aa-a970-d3cb7fe3165c&#34;</span>
+</span></span><span style="display:flex;"><span>  	<span style="color:#e6db74">&#34;d542e8d2-3512-47a0-adbb-4a393e161ecb&#34;</span>))
+</span></span><span style="display:flex;"><span>         (nodes (<span style="color:#a6e22e">mapcar</span> <span style="color:#a6e22e">#&#39;</span>org-roam-node-from-id ids))
+</span></span><span style="display:flex;"><span>         (output
+</span></span><span style="display:flex;"><span>  	(<span style="color:#a6e22e">mapconcat</span>
+</span></span><span style="display:flex;"><span>  	 (lambda (node)
+</span></span><span style="display:flex;"><span>  	   (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;- %s&#34;</span>
+</span></span><span style="display:flex;"><span>  		   (org-roam-node-id node)
+</span></span><span style="display:flex;"><span>  		   (org-roam-node-title node)))
+</span></span><span style="display:flex;"><span>  	 nodes
+</span></span><span style="display:flex;"><span>  	 <span style="color:#e6db74">&#34;\n&#34;</span>)))
+</span></span><span style="display:flex;"><span>    output)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>  (gpe/ritm/render-list-of-matches <span style="color:#f92672">&#39;</span>((<span style="color:#e6db74">&#34;edaef069-c68d-46aa-a970-d3cb7fe3165c&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;d542e8d2-3512-47a0-adbb-4a393e161ecb&#34;</span>)))
+</span></span></code></pre></div>
+  </div>
+  
+  
+</article>
+<details class="page-relations" resource="https://emsenn.net/blog/2025-10-06-1126h-building-fregean-predicates-from-org-roam-nodes/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <summary><h2>Relations</h2></summary>
+  <dl><div class="relation">
+        <dt><a href="/authors/">Authors</a></dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2025-10-06">2025-10-06</time></dd>
+      </div><div class="relation">
+        <dt>Publish to</dt>
+        <dd property="emsenn:Publishto"><ul><li>emsenn net</li></ul></dd>
+      </div><div class="relation">
+        <dt>Specialization</dt>
+        <dd property="emsenn:Specialization">babble</dd>
+      </div>
+  </dl>
+</details>
+
+
+  
+
+
+  </main>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

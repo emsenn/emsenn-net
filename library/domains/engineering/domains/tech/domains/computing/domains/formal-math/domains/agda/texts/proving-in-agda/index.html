@@ -1,30 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Proving in Agda - emsenn.net</title>
+
+
+<meta name="description" content="¶Propositions as types In Agda, there is no separate Prop sort — propositions are ordinary types in Set. A proof of proposition P is a term of type P. The logical connectives are defined as data types:
+-- Conjunction record _×_ (A B : Set) : Set where constructor _,_ field fst : A ; snd : B -- …">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/proving-in-agda/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Proving in Agda">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/proving-in-agda/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="¶Propositions as types In Agda, there is no separate Prop sort — propositions are ordinary types in Set. A proof of proposition P is a term of type P. The logical connectives are defined as data types:
+-- Conjunction record _×_ (A B : Set) : Set where constructor _,_ field fst : A ; snd : B -- …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-03-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-03-01T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Proving in Agda">
+<meta name="twitter:description" content="¶Propositions as types In Agda, there is no separate Prop sort — propositions are ordinary types in Set. A proof of proposition P is a term of type P. The logical connectives are defined as data types:
+-- Conjunction record _×_ (A B : Set) : Set where constructor _,_ field fst : A ; snd : B -- …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/proving-in-agda/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/proving-in-agda/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/proving-in-agda/",
   "@type": "Article",
   "dateModified": "2026-03-01",
   "datePublished": "2026-03-01",
-  "description": "Propositions as types In Agda, there is no separate Prop sort — propositions are ordinary types in Set. A proof of proposition P is a term of type P. The logical connectives are defined as data types:\n-- Conjunction record _×_ (A B : Set) : Set where constructor _,_ field fst : A ; snd : B -- Disjunction data _⊎_ (A B : Set) : Set where inj₁ : A → A ⊎ B inj₂ : B → A ⊎ B -- Negation ¬_ : Set → Set ¬ A = A → ⊥ -- where ⊥ is the empty type -- Existential -- Σ type (see previous lesson) -- Universal: dependent function type (x : A) → P x Because Agda is intuitionistic, excluded middle is not available by default. A proof of A ⊎ B must supply a proof of A or a proof of B — you cannot argue \u0026ldquo;suppose neither, derive a contradiction.\u0026rdquo;\n",
+  "description": "¶Propositions as types In Agda, there is no separate Prop sort — propositions are ordinary types in Set. A proof of proposition P is a term of type P. The logical connectives are defined as data types:\n-- Conjunction record _×_ (A B : Set) : Set where constructor _,_ field fst : A ; snd : B -- Disjunction data _⊎_ (A B : Set) : Set where inj₁ : A → A ⊎ B inj₂ : B → A ⊎ B -- Negation ¬_ : Set → Set ¬ A = A → ⊥ -- where ⊥ is the empty type -- Existential -- Σ type (see previous lesson) -- Universal: dependent function type (x : A) → P x Because Agda is intuitionistic, excluded middle is not available by default. A proof of A ⊎ B must supply a proof of A or a proof of B — you cannot argue \u0026ldquo;suppose neither, derive a contradiction.\u0026rdquo;\n",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/",
+    "@type": "CreativeWork",
+    "name": "agda",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/"
+  },
   "keywords": "agda",
   "name": "Proving in Agda",
   "publisher": {
@@ -46,46 +100,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:agda, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/">Formal Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/">Agda</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/">Texts</a></nav>
   <h1 class="p-name">Proving in Agda</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-03-01T00:00:00Z">2026-03-01</time>
     
     
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -98,8 +129,30 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
-    <h2 id="propositions-as-types">Propositions as types</h2>
+    <h2 id="propositions-as-types"><a href="#propositions-as-types" class="heading-anchor" aria-label="Link to this section">¶</a>Propositions as types
+</h2>
 <p>In Agda, there is no separate <code>Prop</code> sort — propositions are ordinary types in <code>Set</code>.
 A proof of proposition <code>P</code> is a term of type <code>P</code>. The logical connectives are defined as
 data types:</p>
@@ -122,7 +175,8 @@ data types:</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Universal: dependent function type (x : A) → P x</span>
 </span></span></code></pre></div><p>Because Agda is <a href="../../../../../../mathematics/disciplines/logic/curricula/intuitionistic-logic.md" class="link-internal">intuitionistic</a>, <a href="../../../../../../../../humanities/domains/philosophy/terms/law-of-excluded-middle.md" class="link-internal">excluded middle</a> is not available by default. A proof of <code>A ⊎ B</code> must supply a proof of <code>A</code> or a proof of <code>B</code> — you cannot argue &ldquo;suppose neither, derive a contradiction.&rdquo;</p>
-<h2 id="equational-reasoning">Equational reasoning</h2>
+<h2 id="equational-reasoning"><a href="#equational-reasoning" class="heading-anchor" aria-label="Link to this section">¶</a>Equational reasoning
+</h2>
 <p>Agda&rsquo;s standard library provides a module for writing proofs as chains of equalities,
 mirroring the style of mathematical proofs on paper:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">open</span> <span style="color:#66d9ef">import</span> Relation.Binary.PropositionalEquality
@@ -144,7 +198,8 @@ mirroring the style of mathematical proofs on paper:</p>
 equality between the line above and the line below. <code>≡⟨⟩</code> (no proof) means the equality
 holds by computation (definitional equality).</p>
 <p>This style makes proofs self-documenting: each step records what changed and why.</p>
-<h2 id="congruence-and-substitution">Congruence and substitution</h2>
+<h2 id="congruence-and-substitution"><a href="#congruence-and-substitution" class="heading-anchor" aria-label="Link to this section">¶</a>Congruence and substitution
+</h2>
 <p>Two fundamental proof tools:</p>
 <p><strong>Congruence</strong> (<code>cong</code>): if <code>a ≡ b</code>, then <code>f a ≡ f b</code> for any function <code>f</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#a6e22e">cong</span> <span style="color:#f92672">:</span> <span style="color:#f92672">{</span>A B <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">(</span>f <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> B<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>x y <span style="color:#f92672">:</span> A<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> x ≡ y <span style="color:#f92672">→</span> f x ≡ f y
@@ -154,7 +209,8 @@ holds by computation (definitional equality).</p>
 </span></span><span style="display:flex;"><span>subst P refl px <span style="color:#f92672">=</span> px
 </span></span></code></pre></div><p>Both follow from <code>refl</code> by pattern matching — when the equality proof is <code>refl</code>, the two
 sides are definitionally equal and the result is immediate.</p>
-<h2 id="encoding-algebraic-structures">Encoding algebraic structures</h2>
+<h2 id="encoding-algebraic-structures"><a href="#encoding-algebraic-structures" class="heading-anchor" aria-label="Link to this section">¶</a>Encoding algebraic structures
+</h2>
 <p>Mathematical structures in Agda are record types bundling data and proofs:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">record</span> IsPartialOrder <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">(</span>_≤_ <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">)</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> <span style="color:#66d9ef">where</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">field</span>
@@ -170,7 +226,8 @@ sides are definitionally equal and the result is immediate.</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">himp-adjoint</span> <span style="color:#f92672">:</span> <span style="color:#f92672">∀</span> <span style="color:#f92672">{</span>a b c<span style="color:#f92672">}</span> <span style="color:#f92672">→</span> c ≤ <span style="color:#f92672">(</span>a ⇒ b<span style="color:#f92672">)</span> ↔ <span style="color:#f92672">(</span>c ∧ a<span style="color:#f92672">)</span> ≤ b
 </span></span></code></pre></div><p>Constructing an instance of <code>IsHeytingAlgebra</code> for a specific algebra requires supplying
 proofs of every field — the type checker verifies them all.</p>
-<h2 id="proving-properties-of-closure-operators">Proving properties of <a href="../../../../../../mathematics/concepts/closure-operator/index.md" class="link-internal">closure operators</a></h2>
+<h2 id="proving-properties-of-closure-operators"><a href="#proving-properties-of-closure-operators" class="heading-anchor" aria-label="Link to this section">¶</a>Proving properties of <a href="../../../../../../mathematics/concepts/closure-operator/index.md" class="link-internal">closure operators</a>
+</h2>
 <p>The <a href="../../../../../../mathematics/objects/posets/curricula/closure-operators.md" class="link-internal">closure operators</a> that build the Semiotic Universe can be formalized as record types:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-agda" data-lang="agda"><span style="display:flex;"><span><span style="color:#66d9ef">record</span> IsClosureOp <span style="color:#f92672">{</span>A <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">}</span> <span style="color:#f92672">(</span>_≤_ <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> A <span style="color:#f92672">→</span> <span style="color:#66d9ef">Set</span><span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>       <span style="color:#f92672">(</span>cl <span style="color:#f92672">:</span> A <span style="color:#f92672">→</span> A<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">Set</span> <span style="color:#66d9ef">where</span>
@@ -182,7 +239,8 @@ proofs of every field — the type checker verifies them all.</p>
 <code>IsClosureOp _≤_ f</code> — providing proofs of extensiveness, monotonicity, and idempotence.</p>
 <p>The Knaster-Tarski fixed-point theorem can also be stated and proved in Agda, though the
 proof requires careful handling of complete <a href="../../../../../../mathematics/objects/posets/terms/lattice.md" class="link-internal">lattice</a> structure and well-founded recursion.</p>
-<h2 id="practical-advice">Practical advice</h2>
+<h2 id="practical-advice"><a href="#practical-advice" class="heading-anchor" aria-label="Link to this section">¶</a>Practical advice
+</h2>
 <ul>
 <li><strong>Work with holes.</strong> Write <code>?</code> for any part you are unsure of. Load the file (C-c C-l)
 and inspect the hole&rsquo;s type. Let the type guide the next step.</li>
@@ -199,38 +257,85 @@ complex theorems. Each proved lemma becomes a building block for the next proof.
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-03-01">March 1, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/proving-in-agda/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/proving-in-agda/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/">agda</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
       </div><div class="relation">
-        <dt>Form</dt>
-        <dd property="emsenn:Form"><a href="/library/domains/humanities/domains/education/terms/lesson/">lesson</a></dd>
-      </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment"><ul><li>/technology/disciplines/computing/software/agda/curricula/dependent types in agda.md</li><li>/mathematics/disciplines/logic/curricula/intuitionistic logic.md</li><li>/mathematics/objects/posets/curricula/heyting algebras.md</li></ul></dd>
+        <dd property="schema:isBasedOn"><ul><li>/technology/disciplines/computing/software/agda/curricula/dependent types in agda.md</li><li>/mathematics/disciplines/logic/curricula/intuitionistic logic.md</li><li>/mathematics/objects/posets/curricula/heyting algebras.md</li></ul></dd>
       </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/agda/">agda</a></li></ul></dd>
       </div><div class="relation">
         <dt>Teaches</dt>
-        <dd property="emsenn:Teaches"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/proving-in-agda/">Proving in Agda</a></li></ul></dd>
+        <dd property="schema:teaches"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/formal-math/domains/agda/texts/proving-in-agda/">Proving in Agda</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

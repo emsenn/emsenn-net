@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guix and Guile as a Composition Layer for System Management - emsenn.net</title>
+
+
+<meta name="description" content="Survey of how GNU Guix uses Guile Scheme as a functional composition layer for declarative system configuration, compared to Nix, Terraform, and Ansible.">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/guix-guile-composition-layer/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Guix and Guile as a Composition Layer for System Management">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/guix-guile-composition-layer/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Survey of how GNU Guix uses Guile Scheme as a functional composition layer for declarative system configuration, compared to Nix, Terraform, and Ansible.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-05T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-05T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Guix and Guile as a Composition Layer for System Management">
+<meta name="twitter:description" content="Survey of how GNU Guix uses Guile Scheme as a functional composition layer for declarative system configuration, compared to Nix, Terraform, and Ansible.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/guix-guile-composition-layer/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/guix-guile-composition-layer/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/guix-guile-composition-layer/",
   "@type": "Article",
   "dateModified": "2026-04-05",
   "datePublished": "2026-04-05",
   "description": "Survey of how GNU Guix uses Guile Scheme as a functional composition layer for declarative system configuration, compared to Nix, Terraform, and Ansible.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/",
+    "@type": "CreativeWork",
+    "name": "computing",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/"
+  },
   "name": "Guix and Guile as a Composition Layer for System Management",
   "publisher": {
     "@type": "Person",
@@ -45,46 +96,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:computing, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
   <h1 class="p-name">Guix and Guile as a Composition Layer for System Management</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
     
     <span class="p-summary">Survey of how GNU Guix uses Guile Scheme as a functional composition layer for declarative system configuration, compared to Nix, Terraform, and Ansible.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -99,10 +127,32 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>Most <a href="../terms/infrastructure-as-code.md" class="link-internal">infrastructure as code</a> tools use a domain-specific language to describe desired state. Terraform uses HCL. NixOS uses the Nix expression language. Ansible uses YAML with Jinja templates. GNU Guix takes a different approach: it uses Guile Scheme, a general-purpose programming language, as its configuration language. The entire system configuration is a Scheme value that can be passed to functions, transformed, and composed using the same mechanisms that any Scheme program uses.</p>
 <p>This is the central claim worth examining: that using a full programming language for system configuration is not incidental but architecturally load-bearing. Guix&rsquo;s composition model depends on features &ndash; hygienic macros, records, monads, pattern matching &ndash; that a configuration DSL cannot provide.</p>
-<h2 id="system-as-value">System as value</h2>
+<h2 id="system-as-value"><a href="#system-as-value" class="heading-anchor" aria-label="Link to this section">¶</a>System as value
+</h2>
 <p>In Guix, an operating system configuration is an <code>operating-system</code> record &ndash; a typed, immutable data structure. It specifies host name, locale, file systems, user accounts, and services. Because it is a Scheme value, it can be assigned to a variable, passed to a function, and returned from a function:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>my-os
 </span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">operating-system</span>
@@ -118,34 +168,41 @@
 </span></span><span style="display:flex;"><span>                    (<span style="color:#a6e22e">operating-system-services</span> os)))))
 </span></span></code></pre></div><p>The <code>inherit</code> form copies all fields from <code>os</code> and overrides only what you specify. Because the transformation is a pure function &ndash; no mutation, no side effects &ndash; applying it twice gives the same result, and composing two transformations gives a predictable third.</p>
 <p>This is different from the way Terraform or Kubernetes handle configuration. In Terraform, HCL describes the end state of resources, but the language does not let you write functions that transform one configuration into another. You can use modules and variables, but these are parameterization, not <a href="../domains/software/domains/programming/domains/functional/terms/composition.md" class="link-internal">composition</a> in the functional sense. In Kubernetes, YAML manifests are data, but transforming them requires an external tool (Kustomize, Helm templates). Guix needs no external tool because the configuration language is already a programming language.</p>
-<h2 id="service-extension-graph">Service extension graph</h2>
+<h2 id="service-extension-graph"><a href="#service-extension-graph" class="heading-anchor" aria-label="Link to this section">¶</a>Service extension graph
+</h2>
 <p>Guix&rsquo;s service system is where functional composition does the most structural work. Services are not configured independently and then started in some order. Instead, each service type declares how it <em>extends</em> other service types, forming a directed acyclic graph.</p>
 <p>An OpenSSH service extends the Shepherd init system by providing daemon start/stop commands. A UPower service extends D-Bus by providing <code>.service</code> specification files. Each extension is a function: given the parameters of one service, return the configuration fragment that the target service needs.</p>
 <p>The system builds the full service graph from these declarations automatically. Adding a new service does not require knowing the global boot order or editing a central configuration file. The service declares its own extensions and the graph absorbs it.</p>
 <p>This contrasts with systemd, where unit files specify ordering explicitly (<code>After=</code>, <code>Wants=</code>), and with Ansible, where playbook execution order is the responsibility of the author. In Guix the ordering emerges from the extension graph&rsquo;s structure.</p>
-<h2 id="guile-features-that-carry-the-model">Guile features that carry the model</h2>
+<h2 id="guile-features-that-carry-the-model"><a href="#guile-features-that-carry-the-model" class="heading-anchor" aria-label="Link to this section">¶</a>Guile features that carry the model
+</h2>
 <p>Several Guile Scheme features are not just convenient but necessary for this composition model:</p>
 <p><strong>Records (SRFI-9).</strong> Service types, packages, and operating-system configurations are all defined as record types with typed fields, auto-generated accessors, and type predicates. Records give structure to what would otherwise be arbitrary nested maps or dictionaries.</p>
 <p><strong>Hygienic macros.</strong> Service definitions use macros to generate boilerplate &ndash; type declarations, extension registrations, default configurations. Hygiene ensures that macro-introduced bindings never shadow user-defined names, which matters when composing services from different modules.</p>
 <p><strong>The store monad.</strong> Guix operations that touch the Nix-like content-addressed store &ndash; building packages, computing derivations &ndash; are chained through a monadic interface. The <code>%store-monad</code> threads the store connection through a sequence of operations without the programmer passing it explicitly. This keeps composition logic readable despite the sequential dependency on shared state.</p>
 <p><strong>G-expressions.</strong> A G-expression (<code>#~(...)</code>) is a quoted code fragment that will be evaluated in a different context &ndash; typically at build time or in the Shepherd&rsquo;s runtime. G-expressions can splice in values from the current context (file paths, environment variables) while deferring evaluation. This lets a service definition compose code that crosses the boundary between configuration time and runtime.</p>
 <p><strong>Module system.</strong> Guix has over a hundred modules. Each exports specific service types, package definitions, or configuration helpers. The module system prevents name collisions and provides clear public APIs, which is essential when configurations pull from dozens of independent service definitions.</p>
-<h2 id="comparison-to-nix">Comparison to Nix</h2>
+<h2 id="comparison-to-nix"><a href="#comparison-to-nix" class="heading-anchor" aria-label="Link to this section">¶</a>Comparison to Nix
+</h2>
 <p>Guix and NixOS share the same foundational idea &ndash; functional, declarative, reproducible system management with a content-addressed store. They diverge on language choice.</p>
 <p>Nix uses its own expression language, designed specifically for package and configuration description. It is not Turing-complete in the practical sense: it has functions, let-bindings, and attribute sets, but no general recursion, no macro system, no module system with export control. When Nix users hit the language&rsquo;s limits, they work around them with overlays, flakes, or external tools.</p>
 <p>Guix uses Guile Scheme, which has all of these. The tradeoff is real: Guile&rsquo;s learning curve is steeper &ndash; parenthesized syntax, functional programming idioms, multiple Scheme standards. But once learned, the language does not cap out. You can extend the package manager, define new service composition patterns, and build EDSLs (embedded domain-specific languages) without leaving the configuration language.</p>
 <p>NixOS has roughly 80,000 packages to Guix&rsquo;s approximately 20,000. The gap reflects Guix&rsquo;s younger community (first commit 2012 vs. Nix&rsquo;s 2003), smaller contributor base, and strict free-software-only policy in its main repository. Whether this is a limitation or a feature depends on whether you need proprietary software packaged.</p>
-<h2 id="bootstrap-and-supply-chain-integrity">Bootstrap and supply-chain integrity</h2>
+<h2 id="bootstrap-and-supply-chain-integrity"><a href="#bootstrap-and-supply-chain-integrity" class="heading-anchor" aria-label="Link to this section">¶</a>Bootstrap and supply-chain integrity
+</h2>
 <p>Guix has pursued a full-source bootstrap: building the entire system from a minimal, human-auditable binary seed. By 2023, Guix achieved full-source bootstrap for x86-linux using the hex0 seed &ndash; a small hexadecimal program that can be verified by hand. From hex0, the bootstrap chain builds Mes (a minimal Scheme interpreter), then MesCC-Tools, then GCC, and eventually the full system.</p>
 <p>This addresses a genuine supply-chain concern: if your compiler was compiled by a binary you cannot inspect, a sufficiently sophisticated backdoor could propagate through every build. Full-source bootstrap breaks this chain. No other major distribution has achieved this.</p>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations"><a href="#limitations" class="heading-anchor" aria-label="Link to this section">¶</a>Limitations
+</h2>
 <p><strong>Learning curve.</strong> Guix requires learning Guile Scheme. For administrators accustomed to YAML or HCL, the parenthesized syntax and functional idioms are a barrier. Community documentation acknowledges this. The Guix Cookbook includes a Scheme crash course, and the System Crafters community produces tutorials, but the ramp-up is real.</p>
 <p><strong>Ecosystem size.</strong> The 20,000-to-80,000 package gap means Guix users more often write their own package definitions. The free-software-only policy means some common tools (proprietary drivers, specific commercial software) require maintaining a separate channel.</p>
 <p><strong>Complexity of the composition model.</strong> Monads, G-expressions, service extension graphs &ndash; these are powerful but not self-documenting. Debugging a service composition failure requires understanding the extension DAG, which is more conceptually demanding than reading a sequential Ansible playbook.</p>
-<h2 id="what-the-design-proves">What the design proves</h2>
+<h2 id="what-the-design-proves"><a href="#what-the-design-proves" class="heading-anchor" aria-label="Link to this section">¶</a>What the design proves
+</h2>
 <p>Guix demonstrates that treating system configuration as first-class values in a general-purpose functional language produces a qualitatively different kind of composability than what DSLs or template languages offer. The composition is not bolted on through modules or overlays &ndash; it is the same composition that the programming language provides for any other domain.</p>
 <p>Whether this matters depends on what you are managing. For a single server with standard services, Ansible or Terraform is simpler and sufficient. For a system where configurations are derived, transformed, shared across machines, and must be reproducible down to the bootstrap &ndash; the kind of system where you would otherwise build your own tooling on top of a DSL &ndash; Guix&rsquo;s approach eliminates the layer where custom tooling lives, because the configuration language already is the tooling.</p>
-<h2 id="see-also">See also</h2>
+<h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See also
+</h2>
 <ul>
 <li><a href="../terms/infrastructure-as-code.md" class="link-internal">Infrastructure as code</a> &ndash; the broader practice that Guix implements</li>
 <li><a href="../domains/software/domains/programming/domains/functional/terms/composition.md" class="link-internal">Composition</a> &ndash; the mathematical operation underlying Guix&rsquo;s design</li>
@@ -153,29 +210,79 @@
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-05">April 5, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/guix-guile-composition-layer/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/guix-guile-composition-layer/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
       </div><div class="relation">
-        <dt>Sources</dt>
+        <dt><a href="/library/references/sources/">Sources</a></dt>
         <dd property="emsenn:Sources"><ul></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

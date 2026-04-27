@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dark Forest: Pioneering On-Chain Gaming with Zero-Knowledge Proofs - emsenn.net</title>
+
+
+<meta name="description" content="Analysis of Dark Forest, the first real-time strategy game running on Ethereum, and its cryptographic fog of war system using zkSNARKs. How zero-knowledge proofs enable private state in public blockchains, and how this influenced autonomous world design.">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/texts/dark-forest-zero-knowledge-games/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Dark Forest: Pioneering On-Chain Gaming with Zero-Knowledge Proofs">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/texts/dark-forest-zero-knowledge-games/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Analysis of Dark Forest, the first real-time strategy game running on Ethereum, and its cryptographic fog of war system using zkSNARKs. How zero-knowledge proofs enable private state in public blockchains, and how this influenced autonomous world design.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-05T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-05T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dark Forest: Pioneering On-Chain Gaming with Zero-Knowledge Proofs">
+<meta name="twitter:description" content="Analysis of Dark Forest, the first real-time strategy game running on Ethereum, and its cryptographic fog of war system using zkSNARKs. How zero-knowledge proofs enable private state in public blockchains, and how this influenced autonomous world design.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/texts/dark-forest-zero-knowledge-games/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/texts/dark-forest-zero-knowledge-games/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/texts/dark-forest-zero-knowledge-games/",
   "@type": "Article",
   "dateModified": "2026-04-05",
   "datePublished": "2026-04-05",
   "description": "Analysis of Dark Forest, the first real-time strategy game running on Ethereum, and its cryptographic fog of war system using zkSNARKs. How zero-knowledge proofs enable private state in public blockchains, and how this influenced autonomous world design.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/",
+    "@type": "CreativeWork",
+    "name": "blockchain-games",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/"
+  },
   "name": "Dark Forest: Pioneering On-Chain Gaming with Zero-Knowledge Proofs",
   "publisher": {
     "@type": "Person",
@@ -45,46 +96,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:blockchain-games, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/">Blockchain</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/">Blockchain Games</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/texts/">Texts</a></nav>
   <h1 class="p-name">Dark Forest: Pioneering On-Chain Gaming with Zero-Knowledge Proofs</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
     
     <span class="p-summary">Analysis of Dark Forest, the first real-time strategy game running on Ethereum, and its cryptographic fog of war system using zkSNARKs. How zero-knowledge proofs enable private state in public blockchains, and how this influenced autonomous world design.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -115,10 +143,32 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>Dark Forest is an infinite, procedurally-generated, real-time strategy game running entirely on Ethereum. Players discover and conquer planets in a universe specified cryptographically. The radical innovation is that the game maintains incomplete information: each player knows the location of planets they have discovered, but the blockchain itself does not reveal coordinates to anyone, enforced using zero-knowledge proofs (zkSNARKs).</p>
 <p>Launched in 2020 by Brian Gu (using the pseudonym Gubsheep) at MIT, Dark Forest demonstrated that fully on-chain gaming was possible and influenced the design of later frameworks like MUD. The game is named after Liu Cixin&rsquo;s science fiction novel and operates under the principle that in a hostile universe, information asymmetry is your defense.</p>
-<h2 id="the-incomplete-information-problem">The Incomplete Information Problem</h2>
+<h2 id="the-incomplete-information-problem"><a href="#the-incomplete-information-problem" class="heading-anchor" aria-label="Link to this section">¶</a>The Incomplete Information Problem
+</h2>
 <p>Traditional games played on blockchains face a fundamental tension:</p>
 <ul>
 <li>Blockchain states are public by design. Anyone can inspect a contract and see all variables.</li>
@@ -126,9 +176,11 @@
 </ul>
 <p>If a game stores all state on-chain in plain form, all players instantly see everything. There can be no fog of war, no bluffing, no surprise. This makes many game genres unplayable on public chains.</p>
 <p>Dark Forest solves this using zero-knowledge proofs.</p>
-<h2 id="cryptographic-fog-of-war">Cryptographic Fog of War</h2>
+<h2 id="cryptographic-fog-of-war"><a href="#cryptographic-fog-of-war" class="heading-anchor" aria-label="Link to this section">¶</a>Cryptographic Fog of War
+</h2>
 <p>Instead of storing planet coordinates directly on-chain, Dark Forest stores only their hashes. Players can prove they have discovered a planet without revealing its location.</p>
-<h3 id="how-it-works">How It Works</h3>
+<h3 id="how-it-works"><a href="#how-it-works" class="heading-anchor" aria-label="Link to this section">¶</a>How It Works
+</h3>
 <p>Each planet is identified by a unique coordinate pair. The developer hashes this coordinate using a hash function (e.g., Keccak-256). Only the hash is public. The original coordinates are secret.</p>
 <p>When a player discovers a planet (by computing and finding a hash that matches a known planet hash), they learn the coordinates. They can then:</p>
 <ol>
@@ -137,16 +189,19 @@
 </ol>
 <p>The proof cryptographically certifies: &ldquo;I know a coordinate pair that hashes to this known hash, and it is a valid move from my current planet.&rdquo; The blockchain verifies the proof without learning the coordinates.</p>
 <p>To find planets, players must brute-force search: they hash coordinate pairs across the universe, looking for matches to known hashes. The game space is so large (and hashing so expensive) that brute-forcing is practical only for nearby regions. This creates a natural fog of war based on computational work, not server-side cheating.</p>
-<h2 id="zero-knowledge-proofs-the-technical-foundation">Zero-Knowledge Proofs: The Technical Foundation</h2>
+<h2 id="zero-knowledge-proofs-the-technical-foundation"><a href="#zero-knowledge-proofs-the-technical-foundation" class="heading-anchor" aria-label="Link to this section">¶</a>Zero-Knowledge Proofs: The Technical Foundation
+</h2>
 <p>A zero-knowledge proof (ZKP) is a cryptographic primitive that allows one party to prove a statement is true without revealing the information used to prove it.</p>
-<h3 id="formal-definition">Formal Definition</h3>
+<h3 id="formal-definition"><a href="#formal-definition" class="heading-anchor" aria-label="Link to this section">¶</a>Formal Definition
+</h3>
 <p>A ZKP system allows a prover to convince a verifier of a statement S such that:</p>
 <ol>
 <li><strong>Completeness</strong> — If S is true, the verifier will accept the proof</li>
 <li><strong>Soundness</strong> — If S is false, the verifier will reject the proof with overwhelming probability</li>
 <li><strong>Zero-knowledge</strong> — The verifier learns nothing except that S is true; the proof reveals no other information</li>
 </ol>
-<h3 id="zksnarks-in-dark-forest">zkSNARKs in Dark Forest</h3>
+<h3 id="zksnarks-in-dark-forest"><a href="#zksnarks-in-dark-forest" class="heading-anchor" aria-label="Link to this section">¶</a>zkSNARKs in Dark Forest
+</h3>
 <p>Dark Forest uses <strong>zkSNARKs</strong> (Zero-Knowledge Succinct Non-Interactive Arguments of Knowledge):</p>
 <ul>
 <li><strong>Succinct</strong> — The proof is very small (a few hundred bytes) regardless of the statement&rsquo;s complexity</li>
@@ -159,7 +214,8 @@
 <li><strong>Planet movement (move)</strong> — Proof that transferring energy from one planet to another follows the rules (the source planet exists, has enough energy, etc.) without revealing coordinates</li>
 </ol>
 <p>The proofs use the <strong>Groth16</strong> proving system, a widely-used zkSNARK construction that is efficient to verify on-chain.</p>
-<h2 id="the-procedurally-generated-universe">The Procedurally-Generated Universe</h2>
+<h2 id="the-procedurally-generated-universe"><a href="#the-procedurally-generated-universe" class="heading-anchor" aria-label="Link to this section">¶</a>The Procedurally-Generated Universe
+</h2>
 <p>Dark Forest&rsquo;s universe is infinite and procedurally generated. Coordinates are not pre-computed; instead, the validity of a coordinate is determined by a hash function. If a coordinate hashes to a value with certain properties (e.g., the first N bits are zero), it is a valid planet location.</p>
 <p>This means:</p>
 <ul>
@@ -169,7 +225,8 @@
 </ul>
 <p>The function used is typically Keccak-256 with a difficulty parameter. A valid planet might be a coordinate where Keccak256(coordinate) &lt; 2^256 / difficulty. Players find planets by searching their local region of the coordinate space.</p>
 <p>This creates emergent geopolitics: players near each other compete for resources, distant players are isolated, and border conflicts naturally arise as populations expand.</p>
-<h2 id="game-mechanics">Game Mechanics</h2>
+<h2 id="game-mechanics"><a href="#game-mechanics" class="heading-anchor" aria-label="Link to this section">¶</a>Game Mechanics
+</h2>
 <p>Within the fog of war:</p>
 <ul>
 <li><strong>Planets</strong> — Resources to be discovered and conquered. Each planet has energy, production capacity, and defense.</li>
@@ -177,7 +234,8 @@
 <li><strong>Strategy</strong> — Hide your home planet to avoid attack, scout your neighbors without revealing your position, attack weak targets while defending your borders.</li>
 </ul>
 <p>The fog of war is not arbitrary; it is derived from the cryptographic structure of the universe. The game rules are transparent and immutable; the asymmetry comes from information, not from hidden state.</p>
-<h2 id="influence-on-autonomous-worlds">Influence on Autonomous Worlds</h2>
+<h2 id="influence-on-autonomous-worlds"><a href="#influence-on-autonomous-worlds" class="heading-anchor" aria-label="Link to this section">¶</a>Influence on Autonomous Worlds
+</h2>
 <p>Dark Forest was revolutionary because it demonstrated:</p>
 <ol>
 <li><strong>Fully on-chain games are feasible</strong> — Complex, real-time gameplay can run entirely on Ethereum</li>
@@ -192,8 +250,10 @@
 <li>Separation of concerns (state vs. logic)</li>
 <li>Community governance and forking (DF Ares, a community revival, is a separate instance on the same contract infrastructure)</li>
 </ul>
-<h2 id="technical-challenges-and-lessons">Technical Challenges and Lessons</h2>
-<h3 id="proof-generation-cost">Proof Generation Cost</h3>
+<h2 id="technical-challenges-and-lessons"><a href="#technical-challenges-and-lessons" class="heading-anchor" aria-label="Link to this section">¶</a>Technical Challenges and Lessons
+</h2>
+<h3 id="proof-generation-cost"><a href="#proof-generation-cost" class="heading-anchor" aria-label="Link to this section">¶</a>Proof Generation Cost
+</h3>
 <p>Generating zkSNARK proofs is computationally expensive. In Dark Forest, players generate proofs client-side before submitting transactions. This requires:</p>
 <ul>
 <li>Downloading the proving key (several megabytes)</li>
@@ -201,15 +261,19 @@
 <li>Submitting the proof and waiting for on-chain verification</li>
 </ul>
 <p>This created a barrier to mobile play and made real-time interaction difficult. Later games use proof delegation (proofs generated on the server) or different privacy mechanisms.</p>
-<h3 id="verifier-gas-cost">Verifier Gas Cost</h3>
+<h3 id="verifier-gas-cost"><a href="#verifier-gas-cost" class="heading-anchor" aria-label="Link to this section">¶</a>Verifier Gas Cost
+</h3>
 <p>Even verifying a zkSNARK proof costs gas. A single move in Dark Forest costs ~200k gas to verify the proof and update state. With Ethereum at typical gas prices, this makes every action expensive. Subsequent games use Layer 2 rollups to reduce costs.</p>
-<h3 id="proof-soundness">Proof Soundness</h3>
+<h3 id="proof-soundness"><a href="#proof-soundness" class="heading-anchor" aria-label="Link to this section">¶</a>Proof Soundness
+</h3>
 <p>The strength of Dark Forest&rsquo;s privacy depends on the security of the hash function and the soundness of Groth16. If either is broken, the fog of war collapses. The game uses Keccak-256, which is well-studied, and Groth16, which is a widely-audited construction, but the risk remains.</p>
-<h2 id="dark-forests-legacy">Dark Forest&rsquo;s Legacy</h2>
+<h2 id="dark-forests-legacy"><a href="#dark-forests-legacy" class="heading-anchor" aria-label="Link to this section">¶</a>Dark Forest&rsquo;s Legacy
+</h2>
 <p>Dark Forest remains the canonical example of a fully on-chain strategy game. Though development has slowed, the community maintains it (DF Ares is an active community fork), and it continues to demonstrate that decentralized games are viable and attractive to players.</p>
 <p>The game also influenced the development of zero-knowledge gaming frameworks and demonstrated the potential for privacy-preserving on-chain applications beyond games.</p>
 <hr>
-<h2 id="see-also">See Also</h2>
+<h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See Also
+</h2>
 <ul>
 <li><a href="./autonomous-worlds-concept.md" class="link-internal">Autonomous Worlds</a> — the broader vision that Dark Forest exemplifies</li>
 <li><a href="../../terms/zero-knowledge-proof.md" class="link-internal">Zero-Knowledge Proofs</a> — the cryptographic primitive enabling Dark Forest&rsquo;s privacy</li>
@@ -218,35 +282,85 @@
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-05">April 5, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/texts/dark-forest-zero-knowledge-games/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/texts/dark-forest-zero-knowledge-games/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/">blockchain games</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
-        <dd property="emsenn:Domain">blockchain games</dd>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/domains/blockchain-games/">blockchain games</a></dd>
       </div><div class="relation">
-        <dt>Sources</dt>
+        <dt><a href="/library/references/sources/">Sources</a></dt>
         <dd property="emsenn:Sources"><ul></ul></dd>
       </div><div class="relation">
         <dt>Subjects</dt>
-        <dd property="emsenn:Subjects"><ul><li>dark forest</li><li>zero knowledge proofs</li><li>zk snarks</li><li>fog of war</li><li>on chain privacy</li></ul></dd>
+        <dd property="emsenn:Subjects"><ul><li>dark forest</li><li>zero knowledge proofs</li><li>zk snarks</li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/fog-of-war/">fog of war</a></li><li>on chain privacy</li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

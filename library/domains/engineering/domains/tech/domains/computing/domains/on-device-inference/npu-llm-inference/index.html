@@ -1,30 +1,78 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NPU LLM Inference - emsenn.net</title>
+
+
+<meta name="description" content="An assessment of running large language models on neural processing units, with particular attention to the Qualcomm Snapdragon X Elite (45 TOPS), as of early 2026.
+¶The fundamental tension NPUs were designed for convolutional neural network (CNN) inference: image classification, object detection, …">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/npu-llm-inference/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="NPU LLM Inference">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/npu-llm-inference/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="An assessment of running large language models on neural processing units, with particular attention to the Qualcomm Snapdragon X Elite (45 TOPS), as of early 2026.
+¶The fundamental tension NPUs were designed for convolutional neural network (CNN) inference: image classification, object detection, …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-03-08T00:00:00Z">
+<meta property="article:modified_time" content="2026-03-08T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NPU LLM Inference">
+<meta name="twitter:description" content="An assessment of running large language models on neural processing units, with particular attention to the Qualcomm Snapdragon X Elite (45 TOPS), as of early 2026.
+¶The fundamental tension NPUs were designed for convolutional neural network (CNN) inference: image classification, object detection, …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/npu-llm-inference/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/npu-llm-inference/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/npu-llm-inference/",
   "@type": "Article",
   "dateModified": "2026-03-08",
   "datePublished": "2026-03-08",
-  "description": "An assessment of running large language models on neural processing units, with particular attention to the Qualcomm Snapdragon X Elite (45 TOPS), as of early 2026.\nThe fundamental tension NPUs were designed for convolutional neural network (CNN) inference: image classification, object detection, segmentation. These workloads have regular, predictable compute patterns that map cleanly onto fixed-point arithmetic and static data flow. Transformer-based language models are architecturally different: the attention mechanism involves softmax and exponentiation that create extreme dynamic ranges, and autoregressive token generation is inherently sequential. This mismatch is the root of most current limitations.\n",
+  "description": "An assessment of running large language models on neural processing units, with particular attention to the Qualcomm Snapdragon X Elite (45 TOPS), as of early 2026.\n¶The fundamental tension NPUs were designed for convolutional neural network (CNN) inference: image classification, object detection, segmentation. These workloads have regular, predictable compute patterns that map cleanly onto fixed-point arithmetic and static data flow. Transformer-based language models are architecturally different: the attention mechanism involves softmax and exponentiation that create extreme dynamic ranges, and autoregressive token generation is inherently sequential. This mismatch is the root of most current limitations.\n",
   "keywords": "survey",
   "name": "NPU LLM Inference",
   "publisher": {
@@ -46,39 +94,16 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/">On Device Inference</a></nav>
   <h1 class="p-name">NPU LLM Inference</h1>
   <div class="meta">
@@ -88,18 +113,24 @@
   </div>
   <div class="e-content">
     <p>An assessment of running large language models on <a href="../../terms/neural-processing-unit.md" class="link-internal">neural processing units</a>, with particular attention to the Qualcomm Snapdragon X Elite (45 <a href="terms/tops.md" class="link-internal">TOPS</a>), as of early 2026.</p>
-<h2 id="the-fundamental-tension">The fundamental tension</h2>
+<h2 id="the-fundamental-tension"><a href="#the-fundamental-tension" class="heading-anchor" aria-label="Link to this section">¶</a>The fundamental tension
+</h2>
 <p>NPUs were designed for convolutional neural network (CNN) inference: image classification, object detection, segmentation. These workloads have regular, predictable compute patterns that map cleanly onto fixed-point arithmetic and static data flow. Transformer-based language models are architecturally different: the attention mechanism involves softmax and exponentiation that create extreme dynamic ranges, and autoregressive token generation is inherently sequential. This mismatch is the root of most current limitations.</p>
-<h2 id="what-works">What works</h2>
+<h2 id="what-works"><a href="#what-works" class="heading-anchor" aria-label="Link to this section">¶</a>What works
+</h2>
 <p>Small models (1B–4B parameters) run well on NPU through <a href="terms/onnx.md" class="link-internal">ONNX</a>-based toolchains. The Nexa AI SDK has demonstrated Llama-3B, Phi4-mini, and Qwen3-4B on Snapdragon NPU hardware. Microsoft&rsquo;s Phi Silica is a small language model tuned specifically for Copilot+ PC NPUs, accessible through Windows APIs. AnythingLLM has been ported to use ONNX Runtime with the QNN execution provider for NPU-accelerated local chat.</p>
-<h2 id="what-does-not-yet-work">What does not yet work</h2>
+<h2 id="what-does-not-yet-work"><a href="#what-does-not-yet-work" class="heading-anchor" aria-label="Link to this section">¶</a>What does not yet work
+</h2>
 <p>Mainstream LLM runtimes (Ollama, LM Studio, llama.cpp mainline, Hugging Face Transformers) do not use the NPU. They run on CPU or GPU exclusively.</p>
 <p>The llama.cpp QNN backend exists as multiple experimental branches and pull requests (PR #12049, #12063 on GitHub, plus independent forks). It passes basic tests and runs Llama 3.2 1B/3B in FP16/FP32. However, GGML&rsquo;s block quantization formats (Q4_0, Q4_K_M) do not map onto QNN&rsquo;s operator graph — quantized models fall back to CPU for unsupported operations, negating the NPU benefit. Early benchmarks showed CPU inference at approximately 26 tokens/second versus NPU at approximately 3 tokens/second, reflecting software immaturity rather than hardware limits.</p>
-<h2 id="model-format-fragmentation">Model format fragmentation</h2>
+<h2 id="model-format-fragmentation"><a href="#model-format-fragmentation" class="heading-anchor" aria-label="Link to this section">¶</a>Model format fragmentation
+</h2>
 <p>The NPU ecosystem requires <a href="terms/onnx.md" class="link-internal">ONNX</a> models optimized specifically for Snapdragon. The broader LLM ecosystem uses GGUF (llama.cpp), safetensors (Hugging Face), and PyTorch formats. There is no automatic conversion path that preserves performance. Models must be explicitly built or converted for Snapdragon NPU deployment.</p>
-<h2 id="memory-bandwidth-constraints">Memory bandwidth constraints</h2>
+<h2 id="memory-bandwidth-constraints"><a href="#memory-bandwidth-constraints" class="heading-anchor" aria-label="Link to this section">¶</a>Memory bandwidth constraints
+</h2>
 <p>The Snapdragon X Elite uses shared LPDDR5x memory for CPU, GPU, and NPU. LLM inference is memory-bandwidth-bound (reading model weights dominates compute time). The NPU competes with the rest of the system for memory access. Models above 7B parameters push against bandwidth limits.</p>
-<h2 id="practical-paths-for-snapdragon-x-elite-2026">Practical paths for Snapdragon X Elite (2026)</h2>
+<h2 id="practical-paths-for-snapdragon-x-elite-2026"><a href="#practical-paths-for-snapdragon-x-elite-2026" class="heading-anchor" aria-label="Link to this section">¶</a>Practical paths for Snapdragon X Elite (2026)
+</h2>
 <ol>
 <li><strong>Foundry Local</strong> — Microsoft&rsquo;s NPU-aware local runtime. Likely the most supported path going forward.</li>
 <li><strong>Nexa AI SDK</strong> — third-party, has demonstrated the broadest model support on NPU.</li>
@@ -111,29 +142,76 @@
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-03-08">March 8, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/npu-llm-inference/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/npu-llm-inference/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-08">2026-03-08</time></dd>
       </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/survey/">survey</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

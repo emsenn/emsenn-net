@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Small Model Fine-Tuning for Agentic Tool Use, April 2026 - emsenn.net</title>
+
+
+<meta name="description" content="Survey of fine-tuning small language models (1B-8B) for function calling and tool use in agent systems — models, methods, datasets, benchmarks, costs, and what&#39;s realistic for a single VPS.">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/small-model-fine-tuning-for-agents-2026/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Small Model Fine-Tuning for Agentic Tool Use, April 2026">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/small-model-fine-tuning-for-agents-2026/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Survey of fine-tuning small language models (1B-8B) for function calling and tool use in agent systems — models, methods, datasets, benchmarks, costs, and what&#39;s realistic for a single VPS.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-04T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-04T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Small Model Fine-Tuning for Agentic Tool Use, April 2026">
+<meta name="twitter:description" content="Survey of fine-tuning small language models (1B-8B) for function calling and tool use in agent systems — models, methods, datasets, benchmarks, costs, and what&#39;s realistic for a single VPS.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/small-model-fine-tuning-for-agents-2026/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/small-model-fine-tuning-for-agents-2026/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/small-model-fine-tuning-for-agents-2026/",
   "@type": "Article",
   "dateModified": "2026-04-04",
   "datePublished": "2026-04-04",
   "description": "Survey of fine-tuning small language models (1B-8B) for function calling and tool use in agent systems — models, methods, datasets, benchmarks, costs, and what's realistic for a single VPS.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/",
+    "@type": "CreativeWork",
+    "name": "computing",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/"
+  },
   "name": "Small Model Fine-Tuning for Agentic Tool Use, April 2026",
   "publisher": {
     "@type": "Person",
@@ -45,46 +96,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:computing, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
   <h1 class="p-name">Small Model Fine-Tuning for Agentic Tool Use, April 2026</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
     
     <span class="p-summary">Survey of fine-tuning small language models (1B-8B) for function calling and tool use in agent systems — models, methods, datasets, benchmarks, costs, and what&#39;s realistic for a single VPS.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -131,10 +159,33 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
-    <h2 id="claim">Claim</h2>
+    <h2 id="claim"><a href="#claim" class="heading-anchor" aria-label="Link to this section">¶</a>Claim
+</h2>
 <p>As of April 2026, fine-tuning small open-source models (1B-8B parameters) for tool use and function calling is practical, cheap, and produces models that rival frontier systems on structured benchmarks. The gap between a $0.50/hour rented GPU running QLoRA and a GPT-4o API call has narrowed to the point where specialized small models outperform general large models on function-calling tasks.</p>
-<h2 id="the-landscape-what-changed">The Landscape: What Changed</h2>
+<h2 id="the-landscape-what-changed"><a href="#the-landscape-what-changed" class="heading-anchor" aria-label="Link to this section">¶</a>The Landscape: What Changed
+</h2>
 <p>Two years ago, tool use required frontier models. Today, Salesforce&rsquo;s xLAM-2-3b-fc-r — a 3-billion parameter model — tops the Berkeley Function Calling Leaderboard, outperforming GPT-4o and Claude 3.5 Sonnet on multi-turn function calling. This is not an anomaly. The convergence of three developments made it possible:</p>
 <ol>
 <li>
@@ -147,8 +198,10 @@
 <p><strong>Benchmark infrastructure.</strong> BFCL V4 evaluates not just single-turn function calls but multi-turn agentic scenarios including error recovery, memory management, and format sensitivity. This means fine-tuned models are tested on the same agentic patterns they need to handle in production.</p>
 </li>
 </ol>
-<h2 id="models-which-small-models-work-for-tool-use">Models: Which Small Models Work for Tool Use</h2>
-<h3 id="tier-1-purpose-built-for-tool-calling">Tier 1: Purpose-Built for Tool Calling</h3>
+<h2 id="models-which-small-models-work-for-tool-use"><a href="#models-which-small-models-work-for-tool-use" class="heading-anchor" aria-label="Link to this section">¶</a>Models: Which Small Models Work for Tool Use
+</h2>
+<h3 id="tier-1-purpose-built-for-tool-calling"><a href="#tier-1-purpose-built-for-tool-calling" class="heading-anchor" aria-label="Link to this section">¶</a>Tier 1: Purpose-Built for Tool Calling
+</h3>
 <p><strong>xLAM-2 Series (Salesforce)</strong>
 The current state of the art for small-model tool use. Built on Qwen2.5 (1B, 3B) and Llama 3.1 (8B) bases, fine-tuned with APIGen-MT synthetic data.</p>
 <table>
@@ -188,20 +241,25 @@ The current state of the art for small-model tool use. Built on Qwen2.5 (1B, 3B)
 <p>Available as GGUF quantizations for llama.cpp/Ollama deployment.</p>
 <p><strong>ToolACE-8B</strong>
 Fine-tuned from Llama-3.1-8B-Instruct using LoRA (rank 16, alpha 32) on the ToolACE dataset (26,507 APIs). Achieved state-of-the-art on BFCL at time of release, comparable to GPT-4 models. The ToolACE dataset and model are both open-source on HuggingFace.</p>
-<h3 id="tier-2-general-models-with-tool-use-capability">Tier 2: General Models with Tool-Use Capability</h3>
+<h3 id="tier-2-general-models-with-tool-use-capability"><a href="#tier-2-general-models-with-tool-use-capability" class="heading-anchor" aria-label="Link to this section">¶</a>Tier 2: General Models with Tool-Use Capability
+</h3>
 <p><strong>Qwen2.5 (0.5B, 1.5B, 3B, 7B)</strong>
 Pre-trained with function-calling templates. Supports single, nested, and parallel function calling out of the box. The 1.5B variant is competitive with 2023-era 7B models. Strong base for further fine-tuning because the tool-calling format is already in the pre-training distribution.</p>
 <p><strong>Llama 3.2 (1B, 3B)</strong>
 Meta&rsquo;s instruction-tuned variants support function calling natively — single, nested, parallel, and multi-turn. 128k context window. The 1B model has community fine-tunes specifically for tool calling (e.g., mav23/Llama_3.2_1B_Instruct_Tool_Calling_V2). Good base but benefits significantly from further fine-tuning on domain-specific tools.</p>
 <p><strong>Phi-4-mini (3.8B)</strong>
 Microsoft&rsquo;s small model with function calling support. Reliability is &ldquo;surprisingly solid&rdquo; for a model this size, though schema adherence becomes brittle with verbose tool definitions or chained calls. Better at general reasoning than the xLAM models, worse at structured tool invocation.</p>
-<h3 id="tier-3-reasoning-models-tool-use-as-afterthought">Tier 3: Reasoning Models (Tool Use as Afterthought)</h3>
+<h3 id="tier-3-reasoning-models-tool-use-as-afterthought"><a href="#tier-3-reasoning-models-tool-use-as-afterthought" class="heading-anchor" aria-label="Link to this section">¶</a>Tier 3: Reasoning Models (Tool Use as Afterthought)
+</h3>
 <p><strong>DeepSeek-R1 Distilled (1.5B, 7B)</strong>
 Strong reasoning capability via distillation from the full R1 model. Function calling support was added in R1-0528 (May 2025), but the distilled small variants have reported issues with tool-call parsing. Not recommended as a tool-calling base — the reasoning chain overhead is wasted on structured invocations.</p>
-<h3 id="summary-recommendation">Summary Recommendation</h3>
+<h3 id="summary-recommendation"><a href="#summary-recommendation" class="heading-anchor" aria-label="Link to this section">¶</a>Summary Recommendation
+</h3>
 <p>For pure tool calling: <strong>xLAM-2-3b-fc-r</strong> is the best off-the-shelf option. For a custom fine-tune base: <strong>Qwen2.5-1.5B or 3B</strong> offers the best balance of size, pre-existing tool-call capability, and fine-tuning ecosystem support.</p>
-<h2 id="methods-how-to-fine-tune-for-tool-use">Methods: How to Fine-Tune for Tool Use</h2>
-<h3 id="qlora-dominant-method">QLoRA (Dominant Method)</h3>
+<h2 id="methods-how-to-fine-tune-for-tool-use"><a href="#methods-how-to-fine-tune-for-tool-use" class="heading-anchor" aria-label="Link to this section">¶</a>Methods: How to Fine-Tune for Tool Use
+</h2>
+<h3 id="qlora-dominant-method"><a href="#qlora-dominant-method" class="heading-anchor" aria-label="Link to this section">¶</a>QLoRA (Dominant Method)
+</h3>
 <p>QLoRA combines Low-Rank Adaptation with 4-bit NormalFloat quantization. The base model weights are frozen in 4-bit precision; only the low-rank adapter matrices (typically rank 16-64) are trained in 16-bit.</p>
 <p><strong>Practical recipe for a 3B tool-calling model:</strong></p>
 <ul>
@@ -219,17 +277,21 @@ Strong reasoning capability via distillation from the full R1 model. Function ca
 <li>Cloud cost: $2-10 on Runpod spot pricing</li>
 </ul>
 <p>QLoRA achieves 90-95% of full fine-tuning quality. The remaining 5-10% gap is rarely meaningful for structured tool-calling tasks where the output format is constrained.</p>
-<h3 id="reinforcement-learning-emerging">Reinforcement Learning (Emerging)</h3>
+<h3 id="reinforcement-learning-emerging"><a href="#reinforcement-learning-emerging" class="heading-anchor" aria-label="Link to this section">¶</a>Reinforcement Learning (Emerging)
+</h3>
 <p>GRPO (Group Relative Policy Optimization) and DPO (Direct Preference Optimization) are being applied to tool-calling models as a post-SFT step. The TinyLLM paper (Nov 2025) found that hybrid SFT+DPO+RL optimization produces the most stable agentic behavior on edge devices. This is newer territory — SFT alone gets you 80% of the way.</p>
-<h3 id="distillation-from-large-models">Distillation from Large Models</h3>
+<h3 id="distillation-from-large-models"><a href="#distillation-from-large-models" class="heading-anchor" aria-label="Link to this section">¶</a>Distillation from Large Models
+</h3>
 <p>The ToolACE and APIGen-MT approaches use large models (GPT-4, Claude) to generate synthetic training data, then fine-tune small models on that data. This is the dominant pattern because:</p>
 <ul>
 <li>Frontier models produce high-quality tool-calling traces</li>
 <li>Automated verification catches errors before they enter training data</li>
 <li>The small model only needs to learn structured invocation, not general reasoning</li>
 </ul>
-<h2 id="datasets-what-to-train-on">Datasets: What to Train On</h2>
-<h3 id="open-source-datasets">Open-Source Datasets</h3>
+<h2 id="datasets-what-to-train-on"><a href="#datasets-what-to-train-on" class="heading-anchor" aria-label="Link to this section">¶</a>Datasets: What to Train On
+</h2>
+<h3 id="open-source-datasets"><a href="#open-source-datasets" class="heading-anchor" aria-label="Link to this section">¶</a>Open-Source Datasets
+</h3>
 <table>
   <thead>
       <tr>
@@ -285,7 +347,8 @@ Strong reasoning capability via distillation from the full R1 model. Function ca
       </tr>
   </tbody>
 </table>
-<h3 id="generating-custom-data">Generating Custom Data</h3>
+<h3 id="generating-custom-data"><a href="#generating-custom-data" class="heading-anchor" aria-label="Link to this section">¶</a>Generating Custom Data
+</h3>
 <p>For domain-specific tool use (e.g., our own MCP tools), the established pipeline is:</p>
 <ol>
 <li>Define tool schemas (JSON Schema format)</li>
@@ -295,8 +358,10 @@ Strong reasoning capability via distillation from the full R1 model. Function ca
 <li>Filter to high-confidence examples</li>
 </ol>
 <p>APIGen-MT is the reference implementation for this pipeline. 500-2,000 verified examples are typically sufficient for a narrow tool set.</p>
-<h2 id="benchmarks-how-to-measure-tool-use-quality">Benchmarks: How to Measure Tool-Use Quality</h2>
-<h3 id="berkeley-function-calling-leaderboard-bfcl-v4">Berkeley Function Calling Leaderboard (BFCL) V4</h3>
+<h2 id="benchmarks-how-to-measure-tool-use-quality"><a href="#benchmarks-how-to-measure-tool-use-quality" class="heading-anchor" aria-label="Link to this section">¶</a>Benchmarks: How to Measure Tool-Use Quality
+</h2>
+<h3 id="berkeley-function-calling-leaderboard-bfcl-v4"><a href="#berkeley-function-calling-leaderboard-bfcl-v4" class="heading-anchor" aria-label="Link to this section">¶</a>Berkeley Function Calling Leaderboard (BFCL) V4
+</h3>
 <p>The primary benchmark. Evaluates across five categories:</p>
 <ul>
 <li><strong>Simple</strong>: Single function, single argument</li>
@@ -312,12 +377,16 @@ Strong reasoning capability via distillation from the full R1 model. Function ca
 <li>xLAM-2-1b-fc-r: 53.97% overall</li>
 <li>ToolACE-8B: Comparable to GPT-4 on earlier BFCL versions</li>
 </ul>
-<h3 id="tau-bench">Tau-Bench</h3>
+<h3 id="tau-bench"><a href="#tau-bench" class="heading-anchor" aria-label="Link to this section">¶</a>Tau-Bench
+</h3>
 <p>Tests tool-calling in realistic enterprise scenarios (retail, airline). xLAM-2-70b achieves 56.2% (vs. GPT-4o at 52.9%, Claude 3.5 Sonnet at 60.1%). Small-model results are lower but the benchmark tests a different axis than BFCL — sustained multi-turn coherence.</p>
-<h3 id="toolbench--api-bank">ToolBench / API-Bank</h3>
+<h3 id="toolbench--api-bank"><a href="#toolbench--api-bank" class="heading-anchor" aria-label="Link to this section">¶</a>ToolBench / API-Bank
+</h3>
 <p>Earlier benchmarks, still useful for evaluating API selection from large pools. Less focus on multi-turn interaction.</p>
-<h2 id="cost-analysis">Cost Analysis</h2>
-<h3 id="fine-tuning-costs">Fine-Tuning Costs</h3>
+<h2 id="cost-analysis"><a href="#cost-analysis" class="heading-anchor" aria-label="Link to this section">¶</a>Cost Analysis
+</h2>
+<h3 id="fine-tuning-costs"><a href="#fine-tuning-costs" class="heading-anchor" aria-label="Link to this section">¶</a>Fine-Tuning Costs
+</h3>
 <table>
   <thead>
       <tr>
@@ -355,7 +424,8 @@ Strong reasoning capability via distillation from the full R1 model. Function ca
   </tbody>
 </table>
 <p>Unsloth reduces these times by roughly 2x. A complete fine-tuning run for a 3B tool-calling model costs under $5 in compute.</p>
-<h3 id="inference-costs-self-hosted">Inference Costs (Self-Hosted)</h3>
+<h3 id="inference-costs-self-hosted"><a href="#inference-costs-self-hosted" class="heading-anchor" aria-label="Link to this section">¶</a>Inference Costs (Self-Hosted)
+</h3>
 <p><strong>GPU inference (single RTX 4090):</strong></p>
 <ul>
 <li>1-3B models: 50-100+ tokens/sec</li>
@@ -376,7 +446,8 @@ Strong reasoning capability via distillation from the full R1 model. Function ca
 <li>Self-hosted 3B model on CPU: Effectively free after hosting costs</li>
 </ul>
 <p>Break-even for self-hosting depends on volume. At 1,000+ tool calls per day, self-hosting a small model is dramatically cheaper than API calls — even on CPU.</p>
-<h3 id="inference-runtimes">Inference Runtimes</h3>
+<h3 id="inference-runtimes"><a href="#inference-runtimes" class="heading-anchor" aria-label="Link to this section">¶</a>Inference Runtimes
+</h3>
 <table>
   <thead>
       <tr>
@@ -408,7 +479,8 @@ Strong reasoning capability via distillation from the full R1 model. Function ca
       </tr>
   </tbody>
 </table>
-<h2 id="whats-realistic-for-our-vps">What&rsquo;s Realistic for Our VPS</h2>
+<h2 id="whats-realistic-for-our-vps"><a href="#whats-realistic-for-our-vps" class="heading-anchor" aria-label="Link to this section">¶</a>What&rsquo;s Realistic for Our VPS
+</h2>
 <p>Our setup: Ubuntu 25.10 VPS, no GPU, CPU-only inference.</p>
 <p><strong>Can do now:</strong></p>
 <ul>
@@ -438,13 +510,15 @@ Strong reasoning capability via distillation from the full R1 model. Function ca
 <li>Deploy the fine-tuned model alongside the generic xLAM for A/B comparison</li>
 <li>Iterate: collect failures, add to training set, re-fine-tune monthly</li>
 </ol>
-<h2 id="key-papers">Key Papers</h2>
+<h2 id="key-papers"><a href="#key-papers" class="heading-anchor" aria-label="Link to this section">¶</a>Key Papers
+</h2>
 <p><strong>ToolACE (ICLR 2025).</strong> Introduced a self-evolution synthesis pipeline that generates diverse tool-calling data from a pool of 26,507 APIs. The key insight: automated data generation with dual-layer verification (rule-based + model-based) produces training data good enough that an 8B model matches GPT-4 on function calling.</p>
 <p><strong>APIGen-MT (Salesforce, April 2025).</strong> A two-phase framework for generating multi-turn tool-calling data through simulated agent-human interplay. Phase 1 creates task blueprints with ground-truth actions; Phase 2 transforms them into full interaction trajectories. The resulting xLAM-2 models are the current BFCL leaders.</p>
 <p><strong>TinyLLM (arXiv 2511.22138, November 2025).</strong> Systematic evaluation of small models for agentic tasks on edge devices. Found that hybrid optimization (SFT + DPO + RL) produces the best results, and that 1-3B models in the &ldquo;optimal bracket&rdquo; achieve 5-15 tokens/sec on edge hardware — sufficient for tool-calling agents.</p>
 <p><strong>Meta-Tool (ACL 2025).</strong> Addresses &ldquo;open-world&rdquo; function calling — when the tool set is not fixed at training time. Introduces a framework where the model first identifies whether a tool exists, then invokes it. Relevant for systems where the tool inventory changes.</p>
 <p><strong>Multi-Stage LLM Fine-Tuning with Continual Learning (ACL 2025 Findings).</strong> Shows that continual post-training can refresh model behaviors without catastrophic forgetting, using progressive modules. Important for iterative fine-tuning as our tool set evolves.</p>
-<h2 id="open-questions">Open Questions</h2>
+<h2 id="open-questions"><a href="#open-questions" class="heading-anchor" aria-label="Link to this section">¶</a>Open Questions
+</h2>
 <ol>
 <li>
 <p><strong>How much does domain-specific fine-tuning help over off-the-shelf xLAM?</strong> We won&rsquo;t know until we try. The xLAM models were trained on general API calling; our MCP tools have specific schemas and interaction patterns.</p>
@@ -462,35 +536,91 @@ Strong reasoning capability via distillation from the full R1 model. Function ca
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-04">April 4, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/small-model-fine-tuning-for-agents-2026/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/small-model-fine-tuning-for-agents-2026/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
-        <dd property="emsenn:Domain">computing</dd>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
       </div><div class="relation">
-        <dt>Sources</dt>
+        <dt><a href="/library/references/sources/">Sources</a></dt>
         <dd property="emsenn:Sources"><ul></ul></dd>
       </div><div class="relation">
         <dt>Text type</dt>
-        <dd property="emsenn:Texttype">survey</dd>
+        <dd property="emsenn:Texttype"><a href="/tags/survey/">survey</a></dd>
       </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/texts/non-llm-computation-for-agent-duties/">Non-LLM Computation for Agent Duties</a></li></ul>
+    </dd>
+  </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

@@ -1,0 +1,162 @@
+@prefix emsenn: <https://emsenn.net/vocab#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
+
+<https://emsenn.net/vocab>
+  rdf:type owl:Ontology ;
+  rdfs:label "emsenn vocabulary" ;
+  rdfs:comment "Custom predicates used across emsenn.net's research library where standard vocabularies (schema.org, SKOS, Dublin Core, PROV, RDFS) lack a clean fit. Standard predicates are preferred wherever they apply; this vocabulary covers what's left." ;
+  dcterms:creator <https://emsenn.net> ;
+  dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> .
+
+emsenn:centralThesis
+  rdf:type rdf:Property ;
+  rdfs:label "central thesis" ;
+  rdfs:comment "The defining claim or analytic move of a school of thought — the single sentence that captures what makes the school distinct from its neighbors." ;
+  rdfs:domain schema:CreativeWork ;
+  rdfs:range rdfs:Literal .
+
+emsenn:teleology
+  rdf:type rdf:Property ;
+  rdfs:label "teleology" ;
+  rdfs:comment "The aim or goal of a domain — what practitioners of this domain are trying to understand or accomplish, written as a complete sentence." ;
+  rdfs:domain schema:CreativeWork ;
+  rdfs:range rdfs:Literal .
+
+emsenn:method
+  rdf:type rdf:Property ;
+  rdfs:label "method" ;
+  rdfs:comment "The characteristic methodology of a domain — how its practitioners do their work, written as a complete sentence." ;
+  rdfs:domain schema:CreativeWork ;
+  rdfs:range rdfs:Literal .
+
+emsenn:featuredText
+  rdf:type rdf:Property ;
+  rdfs:label "featured text" ;
+  rdfs:comment "A curated key text within a domain, surfaced on the domain's index page with its description inlined. Object resolves to a schema:Article or schema:ScholarlyArticle in the domain's texts/ subsection." ;
+  rdfs:domain schema:CreativeWork ;
+  rdfs:range schema:CreativeWork .
+
+emsenn:keyFigure
+  rdf:type rdf:Property ;
+  rdfs:label "key figure" ;
+  rdfs:comment "A person whose work centrally informs this school or domain. Object should resolve to a schema:Person." ;
+  rdfs:domain schema:CreativeWork ;
+  rdfs:range schema:Person .
+
+emsenn:locates
+  rdf:type rdf:Property ;
+  rdfs:label "locates" ;
+  rdfs:comment "A page-typing predicate. Values are tokens drawn from a closed vocabulary: domain, school, discipline, topic, lineage, term, concept, definition, text, paper, person." ;
+  rdfs:domain schema:CreativeWork ;
+  rdfs:range rdfs:Literal .
+
+emsenn:introduces
+  rdf:type rdf:Property ;
+  rdfs:label "introduces" ;
+  rdfs:comment "A page-typing predicate similar to emsenn:locates, used when the page introduces a structural category (e.g. 'discipline', 'lineage') rather than locating itself within one." ;
+  rdfs:domain schema:CreativeWork ;
+  rdfs:range rdfs:Literal .
+
+emsenn:governs
+  rdf:type rdf:Property ;
+  rdfs:label "governs" ;
+  rdfs:comment "Subject exercises governance, regulation, or control over object. Inverse of emsenn:governedBy." ;
+  owl:inverseOf emsenn:governedBy .
+
+emsenn:governedBy
+  rdf:type rdf:Property ;
+  rdfs:label "governed by" ;
+  rdfs:comment "Subject is under the governance, regulation, or control of object. Inverse of emsenn:governs." ;
+  owl:inverseOf emsenn:governs .
+
+emsenn:produces
+  rdf:type rdf:Property ;
+  rdfs:label "produces" ;
+  rdfs:comment "Subject brings object into existence as an effect, output, or consequence. Inverse of emsenn:producedBy." ;
+  owl:inverseOf emsenn:producedBy .
+
+emsenn:producedBy
+  rdf:type rdf:Property ;
+  rdfs:label "produced by" ;
+  rdfs:comment "Subject is brought into existence by object as an effect, output, or consequence. Inverse of emsenn:produces." ;
+  owl:inverseOf emsenn:produces .
+
+emsenn:actsOn
+  rdf:type rdf:Property ;
+  rdfs:label "acts on" ;
+  rdfs:comment "Subject takes action upon, transforms, or operates on object." .
+
+emsenn:addresses
+  rdf:type rdf:Property ;
+  rdfs:label "addresses" ;
+  rdfs:comment "Subject takes object as a topic, problem, or concern that it engages with." .
+
+emsenn:restricts
+  rdf:type rdf:Property ;
+  rdfs:label "restricts" ;
+  rdfs:comment "Subject limits, constrains, or specializes object." .
+
+emsenn:enables
+  rdf:type rdf:Property ;
+  rdfs:label "enables" ;
+  rdfs:comment "Subject makes object possible, creates the conditions under which object can occur." .
+
+emsenn:analogousTo
+  rdf:type rdf:Property ;
+  rdfs:label "analogous to" ;
+  rdfs:comment "Subject and object share structural similarity sufficient that insight from one transfers to the other, without subject being a kind of object or vice versa." ;
+  rdfs:subPropertyOf rdfs:seeAlso .
+
+emsenn:contrastsWith
+  rdf:type rdf:Property ;
+  rdfs:label "contrasts with" ;
+  rdfs:comment "Subject is meaningfully understood by comparison with object, where the differences are themselves analytically productive." ;
+  rdfs:subPropertyOf rdfs:seeAlso .
+
+emsenn:domain
+  rdf:type rdf:Property ;
+  rdfs:label "domain (mathematical)" ;
+  rdfs:comment "The mathematical domain of a function or operation. Distinct from emsenn:locates which classifies pages." .
+
+emsenn:codomain
+  rdf:type rdf:Property ;
+  rdfs:label "codomain" ;
+  rdfs:comment "The mathematical codomain of a function or operation." .
+
+emsenn:maps
+  rdf:type rdf:Property ;
+  rdfs:label "maps" ;
+  rdfs:comment "The mapping relationship between elements of a domain and codomain, when applied to a function or operation." .
+
+emsenn:composesWith
+  rdf:type rdf:Property ;
+  rdfs:label "composes with" ;
+  rdfs:comment "Subject can be composed with object via the standard composition operation appropriate to their type (function composition, morphism composition, etc.)." .
+
+emsenn:specialization
+  rdf:type rdf:Property ;
+  rdfs:label "specialization" ;
+  rdfs:comment "A more specific page-type than emsenn:locates allows; values include 'relation', 'letter', 'babble', etc." ;
+  rdfs:range rdfs:Literal .
+
+emsenn:mathematicalObject
+  rdf:type rdf:Property ;
+  rdfs:label "mathematical object" ;
+  rdfs:comment "Categorial typing for a mathematical concept (e.g. 'category', 'functor', 'morphism'). Used as both a relation and a self-tag on math term pages." ;
+  rdfs:range rdfs:Literal .
+
+emsenn:form
+  rdf:type rdf:Property ;
+  rdfs:label "form" ;
+  rdfs:comment "A page-typing predicate for content shape (e.g. 'index', 'narrative', 'reference')." ;
+  rdfs:range rdfs:Literal .
+
+emsenn:publishTo
+  rdf:type rdf:Property ;
+  rdfs:label "publish to" ;
+  rdfs:comment "A list of publication surfaces the page is approved for. Values are surface identifiers like 'emsenn-net'." ;
+  rdfs:range rdfs:Literal .

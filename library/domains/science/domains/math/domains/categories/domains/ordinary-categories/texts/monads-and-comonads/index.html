@@ -1,30 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Monads and Comonads - emsenn.net</title>
+
+
+<meta name="description" content="¶Entry conditions Use monads and comonads when you can:
+Start from a category (or a poset viewed as a thin category). Identify an endofunctor T : C -&gt; C that &ldquo;wraps&rdquo; or &ldquo;annotates&rdquo; objects. Ask whether the wrapping is coherent: can it be applied once, twice, or unwrapped, …">
+<link rel="canonical" href="https://emsenn.net/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/texts/monads-and-comonads/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Monads and Comonads">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/texts/monads-and-comonads/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="¶Entry conditions Use monads and comonads when you can:
+Start from a category (or a poset viewed as a thin category). Identify an endofunctor T : C -&gt; C that &ldquo;wraps&rdquo; or &ldquo;annotates&rdquo; objects. Ask whether the wrapping is coherent: can it be applied once, twice, or unwrapped, …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-03-06T00:00:00Z">
+<meta property="article:modified_time" content="2026-03-06T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Monads and Comonads">
+<meta name="twitter:description" content="¶Entry conditions Use monads and comonads when you can:
+Start from a category (or a poset viewed as a thin category). Identify an endofunctor T : C -&gt; C that &ldquo;wraps&rdquo; or &ldquo;annotates&rdquo; objects. Ask whether the wrapping is coherent: can it be applied once, twice, or unwrapped, …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/texts/monads-and-comonads/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/texts/monads-and-comonads/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/texts/monads-and-comonads/",
   "@type": "Article",
   "dateModified": "2026-03-06",
   "datePublished": "2026-03-06",
-  "description": "Entry conditions Use monads and comonads when you can:\nStart from a category (or a poset viewed as a thin category). Identify an endofunctor T : C -\u0026gt; C that \u0026ldquo;wraps\u0026rdquo; or \u0026ldquo;annotates\u0026rdquo; objects. Ask whether the wrapping is coherent: can it be applied once, twice, or unwrapped, in ways that compose consistently? Definitions A monad on a category C is a triple (T, eta, mu) where:\nT : C -\u0026gt; C is an endofunctor, eta : id -\u0026gt; T is a natural transformation called the unit (wrapping), mu : T . T -\u0026gt; T is a natural transformation called the multiplication (flattening), satisfying:\n",
+  "description": "¶Entry conditions Use monads and comonads when you can:\nStart from a category (or a poset viewed as a thin category). Identify an endofunctor T : C -\u0026gt; C that \u0026ldquo;wraps\u0026rdquo; or \u0026ldquo;annotates\u0026rdquo; objects. Ask whether the wrapping is coherent: can it be applied once, twice, or unwrapped, in ways that compose consistently? ¶Definitions A monad on a category C is a triple (T, eta, mu) where:\n",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/",
+    "@type": "CreativeWork",
+    "name": "ordinary-categories",
+    "url": "https://emsenn.net/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/"
+  },
   "keywords": "category-theory, order-theory",
   "name": "Monads and Comonads",
   "publisher": {
@@ -46,46 +100,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:ordinary-categories, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/">Science</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/">Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/categories/">Categories</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/categories/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/">Ordinary Categories</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/texts/">Texts</a></nav>
   <h1 class="p-name">Monads and Comonads</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-03-06T00:00:00Z">2026-03-06</time>
     
     
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -100,8 +131,30 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
-    <h2 id="entry-conditions">Entry conditions</h2>
+    <h2 id="entry-conditions"><a href="#entry-conditions" class="heading-anchor" aria-label="Link to this section">¶</a>Entry conditions
+</h2>
 <p>Use monads and comonads when you can:</p>
 <ul>
 <li>Start from a <a href="../terms/category.md" class="link-internal">category</a> (or a poset viewed as
@@ -111,7 +164,8 @@ objects.</li>
 <li>Ask whether the wrapping is coherent: can it be applied once, twice,
 or unwrapped, in ways that compose consistently?</li>
 </ul>
-<h2 id="definitions">Definitions</h2>
+<h2 id="definitions"><a href="#definitions" class="heading-anchor" aria-label="Link to this section">¶</a>Definitions
+</h2>
 <p>A <strong>monad</strong> on a category C is a triple (T, eta, mu) where:</p>
 <ul>
 <li>T : C -&gt; C is an endofunctor,</li>
@@ -145,7 +199,8 @@ called the <strong>unit</strong> (wrapping),</li>
 <li>delta: G(a) &lt;= G(G(a)) for all a (duplication is inflating within G),</li>
 </ul>
 <p>with coassociativity and counit laws holding as inequalities.</p>
-<h2 id="vocabulary-plain-language">Vocabulary (plain language)</h2>
+<h2 id="vocabulary-plain-language"><a href="#vocabulary-plain-language" class="heading-anchor" aria-label="Link to this section">¶</a>Vocabulary (plain language)
+</h2>
 <ul>
 <li><strong>Monad</strong>: wraps objects and flattens double-wrapping. Think of it as
 a notion of computation or context that can be composed.</li>
@@ -157,7 +212,8 @@ context. &ldquo;What is the thing, ignoring its annotation?&rdquo;</li>
 version of a trace is itself traced.&rdquo; This enables iterable
 annotation.</li>
 </ul>
-<h2 id="intuition">Intuition</h2>
+<h2 id="intuition"><a href="#intuition" class="heading-anchor" aria-label="Link to this section">¶</a>Intuition
+</h2>
 <p>A monad wraps things and lets you flatten nested wrapping. The
 canonical example: lists. Wrapping a value gives a singleton list;
 flattening a list of lists concatenates them.</p>
@@ -173,7 +229,8 @@ G records interpretive history. The counit extracts the current
 semantic value. The comultiplication records that the tracing itself has
 been traced — the self-referential structure that semiotic
 interpretation requires.</p>
-<h2 id="heyting-comonadic-coherence">Heyting-comonadic coherence</h2>
+<h2 id="heyting-comonadic-coherence"><a href="#heyting-comonadic-coherence" class="heading-anchor" aria-label="Link to this section">¶</a>Heyting-comonadic coherence
+</h2>
 <p>When G is a comonad on a
 <a href="../../../../mathematics/concepts/heyting-algebra/index.md" class="link-internal">Heyting algebra</a>
 H, additional structure becomes possible. G is <strong>Heyting-comonadic</strong> if
@@ -190,7 +247,8 @@ version of an implication is the implication of the traces.</p>
 <p>This coherence axiom (Axiom 1.2 of the semiotic universe specification)
 is what makes the trace comonad more than an arbitrary annotation — it
 ensures that temporal unfolding respects the logic of meaning.</p>
-<h2 id="worked-example">Worked example</h2>
+<h2 id="worked-example"><a href="#worked-example" class="heading-anchor" aria-label="Link to this section">¶</a>Worked example
+</h2>
 <p>Let H = {bot, a, b, top} be the diamond lattice where a and b are
 incomparable, with the Heyting implication defined by the adjunction.</p>
 <p>Define G : H -&gt; H as:</p>
@@ -216,7 +274,8 @@ bot join bot = bot, but G(a join b) = G(top) = top. So top != bot.
 joins requires G to distribute, which this G does not. The constraint
 is real: not every comonad on a Heyting algebra preserves the Heyting
 structure.</p>
-<h2 id="common-mistakes">Common mistakes</h2>
+<h2 id="common-mistakes"><a href="#common-mistakes" class="heading-anchor" aria-label="Link to this section">¶</a>Common mistakes
+</h2>
 <ul>
 <li>Confusing monads with comonads. The arrows reverse: unit vs. counit,
 multiplication vs. comultiplication. Monads wrap; comonads extract.</li>
@@ -226,7 +285,8 @@ Heyting-comonadic coherence is an additional axiom.</li>
 <li>Forgetting the counit laws. Coassociativity alone is not enough; the
 counit laws ensure extraction is well-behaved.</li>
 </ul>
-<h2 id="minimal-data">Minimal data</h2>
+<h2 id="minimal-data"><a href="#minimal-data" class="heading-anchor" aria-label="Link to this section">¶</a>Minimal data
+</h2>
 <ul>
 <li>A category C (or a poset viewed as a thin category).</li>
 <li>An endofunctor G : C -&gt; C.</li>
@@ -238,38 +298,85 @@ implication, top, and bottom.</li>
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-03-06">March 6, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/texts/monads-and-comonads/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/texts/monads-and-comonads/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/">ordinary categories</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-06">2026-03-06</time></dd>
       </div><div class="relation">
-        <dt>Form</dt>
-        <dd property="emsenn:Form"><a href="/library/domains/humanities/domains/education/terms/lesson/">lesson</a></dd>
-      </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment"><ul><li>./functors.md</li><li>./natural transformations.md</li></ul></dd>
+        <dd property="schema:isBasedOn"><ul><li>./functors.md</li><li>./natural transformations.md</li></ul></dd>
       </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/category-theory/">category-theory</a></li><li><a href="/tags/order-theory/">order-theory</a></li></ul></dd>
       </div><div class="relation">
         <dt>Teaches</dt>
-        <dd property="emsenn:Teaches"><ul><li>monads</li><li>comonads</li><li>counit</li><li>comultiplication</li><li>Heyting comonadic coherence</li></ul></dd>
+        <dd property="schema:teaches"><ul><li>monads</li><li>comonads</li><li>counit</li><li>comultiplication</li><li>Heyting comonadic coherence</li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

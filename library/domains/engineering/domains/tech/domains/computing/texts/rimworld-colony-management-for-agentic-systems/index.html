@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RimWorld Colony Management as a Model for Agentic Systems - emsenn.net</title>
+
+
+<meta name="description" content="Analysis of RimWorld&#39;s colonist management systems — work priorities, skill/passion, decay, mood, storyteller AI, and research trees — as design patterns for multi-agent orchestration.">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/rimworld-colony-management-for-agentic-systems/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="RimWorld Colony Management as a Model for Agentic Systems">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/rimworld-colony-management-for-agentic-systems/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Analysis of RimWorld&#39;s colonist management systems — work priorities, skill/passion, decay, mood, storyteller AI, and research trees — as design patterns for multi-agent orchestration.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-05T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-05T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RimWorld Colony Management as a Model for Agentic Systems">
+<meta name="twitter:description" content="Analysis of RimWorld&#39;s colonist management systems — work priorities, skill/passion, decay, mood, storyteller AI, and research trees — as design patterns for multi-agent orchestration.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/rimworld-colony-management-for-agentic-systems/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/rimworld-colony-management-for-agentic-systems/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/rimworld-colony-management-for-agentic-systems/",
   "@type": "Article",
   "dateModified": "2026-04-05",
   "datePublished": "2026-04-05",
   "description": "Analysis of RimWorld's colonist management systems — work priorities, skill/passion, decay, mood, storyteller AI, and research trees — as design patterns for multi-agent orchestration.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/",
+    "@type": "CreativeWork",
+    "name": "computing",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/"
+  },
   "keywords": "agentic-systems, game-design, colony-simulation, dispatch, skill-management",
   "name": "RimWorld Colony Management as a Model for Agentic Systems",
   "publisher": {
@@ -46,46 +97,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:computing, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
   <h1 class="p-name">RimWorld Colony Management as a Model for Agentic Systems</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
     
     <span class="p-summary">Analysis of RimWorld&#39;s colonist management systems — work priorities, skill/passion, decay, mood, storyteller AI, and research trees — as design patterns for multi-agent orchestration.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -125,12 +153,35 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>RimWorld is a colony simulation where the player manages colonists indirectly — setting priorities, schedules, and research directions while colonists autonomously execute work. The player never directly controls a colonist&rsquo;s hands. This constraint produces a management system that maps remarkably well onto multi-agent orchestration, where a harness directs autonomous agents without micromanaging their inference.</p>
-<h2 id="work-priorities-the-1-4-dispatch-system">Work Priorities: The 1-4 Dispatch System</h2>
+<h2 id="work-priorities-the-1-4-dispatch-system"><a href="#work-priorities-the-1-4-dispatch-system" class="heading-anchor" aria-label="Link to this section">¶</a>Work Priorities: The 1-4 Dispatch System
+</h2>
 <p>RimWorld offers two priority modes. In <strong>simple mode</strong>, each colonist toggles work types on or off. In <strong>manual mode</strong>, each work type gets a priority from 1 (highest) to 4 (lowest), or blank (disabled). A colonist completes all available priority-1 work before touching priority-2 work. Within the same priority level, work types listed further left take precedence.</p>
 <p>The work types are ordered by criticality. From left to right: Firefighting, Patient, Doctor, Bed Rest, Basic (flicking switches, etc.), Warden, Handling, Cooking, Hunting, Construction, Growing, Mining, Plant Cutting, Smithing, Tailoring, Art, Crafting, Hauling, Cleaning, Research. Emergency types (Firefighting, Patient, Bed Rest) are typically set to priority 1 for all colonists. Specialized types (Doctor, Cooking, Research) are set to priority 1 only for the best-skilled colonist.</p>
-<h3 id="mapping-to-agent-dispatch">Mapping to agent dispatch</h3>
+<h3 id="mapping-to-agent-dispatch"><a href="#mapping-to-agent-dispatch" class="heading-anchor" aria-label="Link to this section">¶</a>Mapping to agent dispatch
+</h3>
 <p>The 1-4 system maps directly to dispatch priority/leverage scoring:</p>
 <table>
   <thead>
@@ -164,7 +215,8 @@
 </table>
 <p>The left-to-right ordering within a priority level is the tie-breaking rule. In our system, this is the task-router&rsquo;s secondary sort: when two tasks have equal leverage, prefer the one closer to the critical path.</p>
 <p>A key design lesson: setting Hauling to priority 1 causes a colonist to haul every object on the map before doing anything else. <strong>Priority 1 is not &ldquo;important&rdquo; — it is &ldquo;preemptive.&rdquo;</strong> This distinction matters for agent dispatch. A task marked critical should genuinely preempt all other work, not just rank highly.</p>
-<h2 id="skills-and-passion-aptitude-meets-interest">Skills and Passion: Aptitude Meets Interest</h2>
+<h2 id="skills-and-passion-aptitude-meets-interest"><a href="#skills-and-passion-aptitude-meets-interest" class="heading-anchor" aria-label="Link to this section">¶</a>Skills and Passion: Aptitude Meets Interest
+</h2>
 <p>Each colonist has 12 skills rated 0-20: Shooting, Melee, Construction, Mining, Cooking, Plants, Animals, Crafting, Artistic, Medical, Social, Intellectual. Skills determine work speed and output quality.</p>
 <p>The critical mechanic is <strong>passion</strong>, which comes in three tiers:</p>
 <table>
@@ -194,7 +246,8 @@
   </tbody>
 </table>
 <p>Passion does three things simultaneously: it multiplies learning speed, it provides a mood bonus while working (making breakdown less likely), and it indirectly fights skill decay (faster XP gain offsets the drain). A colonist with burning passion in Cooking learns nearly 4.3x faster than one with no passion, and is happier doing it.</p>
-<h3 id="mapping-to-model-tier-and-office-affinity">Mapping to model tier and office affinity</h3>
+<h3 id="mapping-to-model-tier-and-office-affinity"><a href="#mapping-to-model-tier-and-office-affinity" class="heading-anchor" aria-label="Link to this section">¶</a>Mapping to model tier and office affinity
+</h3>
 <table>
   <thead>
       <tr>
@@ -226,17 +279,20 @@
   </tbody>
 </table>
 <p>The lesson: <strong>matching agent to task is not just about capability — it is about learning efficiency and failure resistance.</strong> An opus-tier agent grinding through janitorial tasks is like assigning your level-18 researcher to haul rocks. It works, but the opportunity cost is enormous and the agent gains nothing from the experience.</p>
-<h2 id="skill-decay-use-it-or-lose-it">Skill Decay: Use It or Lose It</h2>
+<h2 id="skill-decay-use-it-or-lose-it"><a href="#skill-decay-use-it-or-lose-it" class="heading-anchor" aria-label="Link to this section">¶</a>Skill Decay: Use It or Lose It
+</h2>
 <p>Skills above level 10 decay continuously. XP drains at a constant rate regardless of activity. A skill level is lost only after XP falls to zero and then drops a further 1,000 points below (a buffer preventing rapid oscillation at level boundaries).</p>
 <p>The trait &ldquo;Great Memory&rdquo; halves decay rate. Passion does not directly slow decay, but because passionate colonists gain XP faster, they can outpace the drain through regular practice.</p>
-<h3 id="mapping-to-confidence-decay">Mapping to confidence decay</h3>
+<h3 id="mapping-to-confidence-decay"><a href="#mapping-to-confidence-decay" class="heading-anchor" aria-label="Link to this section">¶</a>Mapping to confidence decay
+</h3>
 <p>Our instinct system already implements this pattern: instincts that are not reinforced by observations lose confidence over time. RimWorld adds nuance worth adopting:</p>
 <ul>
 <li><strong>Decay only above a threshold.</strong> Skills 1-10 never decay. This means basic competencies are permanent, while expert-level skills require maintenance. For agent skills, this suggests: foundational capabilities (file reading, basic search) should not decay, but specialized learned patterns (domain-specific prompt strategies) should.</li>
 <li><strong>The buffer zone.</strong> Losing 1,000 XP below a level boundary before actually dropping prevents rapid flicker between levels. Our confidence scores should similarly have hysteresis — do not demote a skill on a single failed observation.</li>
 <li><strong>Decay is constant, not proportional.</strong> A level-20 skill decays at the same rate as a level-11 skill. The difference is that level-20 has more XP buffer. This means: high-confidence instincts are not immune to decay, they just survive longer without reinforcement.</li>
 </ul>
-<h2 id="mood-and-needs-the-breakdown-threshold">Mood and Needs: The Breakdown Threshold</h2>
+<h2 id="mood-and-needs-the-breakdown-threshold"><a href="#mood-and-needs-the-breakdown-threshold" class="heading-anchor" aria-label="Link to this section">¶</a>Mood and Needs: The Breakdown Threshold
+</h2>
 <p>Each colonist has a mood score (0-100%) determined by the sum of active &ldquo;thoughts&rdquo; — positive and negative modifiers from environment, events, and work. Mental breaks trigger when mood drops below threshold:</p>
 <table>
   <thead>
@@ -266,7 +322,8 @@
 </table>
 <p>After a mental break, the colonist receives a &ldquo;catharsis&rdquo; thought (+40 mood for 2.5 days), generally preventing spiral breakdowns. A breaking colonist can be arrested to interrupt the episode, but this carries its own risks.</p>
 <p>Needs that affect mood include: food, rest, comfort, beauty (environment quality), recreation (variety matters — doing the same recreation type gives diminishing returns), social interaction, and temperature. Notably, <strong>doing work you have passion for provides a mood bonus</strong>, creating a positive feedback loop: passionate workers are happier, less likely to break, and learn faster.</p>
-<h3 id="mapping-to-agent-failure-modes">Mapping to agent failure modes</h3>
+<h3 id="mapping-to-agent-failure-modes"><a href="#mapping-to-agent-failure-modes" class="heading-anchor" aria-label="Link to this section">¶</a>Mapping to agent failure modes
+</h3>
 <table>
   <thead>
       <tr>
@@ -311,7 +368,8 @@
 </table>
 <p>The catharsis mechanic is particularly instructive. After an agent fails, there should be a recovery period — not immediate re-dispatch on the same task. Our <code>reflect-on-failure</code> tool implements half of this: it captures the diagnosis. The missing half is the cool-down: don&rsquo;t re-dispatch the same task type to the same agent configuration immediately.</p>
 <p>The recreation variety mechanic also maps well: agents that do the same type of work repeatedly accumulate context fatigue. Rotating between task types (research, then writing, then review) keeps output quality higher than grinding a single type.</p>
-<h2 id="the-scheduling-system-time-allocation">The Scheduling System: Time Allocation</h2>
+<h2 id="the-scheduling-system-time-allocation"><a href="#the-scheduling-system-time-allocation" class="heading-anchor" aria-label="Link to this section">¶</a>The Scheduling System: Time Allocation
+</h2>
 <p>Each hour of the day can be assigned to one of four modes per colonist:</p>
 <table>
   <thead>
@@ -340,10 +398,12 @@
   </tbody>
 </table>
 <p>The community consensus is that the optimal schedule is simple: 8 hours of Sleep (nighttime, when work speed is reduced), 16 hours of Anything. Complex schedules rarely outperform letting colonists self-manage. The exception is shift work for 24-hour coverage (staggering sleep times) and forced recreation blocks for colonists prone to mental breaks.</p>
-<h3 id="mapping-to-agent-scheduling">Mapping to agent scheduling</h3>
+<h3 id="mapping-to-agent-scheduling"><a href="#mapping-to-agent-scheduling" class="heading-anchor" aria-label="Link to this section">¶</a>Mapping to agent scheduling
+</h3>
 <p>The &ldquo;Anything&rdquo; mode is the most efficient because it lets the colonist optimize locally. This validates our current approach: agents should self-select tasks from the ready queue rather than being force-scheduled. The harness sets priorities and constraints; the agent decides when to eat (refresh context), sleep (yield to another agent), or work.</p>
 <p>The exception — forced recreation for fragile colonists — maps to: force-review or force-reflection for agents that have accumulated errors. Don&rsquo;t wait for the breakdown; schedule maintenance.</p>
-<h2 id="the-research-tree-unlocking-capabilities">The Research Tree: Unlocking Capabilities</h2>
+<h2 id="the-research-tree-unlocking-capabilities"><a href="#the-research-tree-unlocking-capabilities" class="heading-anchor" aria-label="Link to this section">¶</a>The Research Tree: Unlocking Capabilities
+</h2>
 <p>Research follows a dependency tree with six tech levels: Neolithic, Medieval, Industrial, Spacer, Ultra, Archotech. Each project has a point cost and may require prerequisites. Only one project can be active at a time, but switching preserves progress.</p>
 <p>Research speed depends on the researcher&rsquo;s Intellectual skill and the research bench quality. Critically, <strong>your faction&rsquo;s tech level imposes a cost multiplier on higher-tier research</strong>:</p>
 <table>
@@ -378,7 +438,8 @@
   </tbody>
 </table>
 <p>This creates a natural progression: you research what is cheap and accessible first, building toward the capability to research harder things efficiently. Skipping ahead is possible but expensive.</p>
-<h3 id="mapping-to-the-academy-curriculum">Mapping to the Academy curriculum</h3>
+<h3 id="mapping-to-the-academy-curriculum"><a href="#mapping-to-the-academy-curriculum" class="heading-anchor" aria-label="Link to this section">¶</a>Mapping to the Academy curriculum
+</h3>
 <table>
   <thead>
       <tr>
@@ -414,7 +475,8 @@
   </tbody>
 </table>
 <p>The &ldquo;preserve progress on switch&rdquo; mechanic is worth noting. When we pause development on a capability to address something urgent, the work already done should not be lost. Plans and partial implementations should be resumable, not restarted. Our plan system already handles this with task-level status tracking.</p>
-<h2 id="synthesis-what-rimworld-teaches-about-agent-orchestration">Synthesis: What RimWorld Teaches About Agent Orchestration</h2>
+<h2 id="synthesis-what-rimworld-teaches-about-agent-orchestration"><a href="#synthesis-what-rimworld-teaches-about-agent-orchestration" class="heading-anchor" aria-label="Link to this section">¶</a>Synthesis: What RimWorld Teaches About Agent Orchestration
+</h2>
 <p>RimWorld&rsquo;s design succeeds because it gives the player <strong>leverage without control</strong>. The player sets priorities, schedules, and research direction. Colonists execute autonomously within those constraints. The systems interact: a well-prioritized colonist with burning passion in their specialty, adequate recreation, and a good environment produces excellent work reliably. A poorly managed colony spirals: bad priorities cause unfinished critical work, which causes environmental degradation, which causes mood drops, which causes mental breaks, which causes more unfinished work.</p>
 <p>The same dynamics apply to multi-agent systems:</p>
 <ol>
@@ -426,13 +488,15 @@
 <li><strong>Research is sequential and has prerequisites.</strong> Develop capabilities in dependency order. Skipping ahead is expensive.</li>
 <li><strong>The storyteller creates pressure, not tasks.</strong> The heartbeat/world-tick should generate events and pressure that surface work, not assign work directly.</li>
 </ol>
-<h2 id="the-storyteller-as-heartbeat">The Storyteller as Heartbeat</h2>
+<h2 id="the-storyteller-as-heartbeat"><a href="#the-storyteller-as-heartbeat" class="heading-anchor" aria-label="Link to this section">¶</a>The Storyteller as Heartbeat
+</h2>
 <p>The three storytellers represent three event-generation philosophies:</p>
 <p><strong>Cassandra Classic</strong> follows a rising tension curve. Threats escalate, with breathing room between peaks. She is predictable and teaches the player to prepare. This maps to a scheduled review cycle: standup, weekly review, monthly retrospective — each surfacing progressively larger concerns.</p>
 <p><strong>Phoebe Chillax</strong> provides long calm periods with occasional intense events. She favors building over surviving. This maps to a development-focused mode: long stretches of capability building with periodic stress tests.</p>
 <p><strong>Randy Random</strong> ignores curves entirely. Any event can happen at any time with roughly equal probability. He generates the most dramatic stories but also the most colony wipes. This maps to production reality: incidents do not follow schedules.</p>
 <p>All three storytellers share a key mechanic: <strong>event selection is weighted by colony state.</strong> Wealthy colonies attract harder raids. Large populations face more social events. Struggling colonies get more trader visits (recovery opportunities). The system is not random — it is responsive. Our heartbeat should similarly read system state (plan progress, error rates, idle capacity) and generate events calibrated to current conditions, not fixed schedules.</p>
-<h2 id="see-also">See also</h2>
+<h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See also
+</h2>
 <ul>
 <li><a href="./voyager-skill-library-analysis.md" class="link-internal">Voyager Skill Library Analysis</a> — Minecraft agent that builds a skill library through play, related skill-acquisition pattern</li>
 <li><a href="./continuous-learning-in-agentic-harnesses.md" class="link-internal">Continuous Learning in Agentic Harnesses</a> — our instinct/observation system, which implements skill decay</li>
@@ -441,35 +505,85 @@
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-05">April 5, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/rimworld-colony-management-for-agentic-systems/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/rimworld-colony-management-for-agentic-systems/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
-        <dd property="emsenn:Domain">computing</dd>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
       </div><div class="relation">
-        <dt>Sources</dt>
+        <dt><a href="/library/references/sources/">Sources</a></dt>
         <dd property="emsenn:Sources"><ul></ul></dd>
       </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/agentic-systems/">agentic-systems</a></li><li><a href="/tags/game-design/">game-design</a></li><li><a href="/tags/colony-simulation/">colony-simulation</a></li><li><a href="/tags/dispatch/">dispatch</a></li><li><a href="/tags/skill-management/">skill-management</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

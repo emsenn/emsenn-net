@@ -449,6 +449,66 @@ footer .footer-meta {
   opacity: 0.6;
 }
 
+footer .footer-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1.5em;
+  margin-top: 1em;
+}
+footer .footer-section h3 {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  margin: 0 0 0.4em;
+  font-weight: 500;
+}
+footer .footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+footer .footer-section li {
+  margin-bottom: 0.2em;
+}
+footer .footer-section .meta {
+  opacity: 0.7;
+  font-size: 0.92em;
+}
+
+/* === HEADING ANCHORS === */
+.heading-anchor {
+  opacity: 0;
+  text-decoration: none;
+  margin-right: 0.3em;
+  margin-left: -1em;
+  padding-right: 0.4em;
+  color: var(--mid);
+  font-weight: normal;
+  transition: opacity 0.15s ease-in;
+}
+h2:hover .heading-anchor,
+h3:hover .heading-anchor,
+.heading-anchor:focus {
+  opacity: 1;
+}
+.heading-anchor:hover {
+  color: var(--text);
+}
+
+/* === LAST REVIEWED === */
+.last-reviewed {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75em;
+  color: var(--mid);
+  margin: 1.5em 0 0.5em;
+  text-align: right;
+}
+.last-reviewed time {
+  color: var(--text);
+}
+
 /* === BIBLIOGRAPHY === */
 .bibliography {
   margin-top: 2em;
@@ -555,6 +615,27 @@ a.citation {
 .toc a:hover {
   color: var(--text);
 }
+.toc a.toc-active {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Floating TOC on wide viewports */
+@media (min-width: 960px) {
+  .toc {
+    position: sticky;
+    top: 1.5rem;
+    float: right;
+    width: 16rem;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    margin: 0 0 1.5em 1.5em;
+    padding: 0.6em 0 0.6em 1em;
+    border: none;
+    border-left: 1px solid var(--rule);
+  }
+  .toc[open] summary { margin-bottom: 0.5em; }
+}
 
 /* === SEARCH (Pagefind UI overrides) === */
 .pagefind-ui {
@@ -641,9 +722,27 @@ a.citation {
     --rule: rgba(38,38,38,0.12);
   }
   .site-header,
+  .site-footer,
   .skip-to-content,
-  .pagefind-ui {
+  .pagefind-ui,
+  .page-relations,
+  .backlinks,
+  #search,
+  .cite-block .cite-toggle,
+  .webmentions {
     display: none !important;
+  }
+  /* Floating TOC: don't float on print, but show inline */
+  .toc {
+    position: static !important;
+    float: none !important;
+    width: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin: 0 0 1em !important;
+    padding: 0 !important;
+    border: none !important;
+    border-bottom: 1px solid var(--rule) !important;
   }
   *, *::before, *::after {
     animation: none !important;

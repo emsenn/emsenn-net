@@ -1,30 +1,145 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GraphRAG - emsenn.net</title>
+
+
+<meta name="description" content="A retrieval-augmented generation pattern that retrieves from a knowledge graph rather than a flat vector store — using entity relationships to answer multi-hop queries that standard RAG cannot.">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="GraphRAG">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="A retrieval-augmented generation pattern that retrieves from a knowledge graph rather than a flat vector store — using entity relationships to answer multi-hop queries that standard RAG cannot.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-03-29T00:00:00Z">
+<meta property="article:modified_time" content="2026-03-29T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GraphRAG">
+<meta name="twitter:description" content="A retrieval-augmented generation pattern that retrieves from a knowledge graph rather than a flat vector store — using entity relationships to answer multi-hop queries that standard RAG cannot.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/",
   "@type": "Article",
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "D. Edge"
+        },
+        {
+          "@type": "Person",
+          "name": "H. Trinh"
+        },
+        {
+          "@type": "Person",
+          "name": "N. Cheng"
+        },
+        {
+          "@type": "Person",
+          "name": "J. Bradley"
+        },
+        {
+          "@type": "Person",
+          "name": "A. Chao"
+        },
+        {
+          "@type": "Person",
+          "name": "A. Mody"
+        },
+        {
+          "@type": "Person",
+          "name": "S. Truitt"
+        },
+        {
+          "@type": "Person",
+          "name": "J. Larson"
+        }
+      ],
+      "datePublished": "2024",
+      "identifier": "edge2024",
+      "name": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization",
+      "publisher": {
+        "@type": "Organization",
+        "name": "arXiv"
+      },
+      "url": "https://arxiv.org/abs/2404.16130"
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Various"
+        }
+      ],
+      "datePublished": "2025",
+      "identifier": "syseval2025",
+      "name": "RAG vs. GraphRAG: A Systematic Evaluation",
+      "publisher": {
+        "@type": "Organization",
+        "name": "arXiv"
+      },
+      "url": "https://arxiv.org/abs/2502.11371"
+    }
+  ],
   "dateModified": "2026-03-29",
   "datePublished": "2026-03-29",
   "description": "A retrieval-augmented generation pattern that retrieves from a knowledge graph rather than a flat vector store — using entity relationships to answer multi-hop queries that standard RAG cannot.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/",
+    "@type": "CreativeWork",
+    "name": "artificial-intelligence",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/"
+  },
   "name": "GraphRAG",
   "publisher": {
     "@type": "Person",
@@ -45,46 +160,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:artificial-intelligence, defines:GraphRAG, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial Intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/">Terms</a></nav>
   <h1 class="p-name">GraphRAG</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-03-29T00:00:00Z">2026-03-29</time>
     
     <span class="p-summary">A retrieval-augmented generation pattern that retrieves from a knowledge graph rather than a flat vector store — using entity relationships to answer multi-hop queries that standard RAG cannot.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -99,10 +191,32 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>GraphRAG is a <a href="./retrieval-augmented-generation.md" class="link-internal">retrieval-augmented generation</a> pattern that retrieves from a knowledge graph rather than a flat vector store. Standard RAG embeds document chunks as vectors and retrieves by semantic similarity. GraphRAG extracts entities and relationships from documents, builds a graph connecting them, and traverses that graph to answer queries that require reasoning across multiple documents or multiple hops of relationship.</p>
 <p>Microsoft Research introduced the term and architecture in &ldquo;From Local to Global: A Graph RAG Approach to Query-Focused Summarization&rdquo; (Edge et al., 2024). The core insight: standard RAG retrieves passages similar to the query, but many questions require synthesizing information scattered across passages that are not individually similar to the query. &ldquo;What are the main themes in this dataset?&rdquo; requires global understanding. &ldquo;How does X relate to Y through Z?&rdquo; requires following a chain of relationships. Standard RAG retrieves individual chunks; GraphRAG retrieves subgraphs.</p>
-<h3 id="how-it-works">How it works</h3>
+<h3 id="how-it-works"><a href="#how-it-works" class="heading-anchor" aria-label="Link to this section">¶</a>How it works
+</h3>
 <ol>
 <li><strong>Entity and relationship extraction.</strong> An LLM processes source documents and extracts entities (people, concepts, organizations, terms) and relationships between them (uses, extends, contradicts, cites).</li>
 <li><strong>Graph construction.</strong> Extracted entities become nodes; relationships become edges. Community detection algorithms (Leiden, Louvain) identify clusters of related entities.</li>
@@ -110,7 +224,8 @@
 <li><strong>Retrieval.</strong> A query is matched against entity embeddings, community summaries, or both. The system traverses the graph from matched entities to find relevant subgraphs — chains of relationships that connect query-relevant concepts.</li>
 <li><strong>Generation.</strong> Retrieved subgraphs and community summaries are injected into the model&rsquo;s <a href="./context-window.md" class="link-internal">context window</a>. The model generates its response grounded in the graph structure.</li>
 </ol>
-<h3 id="performance-characteristics">Performance characteristics</h3>
+<h3 id="performance-characteristics"><a href="#performance-characteristics" class="heading-anchor" aria-label="Link to this section">¶</a>Performance characteristics
+</h3>
 <p>A systematic evaluation (arXiv 2502.11371, February 2025) found:</p>
 <ul>
 <li>GraphRAG delivers <strong>1.5x better accuracy overall</strong> and <strong>2x better accuracy on multi-hop queries</strong> compared to standard RAG</li>
@@ -120,70 +235,119 @@
 <li>Vector RAG accuracy degrades to <strong>0%</strong> as entity count per query exceeds 5; GraphRAG sustains stable performance with 10+ entities</li>
 <li>GraphRAG incurs <strong>2.4x higher latency</strong> than standard RAG</li>
 </ul>
-<h3 id="lightrag">LightRAG</h3>
+<h3 id="lightrag"><a href="#lightrag" class="heading-anchor" aria-label="Link to this section">¶</a>LightRAG
+</h3>
 <p>LightRAG (October 2024, peer-reviewed at EMNLP 2025 Findings) achieves comparable accuracy to GraphRAG with dramatically lower cost: <strong>6,000x token reduction</strong> (sub-100 tokens vs. 610,000), ~30% latency reduction, and 65-80% cost savings for high-volume processing. It uses dual-level graph retrieval — local entity-level and global community-level — without the expensive community summarization step.</p>
-<h3 id="when-to-use-graphrag">When to use GraphRAG</h3>
+<h3 id="when-to-use-graphrag"><a href="#when-to-use-graphrag" class="heading-anchor" aria-label="Link to this section">¶</a>When to use GraphRAG
+</h3>
 <p>Use GraphRAG when queries require reasoning across relationships between 5+ entities, multi-hop traversal, or global summarization. Use standard <a href="./retrieval-augmented-generation.md" class="link-internal">RAG</a> for simple factual lookups and single-passage retrieval. Use LightRAG as a middle ground when GraphRAG&rsquo;s cost is prohibitive. Hybrid approaches — standard RAG for simple queries, GraphRAG for relational queries — consistently outperform either alone.</p>
 <p>For knowledge repositories with structured metadata (semantic frontmatter with <code>uses</code>, <code>related</code>, <code>extends</code> fields), the metadata already encodes a graph. Building a graph index from existing frontmatter is cheaper than extracting entities from prose because the entities and relationships are already declared.</p>
 
   </div>
-  <section class="bibliography" id="bibliography"
+  
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-03-29">March 29, 2026</time>.</p>
+  
+  <details class="bibliography" id="bibliography" open
          vocab="https://schema.org/" typeof="ItemList">
-  <h2>References</h2><p class="bib-entry" id="ref-edge2024" typeof="CreativeWork" resource="#ref-edge2024">
+  <summary><h2>References</h2></summary><p class="bib-entry h-cite" id="ref-edge2024" typeof="CreativeWork" resource="#ref-edge2024">
     <span class="bib-key">[edge2024]</span>
-      <span property="author">D. Edge, H. Trinh, N. Cheng, J. Bradley, A. Chao, A. Mody, S. Truitt, J. Larson</span>.
-      (<span property="datePublished">2024</span>).<cite property="name">From Local to Global: A Graph RAG Approach to Query-Focused Summarization</cite>.
-      <em property="publisher">arXiv</em>.
-      <a href="https://arxiv.org/abs/2404.16130">https://arxiv.org/abs/2404.16130</a>
-  </p><p class="bib-entry" id="ref-syseval2025" typeof="CreativeWork" resource="#ref-syseval2025">
+      <span class="p-author" property="author">D. Edge, H. Trinh, N. Cheng, J. Bradley, A. Chao, A. Mody, S. Truitt, J. Larson</span>.
+      (<time class="dt-published" property="datePublished" datetime="2024">2024</time>).<cite class="p-name" property="name">From Local to Global: A Graph RAG Approach to Query-Focused Summarization</cite>.
+      <em class="p-publisher" property="publisher">arXiv</em>.
+      <a class="u-url" href="https://arxiv.org/abs/2404.16130">https://arxiv.org/abs/2404.16130</a>
+  </p><p class="bib-entry h-cite" id="ref-syseval2025" typeof="CreativeWork" resource="#ref-syseval2025">
     <span class="bib-key">[syseval2025]</span>
-      <span property="author">Various</span>.
-      (<span property="datePublished">2025</span>).<cite property="name">RAG vs. GraphRAG: A Systematic Evaluation</cite>.
-      <em property="publisher">arXiv</em>.
-      <a href="https://arxiv.org/abs/2502.11371">https://arxiv.org/abs/2502.11371</a>
+      <span class="p-author" property="author">Various</span>.
+      (<time class="dt-published" property="datePublished" datetime="2025">2025</time>).<cite class="p-name" property="name">RAG vs. GraphRAG: A Systematic Evaluation</cite>.
+      <em class="p-publisher" property="publisher">arXiv</em>.
+      <a class="u-url" href="https://arxiv.org/abs/2502.11371">https://arxiv.org/abs/2502.11371</a>
   </p>
-</section>
+</details>
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
-        <dt>Citations</dt>
-        <dd property="emsenn:Citations"></dd>
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">artificial intelligence</a></dd>
       </div><div class="relation">
         <dt>Contrasts with</dt>
-        <dd property="emsenn:Contrastswith">retrieval augmented generation</dd>
+        <dd property="emsenn:Contrastswith"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/">retrieval augmented generation</a></dd>
       </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
       </div><div class="relation">
         <dt>Defines</dt>
-        <dd property="emsenn:Defines"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/">GraphRAG</a></dd>
+        <dd property="schema:about"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/">GraphRAG</a></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
-        <dd property="emsenn:Domain">artificial intelligence</dd>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">artificial intelligence</a></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
-        <dd property="emsenn:Extends">retrieval augmented generation</dd>
+        <dd property="prov:wasDerivedFrom"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/">retrieval augmented generation</a></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/terms/optimization/">Optimizes</a></dt>
-        <dd property="emsenn:Optimizes">retrieval augmented generation</dd>
+        <dd property="emsenn:Optimizes"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/">retrieval augmented generation</a></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/embedding/">embedding</a></dd>
+        <dd property="schema:isBasedOn"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/embedding/">embedding</a></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

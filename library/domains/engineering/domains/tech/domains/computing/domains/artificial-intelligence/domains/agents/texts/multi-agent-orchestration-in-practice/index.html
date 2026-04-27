@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Multi-Agent Orchestration in Practice - emsenn.net</title>
+
+
+<meta name="description" content="How concrete multi-agent patterns — dispatch, orchestration workflows, handoffs, worktree isolation — implement the theoretical concepts of delegation, role-filling, non-interference, and the orchestration/choreography distinction.">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/multi-agent-orchestration-in-practice/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Multi-Agent Orchestration in Practice">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/multi-agent-orchestration-in-practice/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="How concrete multi-agent patterns — dispatch, orchestration workflows, handoffs, worktree isolation — implement the theoretical concepts of delegation, role-filling, non-interference, and the orchestration/choreography distinction.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-03T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-03T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Multi-Agent Orchestration in Practice">
+<meta name="twitter:description" content="How concrete multi-agent patterns — dispatch, orchestration workflows, handoffs, worktree isolation — implement the theoretical concepts of delegation, role-filling, non-interference, and the orchestration/choreography distinction.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/multi-agent-orchestration-in-practice/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/multi-agent-orchestration-in-practice/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/multi-agent-orchestration-in-practice/",
   "@type": "Article",
   "dateModified": "2026-04-03",
   "datePublished": "2026-04-03",
   "description": "How concrete multi-agent patterns — dispatch, orchestration workflows, handoffs, worktree isolation — implement the theoretical concepts of delegation, role-filling, non-interference, and the orchestration/choreography distinction.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/",
+    "@type": "CreativeWork",
+    "name": "agents",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/"
+  },
   "name": "Multi-Agent Orchestration in Practice",
   "publisher": {
     "@type": "Person",
@@ -45,46 +96,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:agents, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial Intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/">Texts</a></nav>
   <h1 class="p-name">Multi-Agent Orchestration in Practice</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-03T00:00:00Z">2026-04-03</time>
     
     <span class="p-summary">How concrete multi-agent patterns — dispatch, orchestration workflows, handoffs, worktree isolation — implement the theoretical concepts of delegation, role-filling, non-interference, and the orchestration/choreography distinction.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -104,9 +132,31 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>This text maps between the theoretical concepts in this repository&rsquo;s library — <a href="../../../../humanities/domains/sociology/domains/work/terms/delegation.md" class="link-internal">delegation</a>, <a href="../../../../humanities/domains/sociology/domains/work/domains/governance/terms/role.md" class="link-internal">role</a>, <a href="../../../../humanities/domains/sociology/domains/work/terms/office.md" class="link-internal">office</a>, <a href="../../../../humanities/domains/sociology/domains/critical-theory/domains/anarchism/domains/disaster-response/domains/emergent-disaster-response/terms/dispatch.md" class="link-internal">dispatch</a> — and the concrete multi-agent patterns implemented in Claude Code harnesses and the Everything Claude Code (ECC) reference system.</p>
-<h2 id="the-orchestrationchoreography-distinction">The orchestration/choreography distinction</h2>
+<h2 id="the-orchestrationchoreography-distinction"><a href="#the-orchestrationchoreography-distinction" class="heading-anchor" aria-label="Link to this section">¶</a>The orchestration/choreography distinction
+</h2>
 <p>The W3C Web Services Choreography Working Group (2005) and Milner&rsquo;s π-calculus (1999) establish a foundational distinction: <strong>orchestration</strong> is coordination by a central process that directs participants, while <strong>choreography</strong> is coordination through a shared protocol that each participant follows independently.</p>
 <p>In agent harness terms:</p>
 <ul>
@@ -114,8 +164,10 @@
 <li><strong>Choreography</strong>: Agents follow a shared protocol and interact peer-to-peer. Claude Agent SDK&rsquo;s <code>TeammateTool</code> implements this — agents message peers directly without routing through a parent.</li>
 </ul>
 <p>Most practical multi-agent systems mix both. A Claude Code session orchestrates subagents (centralized dispatch) while those subagents follow shared conventions encoded in skills and rules (decentralized protocol adherence).</p>
-<h2 id="four-concrete-patterns">Four concrete patterns</h2>
-<h3 id="1-parallel-dispatch">1. Parallel dispatch</h3>
+<h2 id="four-concrete-patterns"><a href="#four-concrete-patterns" class="heading-anchor" aria-label="Link to this section">¶</a>Four concrete patterns
+</h2>
+<h3 id="1-parallel-dispatch"><a href="#1-parallel-dispatch" class="heading-anchor" aria-label="Link to this section">¶</a>1. Parallel dispatch
+</h3>
 <p>The simplest multi-agent pattern: send the same task to multiple agents simultaneously, merge results.</p>
 <pre tabindex="0"><code>/dispatch reviewer+security-reviewer Review the auth module
 </code></pre><p>This is <strong>Gerkey and Matarić&rsquo;s single-task, multi-robot allocation</strong> (2004): one task, multiple agents, each bringing different capabilities. The dispatch mechanism must solve:</p>
@@ -126,7 +178,8 @@
 </ul>
 <p>In the <a href="../../../../humanities/domains/sociology/domains/work/terms/delegation.md" class="link-internal">delegation</a> framework: each dispatched agent receives bounded authority (read access to the relevant scope), the principal (parent agent) retains accountability for the merged result, and the grant is revocable (the parent can cancel or override any subagent).</p>
 <p>Non-interference in parallel dispatch is achieved by constraint: background agents can only read. Write access requires foreground dispatch, which serializes.</p>
-<h3 id="2-sequential-pipeline">2. Sequential pipeline</h3>
+<h3 id="2-sequential-pipeline"><a href="#2-sequential-pipeline" class="heading-anchor" aria-label="Link to this section">¶</a>2. Sequential pipeline
+</h3>
 <p>Agents execute in order, each building on the previous agent&rsquo;s output.</p>
 <pre tabindex="0"><code>planner → [user works] → reviewer
 </code></pre><p>This is Mintzberg&rsquo;s <strong>standardization of output</strong> (1979): each agent&rsquo;s output is specified well enough that the next agent can pick it up without negotiation. The handoff document is the interface:</p>
@@ -138,7 +191,8 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e">### Open Questions
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> [Unresolved decisions]
 </span></span></code></pre></div><p>The handoff document is the concrete implementation of what Honda, Yoshida, and Carbone (2008) formalize as <strong>session types</strong>: a typed protocol specifying what each participant sends and receives at each step. A well-typed handoff guarantees that the receiving agent has sufficient context to proceed.</p>
-<h3 id="3-phased-orchestration">3. Phased orchestration</h3>
+<h3 id="3-phased-orchestration"><a href="#3-phased-orchestration" class="heading-anchor" aria-label="Link to this section">¶</a>3. Phased orchestration
+</h3>
 <p>Complex workflows combine sequential and parallel phases.</p>
 <pre tabindex="0"><code>architect → planner → [user works] → reviewer + security-reviewer → doc-updater
 </code></pre><p>This is the <code>infrastructure</code> workflow in the <code>/orchestrate</code> command. Each phase serves a different function:</p>
@@ -150,7 +204,8 @@
 <li><strong>Doc-updater</strong> maintains indexes (maintenance role)</li>
 </ul>
 <p>Each agent fills a <a href="../../../../humanities/domains/sociology/domains/work/domains/governance/terms/role.md" class="link-internal">role</a> in the formal sense: a capability signature (what tools the agent can use), a norm-set (what the agent must and must not do), and a position in the orchestration hierarchy (what it subsumes and what subsumes it). The reviewer role subsumes the security-reviewer role — any finding a security reviewer makes, a reviewer could in principle make, but the security reviewer&rsquo;s specialized capability signature makes it more likely to catch security-specific issues.</p>
-<h3 id="4-worktree-isolation">4. Worktree isolation</h3>
+<h3 id="4-worktree-isolation"><a href="#4-worktree-isolation" class="heading-anchor" aria-label="Link to this section">¶</a>4. Worktree isolation
+</h3>
 <p>For tasks where multiple agents must write to overlapping files, git worktrees provide isolation:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git worktree add ../feature-auth feat/auth
 </span></span><span style="display:flex;"><span>git worktree add ../feature-billing feat/billing
@@ -158,7 +213,8 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Merge branches when done</span>
 </span></span></code></pre></div><p>This is the practical solution to the <strong>non-interference</strong> open problem identified in the <a href="../terms/multi-agent-system.md" class="link-internal">multi-agent-system</a> term. Rather than proving at the type level that agents on overlapping regions commute, the system enforces disjointness at the filesystem level. Each agent gets an isolated copy; conflicts surface only at merge time, where they can be resolved by a human or a coordinating agent.</p>
 <p>The ECC <code>dmux</code> tool extends this further: multiple agent sessions run in parallel tmux panes, each in its own worktree, with a merge command (<code>m</code>) that brings results back to the main session.</p>
-<h2 id="how-delegation-theory-maps-to-agent-dispatch">How delegation theory maps to agent dispatch</h2>
+<h2 id="how-delegation-theory-maps-to-agent-dispatch"><a href="#how-delegation-theory-maps-to-agent-dispatch" class="heading-anchor" aria-label="Link to this section">¶</a>How delegation theory maps to agent dispatch
+</h2>
 <p>The <a href="../../../../humanities/domains/sociology/domains/work/terms/delegation.md" class="link-internal">delegation</a> term defines four invariants. Each has a concrete implementation in agent orchestration:</p>
 <table>
   <thead>
@@ -197,7 +253,8 @@
 <li><strong>Authority</strong> is enforced by the permission model (background agents are read-only; tool calls require user approval)</li>
 <li><strong>Capacity</strong> is bounded by the recommendation of 4 maximum parallel agents — beyond that, coordination cost exceeds specialization benefit</li>
 </ul>
-<h2 id="agents-as-officeholders">Agents as officeholders</h2>
+<h2 id="agents-as-officeholders"><a href="#agents-as-officeholders" class="heading-anchor" aria-label="Link to this section">¶</a>Agents as officeholders
+</h2>
 <p>Each agent in the harness corresponds to an <a href="../../../../humanities/domains/sociology/domains/work/terms/office.md" class="link-internal">office</a> in the normative sense:</p>
 <ul>
 <li>The <strong>agent definition</strong> (markdown file with frontmatter) is the office — it specifies the normative structure, action domain, deontic profile, and installation mechanism independent of any particular instance.</li>
@@ -205,7 +262,8 @@
 <li>The <strong>handoff document</strong> is the <a href="../../../../humanities/domains/sociology/domains/work/domains/governance/terms/officium.md" class="link-internal">officium</a> discharge record — evidence that the positional obligation was fulfilled.</li>
 </ul>
 <p>The office persists across sessions. A reviewer agent invoked today and a reviewer agent invoked tomorrow fill the same office — they have the same tools, the same norms, the same position in the orchestration hierarchy. The specific model instance is the body natural; the agent definition is the body politic.</p>
-<h2 id="what-remains-open">What remains open</h2>
+<h2 id="what-remains-open"><a href="#what-remains-open" class="heading-anchor" aria-label="Link to this section">¶</a>What remains open
+</h2>
 <p>Three problems from the theoretical terms remain unsolved in practice:</p>
 <ol>
 <li>
@@ -218,7 +276,8 @@
 <p><strong>Accountability tracing.</strong> When a multi-agent workflow produces a wrong result, tracing the error through handoff documents is manual. An event-sourced architecture where every agent action is logged with its delegation chain would make accountability auditable.</p>
 </li>
 </ol>
-<h2 id="see-also">See also</h2>
+<h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See also
+</h2>
 <ul>
 <li><a href="../terms/agent-orchestration.md" class="link-internal">agent-orchestration</a> — the coordination layer definition</li>
 <li><a href="../terms/multi-agent-system.md" class="link-internal">multi-agent-system</a> — the architecture pattern</li>
@@ -229,32 +288,82 @@
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-03">April 3, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/multi-agent-orchestration-in-practice/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/multi-agent-orchestration-in-practice/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">agents</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-03">2026-04-03</time></dd>
       </div><div class="relation">
-        <dt>Sources</dt>
+        <dt><a href="/library/references/sources/">Sources</a></dt>
         <dd property="emsenn:Sources"><ul><li>Anthropic. Claude Code documentation: Agent tool, subagent dispatch. 2025.</li><li>Everything Claude Code (ECC). https://github.com/anthropics/ecc. 2025.</li><li>Milner, Robin. *Communicating and Mobile Systems: the π Calculus*. Cambridge University Press, 1999.</li><li>Honda, Kohei, Nobuko Yoshida, and Marco Carbone. &#39;Multiparty Asynchronous Session Types.&#39; *POPL 2008*.</li><li>W3C Web Services Choreography Working Group. &#39;Web Services Choreography Description Language.&#39; 2005.</li><li>Gerkey, Brian P., and Maja J. Matarić. &#39;A Formal Analysis and Taxonomy of Task Allocation in Multi Robot Systems.&#39; *IJRR* 23, no. 9 (2004): 939 954.</li><li>Mintzberg, Henry. *The Structuring of Organizations*. Prentice Hall, 1979.</li></ul></dd>
       </div><div class="relation">
         <dt>Surveys</dt>
         <dd property="emsenn:Surveys"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/">agent orchestration</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/multi-agent-system/">multi agent system</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

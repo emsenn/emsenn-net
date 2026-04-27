@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" prefix="emsenn: https://emsenn.net/vocab# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# schema: https://schema.org/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emsenn vocabulary - emsenn.net</title>
+<meta name="description" content="The emsenn: vocabulary — custom predicates used across emsenn.net's research library where standard vocabularies (schema.org, SKOS, Dublin Core, PROV, RDFS) lack a clean fit.">
+<link rel="canonical" href="https://emsenn.net/vocab/">
+<link rel="alternate" type="text/turtle" href="/vocab/index.ttl">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body resource="https://emsenn.net/vocab" typeof="owl:Ontology">
+<header class="site-header">
+  <div class="site-identity"><a href="/" class="site-title">emsenn.net</a></div>
+  <nav>
+    <a href="/letters/">letters</a>
+    <a href="/blog/">blog</a>
+    <a href="/library/">library</a>
+  </nav>
+</header>
+<main id="content">
+<article>
+<h1 property="rdfs:label">emsenn vocabulary</h1>
+<p property="rdfs:comment">Custom predicates used across emsenn.net's research library where standard vocabularies (<a href="https://schema.org/">schema.org</a>, <a href="http://www.w3.org/2004/02/skos/core#">SKOS</a>, <a href="http://purl.org/dc/terms/">Dublin Core Terms</a>, <a href="http://www.w3.org/ns/prov#">PROV</a>, <a href="http://www.w3.org/2000/01/rdf-schema#">RDFS</a>) lack a clean fit. Standard predicates are preferred wherever they apply; this vocabulary covers what's left.</p>
+
+<p>Machine-readable Turtle: <a href="/vocab/index.ttl" rel="alternate" type="text/turtle">vocab.ttl</a>.</p>
+
+<h2>Predicates</h2>
+
+<dl>
+  <dt id="centralThesis" resource="https://emsenn.net/vocab#centralThesis" typeof="rdf:Property"><code property="rdfs:label">emsenn:centralThesis</code></dt>
+  <dd property="rdfs:comment">The defining claim or analytic move of a school of thought — the single sentence that captures what makes the school distinct from its neighbors.</dd>
+
+  <dt id="teleology" resource="https://emsenn.net/vocab#teleology" typeof="rdf:Property"><code property="rdfs:label">emsenn:teleology</code></dt>
+  <dd property="rdfs:comment">The aim or goal of a domain — what practitioners of this domain are trying to understand or accomplish.</dd>
+
+  <dt id="method" resource="https://emsenn.net/vocab#method" typeof="rdf:Property"><code property="rdfs:label">emsenn:method</code></dt>
+  <dd property="rdfs:comment">The characteristic methodology of a domain — how its practitioners do their work.</dd>
+
+  <dt id="featuredText" resource="https://emsenn.net/vocab#featuredText" typeof="rdf:Property"><code property="rdfs:label">emsenn:featuredText</code></dt>
+  <dd property="rdfs:comment">A curated key text within a domain, surfaced on the domain's index page with its description inlined. Object resolves to a CreativeWork in the domain's texts/ subsection.</dd>
+
+  <dt id="keyFigure" resource="https://emsenn.net/vocab#keyFigure" typeof="rdf:Property"><code property="rdfs:label">emsenn:keyFigure</code></dt>
+  <dd property="rdfs:comment">A person whose work centrally informs this school or domain.</dd>
+
+  <dt id="locates" resource="https://emsenn.net/vocab#locates" typeof="rdf:Property"><code property="rdfs:label">emsenn:locates</code></dt>
+  <dd property="rdfs:comment">A page-typing predicate. Values are tokens drawn from a closed vocabulary: domain, school, discipline, topic, lineage, term, concept, definition, text, paper, person.</dd>
+
+  <dt id="introduces" resource="https://emsenn.net/vocab#introduces" typeof="rdf:Property"><code property="rdfs:label">emsenn:introduces</code></dt>
+  <dd property="rdfs:comment">A page-typing predicate similar to emsenn:locates, used when the page introduces a structural category (e.g. 'discipline', 'lineage') rather than locating itself within one.</dd>
+
+  <dt id="governs" resource="https://emsenn.net/vocab#governs" typeof="rdf:Property"><code property="rdfs:label">emsenn:governs</code></dt>
+  <dd property="rdfs:comment">Subject exercises governance, regulation, or control over object. Inverse of <a href="#governedBy">emsenn:governedBy</a>.</dd>
+
+  <dt id="governedBy" resource="https://emsenn.net/vocab#governedBy" typeof="rdf:Property"><code property="rdfs:label">emsenn:governedBy</code></dt>
+  <dd property="rdfs:comment">Subject is under the governance, regulation, or control of object. Inverse of <a href="#governs">emsenn:governs</a>.</dd>
+
+  <dt id="produces" resource="https://emsenn.net/vocab#produces" typeof="rdf:Property"><code property="rdfs:label">emsenn:produces</code></dt>
+  <dd property="rdfs:comment">Subject brings object into existence as an effect, output, or consequence. Inverse of <a href="#producedBy">emsenn:producedBy</a>.</dd>
+
+  <dt id="producedBy" resource="https://emsenn.net/vocab#producedBy" typeof="rdf:Property"><code property="rdfs:label">emsenn:producedBy</code></dt>
+  <dd property="rdfs:comment">Subject is brought into existence by object. Inverse of <a href="#produces">emsenn:produces</a>.</dd>
+
+  <dt id="actsOn" resource="https://emsenn.net/vocab#actsOn" typeof="rdf:Property"><code property="rdfs:label">emsenn:actsOn</code></dt>
+  <dd property="rdfs:comment">Subject takes action upon, transforms, or operates on object.</dd>
+
+  <dt id="addresses" resource="https://emsenn.net/vocab#addresses" typeof="rdf:Property"><code property="rdfs:label">emsenn:addresses</code></dt>
+  <dd property="rdfs:comment">Subject takes object as a topic, problem, or concern that it engages with.</dd>
+
+  <dt id="restricts" resource="https://emsenn.net/vocab#restricts" typeof="rdf:Property"><code property="rdfs:label">emsenn:restricts</code></dt>
+  <dd property="rdfs:comment">Subject limits, constrains, or specializes object.</dd>
+
+  <dt id="enables" resource="https://emsenn.net/vocab#enables" typeof="rdf:Property"><code property="rdfs:label">emsenn:enables</code></dt>
+  <dd property="rdfs:comment">Subject makes object possible, creates the conditions under which object can occur.</dd>
+
+  <dt id="analogousTo" resource="https://emsenn.net/vocab#analogousTo" typeof="rdf:Property"><code property="rdfs:label">emsenn:analogousTo</code></dt>
+  <dd property="rdfs:comment">Subject and object share structural similarity sufficient that insight from one transfers to the other, without subject being a kind of object or vice versa.</dd>
+
+  <dt id="contrastsWith" resource="https://emsenn.net/vocab#contrastsWith" typeof="rdf:Property"><code property="rdfs:label">emsenn:contrastsWith</code></dt>
+  <dd property="rdfs:comment">Subject is meaningfully understood by comparison with object, where the differences are themselves analytically productive.</dd>
+
+  <dt id="domain" resource="https://emsenn.net/vocab#domain" typeof="rdf:Property"><code property="rdfs:label">emsenn:domain</code></dt>
+  <dd property="rdfs:comment">The mathematical domain of a function or operation. Distinct from emsenn:locates which classifies pages.</dd>
+
+  <dt id="codomain" resource="https://emsenn.net/vocab#codomain" typeof="rdf:Property"><code property="rdfs:label">emsenn:codomain</code></dt>
+  <dd property="rdfs:comment">The mathematical codomain of a function or operation.</dd>
+
+  <dt id="maps" resource="https://emsenn.net/vocab#maps" typeof="rdf:Property"><code property="rdfs:label">emsenn:maps</code></dt>
+  <dd property="rdfs:comment">The mapping relationship between elements of a domain and codomain.</dd>
+
+  <dt id="composesWith" resource="https://emsenn.net/vocab#composesWith" typeof="rdf:Property"><code property="rdfs:label">emsenn:composesWith</code></dt>
+  <dd property="rdfs:comment">Subject can be composed with object via the standard composition operation appropriate to their type (function composition, morphism composition, etc.).</dd>
+
+  <dt id="specialization" resource="https://emsenn.net/vocab#specialization" typeof="rdf:Property"><code property="rdfs:label">emsenn:specialization</code></dt>
+  <dd property="rdfs:comment">A more specific page-type than emsenn:locates allows; values include 'relation', 'letter', 'babble', etc.</dd>
+
+  <dt id="mathematicalObject" resource="https://emsenn.net/vocab#mathematicalObject" typeof="rdf:Property"><code property="rdfs:label">emsenn:mathematicalObject</code></dt>
+  <dd property="rdfs:comment">Categorial typing for a mathematical concept (e.g. 'category', 'functor', 'morphism'). Used as both a relation and a self-tag on math term pages.</dd>
+
+  <dt id="form" resource="https://emsenn.net/vocab#form" typeof="rdf:Property"><code property="rdfs:label">emsenn:form</code></dt>
+  <dd property="rdfs:comment">A page-typing predicate for content shape (e.g. 'index', 'narrative', 'reference').</dd>
+
+  <dt id="publishTo" resource="https://emsenn.net/vocab#publishTo" typeof="rdf:Property"><code property="rdfs:label">emsenn:publishTo</code></dt>
+  <dd property="rdfs:comment">A list of publication surfaces the page is approved for. Values are surface identifiers like 'emsenn-net'.</dd>
+</dl>
+</article>
+</main>
+</body>
+</html>

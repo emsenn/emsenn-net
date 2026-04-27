@@ -1,30 +1,128 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Orchestration vs. Choreography in Multi-Agent Systems - emsenn.net</title>
+
+
+<meta name="description" content="How two distinct coordination traditions—centralized orchestration and decentralized choreography—frame the problem of agent coordination, their tradeoffs, and where each fits in system design.">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/orchestration-vs-choreography-survey/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Orchestration vs. Choreography in Multi-Agent Systems">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/orchestration-vs-choreography-survey/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="How two distinct coordination traditions—centralized orchestration and decentralized choreography—frame the problem of agent coordination, their tradeoffs, and where each fits in system design.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-04T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-04T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Orchestration vs. Choreography in Multi-Agent Systems">
+<meta name="twitter:description" content="How two distinct coordination traditions—centralized orchestration and decentralized choreography—frame the problem of agent coordination, their tradeoffs, and where each fits in system design.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/orchestration-vs-choreography-survey/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/orchestration-vs-choreography-survey/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/orchestration-vs-choreography-survey/",
   "@type": "Article",
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "identifier": "beer_1972",
+      "name": "Stafford Beer, *Brain of the Firm* (Herder and Herder, 1972)"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "gerkey_mataric_2004",
+      "name": "Brian P. Gerkey and Maja J. Matarić, 'A Formal Analysis and Taxonomy of Task Allocation in Multi-Robot Systems,' *International Journal of Robotics Research* 23, no. 9 (2004): 939-954"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "hayek_1945",
+      "name": "Friedrich A. Hayek, 'The Use of Knowledge in Society,' *American Economic Review* 35, no. 4 (1945): 519-530"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "milner_1999",
+      "name": "Robin Milner, *Communicating and Mobile Systems: the π-Calculus* (Cambridge University Press, 1999)"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "mintzberg_1979",
+      "name": "Henry Mintzberg, *The Structuring of Organizations* (Prentice-Hall, 1979)"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "nadareishvili_2015",
+      "name": "Irakli Nadareishvili, 'Hypermedia-Driven Orchestration in Microservices' (O'Reilly Software Architecture Conference, 2015)"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "reactive_manifesto_2014",
+      "name": "Reactive Manifesto Signatories, *The Reactive Manifesto* (2014), https://www.reactivemanifesto.org/"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "w3c_2005",
+      "name": "World Wide Web Consortium Web Services Choreography Working Group, *Web Services Choreography Description Language Version 1.0* (2005)"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "wiener_1948",
+      "name": "Norbert Wiener, *Cybernetics: Or Control and Communication in the Animal and the Machine* (MIT Press, 1948)"
+    }
+  ],
   "dateModified": "2026-04-04",
   "datePublished": "2026-04-04",
   "description": "How two distinct coordination traditions—centralized orchestration and decentralized choreography—frame the problem of agent coordination, their tradeoffs, and where each fits in system design.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/",
+    "@type": "CreativeWork",
+    "name": "agents",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/"
+  },
   "name": "Orchestration vs. Choreography in Multi-Agent Systems",
   "publisher": {
     "@type": "Person",
@@ -45,46 +143,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:agents, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial Intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">Agents</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/">Texts</a></nav>
   <h1 class="p-name">Orchestration vs. Choreography in Multi-Agent Systems</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
     
     <span class="p-summary">How two distinct coordination traditions—centralized orchestration and decentralized choreography—frame the problem of agent coordination, their tradeoffs, and where each fits in system design.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -112,14 +187,38 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
-    <h2 id="the-coordination-problem">The Coordination Problem</h2>
+    <h2 id="the-coordination-problem"><a href="#the-coordination-problem" class="heading-anchor" aria-label="Link to this section">¶</a>The Coordination Problem
+</h2>
 <p>When multiple agents must work together, they face a fundamental problem: how do they decide who does what, in what order, and with what information? Two distinct traditions have emerged to solve this problem, each with different assumptions about where authority and information flow.</p>
 <p><strong>Orchestration</strong> places coordination decision-making in a single point: a central coordinator that knows about all participants, directs their actions, receives their results, and decides what happens next. The coordinator is the locus of control. In Mintzberg&rsquo;s terms, this is <strong>direct supervision</strong>—one authority directing the work of others.</p>
 <p><strong>Choreography</strong> distributes coordination across participants: each agent knows its own role and follows a shared protocol. When agent A finishes, it publishes an event; agent B has been programmed to listen for that event and act. No single entity directs the dance; instead, all participants follow the same choreography. In Mintzberg&rsquo;s terms, this is <strong>standardization of output</strong> or <strong>standardization of work processes</strong>—the rules are centralized, but the execution is distributed.</p>
 <p>These are not mere engineering preferences. They are rooted in different theories of how complex systems coordinate, different assumptions about where information lives, and different predictions about how systems behave under load and failure.</p>
-<h2 id="orchestration-control-and-visibility">Orchestration: Control and Visibility</h2>
-<h3 id="the-technical-tradition">The Technical Tradition</h3>
+<h2 id="orchestration-control-and-visibility"><a href="#orchestration-control-and-visibility" class="heading-anchor" aria-label="Link to this section">¶</a>Orchestration: Control and Visibility
+</h2>
+<h3 id="the-technical-tradition"><a href="#the-technical-tradition" class="heading-anchor" aria-label="Link to this section">¶</a>The Technical Tradition
+</h3>
 <p>The W3C Web Services Choreography Working Group (2005) formalized the distinction. In orchestration, coordination logic is specified from the local point of view of one controlling participant—the orchestrator. The orchestrator is a process that:</p>
 <ol>
 <li>Receives a high-level goal or request</li>
@@ -133,16 +232,20 @@
 <p>The orchestrator is the central &ldquo;brain&rdquo; of the system. It contains the entire workflow logic. If you want to understand what will happen, you read the orchestrator&rsquo;s code.</p>
 <p>Nadareishvili&rsquo;s work on microservices (2015) emphasizes orchestration&rsquo;s advantage: <strong>total visibility</strong>. A DevOps operator can look at the orchestrator and see the entire workflow. If a service fails, the orchestrator&rsquo;s logs show exactly where. If the workflow hangs, you can trace which step is blocked. This visibility is why enterprise workflow engines (Camunda, Temporal, AWS Step Functions) are predominantly orchestration-based—organizations value being able to see what&rsquo;s happening and trace failures deterministically.</p>
 <p>Gerkey and Matarić (2004) classify this as <strong>single-task, multi-robot allocation with a centralized scheduler</strong>: one coordinator assigns tasks to multiple agents.</p>
-<h3 id="the-organizational-parallel">The Organizational Parallel</h3>
+<h3 id="the-organizational-parallel"><a href="#the-organizational-parallel" class="heading-anchor" aria-label="Link to this section">¶</a>The Organizational Parallel
+</h3>
 <p>Orchestration maps directly to traditional organizational command structure. Mintzberg (1979) calls this <strong>direct supervision</strong>: a manager decides what each subordinate does, monitors their work, and adjusts assignments based on results. A military organization is the archetypal example: a general receives intelligence, formulates a plan, assigns units to execute it, monitors progress, and redirects forces if conditions change.</p>
 <p>In this frame, Wiener&rsquo;s <em>Cybernetics</em> (1948) provides the theoretical foundation. The orchestrator is the helmsman, continuously sensing and correcting. The work of coordination is localized in the orchestrator&rsquo;s decision-making loop, which is why it can respond quickly to unexpected conditions.</p>
-<h3 id="the-cost-the-bottleneck">The Cost: The Bottleneck</h3>
+<h3 id="the-cost-the-bottleneck"><a href="#the-cost-the-bottleneck" class="heading-anchor" aria-label="Link to this section">¶</a>The Cost: The Bottleneck
+</h3>
 <p>The strength of orchestration is also its vulnerability. Orchestration centralizes decision-making in one process. That process becomes a bottleneck.</p>
 <p>In distributed systems, Nadareishvili notes that the orchestrator becomes the critical path. If the orchestrator is slow, the entire system is slow. If the orchestrator fails, the entire workflow stops. Scaling requires replicating the orchestrator or partitioning workflows, both of which complicate the system.</p>
 <p>In organizations, direct supervision doesn&rsquo;t scale beyond about 7-10 subordinates per manager. Mintzberg documents that as organizations grow, they must shift to standardization mechanisms (rules, procedures, skill-based work) precisely because one authority cannot directly supervise everyone. The bottleneck is not technical—it is cognitive. One human cannot hold the complexity of hundreds of workers&rsquo; activities in mind.</p>
 <p>This observation applies to AI agents as well. Coordination overhead grows rapidly: token consumption, latency, and error amplification all increase as the number of coordinated agents grows. Practical multi-agent systems show saturation around 4 agents when using orchestration with natural-language handoffs.</p>
-<h2 id="choreography-decentralized-protocol-adherence">Choreography: Decentralized Protocol Adherence</h2>
-<h3 id="the-technical-tradition-1">The Technical Tradition</h3>
+<h2 id="choreography-decentralized-protocol-adherence"><a href="#choreography-decentralized-protocol-adherence" class="heading-anchor" aria-label="Link to this section">¶</a>Choreography: Decentralized Protocol Adherence
+</h2>
+<h3 id="the-technical-tradition-1"><a href="#the-technical-tradition-1" class="heading-anchor" aria-label="Link to this section">¶</a>The Technical Tradition
+</h3>
 <p>In choreography, there is no central orchestrator. Instead, the system is described from a global perspective: what events flow between services, what each service does when it receives an event, what new events it publishes. Each participant independently executes its role.</p>
 <p>The W3C (2005) formalized this in the Web Services Choreography Description Language (WS-CDL), which specifies multi-party interactions from a global viewpoint. The language was grounded in Robin Milner&rsquo;s π-calculus (1999), a process algebra that models systems of independently executing processes that communicate by naming. In the π-calculus, there is no orchestrator—only processes that send and receive messages according to a protocol.</p>
 <p>Choreography in modern systems is typically event-driven. An order processing system might work like this:</p>
@@ -154,43 +257,51 @@
 </ol>
 <p>No single process orchestrates this. Each service knows: &ldquo;When I see X, do Y and publish Z.&rdquo; The protocol—the sequence of events—is implicit in the listeners and publishers.</p>
 <p>The Reactive Manifesto (2014) champions this model. Reactive systems respond to events, are loosely coupled (each component knows only about the events it cares about), and are resilient (if one component fails, others continue processing other events). The backbone is a message-driven or event-driven architecture where participants communicate through a broker or event stream rather than direct calls.</p>
-<h3 id="the-organizational-parallel-1">The Organizational Parallel</h3>
+<h3 id="the-organizational-parallel-1"><a href="#the-organizational-parallel-1" class="heading-anchor" aria-label="Link to this section">¶</a>The Organizational Parallel
+</h3>
 <p>Choreography maps to market coordination. Hayek&rsquo;s <em>Use of Knowledge in Society</em> (1945) is the foundational text. Hayek argued that a central planner cannot efficiently coordinate a complex economy because all the information needed—what each worker is skilled at, what resources are available locally, what customers want today—is dispersed. No planner can gather and process that information fast enough.</p>
 <p>Instead, markets coordinate through <strong>price signals</strong>. A price is a summary of information: when tin becomes scarce, its price rises. Consumers see the high price and use less. Producers see the high price and increase supply. Entrepreneurs see the high price and search for substitutes. All of this happens without any central authority directing it. The price signal choreographs economic activity.</p>
 <p>Hayek&rsquo;s insight is that decentralized coordination can be more efficient than centralized orchestration when information is dispersed and conditions change rapidly. Each actor responds to signals (prices, in the market case; events, in the systems case) using local knowledge.</p>
 <p>Applied to organizations: Beer (1972) and subsequent cybernetics theory describe how organizations use distributed feedback loops to adapt. Rather than waiting for central authority to decide how to respond to a market change, local units see the change in their input signals (orders drop, customer complaints rise, supplier prices change) and respond autonomously. The center sets overall direction; units choreograph their responses to local conditions.</p>
-<h3 id="the-strength-scaling-and-resilience">The Strength: Scaling and Resilience</h3>
+<h3 id="the-strength-scaling-and-resilience"><a href="#the-strength-scaling-and-resilience" class="heading-anchor" aria-label="Link to this section">¶</a>The Strength: Scaling and Resilience
+</h3>
 <p>Choreography avoids the bottleneck because there is no central coordinator. Adding a new service to the system does not require modifying the orchestrator&rsquo;s code—the new service simply listens for the events it cares about and publishes the events others should hear. This makes choreography more loosely coupled and more scalable.</p>
 <p>Resilience is another strength. If one service in a choreographed system becomes slow or fails, others continue processing. A slow payment service doesn&rsquo;t block order creation; the order service has already published &ldquo;Order Created&rdquo; and the inventory service has already reserved stock. Eventually, the payment service recovers and processes queued events. Orchestration, by contrast, typically blocks: if a service doesn&rsquo;t respond, the orchestrator waits or times out, and the entire workflow halts.</p>
 <p>The Reactive Manifesto emphasizes this: message-driven systems with decoupled components handle partial failures gracefully. The system remains responsive even when parts are degraded.</p>
-<h3 id="the-cost-opacity-and-complexity">The Cost: Opacity and Complexity</h3>
+<h3 id="the-cost-opacity-and-complexity"><a href="#the-cost-opacity-and-complexity" class="heading-anchor" aria-label="Link to this section">¶</a>The Cost: Opacity and Complexity
+</h3>
 <p>The weakness of choreography is exactly the inverse of orchestration&rsquo;s weakness. Choreography distributes understanding across the system.</p>
 <p>If you want to know what will happen when an order arrives, you must trace through all the services, find the event listeners, understand the implicit protocol. The workflow logic is nowhere in one place. It emerges from the interaction of independently programmed pieces.</p>
 <p>This makes choreography harder to reason about, harder to debug, and harder to test. When something goes wrong, determining which service caused the problem requires examining logs across all services and reconstructing the event sequence. The path of information is implicit, not explicit.</p>
 <p>The Reactive Manifesto acknowledges this: event-driven systems trade explicit control for responsiveness. Operators lose the ability to see the complete workflow at a glance. They must rely on comprehensive observability—logging, tracing, metrics—to understand what the system is doing.</p>
 <p>In organizational terms: Hayek&rsquo;s market coordination is more efficient at responding to dispersed information, but it creates a different kind of complexity. A market economy produces outcomes no single planner designed and often no one fully understands. The price system allocates resources efficiently, but if something goes wrong, it is harder to identify and fix because the cause is distributed across many actors&rsquo; independent decisions.</p>
-<h2 id="the-spectrum-between-hybrid-systems">The Spectrum Between: Hybrid Systems</h2>
+<h2 id="the-spectrum-between-hybrid-systems"><a href="#the-spectrum-between-hybrid-systems" class="heading-anchor" aria-label="Link to this section">¶</a>The Spectrum Between: Hybrid Systems
+</h2>
 <p>Most real systems do not sit at pure endpoints. They occupy a spectrum.</p>
 <p><strong>Orchestration with choreography within.</strong> A main orchestrator coordinates high-level phases (discovery → planning → execution → review). Within each phase, agents follow a choreographed protocol defined by shared norms and event streams. Claude Code follows this pattern: the session orchestrates subagent dispatch while those subagents follow shared conventions in skills and rules.</p>
 <p><strong>Choreography with orchestration for complexity.</strong> A system uses event-driven choreography for routine flows but invokes an orchestrator for complex exception handling. Orders flow choreographed until something fails; then an orchestrator-based recovery process takes over. This mirrors organizational practice: distributed units choreograph routine operations; central authority orchestrates strategic changes and crisis response.</p>
 <p><strong>Hierarchical orchestration.</strong> For very large systems, a single orchestrator becomes infeasible. Instead, there are multiple orchestrators at different scales: one coordinates teams of agents, another coordinates teams of teams. Mintzberg calls this <strong>standardization of skills</strong>—each team is trusted to execute its part, coordinated only at the level of handoffs. This is also how military organizations scale: each unit has an orchestrator (commander) coordinating that unit&rsquo;s work, and units are orchestrated at the next level up.</p>
-<h2 id="the-predication-frame">The Predication Frame</h2>
+<h2 id="the-predication-frame"><a href="#the-predication-frame" class="heading-anchor" aria-label="Link to this section">¶</a>The Predication Frame
+</h2>
 <p>From the library&rsquo;s predication framework, the distinction maps to <strong>subject and object</strong>:</p>
 <p>In <strong>orchestration</strong>, the orchestrator is the <strong>agent</strong> (subject); the other services are the <strong>patients</strong> (objects) on which it acts. The orchestrator decides, delegates, and collects results. The causal flow is from the orchestrator outward.</p>
 <p>In <strong>choreography</strong>, all services are equally <strong>agents</strong> and <strong>patients</strong>: each responds to events (is patient to the system&rsquo;s state) and produces events (acts as agent on other services). The causal flow is bidirectional and distributed. No one participant stands outside the system directing it; all are within.</p>
-<h2 id="mapping-to-this-system">Mapping to This System</h2>
+<h2 id="mapping-to-this-system"><a href="#mapping-to-this-system" class="heading-anchor" aria-label="Link to this section">¶</a>Mapping to This System
+</h2>
 <p>The 561 Group&rsquo;s agent governance structure uses both traditions:</p>
 <p><strong>Orchestration layer</strong>: The session (or the user as principal) is the orchestrator. The session dispatches agents, assigns tasks, monitors progress, and decides when phases complete. This is explicit and visible: you can read the session&rsquo;s decision log and see exactly what was assigned and why. This maps to Mintzberg&rsquo;s direct supervision and to Wiener&rsquo;s helmsman—the session continuously senses conditions and corrects course.</p>
 <p><strong>Choreography layer</strong>: The event stream and shared skills enable choreography. Agents observe events they care about (new tasks, observations, decisions) and respond autonomously within their capability scope. Skills encode standardized work processes; rules encode standardized output specifications. This allows agents to coordinate without explicit orchestration for every interaction. This maps to Hayek&rsquo;s market coordination and to Beer&rsquo;s distributed feedback.</p>
 <p><strong>Hybrid coordination</strong>: A background daemon (when implemented) would be semi-choreographed—it listens for events indicating work is ready and dispatches it without waiting for synchronous orchestration. This is intermediate: event-triggered dispatch rather than direct supervision, but still explicit assignment rather than pure listener registration.</p>
 <p>This hybrid structure appears throughout organizational theory: military units execute choreography (standard operating procedures) within orchestration (command structure). Markets show choreography (price signals) at scale with orchestration at the level of individual firms or strategic industries. Biological systems use both: cells follow chemical signals (choreography) while nervous systems orchestrate complex responses.</p>
-<h2 id="open-problems">Open Problems</h2>
+<h2 id="open-problems"><a href="#open-problems" class="heading-anchor" aria-label="Link to this section">¶</a>Open Problems
+</h2>
 <p>Three tensions remain unresolved:</p>
 <p><strong>1. Visibility vs. Scalability.</strong> Orchestration provides visibility; choreography scales. As systems grow, the choice to maintain visibility often sacrifices scale, or the choice to maintain scale sacrifices visibility. Nadareishvili&rsquo;s hypermedia approach attempts to find a middle ground through protocol-driven design: choreography that is implicit but still partially visible because the protocol is published. This remains an active research area.</p>
 <p><strong>2. Determinism vs. Resilience.</strong> Orchestration makes system behavior deterministic—given a goal and inputs, the orchestrator will execute a specific sequence of steps. Choreography makes behavior emergent—the same input might flow through services in different orders depending on timing and load. For safety-critical systems, determinism is required. For high-availability systems, resilience to partial failures is required. Few systems achieve both.</p>
 <p><strong>3. Distributed Accountability.</strong> When a choreographed system produces a wrong result, determining responsibility is hard. Each service executed correctly in isolation, but the interaction of their independent decisions produced the error. Orchestration preserves accountability: the orchestrator is responsible for the workflow. Choreography distributes responsibility—which is more resilient but harder to audit.</p>
 <hr>
-<h2 id="see-also">See Also</h2>
+<h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See Also
+</h2>
 <ul>
 <li><a href="../terms/agent-orchestration.md" class="link-internal">agent-orchestration</a> — the coordination layer definition and formal framework</li>
 <li><a href="../terms/multi-agent-system.md" class="link-internal">multi-agent-system</a> — system architecture patterns</li>
@@ -200,17 +311,38 @@
 </ul>
 
   </div>
-  <section class="bibliography" id="bibliography"
+  
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-04">April 4, 2026</time>.</p>
+  
+  <details class="bibliography" id="bibliography" open
          vocab="https://schema.org/" typeof="ItemList">
-  <h2>References</h2>
-</section>
+  <summary><h2>References</h2></summary><p class="bib-entry h-cite" id="ref-beer_1972" typeof="CreativeWork" resource="#ref-beer_1972">
+    <span class="bib-key">[beer_1972]</span><cite class="p-name" property="name">Stafford Beer, *Brain of the Firm* (Herder and Herder, 1972)</cite>..
+  </p><p class="bib-entry h-cite" id="ref-gerkey_mataric_2004" typeof="CreativeWork" resource="#ref-gerkey_mataric_2004">
+    <span class="bib-key">[gerkey_mataric_2004]</span><cite class="p-name" property="name">Brian P. Gerkey and Maja J. Matarić, &#39;A Formal Analysis and Taxonomy of Task Allocation in Multi-Robot Systems,&#39; *International Journal of Robotics Research* 23, no. 9 (2004): 939-954</cite>..
+  </p><p class="bib-entry h-cite" id="ref-hayek_1945" typeof="CreativeWork" resource="#ref-hayek_1945">
+    <span class="bib-key">[hayek_1945]</span><cite class="p-name" property="name">Friedrich A. Hayek, &#39;The Use of Knowledge in Society,&#39; *American Economic Review* 35, no. 4 (1945): 519-530</cite>..
+  </p><p class="bib-entry h-cite" id="ref-milner_1999" typeof="CreativeWork" resource="#ref-milner_1999">
+    <span class="bib-key">[milner_1999]</span><cite class="p-name" property="name">Robin Milner, *Communicating and Mobile Systems: the π-Calculus* (Cambridge University Press, 1999)</cite>..
+  </p><p class="bib-entry h-cite" id="ref-mintzberg_1979" typeof="CreativeWork" resource="#ref-mintzberg_1979">
+    <span class="bib-key">[mintzberg_1979]</span><cite class="p-name" property="name">Henry Mintzberg, *The Structuring of Organizations* (Prentice-Hall, 1979)</cite>..
+  </p><p class="bib-entry h-cite" id="ref-nadareishvili_2015" typeof="CreativeWork" resource="#ref-nadareishvili_2015">
+    <span class="bib-key">[nadareishvili_2015]</span><cite class="p-name" property="name">Irakli Nadareishvili, &#39;Hypermedia-Driven Orchestration in Microservices&#39; (O&#39;Reilly Software Architecture Conference, 2015)</cite>..
+  </p><p class="bib-entry h-cite" id="ref-reactive_manifesto_2014" typeof="CreativeWork" resource="#ref-reactive_manifesto_2014">
+    <span class="bib-key">[reactive_manifesto_2014]</span><cite class="p-name" property="name">Reactive Manifesto Signatories, *The Reactive Manifesto* (2014), https://www.reactivemanifesto.org/</cite>..
+  </p><p class="bib-entry h-cite" id="ref-w3c_2005" typeof="CreativeWork" resource="#ref-w3c_2005">
+    <span class="bib-key">[w3c_2005]</span><cite class="p-name" property="name">World Wide Web Consortium Web Services Choreography Working Group, *Web Services Choreography Description Language Version 1.0* (2005)</cite>..
+  </p><p class="bib-entry h-cite" id="ref-wiener_1948" typeof="CreativeWork" resource="#ref-wiener_1948">
+    <span class="bib-key">[wiener_1948]</span><cite class="p-name" property="name">Norbert Wiener, *Cybernetics: Or Control and Communication in the Animal and the Machine* (MIT Press, 1948)</cite>..
+  </p>
+</details>
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/orchestration-vs-choreography-survey/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/orchestration-vs-choreography-survey/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
-        <dt>Citations</dt>
-        <dd property="emsenn:Citations"></dd>
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">agents</a></dd>
       </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
@@ -219,17 +351,61 @@
         <dd property="emsenn:Domain">engineering/tech/computing/artificial intelligence/agents</dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

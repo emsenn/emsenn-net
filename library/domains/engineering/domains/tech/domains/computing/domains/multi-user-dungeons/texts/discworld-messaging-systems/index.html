@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Discworld MUD Messaging Systems - emsenn.net</title>
+
+
+<meta name="description" content="Survey of Discworld MUD&#39;s layered communication architecture: say and tell commands as room-scoped and direct messaging; shout for distance communication; the talker system for out-of-character channels; and soul commands for social broadcasting. Maps Discworld&#39;s message-routing patterns onto the …">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/texts/discworld-messaging-systems/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Discworld MUD Messaging Systems">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/texts/discworld-messaging-systems/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Survey of Discworld MUD&#39;s layered communication architecture: say and tell commands as room-scoped and direct messaging; shout for distance communication; the talker system for out-of-character channels; and soul commands for social broadcasting. Maps Discworld&#39;s message-routing patterns onto the …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-06T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-06T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Discworld MUD Messaging Systems">
+<meta name="twitter:description" content="Survey of Discworld MUD&#39;s layered communication architecture: say and tell commands as room-scoped and direct messaging; shout for distance communication; the talker system for out-of-character channels; and soul commands for social broadcasting. Maps Discworld&#39;s message-routing patterns onto the …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/texts/discworld-messaging-systems/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/texts/discworld-messaging-systems/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/texts/discworld-messaging-systems/",
   "@type": "Article",
   "dateModified": "2026-04-06",
   "datePublished": "2026-04-06",
   "description": "Survey of Discworld MUD's layered communication architecture: say and tell commands as room-scoped and direct messaging; shout for distance communication; the talker system for out-of-character channels; and soul commands for social broadcasting. Maps Discworld's message-routing patterns onto the 561 messaging-foundations spec.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/",
+    "@type": "CreativeWork",
+    "name": "multi-user-dungeons",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/"
+  },
   "name": "Discworld MUD Messaging Systems",
   "publisher": {
     "@type": "Person",
@@ -45,46 +96,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:multi-user-dungeons, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/">Multi User Dungeons</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/texts/">Texts</a></nav>
   <h1 class="p-name">Discworld MUD Messaging Systems</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-06T00:00:00Z">2026-04-06</time>
     
     <span class="p-summary">Survey of Discworld MUD&#39;s layered communication architecture: say and tell commands as room-scoped and direct messaging; shout for distance communication; the talker system for out-of-character channels; and soul commands for social broadcasting. Maps Discworld&#39;s message-routing patterns onto the 561 messaging-foundations spec.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -105,25 +133,50 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>The Discworld MUD implements a layered communication architecture running atop the FluffOS LPC driver. All messaging — whether room-scoped speech, distance communication, direct player-to-player tells, or out-of-character channels — routes through the same underlying object system. The architecture reflects four distinct message scopes, each implemented as a broadcast/delivery primitive in the Discworld mudlib, with the FluffOS driver providing the raw efuns: <code>say()</code>, <code>tell_object()</code>, <code>tell_room()</code>, and <code>message()</code>.</p>
-<h2 id="local-say-room-scoped-broadcasting">Local Say: Room-Scoped Broadcasting</h2>
+<h2 id="local-say-room-scoped-broadcasting"><a href="#local-say-room-scoped-broadcasting" class="heading-anchor" aria-label="Link to this section">¶</a>Local Say: Room-Scoped Broadcasting
+</h2>
 <p>The <strong>say</strong> command broadcasts a message to all objects in the speaker&rsquo;s current room. In LPC terms, this is implemented via the <code>say()</code> efun:</p>
 <pre tabindex="0"><code>say(&#34;Hello room&#34;);
 </code></pre><p>The driver routes this to every object in the current room&rsquo;s inventory tree. The speaker does not need to specify who hears — the room IS the audience. Reception is automatic for anything contained in the same object.</p>
 <p>This implements <strong>M1</strong> (every message belongs to a named channel with a declared schema) through implicit channel binding — the channel is the room itself. It satisfies <strong>M4</strong> (every message names its receivers) by naming the room&rsquo;s contents as receivers. The receiver set is spatial: determined by the environment tree at message-send time, not by explicit subscription lists.</p>
 <p><strong>Key feature:</strong> say is unreliable in one direction — the speaker chooses the message, but objects receiving it decide how to process it. A player&rsquo;s client receives say messages and displays them. An NPC object receives say messages via <code>catch_tell()</code> and can react (triggering combat, starting dialogue). The routing is symmetric — both players and NPCs hear the same say broadcast — but the decision to <em>act</em> on it is asymmetric.</p>
-<h2 id="distance-broadcasting-shout">Distance Broadcasting: Shout</h2>
+<h2 id="distance-broadcasting-shout"><a href="#distance-broadcasting-shout" class="heading-anchor" aria-label="Link to this section">¶</a>Distance Broadcasting: Shout
+</h2>
 <p>The <strong>shout</strong> command broadcasts to a larger area — multiple rooms at once. The exact distance varies by room placement and is typically configurable per-area. A shout in one room reaches adjacent rooms, sometimes rooms two or three steps away.</p>
 <p>Shout implements <strong>M1</strong> and <strong>M4</strong> with a larger but still spatially-bounded receiver set. The channel is not a single room but a region. Reception is automatic for all objects within the broadcast radius, and like say, the message text is fixed while receiving objects decide independently how to handle it.</p>
 <p>In Discworld&rsquo;s implementation, shout costs a resource (social points, which regenerate over time). This cost enforces <strong>M6</strong>-like semantics (delivery lifecycle tracking). A player who shouts too frequently is rate-limited. The resource constraint is the delivery policy — not all players can broadcast at all times.</p>
-<h2 id="direct-player-to-player-messaging-tell">Direct Player-to-Player Messaging: Tell</h2>
+<h2 id="direct-player-to-player-messaging-tell"><a href="#direct-player-to-player-messaging-tell" class="heading-anchor" aria-label="Link to this section">¶</a>Direct Player-to-Player Messaging: Tell
+</h2>
 <p>The <strong>tell</strong> command sends a private message to a specific player, regardless of distance or location. It is out-of-character communication — tells do not appear in the room; only the sender and receiver see the exchange.</p>
 <p>Implemented via <code>tell_object()</code>, a tell is:</p>
 <pre tabindex="0"><code>tell_object(player_ob, &#34;message text&#34;);
 </code></pre><p>The key difference from say: the receiver is explicitly named. The message does NOT broadcast to the room; it routes to a specific player object across any distance. This satisfies <strong>M4</strong> (every message names its receivers) explicitly — the receiver is a parameter to the function.</p>
 <p>Tell implements <strong>M0</strong> (every message has a traceable sender) — the message carries the sender&rsquo;s identity in the UI (&ldquo;Sender tells you: &hellip;&rdquo;). In Discworld, tell has a social-point cost, implementing <strong>M6</strong> delivery-lifecycle accounting: the player can send at most N tells per time unit.</p>
-<h2 id="the-talker-system-named-channels-with-subscriptions">The Talker System: Named Channels with Subscriptions</h2>
+<h2 id="the-talker-system-named-channels-with-subscriptions"><a href="#the-talker-system-named-channels-with-subscriptions" class="heading-anchor" aria-label="Link to this section">¶</a>The Talker System: Named Channels with Subscriptions
+</h2>
 <p>The <strong>talker</strong> is an in-game object that gives players access to multiple out-of-character channels. Rather than hard-coding channel support in the driver, Discworld implements channels as LPC objects. A player physically approaches a talker object and uses commands like:</p>
 <pre tabindex="0"><code>talker channel one
 talker channel two
@@ -141,24 +194,28 @@ talker talk message text
 <p>Talkers implement <strong>M1</strong> (named channels with declared schema) as explicit records. Each channel has a name, access rules, and subscriber list. They implement <strong>M4</strong> (receivers are named) through subscription — messages are delivered to all subscribers to the channel.</p>
 <p>Talkers also implement <strong>M2</strong> (monotonic send-time and partial ordering) — messages within a channel are ordered by send-time. The talker maintains a log of messages per channel and can replay them on demand.</p>
 <p>Critically, talkers satisfy <strong>M3</strong> (content-addressable payloads with duplicates distinguished by (time, sender)) implicitly — the same message text from the same sender posted twice at different times to the same channel are different messages, distinguished by their timestamps.</p>
-<h2 id="soul-commands-emotes-and-social-broadcasting">Soul Commands: Emotes and Social Broadcasting</h2>
+<h2 id="soul-commands-emotes-and-social-broadcasting"><a href="#soul-commands-emotes-and-social-broadcasting" class="heading-anchor" aria-label="Link to this section">¶</a>Soul Commands: Emotes and Social Broadcasting
+</h2>
 <p>Beyond pure message-passing, Discworld implements <strong>soul commands</strong> — emotes and social actions that broadcast action descriptions to a room:</p>
 <pre tabindex="0"><code>emote bows deeply
 grin &lt;target&gt;
 wave
 </code></pre><p>Soul commands are semantically different from say: they are not spoken dialogue but observable actions. The mud broadcasts them via the same underlying <code>say()</code> or room-broadcast mechanism, but they carry different message classes (type: &ldquo;emote&rdquo; vs type: &ldquo;say&rdquo; in the FluffOS message-classification system).</p>
 <p>This satisfies <strong>M1</strong> — emotes belong to a &ldquo;soul&rdquo; or &ldquo;emote&rdquo; channel, semantically distinct from speech. Message class routing allows receivers (players, NPCs) to filter: some players mute emotes, others display them prominently.</p>
-<h2 id="message-delivery-at-the-fluffos-level">Message Delivery at the FluffOS Level</h2>
+<h2 id="message-delivery-at-the-fluffos-level"><a href="#message-delivery-at-the-fluffos-level" class="heading-anchor" aria-label="Link to this section">¶</a>Message Delivery at the FluffOS Level
+</h2>
 <p>Underneath all these higher-level systems, FluffOS provides the primitive <code>message()</code> efun, which routes messages through a class system:</p>
 <pre tabindex="0"><code>message(&#34;say&#34;, &#34;sender says: &#34; + text);
 message(&#34;tell&#34;, &#34;sender tells you: &#34; + text);
 message(&#34;emote&#34;, &#34;sender &#34; + action);
 </code></pre><p>The message class parameter (<strong>M1</strong> channel binding) allows flexible filtering. Player clients can subscribe to specific message classes. NPCs can implement <code>receive_message()</code> to handle different class-specific behavior.</p>
-<h2 id="npc-hearing-catch_tell-and-event-subscriptions">NPC Hearing: <code>catch_tell()</code> and Event Subscriptions</h2>
+<h2 id="npc-hearing-catch_tell-and-event-subscriptions"><a href="#npc-hearing-catch_tell-and-event-subscriptions" class="heading-anchor" aria-label="Link to this section">¶</a>NPC Hearing: <code>catch_tell()</code> and Event Subscriptions
+</h2>
 <p>When an NPC receives a message (via say, tell, or emote), it does not receive a playable &ldquo;tell&rdquo; output. Instead, the NPC object&rsquo;s <code>catch_tell()</code> function is invoked with the message text. This allows NPCs to parse and react to speech.</p>
 <p>For more sophisticated NPC behavior, Discworld implements an event system: NPCs can subscribe to event classes (<code>event_listen_say()</code>, <code>event_person_tell()</code>). When a say happens in a room, the NPC&rsquo;s event handler is called with the speaker and text. The NPC can then decide whether to respond, start combat, or ignore the message.</p>
 <p>This implements <strong>M4</strong> (every message names its receivers) with asymmetry: a player&rsquo;s say is broadcast to all objects in the room, but which objects <em>care</em> is determined by their subscriptions. NPCs are not forced to hear everything — they can filter by listener pattern (e.g., a shopkeeper hears only customers, a guard hears only unauthorized intruders).</p>
-<h2 id="mapping-to-the-messaging-foundations-spec">Mapping to the Messaging-Foundations Spec</h2>
+<h2 id="mapping-to-the-messaging-foundations-spec"><a href="#mapping-to-the-messaging-foundations-spec" class="heading-anchor" aria-label="Link to this section">¶</a>Mapping to the Messaging-Foundations Spec
+</h2>
 <p>The Discworld messaging systems satisfy the core messaging invariants defined in the 561 system&rsquo;s <code>messaging-foundations.md</code> spec:</p>
 <ul>
 <li><strong>M0</strong> (traceable sender): implemented throughout. Every message carries sender identity (players and NPCs know who said/told them).</li>
@@ -172,7 +229,8 @@ message(&#34;emote&#34;, &#34;sender &#34; + action);
 <li><strong>M8</strong> (messages reference other messages): not implemented. Discworld has no reply-to, refutes, or extends relations on messages.</li>
 <li><strong>M9</strong> (message-log closed under channel schemas, all references resolve): not fully implemented. Talker channels have message history but no persistent cross-reference resolution.</li>
 </ul>
-<h2 id="the-architectural-pattern-objects-as-channels">The Architectural Pattern: Objects as Channels</h2>
+<h2 id="the-architectural-pattern-objects-as-channels"><a href="#the-architectural-pattern-objects-as-channels" class="heading-anchor" aria-label="Link to this section">¶</a>The Architectural Pattern: Objects as Channels
+</h2>
 <p>Discworld&rsquo;s messaging architecture exemplifies a deeper pattern: <strong>all communication is object-to-object messaging using the same underlying mechanism, with scope and audience determined by the object structure and FluffOS driver support.</strong></p>
 <ul>
 <li>Say is <code>tell_room(environment)</code> — broadcast to all objects in a container.</li>
@@ -181,7 +239,8 @@ message(&#34;emote&#34;, &#34;sender &#34; + action);
 <li>Talker posting is <code>tell_object(talker)</code> → talker broadcasts to <code>tell_object(subscriber)</code> for each subscriber — message routing delegated to an intermediary object.</li>
 </ul>
 <p>This is not a coincidence. The LPC object model IS a message-passing architecture. Every efun call is a message; every object is an actor. The mudlib (Discworld) builds higher-level abstractions on top — channels, subscriptions, access control — but the substrate is unified messaging via object references.</p>
-<h2 id="connection-to-the-561-system">Connection to the 561 System</h2>
+<h2 id="connection-to-the-561-system"><a href="#connection-to-the-561-system" class="heading-anchor" aria-label="Link to this section">¶</a>Connection to the 561 System
+</h2>
 <p>The captain&rsquo;s note in <code>operations/command/ideas/mud-chat-as-messaging.md</code> observes: &ldquo;if you look at my mud code you can see how I use chat services to facilitate what other systems might do with a more internal messaging system, I don&rsquo;t see a need to unnecessarily internalize messaging, if we can treat it like standard knowledge being passed around.&rdquo;</p>
 <p>Discworld&rsquo;s architecture supports this view. Talker channels are not magic — they are LPC objects with message lists. A channel is a query: &ldquo;show me all messages to this channel ordered by time.&rdquo; A subscriber is a subscription record. The implementation is not a specialized message broker; it is the same object system used for rooms, items, and NPCs.</p>
 <p>For the 561 system, this suggests:</p>
@@ -199,7 +258,8 @@ message(&#34;emote&#34;, &#34;sender &#34; + action);
 <p><strong>The same broadcast mechanism handles all scopes.</strong> Whether routing to a room&rsquo;s contents, a spatial radius, or all subscribers to a named channel, the operation is: apply message-delivery function to a computed receiver set.</p>
 </li>
 </ol>
-<h2 id="what-discworld-does-well">What Discworld Does Well</h2>
+<h2 id="what-discworld-does-well"><a href="#what-discworld-does-well" class="heading-anchor" aria-label="Link to this section">¶</a>What Discworld Does Well
+</h2>
 <ol>
 <li>
 <p><strong>Layered abstraction.</strong> Say, tell, shout, and talkers are all built on the same primitives (<code>say()</code>, <code>tell_object()</code>, <code>tell_room()</code>). Each layer adds scope and delivery semantics without reinventing message-passing.</p>
@@ -214,7 +274,8 @@ message(&#34;emote&#34;, &#34;sender &#34; + action);
 <p><strong>Spatial scoping.</strong> Say and shout use room containment to determine audience. This is simple and natural — where you are determines what you hear (absent magical communication).</p>
 </li>
 </ol>
-<h2 id="where-the-561-system-can-improve">Where the 561 System Can Improve</h2>
+<h2 id="where-the-561-system-can-improve"><a href="#where-the-561-system-can-improve" class="heading-anchor" aria-label="Link to this section">¶</a>Where the 561 System Can Improve
+</h2>
 <ol>
 <li>
 <p><strong>Bilattice-valued messages.</strong> Discworld&rsquo;s messages are strings. In the 561 system, following the adjoint paper, messages are fibers over a bilattice. A message itself carries confidence and certainty values. &ldquo;The task is complete&rdquo; vs &ldquo;The task is probably complete&rdquo; vs &ldquo;The task may or may not be complete&rdquo; are different messages in the type system, not post-hoc qualifiers.</p>
@@ -232,10 +293,12 @@ message(&#34;emote&#34;, &#34;sender &#34; + action);
 <p><strong>Content-addressed message identity.</strong> Discworld message IDs (if they exist) are probably sequential. The 561 system should use content-addressed IDs (CIDs, following IPFS): the same message content always has the same identity, enabling federation and deduplication across instances.</p>
 </li>
 </ol>
-<h2 id="conclusion">Conclusion</h2>
+<h2 id="conclusion"><a href="#conclusion" class="heading-anchor" aria-label="Link to this section">¶</a>Conclusion
+</h2>
 <p>Discworld MUD&rsquo;s messaging systems are not a metaphor for the 561 system — they are a production architecture solving the same problems. The mudlib implements multiple communication scopes (say, tell, shout, talker, emote) using a unified object-to-object messaging substrate. Every message is routed through the object system; every object can be a sender, receiver, or intermediary.</p>
 <p>The pattern generalizes: make channels first-class query objects, make subscriptions first-class records, and route all communication through the event log. This is what Discworld does implicitly; the 561 system should do it explicitly, grounded in the bilattice-valued fiber algebra that distinguishes our approach from earlier MUD architectures.</p>
-<h2 id="see-also">See also</h2>
+<h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See also
+</h2>
 <ul>
 <li><a href="lpmud-architecture-for-agentic-systems.md" class="link-internal">LPMud Architecture for Agentic Systems</a> — driver/mudlib separation, object lifecycle, heartbeat, command parsing</li>
 <li><a href="../../../../texts/tech-messaging-systems-for-agentic-systems.md" class="link-internal">Tech Messaging Systems as Models for Agentic Coordination</a> — Kafka, NATS, ActivityPub, Matrix, CRDTs</li>
@@ -245,35 +308,82 @@ message(&#34;emote&#34;, &#34;sender &#34; + action);
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-06">April 6, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/texts/discworld-messaging-systems/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/texts/discworld-messaging-systems/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
-        <dt>Citations</dt>
-        <dd property="emsenn:Citations"></dd>
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/multi-user-dungeons/">multi user dungeons</a></dd>
       </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-06">2026-04-06</time></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
-        <dd property="emsenn:Domain">computing</dd>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
       </div><div class="relation">
         <dt>Text type</dt>
-        <dd property="emsenn:Texttype">survey</dd>
+        <dd property="emsenn:Texttype"><a href="/tags/survey/">survey</a></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

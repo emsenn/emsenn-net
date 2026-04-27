@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ECC Hook Architecture Analysis - emsenn.net</title>
+
+
+<meta name="description" content="Deep analysis of Everything Claude Code&#39;s hook system — patterns, gaps, and recommendations for the 561 harness">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ecc-hook-architecture-analysis/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="ECC Hook Architecture Analysis">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ecc-hook-architecture-analysis/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Deep analysis of Everything Claude Code&#39;s hook system — patterns, gaps, and recommendations for the 561 harness">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-04T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-04T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ECC Hook Architecture Analysis">
+<meta name="twitter:description" content="Deep analysis of Everything Claude Code&#39;s hook system — patterns, gaps, and recommendations for the 561 harness">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ecc-hook-architecture-analysis/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ecc-hook-architecture-analysis/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ecc-hook-architecture-analysis/",
   "@type": "Article",
   "dateModified": "2026-04-04",
   "datePublished": "2026-04-04",
   "description": "Deep analysis of Everything Claude Code's hook system — patterns, gaps, and recommendations for the 561 harness",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/",
+    "@type": "CreativeWork",
+    "name": "computing",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/"
+  },
   "keywords": "claude-code, agentic-harness, hooks, infrastructure-analysis",
   "name": "ECC Hook Architecture Analysis",
   "publisher": {
@@ -46,46 +97,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:computing, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
   <h1 class="p-name">ECC Hook Architecture Analysis</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
     
     <span class="p-summary">Deep analysis of Everything Claude Code&#39;s hook system — patterns, gaps, and recommendations for the 561 harness</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -120,10 +148,33 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>Everything Claude Code (ECC) is the most mature open-source Claude Code plugin, with 25+ hooks across 7 lifecycle events, a shared utility library, and a profile-gated execution framework. This analysis compares ECC&rsquo;s hook architecture against the 561 harness to identify patterns worth adopting, hooks worth porting, and design decisions worth understanding.</p>
-<h2 id="architecture-overview">Architecture Overview</h2>
-<h3 id="ecc-hook-inventory">ECC Hook Inventory</h3>
+<h2 id="architecture-overview"><a href="#architecture-overview" class="heading-anchor" aria-label="Link to this section">¶</a>Architecture Overview
+</h2>
+<h3 id="ecc-hook-inventory"><a href="#ecc-hook-inventory" class="heading-anchor" aria-label="Link to this section">¶</a>ECC Hook Inventory
+</h3>
 <p>ECC registers hooks across every Claude Code lifecycle event:</p>
 <table>
   <thead>
@@ -172,7 +223,8 @@
   </tbody>
 </table>
 <p>The 561 harness registers hooks across the same events plus UserPromptSubmit (which ECC does not use), with 29 registered hooks total. Both systems have comparable breadth, but their depth differs in specific areas.</p>
-<h3 id="the-run-with-flagsjs-pattern">The run-with-flags.js Pattern</h3>
+<h3 id="the-run-with-flagsjs-pattern"><a href="#the-run-with-flagsjs-pattern" class="heading-anchor" aria-label="Link to this section">¶</a>The run-with-flags.js Pattern
+</h3>
 <p>ECC&rsquo;s most important architectural pattern is <code>run-with-flags.js</code>, a universal hook dispatcher that provides:</p>
 <ol>
 <li>
@@ -190,7 +242,8 @@
 </ol>
 <p>The 561 harness has its own <code>run-with-flags.js</code> and <code>hook-profiles.js</code>, but does not implement the in-process execution optimization. Our hooks always spawn child processes.</p>
 <p><strong>Recommendation</strong>: Port the in-process <code>run()</code> export pattern. With 11+ synchronous PreToolUse hooks, eliminating spawn overhead could save 500ms+ per tool call in the critical path.</p>
-<h3 id="the-dual-entry-point-pattern">The Dual Entry Point Pattern</h3>
+<h3 id="the-dual-entry-point-pattern"><a href="#the-dual-entry-point-pattern" class="heading-anchor" aria-label="Link to this section">¶</a>The Dual Entry Point Pattern
+</h3>
 <p>Every ECC hook follows the same structure:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">run</span>(<span style="color:#a6e22e">rawInput</span>, <span style="color:#a6e22e">options</span> <span style="color:#f92672">=</span> {}) {
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Core logic
@@ -205,38 +258,47 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
 </span></span></code></pre></div><p>This pattern means hooks work both as imported modules (fast path via run-with-flags.js) and as standalone scripts (backward compatibility). The 561 harness hooks use only the stdin path.</p>
 <p><strong>Recommendation</strong>: Adopt this pattern for all new hooks and retrofit high-frequency existing hooks (observe.js, safety-guard.js, config-protection.js).</p>
-<h2 id="hook-by-hook-comparison">Hook-by-Hook Comparison</h2>
-<h3 id="hooks-ecc-has-that-we-dont">Hooks ECC Has That We Don&rsquo;t</h3>
-<h4 id="auto-tmux-dev-pretoolusebash">auto-tmux-dev (PreToolUse:Bash)</h4>
+<h2 id="hook-by-hook-comparison"><a href="#hook-by-hook-comparison" class="heading-anchor" aria-label="Link to this section">¶</a>Hook-by-Hook Comparison
+</h2>
+<h3 id="hooks-ecc-has-that-we-dont"><a href="#hooks-ecc-has-that-we-dont" class="heading-anchor" aria-label="Link to this section">¶</a>Hooks ECC Has That We Don&rsquo;t
+</h3>
+<h4 id="auto-tmux-dev-pretoolusebash">auto-tmux-dev (PreToolUse:Bash)
+</h4>
 <p><strong>What it does</strong>: Detects dev server commands (npm run dev, pnpm dev, yarn dev, bun run dev) and transforms them to run in a named tmux session. Kills any existing session with the same name first, creates a detached session, and reports how to view logs.</p>
 <p><strong>Why it matters</strong>: Prevents dev servers from blocking Claude Code&rsquo;s main process. The session naming convention (derived from the project directory basename) allows multiple projects to run simultaneously.</p>
 <p><strong>Relevance to 561</strong>: Low. We don&rsquo;t run web dev servers from the harness. The pattern of transforming Bash commands before execution is interesting but we have no current use case.</p>
 <p><strong>Verdict</strong>: Skip.</p>
-<h4 id="post-bash-pr-created-posttoolusebash">post-bash-pr-created (PostToolUse:Bash)</h4>
+<h4 id="post-bash-pr-created-posttoolusebash">post-bash-pr-created (PostToolUse:Bash)
+</h4>
 <p><strong>What it does</strong>: Detects when a <code>gh pr create</code> command produces a PR URL and logs it, then injects a suggested review command into the output.</p>
 <p><strong>Why it matters</strong>: Reduces context switching — the agent immediately has the review command available without needing to look it up.</p>
 <p><strong>Relevance to 561</strong>: Low. We rarely create PRs through the agent. If we start doing so, this would be a nice convenience.</p>
 <p><strong>Verdict</strong>: Skip for now.</p>
-<h4 id="post-edit-accumulator-posttooluseeditwrite">post-edit-accumulator (PostToolUse:Edit|Write)</h4>
+<h4 id="post-edit-accumulator-posttooluseeditwrite">post-edit-accumulator (PostToolUse:Edit|Write)
+</h4>
 <p><strong>What it does</strong>: Records the file paths of all JS/TS files edited during a response to a temporary accumulator file. The Stop hook (stop-format-typecheck) reads this file to batch-process all edited files in a single formatter/typechecker invocation.</p>
 <p><strong>Why it matters</strong>: This is the core of ECC&rsquo;s &ldquo;defer work to Stop&rdquo; pattern. Instead of running formatters after every Edit (which adds latency to each tool call), all formatting is batched into a single Stop hook invocation. This is significantly faster for responses that edit many files.</p>
 <p><strong>Relevance to 561</strong>: Medium. We don&rsquo;t have JS/TS formatting needs, but the accumulator pattern itself is valuable. Our <code>post-edit-quality.js</code> runs after every Edit/Write — if it were deferred to Stop, it could batch YAML/frontmatter validation across all files modified in a response.</p>
 <p><strong>Verdict</strong>: Port the accumulator pattern, not the specific implementation. Create an edit-accumulator that our Stop hooks can consume.</p>
-<h4 id="stop-format-typecheck-stop">stop-format-typecheck (Stop)</h4>
+<h4 id="stop-format-typecheck-stop">stop-format-typecheck (Stop)
+</h4>
 <p><strong>What it does</strong>: Reads the accumulator file, groups files by project root, runs one formatter invocation per root, then groups .ts/.tsx files by tsconfig.json directory and runs one <code>tsc --noEmit</code> per directory. Distributes a 270-second budget evenly across all batches.</p>
 <p><strong>Why it matters</strong>: The budget distribution pattern is clever — it prevents any single batch from consuming the entire Stop timeout. The grouping-by-root pattern avoids redundant formatter startup.</p>
 <p><strong>Relevance to 561</strong>: The budget distribution pattern is portable. Our observer-loop.js already has a 180s timeout, and we could apply similar budget management to future batch Stop hooks.</p>
 <p><strong>Verdict</strong>: Adapt the budget distribution pattern; skip the formatter/typechecker specifics.</p>
-<h4 id="stop-check-console-log-stop">stop-check-console-log (Stop)</h4>
+<h4 id="stop-check-console-log-stop">stop-check-console-log (Stop)
+</h4>
 <p><strong>What it does</strong>: Scans git-modified JS/TS files for <code>console.log</code> statements before final commit. A last-chance safety net for debug output.</p>
 <p><strong>Relevance to 561</strong>: Low. We don&rsquo;t write enough JS/TS to need this.</p>
 <p><strong>Verdict</strong>: Skip.</p>
-<h4 id="desktop-notify-stop">desktop-notify (Stop)</h4>
+<h4 id="desktop-notify-stop">desktop-notify (Stop)
+</h4>
 <p><strong>What it does</strong>: Sends a native desktop notification when Claude finishes responding. Supports macOS (osascript) and WSL (PowerShell BurntToast). Extracts a short summary from the last assistant message.</p>
 <p><strong>Why it matters</strong>: On long-running tasks, the user can switch to other work and get notified when Claude is done. The WSL detection is memoized at module load to avoid repeated /proc/version reads.</p>
 <p><strong>Relevance to 561</strong>: Medium-high. We run on a Linux VPS and often have long-running agent sessions. A notification mechanism (even just logging to a channel or sending to a webhook) would be useful.</p>
 <p><strong>Verdict</strong>: Adapt. Don&rsquo;t port the macOS/WSL specifics — build a Linux-native notification hook that writes to our event system and optionally sends a webhook or desktop notification via <code>notify-send</code>.</p>
-<h4 id="governance-capture-pretooluse--posttooluse">governance-capture (PreToolUse + PostToolUse)</h4>
+<h4 id="governance-capture-pretooluse--posttooluse">governance-capture (PreToolUse + PostToolUse)
+</h4>
 <p><strong>What it does</strong>: Detects governance-relevant events across both pre and post phases:</p>
 <ul>
 <li><strong>Secret detection</strong>: AWS keys, JWTs, GitHub tokens, generic secrets via regex patterns</li>
@@ -249,24 +311,29 @@
 <p><strong>Why it matters</strong>: This is a complete governance audit trail. Each event has an ID, severity, payload, and resolution tracking — it&rsquo;s designed for compliance reporting, not just blocking.</p>
 <p><strong>Relevance to 561</strong>: High. We have <code>safety-guard.js</code> that blocks destructive commands and <code>detect-secrets.js</code> that catches secrets, but neither produces a structured audit trail. Our <code>risk-score.js</code> computes risk scores but doesn&rsquo;t correlate them into governance events. The governance-capture approach unifies detection, classification, and audit into one pipeline.</p>
 <p><strong>Verdict</strong>: Port and adapt. Our existing detect-secrets and safety-guard hooks handle the blocking; governance-capture would add the audit trail layer on top. Wire events into our event recording system rather than just stderr.</p>
-<h4 id="quality-gate-posttooluseeditwrite">quality-gate (PostToolUse:Edit|Write)</h4>
+<h4 id="quality-gate-posttooluseeditwrite">quality-gate (PostToolUse:Edit|Write)
+</h4>
 <p><strong>What it does</strong>: Runs lightweight quality checks on individual files after edit. Detects the project&rsquo;s formatter (Biome or Prettier), resolves the binary (preferring local node_modules/.bin over npx), and runs checks or fixes. Also supports Go (gofmt) and Python (ruff).</p>
 <p><strong>Why it matters</strong>: The formatter resolution chain is the valuable part — the <code>resolve-formatter.js</code> library handles detection, binary caching, and project root resolution. The quality-gate hook itself is thin; the library does the work.</p>
 <p><strong>Relevance to 561</strong>: Low for the formatter specifics, but our <code>post-edit-quality.js</code> already handles JSON/YAML validation. We don&rsquo;t need JS/TS/Go/Python formatting.</p>
 <p><strong>Verdict</strong>: Skip.</p>
-<h4 id="design-quality-check-posttooluseeditwrite">design-quality-check (PostToolUse:Edit|Write)</h4>
+<h4 id="design-quality-check-posttooluseeditwrite">design-quality-check (PostToolUse:Edit|Write)
+</h4>
 <p><strong>What it does</strong>: Warns when frontend edits drift toward generic template-looking UI patterns. A domain-specific quality guard for web projects.</p>
 <p><strong>Relevance to 561</strong>: None.</p>
 <p><strong>Verdict</strong>: Skip.</p>
-<h4 id="post-edit-console-warn-posttooluseedit">post-edit-console-warn (PostToolUse:Edit)</h4>
+<h4 id="post-edit-console-warn-posttooluseedit">post-edit-console-warn (PostToolUse:Edit)
+</h4>
 <p><strong>What it does</strong>: Warns about console.log statements immediately after an Edit.</p>
 <p><strong>Relevance to 561</strong>: Low.</p>
 <p><strong>Verdict</strong>: Skip.</p>
-<h4 id="insaits-security-wrapper-pretooluse">insaits-security-wrapper (PreToolUse)</h4>
+<h4 id="insaits-security-wrapper-pretooluse">insaits-security-wrapper (PreToolUse)
+</h4>
 <p><strong>What it does</strong>: Bridges to an external Python-based security monitor (InsAIts). Gated behind <code>ECC_ENABLE_INSAITS=1</code> env var.</p>
 <p><strong>Relevance to 561</strong>: The external bridge pattern is interesting — we could use it to integrate with security tools. But the specific tool is Python-specific.</p>
 <p><strong>Verdict</strong>: Skip the implementation, note the pattern.</p>
-<h3 id="hooks-where-both-systems-overlap">Hooks Where Both Systems Overlap</h3>
+<h3 id="hooks-where-both-systems-overlap"><a href="#hooks-where-both-systems-overlap" class="heading-anchor" aria-label="Link to this section">¶</a>Hooks Where Both Systems Overlap
+</h3>
 <table>
   <thead>
       <tr>
@@ -363,7 +430,8 @@
       </tr>
   </tbody>
 </table>
-<h3 id="hooks-we-have-that-ecc-doesnt">Hooks We Have That ECC Doesn&rsquo;t</h3>
+<h3 id="hooks-we-have-that-ecc-doesnt"><a href="#hooks-we-have-that-ecc-doesnt" class="heading-anchor" aria-label="Link to this section">¶</a>Hooks We Have That ECC Doesn&rsquo;t
+</h3>
 <p>The 561 harness has several hooks with no ECC equivalent:</p>
 <table>
   <thead>
@@ -424,23 +492,30 @@
   </tbody>
 </table>
 <p>These reflect the 561 harness&rsquo;s focus on knowledge management, organizational operations, and continuous learning — domains ECC doesn&rsquo;t address.</p>
-<h2 id="key-patterns-worth-adopting">Key Patterns Worth Adopting</h2>
-<h3 id="1-in-process-hook-execution">1. In-Process Hook Execution</h3>
+<h2 id="key-patterns-worth-adopting"><a href="#key-patterns-worth-adopting" class="heading-anchor" aria-label="Link to this section">¶</a>Key Patterns Worth Adopting
+</h2>
+<h3 id="1-in-process-hook-execution"><a href="#1-in-process-hook-execution" class="heading-anchor" aria-label="Link to this section">¶</a>1. In-Process Hook Execution
+</h3>
 <p>ECC&rsquo;s biggest performance win. Instead of spawning a new Node.js process for each hook, <code>run-with-flags.js</code> calls <code>require()</code> and invokes the hook&rsquo;s exported <code>run()</code> function directly. This saves 50–100ms per hook call.</p>
 <p><strong>Implementation path</strong>: Update our <code>run-with-flags.js</code> to detect hooks that export <code>run()</code> and call them in-process. Retrofit high-frequency hooks first: <code>observe.js</code>, <code>safety-guard.js</code>, <code>config-protection.js</code>, <code>detect-secrets.js</code>.</p>
-<h3 id="2-the-accumulator-pattern">2. The Accumulator Pattern</h3>
+<h3 id="2-the-accumulator-pattern"><a href="#2-the-accumulator-pattern" class="heading-anchor" aria-label="Link to this section">¶</a>2. The Accumulator Pattern
+</h3>
 <p>ECC separates observation from action: <code>post-edit-accumulator</code> records what happened, and <code>stop-format-typecheck</code> acts on the accumulated data at Stop time. This is faster than acting on every individual edit.</p>
 <p><strong>Implementation path</strong>: Create a generic accumulator that PostToolUse hooks can write to, and Stop hooks can consume. Candidate: batch our frontmatter validation and datastore updates to Stop instead of running them after every Edit.</p>
-<h3 id="3-structured-governance-events">3. Structured Governance Events</h3>
+<h3 id="3-structured-governance-events"><a href="#3-structured-governance-events" class="heading-anchor" aria-label="Link to this section">¶</a>3. Structured Governance Events
+</h3>
 <p>ECC&rsquo;s <code>governance-capture.js</code> produces structured events with IDs, severity levels, session correlation, and resolution tracking. This is an audit trail, not just a block/allow decision.</p>
 <p><strong>Implementation path</strong>: Add a governance event emitter that our existing safety-guard and detect-secrets hooks can feed into. Wire it to our event recording system (<code>record-event.js</code>).</p>
-<h3 id="4-budget-distribution-for-stop-hooks">4. Budget Distribution for Stop Hooks</h3>
+<h3 id="4-budget-distribution-for-stop-hooks"><a href="#4-budget-distribution-for-stop-hooks" class="heading-anchor" aria-label="Link to this section">¶</a>4. Budget Distribution for Stop Hooks
+</h3>
 <p>ECC&rsquo;s <code>stop-format-typecheck</code> distributes a time budget evenly across batches. This prevents any single slow batch from consuming the entire Stop timeout.</p>
 <p><strong>Implementation path</strong>: Apply this pattern to our observer-loop.js and any future batch Stop hooks.</p>
-<h3 id="5-truncation-aware-hooks">5. Truncation-Aware Hooks</h3>
+<h3 id="5-truncation-aware-hooks"><a href="#5-truncation-aware-hooks" class="heading-anchor" aria-label="Link to this section">¶</a>5. Truncation-Aware Hooks
+</h3>
 <p>ECC caps stdin at 1MB and passes a <code>truncated</code> flag to hooks. Security-sensitive hooks (config-protection) block on truncation — you can&rsquo;t bypass protection by sending a huge payload. Others (governance-capture) log a warning.</p>
 <p><strong>Implementation path</strong>: Add truncation detection to our run-with-flags.js. Our safety-guard.js should block on truncated input.</p>
-<h2 id="hooks-not-worth-porting">Hooks Not Worth Porting</h2>
+<h2 id="hooks-not-worth-porting"><a href="#hooks-not-worth-porting" class="heading-anchor" aria-label="Link to this section">¶</a>Hooks Not Worth Porting
+</h2>
 <table>
   <thead>
       <tr>
@@ -499,11 +574,13 @@
       </tr>
   </tbody>
 </table>
-<h2 id="quality-assessment-deterministic-vs-inference">Quality Assessment: Deterministic vs. Inference</h2>
+<h2 id="quality-assessment-deterministic-vs-inference"><a href="#quality-assessment-deterministic-vs-inference" class="heading-anchor" aria-label="Link to this section">¶</a>Quality Assessment: Deterministic vs. Inference
+</h2>
 <p>All ECC hooks are deterministic — none invoke an LLM. They use regex matching, file system checks, and string parsing. This is a deliberate design choice: hooks are in the critical path and must be fast and predictable.</p>
 <p>The 561 harness follows the same principle for registered hooks. Our <code>observer-loop.js</code> is the only hook that invokes inference (via mash-engine for pattern detection), and it runs async with a 180s timeout at Stop — outside the critical path.</p>
 <p><strong>Assessment</strong>: Both systems correctly keep inference out of the hot path. ECC&rsquo;s approach of pure-deterministic hooks is sound and we should maintain it.</p>
-<h2 id="recommendations-summary">Recommendations Summary</h2>
+<h2 id="recommendations-summary"><a href="#recommendations-summary" class="heading-anchor" aria-label="Link to this section">¶</a>Recommendations Summary
+</h2>
 <table>
   <thead>
       <tr>
@@ -550,7 +627,8 @@
       </tr>
   </tbody>
 </table>
-<h2 id="shared-utility-library-comparison">Shared Utility Library Comparison</h2>
+<h2 id="shared-utility-library-comparison"><a href="#shared-utility-library-comparison" class="heading-anchor" aria-label="Link to this section">¶</a>Shared Utility Library Comparison
+</h2>
 <p>ECC&rsquo;s <code>scripts/lib/</code> contains utilities that we partially replicate:</p>
 <table>
   <thead>
@@ -609,41 +687,92 @@
   </tbody>
 </table>
 <p>The main gap is utility consolidation. ECC&rsquo;s <code>utils.js</code> provides <code>readStdinJson()</code>, <code>log()</code>, <code>output()</code>, <code>ensureDir()</code>, <code>appendFile()</code> — functions that every hook needs. Our hooks each implement their own stdin reading and file operations. A shared utility module would reduce code duplication and make hooks easier to write.</p>
-<h2 id="conclusion">Conclusion</h2>
+<h2 id="conclusion"><a href="#conclusion" class="heading-anchor" aria-label="Link to this section">¶</a>Conclusion
+</h2>
 <p>ECC is a well-engineered general-purpose plugin optimized for web development workflows. Its main architectural contributions to learn from are the in-process hook execution pattern (performance), the accumulator/batch pattern (deferred processing), and the governance event structure (audit trails). Its hook-specific implementations mostly target JS/TS web development and aren&rsquo;t directly portable, but the patterns underneath them are.</p>
 <p>The 561 harness is more specialized — our hooks handle knowledge graph maintenance, organizational operations, and continuous learning, which are domains ECC doesn&rsquo;t address. Where the systems overlap (safety, session management, observation), both are competent. The main gap is performance: adopting ECC&rsquo;s in-process execution and batch processing patterns would reduce our per-tool-call overhead without changing what our hooks do.</p>
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-04">April 4, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ecc-hook-architecture-analysis/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ecc-hook-architecture-analysis/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
-        <dd property="emsenn:Domain">computing</dd>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
       </div><div class="relation">
-        <dt>Sources</dt>
+        <dt><a href="/library/references/sources/">Sources</a></dt>
         <dd property="emsenn:Sources"><ul><li>operations/engineering/fars/src/everything claude code/</li></ul></dd>
       </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/claude-code/">claude-code</a></li><li><a href="/tags/agentic-harness/">agentic-harness</a></li><li><a href="/tags/hooks/">hooks</a></li><li><a href="/tags/infrastructure-analysis/">infrastructure-analysis</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

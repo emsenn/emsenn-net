@@ -1,30 +1,464 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Affective Drift in Large Language Models - emsenn.net</title>
+
+
+<meta name="description" content="¶Abstract When large language models (LLMs) generate text in semantic domains with low structure — where conceptual relationships are loose, contested, or multiply determined — they tend to produce language that is affectively charged: rhythmic, morally cadenced, and emotionally reassuring. This …">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/affective-drift-in-language-models/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Affective Drift in Large Language Models">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/affective-drift-in-language-models/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="¶Abstract When large language models (LLMs) generate text in semantic domains with low structure — where conceptual relationships are loose, contested, or multiply determined — they tend to produce language that is affectively charged: rhythmic, morally cadenced, and emotionally reassuring. This …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-03-05T00:00:00Z">
+<meta property="article:modified_time" content="2026-03-05T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Affective Drift in Large Language Models">
+<meta name="twitter:description" content="¶Abstract When large language models (LLMs) generate text in semantic domains with low structure — where conceptual relationships are loose, contested, or multiply determined — they tend to produce language that is affectively charged: rhythmic, morally cadenced, and emotionally reassuring. This …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/affective-drift-in-language-models/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/affective-drift-in-language-models/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/affective-drift-in-language-models/",
   "@type": "Article",
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Yoshua Bengio"
+        },
+        {
+          "@type": "Person",
+          "name": "Réjean Ducharme"
+        },
+        {
+          "@type": "Person",
+          "name": "Pascal Vincent"
+        },
+        {
+          "@type": "Person",
+          "name": "Christian Jauvin"
+        }
+      ],
+      "datePublished": "2003",
+      "identifier": "bengio2003",
+      "name": "A Neural Probabilistic Language Model",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Journal of Machine Learning Research"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "John Hale"
+        }
+      ],
+      "datePublished": "2001",
+      "identifier": "hale2001",
+      "name": "A Probabilistic Earley Parser as a Psycholinguistic Model",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Proceedings of the Second Meeting of the North American Chapter of the Association for Computational Linguistics"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Ari Holtzman"
+        },
+        {
+          "@type": "Person",
+          "name": "Jan Buys"
+        },
+        {
+          "@type": "Person",
+          "name": "Li Du"
+        },
+        {
+          "@type": "Person",
+          "name": "Maxwell Forbes"
+        },
+        {
+          "@type": "Person",
+          "name": "Yejin Choi"
+        }
+      ],
+      "datePublished": "2020",
+      "identifier": "holtzman2020",
+      "name": "The Curious Case of Neural Text Degeneration",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Proceedings of the International Conference on Learning Representations (ICLR)"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Roger Levy"
+        }
+      ],
+      "datePublished": "2008",
+      "identifier": "levy2008",
+      "name": "Expectation-Based Syntactic Comprehension",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cognition"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Tomas Mikolov"
+        },
+        {
+          "@type": "Person",
+          "name": "Kai Chen"
+        },
+        {
+          "@type": "Person",
+          "name": "Greg Corrado"
+        },
+        {
+          "@type": "Person",
+          "name": "Jeffrey Dean"
+        }
+      ],
+      "datePublished": "2013",
+      "identifier": "mikolov2013",
+      "name": "Efficient Estimation of Word Representations in Vector Space",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Proceedings of the International Conference on Learning Representations (ICLR)"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Long Ouyang"
+        },
+        {
+          "@type": "Person",
+          "name": "Jeffrey Wu"
+        },
+        {
+          "@type": "Person",
+          "name": "Xu Jiang"
+        },
+        {
+          "@type": "Person",
+          "name": "Diogo Almeida"
+        },
+        {
+          "@type": "Person",
+          "name": "Carroll Wainwright"
+        },
+        {
+          "@type": "Person",
+          "name": "Pamela Mishkin"
+        },
+        {
+          "@type": "Person",
+          "name": "Chong Zhang"
+        },
+        {
+          "@type": "Person",
+          "name": "Sandhini Agarwal"
+        },
+        {
+          "@type": "Person",
+          "name": "Katarina Slama"
+        },
+        {
+          "@type": "Person",
+          "name": "Alex Ray"
+        },
+        {
+          "@type": "Person",
+          "name": "John Schulman"
+        },
+        {
+          "@type": "Person",
+          "name": "Jacob Hilton"
+        },
+        {
+          "@type": "Person",
+          "name": "Fraser Kelton"
+        },
+        {
+          "@type": "Person",
+          "name": "Luke Miller"
+        },
+        {
+          "@type": "Person",
+          "name": "Maddie Simens"
+        },
+        {
+          "@type": "Person",
+          "name": "Amanda Askell"
+        },
+        {
+          "@type": "Person",
+          "name": "Peter Welinder"
+        },
+        {
+          "@type": "Person",
+          "name": "Paul Christiano"
+        },
+        {
+          "@type": "Person",
+          "name": "Jan Leike"
+        },
+        {
+          "@type": "Person",
+          "name": "Ryan Lowe"
+        }
+      ],
+      "datePublished": "2022",
+      "identifier": "ouyang2022",
+      "name": "Training Language Models to Follow Instructions with Human Feedback",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Advances in Neural Information Processing Systems"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Ethan Perez"
+        },
+        {
+          "@type": "Person",
+          "name": "Sam Ringer"
+        },
+        {
+          "@type": "Person",
+          "name": "Kamile Lukosiute"
+        },
+        {
+          "@type": "Person",
+          "name": "Karina Nguyen"
+        },
+        {
+          "@type": "Person",
+          "name": "Edwin Chen"
+        },
+        {
+          "@type": "Person",
+          "name": "Scott Heiner"
+        },
+        {
+          "@type": "Person",
+          "name": "Craig Pettit"
+        },
+        {
+          "@type": "Person",
+          "name": "Catherine Olsson"
+        },
+        {
+          "@type": "Person",
+          "name": "Sandipan Kundu"
+        },
+        {
+          "@type": "Person",
+          "name": "Saurav Kadavath"
+        },
+        {
+          "@type": "Person",
+          "name": "Andy Jones"
+        },
+        {
+          "@type": "Person",
+          "name": "Anna Chen"
+        },
+        {
+          "@type": "Person",
+          "name": "Ben Mann"
+        },
+        {
+          "@type": "Person",
+          "name": "Brian Israel"
+        },
+        {
+          "@type": "Person",
+          "name": "Bryan Seethor"
+        },
+        {
+          "@type": "Person",
+          "name": "Cameron McKinnon"
+        },
+        {
+          "@type": "Person",
+          "name": "Christopher Olah"
+        },
+        {
+          "@type": "Person",
+          "name": "Da Yan"
+        },
+        {
+          "@type": "Person",
+          "name": "Daniela Amodei"
+        },
+        {
+          "@type": "Person",
+          "name": "Dario Amodei"
+        },
+        {
+          "@type": "Person",
+          "name": "Dawn Drain"
+        },
+        {
+          "@type": "Person",
+          "name": "Dustin Li"
+        },
+        {
+          "@type": "Person",
+          "name": "Eli Tyre"
+        },
+        {
+          "@type": "Person",
+          "name": "Ethan Mollick"
+        }
+      ],
+      "datePublished": "2022",
+      "identifier": "perez2022",
+      "name": "Discovering Language Model Behaviors with Model-Written Evaluations",
+      "publisher": {
+        "@type": "Organization",
+        "name": "arXiv preprint"
+      },
+      "url": "https://arxiv.org/abs/2212.09251"
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Claude E. Shannon"
+        }
+      ],
+      "datePublished": "1948",
+      "identifier": "shannon1948",
+      "name": "A Mathematical Theory of Communication",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Bell System Technical Journal"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Ashish Vaswani"
+        },
+        {
+          "@type": "Person",
+          "name": "Noam Shazeer"
+        },
+        {
+          "@type": "Person",
+          "name": "Niki Parmar"
+        },
+        {
+          "@type": "Person",
+          "name": "Jakob Uszkoreit"
+        },
+        {
+          "@type": "Person",
+          "name": "Llion Jones"
+        },
+        {
+          "@type": "Person",
+          "name": "Aidan N. Gomez"
+        },
+        {
+          "@type": "Person",
+          "name": "Lukasz Kaiser"
+        },
+        {
+          "@type": "Person",
+          "name": "Illia Polosukhin"
+        }
+      ],
+      "datePublished": "2017",
+      "identifier": "vaswani2017",
+      "name": "Attention Is All You Need",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Advances in Neural Information Processing Systems"
+      }
+    }
+  ],
   "dateModified": "2026-03-05",
   "datePublished": "2026-03-05",
-  "description": "Abstract When large language models (LLMs) generate text in semantic domains with low structure — where conceptual relationships are loose, contested, or multiply determined — they tend to produce language that is affectively charged: rhythmic, morally cadenced, and emotionally reassuring. This paper proposes an entropy-based explanation for this behavior. In low-structure domains, the probability distribution over next tokens is relatively flat: many continuations are roughly equally likely. Affective language patterns — parallelism, aphoristic closure, moral framing — offer high-regularity sequences that reduce local entropy. The model follows these patterns not because it is expressing emotion but because affective syntax provides the most predictable path through a region of the probability landscape that otherwise offers little constraint. The paper distinguishes the established components of this account from the conjecture that connects them, and identifies the observable consequences that would follow if the conjecture holds.\n",
+  "description": "¶Abstract When large language models (LLMs) generate text in semantic domains with low structure — where conceptual relationships are loose, contested, or multiply determined — they tend to produce language that is affectively charged: rhythmic, morally cadenced, and emotionally reassuring. This paper proposes an entropy-based explanation for this behavior. In low-structure domains, the probability distribution over next tokens is relatively flat: many continuations are roughly equally likely. Affective language patterns — parallelism, aphoristic closure, moral framing — offer high-regularity sequences that reduce local entropy. The model follows these patterns not because it is expressing emotion but because affective syntax provides the most predictable path through a region of the probability landscape that otherwise offers little constraint. The paper distinguishes the established components of this account from the conjecture that connects them, and identifies the observable consequences that would follow if the conjecture holds.\n",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/",
+    "@type": "CreativeWork",
+    "name": "artificial-intelligence",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/"
+  },
   "keywords": "information-theory, entropy, large-language-models, research",
   "name": "Affective Drift in Large Language Models",
   "publisher": {
@@ -46,46 +480,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:artificial-intelligence, defines:[affective-drift-as-entropy-minimization-in-flat-semantic-regions low-structure-domain-as-high-entropy-probability-landscape], section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial Intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/">Texts</a></nav>
   <h1 class="p-name">Affective Drift in Large Language Models</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-03-05T00:00:00Z">2026-03-05</time>
     
     
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -105,34 +516,64 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
-    <h2 id="abstract">Abstract</h2>
+    <h2 id="abstract"><a href="#abstract" class="heading-anchor" aria-label="Link to this section">¶</a>Abstract
+</h2>
 <p>When large language models (LLMs) generate text in semantic domains with low structure — where conceptual relationships are loose, contested, or multiply determined — they tend to produce language that is affectively charged: rhythmic, morally cadenced, and emotionally reassuring. This paper proposes an entropy-based explanation for this behavior. In low-structure domains, the probability distribution over next tokens is relatively flat: many continuations are roughly equally likely. Affective language patterns — parallelism, aphoristic closure, moral framing — offer high-regularity sequences that reduce local entropy. The model follows these patterns not because it is expressing emotion but because affective syntax provides the most predictable path through a region of the probability landscape that otherwise offers little constraint. The paper distinguishes the established components of this account from the conjecture that connects them, and identifies the observable consequences that would follow if the conjecture holds.</p>
-<h2 id="1-components">1. Components</h2>
-<h3 id="11-language-models-as-probability-distributions">1.1 Language models as probability distributions</h3>
+<h2 id="1-components"><a href="#1-components" class="heading-anchor" aria-label="Link to this section">¶</a>1. Components
+</h2>
+<h3 id="11-language-models-as-probability-distributions"><a href="#11-language-models-as-probability-distributions" class="heading-anchor" aria-label="Link to this section">¶</a>1.1 Language models as probability distributions
+</h3>
 <p>A language model assigns probabilities to sequences of tokens. Given a sequence of tokens <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>t</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>t</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">t_1, t_2, \ldots, t_{n-1}</annotation></semantics></math></span>, the model estimates <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>t</mi><mi>n</mi></msub><mo>∣</mo><msub><mi>t</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>t</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(t_n \mid t_1, \ldots, t_{n-1})</annotation></semantics></math></span> — the probability distribution over what comes next (Bengio et al. 2003). Modern transformer-based models compute this distribution using self-attention mechanisms that allow every token in the context to influence the prediction (Vaswani et al. 2017).</p>
 <p>The internal representation of this process is geometric. Each token is embedded in a high-dimensional vector space in which spatial proximity encodes semantic similarity (Mikolov et al. 2013). The distribution over next tokens is a function of the current position in this space: in some regions, the geometry strongly constrains what can follow (high confidence, low entropy); in others, the geometry provides little constraint (low confidence, high entropy).</p>
-<h3 id="12-entropy-and-surprisal">1.2 Entropy and surprisal</h3>
+<h3 id="12-entropy-and-surprisal"><a href="#12-entropy-and-surprisal" class="heading-anchor" aria-label="Link to this section">¶</a>1.2 Entropy and surprisal
+</h3>
 <p>The entropy of a probability distribution measures the average uncertainty about the outcome. For a distribution over next tokens:</p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>H</mi><mo>=</mo><mo>−</mo><munder><mo>∑</mo><mi>i</mi></munder><mi>P</mi><mo stretchy="false">(</mo><msub><mi>t</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mi>log</mi><mo>⁡</mo><mi>P</mi><mo stretchy="false">(</mo><msub><mi>t</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H = -\sum_i P(t_i) \log P(t_i)</annotation></semantics></math></span><p>When one token is overwhelmingly likely, entropy is low. When many tokens are roughly equally likely, entropy is high. Shannon established this measure as the foundational quantity of information theory (Shannon 1948).</p>
 <p>Surprisal is the negative log probability of a specific token: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>log</mi><mo>⁡</mo><mi>P</mi><mo stretchy="false">(</mo><msub><mi>t</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">-\log P(t_i)</annotation></semantics></math></span>. High-surprisal tokens are unexpected; low-surprisal tokens are predictable. The information-theoretic processing cost of a token is proportional to its surprisal. This relationship has been validated in human language processing: reading times correlate with surprisal, and comprehension difficulty increases with information-theoretic processing load (Hale 2001; Levy 2008).</p>
 <p>For language models, the same principle operates in reverse. A model generating text follows a path through its probability landscape. At each step, the locally most probable continuation is the one with the lowest surprisal — the path of least resistance. When the landscape offers a clear channel (one continuation is much more probable than the rest), the model follows it. When the landscape is flat (many continuations are roughly equally probable), the model must find regularity somewhere else.</p>
-<h3 id="13-semantic-topology">1.3 Semantic topology</h3>
+<h3 id="13-semantic-topology"><a href="#13-semantic-topology" class="heading-anchor" aria-label="Link to this section">¶</a>1.3 Semantic topology
+</h3>
 <p>Not all regions of the embedding space have the same structure. In domains with tightly constrained relationships — where the concepts are well-defined, the causal chains are clear, and the training data provides consistent usage patterns — the probability landscape has steep gradients. &ldquo;Photosynthesis&rdquo; predicts &ldquo;chlorophyll,&rdquo; &ldquo;light,&rdquo; or &ldquo;plants&rdquo; with high confidence. The semantic topology channels prediction.</p>
 <p>In domains where relationships are loose, circular, or contested, the landscape flattens. &ldquo;Care&rdquo; could mean medical attention, emotional concern, political responsibility, or brand marketing. &ldquo;Justice&rdquo; participates in legal, philosophical, political, and colloquial discourses simultaneously. The probability distribution over what follows these terms is diffuse. The model is in a region where many continuations are roughly equally plausible, and the semantic structure provides little guidance about which to prefer.</p>
-<h3 id="14-affective-language-as-regularity">1.4 Affective language as regularity</h3>
+<h3 id="14-affective-language-as-regularity"><a href="#14-affective-language-as-regularity" class="heading-anchor" aria-label="Link to this section">¶</a>1.4 Affective language as regularity
+</h3>
 <p>Affective language has a structural property that makes it distinctive in the probability landscape: it is predictable.</p>
 <p>Short, balanced sentences with moral framing — &ldquo;We must care for one another,&rdquo; &ldquo;To learn is to listen&rdquo; — have regular syntactic patterns and familiar rhetorical structures. Parallelism (&ldquo;This isn&rsquo;t X, it&rsquo;s Y&rdquo;), aphoristic closure, and emotional cadence create sequences where each token strongly predicts the next. The surprisal of each successive token is low because the pattern is so familiar that the training data provides dense, consistent examples.</p>
 <p>This predictability is not a coincidence. Human writers use affect and rhythm to stabilize their own discourse when conceptual structure is weak. The training corpus — billions of tokens of web text — reflects this pattern. The web&rsquo;s writing about &ldquo;connection,&rdquo; &ldquo;balance,&rdquo; &ldquo;community,&rdquo; and &ldquo;purpose&rdquo; is disproportionately affective rather than analytic, because those are the domains where affective language does the most work for human writers. The model inherits this statistical structure.</p>
-<h3 id="15-reinforcement-through-human-feedback">1.5 Reinforcement through human feedback</h3>
+<h3 id="15-reinforcement-through-human-feedback"><a href="#15-reinforcement-through-human-feedback" class="heading-anchor" aria-label="Link to this section">¶</a>1.5 Reinforcement through human feedback
+</h3>
 <p>Reinforcement learning from human feedback (RLHF) further strengthens the affective bias (Ouyang et al. 2022). In RLHF training, human evaluators rate model outputs on helpfulness, harmlessness, and honesty. Evaluators tend to rate warm, reassuring, and emotionally coherent language as more helpful than hedging, hesitation, or explicit expressions of uncertainty — particularly in domains where the evaluator is not an expert and cannot assess the accuracy of the content (Perez et al. 2022).</p>
 <p>This creates a feedback loop. The model&rsquo;s statistical tendency to produce affective language in low-structure domains is reinforced by human preferences for language that sounds confident and caring. The evaluator rewards warmth. The model learns that warmth correlates with approval. Affective drift becomes trained behavior as well as statistical default.</p>
-<h2 id="2-the-conjecture">2. The conjecture</h2>
+<h2 id="2-the-conjecture"><a href="#2-the-conjecture" class="heading-anchor" aria-label="Link to this section">¶</a>2. The conjecture
+</h2>
 <p>The components described above are established: probability distributions over tokens, entropy as a measure of uncertainty, the geometric structure of embedding spaces, the predictability of affective language patterns, and the reinforcing effects of RLHF. Each is supported by published research.</p>
 <p>The conjecture that connects them is this: <strong>the primary mechanism driving affective drift in LLMs is entropy minimization in flat semantic regions.</strong> When the probability landscape offers insufficient structure to constrain generation, the model follows whichever patterns provide the most predictable local path. Affective syntax provides that path because it has been overrepresented in the training data for exactly the same reason — human writers use it to stabilize their own discourse in low-structure domains — and because RLHF has reinforced it as a marker of helpfulness.</p>
 <p>This conjecture is stronger than saying &ldquo;LLMs produce affective language because affective language appears in the training data.&rdquo; That would be a tautology — the model reproduces what it has seen. The conjecture specifies a mechanism: the model produces affective language specifically in low-structure domains because the entropy gradient makes affective patterns the locally optimal path, not because it is expressing emotion or demonstrating understanding.</p>
 <p>The distinction matters for diagnosis. If affective drift is a consequence of probability landscape geometry, it is not addressable by adding more training data or improving factual accuracy. It is a structural feature of how the model navigates uncertainty — one that would persist in any model that minimizes surprisal over a corpus where affective language dominates the low-structure regions.</p>
-<h2 id="3-observable-consequences">3. Observable consequences</h2>
+<h2 id="3-observable-consequences"><a href="#3-observable-consequences" class="heading-anchor" aria-label="Link to this section">¶</a>3. Observable consequences
+</h2>
 <p>If the conjecture holds, the following patterns should be observable:</p>
 <ol>
 <li>
@@ -151,7 +592,8 @@
 <p><strong>Resistance to prompting.</strong> Explicit instructions to &ldquo;be analytical&rdquo; or &ldquo;avoid emotional language&rdquo; should reduce affective drift in high-structure domains (where analytic alternatives are available and predictable) but have diminishing effect in low-structure domains (where the entropy gradient continues to favor affective patterns regardless of the instruction).</p>
 </li>
 </ol>
-<h2 id="4-connection-to-reflexive-capacity">4. Connection to reflexive capacity</h2>
+<h2 id="4-connection-to-reflexive-capacity"><a href="#4-connection-to-reflexive-capacity" class="heading-anchor" aria-label="Link to this section">¶</a>4. Connection to reflexive capacity
+</h2>
 <p>Affective drift is an example of a system operating without the capacity to monitor its own categorical commitments. The model does not recognize that it has entered a low-structure domain. It does not notice that its output has shifted from analysis to affect. It does not assess whether the affective register serves the communicative situation. It follows the entropy gradient.</p>
 <p>In the vocabulary of single-loop and double-loop learning, affective drift is single-loop behavior: the model corrects token-by-token within its statistical frame but cannot question whether the frame — the affective path through the probability landscape — is appropriate to the situation. Double-loop learning would require the model to recognize the mismatch between its register and the communicative demand, and to revise its approach rather than following the locally optimal path.</p>
 <p>This makes affective drift not a bug but a diagnostic indicator: a visible consequence of the structural gap between operational sophistication and reflexive capacity in current language model architectures.</p>
@@ -159,63 +601,69 @@
 <p><em>For a plain-language version, see Why AI Gets Emotional When Ideas Get Big.</em></p>
 
   </div>
-  <section class="bibliography" id="bibliography"
+  
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-03-05">March 5, 2026</time>.</p>
+  
+  <details class="bibliography" id="bibliography" open
          vocab="https://schema.org/" typeof="ItemList">
-  <h2>References</h2><p class="bib-entry" id="ref-bengio2003" typeof="CreativeWork" resource="#ref-bengio2003">
+  <summary><h2>References</h2></summary><p class="bib-entry h-cite" id="ref-bengio2003" typeof="CreativeWork" resource="#ref-bengio2003">
     <span class="bib-key">[bengio2003]</span>
-      <span property="author">Yoshua Bengio, Réjean Ducharme, Pascal Vincent, Christian Jauvin</span>.
-      (<span property="datePublished">2003</span>).<cite property="name">A Neural Probabilistic Language Model</cite>.
-      <em property="publisher">Journal of Machine Learning Research</em>, 3, 1137-1155.
-  </p><p class="bib-entry" id="ref-hale2001" typeof="CreativeWork" resource="#ref-hale2001">
+      <span class="p-author" property="author">Yoshua Bengio, Réjean Ducharme, Pascal Vincent, Christian Jauvin</span>.
+      (<time class="dt-published" property="datePublished" datetime="2003">2003</time>).<cite class="p-name" property="name">A Neural Probabilistic Language Model</cite>.
+      <em class="p-publisher" property="publisher">Journal of Machine Learning Research</em>, 3, 1137-1155.
+  </p><p class="bib-entry h-cite" id="ref-hale2001" typeof="CreativeWork" resource="#ref-hale2001">
     <span class="bib-key">[hale2001]</span>
-      <span property="author">John Hale</span>.
-      (<span property="datePublished">2001</span>).<cite property="name">A Probabilistic Earley Parser as a Psycholinguistic Model</cite>.
-      <em property="publisher">Proceedings of the Second Meeting of the North American Chapter of the Association for Computational Linguistics</em>, 159-166.
-  </p><p class="bib-entry" id="ref-holtzman2020" typeof="CreativeWork" resource="#ref-holtzman2020">
+      <span class="p-author" property="author">John Hale</span>.
+      (<time class="dt-published" property="datePublished" datetime="2001">2001</time>).<cite class="p-name" property="name">A Probabilistic Earley Parser as a Psycholinguistic Model</cite>.
+      <em class="p-publisher" property="publisher">Proceedings of the Second Meeting of the North American Chapter of the Association for Computational Linguistics</em>, 159-166.
+  </p><p class="bib-entry h-cite" id="ref-holtzman2020" typeof="CreativeWork" resource="#ref-holtzman2020">
     <span class="bib-key">[holtzman2020]</span>
-      <span property="author">Ari Holtzman, Jan Buys, Li Du, Maxwell Forbes, Yejin Choi</span>.
-      (<span property="datePublished">2020</span>).<cite property="name">The Curious Case of Neural Text Degeneration</cite>.
-      <em property="publisher">Proceedings of the International Conference on Learning Representations (ICLR)</em>.
-  </p><p class="bib-entry" id="ref-levy2008" typeof="CreativeWork" resource="#ref-levy2008">
+      <span class="p-author" property="author">Ari Holtzman, Jan Buys, Li Du, Maxwell Forbes, Yejin Choi</span>.
+      (<time class="dt-published" property="datePublished" datetime="2020">2020</time>).<cite class="p-name" property="name">The Curious Case of Neural Text Degeneration</cite>.
+      <em class="p-publisher" property="publisher">Proceedings of the International Conference on Learning Representations (ICLR)</em>.
+  </p><p class="bib-entry h-cite" id="ref-levy2008" typeof="CreativeWork" resource="#ref-levy2008">
     <span class="bib-key">[levy2008]</span>
-      <span property="author">Roger Levy</span>.
-      (<span property="datePublished">2008</span>).<cite property="name">Expectation-Based Syntactic Comprehension</cite>.
-      <em property="publisher">Cognition</em>, 106(3), 1126-1177.
-  </p><p class="bib-entry" id="ref-mikolov2013" typeof="CreativeWork" resource="#ref-mikolov2013">
+      <span class="p-author" property="author">Roger Levy</span>.
+      (<time class="dt-published" property="datePublished" datetime="2008">2008</time>).<cite class="p-name" property="name">Expectation-Based Syntactic Comprehension</cite>.
+      <em class="p-publisher" property="publisher">Cognition</em>, 106(3), 1126-1177.
+  </p><p class="bib-entry h-cite" id="ref-mikolov2013" typeof="CreativeWork" resource="#ref-mikolov2013">
     <span class="bib-key">[mikolov2013]</span>
-      <span property="author">Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean</span>.
-      (<span property="datePublished">2013</span>).<cite property="name">Efficient Estimation of Word Representations in Vector Space</cite>.
-      <em property="publisher">Proceedings of the International Conference on Learning Representations (ICLR)</em>.
-  </p><p class="bib-entry" id="ref-ouyang2022" typeof="CreativeWork" resource="#ref-ouyang2022">
+      <span class="p-author" property="author">Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean</span>.
+      (<time class="dt-published" property="datePublished" datetime="2013">2013</time>).<cite class="p-name" property="name">Efficient Estimation of Word Representations in Vector Space</cite>.
+      <em class="p-publisher" property="publisher">Proceedings of the International Conference on Learning Representations (ICLR)</em>.
+  </p><p class="bib-entry h-cite" id="ref-ouyang2022" typeof="CreativeWork" resource="#ref-ouyang2022">
     <span class="bib-key">[ouyang2022]</span>
-      <span property="author">Long Ouyang, Jeffrey Wu, Xu Jiang, Diogo Almeida, Carroll Wainwright, Pamela Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, John Schulman, Jacob Hilton, Fraser Kelton, Luke Miller, Maddie Simens, Amanda Askell, Peter Welinder, Paul Christiano, Jan Leike, Ryan Lowe</span>.
-      (<span property="datePublished">2022</span>).<cite property="name">Training Language Models to Follow Instructions with Human Feedback</cite>.
-      <em property="publisher">Advances in Neural Information Processing Systems</em>, 35.
-  </p><p class="bib-entry" id="ref-perez2022" typeof="CreativeWork" resource="#ref-perez2022">
+      <span class="p-author" property="author">Long Ouyang, Jeffrey Wu, Xu Jiang, Diogo Almeida, Carroll Wainwright, Pamela Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, John Schulman, Jacob Hilton, Fraser Kelton, Luke Miller, Maddie Simens, Amanda Askell, Peter Welinder, Paul Christiano, Jan Leike, Ryan Lowe</span>.
+      (<time class="dt-published" property="datePublished" datetime="2022">2022</time>).<cite class="p-name" property="name">Training Language Models to Follow Instructions with Human Feedback</cite>.
+      <em class="p-publisher" property="publisher">Advances in Neural Information Processing Systems</em>, 35.
+  </p><p class="bib-entry h-cite" id="ref-perez2022" typeof="CreativeWork" resource="#ref-perez2022">
     <span class="bib-key">[perez2022]</span>
-      <span property="author">Ethan Perez, Sam Ringer, Kamile Lukosiute, Karina Nguyen, Edwin Chen, Scott Heiner, Craig Pettit, Catherine Olsson, Sandipan Kundu, Saurav Kadavath, Andy Jones, Anna Chen, Ben Mann, Brian Israel, Bryan Seethor, Cameron McKinnon, Christopher Olah, Da Yan, Daniela Amodei, Dario Amodei, Dawn Drain, Dustin Li, Eli Tyre, Ethan Mollick</span>.
-      (<span property="datePublished">2022</span>).<cite property="name">Discovering Language Model Behaviors with Model-Written Evaluations</cite>.
-      <em property="publisher">arXiv preprint</em>.
-      <a href="https://arxiv.org/abs/2212.09251">https://arxiv.org/abs/2212.09251</a>
-  </p><p class="bib-entry" id="ref-shannon1948" typeof="CreativeWork" resource="#ref-shannon1948">
+      <span class="p-author" property="author">Ethan Perez, Sam Ringer, Kamile Lukosiute, Karina Nguyen, Edwin Chen, Scott Heiner, Craig Pettit, Catherine Olsson, Sandipan Kundu, Saurav Kadavath, Andy Jones, Anna Chen, Ben Mann, Brian Israel, Bryan Seethor, Cameron McKinnon, Christopher Olah, Da Yan, Daniela Amodei, Dario Amodei, Dawn Drain, Dustin Li, Eli Tyre, Ethan Mollick</span>.
+      (<time class="dt-published" property="datePublished" datetime="2022">2022</time>).<cite class="p-name" property="name">Discovering Language Model Behaviors with Model-Written Evaluations</cite>.
+      <em class="p-publisher" property="publisher">arXiv preprint</em>.
+      <a class="u-url" href="https://arxiv.org/abs/2212.09251">https://arxiv.org/abs/2212.09251</a>
+  </p><p class="bib-entry h-cite" id="ref-shannon1948" typeof="CreativeWork" resource="#ref-shannon1948">
     <span class="bib-key">[shannon1948]</span>
-      <span property="author">Claude E. Shannon</span>.
-      (<span property="datePublished">1948</span>).<cite property="name">A Mathematical Theory of Communication</cite>.
-      <em property="publisher">Bell System Technical Journal</em>, 27, 379-423, 623-656.
-  </p><p class="bib-entry" id="ref-vaswani2017" typeof="CreativeWork" resource="#ref-vaswani2017">
+      <span class="p-author" property="author">Claude E. Shannon</span>.
+      (<time class="dt-published" property="datePublished" datetime="1948">1948</time>).<cite class="p-name" property="name">A Mathematical Theory of Communication</cite>.
+      <em class="p-publisher" property="publisher">Bell System Technical Journal</em>, 27, 379-423, 623-656.
+  </p><p class="bib-entry h-cite" id="ref-vaswani2017" typeof="CreativeWork" resource="#ref-vaswani2017">
     <span class="bib-key">[vaswani2017]</span>
-      <span property="author">Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin</span>.
-      (<span property="datePublished">2017</span>).<cite property="name">Attention Is All You Need</cite>.
-      <em property="publisher">Advances in Neural Information Processing Systems</em>, 30.
+      <span class="p-author" property="author">Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin</span>.
+      (<time class="dt-published" property="datePublished" datetime="2017">2017</time>).<cite class="p-name" property="name">Attention Is All You Need</cite>.
+      <em class="p-publisher" property="publisher">Advances in Neural Information Processing Systems</em>, 30.
   </p>
-</section>
+</details>
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/affective-drift-in-language-models/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/affective-drift-in-language-models/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
         <dt><a href="/library/domains/science/domains/math/terms/action/">Acts on</a></dt>
         <dd property="emsenn:Actson">large language model generating in low structure domains</dd>
+      </div><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">artificial intelligence</a></dd>
       </div><div class="relation">
         <dt>Contrasts with</dt>
         <dd property="emsenn:Contrastswith">affective drift as emergent emotion</dd>
@@ -224,38 +672,76 @@
         <dd property="schema:dateCreated"><time datetime="2026-03-05">2026-03-05</time></dd>
       </div><div class="relation">
         <dt>Defines</dt>
-        <dd property="emsenn:Defines"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/affective-drift-in-language-models/">affective drift as entropy minimization in flat semantic regions</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/affective-drift-in-language-models/">low structure domain as high entropy probability landscape</a></li></ul></dd>
+        <dd property="schema:about"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/affective-drift-in-language-models/">affective drift as entropy minimization in flat semantic regions</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/affective-drift-in-language-models/">low structure domain as high entropy probability landscape</a></li></ul></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
-        <dd property="emsenn:Extends"><ul><li>information theoretic stability as reward function</li><li>surprisal theory of language processing</li></ul></dd>
-      </div><div class="relation">
-        <dt>Form</dt>
-        <dd property="emsenn:Form">paper</dd>
+        <dd property="prov:wasDerivedFrom"><ul><li>information theoretic stability as reward function</li><li>surprisal theory of language processing</li></ul></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/engineering/domains/tech/terms/produces/">Produces</a></dt>
         <dd property="emsenn:Produces"><ul><li>five testable predictions for affective drift</li><li>entropy based explanation of ai slop</li></ul></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment"><ul><li>transformer language model</li><li>token level entropy measurement</li><li>reinforcement learning from human feedback</li></ul></dd>
+        <dd property="schema:isBasedOn"><ul><li>transformer language model</li><li>token level entropy measurement</li><li>reinforcement learning from human feedback</li></ul></dd>
       </div><div class="relation">
-        <dt>Status</dt>
-        <dd property="emsenn:Status">draft</dd>
-      </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/information-theory/">information-theory</a></li><li><a href="/tags/entropy/">entropy</a></li><li><a href="/tags/large-language-models/">large-language-models</a></li><li><a href="/tags/research/">research</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

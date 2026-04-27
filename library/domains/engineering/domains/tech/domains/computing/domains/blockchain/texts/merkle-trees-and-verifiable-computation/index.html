@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Merkle Trees, Merkle Patricia Tries, and Verifiable Computation - emsenn.net</title>
+
+
+<meta name="description" content="How cryptographic proofs enable light clients, scalable rollups, and fog of war in on-chain games.">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/merkle-trees-and-verifiable-computation/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Merkle Trees, Merkle Patricia Tries, and Verifiable Computation">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/merkle-trees-and-verifiable-computation/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="How cryptographic proofs enable light clients, scalable rollups, and fog of war in on-chain games.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-05T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-05T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Merkle Trees, Merkle Patricia Tries, and Verifiable Computation">
+<meta name="twitter:description" content="How cryptographic proofs enable light clients, scalable rollups, and fog of war in on-chain games.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/merkle-trees-and-verifiable-computation/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/merkle-trees-and-verifiable-computation/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/merkle-trees-and-verifiable-computation/",
   "@type": "Article",
   "dateModified": "2026-04-05",
   "datePublished": "2026-04-05",
   "description": "How cryptographic proofs enable light clients, scalable rollups, and fog of war in on-chain games.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/",
+    "@type": "CreativeWork",
+    "name": "blockchain",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/"
+  },
   "name": "Merkle Trees, Merkle Patricia Tries, and Verifiable Computation",
   "publisher": {
     "@type": "Person",
@@ -45,46 +96,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:blockchain, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/">Blockchain</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/">Blockchain Texts</a></nav>
   <h1 class="p-name">Merkle Trees, Merkle Patricia Tries, and Verifiable Computation</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-05T00:00:00Z">2026-04-05</time>
     
     <span class="p-summary">How cryptographic proofs enable light clients, scalable rollups, and fog of war in on-chain games.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -108,8 +136,30 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
-    <h2 id="merkle-trees-in-blockchains">Merkle Trees in Blockchains</h2>
+    <h2 id="merkle-trees-in-blockchains"><a href="#merkle-trees-in-blockchains" class="heading-anchor" aria-label="Link to this section">¶</a>Merkle Trees in Blockchains
+</h2>
 <p>A Merkle tree is a binary tree where each leaf is a data item and each non-leaf node is the hash of its two children. The root hash, called the Merkle root, is a compact fingerprint of the entire tree.</p>
 <p>In Bitcoin, all transactions in a block are arranged into a Merkle tree. The block header stores only the Merkle root, not the full list of transactions. This enables two critical properties:</p>
 <ol>
@@ -121,7 +171,8 @@
 </li>
 </ol>
 <p>The amount of proof data scales logarithmically: proof size = log₂(number of transactions). This is why Merkle trees are the cryptographic backbone of scalable blockchains.</p>
-<h2 id="merkle-patricia-tries-ethereums-state-tree">Merkle Patricia Tries: Ethereum&rsquo;s State Tree</h2>
+<h2 id="merkle-patricia-tries-ethereums-state-tree"><a href="#merkle-patricia-tries-ethereums-state-tree" class="heading-anchor" aria-label="Link to this section">¶</a>Merkle Patricia Tries: Ethereum&rsquo;s State Tree
+</h2>
 <p>Ethereum stores state (all account balances, smart contract storage, code) in a Merkle Patricia Trie (MPT), a data structure that combines three ideas:</p>
 <ul>
 <li><strong>Trie</strong> (prefix tree): Keys are organized by shared prefixes, enabling fast lookups</li>
@@ -148,10 +199,12 @@
 <li><strong>Receipt Trie</strong>: Transaction receipts (logs, gas used, status).</li>
 </ul>
 <p>This design lets light clients verify facts about the chain by checking only the root hashes in block headers, not the entire state. A light client can prove &ldquo;account X has balance Y&rdquo; by obtaining the Merkle proof from a full node.</p>
-<h2 id="zero-knowledge-proofs-for-verifiable-computation">Zero-Knowledge Proofs for Verifiable Computation</h2>
+<h2 id="zero-knowledge-proofs-for-verifiable-computation"><a href="#zero-knowledge-proofs-for-verifiable-computation" class="heading-anchor" aria-label="Link to this section">¶</a>Zero-Knowledge Proofs for Verifiable Computation
+</h2>
 <p>A zero-knowledge proof is a protocol where one party (the prover) convinces another (the verifier) that a statement is true without revealing any information beyond the truth of the statement itself.</p>
 <p>This enables <strong>verifiable computation</strong>: you can outsource expensive computation to an untrusted party, and they can prove the result is correct without you redoing the work.</p>
-<h3 id="zk-snarks">zk-SNARKs</h3>
+<h3 id="zk-snarks"><a href="#zk-snarks" class="heading-anchor" aria-label="Link to this section">¶</a>zk-SNARKs
+</h3>
 <p>zk-SNARK stands for &ldquo;Zero Knowledge Succinct Non-Interactive Argument of Knowledge.&rdquo;</p>
 <ul>
 <li><strong>Succinct</strong>: The proof is small and quick to verify, regardless of computation size</li>
@@ -160,24 +213,29 @@
 </ul>
 <p>The tradeoff: zk-SNARKs require a <strong>trusted setup</strong> ceremony. Both the prover and verifier use a shared public parameter (the Common Reference String, or CRS) that was generated by a trusted party. If that party keeps a copy of the randomness used to generate the CRS, they could forge proofs. To mitigate this, multi-party computation is used: many participants each contribute random values, and the CRS is secure as long as at least one participant is honest.</p>
 <p>zk-SNARKs generate proofs 68x faster with 123x smaller proof sizes than alternatives, but verify slower and require trusted setup.</p>
-<h3 id="zk-starks">zk-STARKs</h3>
+<h3 id="zk-starks"><a href="#zk-starks" class="heading-anchor" aria-label="Link to this section">¶</a>zk-STARKs
+</h3>
 <p>zk-STARK stands for &ldquo;Zero Knowledge Scalable Transparent Argument of Knowledge,&rdquo; introduced in 2018 as an alternative to SNARKs.</p>
 <p>The key difference: zk-STARKs are <strong>transparent</strong> — they require no trusted setup. The public parameters are generated using publicly verifiable randomness, so there&rsquo;s no secret that could be weaponized.</p>
 <p>The tradeoff: zk-STARK proofs are larger and generation is slower than SNARKs. But verification is faster, and they&rsquo;re post-quantum secure (resistant to attacks from quantum computers).</p>
-<h2 id="rollups-optimistic-vs-zero-knowledge">Rollups: Optimistic vs. Zero-Knowledge</h2>
+<h2 id="rollups-optimistic-vs-zero-knowledge"><a href="#rollups-optimistic-vs-zero-knowledge" class="heading-anchor" aria-label="Link to this section">¶</a>Rollups: Optimistic vs. Zero-Knowledge
+</h2>
 <p>Both optimistic and ZK rollups compress transactions off-chain and submit a proof to the main chain, reducing on-chain computation.</p>
-<h3 id="optimistic-rollups">Optimistic Rollups</h3>
+<h3 id="optimistic-rollups"><a href="#optimistic-rollups" class="heading-anchor" aria-label="Link to this section">¶</a>Optimistic Rollups
+</h3>
 <p>Optimistic rollups <strong>assume all transactions are valid by default</strong> and only verify them if someone challenges them. The system includes a dispute period (typically 7 days) where anyone can submit a &ldquo;fraud proof&rdquo; to challenge a transaction batch.</p>
 <p>A fraud proof proves that a specific transaction is invalid — that the post-transaction state doesn&rsquo;t match what was claimed. This requires showing a counterexample, which can be substantial.</p>
 <p><strong>Pros</strong>: Simple to implement, no complex cryptography required, cheap to submit batches (40,000 gas per batch).</p>
 <p><strong>Cons</strong>: Long withdrawal times (users must wait for the dispute period), and if a dishonest sequencer submits an invalid batch, the entire system must halt and reorg to fix it.</p>
-<h3 id="zk-rollups">ZK Rollups</h3>
+<h3 id="zk-rollups"><a href="#zk-rollups" class="heading-anchor" aria-label="Link to this section">¶</a>ZK Rollups
+</h3>
 <p>ZK rollups compute a zero-knowledge proof for each transaction batch that cryptographically proves the batch is valid. The proof is submitted on-chain and verified by a smart contract.</p>
 <p>Every new batch comes with a zk-SNARK or zk-STARK proving the batch computation produces the correct new state root.</p>
 <p><strong>Pros</strong>: Fast finality (withdrawals are instantaneous because transactions are already validated), and no dispute period needed.</p>
 <p><strong>Cons</strong>: Complex to implement, expensive per batch due to proof verification (500,000 gas for a zk-SNARK batch), and the trusted setup (for SNARKs) creates a governance risk.</p>
 <p>The practical difference: Optimistic is simpler but slower to exit; ZK is more complex but enables instant finality.</p>
-<h2 id="dark-forest-fog-of-war-via-zero-knowledge-proofs">Dark Forest: Fog of War via Zero-Knowledge Proofs</h2>
+<h2 id="dark-forest-fog-of-war-via-zero-knowledge-proofs"><a href="#dark-forest-fog-of-war-via-zero-knowledge-proofs" class="heading-anchor" aria-label="Link to this section">¶</a>Dark Forest: Fog of War via Zero-Knowledge Proofs
+</h2>
 <p>Dark Forest is an MMO space-conquest game where players discover and conquer planets in a procedurally-generated, cryptographically-specified infinite universe. The game uses zk-SNARKs to implement &ldquo;cryptographic fog of war&rdquo; — a game state where information is hidden not by a central server withholding it, but by mathematics.</p>
 <p>In a traditional MMO, the server knows all player positions and uses that to decide what each player sees. A cheater can modify the client to request all data. In Dark Forest, the blockchain itself can&rsquo;t see where players are.</p>
 <p>The mechanism:</p>
@@ -199,7 +257,8 @@
 </ol>
 <p>The result: the smart contract can verify moves are valid without ever knowing player positions. The blockchain is the source of truth for game state, but that state is mathematically hidden until players choose to reveal it.</p>
 <p>This demonstrates a critical insight: <strong>zero-knowledge proofs enable decentralized game logic</strong>. The server no longer needs to be trusted to know or conceal player positions. The proof mechanism itself enforces the rules.</p>
-<h2 id="verifiable-computation-in-practice">Verifiable Computation in Practice</h2>
+<h2 id="verifiable-computation-in-practice"><a href="#verifiable-computation-in-practice" class="heading-anchor" aria-label="Link to this section">¶</a>Verifiable Computation in Practice
+</h2>
 <p>The shift from &ldquo;everyone computes the same thing&rdquo; to &ldquo;one party computes and everyone verifies the proof&rdquo; is profound:</p>
 <ol>
 <li>
@@ -216,7 +275,8 @@
 </li>
 </ol>
 <p>The tradeoff: the overhead of generating proofs can be substantial. For some applications (especially simple ones), the cost of proof generation outweighs the savings from efficient verification. But for complex computation — especially on-chain state updates — the math becomes favorable quickly.</p>
-<h2 id="see-also">See Also</h2>
+<h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See Also
+</h2>
 <ul>
 <li><a href="./content-addressed-storage.md" class="link-internal">Content-Addressed Storage: IPFS, Arweave, and the Permaweb</a></li>
 <li><a href="./web3-game-economies.md" class="link-internal">Web3 Game Economies: From Play-to-Earn Collapse to Sustainable Design</a></li>
@@ -224,29 +284,79 @@
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-05">April 5, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/merkle-trees-and-verifiable-computation/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/texts/merkle-trees-and-verifiable-computation/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/">blockchain</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-05">2026-04-05</time></dd>
       </div><div class="relation">
-        <dt>Sources</dt>
+        <dt><a href="/library/references/sources/">Sources</a></dt>
         <dd property="emsenn:Sources"><ul></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

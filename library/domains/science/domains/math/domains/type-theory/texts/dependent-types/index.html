@@ -1,30 +1,101 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dependent Types - emsenn.net</title>
+
+
+<meta name="description" content="¶Entry conditions Use dependent types when you need:
+Types that vary according to a value — a vector whose type includes its length, a matrix whose type includes its dimensions, a proof whose type is the proposition proved. A single framework where programs, specifications, and proofs coexist — …">
+<link rel="canonical" href="https://emsenn.net/library/domains/science/domains/math/domains/type-theory/texts/dependent-types/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Dependent Types">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/science/domains/math/domains/type-theory/texts/dependent-types/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="¶Entry conditions Use dependent types when you need:
+Types that vary according to a value — a vector whose type includes its length, a matrix whose type includes its dimensions, a proof whose type is the proposition proved. A single framework where programs, specifications, and proofs coexist — …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-03-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-03-01T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dependent Types">
+<meta name="twitter:description" content="¶Entry conditions Use dependent types when you need:
+Types that vary according to a value — a vector whose type includes its length, a matrix whose type includes its dimensions, a proof whose type is the proposition proved. A single framework where programs, specifications, and proofs coexist — …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/science/domains/math/domains/type-theory/texts/dependent-types/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/science/domains/math/domains/type-theory/texts/dependent-types/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/science/domains/math/domains/type-theory/texts/dependent-types/",
   "@type": "Article",
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "identifier": "ref1",
+      "name": "Constructive Mathematics and Computer Programming"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "ref2",
+      "name": "Homotopy Type Theory: Univalent Foundations of Mathematics"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "ref3",
+      "name": "Types and Programming Languages"
+    }
+  ],
   "dateModified": "2026-03-01",
   "datePublished": "2026-03-01",
-  "description": "Entry conditions Use dependent types when you need:\nTypes that vary according to a value — a vector whose type includes its length, a matrix whose type includes its dimensions, a proof whose type is the proposition proved. A single framework where programs, specifications, and proofs coexist — where writing code and proving theorems are the same activity. A formal language strong enough to state and verify mathematical theorems, not just check that functions return the right kind of output. From simple types to dependent types The simply typed lambda calculus assigns every term a type, and function types have the form A→BA \\to B: the input has type AA, the output has type BB. The output type does not depend on the input value — a function of type N→N\\mathbb{N} \\to \\mathbb{N} returns a natural number regardless of which natural number it receives.\n",
+  "description": "¶Entry conditions Use dependent types when you need:\nTypes that vary according to a value — a vector whose type includes its length, a matrix whose type includes its dimensions, a proof whose type is the proposition proved. A single framework where programs, specifications, and proofs coexist — where writing code and proving theorems are the same activity. A formal language strong enough to state and verify mathematical theorems, not just check that functions return the right kind of output. ¶From simple types to dependent types The simply typed lambda calculus assigns every term a type, and function types have the form A→BA \\to B: the input has type AA, the output has type BB. The output type does not depend on the input value — a function of type N→N\\mathbb{N} \\to \\mathbb{N} returns a natural number regardless of which natural number it receives.\n",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/science/domains/math/domains/type-theory/",
+    "@type": "CreativeWork",
+    "name": "type-theory",
+    "url": "https://emsenn.net/library/domains/science/domains/math/domains/type-theory/"
+  },
   "keywords": "type-theory, logic",
   "name": "Dependent Types",
   "publisher": {
@@ -46,46 +117,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:type-theory, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/">Science</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/">Math</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/type-theory/">Type Theory</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/science/domains/math/domains/type-theory/texts/">Texts</a></nav>
   <h1 class="p-name">Dependent Types</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-03-01T00:00:00Z">2026-03-01</time>
     
     
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -102,8 +150,30 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
-    <h2 id="entry-conditions">Entry conditions</h2>
+    <h2 id="entry-conditions"><a href="#entry-conditions" class="heading-anchor" aria-label="Link to this section">¶</a>Entry conditions
+</h2>
 <p>Use dependent types when you need:</p>
 <ul>
 <li>Types that vary according to a value — a vector whose type includes its length, a
@@ -113,7 +183,8 @@ code and proving theorems are the same activity.</li>
 <li>A formal language strong enough to state and verify mathematical theorems, not just
 check that functions return the right kind of output.</li>
 </ul>
-<h2 id="from-simple-types-to-dependent-types">From simple types to dependent types</h2>
+<h2 id="from-simple-types-to-dependent-types"><a href="#from-simple-types-to-dependent-types" class="heading-anchor" aria-label="Link to this section">¶</a>From simple types to dependent types
+</h2>
 <p>The <a href="./typed-lambda-calculus.md" class="link-internal">simply typed lambda calculus</a> assigns every term a type, and
 function types have the form <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \to B</annotation></semantics></math></span>: the input has type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span>, the output has type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span>.
 The output type does not depend on the input value — a function of type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">N</mi><mo>→</mo><mi mathvariant="double-struck">N</mi></mrow><annotation encoding="application/x-tex">\mathbb{N} \to
@@ -124,7 +195,8 @@ to mention the input value:</p>
 \Pi(x : A).\; B(x)
 </annotation></semantics></math></span><p>Read: &ldquo;for any <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span> of type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span>, a value of type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B(x)</annotation></semantics></math></span>.&rdquo; The type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> is a family indexed
 by elements of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> — different inputs can produce outputs of different types.</p>
-<h2 id="pi-types-dependent-function-types">Pi-types (dependent function types)</h2>
+<h2 id="pi-types-dependent-function-types"><a href="#pi-types-dependent-function-types" class="heading-anchor" aria-label="Link to this section">¶</a>Pi-types (dependent function types)
+</h2>
 <p>A <strong>Pi-type</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Π</mi><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi><mtext>  </mtext><mi>B</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi(x : A).\; B(x)</annotation></semantics></math></span> generalizes the simple function type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \to B</annotation></semantics></math></span>. When
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> does not depend on <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span>, the Pi-type reduces to the ordinary function type. When <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span>
 does depend on <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span>, the Pi-type expresses a universal statement: &ldquo;for every <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">x : A</annotation></semantics></math></span>,
@@ -143,7 +215,8 @@ means having a uniform proof that <span class="katex"><math xmlns="http://www.w3
 \Pi(m : \mathbb{N}).\; \Pi(n : \mathbb{N}).\; m + n = n + m
 </annotation></semantics></math></span><p>A term of this type is a function that takes two natural numbers and returns a proof that
 their sum is the same in either order.</p>
-<h2 id="sigma-types-dependent-pair-types">Sigma-types (dependent pair types)</h2>
+<h2 id="sigma-types-dependent-pair-types"><a href="#sigma-types-dependent-pair-types" class="heading-anchor" aria-label="Link to this section">¶</a>Sigma-types (dependent pair types)
+</h2>
 <p>A <strong>Sigma-type</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Σ</mi><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi><mtext>  </mtext><mi>B</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Sigma(x : A).\; B(x)</annotation></semantics></math></span> generalizes the product type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \times B</annotation></semantics></math></span>. Its
 elements are pairs <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, b)</annotation></semantics></math></span> where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">a : A</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">b : B(a)</annotation></semantics></math></span> — the type of the second
 component depends on the value of the first.</p>
@@ -156,7 +229,8 @@ component depends on the value of the first.</p>
 </annotation></semantics></math></span><p>An element is a pair: a specific number <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> and a proof that <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> is even.</p>
 <p><strong>Example.</strong> The type of &ldquo;a group&rdquo;: a carrier set <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span>, an operation, an identity element,
 and proofs of the group axioms — all bundled in nested Sigma-types.</p>
-<h2 id="the-extended-curry-howard-correspondence">The extended Curry-Howard correspondence</h2>
+<h2 id="the-extended-curry-howard-correspondence"><a href="#the-extended-curry-howard-correspondence" class="heading-anchor" aria-label="Link to this section">¶</a>The extended Curry-Howard correspondence
+</h2>
 <p>With dependent types, the correspondence between logic and type theory becomes complete:</p>
 <table>
   <thead>
@@ -212,7 +286,8 @@ and proofs of the group axioms — all bundled in nested Sigma-types.</p>
 theorem, write a program of the corresponding type [@pierce_TypesProgrammingLanguages_2002]. The type checker verifies the proof by
 checking that the program is well-typed.</p>
 <p>Because the type system is based on <a href="../../logic/curricula/intuitionistic-logic.md" class="link-internal">intuitionistic logic</a>, <a href="../../../../../../humanities/domains/philosophy/terms/law-of-excluded-middle.md" class="link-internal">excluded middle</a> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∨</mo><mi mathvariant="normal">¬</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">P \vee \neg P</annotation></semantics></math></span>) is not available by default. A proof of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∨</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">P \vee Q</annotation></semantics></math></span> must supply a proof of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span> or a proof of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math></span> — you cannot argue by contradiction unless you explicitly add classical axioms.</p>
-<h2 id="indexed-families-and-universes">Indexed families and universes</h2>
+<h2 id="indexed-families-and-universes"><a href="#indexed-families-and-universes" class="heading-anchor" aria-label="Link to this section">¶</a>Indexed families and universes
+</h2>
 <p>Dependent types require a notion of <strong>universe</strong> — a type whose elements are themselves
 types. The <a href="../../../../linguistics/topics/semiotics/terms/symbol.md" class="link-internal">symbol</a> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="sans-serif">T</mi><mi mathvariant="sans-serif">y</mi><mi mathvariant="sans-serif">p</mi><mi mathvariant="sans-serif">e</mi></mrow><annotation encoding="application/x-tex">\mathsf{Type}</annotation></semantics></math></span> (or <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="sans-serif">S</mi><mi mathvariant="sans-serif">e</mi><mi mathvariant="sans-serif">t</mi></mrow><annotation encoding="application/x-tex">\mathsf{Set}</annotation></semantics></math></span> in some systems) is a universe. To
 avoid paradoxes (Russell&rsquo;s paradox in type-theoretic form), universes are stratified:</p>
@@ -225,7 +300,8 @@ system itself [@univalentfoundationsprogram_HomotopyTypeTheory_2013].</p>
 \mathsf{Type}</annotation></semantics></math></span>. This is a type-valued function — it assigns a type to each element of
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span>. Indexed families are what make Pi-types and Sigma-types meaningful: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B(x)</annotation></semantics></math></span> is a type
 for each <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">x : A</annotation></semantics></math></span>.</p>
-<h2 id="dependent-pattern-matching">Dependent pattern matching</h2>
+<h2 id="dependent-pattern-matching"><a href="#dependent-pattern-matching" class="heading-anchor" aria-label="Link to this section">¶</a>Dependent pattern matching
+</h2>
 <p>In languages with dependent types, pattern matching is more powerful than in simple typed
 languages. When you match on a constructor, the type checker refines the types of other
 variables in scope to reflect what the match tells you.</p>
@@ -239,14 +315,16 @@ on the constructor reveals the length:</p>
 each pattern match and uses it to check subsequent code. This is what makes dependent
 types powerful for proofs — case analysis in a proof corresponds to pattern matching in
 code, and the type checker ensures you handle every case.</p>
-<h2 id="applications">Applications</h2>
+<h2 id="applications"><a href="#applications" class="heading-anchor" aria-label="Link to this section">¶</a>Applications
+</h2>
 <p>Dependent types are the foundation of modern proof assistants — <a href="../../../../technology/disciplines/computing/software/lean/index.md" class="link-internal">Lean</a>, <a href="../../../../technology/disciplines/computing/software/agda/index.md" class="link-internal">Agda</a>, Coq, and others. They are used to:</p>
 <ul>
 <li><strong>Formalize mathematics</strong>: encode algebraic structures (groups, rings, <a href="../../../objects/posets/terms/lattice.md" class="link-internal">lattices</a>) as types that bundle operations with proofs of their axioms. A <a href="../../../objects/posets/curricula/heyting-algebras.md" class="link-internal">Heyting algebra</a>, for instance, becomes a type carrying a carrier, operations, and proofs of the <a href="../../../../../../humanities/domains/general/domains/people/arend-heyting.md" class="link-internal">Heyting</a> axioms.</li>
 <li><strong>Verify software</strong>: specify program behavior in the type, then type-check to verify that the implementation meets the specification. Dependent types enable specifications that simple types cannot express (e.g., &ldquo;this sorting function returns a permutation of its input&rdquo;).</li>
 <li><strong>Construct certified proofs</strong>: state a theorem as a type and construct a proof as a term. The type checker verifies correctness mechanically.</li>
 </ul>
-<h2 id="common-mistakes">Common mistakes</h2>
+<h2 id="common-mistakes"><a href="#common-mistakes" class="heading-anchor" aria-label="Link to this section">¶</a>Common mistakes
+</h2>
 <ul>
 <li>Confusing types and terms. In dependent type theory, the boundary between types and
 terms is fluid — types can contain terms — but each expression still occupies a definite
@@ -258,7 +336,8 @@ explicit level annotations.</li>
 Proofs by contradiction require importing a classical axiom (e.g. <code>Classical.em</code> in
 Lean), which is available but not automatic.</li>
 </ul>
-<h2 id="minimal-data">Minimal data</h2>
+<h2 id="minimal-data"><a href="#minimal-data" class="heading-anchor" aria-label="Link to this section">¶</a>Minimal data
+</h2>
 <ul>
 <li>A type universe <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="sans-serif">T</mi><mi mathvariant="sans-serif">y</mi><mi mathvariant="sans-serif">p</mi><mi mathvariant="sans-serif">e</mi></mrow><annotation encoding="application/x-tex">\mathsf{Type}</annotation></semantics></math></span> (stratified into levels).</li>
 <li>Pi-types <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Π</mi><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi><mtext>  </mtext><mi>B</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi(x : A).\; B(x)</annotation></semantics></math></span> for dependent functions.</li>
@@ -269,41 +348,94 @@ Lean), which is available but not automatic.</li>
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-03-01">March 1, 2026</time>.</p>
+  
+  <details class="bibliography" id="bibliography" open
+         vocab="https://schema.org/" typeof="ItemList">
+  <summary><h2>References</h2></summary><p class="bib-entry h-cite" id="ref-ref1" typeof="CreativeWork" resource="#ref-ref1">
+    <span class="bib-key">[ref1]</span><cite class="p-name" property="name">Constructive Mathematics and Computer Programming</cite>..
+  </p><p class="bib-entry h-cite" id="ref-ref2" typeof="CreativeWork" resource="#ref-ref2">
+    <span class="bib-key">[ref2]</span><cite class="p-name" property="name">Homotopy Type Theory: Univalent Foundations of Mathematics</cite>..
+  </p><p class="bib-entry h-cite" id="ref-ref3" typeof="CreativeWork" resource="#ref-ref3">
+    <span class="bib-key">[ref3]</span><cite class="p-name" property="name">Types and Programming Languages</cite>..
+  </p>
+</details>
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/science/domains/math/domains/type-theory/texts/dependent-types/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/science/domains/math/domains/type-theory/texts/dependent-types/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
-        <dt>Citations</dt>
-        <dd property="emsenn:Citations"></dd>
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/science/domains/math/domains/type-theory/">type theory</a></dd>
       </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
       </div><div class="relation">
-        <dt>Form</dt>
-        <dd property="emsenn:Form"><a href="/library/domains/humanities/domains/education/terms/lesson/">lesson</a></dd>
-      </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment"><ul><li>/mathematics/disciplines/type theory/curricula/typed lambda calculus.md</li><li>/mathematics/disciplines/logic/curricula/intuitionistic logic.md</li></ul></dd>
+        <dd property="schema:isBasedOn"><ul><li>/mathematics/disciplines/type theory/curricula/typed lambda calculus.md</li><li>/mathematics/disciplines/logic/curricula/intuitionistic logic.md</li></ul></dd>
       </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/type-theory/">type-theory</a></li><li><a href="/tags/logic/">logic</a></li></ul></dd>
       </div><div class="relation">
         <dt>Teaches</dt>
-        <dd property="emsenn:Teaches"><ul><li><a href="/library/domains/science/domains/math/domains/type-theory/texts/dependent-types/">Dependent Types</a></li></ul></dd>
+        <dd property="schema:teaches"><ul><li><a href="/library/domains/science/domains/math/domains/type-theory/texts/dependent-types/">Dependent Types</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

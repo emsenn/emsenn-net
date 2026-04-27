@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SWE-agent Architecture Analysis - emsenn.net</title>
+
+
+<meta name="description" content="Analysis of SWE-agent&#39;s Agent-Computer Interface, trajectory recording, evaluation harness, and configuration system">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/swe-agent-architecture-analysis/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="SWE-agent Architecture Analysis">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/swe-agent-architecture-analysis/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Analysis of SWE-agent&#39;s Agent-Computer Interface, trajectory recording, evaluation harness, and configuration system">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-04T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-04T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SWE-agent Architecture Analysis">
+<meta name="twitter:description" content="Analysis of SWE-agent&#39;s Agent-Computer Interface, trajectory recording, evaluation harness, and configuration system">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/swe-agent-architecture-analysis/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/swe-agent-architecture-analysis/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/swe-agent-architecture-analysis/",
   "@type": "Article",
   "dateModified": "2026-04-04",
   "datePublished": "2026-04-04",
   "description": "Analysis of SWE-agent's Agent-Computer Interface, trajectory recording, evaluation harness, and configuration system",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/",
+    "@type": "CreativeWork",
+    "name": "computing",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/"
+  },
   "name": "SWE-agent Architecture Analysis",
   "publisher": {
     "@type": "Person",
@@ -45,46 +96,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:computing, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
   <h1 class="p-name">SWE-agent Architecture Analysis</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
     
     <span class="p-summary">Analysis of SWE-agent&#39;s Agent-Computer Interface, trajectory recording, evaluation harness, and configuration system</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -140,11 +168,34 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>SWE-agent is an autonomous software engineering agent from Princeton NLP that solves GitHub issues by operating inside a containerized environment with a carefully designed set of tools. Its core contribution is the <strong>Agent-Computer Interface (ACI)</strong> — the principle that how you expose the environment to an agent matters as much as the model itself. This analysis covers the architecture from the source at commit depth 1 of <code>princeton-nlp/SWE-agent</code>.</p>
-<h2 id="1-agent-computer-interface-aci">1. Agent-Computer Interface (ACI)</h2>
+<h2 id="1-agent-computer-interface-aci"><a href="#1-agent-computer-interface-aci" class="heading-anchor" aria-label="Link to this section">¶</a>1. Agent-Computer Interface (ACI)
+</h2>
 <p>The ACI is SWE-agent&rsquo;s central design idea: rather than giving the agent a raw shell, you give it a curated set of commands that constrain the action space to operations the agent can reason about reliably.</p>
-<h3 id="tool-bundles">Tool Bundles</h3>
+<h3 id="tool-bundles"><a href="#tool-bundles" class="heading-anchor" aria-label="Link to this section">¶</a>Tool Bundles
+</h3>
 <p>Tools are organized as <strong>bundles</strong> — directories containing a <code>config.yaml</code> (command definitions), a <code>bin/</code> directory (executable scripts), and an optional <code>install.sh</code>. The <code>Bundle</code> class (<code>sweagent/tools/bundle.py</code>) loads these at config time and validates that hidden tools actually exist.</p>
 <p>Each bundle&rsquo;s <code>config.yaml</code> defines commands as structured objects with:</p>
 <ul>
@@ -153,7 +204,8 @@
 <li><strong>end_name</strong> — for multi-line commands, the termination marker (e.g., <code>end_of_edit</code>)</li>
 </ul>
 <p>The <code>ToolConfig</code> class (<code>sweagent/tools/tools.py</code>) aggregates bundles and enforces uniqueness — no two bundles can define the same command name.</p>
-<h3 id="the-default-tool-set">The Default Tool Set</h3>
+<h3 id="the-default-tool-set"><a href="#the-default-tool-set" class="heading-anchor" aria-label="Link to this section">¶</a>The Default Tool Set
+</h3>
 <p>The default configuration (<code>config/default.yaml</code>) gives the agent:</p>
 <ol>
 <li><strong>registry</strong> — an empty tool set that provides the filemap utility (a Python file summarizer that shows structure while eliding function bodies)</li>
@@ -162,20 +214,25 @@
 <li><strong>bash</strong> — a general-purpose shell command (enabled by default)</li>
 </ol>
 <p>An older alternative tool set (<code>windowed_edit_linting</code>) provides a different editing model: <code>open</code> a file into a scrollable window, navigate with <code>goto</code>/<code>scroll_up</code>/<code>scroll_down</code>, and edit with line-range replacement. Edits are validated with flake8 before being accepted — if the edit introduces syntax errors, it is automatically reverted and the agent sees the error alongside the before/after code.</p>
-<h3 id="command-blocklist">Command Blocklist</h3>
+<h3 id="command-blocklist"><a href="#command-blocklist" class="heading-anchor" aria-label="Link to this section">¶</a>Command Blocklist
+</h3>
 <p>The <code>ToolFilterConfig</code> blocks interactive programs (<code>vim</code>, <code>nano</code>, <code>less</code>, <code>gdb</code>, <code>python</code> standalone, <code>bash</code> standalone) that would hang the agent. Commands matching <code>blocklist</code> prefixes or <code>blocklist_standalone</code> exact matches are rejected with a template error message. There is also a <code>block_unless_regex</code> mechanism for tools like <code>radare2</code> that are only safe with the <code>-c</code> flag.</p>
-<h3 id="state-commands">State Commands</h3>
+<h3 id="state-commands"><a href="#state-commands" class="heading-anchor" aria-label="Link to this section">¶</a>State Commands
+</h3>
 <p>Each bundle can declare a <code>state_command</code> — a shell command that writes to <code>/root/state.json</code>. After every action, the <code>ToolHandler</code> runs all state commands and reads the combined state. This state is injected into the observation template, giving the agent contextual information (current file, working directory, diff) without the agent having to ask for it.</p>
 <p>The <code>diff_state</code> bundle, for example, provides <code>_state_diff_state</code> which writes the current git diff into state — so the agent always sees what it has changed.</p>
-<h3 id="function-calling-vs-text-parsing">Function Calling vs. Text Parsing</h3>
+<h3 id="function-calling-vs-text-parsing"><a href="#function-calling-vs-text-parsing" class="heading-anchor" aria-label="Link to this section">¶</a>Function Calling vs. Text Parsing
+</h3>
 <p>SWE-agent supports two modes of command invocation:</p>
 <ul>
 <li><strong>Function calling</strong> (<code>FunctionCallingParser</code>) — commands are exposed as OpenAI-style function definitions. Each <code>Command</code> can generate its function calling schema via <code>get_function_calling_tool()</code>. This is the default for modern configs.</li>
 <li><strong>Text parsing</strong> (<code>ThoughtActionParser</code>, <code>ActionOnlyParser</code>) — the model outputs text in a structured format (thought + action), and the parser extracts the command. Multi-line commands use heredoc-style terminators.</li>
 </ul>
-<h2 id="2-editing-commands-safe-file-modification">2. Editing Commands: Safe File Modification</h2>
+<h2 id="2-editing-commands-safe-file-modification"><a href="#2-editing-commands-safe-file-modification" class="heading-anchor" aria-label="Link to this section">¶</a>2. Editing Commands: Safe File Modification
+</h2>
 <p>SWE-agent provides two distinct editing interfaces, both designed to prevent common agent editing failures:</p>
-<h3 id="str_replace_editor-anthropic-style">str_replace_editor (Anthropic-style)</h3>
+<h3 id="str_replace_editor-anthropic-style"><a href="#str_replace_editor-anthropic-style" class="heading-anchor" aria-label="Link to this section">¶</a>str_replace_editor (Anthropic-style)
+</h3>
 <p>The <code>str_replace</code> operation requires the agent to provide an exact match of the old text. If the match is not unique in the file, the replacement is rejected. This forces the agent to include enough context to unambiguously identify the edit location — preventing off-by-one and wrong-location edits.</p>
 <p>Operations:</p>
 <ul>
@@ -185,7 +242,8 @@
 <li><code>insert</code> — insert text after a given line</li>
 <li><code>undo_edit</code> — revert the last edit</li>
 </ul>
-<h3 id="windowed-editor-with-linting">Windowed Editor with Linting</h3>
+<h3 id="windowed-editor-with-linting"><a href="#windowed-editor-with-linting" class="heading-anchor" aria-label="Link to this section">¶</a>Windowed Editor with Linting
+</h3>
 <p>The older editing system (<code>windowed_edit_linting</code>) takes a different approach:</p>
 <ol>
 <li>The agent must <code>open</code> a file first, creating a scrollable window (default 100 lines)</li>
@@ -194,9 +252,11 @@
 <li>Before accepting an edit, the system runs <strong>flake8</strong> on the file. If the edit introduces new lint errors, it is <strong>automatically reverted</strong> and the agent sees the error, the would-be result, and the original code</li>
 </ol>
 <p>The linting gate is significant: it means the agent cannot introduce syntax errors. The <code>format_flake8_output</code> function filters to show only errors introduced by the edit (not pre-existing ones), adjusting line numbers for the replacement&rsquo;s effect on line count.</p>
-<h2 id="3-trajectory-recording">3. Trajectory Recording</h2>
+<h2 id="3-trajectory-recording"><a href="#3-trajectory-recording" class="heading-anchor" aria-label="Link to this section">¶</a>3. Trajectory Recording
+</h2>
 <p>Every agent run produces a <code>.traj</code> file — a JSON document containing the complete record of the agent&rsquo;s behavior.</p>
-<h3 id="trajectorystep">TrajectoryStep</h3>
+<h3 id="trajectorystep"><a href="#trajectorystep" class="heading-anchor" aria-label="Link to this section">¶</a>TrajectoryStep
+</h3>
 <p>Each step records (<code>sweagent/types.py</code>):</p>
 <ul>
 <li><code>action</code> — the command executed</li>
@@ -208,7 +268,8 @@
 <li><code>query</code> — the messages sent to the model</li>
 <li><code>extra_info</code> — arbitrary metadata</li>
 </ul>
-<h3 id="trajectory-file-contents">Trajectory File Contents</h3>
+<h3 id="trajectory-file-contents"><a href="#trajectory-file-contents" class="heading-anchor" aria-label="Link to this section">¶</a>Trajectory File Contents
+</h3>
 <p>The <code>get_trajectory_data()</code> method on <code>DefaultAgent</code> saves:</p>
 <ul>
 <li><code>trajectory</code> — the list of <code>TrajectoryStep</code> objects</li>
@@ -217,17 +278,21 @@
 <li><code>replay_config</code> — the full configuration needed to replay this trajectory</li>
 <li><code>environment</code> — which environment was used</li>
 </ul>
-<h3 id="replay">Replay</h3>
+<h3 id="replay"><a href="#replay" class="heading-anchor" aria-label="Link to this section">¶</a>Replay
+</h3>
 <p>The <code>run_replay</code> module can take a <code>.traj</code> file and re-execute every action in a fresh environment. This serves two purposes:</p>
 <ol>
 <li><strong>Demo creation</strong> — record a human solving a problem, replay it to get clean environment output, use as a few-shot demonstration</li>
 <li><strong>Debugging</strong> — reproduce exact agent behavior to diagnose tool or environment issues</li>
 </ol>
 <p>Demonstrations can be injected into the agent&rsquo;s history as few-shot examples, either as a single concatenated message or step-by-step into the conversation history.</p>
-<h3 id="inspector">Inspector</h3>
+<h3 id="inspector"><a href="#inspector" class="heading-anchor" aria-label="Link to this section">¶</a>Inspector
+</h3>
 <p>SWE-agent includes a web-based trajectory inspector (<code>sweagent/inspector/</code>) — a local HTTP server that renders trajectories as interactive step-by-step views. The inspector adds the problem statement as the first step and the submission as the last, making the full solve visible.</p>
-<h2 id="4-evaluation-harness">4. Evaluation Harness</h2>
-<h3 id="swe-bench-integration">SWE-bench Integration</h3>
+<h2 id="4-evaluation-harness"><a href="#4-evaluation-harness" class="heading-anchor" aria-label="Link to this section">¶</a>4. Evaluation Harness
+</h2>
+<h3 id="swe-bench-integration"><a href="#swe-bench-integration" class="heading-anchor" aria-label="Link to this section">¶</a>SWE-bench Integration
+</h3>
 <p>The <code>run-batch</code> command (<code>sweagent/run/run_batch.py</code>) runs the agent over datasets of problem instances, most notably SWE-bench. The <code>BatchInstanceSourceConfig</code> supports loading from SWE-bench (by subset and split), from files, or from HuggingFace datasets. Instances can be filtered, sliced, and shuffled.</p>
 <p>Each instance gets:</p>
 <ul>
@@ -236,7 +301,8 @@
 <li>A clean environment with tools installed</li>
 </ul>
 <p>The agent runs, produces a patch (via the submit command), and the patch is evaluated against the SWE-bench test suite.</p>
-<h3 id="retryagent">RetryAgent</h3>
+<h3 id="retryagent"><a href="#retryagent" class="heading-anchor" aria-label="Link to this section">¶</a>RetryAgent
+</h3>
 <p>The <code>RetryAgent</code> wraps <code>DefaultAgent</code> with a retry loop controlled by a <code>RetryLoopConfig</code>:</p>
 <ol>
 <li>The agent attempts to solve the problem</li>
@@ -252,7 +318,8 @@
 <li><code>per_instance_call_limit</code> — maximum API calls per instance</li>
 <li><code>total_cost_limit</code> — absolute ceiling</li>
 </ul>
-<h3 id="submission-and-review">Submission and Review</h3>
+<h3 id="submission-and-review"><a href="#submission-and-review" class="heading-anchor" aria-label="Link to this section">¶</a>Submission and Review
+</h3>
 <p>The <code>review_on_submit_m</code> bundle intercepts the submit command and injects a review step. When the agent calls <code>submit</code>, instead of immediately finalizing, it:</p>
 <ol>
 <li>Shows the agent the full diff of its changes</li>
@@ -260,8 +327,10 @@
 <li>Requires a second <code>submit</code> call to confirm</li>
 </ol>
 <p>This self-review catches cases where the agent forgot to clean up reproduction scripts or accidentally modified test files.</p>
-<h2 id="5-configuration-system">5. Configuration System</h2>
-<h3 id="yaml-based-configuration">YAML-Based Configuration</h3>
+<h2 id="5-configuration-system"><a href="#5-configuration-system" class="heading-anchor" aria-label="Link to this section">¶</a>5. Configuration System
+</h2>
+<h3 id="yaml-based-configuration"><a href="#yaml-based-configuration" class="heading-anchor" aria-label="Link to this section">¶</a>YAML-Based Configuration
+</h3>
 <p>Agent behavior is fully parameterized via YAML config files loaded by Pydantic models. The configuration hierarchy:</p>
 <pre tabindex="0"><code>RunSingleConfig / RunBatchConfig
 ├── agent: AgentConfig
@@ -277,7 +346,8 @@
 │   ├── deployment: DeploymentConfig (Docker, Modal, etc.)
 │   └── repo: RepoConfig
 └── problem_statement: ProblemStatementConfig
-</code></pre><h3 id="template-system">Template System</h3>
+</code></pre><h3 id="template-system"><a href="#template-system" class="heading-anchor" aria-label="Link to this section">¶</a>Template System
+</h3>
 <p>All messages are Jinja2 templates. Available variables include:</p>
 <ul>
 <li><code>problem_statement</code> — the issue text</li>
@@ -287,7 +357,8 @@
 <li>State variables from state commands (e.g., <code>open_file</code>, <code>diff</code>)</li>
 </ul>
 <p>The <code>max_observation_length</code> parameter (default 100,000 characters) truncates long outputs, and separate templates handle empty outputs, truncated outputs, timeouts, and syntax errors.</p>
-<h3 id="history-processors">History Processors</h3>
+<h3 id="history-processors"><a href="#history-processors" class="heading-anchor" aria-label="Link to this section">¶</a>History Processors
+</h3>
 <p>History processors transform the conversation history before sending it to the model. They are a pipeline — each processor receives the output of the previous one.</p>
 <p>Key processors:</p>
 <ul>
@@ -296,7 +367,8 @@
 <li><code>TagToolCallObservations</code> — adds tags to observations from specific tools, used to mark certain tool outputs for special treatment by <code>LastNObservations</code></li>
 <li><code>CacheControl</code> — adds Anthropic prompt caching markers to the last N messages</li>
 </ul>
-<h3 id="deployment-flexibility">Deployment Flexibility</h3>
+<h3 id="deployment-flexibility"><a href="#deployment-flexibility" class="heading-anchor" aria-label="Link to this section">¶</a>Deployment Flexibility
+</h3>
 <p>The environment runs through SWE-ReX (<code>swerex</code>), an abstraction layer supporting:</p>
 <ul>
 <li>Docker containers (default)</li>
@@ -304,14 +376,19 @@
 <li>Local execution</li>
 </ul>
 <p>The <code>SWEEnv</code> class communicates with the deployment via bash sessions, handling command execution, file I/O, and environment reset.</p>
-<h2 id="6-what-we-should-adopt">6. What We Should Adopt</h2>
-<h3 id="aci-design-principle">ACI Design Principle</h3>
+<h2 id="6-what-we-should-adopt"><a href="#6-what-we-should-adopt" class="heading-anchor" aria-label="Link to this section">¶</a>6. What We Should Adopt
+</h2>
+<h3 id="aci-design-principle"><a href="#aci-design-principle" class="heading-anchor" aria-label="Link to this section">¶</a>ACI Design Principle
+</h3>
 <p>SWE-agent&rsquo;s core lesson: <strong>the action space is a design surface, not a given.</strong> Rather than exposing the full shell, constrain tools to operations the agent handles reliably. Our harness already does this (Read, Edit, Write, Grep, Glob instead of raw bash), but SWE-agent&rsquo;s bundle system suggests we could make tool sets more composable and swappable per task type.</p>
-<h3 id="linting-gate-on-edits">Linting Gate on Edits</h3>
+<h3 id="linting-gate-on-edits"><a href="#linting-gate-on-edits" class="heading-anchor" aria-label="Link to this section">¶</a>Linting Gate on Edits
+</h3>
 <p>The windowed editor&rsquo;s automatic lint-and-revert pattern is directly applicable. When an agent edit introduces errors, immediately revert and show the agent what went wrong. Our hooks system could implement this — a post-edit hook that runs a linter and blocks the edit if it introduces new errors.</p>
-<h3 id="state-commands-1">State Commands</h3>
+<h3 id="state-commands-1"><a href="#state-commands-1" class="heading-anchor" aria-label="Link to this section">¶</a>State Commands
+</h3>
 <p>Injecting environment state (current file, working directory, git diff) into every observation template eliminates a class of agent confusion. Our state is currently implicit in the conversation history; explicit state injection would reduce wasted context on &ldquo;what file am I looking at?&rdquo; queries.</p>
-<h3 id="trajectory-recording-for-learning">Trajectory Recording for Learning</h3>
+<h3 id="trajectory-recording-for-learning"><a href="#trajectory-recording-for-learning" class="heading-anchor" aria-label="Link to this section">¶</a>Trajectory Recording for Learning
+</h3>
 <p>SWE-agent records everything: every action, observation, model query, and state. This enables:</p>
 <ul>
 <li><strong>Replay</strong> — reproduce exact behavior for debugging</li>
@@ -319,11 +396,14 @@
 <li><strong>Analysis</strong> — the inspector lets humans study agent decision patterns</li>
 </ul>
 <p>Our session logs capture high-level events but not the full action-observation trace. Recording at SWE-agent&rsquo;s granularity would feed our continuous learning system with richer training signal.</p>
-<h3 id="self-review-before-submission">Self-Review Before Submission</h3>
+<h3 id="self-review-before-submission"><a href="#self-review-before-submission" class="heading-anchor" aria-label="Link to this section">¶</a>Self-Review Before Submission
+</h3>
 <p>The review-on-submit pattern — showing the agent its own diff and asking it to verify — is cheap and effective. We could add a pre-commit hook that shows the agent the full diff and asks for confirmation, similar to what our code-review command does but integrated into the commit flow.</p>
-<h3 id="cost-controls-as-architecture">Cost Controls as Architecture</h3>
+<h3 id="cost-controls-as-architecture"><a href="#cost-controls-as-architecture" class="heading-anchor" aria-label="Link to this section">¶</a>Cost Controls as Architecture
+</h3>
 <p>SWE-agent&rsquo;s layered cost limits (per-attempt, per-instance, total) prevent runaway spending. Our harness has some of this via model routing and task budgets, but SWE-agent&rsquo;s approach of embedding cost limits into the retry loop configuration is more systematic.</p>
-<h2 id="see-also">See Also</h2>
+<h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See Also
+</h2>
 <ul>
 <li><a href="./reflexion-and-lats-analysis.md" class="link-internal">Reflexion and LATS Analysis</a> — retry and self-reflection patterns</li>
 <li><a href="./cline-architecture-analysis.md" class="link-internal">Cline Architecture Analysis</a> — another IDE-integrated agent</li>
@@ -333,32 +413,82 @@
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-04">April 4, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/swe-agent-architecture-analysis/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/swe-agent-architecture-analysis/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
       </div><div class="relation">
         <dt>Related</dt>
-        <dd property="emsenn:Related"><ul><li>reflexion and lats analysis.md</li><li>cline architecture analysis.md</li><li>agentic harness landscape 2026.md</li><li>continuous learning in agentic harnesses.md</li></ul></dd>
+        <dd property="rdfs:seeAlso"><ul><li>reflexion and lats analysis.md</li><li>cline architecture analysis.md</li><li>agentic harness landscape 2026.md</li><li>continuous learning in agentic harnesses.md</li></ul></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Source</a></dt>
         <dd property="emsenn:Source">https://github.com/princeton nlp/SWE agent</dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

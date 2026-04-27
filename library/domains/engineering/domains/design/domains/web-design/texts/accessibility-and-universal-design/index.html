@@ -1,30 +1,109 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Accessibility and Universal Design - emsenn.net</title>
+
+
+<meta name="description" content="¶What this lesson covers What web accessibility means, why it matters, the standards that guide it, and the design principles that make web content usable by people across the full range of human ability and circumstance.
+¶Prerequisites Document Structure and Semantic HTML.
+¶What accessibility means …">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/design/domains/web-design/texts/accessibility-and-universal-design/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Accessibility and Universal Design">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/design/domains/web-design/texts/accessibility-and-universal-design/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="¶What this lesson covers What web accessibility means, why it matters, the standards that guide it, and the design principles that make web content usable by people across the full range of human ability and circumstance.
+¶Prerequisites Document Structure and Semantic HTML.
+¶What accessibility means …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-03-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-03-01T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Accessibility and Universal Design">
+<meta name="twitter:description" content="¶What this lesson covers What web accessibility means, why it matters, the standards that guide it, and the design principles that make web content usable by people across the full range of human ability and circumstance.
+¶Prerequisites Document Structure and Semantic HTML.
+¶What accessibility means …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/design/domains/web-design/texts/accessibility-and-universal-design/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/design/domains/web-design/texts/accessibility-and-universal-design/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/design/domains/web-design/texts/accessibility-and-universal-design/",
   "@type": "Article",
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "identifier": "ref1",
+      "name": "Accessible Environments: Toward Universal Design"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "ref2",
+      "name": "As We Have Always Done: Indigenous Freedom through Radical Resistance"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "ref3",
+      "name": "Don't Make Me Think, Revisited"
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "ref4",
+      "name": "Sorting Things Out: Classification and Its Consequences"
+    }
+  ],
   "dateModified": "2026-03-01",
   "datePublished": "2026-03-01",
-  "description": "What this lesson covers What web accessibility means, why it matters, the standards that guide it, and the design principles that make web content usable by people across the full range of human ability and circumstance.\nPrerequisites Document Structure and Semantic HTML.\nWhat accessibility means Web accessibility means that people with disabilities can perceive, understand, navigate, and interact with web content. The term covers a wide range of conditions — visual, auditory, motor, cognitive, neurological — and an equally wide range of assistive technologies: screen readers, magnifiers, voice control, switch devices, eye trackers, Braille displays.\n",
+  "description": "¶What this lesson covers What web accessibility means, why it matters, the standards that guide it, and the design principles that make web content usable by people across the full range of human ability and circumstance.\n¶Prerequisites Document Structure and Semantic HTML.\n¶What accessibility means Web accessibility means that people with disabilities can perceive, understand, navigate, and interact with web content. The term covers a wide range of conditions — visual, auditory, motor, cognitive, neurological — and an equally wide range of assistive technologies: screen readers, magnifiers, voice control, switch devices, eye trackers, Braille displays.\n",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/design/domains/web-design/",
+    "@type": "CreativeWork",
+    "name": "web-design",
+    "url": "https://emsenn.net/library/domains/engineering/domains/design/domains/web-design/"
+  },
   "keywords": "web-design",
   "name": "Accessibility and Universal Design",
   "publisher": {
@@ -46,46 +125,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:web-design, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/design/">Design</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/design/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/design/domains/web-design/">Web Design</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/design/domains/web-design/texts/">Texts</a></nav>
   <h1 class="p-name">Accessibility and Universal Design</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-03-01T00:00:00Z">2026-03-01</time>
     
     
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -108,19 +164,45 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
-    <h2 id="what-this-lesson-covers">What this lesson covers</h2>
+    <h2 id="what-this-lesson-covers"><a href="#what-this-lesson-covers" class="heading-anchor" aria-label="Link to this section">¶</a>What this lesson covers
+</h2>
 <p>What web accessibility means, why it matters, the standards that guide it, and the design principles that make web content usable by people across the full range of human ability and circumstance.</p>
-<h2 id="prerequisites">Prerequisites</h2>
+<h2 id="prerequisites"><a href="#prerequisites" class="heading-anchor" aria-label="Link to this section">¶</a>Prerequisites
+</h2>
 <p><a href="./document-structure-and-semantic-html.md" class="link-internal">Document Structure and Semantic HTML</a>.</p>
 <hr>
-<h2 id="what-accessibility-means">What accessibility means</h2>
+<h2 id="what-accessibility-means"><a href="#what-accessibility-means" class="heading-anchor" aria-label="Link to this section">¶</a>What accessibility means
+</h2>
 <p>Web accessibility means that people with disabilities can perceive, understand, navigate, and interact with web content. The term covers a wide range of conditions — visual, auditory, motor, cognitive, neurological — and an equally wide range of assistive technologies: screen readers, magnifiers, voice control, switch devices, eye trackers, Braille displays.</p>
 <p>But accessibility is not only about disability in the medical sense. It also encompasses situational limitations: a person using a phone in bright sunlight, someone with a temporary injury, a user on a slow connection, a reader in a noisy environment who cannot play audio. The boundaries between &ldquo;disabled&rdquo; and &ldquo;non-disabled&rdquo; use are blurry, context-dependent, and shift over a person&rsquo;s lifetime.</p>
-<h2 id="the-social-model-of-disability">The social model of disability</h2>
+<h2 id="the-social-model-of-disability"><a href="#the-social-model-of-disability" class="heading-anchor" aria-label="Link to this section">¶</a>The social model of disability
+</h2>
 <p>Accessibility work is grounded in the social model of disability, which distinguishes between <em>impairment</em> (a characteristic of a person&rsquo;s body or mind) and <em>disability</em> (a barrier created by the environment). A person who uses a wheelchair is not disabled by the wheelchair — they are disabled by the staircase. A blind person is not disabled by blindness — they are disabled by a website that requires sight to navigate.</p>
 <p>This reframing shifts responsibility from the individual to the designer. If a website is inaccessible, the problem is in the website, not in the person who cannot use it. This is consistent with the Universal Design principle: designing for the widest possible range of users from the start, rather than retrofitting accommodations later.</p>
-<h2 id="universal-design">Universal Design</h2>
+<h2 id="universal-design"><a href="#universal-design" class="heading-anchor" aria-label="Link to this section">¶</a>Universal Design
+</h2>
 <p>Universal Design originated in architecture. Ronald Mace, an architect who used a wheelchair, coined the term at North Carolina State University in the 1980s [@mace_AccessibleEnvironments_1991]. The core idea: design that works for people with disabilities tends to work better for everyone. Curb cuts help wheelchair users, but also parents with strollers, delivery workers with carts, and travelers with rolling luggage.</p>
 <p>The seven principles of Universal Design (established by Mace and colleagues in 1997):</p>
 <ol>
@@ -133,9 +215,11 @@
 <li><strong>Size and space for approach and use</strong> — appropriate for any body size, posture, or mobility</li>
 </ol>
 <p>On the web, these principles translate to practices like providing text alternatives for images, ensuring sufficient color contrast, supporting keyboard navigation, writing clear and predictable interfaces, and allowing users to control timing and motion.</p>
-<h2 id="wcag-the-web-content-accessibility-guidelines">WCAG: the Web Content Accessibility Guidelines</h2>
+<h2 id="wcag-the-web-content-accessibility-guidelines"><a href="#wcag-the-web-content-accessibility-guidelines" class="heading-anchor" aria-label="Link to this section">¶</a>WCAG: the Web Content Accessibility Guidelines
+</h2>
 <p>The Web Content Accessibility Guidelines (WCAG), published by the W3C&rsquo;s Web Accessibility Initiative (WAI), are the primary standards for web accessibility. WCAG 2.1 (2018) and WCAG 2.2 (2023) organize their guidelines around four principles, known as POUR:</p>
-<h3 id="perceivable">Perceivable</h3>
+<h3 id="perceivable"><a href="#perceivable" class="heading-anchor" aria-label="Link to this section">¶</a>Perceivable
+</h3>
 <p>Information and user interface components must be presentable in ways users can perceive. This does not mean every user must perceive them the same way — it means alternative representations must exist.</p>
 <ul>
 <li><strong>Text alternatives</strong>: every non-text element (image, video, audio, chart) needs a text equivalent. For images, this is the <code>alt</code> attribute. For complex diagrams, it may be a longer description.</li>
@@ -143,7 +227,8 @@
 <li><strong>Adaptable presentation</strong>: content should be presentable in different ways (e.g., a simpler layout) without losing information or structure.</li>
 <li><strong>Distinguishable content</strong>: sufficient color contrast (minimum 4.5:1 for normal text), resizable text, no information conveyed by color alone.</li>
 </ul>
-<h3 id="operable">Operable</h3>
+<h3 id="operable"><a href="#operable" class="heading-anchor" aria-label="Link to this section">¶</a>Operable
+</h3>
 <p>Users must be able to operate the interface. Not everyone uses a mouse.</p>
 <ul>
 <li><strong>Keyboard accessible</strong>: all functionality available from a keyboard. Focus order should follow a logical sequence.</li>
@@ -151,63 +236,123 @@
 <li><strong>Seizures and physical reactions</strong>: no content that flashes more than three times per second.</li>
 <li><strong>Navigable</strong>: mechanisms to bypass repeated blocks (skip links), descriptive page titles, meaningful link text, multiple ways to find content.</li>
 </ul>
-<h3 id="understandable">Understandable</h3>
+<h3 id="understandable"><a href="#understandable" class="heading-anchor" aria-label="Link to this section">¶</a>Understandable
+</h3>
 <p>Content and interface behavior should be predictable and comprehensible.</p>
 <ul>
 <li><strong>Readable</strong>: language of the page is identified in markup; unusual words and abbreviations are explained.</li>
 <li><strong>Predictable</strong>: navigation is consistent across pages; components that look the same behave the same [@krug_DontMakeMeThink_2014].</li>
 <li><strong>Input assistance</strong>: errors are identified, described, and (where possible) suggestions for correction are offered.</li>
 </ul>
-<h3 id="robust">Robust</h3>
+<h3 id="robust"><a href="#robust" class="heading-anchor" aria-label="Link to this section">¶</a>Robust
+</h3>
 <p>Content must be compatible with current and future technologies, including assistive technologies.</p>
 <ul>
 <li><strong>Compatible</strong>: markup is valid and well-formed; custom interface components use appropriate ARIA (Accessible Rich Internet Applications) roles and properties.</li>
 </ul>
-<h2 id="aria-when-html-is-not-enough">ARIA: when HTML is not enough</h2>
+<h2 id="aria-when-html-is-not-enough"><a href="#aria-when-html-is-not-enough" class="heading-anchor" aria-label="Link to this section">¶</a>ARIA: when HTML is not enough
+</h2>
 <p>HTML&rsquo;s built-in semantic elements handle most common patterns. But modern web applications include custom components — tabs, sliders, modal dialogs, drag-and-drop interfaces — that have no native HTML equivalent.</p>
 <p>ARIA (Accessible Rich Internet Applications) is a set of attributes that supplement HTML semantics. ARIA roles declare what a component <em>is</em> (<code>role=&quot;tablist&quot;</code>, <code>role=&quot;dialog&quot;</code>); ARIA states and properties declare the component&rsquo;s current condition (<code>aria-expanded=&quot;true&quot;</code>, <code>aria-selected=&quot;false&quot;</code>).</p>
 <p>The first rule of ARIA use, stated in the W3C specification, is: do not use ARIA if a native HTML element already provides the semantics you need. A <code>&lt;button&gt;</code> is better than a <code>&lt;div role=&quot;button&quot;&gt;</code> because the native element comes with built-in keyboard handling, focus management, and assistive technology support.</p>
-<h2 id="accessibility-as-justice">Accessibility as justice</h2>
+<h2 id="accessibility-as-justice"><a href="#accessibility-as-justice" class="heading-anchor" aria-label="Link to this section">¶</a>Accessibility as justice
+</h2>
 <p>Accessibility is often framed as compliance — meeting WCAG criteria to satisfy legal requirements. But the deeper argument is one of justice: the web was designed as a universal medium, and excluding people from it is a form of structural harm.</p>
 <p>This connects to the social model of disability and to broader questions about who designs information systems and whose needs those systems serve. <a href="../../../../../../humanities/domains/general/domains/people/geoffrey-bowker.md" class="link-internal">Bowker</a> and <a href="../../../../../../humanities/domains/general/domains/people/susan-leigh-star.md" class="link-internal">Star</a> observed that infrastructure becomes invisible to those it serves well — and visible only to those it fails [@bowker_SortingThingsOut_1999]. Inaccessible web design is invisible infrastructure failure.</p>
 <p>Indigenous scholars, including <a href="../../../../../../humanities/domains/general/domains/people/leanne-simpson.md" class="link-internal">Simpson</a> and Kim TallBear, have argued that dominant knowledge systems frequently exclude through their design assumptions — privileging literacy over orality, individual authorship over collective knowledge, visual media over other senses [@simpson_AsWeHaveAlwaysDone_2017]. Accessible design, at its best, questions these assumptions rather than encoding them.</p>
-<h2 id="applications">Applications</h2>
+<h2 id="applications"><a href="#applications" class="heading-anchor" aria-label="Link to this section">¶</a>Applications
+</h2>
 <p>Accessibility principles apply to any information system, not only web pages. Document formatting, knowledge base organization, curricula design, and software interfaces all face the same core questions: who can perceive this information, who can navigate it, and whose needs has the designer not considered.</p>
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-03-01">March 1, 2026</time>.</p>
+  
+  <details class="bibliography" id="bibliography" open
+         vocab="https://schema.org/" typeof="ItemList">
+  <summary><h2>References</h2></summary><p class="bib-entry h-cite" id="ref-ref1" typeof="CreativeWork" resource="#ref-ref1">
+    <span class="bib-key">[ref1]</span><cite class="p-name" property="name">Accessible Environments: Toward Universal Design</cite>..
+  </p><p class="bib-entry h-cite" id="ref-ref2" typeof="CreativeWork" resource="#ref-ref2">
+    <span class="bib-key">[ref2]</span><cite class="p-name" property="name">As We Have Always Done: Indigenous Freedom through Radical Resistance</cite>..
+  </p><p class="bib-entry h-cite" id="ref-ref3" typeof="CreativeWork" resource="#ref-ref3">
+    <span class="bib-key">[ref3]</span><cite class="p-name" property="name">Don&#39;t Make Me Think, Revisited</cite>..
+  </p><p class="bib-entry h-cite" id="ref-ref4" typeof="CreativeWork" resource="#ref-ref4">
+    <span class="bib-key">[ref4]</span><cite class="p-name" property="name">Sorting Things Out: Classification and Its Consequences</cite>..
+  </p>
+</details>
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/design/domains/web-design/texts/accessibility-and-universal-design/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/design/domains/web-design/texts/accessibility-and-universal-design/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
-        <dt>Citations</dt>
-        <dd property="emsenn:Citations"></dd>
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/design/domains/web-design/">web design</a></dd>
       </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
       </div><div class="relation">
-        <dt>Form</dt>
-        <dd property="emsenn:Form"><a href="/library/domains/humanities/domains/education/terms/lesson/">lesson</a></dd>
-      </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/web-design/">web-design</a></li></ul></dd>
       </div><div class="relation">
         <dt>Teaches</dt>
-        <dd property="emsenn:Teaches"><ul><li><a href="/library/domains/engineering/domains/design/domains/web-design/texts/accessibility-and-universal-design/">Accessibility and Universal Design</a></li></ul></dd>
+        <dd property="schema:teaches"><ul><li><a href="/library/domains/engineering/domains/design/domains/web-design/texts/accessibility-and-universal-design/">Accessibility and Universal Design</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

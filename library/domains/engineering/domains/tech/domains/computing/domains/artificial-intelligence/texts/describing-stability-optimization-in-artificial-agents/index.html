@@ -1,30 +1,271 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stability Optimization in Artificial Agents - emsenn.net</title>
+
+
+<meta name="description" content="¶Abstract In RLHF, a model adapts to a fixed feedback distribution. This is the asymmetric stability setting of Information-Theoretic Stability as Reward Function: the model&rsquo;s stability reward is a function of its coupling to the feedback source, not an intrinsic property. We show that RLHF …">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Stability Optimization in Artificial Agents">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="¶Abstract In RLHF, a model adapts to a fixed feedback distribution. This is the asymmetric stability setting of Information-Theoretic Stability as Reward Function: the model&rsquo;s stability reward is a function of its coupling to the feedback source, not an intrinsic property. We show that RLHF …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2025-10-11T00:00:00Z">
+<meta property="article:modified_time" content="2025-10-11T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stability Optimization in Artificial Agents">
+<meta name="twitter:description" content="¶Abstract In RLHF, a model adapts to a fixed feedback distribution. This is the asymmetric stability setting of Information-Theoretic Stability as Reward Function: the model&rsquo;s stability reward is a function of its coupling to the feedback source, not an intrinsic property. We show that RLHF …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/",
   "@type": "Article",
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "S. Amari"
+        }
+      ],
+      "datePublished": "1998",
+      "identifier": "amari1998",
+      "name": "Natural Gradient Works Efficiently in Learning",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Neural Computation"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "S. Amari"
+        }
+      ],
+      "datePublished": "2016",
+      "identifier": "amari2016",
+      "name": "Information Geometry and Its Applications",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Springer"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "D. Amodei"
+        },
+        {
+          "@type": "Person",
+          "name": "C. Olah"
+        },
+        {
+          "@type": "Person",
+          "name": "J. Steinhardt"
+        },
+        {
+          "@type": "Person",
+          "name": "P. Christiano"
+        },
+        {
+          "@type": "Person",
+          "name": "J. Schulman"
+        },
+        {
+          "@type": "Person",
+          "name": "D. Mané"
+        }
+      ],
+      "datePublished": "2016",
+      "identifier": "amodei2016",
+      "name": "Concrete Problems in AI Safety",
+      "publisher": {
+        "@type": "Organization",
+        "name": "arXiv:1606.06565"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "P. F. Christiano"
+        },
+        {
+          "@type": "Person",
+          "name": "J. Leike"
+        },
+        {
+          "@type": "Person",
+          "name": "T. Brown"
+        }
+      ],
+      "datePublished": "2017",
+      "identifier": "christiano2017",
+      "name": "Deep Reinforcement Learning from Human Preferences",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Advances in Neural Information Processing Systems"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "T. M. Cover"
+        },
+        {
+          "@type": "Person",
+          "name": "J. A. Thomas"
+        }
+      ],
+      "datePublished": "2006",
+      "identifier": "cover2006",
+      "name": "Elements of Information Theory",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Wiley"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "T. Haarnoja"
+        },
+        {
+          "@type": "Person",
+          "name": "A. Zhou"
+        },
+        {
+          "@type": "Person",
+          "name": "P. Abbeel"
+        },
+        {
+          "@type": "Person",
+          "name": "S. Levine"
+        }
+      ],
+      "datePublished": "2018",
+      "identifier": "haarnoja2018",
+      "name": "Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor",
+      "publisher": {
+        "@type": "Organization",
+        "name": "ICML 2018"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "L. Ouyang"
+        },
+        {
+          "@type": "Person",
+          "name": "J. Wu"
+        },
+        {
+          "@type": "Person",
+          "name": "X. Jiang"
+        }
+      ],
+      "datePublished": "2022",
+      "identifier": "ouyang2022",
+      "name": "Training Language Models to Follow Instructions with Human Feedback",
+      "publisher": {
+        "@type": "Organization",
+        "name": "arXiv:2203.02155"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "J. Schulman"
+        },
+        {
+          "@type": "Person",
+          "name": "X. Chen"
+        },
+        {
+          "@type": "Person",
+          "name": "P. Abbeel"
+        }
+      ],
+      "datePublished": "2017",
+      "identifier": "schulman2017",
+      "name": "Information-Theoretic Stability as Reward Function",
+      "publisher": {
+        "@type": "Organization",
+        "name": "arXiv:1707.06347"
+      }
+    }
+  ],
   "dateModified": "2025-10-11",
   "datePublished": "2025-10-11",
-  "description": "Abstract In RLHF, a model adapts to a fixed feedback distribution. This is the asymmetric stability setting of Information-Theoretic Stability as Reward Function: the model\u0026rsquo;s stability reward is a function of its coupling to the feedback source, not an intrinsic property. We show that RLHF training dynamics instantiate the two-channel decomposition — alignment progress equals behavioral convergence plus responsiveness increase — and that the MI-dominates-marginal inequality gives a structural constraint on training: the model\u0026rsquo;s responsiveness to feedback can never be doing worse than its behavioral convergence. These results reframe alignment as an informational accounting problem rather than a moral one.\n",
+  "description": "¶Abstract In RLHF, a model adapts to a fixed feedback distribution. This is the asymmetric stability setting of Information-Theoretic Stability as Reward Function: the model\u0026rsquo;s stability reward is a function of its coupling to the feedback source, not an intrinsic property. We show that RLHF training dynamics instantiate the two-channel decomposition — alignment progress equals behavioral convergence plus responsiveness increase — and that the MI-dominates-marginal inequality gives a structural constraint on training: the model\u0026rsquo;s responsiveness to feedback can never be doing worse than its behavioral convergence. These results reframe alignment as an informational accounting problem rather than a moral one.\n",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/",
+    "@type": "CreativeWork",
+    "name": "artificial-intelligence",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/"
+  },
   "keywords": "information-geometry, reinforcement-learning, alignment, research",
   "name": "Stability Optimization in Artificial Agents",
   "publisher": {
@@ -46,46 +287,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:artificial-intelligence, defines:[alignment-progress-as-two-channel-accounting-identity alignment-pathology-as-channel-imbalance mode-collapse-as-behavioral-convergence-without-responsiveness reward-hacking-as-responsiveness-without-behavioral-convergence], section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">Artificial Intelligence</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/">Texts</a></nav>
   <h1 class="p-name">Stability Optimization in Artificial Agents</h1>
   <div class="meta">
     <time class="dt-published" datetime="2025-10-11T00:00:00Z">2025-10-11</time>
     
     
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -118,19 +336,45 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
-    <h2 id="abstract">Abstract</h2>
+    <h2 id="abstract"><a href="#abstract" class="heading-anchor" aria-label="Link to this section">¶</a>Abstract
+</h2>
 <p>In RLHF, a model adapts to a fixed feedback distribution. This is the asymmetric stability setting of <em>Information-Theoretic Stability as Reward Function</em>: the model&rsquo;s stability reward is a function of its coupling to the feedback source, not an intrinsic property. We show that RLHF training dynamics instantiate the two-channel decomposition — alignment progress equals behavioral convergence plus responsiveness increase — and that the MI-dominates-marginal inequality gives a structural constraint on training: the model&rsquo;s responsiveness to feedback can never be doing worse than its behavioral convergence. These results reframe alignment as an informational accounting problem rather than a moral one.</p>
-<h2 id="1-introduction">1. Introduction</h2>
+<h2 id="1-introduction"><a href="#1-introduction" class="heading-anchor" aria-label="Link to this section">¶</a>1. Introduction
+</h2>
 <p>Modern artificial agents are trained to maximize reward functions that capture performance, preference, or human approval (Christiano et al. 2017; Ouyang et al. 2022). In RLHF, the model (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span>) adapts to a feedback distribution (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span>) that is, for any given training phase, fixed. This is the asymmetric stability setting: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> adapts, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> doesn&rsquo;t.</p>
 <p>Information geometry (Amari 2016) provides the natural framework: every policy update is a trajectory on the manifold of probability distributions, and learning is gradient descent on a divergence functional. KL-regularized methods — PPO (Schulman et al. 2017), SAC (Haarnoja et al. 2018) — already penalize divergence between successive policies, which is the stability reward by another name.</p>
 <p>This paper applies the two-channel decomposition and convergence results of <em>Information-Theoretic Stability as Reward Function</em> to the specific case of RLHF, deriving structural constraints on training dynamics.</p>
-<h2 id="2-setting">2. Setting</h2>
-<h3 id="21-model-and-feedback">2.1 Model and Feedback</h3>
+<h2 id="2-setting"><a href="#2-setting" class="heading-anchor" aria-label="Link to this section">¶</a>2. Setting
+</h2>
+<h3 id="21-model-and-feedback"><a href="#21-model-and-feedback" class="heading-anchor" aria-label="Link to this section">¶</a>2.1 Model and Feedback
+</h3>
 <p>Let <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mi mathvariant="normal">∣</mi><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_\theta(a|s)</annotation></semantics></math></span> denote the model&rsquo;s policy over actions <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span> given states <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span>, with parameters <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span>. Let <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>H</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mi mathvariant="normal">∣</mi><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p_H(a|s)</annotation></semantics></math></span> denote the human feedback distribution — the distribution over actions that RLHF reward models approximate (Christiano et al. 2017; Ouyang et al. 2022).</p>
 <p>The joint distribution is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>π</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mi mathvariant="normal">∣</mi><mi>s</mi><mo stretchy="false">)</mo><mtext> </mtext><mi>p</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p_t(a,s) = \pi_t(a|s)\,p(s)</annotation></semantics></math></span>, where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(s)</annotation></semantics></math></span> is the state distribution (determined by the environment, not the model). The target joint <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mi>p</mi><mi>H</mi><mo>∗</mo></msubsup><mo stretchy="false">(</mo><mi>a</mi><mi mathvariant="normal">∣</mi><mi>s</mi><mo stretchy="false">)</mo><mtext> </mtext><mi>p</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p^*(a,s) = p^*_H(a|s)\,p(s)</annotation></semantics></math></span> represents the aligned equilibrium.</p>
 <p>This is the asymmetric case: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> (feedback distribution over states) is fixed; only <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> (the model&rsquo;s conditional policy) adapts.</p>
-<h3 id="22-stability-reward">2.2 Stability Reward</h3>
+<h3 id="22-stability-reward"><a href="#22-stability-reward" class="heading-anchor" aria-label="Link to this section">¶</a>2.2 Stability Reward
+</h3>
 <p>The instantaneous stability reward of the model-feedback system is
 </p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>R</mi><mi>s</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mrow><mi>δ</mi><mi>t</mi></mrow></mfrac><mtext> </mtext><msub><mi>D</mi><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">L</mi></mrow></msub><mo stretchy="false">(</mo><msub><mi>p</mi><mrow><mi>t</mi><mo>+</mo><mi>δ</mi></mrow></msub><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">
@@ -142,8 +386,10 @@ measured in nats per timestep. In KL-regularized RL, the objective already inclu
 J(\pi) = \mathbb{E}_\pi\!\left[\sum_t r_t - \alpha\,D_{\mathrm{KL}}(\pi_t||\pi_{t-1})\right].
 </annotation></semantics></math></span><p>
 The KL penalty IS the stability reward, scaled by <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span>.</p>
-<h2 id="3-two-channel-decomposition-of-alignment">3. Two-Channel Decomposition of Alignment</h2>
-<h3 id="31-the-decomposition">3.1 The Decomposition</h3>
+<h2 id="3-two-channel-decomposition-of-alignment"><a href="#3-two-channel-decomposition-of-alignment" class="heading-anchor" aria-label="Link to this section">¶</a>3. Two-Channel Decomposition of Alignment
+</h2>
+<h3 id="31-the-decomposition"><a href="#31-the-decomposition" class="heading-anchor" aria-label="Link to this section">¶</a>3.1 The Decomposition
+</h3>
 <p>Because the feedback distribution is fixed, the chain rule for KL divergence gives (see <em>Information-Theoretic Stability as Reward Function</em>):
 </p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><msub><mi>p</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msup><mi>p</mi><mo>∗</mo></msup><mo stretchy="false">)</mo><mo>=</mo><mi>D</mi><mo stretchy="false">(</mo><msub><mi>π</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msubsup><mi>p</mi><mi>H</mi><mo>∗</mo></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>+</mo><msup><mi>I</mi><mo>∗</mo></msup><mo>−</mo><msub><mi>I</mi><mi>t</mi></msub><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">
@@ -155,33 +401,41 @@ where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><sema
 <li><strong>Behavioral divergence</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><msub><mi>π</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msubsup><mi>p</mi><mi>H</mi><mo>∗</mo></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D(\pi_t(a)||p^*_H(a))</annotation></semantics></math></span>: how far the model&rsquo;s behavior is from target.</li>
 <li><strong>MI gap</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>I</mi><mo>∗</mo></msup><mo>−</mo><msub><mi>I</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">I^* - I_t</annotation></semantics></math></span>: how much less responsive the model is to feedback than the aligned equilibrium.</li>
 </ol>
-<h3 id="32-accounting-identity">3.2 Accounting Identity</h3>
+<h3 id="32-accounting-identity"><a href="#32-accounting-identity" class="heading-anchor" aria-label="Link to this section">¶</a>3.2 Accounting Identity
+</h3>
 <p>Taking the time derivative:
 </p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munder><munder><mrow><mo>−</mo><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><mi>D</mi><mo stretchy="false">(</mo><msub><mi>p</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msup><mi>p</mi><mo>∗</mo></msup><mo stretchy="false">)</mo></mrow><mo stretchy="true">⏟</mo></munder><mtext>alignment progress</mtext></munder><mo>=</mo><munder><munder><mrow><mo>−</mo><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><mi>D</mi><mo stretchy="false">(</mo><msub><mi>π</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msubsup><mi>p</mi><mi>H</mi><mo>∗</mo></msubsup><mo stretchy="false">)</mo></mrow><mo stretchy="true">⏟</mo></munder><mtext>behavioral convergence</mtext></munder><mo>+</mo><munder><munder><mrow><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><msub><mi>I</mi><mi>t</mi></msub></mrow><mo stretchy="true">⏟</mo></munder><mtext>responsiveness increase</mtext></munder><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 \underbrace{-\partial_t D(p_t||p^*)}_{\text{alignment progress}} = \underbrace{-\partial_t D(\pi_t||p^*_H)}_{\text{behavioral convergence}} + \underbrace{\partial_t I_t}_{\text{responsiveness increase}}.
 </annotation></semantics></math></span><p>At every training step, alignment progress decomposes into these two channels. You can measure all three quantities during training.</p>
-<h3 id="33-structural-constraints">3.3 Structural Constraints</h3>
+<h3 id="33-structural-constraints"><a href="#33-structural-constraints" class="heading-anchor" aria-label="Link to this section">¶</a>3.3 Structural Constraints
+</h3>
 <p>From the convergence theorem (<em>Information-Theoretic Stability as Reward Function</em>, Section 4):</p>
 <p><strong>(a)</strong> Alignment progress is monotonically nonneg under gradient descent on the joint divergence.</p>
 <p><strong>(b)</strong> Both behavioral divergence and MI gap converge to zero.</p>
 <p><strong>(c)</strong> The two channels must sum to the alignment progress at every instant. Neither can stall without the other compensating.</p>
 <p><strong>(d)</strong> MI improvement always matches or exceeds behavioral improvement: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><msub><mi>I</mi><mi>t</mi></msub><mo>≥</mo><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><mi>D</mi><mo stretchy="false">(</mo><msub><mi>π</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msubsup><mi>p</mi><mi>H</mi><mo>∗</mo></msubsup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\partial_t I_t \ge \partial_t D(\pi_t||p^*_H)</annotation></semantics></math></span>. If the model&rsquo;s behavior is getting worse, its responsiveness must be improving by at least as much.</p>
-<h2 id="4-pathologies-as-accounting-failures">4. Pathologies as Accounting Failures</h2>
-<h3 id="41-mode-collapse-overstability">4.1 Mode Collapse (Overstability)</h3>
+<h2 id="4-pathologies-as-accounting-failures"><a href="#4-pathologies-as-accounting-failures" class="heading-anchor" aria-label="Link to this section">¶</a>4. Pathologies as Accounting Failures
+</h2>
+<h3 id="41-mode-collapse-overstability"><a href="#41-mode-collapse-overstability" class="heading-anchor" aria-label="Link to this section">¶</a>4.1 Mode Collapse (Overstability)
+</h3>
 <p>When the model converges too rapidly to a low-entropy attractor, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><msub><mi>π</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msubsup><mi>p</mi><mi>H</mi><mo>∗</mo></msubsup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D(\pi_t||p^*_H)</annotation></semantics></math></span> may decrease fast while <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">I_t</annotation></semantics></math></span> stalls or decreases — the model produces target-like behavior but stops being responsive to feedback distinctions. By the accounting identity, this can only persist if alignment progress is dominated by behavioral convergence, leaving the MI channel starved. The model looks aligned but is brittle.</p>
-<h3 id="42-reward-hacking">4.2 Reward Hacking</h3>
+<h3 id="42-reward-hacking"><a href="#42-reward-hacking" class="heading-anchor" aria-label="Link to this section">¶</a>4.2 Reward Hacking
+</h3>
 <p>When the model increases its reward score without approaching the target behavior, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">I_t</annotation></semantics></math></span> may increase (the model becomes very responsive to reward signal) while <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><msub><mi>π</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><msubsup><mi>p</mi><mi>H</mi><mo>∗</mo></msubsup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D(\pi_t||p^*_H)</annotation></semantics></math></span> stalls or increases. The MI channel absorbs the alignment progress while the behavioral channel regresses. The model is coupling to the wrong features of the feedback distribution.</p>
-<h3 id="43-catastrophic-forgetting">4.3 Catastrophic Forgetting</h3>
+<h3 id="43-catastrophic-forgetting"><a href="#43-catastrophic-forgetting" class="heading-anchor" aria-label="Link to this section">¶</a>4.3 Catastrophic Forgetting
+</h3>
 <p>When alignment progress suddenly drops (joint divergence stops decreasing or reverses due to distribution shift), the accounting identity means both channels must simultaneously stall or regress. This corresponds to the feedback distribution <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> shifting — violating the fixed-<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> assumption — and the model&rsquo;s coupling to the old <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> becoming worthless.</p>
-<h3 id="44-the-explorationstability-trade-off">4.4 The Exploration–Stability Trade-off</h3>
+<h3 id="44-the-explorationstability-trade-off"><a href="#44-the-explorationstability-trade-off" class="heading-anchor" aria-label="Link to this section">¶</a>4.4 The Exploration–Stability Trade-off
+</h3>
 <p>Optimal training balances the stability reward with entropy production:
 </p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="script">L</mi><mo>=</mo><mo>−</mo><msub><mi>R</mi><mi>s</mi></msub><mo>+</mo><mi>β</mi><mtext> </mtext><mi>H</mi><mo stretchy="false">(</mo><msub><mi>π</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">
 \mathcal{L} = -R_s + \beta\,H(\pi_t),
 </annotation></semantics></math></span><p>
 where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span> controls the trade-off. Too little entropy (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>→</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\beta \to 0</annotation></semantics></math></span>) produces overstability. Too much entropy overwhelms the stability reward and the model fails to couple to the feedback distribution at all.</p>
-<h2 id="5-discussion">5. Discussion</h2>
+<h2 id="5-discussion"><a href="#5-discussion" class="heading-anchor" aria-label="Link to this section">¶</a>5. Discussion
+</h2>
 <ol>
 <li>
 <p><strong>Alignment as accounting.</strong> The two-channel decomposition turns alignment into a measurable accounting problem. At each training step, you know how much progress went to behavior vs. responsiveness. Imbalance between the channels signals pathology.</p>
@@ -193,9 +447,11 @@ where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><sema
 <p><strong>Multiple feedback sources.</strong> When multiple feedback distributions <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>p</mi><msub><mi>H</mi><mi>i</mi></msub></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{p_{H_i}\}</annotation></semantics></math></span> are present, each contributes its own two-channel decomposition. The model&rsquo;s total stability reward is a sum of couplings to each source, and the accounting identities hold independently for each.</p>
 </li>
 </ol>
-<h2 id="6-conclusion">6. Conclusion</h2>
+<h2 id="6-conclusion"><a href="#6-conclusion" class="heading-anchor" aria-label="Link to this section">¶</a>6. Conclusion
+</h2>
 <p>RLHF training is the asymmetric stability setting: a model adapting to a fixed feedback distribution. The model&rsquo;s stability reward is a function of its coupling to that distribution. Alignment progress decomposes into behavioral convergence and responsiveness increase at every training step, and the structural constraints — monotone composite convergence, MI-dominates-marginal — give testable predictions about training dynamics. Alignment pathologies correspond to identifiable imbalances between the two channels.</p>
-<h2 id="references">References</h2>
+<h2 id="references"><a href="#references" class="heading-anchor" aria-label="Link to this section">¶</a>References
+</h2>
 <ul>
 <li>Amari, S. (1998). &ldquo;Natural Gradient Works Efficiently in Learning.&rdquo; <em>Neural Computation</em>, 10(2), 251–276.</li>
 <li>Amari, S. (2016). <em>Information Geometry and Its Applications</em>. Springer.</li>
@@ -208,54 +464,57 @@ where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><sema
 </ul>
 
   </div>
-  <section class="bibliography" id="bibliography"
+  
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2025-10-11">October 11, 2025</time>.</p>
+  
+  <details class="bibliography" id="bibliography" open
          vocab="https://schema.org/" typeof="ItemList">
-  <h2>References</h2><p class="bib-entry" id="ref-amari1998" typeof="CreativeWork" resource="#ref-amari1998">
+  <summary><h2>References</h2></summary><p class="bib-entry h-cite" id="ref-amari1998" typeof="CreativeWork" resource="#ref-amari1998">
     <span class="bib-key">[amari1998]</span>
-      <span property="author">S. Amari</span>.
-      (<span property="datePublished">1998</span>).<cite property="name">Natural Gradient Works Efficiently in Learning</cite>.
-      <em property="publisher">Neural Computation</em>.
-  </p><p class="bib-entry" id="ref-amari2016" typeof="CreativeWork" resource="#ref-amari2016">
+      <span class="p-author" property="author">S. Amari</span>.
+      (<time class="dt-published" property="datePublished" datetime="1998">1998</time>).<cite class="p-name" property="name">Natural Gradient Works Efficiently in Learning</cite>.
+      <em class="p-publisher" property="publisher">Neural Computation</em>.
+  </p><p class="bib-entry h-cite" id="ref-amari2016" typeof="CreativeWork" resource="#ref-amari2016">
     <span class="bib-key">[amari2016]</span>
-      <span property="author">S. Amari</span>.
-      (<span property="datePublished">2016</span>).<cite property="name">Information Geometry and Its Applications</cite>.
-      <em property="publisher">Springer</em>.
-  </p><p class="bib-entry" id="ref-amodei2016" typeof="CreativeWork" resource="#ref-amodei2016">
+      <span class="p-author" property="author">S. Amari</span>.
+      (<time class="dt-published" property="datePublished" datetime="2016">2016</time>).<cite class="p-name" property="name">Information Geometry and Its Applications</cite>.
+      <em class="p-publisher" property="publisher">Springer</em>.
+  </p><p class="bib-entry h-cite" id="ref-amodei2016" typeof="CreativeWork" resource="#ref-amodei2016">
     <span class="bib-key">[amodei2016]</span>
-      <span property="author">D. Amodei, C. Olah, J. Steinhardt, P. Christiano, J. Schulman, D. Mané</span>.
-      (<span property="datePublished">2016</span>).<cite property="name">Concrete Problems in AI Safety</cite>.
-      <em property="publisher">arXiv:1606.06565</em>.
-  </p><p class="bib-entry" id="ref-christiano2017" typeof="CreativeWork" resource="#ref-christiano2017">
+      <span class="p-author" property="author">D. Amodei, C. Olah, J. Steinhardt, P. Christiano, J. Schulman, D. Mané</span>.
+      (<time class="dt-published" property="datePublished" datetime="2016">2016</time>).<cite class="p-name" property="name">Concrete Problems in AI Safety</cite>.
+      <em class="p-publisher" property="publisher">arXiv:1606.06565</em>.
+  </p><p class="bib-entry h-cite" id="ref-christiano2017" typeof="CreativeWork" resource="#ref-christiano2017">
     <span class="bib-key">[christiano2017]</span>
-      <span property="author">P. F. Christiano, J. Leike, T. Brown</span>.
-      (<span property="datePublished">2017</span>).<cite property="name">Deep Reinforcement Learning from Human Preferences</cite>.
-      <em property="publisher">Advances in Neural Information Processing Systems</em>.
-  </p><p class="bib-entry" id="ref-cover2006" typeof="CreativeWork" resource="#ref-cover2006">
+      <span class="p-author" property="author">P. F. Christiano, J. Leike, T. Brown</span>.
+      (<time class="dt-published" property="datePublished" datetime="2017">2017</time>).<cite class="p-name" property="name">Deep Reinforcement Learning from Human Preferences</cite>.
+      <em class="p-publisher" property="publisher">Advances in Neural Information Processing Systems</em>.
+  </p><p class="bib-entry h-cite" id="ref-cover2006" typeof="CreativeWork" resource="#ref-cover2006">
     <span class="bib-key">[cover2006]</span>
-      <span property="author">T. M. Cover, J. A. Thomas</span>.
-      (<span property="datePublished">2006</span>).<cite property="name">Elements of Information Theory</cite>.
-      <em property="publisher">Wiley</em>.
-  </p><p class="bib-entry" id="ref-haarnoja2018" typeof="CreativeWork" resource="#ref-haarnoja2018">
+      <span class="p-author" property="author">T. M. Cover, J. A. Thomas</span>.
+      (<time class="dt-published" property="datePublished" datetime="2006">2006</time>).<cite class="p-name" property="name">Elements of Information Theory</cite>.
+      <em class="p-publisher" property="publisher">Wiley</em>.
+  </p><p class="bib-entry h-cite" id="ref-haarnoja2018" typeof="CreativeWork" resource="#ref-haarnoja2018">
     <span class="bib-key">[haarnoja2018]</span>
-      <span property="author">T. Haarnoja, A. Zhou, P. Abbeel, S. Levine</span>.
-      (<span property="datePublished">2018</span>).<cite property="name">Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor</cite>.
-      <em property="publisher">ICML 2018</em>.
-  </p><p class="bib-entry" id="ref-ouyang2022" typeof="CreativeWork" resource="#ref-ouyang2022">
+      <span class="p-author" property="author">T. Haarnoja, A. Zhou, P. Abbeel, S. Levine</span>.
+      (<time class="dt-published" property="datePublished" datetime="2018">2018</time>).<cite class="p-name" property="name">Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor</cite>.
+      <em class="p-publisher" property="publisher">ICML 2018</em>.
+  </p><p class="bib-entry h-cite" id="ref-ouyang2022" typeof="CreativeWork" resource="#ref-ouyang2022">
     <span class="bib-key">[ouyang2022]</span>
-      <span property="author">L. Ouyang, J. Wu, X. Jiang</span>.
-      (<span property="datePublished">2022</span>).<cite property="name">Training Language Models to Follow Instructions with Human Feedback</cite>.
-      <em property="publisher">arXiv:2203.02155</em>.
-  </p><p class="bib-entry" id="ref-schulman2017" typeof="CreativeWork" resource="#ref-schulman2017">
+      <span class="p-author" property="author">L. Ouyang, J. Wu, X. Jiang</span>.
+      (<time class="dt-published" property="datePublished" datetime="2022">2022</time>).<cite class="p-name" property="name">Training Language Models to Follow Instructions with Human Feedback</cite>.
+      <em class="p-publisher" property="publisher">arXiv:2203.02155</em>.
+  </p><p class="bib-entry h-cite" id="ref-schulman2017" typeof="CreativeWork" resource="#ref-schulman2017">
     <span class="bib-key">[schulman2017]</span>
-      <span property="author">J. Schulman, X. Chen, P. Abbeel</span>.
-      (<span property="datePublished">2017</span>).<cite property="name">Proximal Policy Optimization Algorithms</cite>.
-      <em property="publisher">arXiv:1707.06347</em>.
+      <span class="p-author" property="author">J. Schulman, X. Chen, P. Abbeel</span>.
+      (<time class="dt-published" property="datePublished" datetime="2017">2017</time>).<cite class="p-name" property="name">Information-Theoretic Stability as Reward Function</cite>.
+      <em class="p-publisher" property="publisher">arXiv:1707.06347</em>.
   </p>
-</section>
+</details>
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
         <dt><a href="/library/domains/science/domains/math/terms/action/">Acts on</a></dt>
         <dd property="emsenn:Actson">artificial agent adapting to fixed feedback distribution</dd>
@@ -263,8 +522,8 @@ where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><sema
         <dt>Analogous to</dt>
         <dd property="emsenn:Analogousto">stability dynamics in cognitive systems</dd>
       </div><div class="relation">
-        <dt>Citations</dt>
-        <dd property="emsenn:Citations"></dd>
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">artificial intelligence</a></dd>
       </div><div class="relation">
         <dt>Contrasts with</dt>
         <dd property="emsenn:Contrastswith">alignment as moral or semantic conformity</dd>
@@ -273,38 +532,76 @@ where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><sema
         <dd property="schema:dateCreated"><time datetime="2025-10-11">2025-10-11</time></dd>
       </div><div class="relation">
         <dt>Defines</dt>
-        <dd property="emsenn:Defines"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">alignment progress as two channel accounting identity</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">alignment pathology as channel imbalance</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">mode collapse as behavioral convergence without responsiveness</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">reward hacking as responsiveness without behavioral convergence</a></li></ul></dd>
+        <dd property="schema:about"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">alignment progress as two channel accounting identity</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">alignment pathology as channel imbalance</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">mode collapse as behavioral convergence without responsiveness</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-stability-optimization-in-artificial-agents/">reward hacking as responsiveness without behavioral convergence</a></li></ul></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
-        <dd property="emsenn:Extends">information theoretic stability as reward function</dd>
-      </div><div class="relation">
-        <dt>Form</dt>
-        <dd property="emsenn:Form">paper</dd>
+        <dd property="prov:wasDerivedFrom">information theoretic stability as reward function</dd>
       </div><div class="relation">
         <dt><a href="/library/domains/engineering/domains/tech/terms/produces/">Produces</a></dt>
         <dd property="emsenn:Produces"><ul><li>two channel decomposition of alignment into behavioral and responsiveness</li><li>taxonomy of alignment pathologies as channel imbalances</li></ul></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:educationalAlignment"><ul><li>reinforcement learning from human feedback</li><li>kl regularized reinforcement learning</li><li>fisher rao metric</li></ul></dd>
+        <dd property="schema:isBasedOn"><ul><li>reinforcement learning from human feedback</li><li>kl regularized reinforcement learning</li><li>fisher rao metric</li></ul></dd>
       </div><div class="relation">
-        <dt>Status</dt>
-        <dd property="emsenn:Status">draft</dd>
-      </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/information-geometry/">information-geometry</a></li><li><a href="/tags/reinforcement-learning/">reinforcement-learning</a></li><li><a href="/tags/alignment/">alignment</a></li><li><a href="/tags/research/">research</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

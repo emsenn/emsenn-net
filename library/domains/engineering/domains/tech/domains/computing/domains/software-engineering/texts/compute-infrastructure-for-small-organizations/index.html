@@ -1,30 +1,108 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compute Infrastructure for Small Organizations - emsenn.net</title>
+
+
+<meta name="description" content="Survey of compute infrastructure options for small organizations (1-10 people) building software systems — VPS, cloud, self-hosted — with current pricing, scaling patterns, and portability analysis.">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/compute-infrastructure-for-small-organizations/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="Compute Infrastructure for Small Organizations">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/compute-infrastructure-for-small-organizations/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Survey of compute infrastructure options for small organizations (1-10 people) building software systems — VPS, cloud, self-hosted — with current pricing, scaling patterns, and portability analysis.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-03T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-03T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Compute Infrastructure for Small Organizations">
+<meta name="twitter:description" content="Survey of compute infrastructure options for small organizations (1-10 people) building software systems — VPS, cloud, self-hosted — with current pricing, scaling patterns, and portability analysis.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/compute-infrastructure-for-small-organizations/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/compute-infrastructure-for-small-organizations/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/compute-infrastructure-for-small-organizations/",
   "@type": "Article",
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "identifier": "ref1",
+      "name": "Hetzner Online. 'Cloud Server Pricing.' hetzner.com, 2026."
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "ref2",
+      "name": "DigitalOcean. 'Pricing.' digitalocean.com, 2026."
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "ref3",
+      "name": "Kim, Gene, Patrick Debois, John Willis, and Jez Humble. The DevOps Handbook. IT Revolution Press, 2016."
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "ref4",
+      "name": "Stanislas. 'Moving My Personal Infrastructure to Kubernetes.' stanislas.blog, 2025."
+    },
+    {
+      "@type": "CreativeWork",
+      "identifier": "ref5",
+      "name": "MassiveGrid. 'When to Split Your VPS: Single-Server vs Multi-Server Architecture.' massivegrid.com, 2025."
+    }
+  ],
   "dateModified": "2026-04-03",
   "datePublished": "2026-04-03",
   "description": "Survey of compute infrastructure options for small organizations (1-10 people) building software systems — VPS, cloud, self-hosted — with current pricing, scaling patterns, and portability analysis.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/",
+    "@type": "CreativeWork",
+    "name": "software-engineering",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/"
+  },
   "keywords": "infrastructure, vps, self-hosting, cloud-computing, scaling",
   "name": "Compute Infrastructure for Small Organizations",
   "publisher": {
@@ -46,46 +124,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:software-engineering, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/">Software Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/">Texts</a></nav>
   <h1 class="p-name">Compute Infrastructure for Small Organizations</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-03T00:00:00Z">2026-04-03</time>
     
     <span class="p-summary">Survey of compute infrastructure options for small organizations (1-10 people) building software systems — VPS, cloud, self-hosted — with current pricing, scaling patterns, and portability analysis.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -100,6 +155,27 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>A small organization building a software system faces an
 infrastructure question that larger organizations can defer to
@@ -108,7 +184,8 @@ cost, operational burden, scaling path, and the degree of control
 the organization retains over its own systems. This text surveys
 the real options as of 2026, with documented pricing and
 practitioner-reported tradeoffs.</p>
-<h2 id="virtual-private-servers">Virtual private servers</h2>
+<h2 id="virtual-private-servers"><a href="#virtual-private-servers" class="heading-anchor" aria-label="Link to this section">¶</a>Virtual private servers
+</h2>
 <p>A virtual private server (VPS) is a virtual machine rented from a
 hosting provider, accessed via SSH, with full root control. It is
 the most common starting point for small teams.</p>
@@ -131,7 +208,8 @@ significant advantage for egress-heavy workloads where other
 providers charge $0.08–0.12/GB for data transfer.</p>
 <p><strong>Vultr</strong> and <strong>Linode (Akamai)</strong> fall in the DigitalOcean pricing
 tier with comparable capabilities and global presence.</p>
-<h2 id="cloud-platforms">Cloud platforms</h2>
+<h2 id="cloud-platforms"><a href="#cloud-platforms" class="heading-anchor" aria-label="Link to this section">¶</a>Cloud platforms
+</h2>
 <p>Cloud platforms (AWS, Google Cloud, Azure) provide managed services
 — databases, message queues, container orchestration, identity
 management — at higher cost and with significant vendor lock-in.
@@ -145,7 +223,8 @@ elastic scaling that justifies cloud platform premiums.</p>
 <p>Cloud platforms remain the practical choice for organizations
 that need managed services and can&rsquo;t staff operations roles.
 The tradeoff is cost and dependency for reduced operational burden.</p>
-<h2 id="self-hosted-hardware">Self-hosted hardware</h2>
+<h2 id="self-hosted-hardware"><a href="#self-hosted-hardware" class="heading-anchor" aria-label="Link to this section">¶</a>Self-hosted hardware
+</h2>
 <p>Running your own hardware eliminates recurring hosting costs
 and gives maximum control over the physical infrastructure. Modern
 mini PCs (Intel NUC, ASUS NUC Pro) with 16+ cores and 64–96 GB
@@ -164,7 +243,8 @@ makes sense when: you need compute available during internet
 outages, you have physical infrastructure to manage (printers,
 sensors, local network services), or your workload is sustained
 24/7 and the economics favor ownership.</p>
-<h2 id="operating-system">Operating system</h2>
+<h2 id="operating-system"><a href="#operating-system" class="heading-anchor" aria-label="Link to this section">¶</a>Operating system
+</h2>
 <p><strong>Ubuntu Server</strong> has 28% developer adoption (2025) and 10-year
 LTS support via Ubuntu Pro. It is the default choice for teams
 without strong preferences — extensive documentation, official
@@ -180,7 +260,8 @@ as a host OS.</p>
 Growing adoption for teams that want infrastructure-as-code at the
 OS level. Steeper learning curve but enables exact reproduction
 of system state across machines.</p>
-<h2 id="scaling-patterns">Scaling patterns</h2>
+<h2 id="scaling-patterns"><a href="#scaling-patterns" class="heading-anchor" aria-label="Link to this section">¶</a>Scaling patterns
+</h2>
 <p>Small organizations progress through infrastructure stages as
 load and complexity increase.</p>
 <p><strong>Stage 1: Single server.</strong> The entire stack — application,
@@ -211,7 +292,8 @@ when it competes with the application for CPU or memory. Split CI/CD
 when builds destabilize production. Adopt container orchestration
 when you want declarative, portable deployments. Add nodes when you
 need availability guarantees.</p>
-<h2 id="portability-and-vendor-independence">Portability and vendor independence</h2>
+<h2 id="portability-and-vendor-independence"><a href="#portability-and-vendor-independence" class="heading-anchor" aria-label="Link to this section">¶</a>Portability and vendor independence
+</h2>
 <p>Two practices preserve the ability to move between providers or to
 self-hosted hardware:</p>
 <p><strong>Infrastructure as Code (IaC).</strong> Tools like Terraform define
@@ -227,7 +309,8 @@ manifests and persistent volume snapshots enable full migration.</p>
 independence: the system&rsquo;s deployment is described in files that
 work on any provider, and the system itself runs in containers
 that work on any Linux host.</p>
-<h2 id="cost-reality">Cost reality</h2>
+<h2 id="cost-reality"><a href="#cost-reality" class="heading-anchor" aria-label="Link to this section">¶</a>Cost reality
+</h2>
 <p>Documented monthly costs for small teams (2026):</p>
 <table>
   <thead>
@@ -270,7 +353,8 @@ time for part-time DevOps at small scale).</p>
 <p>Self-hosted always costs less than managed platforms past the
 $50–100/month threshold, but the savings are paid for in
 operational labor.</p>
-<h2 id="key-citations">Key citations</h2>
+<h2 id="key-citations"><a href="#key-citations" class="heading-anchor" aria-label="Link to this section">¶</a>Key citations
+</h2>
 <ul>
 <li>Hetzner Online. &ldquo;Cloud Server Pricing.&rdquo; hetzner.com, 2026.</li>
 <li>DigitalOcean. &ldquo;Pricing.&rdquo; digitalocean.com, 2026.</li>
@@ -284,32 +368,92 @@ Multi-Server Architecture.&rdquo; massivegrid.com, 2025.</li>
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-03">April 3, 2026</time>.</p>
+  
+  <details class="bibliography" id="bibliography" open
+         vocab="https://schema.org/" typeof="ItemList">
+  <summary><h2>References</h2></summary><p class="bib-entry h-cite" id="ref-ref1" typeof="CreativeWork" resource="#ref-ref1">
+    <span class="bib-key">[ref1]</span><cite class="p-name" property="name">Hetzner Online. &#39;Cloud Server Pricing.&#39; hetzner.com, 2026.</cite>..
+  </p><p class="bib-entry h-cite" id="ref-ref2" typeof="CreativeWork" resource="#ref-ref2">
+    <span class="bib-key">[ref2]</span><cite class="p-name" property="name">DigitalOcean. &#39;Pricing.&#39; digitalocean.com, 2026.</cite>..
+  </p><p class="bib-entry h-cite" id="ref-ref3" typeof="CreativeWork" resource="#ref-ref3">
+    <span class="bib-key">[ref3]</span><cite class="p-name" property="name">Kim, Gene, Patrick Debois, John Willis, and Jez Humble. The DevOps Handbook. IT Revolution Press, 2016.</cite>..
+  </p><p class="bib-entry h-cite" id="ref-ref4" typeof="CreativeWork" resource="#ref-ref4">
+    <span class="bib-key">[ref4]</span><cite class="p-name" property="name">Stanislas. &#39;Moving My Personal Infrastructure to Kubernetes.&#39; stanislas.blog, 2025.</cite>..
+  </p><p class="bib-entry h-cite" id="ref-ref5" typeof="CreativeWork" resource="#ref-ref5">
+    <span class="bib-key">[ref5]</span><cite class="p-name" property="name">MassiveGrid. &#39;When to Split Your VPS: Single-Server vs Multi-Server Architecture.&#39; massivegrid.com, 2025.</cite>..
+  </p>
+</details>
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/compute-infrastructure-for-small-organizations/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/texts/compute-infrastructure-for-small-organizations/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
-        <dt>Citations</dt>
-        <dd property="emsenn:Citations"></dd>
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software-engineering/">software engineering</a></dd>
       </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-03">2026-04-03</time></dd>
       </div><div class="relation">
-        <dt>Tags</dt>
+        <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/infrastructure/">infrastructure</a></li><li><a href="/tags/vps/">vps</a></li><li><a href="/tags/self-hosting/">self-hosting</a></li><li><a href="/tags/cloud-computing/">cloud-computing</a></li><li><a href="/tags/scaling/">scaling</a></li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

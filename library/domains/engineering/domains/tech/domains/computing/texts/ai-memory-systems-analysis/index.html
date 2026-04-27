@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ emsenn: https://emsenn.net/vocab#">
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Memory Systems: MemGPT/Letta and Mem0 - emsenn.net</title>
+
+
+<meta name="description" content="Analysis of the two leading AI memory systems — Letta&#39;s OS-inspired memory hierarchy and Mem0&#39;s graph-based memory — with implications for our EAVT-backed memory system.">
+<link rel="canonical" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ai-memory-systems-analysis/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="AI Memory Systems: MemGPT/Letta and Mem0">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ai-memory-systems-analysis/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Analysis of the two leading AI memory systems — Letta&#39;s OS-inspired memory hierarchy and Mem0&#39;s graph-based memory — with implications for our EAVT-backed memory system.">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:published_time" content="2026-04-04T00:00:00Z">
+<meta property="article:modified_time" content="2026-04-04T00:00:00Z">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Memory Systems: MemGPT/Letta and Mem0">
+<meta name="twitter:description" content="Analysis of the two leading AI memory systems — Letta&#39;s OS-inspired memory hierarchy and Mem0&#39;s graph-based memory — with implications for our EAVT-backed memory system.">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
   onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
 <link href="https://gmpg.org/xfn/11" rel="profile">
 <link href="https://emsenn.net" rel="me">
 <link href="mailto:emsenn@emsenn.net" rel="me authn">
 <link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
 <link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ai-memory-systems-analysis/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ai-memory-systems-analysis/index.jsonld">
+
+
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ai-memory-systems-analysis/",
   "@type": "Article",
   "dateModified": "2026-04-04",
   "datePublished": "2026-04-04",
   "description": "Analysis of the two leading AI memory systems — Letta's OS-inspired memory hierarchy and Mem0's graph-based memory — with implications for our EAVT-backed memory system.",
+  "isPartOf": {
+    "@id": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/",
+    "@type": "CreativeWork",
+    "name": "computing",
+    "url": "https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/"
+  },
   "name": "AI Memory Systems: MemGPT/Letta and Mem0",
   "publisher": {
     "@type": "Person",
@@ -45,46 +96,23 @@
     <span class="site-tagline">on relations and things</span>
   </div>
   <nav>
-    <a href="/letters/">letters</a>
-    <a href="/blog/">blog</a>
+    <a href="/writing/">writing</a>
     <a href="/library/">library</a>
+    <a href="/about/">about</a>
+    <a href="/search/" rel="search">search</a>
   </nav>
-  <div id="search"></div>
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new PagefindUI({ element: "#search", showSubResults: true });
-    });
-  </script>
-  <details class="site-about">
-    <summary>About this site</summary>
-    <ul>
-      <li><details>
-        <summary>This is a personal library and digital garden.</summary>
-        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
-      </details></li>
-      <li><details>
-        <summary>Its content was written by hand.</summary>
-        <p>This means there might be mistakes, and some pages are more complete than others.</p>
-      </details></li>
-      <li><details>
-        <summary>This site was built as a public asset.</summary>
-        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
-      </details></li>
-    </ul>
-  </details>
 </header>
 
   <main id="content" data-pagefind-body>
-    
-<article class="h-entry" data-type="page">
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, domain:computing, section:library">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/library/">Libraries</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/">Engineering</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/">Tech</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/">Subdomains</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/">Computing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/library/domains/engineering/domains/tech/domains/computing/texts/">Texts</a></nav>
   <h1 class="p-name">AI Memory Systems: MemGPT/Letta and Mem0</h1>
   <div class="meta">
     <time class="dt-published" datetime="2026-04-04T00:00:00Z">2026-04-04</time>
     
     <span class="p-summary">Analysis of the two leading AI memory systems — Letta&#39;s OS-inspired memory hierarchy and Mem0&#39;s graph-based memory — with implications for our EAVT-backed memory system.</span>
-  </div><details class="toc">
+  </div><details class="toc" open>
       <summary>Table of contents</summary>
       <nav id="TableOfContents">
   <ul>
@@ -116,15 +144,39 @@
   </ul>
 </nav>
     </details>
+    <script>
+    (function() {
+      const links = document.querySelectorAll('.toc a[href^="#"]');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      const linkByHash = {};
+      links.forEach(a => { linkByHash[a.getAttribute('href')] = a; });
+      const headings = Array.from(document.querySelectorAll('.e-content h2[id], .e-content h3[id]'));
+      if (!headings.length) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = linkByHash['#' + entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('toc-active'));
+            link.classList.add('toc-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+      headings.forEach(h => observer.observe(h));
+    })();
+    </script>
   <div class="e-content">
     <p>The context window is finite. Everything interesting about AI memory follows from this constraint. Two systems — Letta (formerly MemGPT) and Mem0 — take fundamentally different approaches to working within it. Letta treats the context window as RAM and builds an operating system around it. Mem0 treats memories as facts and builds a knowledge graph. Both are instructive for anyone designing memory for agentic systems.</p>
-<h2 id="letta-the-operating-system-metaphor">Letta: The Operating System Metaphor</h2>
+<h2 id="letta-the-operating-system-metaphor"><a href="#letta-the-operating-system-metaphor" class="heading-anchor" aria-label="Link to this section">¶</a>Letta: The Operating System Metaphor
+</h2>
 <p>Letta&rsquo;s core insight is that context window management <em>is</em> memory management, and the best-understood framework for memory management is the operating system. The paper (Packer et al., 2023) made this explicit: the context window is main memory, and everything that doesn&rsquo;t fit gets paged to external storage.</p>
-<h3 id="the-three-tier-hierarchy">The Three-Tier Hierarchy</h3>
+<h3 id="the-three-tier-hierarchy"><a href="#the-three-tier-hierarchy" class="heading-anchor" aria-label="Link to this section">¶</a>The Three-Tier Hierarchy
+</h3>
 <p><strong>Core memory</strong> (always in-context). Structured as <code>Block</code> objects compiled directly into the system prompt. Two standard blocks — <code>persona</code> (who the agent is) and <code>human</code> (who the user is) — plus arbitrary additional blocks. Each block has a character limit (default 8192). The agent edits these blocks through tool calls: <code>core_memory_append</code>, <code>core_memory_replace</code>, <code>memory_rethink</code> (rewrite an entire block). Core memory is the working set — small, fast, always present.</p>
 <p><strong>Recall memory</strong> (conversation history). All messages ever exchanged, stored in a relational database. Only recent messages stay in-context. When the context overflows, a summarizer LLM compresses older messages into a summary paragraph placed at position 1 in the message list (after the system prompt, before real messages). The agent retrieves older messages on demand via <code>conversation_search()</code>, which does hybrid search — text matching plus semantic similarity, results ranked by reciprocal rank fusion (RRF).</p>
 <p><strong>Archival memory</strong> (long-term storage). Passages stored in a vector database (pgvector, Pinecone, or Turbopuffer). Each passage has text, an embedding vector, tags, and timestamps. The agent writes to archival memory with <code>archival_memory_insert()</code> and retrieves with <code>archival_memory_search()</code>, which does semantic similarity search with optional tag and date filtering. Archival memory is unlimited but requires explicit tool calls to access.</p>
-<h3 id="virtual-context-management">Virtual Context Management</h3>
+<h3 id="virtual-context-management"><a href="#virtual-context-management" class="heading-anchor" aria-label="Link to this section">¶</a>Virtual Context Management
+</h3>
 <p>The paging mechanism works as follows:</p>
 <ol>
 <li>After each LLM response, the system checks whether <code>total_tokens &gt; context_window_limit</code>.</li>
@@ -133,21 +185,26 @@
 <li>A memory pressure alert fires at ~80% capacity, giving the agent a chance to proactively archive important information before forced summarization.</li>
 </ol>
 <p>The system prompt includes a metadata block that tells the agent what it <em>can&rsquo;t see</em>: &ldquo;42 previous messages in recall memory, 156 passages in archival memory, available tags: [project_x, meeting_notes, &hellip;]&rdquo;. This metadata costs few tokens but lets the agent decide whether to search.</p>
-<h3 id="what-makes-it-work">What Makes It Work</h3>
+<h3 id="what-makes-it-work"><a href="#what-makes-it-work" class="heading-anchor" aria-label="Link to this section">¶</a>What Makes It Work
+</h3>
 <p>The critical design choice is that the agent <em>itself</em> manages memory. The LLM decides what to put in core memory, what to archive, and when to search. The system provides the tools; the agent provides the judgment. This is both the strength and the weakness — it works well with capable models (GPT-4, Claude) and poorly with weaker ones, because memory management requires meta-cognitive reasoning about what&rsquo;s important.</p>
 <p>The Block abstraction is elegant. By making core memory structured (labeled, size-limited, editable), Letta avoids the failure mode where the agent treats the system prompt as append-only and eventually overflows it. The <code>memory_rethink</code> function — which rewrites an entire block — is particularly important: it allows the agent to consolidate and compress, not just accumulate.</p>
-<h2 id="mem0-the-knowledge-graph-approach">Mem0: The Knowledge Graph Approach</h2>
+<h2 id="mem0-the-knowledge-graph-approach"><a href="#mem0-the-knowledge-graph-approach" class="heading-anchor" aria-label="Link to this section">¶</a>Mem0: The Knowledge Graph Approach
+</h2>
 <p>Mem0 takes a different stance. Rather than managing the context window as virtual memory, Mem0 extracts discrete facts from conversations and stores them in both a vector store and a knowledge graph. Memory management is not the agent&rsquo;s job — it&rsquo;s a background process.</p>
-<h3 id="dual-storage-architecture">Dual Storage Architecture</h3>
+<h3 id="dual-storage-architecture"><a href="#dual-storage-architecture" class="heading-anchor" aria-label="Link to this section">¶</a>Dual Storage Architecture
+</h3>
 <p><strong>Vector memory</strong>. Facts extracted from conversations are embedded and stored in a vector database. Each memory has text, an embedding, metadata (user_id, agent_id, timestamps, hash), and a role (user or assistant). Retrieval is embedding similarity search with optional reranking.</p>
 <p><strong>Graph memory</strong>. The same conversations are also processed by an entity-relation extraction pipeline. An LLM identifies entities and their types, then identifies relationships between them. These become nodes and edges in a Neo4j graph. Nodes have embeddings, mention counts, and scoping metadata. Edges have types, validity flags, and mention counts.</p>
 <p>Both stores are written concurrently via a thread pool. Search queries hit both and merge results.</p>
-<h3 id="memory-extraction">Memory Extraction</h3>
+<h3 id="memory-extraction"><a href="#memory-extraction" class="heading-anchor" aria-label="Link to this section">¶</a>Memory Extraction
+</h3>
 <p>Mem0 uses two distinct extraction prompts:</p>
 <p><strong>User memory extraction</strong> pulls facts only from user messages — preferences, plans, professional details, health information. It explicitly penalizes including information from assistant messages.</p>
 <p><strong>Agent memory extraction</strong> (when an agent_id is present) pulls facts from assistant messages — capabilities, approach patterns, knowledge areas. This is procedural memory: what the agent has learned about how to do its job.</p>
 <p>The extraction pipeline: parse messages → call LLM with extraction prompt → force JSON output → normalize facts. Each fact becomes a separate memory entry.</p>
-<h3 id="conflict-resolution">Conflict Resolution</h3>
+<h3 id="conflict-resolution"><a href="#conflict-resolution" class="heading-anchor" aria-label="Link to this section">¶</a>Conflict Resolution
+</h3>
 <p>This is where Mem0 gets interesting. When a new fact is extracted, the system searches the vector store for the 5 most semantically similar existing memories. It then sends both old and new to an LLM with an update prompt that classifies each pair into one of four operations:</p>
 <ul>
 <li><strong>ADD</strong>: genuinely new fact, no existing match.</li>
@@ -156,7 +213,8 @@
 <li><strong>NONE</strong>: already captured, no change needed.</li>
 </ul>
 <p>The graph has its own conflict resolution. A separate LLM prompt identifies relationships to delete, with a preservation principle: if the same relationship type could have multiple valid destinations (&ldquo;alice loves pizza&rdquo; and &ldquo;alice loves burgers&rdquo;), keep both. Deletion is soft — the <code>valid</code> flag is set to false, and an <code>invalidated_at</code> timestamp is recorded.</p>
-<h3 id="graph-search">Graph Search</h3>
+<h3 id="graph-search"><a href="#graph-search" class="heading-anchor" aria-label="Link to this section">¶</a>Graph Search
+</h3>
 <p>Graph retrieval works differently from vector retrieval:</p>
 <ol>
 <li>Extract entities from the query using an LLM.</li>
@@ -166,7 +224,8 @@
 <li>Return top-5 relationships.</li>
 </ol>
 <p>This is fundamentally different from vector search: it follows <em>structure</em> rather than <em>similarity</em>. Asking &ldquo;what does Alice like?&rdquo; traverses Alice&rsquo;s outgoing edges, not the embedding space around the question.</p>
-<h2 id="the-fundamental-constraint">The Fundamental Constraint</h2>
+<h2 id="the-fundamental-constraint"><a href="#the-fundamental-constraint" class="heading-anchor" aria-label="Link to this section">¶</a>The Fundamental Constraint
+</h2>
 <p>Both systems exist because of the same problem: the context window is too small to hold everything an agent needs to know. Their solutions reveal different assumptions about what memory is for.</p>
 <p>Letta assumes memory is <em>operational</em> — the agent needs to manage its own working state, like a programmer managing heap allocations. Memory tools are first-class capabilities. The agent&rsquo;s metacognitive skill at memory management directly determines system quality.</p>
 <p>Mem0 assumes memory is <em>factual</em> — the system should extract and organize knowledge automatically, so the agent can focus on its actual task. Memory management is infrastructure, not agency.</p>
@@ -221,25 +280,31 @@
       </tr>
   </tbody>
 </table>
-<h2 id="implications-for-our-system">Implications for Our System</h2>
+<h2 id="implications-for-our-system"><a href="#implications-for-our-system" class="heading-anchor" aria-label="Link to this section">¶</a>Implications for Our System
+</h2>
 <p>Our memory system (<code>operations/engineering/records/memory/</code>) is currently file-based: markdown files with frontmatter, indexed by <code>MEMORY.md</code>. Our EAVT datastore (<code>knowledge-graph.json</code>, 11,500+ entities, 133,000+ facts) is a knowledge graph — but it stores <em>library knowledge</em>, not <em>session memory</em>.</p>
-<h3 id="what-we-already-have-that-they-dont">What We Already Have That They Don&rsquo;t</h3>
+<h3 id="what-we-already-have-that-they-dont"><a href="#what-we-already-have-that-they-dont" class="heading-anchor" aria-label="Link to this section">¶</a>What We Already Have That They Don&rsquo;t
+</h3>
 <p><strong>The EAVT graph is richer than Mem0&rsquo;s triples.</strong> Mem0 stores entity-relation-entity triples. Our graph stores entity-attribute-value triples with temporal indexing (the T in EAVT). Every fact has a transaction timestamp. We don&rsquo;t need to bolt on &ldquo;when was this learned?&rdquo; — it&rsquo;s structural. Our graph also has typed attributes with a shared vocabulary across the entire library, not ad hoc relation strings extracted by an LLM.</p>
 <p><strong>File-based memory is auditable.</strong> Both Letta and Mem0 store memories in databases — vector stores, PostgreSQL, Neo4j. Our memories are markdown files in git. Every change is tracked, diffable, and reviewable. The tradeoff is retrieval speed, but at our scale (&lt; 100 memory files) linear scan is fine.</p>
 <p><strong>Hooks compose memory at turn-time.</strong> Our hook system (<code>datastore.js</code>, <code>patch-graph.js</code>) already injects context per-turn based on what the agent is doing. This is closer to Letta&rsquo;s &ldquo;metadata block&rdquo; approach — tell the agent what&rsquo;s available without loading it all.</p>
-<h3 id="what-we-should-adopt">What We Should Adopt</h3>
+<h3 id="what-we-should-adopt"><a href="#what-we-should-adopt" class="heading-anchor" aria-label="Link to this section">¶</a>What We Should Adopt
+</h3>
 <p><strong>From Letta: memory pressure signals.</strong> Letta&rsquo;s 80% threshold alert is simple and effective. Our system should signal when context is getting full, prompting the agent to archive or summarize. We have the <code>context-budget</code> skill but don&rsquo;t use it automatically.</p>
 <p><strong>From Letta: structured memory blocks with size limits.</strong> Our memory files have no size governance. A memory file could grow unbounded. Adopting a block-like model — each memory type has a character budget, and the agent must consolidate rather than just append — would prevent drift.</p>
 <p><strong>From Mem0: automatic conflict resolution.</strong> Our memory system relies on the agent noticing that a memory is stale and updating it. Mem0&rsquo;s ADD/UPDATE/DELETE classification could run as a hook: when a new memory is written, check existing memories for semantic overlap and flag conflicts. This doesn&rsquo;t require a vector database — at our scale, comparing a new memory against all existing ones via an LLM call is feasible.</p>
 <p><strong>From Mem0: separation of extraction and storage.</strong> We currently extract and store in one step (the agent writes to memory). Separating these — having an observer extract candidate memories, then a validator decide whether to ADD/UPDATE/DELETE — would improve quality. We already have the <code>observer</code> agent; it could run this pipeline.</p>
-<h3 id="what-we-should-not-adopt">What We Should Not Adopt</h3>
+<h3 id="what-we-should-not-adopt"><a href="#what-we-should-not-adopt" class="heading-anchor" aria-label="Link to this section">¶</a>What We Should Not Adopt
+</h3>
 <p><strong>Vector databases for memory retrieval.</strong> At our scale, embedding search adds complexity without proportional benefit. Our memories are few enough that the MEMORY.md index plus grep is sufficient. If we grow past ~500 memories, revisit.</p>
 <p><strong>Agent-managed paging (Letta&rsquo;s full OS model).</strong> Our agents already work within a harness that manages context composition via hooks and skills. Adding explicit paging tools would create a second context management system competing with the first. Better to improve our existing hooks.</p>
 <p><strong>Mem0&rsquo;s Neo4j dependency.</strong> We have an EAVT graph that loads from JSON. Adding a graph database server for memory is overengineering. If we want graph-based memory retrieval, we can query our existing datastore.</p>
-<h3 id="the-path-forward">The Path Forward</h3>
+<h3 id="the-path-forward"><a href="#the-path-forward" class="heading-anchor" aria-label="Link to this section">¶</a>The Path Forward
+</h3>
 <p>The most valuable pattern from both systems is the <em>memory lifecycle</em>: extraction → deduplication → conflict resolution → consolidation → retrieval. Our system does extraction (agent writes memories) and retrieval (MEMORY.md index), but skips deduplication, conflict resolution, and consolidation. These middle steps are where memory quality lives.</p>
 <p>A concrete implementation: after each session, the observer agent reads new memories, compares them against existing ones, and produces a report: &ldquo;Memory X is stale (contradicted by session finding Y), Memory Z duplicates Memory W, Memory Q should be updated with new context.&rdquo; A human or senior agent reviews and acts. This is the settlement pattern applied to memory — exactly what our continuous learning system is designed for.</p>
-<h2 id="see-also">See Also</h2>
+<h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See Also
+</h2>
 <ul>
 <li><a href="./continuous-learning-in-agentic-harnesses.md" class="link-internal">Continuous Learning in Agentic Harnesses</a></li>
 <li><a href="./agentic-harness-landscape-2026.md" class="link-internal">Agentic Harness Landscape 2026</a></li>
@@ -248,35 +313,85 @@
 
   </div>
   
+  <p class="last-reviewed">Last reviewed <time class="dt-updated" datetime="2026-04-04">April 4, 2026</time>.</p>
+  
+  
 </article>
-<section class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ai-memory-systems-analysis/" typeof="schema:CreativeWork"
+<details class="page-relations" resource="https://emsenn.net/library/domains/engineering/domains/tech/domains/computing/texts/ai-memory-systems-analysis/" typeof="schema:CreativeWork"
          vocab="https://emsenn.net/vocab#">
-  <h2>Relations</h2>
+  <summary><h2>Relations</h2></summary>
   <dl><div class="relation">
+        <dt><a href="/library/domains/science/domains/math/terms/component-of/">Component of</a></dt>
+        <dd property="schema:isPartOf"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
+      </div><div class="relation">
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
       </div><div class="relation">
         <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
-        <dd property="emsenn:Domain">computing</dd>
+        <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/">computing</a></dd>
       </div><div class="relation">
         <dt>Related</dt>
-        <dd property="emsenn:Related"><ul><li>continuous learning in agentic harnesses</li><li>agentic harness landscape 2026</li><li>personal ai os landscape 2026</li></ul></dd>
+        <dd property="rdfs:seeAlso"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/texts/continuous-learning-in-agentic-harnesses/">continuous learning in agentic harnesses</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/texts/agentic-harness-landscape-2026/">agentic harness landscape 2026</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/texts/personal-ai-os-landscape-2026/">personal ai os landscape 2026</a></li></ul></dd>
       </div><div class="relation">
-        <dt>Sources</dt>
+        <dt><a href="/library/references/sources/">Sources</a></dt>
         <dd property="emsenn:Sources"><ul><li>https://github.com/letta ai/letta</li><li>https://github.com/mem0ai/mem0</li><li>https://arxiv.org/abs/2310.08560</li></ul></dd>
       </div>
   </dl>
-</section>
+</details>
 
 
   
 
 
   </main>
-  <footer>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer class="site-footer">
     <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
-    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
-    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+    <div class="footer-columns">
+      <nav class="footer-section" aria-label="Feeds">
+        <h3>Feeds</h3>
+        <ul>
+          <li><a href="/index.xml" type="application/rss+xml">RSS</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Data">
+        <h3>Data</h3>
+        <ul>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+          <li><a href="/vocab/">Vocabulary</a></li>
+          <li><a href="/robots.txt">robots.txt</a></li>
+          <li><span class="meta">Per-page: append <code>/index.ttl</code> or <code>/index.jsonld</code></span></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Meta">
+        <h3>Meta</h3>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/search/">Search</a></li>
+          <li><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-section" aria-label="Connect">
+        <h3>Connect</h3>
+        <ul><li><a href="mailto:emsenn@emsenn.net" rel="me">emsenn@emsenn.net</a></li>
+          <li><a href="https://ko-fi.com/emsenn">support on Ko-fi</a></li>
+        </ul>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>
