@@ -620,22 +620,10 @@ a.citation {
   font-weight: 500;
 }
 
-/* Floating TOC on wide viewports */
-@media (min-width: 960px) {
-  .toc {
-    position: sticky;
-    top: 1.5rem;
-    float: right;
-    width: 16rem;
-    max-height: calc(100vh - 3rem);
-    overflow-y: auto;
-    margin: 0 0 1.5em 1.5em;
-    padding: 0.6em 0 0.6em 1em;
-    border: none;
-    border-left: 1px solid var(--rule);
-  }
-  .toc[open] summary { margin-bottom: 0.5em; }
-}
+/* Floating TOC disabled. The body is capped at max-width: 42rem, so a 16rem
+   right-floated sticky TOC inside that container collapsed the reading column
+   and overlapped the prose. TOC now stays inline as a collapsible <details>
+   at the top of the article. */
 
 /* === SEARCH (Pagefind UI overrides) === */
 .pagefind-ui {
