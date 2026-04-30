@@ -187,25 +187,25 @@
     <span class="p-summary">A pattern where a language model&#39;s generation is grounded by retrieving relevant documents from an external knowledge base and injecting them into the context window before generating a response.</span>
   </div>
   <div class="e-content">
-    <p>Retrieval-augmented generation (RAG) is a pattern where a <a href="../on-device-inference/terms/large-language-model.md" class="link-internal">large language model</a> retrieves relevant documents from an external knowledge base before generating a response. The retrieved documents are injected into the <a href="./context-window.md" class="link-internal">context window</a> alongside the user&rsquo;s query, grounding the model&rsquo;s generation in specific source material. Lewis et al. introduced the term and architecture in &ldquo;Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks&rdquo; (NeurIPS 2020).</p>
+    <p>Retrieval-augmented generation (RAG) is a pattern where a <a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/terms/large-language-model/" class="link-internal">large language model</a> retrieves relevant documents from an external knowledge base before generating a response. The retrieved documents are injected into the <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-window/" class="link-internal">context window</a> alongside the user&rsquo;s query, grounding the model&rsquo;s generation in specific source material. Lewis et al. introduced the term and architecture in &ldquo;Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks&rdquo; (NeurIPS 2020).</p>
 <p>The standard RAG pipeline has three stages:</p>
 <ol>
 <li>
-<p><strong>Indexing.</strong> Documents are split into chunks, each chunk is converted into a vector <a href="./embedding.md" class="link-internal">embedding</a>, and the embeddings are stored in a vector database (Pinecone, Weaviate, Chroma, pgvector, or similar).</p>
+<p><strong>Indexing.</strong> Documents are split into chunks, each chunk is converted into a vector <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/embedding/" class="link-internal">embedding</a>, and the embeddings are stored in a vector database (Pinecone, Weaviate, Chroma, pgvector, or similar).</p>
 </li>
 <li>
 <p><strong>Retrieval.</strong> When the user submits a query, the query is embedded using the same embedding model. The vector database returns the k most similar document chunks by cosine similarity (or another distance metric).</p>
 </li>
 <li>
-<p><strong>Generation.</strong> The retrieved chunks are inserted into the model&rsquo;s prompt — typically between the <a href="./system-prompt.md" class="link-internal">system prompt</a> and the user&rsquo;s message. The model generates its response with access to this retrieved context.</p>
+<p><strong>Generation.</strong> The retrieved chunks are inserted into the model&rsquo;s prompt — typically between the <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/system-prompt/" class="link-internal">system prompt</a> and the user&rsquo;s message. The model generates its response with access to this retrieved context.</p>
 </li>
 </ol>
-<p>RAG addresses a specific limitation of language models: their knowledge is frozen at training time. A model trained through January 2025 knows nothing about events after January 2025. RAG provides access to current information, proprietary data, and domain-specific documents that the model was never trained on — without retraining or <a href="./fine-tuning.md" class="link-internal">fine-tuning</a>.</p>
-<p>RAG also reduces <a href="./hallucination.md" class="link-internal">hallucination</a>. A model generating from memory may produce plausible but false statements. A model generating with relevant source documents in its context window is more likely to reproduce information from those documents accurately. RAG does not eliminate hallucination — the model can still ignore or misinterpret the retrieved context — but it shifts the failure mode from fabrication to misreading.</p>
+<p>RAG addresses a specific limitation of language models: their knowledge is frozen at training time. A model trained through January 2025 knows nothing about events after January 2025. RAG provides access to current information, proprietary data, and domain-specific documents that the model was never trained on — without retraining or <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/fine-tuning/" class="link-internal">fine-tuning</a>.</p>
+<p>RAG also reduces <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/hallucination/" class="link-internal">hallucination</a>. A model generating from memory may produce plausible but false statements. A model generating with relevant source documents in its context window is more likely to reproduce information from those documents accurately. RAG does not eliminate hallucination — the model can still ignore or misinterpret the retrieved context — but it shifts the failure mode from fabrication to misreading.</p>
 <h3 id="rag-and-agentic-systems"><a href="#rag-and-agentic-systems" class="heading-anchor" aria-label="Link to this section">¶</a>RAG and agentic systems
 </h3>
-<p>In <a href="../domains/agents/terms/agentic-system.md" class="link-internal">agentic systems</a>, RAG is one strategy for managing the <a href="./context-window.md" class="link-internal">context window</a> constraint. An agent that accumulates tool results and reasoning traces over many steps eventually exceeds the window. RAG allows the agent to store intermediate results in a knowledge base and retrieve them when needed, trading window space for retrieval latency.</p>
-<p>RAG can also be implemented as a <a href="../domains/agents/terms/tool-use.md" class="link-internal">tool</a>: the agent calls a &ldquo;search&rdquo; tool that queries a vector database and returns relevant chunks. This is functionally equivalent to RAG but gives the model control over when and what to retrieve, making retrieval a decision the agent makes rather than a fixed pipeline step.</p>
+<p>In <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/" class="link-internal">agentic systems</a>, RAG is one strategy for managing the <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-window/" class="link-internal">context window</a> constraint. An agent that accumulates tool results and reasoning traces over many steps eventually exceeds the window. RAG allows the agent to store intermediate results in a knowledge base and retrieve them when needed, trading window space for retrieval latency.</p>
+<p>RAG can also be implemented as a <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-use/" class="link-internal">tool</a>: the agent calls a &ldquo;search&rdquo; tool that queries a vector database and returns relevant chunks. This is functionally equivalent to RAG but gives the model control over when and what to retrieve, making retrieval a decision the agent makes rather than a fixed pipeline step.</p>
 
   </div>
   
@@ -235,22 +235,22 @@
         <dt>Defines</dt>
         <dd property="schema:about"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/">Retrieval Augmented Generation</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/sets/terms/domain/">Domain</a></dt>
         <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">artificial intelligence</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/extension/">Extends</a></dt>
         <dd property="prov:wasDerivedFrom"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/terms/large-language-model/">large language model</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/optimization/">Optimizes</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/optimization/">Optimizes</a></dt>
         <dd property="emsenn:Optimizes"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-memory/">agent memory</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn">embedding, context window</dd>
       </div>
   <div class="relation">
     <dt>Referenced by</dt>
     <dd>
-      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-engineering/">Context Engineering</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/">GraphRAG</a></li></ul>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-memory/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-observability/">Agent Observability</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-engineering/">Context Engineering</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/embedding/">Embedding</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/">GraphRAG</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/hallucination/">Hallucination</a></li></ul>
     </dd>
   </div>
   </dl>

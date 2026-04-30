@@ -73,18 +73,39 @@ A formal language for defining functions, applying them to arguments, and compos
   "citation": [
     {
       "@type": "CreativeWork",
-      "identifier": "ref1",
-      "name": "Lectures on the Curry-Howard Isomorphism"
-    },
-    {
-      "@type": "CreativeWork",
-      "identifier": "ref2",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Barendregt"
+        }
+      ],
+      "datePublished": "1984",
+      "identifier": "barendregt_lambdacalculus_1984",
       "name": "The Lambda Calculus: Its Syntax and Semantics"
     },
     {
       "@type": "CreativeWork",
-      "identifier": "ref3",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Pierce"
+        }
+      ],
+      "datePublished": "2002",
+      "identifier": "pierce_typesprogramminglanguages_2002",
       "name": "Types and Programming Languages"
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Sorensen"
+        }
+      ],
+      "datePublished": "2006",
+      "identifier": "sorensen_lecturescurryhowardisomorphism_2006",
+      "name": "Lectures on the Curry-Howard Isomorphism"
     }
   ],
   "dateModified": "2026-03-01",
@@ -191,7 +212,7 @@ A formal language for defining functions, applying them to arguments, and compos
 </ul>
 <h2 id="the-untyped-lambda-calculus"><a href="#the-untyped-lambda-calculus" class="heading-anchor" aria-label="Link to this section">¶</a>The untyped lambda calculus
 </h2>
-<p>The <a href="./untyped-lambda-calculus.md" class="link-internal">untyped lambda calculus</a> begins with three operations [@barendregt_LambdaCalculus_1984]:</p>
+<p>The <a href="/library/domains/science/domains/math/domains/type-theory/texts/untyped-lambda-calculus/" class="link-internal">untyped lambda calculus</a> begins with three operations [@barendregt_LambdaCalculus_1984]:</p>
 <ol>
 <li><strong>Variables</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span>, &hellip; — names that stand for values.</li>
 <li><strong>Abstraction</strong>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>M</mi></mrow><annotation encoding="application/x-tex">\lambda x.\, M</annotation></semantics></math></span> — a function that takes <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span> and returns <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span>. Read &ldquo;the function of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span> that gives <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span>.&rdquo;</li>
@@ -234,7 +255,7 @@ Apply a function to an argument of the right type.</p>
 </ul>
 <h2 id="the-curry-howard-correspondence"><a href="#the-curry-howard-correspondence" class="heading-anchor" aria-label="Link to this section">¶</a>The Curry-Howard correspondence
 </h2>
-<p>There is a precise correspondence between the simply typed lambda calculus and <a href="../../logic/curricula/intuitionistic-logic.md" class="link-internal">intuitionistic logic</a> [@sorensen_LecturesCurryHowardIsomorphism_2006]:</p>
+<p>There is a precise correspondence between the simply typed lambda calculus and <a href="/library/domains/science/domains/math/domains/logic/texts/intuitionistic-logic/" class="link-internal">intuitionistic logic</a> [@sorensen_LecturesCurryHowardIsomorphism_2006]:</p>
 <table>
   <thead>
       <tr>
@@ -269,7 +290,7 @@ Apply a function to an argument of the right type.</p>
       </tr>
   </tbody>
 </table>
-<p>A type is inhabited (has a term of that type) exactly when the corresponding proposition is provable in <a href="../../logic/curricula/intuitionistic-logic.md" class="link-internal">intuitionistic logic</a>. This is not a metaphor — it is a formal <a href="../../../objects/categories/ordinary-categories/terms/isomorphism.md" class="link-internal">isomorphism</a>. Proofs ARE programs; propositions ARE types. This is known as the <a href="../../../concepts/curry-howard-correspondence/index.md" class="link-internal">Curry-Howard correspondence</a>.</p>
+<p>A type is inhabited (has a term of that type) exactly when the corresponding proposition is provable in <a href="/library/domains/science/domains/math/domains/logic/texts/intuitionistic-logic/" class="link-internal">intuitionistic logic</a>. This is not a metaphor — it is a formal <a href="/library/domains/science/domains/math/domains/categories/domains/ordinary-categories/terms/isomorphism/" class="link-internal">isomorphism</a>. Proofs ARE programs; propositions ARE types. This is known as the Curry-Howard correspondence.</p>
 <h2 id="worked-example"><a href="#worked-example" class="heading-anchor" aria-label="Link to this section">¶</a>Worked example
 </h2>
 <p>Define the identity function on type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span>:</p>
@@ -303,12 +324,18 @@ f : A \to B, \; g : B \to C \;\vdash\; (\lambda x.\, g\;(f\;x)) : A \to C
   
   <section class="bibliography" id="bibliography"
          vocab="https://schema.org/" typeof="ItemList">
-  <h2>References</h2><p class="bib-entry h-cite" id="ref-ref1" typeof="CreativeWork" resource="#ref-ref1">
-    <span class="bib-key">[ref1]</span><cite class="p-name" property="name">Lectures on the Curry-Howard Isomorphism</cite>..
-  </p><p class="bib-entry h-cite" id="ref-ref2" typeof="CreativeWork" resource="#ref-ref2">
-    <span class="bib-key">[ref2]</span><cite class="p-name" property="name">The Lambda Calculus: Its Syntax and Semantics</cite>..
-  </p><p class="bib-entry h-cite" id="ref-ref3" typeof="CreativeWork" resource="#ref-ref3">
-    <span class="bib-key">[ref3]</span><cite class="p-name" property="name">Types and Programming Languages</cite>..
+  <h2>References</h2><p class="bib-entry h-cite" id="ref-barendregt_lambdacalculus_1984" typeof="CreativeWork" resource="#ref-barendregt_lambdacalculus_1984">
+    <span class="bib-key">[barendregt_lambdacalculus_1984]</span>
+      <span class="p-author" property="author">Barendregt</span>.
+      (<time class="dt-published" property="datePublished" datetime="1984">1984</time>).<cite class="p-name" property="name">The Lambda Calculus: Its Syntax and Semantics</cite>..
+  </p><p class="bib-entry h-cite" id="ref-pierce_typesprogramminglanguages_2002" typeof="CreativeWork" resource="#ref-pierce_typesprogramminglanguages_2002">
+    <span class="bib-key">[pierce_typesprogramminglanguages_2002]</span>
+      <span class="p-author" property="author">Pierce</span>.
+      (<time class="dt-published" property="datePublished" datetime="2002">2002</time>).<cite class="p-name" property="name">Types and Programming Languages</cite>..
+  </p><p class="bib-entry h-cite" id="ref-sorensen_lecturescurryhowardisomorphism_2006" typeof="CreativeWork" resource="#ref-sorensen_lecturescurryhowardisomorphism_2006">
+    <span class="bib-key">[sorensen_lecturescurryhowardisomorphism_2006]</span>
+      <span class="p-author" property="author">Sorensen</span>.
+      (<time class="dt-published" property="datePublished" datetime="2006">2006</time>).<cite class="p-name" property="name">Lectures on the Curry-Howard Isomorphism</cite>..
   </p>
 </section>
 </article>
@@ -328,6 +355,12 @@ f : A \to B, \; g : B \to C \;\vdash\; (\lambda x.\, g\;(f\;x)) : A \to C
         <dt>Teaches</dt>
         <dd property="schema:teaches"><ul><li><a href="/library/domains/science/domains/math/domains/type-theory/texts/typed-lambda-calculus/">Typed Lambda Calculus</a></li></ul></dd>
       </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/science/domains/math/domains/type-theory/texts/untyped-lambda-calculus/">Untyped Lambda Calculus</a></li><li><a href="/library/domains/science/domains/math/domains/type-theory/texts/dependent-types/">Dependent Types</a></li><li><a href="/library/domains/humanities/domains/education/domains/pedagogy/texts/designing-curricula/">Designing Curricula</a></li><li><a href="/library/domains/science/domains/linguistics/domains/semiotics/texts/from-signs-to-formal-structure/">From Signs to Formal Structure</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/types-and-propositions-in-lean/">Types and Propositions in Lean</a></li></ul>
+    </dd>
+  </div>
   </dl>
 </section>
 

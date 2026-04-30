@@ -160,7 +160,7 @@
     <span class="p-summary">The set of rules governing which Claude Code tool calls execute automatically and which require human approval — balancing agent autonomy against safety for destructive or externally visible actions.</span>
   </div>
   <div class="e-content">
-    <p>The permission model is the set of rules governing which <a href="../../../agents/terms/tool-call.md" class="link-internal">tool calls</a> <a href="./claude-code.md" class="link-internal">Claude Code</a> executes automatically and which require human approval before proceeding. It is the primary mechanism for balancing agent autonomy against safety in <a href="../../../agents/terms/agentic-coding.md" class="link-internal">agentic coding</a>.</p>
+    <p>The permission model is the set of rules governing which <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-call/" class="link-internal">tool calls</a> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-code/" class="link-internal">Claude Code</a> executes automatically and which require human approval before proceeding. It is the primary mechanism for balancing agent autonomy against safety in <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-coding/" class="link-internal">agentic coding</a>.</p>
 <p>Claude Code categorizes actions by reversibility and blast radius. <strong>Local, reversible actions</strong> — reading files, searching code, writing to local files — default to automatic execution. <strong>Destructive or externally visible actions</strong> — force-pushing to a remote, deleting files, posting to APIs, sending messages to external services — default to requiring confirmation. The user sees the proposed action and must approve or deny it before the runtime executes the tool call.</p>
 <p>Users select a <strong>permission mode</strong> that sets the baseline:</p>
 <ul>
@@ -168,8 +168,8 @@
 <li><strong>Broader grants</strong> — users can approve specific tools or tool patterns for automatic execution within a session or project, progressively widening the agent&rsquo;s autonomy for trusted workflows</li>
 <li><strong>Background/autonomous</strong> — for unattended execution (e.g., via GitHub Actions), permissions can be configured to allow broader automatic execution with guardrails</li>
 </ul>
-<p>The permission model operates at the runtime layer, not the prompt layer. The model generates a <a href="../../../agents/terms/tool-call.md" class="link-internal">tool call</a>; the runtime checks the permission rules before executing. This is the same layer where <a href="./hooks.md" class="link-internal">hooks</a> operate — and hooks can supplement the permission model with custom validation logic (e.g., a PreToolUse hook that rejects shell commands matching a blocklist).</p>
-<p>The permission model matters because <a href="../../../agents/terms/agentic-coding.md" class="link-internal">agentic coding</a> introduces a category of risk that chat-based assistance does not: the agent can act on shared systems. A poorly worded instruction can lead to a force-push that overwrites a colleague&rsquo;s branch, a shell command that drops a database, or an API call that sends unintended messages. The permission model is the checkpoint that prevents these outcomes from being one misinterpretation away.</p>
+<p>The permission model operates at the runtime layer, not the prompt layer. The model generates a <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-call/" class="link-internal">tool call</a>; the runtime checks the permission rules before executing. This is the same layer where <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/hooks/" class="link-internal">hooks</a> operate — and hooks can supplement the permission model with custom validation logic (e.g., a PreToolUse hook that rejects shell commands matching a blocklist).</p>
+<p>The permission model matters because <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-coding/" class="link-internal">agentic coding</a> introduces a category of risk that chat-based assistance does not: the agent can act on shared systems. A poorly worded instruction can lead to a force-push that overwrites a colleague&rsquo;s branch, a shell command that drops a database, or an API call that sends unintended messages. The permission model is the checkpoint that prevents these outcomes from being one misinterpretation away.</p>
 
   </div>
   
@@ -196,7 +196,7 @@
          vocab="https://emsenn.net/vocab#">
   <h2>Relations</h2>
   <dl><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/action/">Acts on</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/action/">Acts on</a></dt>
         <dd property="emsenn:Actson"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-call/">tool call</a></dd>
       </div><div class="relation">
         <dt>Contrasts with</dt>
@@ -208,13 +208,13 @@
         <dt>Defines</dt>
         <dd property="schema:about"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/permission-model/">Permission Model</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/sets/terms/domain/">Domain</a></dt>
         <dd property="emsenn:Domain"><a href="/tags/claude-code/">claude code</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
         <dd property="emsenn:Enables">safe agentic coding</dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/extension/">Extends</a></dt>
         <dd property="prov:wasDerivedFrom"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/">human in the loop</a></dd>
       </div><div class="relation">
         <dt>Governed by</dt>
@@ -223,7 +223,7 @@
         <dt>Part of</dt>
         <dd property="schema:isPartOf"><ul><li><a href="/tags/claude-code/">claude code</a></li></ul></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><a href="/tags/claude-code/">claude code</a></dd>
       </div>
   <div class="relation">

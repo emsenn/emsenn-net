@@ -157,14 +157,14 @@
     })();
     </script>
   <div class="e-content">
-    <p>Fine-tuning adapts a pre-trained <a href="terms/large-language-model.md" class="link-internal">large language model</a> to perform better on a specific domain or task by training it further on a curated dataset. For a structured knowledge repository — thousands of markdown files with frontmatter, cross-references, and discipline-specific vocabulary — fine-tuning could produce a model that generates content matching the repository&rsquo;s conventions without explicit prompting.</p>
+    <p>Fine-tuning adapts a pre-trained <a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/terms/large-language-model/" class="link-internal">large language model</a> to perform better on a specific domain or task by training it further on a curated dataset. For a structured knowledge repository — thousands of markdown files with frontmatter, cross-references, and discipline-specific vocabulary — fine-tuning could produce a model that generates content matching the repository&rsquo;s conventions without explicit prompting.</p>
 <h2 id="what-fine-tuning-does"><a href="#what-fine-tuning-does" class="heading-anchor" aria-label="Link to this section">¶</a>What fine-tuning does
 </h2>
-<p>A base model like <a href="terms/qwen.md" class="link-internal">Qwen</a> 2.5 3B knows general language but nothing about semiotic markdown, CamelCase tags, or the difference between a term and a concept in this repository&rsquo;s type system. Every inference call must include the frontmatter specification, valid type list, and formatting rules in the prompt — consuming context window and adding latency.</p>
+<p>A base model like <a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/terms/qwen/" class="link-internal">Qwen</a> 2.5 3B knows general language but nothing about semiotic markdown, CamelCase tags, or the difference between a term and a concept in this repository&rsquo;s type system. Every inference call must include the frontmatter specification, valid type list, and formatting rules in the prompt — consuming context window and adding latency.</p>
 <p>Fine-tuning on the repository&rsquo;s content would teach the model these conventions directly. A fine-tuned model could produce correctly-formatted frontmatter, use the right type vocabulary, and generate CamelCase tags without being told the rules each time. The prompt shrinks from ~500 tokens of instructions to a simple &ldquo;enrich this file.&rdquo;</p>
 <h2 id="feasibility-on-consumer-hardware"><a href="#feasibility-on-consumer-hardware" class="heading-anchor" aria-label="Link to this section">¶</a>Feasibility on consumer hardware
 </h2>
-<p>Fine-tuning a 3B-parameter model using LoRA (Low-Rank Adaptation) requires approximately 8-16 GB of VRAM or unified memory. On an ARM-based system like the Snapdragon X Elite with 32 GB of shared memory, this is feasible using CPU-based training tools (though slow) or potentially through the <a href="../../terms/neural-processing-unit.md" class="link-internal">NPU</a> if the training framework supports the QNN backend.</p>
+<p>Fine-tuning a 3B-parameter model using LoRA (Low-Rank Adaptation) requires approximately 8-16 GB of VRAM or unified memory. On an ARM-based system like the Snapdragon X Elite with 32 GB of shared memory, this is feasible using CPU-based training tools (though slow) or potentially through the <a href="/library/domains/engineering/domains/tech/domains/computing/terms/neural-processing-unit/" class="link-internal">NPU</a> if the training framework supports the QNN backend.</p>
 <p>Practical requirements:</p>
 <ul>
 <li><strong>Dataset preparation</strong>: convert repository files into training examples (input: raw content → output: enriched content with correct frontmatter)</li>
@@ -172,7 +172,7 @@
 <li><strong>Storage</strong>: the LoRA adapter adds ~50-200 MB on top of the base model</li>
 <li><strong>Tools</strong>: Unsloth, Axolotl, or llama.cpp&rsquo;s built-in fine-tuning support</li>
 </ul>
-<p>The resulting adapter can be loaded by <a href="../../software/ollama/index.md" class="link-internal">Ollama</a> as a custom model, making it immediately available through the existing <code>local_llm</code> infrastructure.</p>
+<p>The resulting adapter can be loaded by Ollama as a custom model, making it immediately available through the existing <code>local_llm</code> infrastructure.</p>
 <h2 id="what-to-fine-tune-on"><a href="#what-to-fine-tune-on" class="heading-anchor" aria-label="Link to this section">¶</a>What to fine-tune on
 </h2>
 <p>The training dataset should consist of high-quality examples:</p>

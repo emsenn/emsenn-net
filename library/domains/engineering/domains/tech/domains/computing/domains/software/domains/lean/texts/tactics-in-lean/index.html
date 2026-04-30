@@ -174,7 +174,7 @@ Context: named hypotheses and local definitions. Goal: the type (proposition) th
   <div class="e-content">
     <h2 id="what-tactics-do"><a href="#what-tactics-do" class="heading-anchor" aria-label="Link to this section">¶</a>What tactics do
 </h2>
-<p>A <a href="../terms/tactic.md" class="link-internal">tactic</a> transforms a proof goal into simpler subgoals. The proof
+<p>A <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/terms/tactic/" class="link-internal">tactic</a> transforms a proof goal into simpler subgoals. The proof
 state consists of:</p>
 <ul>
 <li><strong>Context</strong>: named hypotheses and local definitions.</li>
@@ -251,7 +251,7 @@ unfolding:</p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Goal 2: Q</span>
 </span></span></code></pre></div><h2 id="mathlib-tactics"><a href="#mathlib-tactics" class="heading-anchor" aria-label="Link to this section">¶</a>Mathlib tactics
 </h2>
-<p><a href="../terms/Mathlib.md" class="link-internal">Mathlib</a> extends Lean&rsquo;s tactic set with specialized automation:</p>
+<p><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/terms/mathlib/" class="link-internal">Mathlib</a> extends Lean&rsquo;s tactic set with specialized automation:</p>
 <ul>
 <li><code>ring</code> — closes goals that follow from ring axioms (commutativity, associativity,
 distributivity).</li>
@@ -276,7 +276,7 @@ a tactic to all remaining goals) or structured syntax:</p>
 </span></span></code></pre></div><p>The <code>·</code> focuses on a specific subgoal. This structured style keeps proofs readable.</p>
 <h2 id="a-worked-example"><a href="#a-worked-example" class="heading-anchor" aria-label="Link to this section">¶</a>A worked example
 </h2>
-<p>Prove that meet is commutative in a <a href="../../../../../../mathematics/objects/posets/terms/lattice.md" class="link-internal">lattice</a>:</p>
+<p>Prove that meet is commutative in a <a href="/library/domains/humanities/domains/math/domains/order/terms/lattice/" class="link-internal">lattice</a>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">theorem</span> inf_comm <span style="color:#f92672">{</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">}</span> <span style="color:#f92672">[</span>Lattice α<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>a b <span style="color:#f92672">:</span> α<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> a ⊓ b = b ⊓ a <span style="color:#f92672">:</span>= <span style="color:#66d9ef">by</span>
 </span></span><span style="display:flex;"><span>  apply le_antisymm
 </span></span><span style="display:flex;"><span>  · apply le_inf
@@ -289,7 +289,7 @@ a tactic to all remaining goals) or structured syntax:</p>
 <ol>
 <li><code>le_antisymm</code> reduces equality to two <code>≤</code> goals.</li>
 <li>Each <code>≤</code> goal is solved by <code>le_inf</code> (to prove something is below a meet, prove it is
-below both components) combined with the <a href="../../../../../../mathematics/objects/posets/terms/lattice.md" class="link-internal">lattice</a> axioms <code>inf_le_left</code> and
+below both components) combined with the <a href="/library/domains/humanities/domains/math/domains/order/terms/lattice/" class="link-internal">lattice</a> axioms <code>inf_le_left</code> and
 <code>inf_le_right</code>.</li>
 </ol>
 <p>In Mathlib, this theorem already exists as <code>inf_comm</code>, and <code>simp</code> or <code>exact inf_comm</code>
@@ -305,7 +305,7 @@ goal. These tactics query the library and report matching results.</li>
 goal, inspect what remains and proceed manually.</li>
 <li><strong>Name hypotheses clearly.</strong> <code>intro h₁ h₂</code> is harder to read than <code>intro hle hlt</code>.
 Names document the proof&rsquo;s logic.</li>
-<li><strong>Build incrementally.</strong> Write one tactic, inspect <a href="../../../../../../../../humanities/domains/sociology/terms/the-state.md" class="link-internal">the state</a>, write the next. Do not
+<li><strong>Build incrementally.</strong> Write one tactic, inspect <a href="/library/domains/humanities/domains/sociology/domains/critical-theory/domains/anarchism/terms/the-state/" class="link-internal">the state</a>, write the next. Do not
 try to write a complete tactic block from memory.</li>
 </ul>
 
@@ -322,7 +322,7 @@ try to write a complete tactic block from memory.</li>
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><ul><li>/technology/disciplines/computing/software/lean/curricula/types and propositions in lean.md</li></ul></dd>
       </div><div class="relation">
         <dt><a href="/tags/">Tags</a></dt>

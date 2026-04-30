@@ -175,7 +175,7 @@
     </script>
   <div class="e-content">
     <p>When an LLM agent makes an error, who is accountable? Not the agent—the agent has no legal standing, no authority, no capacity to bear accountability. Accountability always attaches to a human officer. The question is which one.</p>
-<p>The answer requires understanding the difference between responsibility and <a href="../../../../../../../../../../humanities/domains/sociology/domains/work/domains/governance/terms/accountability.md" class="link-internal">accountability</a>, tracing the <a href="../../../../../../../../../../humanities/domains/sociology/domains/work/terms/delegation.md" class="link-internal">delegation</a> chain from the error back to the person who installed the system and issued the grant.</p>
+<p>The answer requires understanding the difference between responsibility and <a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/terms/accountability/" class="link-internal">accountability</a>, tracing the <a href="/library/domains/humanities/domains/sociology/domains/work/terms/delegation/" class="link-internal">delegation</a> chain from the error back to the person who installed the system and issued the grant.</p>
 <h2 id="responsibility-vs-accountability"><a href="#responsibility-vs-accountability" class="heading-anchor" aria-label="Link to this section">¶</a>Responsibility vs. Accountability
 </h2>
 <p>These are not synonymous, and the confusion between them is a major source of governance failures in multi-agent systems.</p>
@@ -222,7 +222,7 @@ Search Agent (tool executor)
 <p>This is not a statement about fairness. It is a structural fact. If a subordinate could delegate away their accountability, the entire system of answerability would collapse. The subordinate could create an unbounded chain of sub-delegations and claim they are not answerable for any of them.</p>
 <h3 id="3-installation-anchoring"><a href="#3-installation-anchoring" class="heading-anchor" aria-label="Link to this section">¶</a>3. Installation-Anchoring
 </h3>
-<p>Accountability comes into force at the moment of <a href="../../../../../../../../../../humanities/domains/sociology/domains/work/domains/governance/terms/investiture.md" class="link-internal">investiture</a>—when a person is formally installed in a position that carries a scope. Before installation, the accountability does not apply. After installation, it applies in full until the person is relieved.</p>
+<p>Accountability comes into force at the moment of <a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/terms/investiture/" class="link-internal">investiture</a>—when a person is formally installed in a position that carries a scope. Before installation, the accountability does not apply. After installation, it applies in full until the person is relieved.</p>
 <p>For multi-agent systems, this means accountability for the system attaches at the moment the principal deploys the system with delegated authority. Physical absence, the principal&rsquo;s ignorance of the delegation chain, even the principal&rsquo;s incapacity does not suspend accountability.</p>
 <p>Installation-anchoring applies even to AI agents: when the principal delegates authority to the agent (installs the agent in a role), the principal&rsquo;s accountability begins immediately and does not suspend.</p>
 <h3 id="4-scope-exclusivity"><a href="#4-scope-exclusivity" class="heading-anchor" aria-label="Link to this section">¶</a>4. Scope-Exclusivity
@@ -274,20 +274,20 @@ Search Agent (tool executor)
 <p><strong>Delegation bounds recorded</strong>: Document what each agent was delegated to do, what authority limits apply, and what outcomes fall within its scope. When an agent acts outside its bounds, the accountability shifts to the principal who failed to enforce the bounds.</p>
 </li>
 </ol>
-<p>The <a href="./agent-reliability-in-production.md" class="link-internal">Agent Reliability in Production</a> text documents current best practices. The core finding: token usage per step, decision traces, and failure classification are the most informative metrics. These are precisely the data needed to trace accountability.</p>
+<p>The <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-reliability-in-production/" class="link-internal">Agent Reliability in Production</a> text documents current best practices. The core finding: token usage per step, decision traces, and failure classification are the most informative metrics. These are precisely the data needed to trace accountability.</p>
 <h2 id="accountability-in-the-face-of-ai-unpredictability"><a href="#accountability-in-the-face-of-ai-unpredictability" class="heading-anchor" aria-label="Link to this section">¶</a>Accountability in the Face of AI Unpredictability
 </h2>
 <p>Modern LLM agents are stochastic—the same input can produce different outputs. This creates a tension with traditional accountability structures, which assume predictable agents who can follow orders.</p>
 <p>The structure resolves as follows:</p>
 <ul>
 <li>
-<p><strong>Non-delegable duties</strong>: For irreversible actions (deployments, deletions, entity data modifications), the principal must retain decision authority and place the delegated agent in an advisory role. The <a href="../terms/human-in-the-loop.md" class="link-internal">human-in-the-loop</a> pattern assigns formal authority to the human for the final decision.</p>
+<p><strong>Non-delegable duties</strong>: For irreversible actions (deployments, deletions, entity data modifications), the principal must retain decision authority and place the delegated agent in an advisory role. The <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/" class="link-internal">human-in-the-loop</a> pattern assigns formal authority to the human for the final decision.</p>
 </li>
 <li>
 <p><strong>Bounded delegation with review</strong>: The principal delegates the agent authority to take actions within a bounded scope, with the understanding that the principal will review all outcomes in that scope before they propagate downstream. If an agent&rsquo;s output would violate a constraint or contradict prior guidance, the principal&rsquo;s role is to catch it.</p>
 </li>
 <li>
-<p><strong>Durable execution with checkpointing</strong>: The <a href="../terms/durable-execution.md" class="link-internal">durable-execution</a> pattern (as implemented in LangGraph and PydanticAI) saves the agent&rsquo;s state at each step. On failure, the system resumes from the last good state. The accountability for the failure attaches to the principal who chose not to implement resumable execution.</p>
+<p><strong>Durable execution with checkpointing</strong>: The <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/durable-execution/" class="link-internal">durable-execution</a> pattern (as implemented in LangGraph and PydanticAI) saves the agent&rsquo;s state at each step. On failure, the system resumes from the last good state. The accountability for the failure attaches to the principal who chose not to implement resumable execution.</p>
 </li>
 </ul>
 <h2 id="responsibility-chains-for-compliance-and-audit"><a href="#responsibility-chains-for-compliance-and-audit" class="heading-anchor" aria-label="Link to this section">¶</a>Responsibility Chains for Compliance and Audit
@@ -317,13 +317,13 @@ Search Agent (tool executor)
 <h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See Also
 </h2>
 <ul>
-<li><a href="../../../../../../../../../../humanities/domains/sociology/domains/work/terms/delegation.md" class="link-internal">Delegation</a> — the structure of authority transfer</li>
-<li><a href="../../../../../../../../../../humanities/domains/sociology/domains/work/domains/governance/terms/accountability.md" class="link-internal">Accountability</a> — the formal definition and mathematical structure</li>
-<li><a href="../terms/agent-observability.md" class="link-internal">Agent Observability</a> — how to make agent operations visible</li>
-<li><a href="./multi-agent-failure-modes.md" class="link-internal">Multi-Agent Failure Modes</a> — the MASFT study&rsquo;s taxonomy of failure</li>
-<li><a href="./agent-reliability-in-production.md" class="link-internal">Agent Reliability in Production</a> — engineering practices for reliable agents</li>
-<li><a href="../terms/durable-execution.md" class="link-internal">Durable Execution</a> — checkpointing and resumable agent execution</li>
-<li><a href="../terms/human-in-the-loop.md" class="link-internal">Human-in-the-Loop</a> — patterns for retaining human oversight of delegated agents</li>
+<li><a href="/library/domains/humanities/domains/sociology/domains/work/terms/delegation/" class="link-internal">Delegation</a> — the structure of authority transfer</li>
+<li><a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/terms/accountability/" class="link-internal">Accountability</a> — the formal definition and mathematical structure</li>
+<li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-observability/" class="link-internal">Agent Observability</a> — how to make agent operations visible</li>
+<li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/multi-agent-failure-modes/" class="link-internal">Multi-Agent Failure Modes</a> — the MASFT study&rsquo;s taxonomy of failure</li>
+<li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-reliability-in-production/" class="link-internal">Agent Reliability in Production</a> — engineering practices for reliable agents</li>
+<li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/durable-execution/" class="link-internal">Durable Execution</a> — checkpointing and resumable agent execution</li>
+<li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/" class="link-internal">Human-in-the-Loop</a> — patterns for retaining human oversight of delegated agents</li>
 </ul>
 <h2 id="sources"><a href="#sources" class="heading-anchor" aria-label="Link to this section">¶</a>Sources
 </h2>
@@ -358,13 +358,13 @@ Search Agent (tool executor)
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-04-04">2026-04-04</time></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/sets/terms/domain/">Domain</a></dt>
         <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">agents</a></dd>
       </div><div class="relation">
         <dt>Examines</dt>
         <dd property="emsenn:Examines">multi agent system, delegation, accountability</dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/factorization/">Factors through</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/factorization/">Factors through</a></dt>
         <dd property="emsenn:Factorsthrough">coordination overhead, agent observability, multi agent failure modes</dd>
       </div><div class="relation">
         <dt>Governs</dt>
@@ -373,12 +373,18 @@ Search Agent (tool executor)
         <dt>Related</dt>
         <dd property="rdfs:seeAlso"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-reliability-in-production/">agent reliability in production</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn">delegation, accountability</dd>
       </div><div class="relation">
         <dt><a href="/library/references/sources/">Sources</a></dt>
         <dd property="emsenn:Sources"><ul><li>bovens2007</li><li>mulgan2000</li><li>navy regulations</li><li>hohfeld1919</li></ul></dd>
       </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/texts/multi-agent-orchestration-frameworks-2026/">Multi-agent orchestration frameworks 2026</a></li></ul>
+    </dd>
+  </div>
   </dl>
 </section>
 

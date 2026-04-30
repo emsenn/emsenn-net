@@ -159,7 +159,7 @@
     })();
     </script>
   <div class="e-content">
-    <p>Most <a href="../terms/infrastructure-as-code.md" class="link-internal">infrastructure as code</a> tools use a domain-specific language to describe desired state. Terraform uses HCL. NixOS uses the Nix expression language. Ansible uses YAML with Jinja templates. GNU Guix takes a different approach: it uses Guile Scheme, a general-purpose programming language, as its configuration language. The entire system configuration is a Scheme value that can be passed to functions, transformed, and composed using the same mechanisms that any Scheme program uses.</p>
+    <p>Most <a href="/library/domains/engineering/domains/tech/domains/computing/terms/infrastructure-as-code/" class="link-internal">infrastructure as code</a> tools use a domain-specific language to describe desired state. Terraform uses HCL. NixOS uses the Nix expression language. Ansible uses YAML with Jinja templates. GNU Guix takes a different approach: it uses Guile Scheme, a general-purpose programming language, as its configuration language. The entire system configuration is a Scheme value that can be passed to functions, transformed, and composed using the same mechanisms that any Scheme program uses.</p>
 <p>This is the central claim worth examining: that using a full programming language for system configuration is not incidental but architecturally load-bearing. Guix&rsquo;s composition model depends on features &ndash; hygienic macros, records, monads, pattern matching &ndash; that a configuration DSL cannot provide.</p>
 <h2 id="system-as-value"><a href="#system-as-value" class="heading-anchor" aria-label="Link to this section">¶</a>System as value
 </h2>
@@ -177,7 +177,7 @@
 </span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">services</span> (cons (<span style="color:#a6e22e">service</span> openssh-service-type)
 </span></span><span style="display:flex;"><span>                    (<span style="color:#a6e22e">operating-system-services</span> os)))))
 </span></span></code></pre></div><p>The <code>inherit</code> form copies all fields from <code>os</code> and overrides only what you specify. Because the transformation is a pure function &ndash; no mutation, no side effects &ndash; applying it twice gives the same result, and composing two transformations gives a predictable third.</p>
-<p>This is different from the way Terraform or Kubernetes handle configuration. In Terraform, HCL describes the end state of resources, but the language does not let you write functions that transform one configuration into another. You can use modules and variables, but these are parameterization, not <a href="../domains/software/domains/programming/domains/functional/terms/composition.md" class="link-internal">composition</a> in the functional sense. In Kubernetes, YAML manifests are data, but transforming them requires an external tool (Kustomize, Helm templates). Guix needs no external tool because the configuration language is already a programming language.</p>
+<p>This is different from the way Terraform or Kubernetes handle configuration. In Terraform, HCL describes the end state of resources, but the language does not let you write functions that transform one configuration into another. You can use modules and variables, but these are parameterization, not <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/programming/terms/composition/" class="link-internal">composition</a> in the functional sense. In Kubernetes, YAML manifests are data, but transforming them requires an external tool (Kustomize, Helm templates). Guix needs no external tool because the configuration language is already a programming language.</p>
 <h2 id="service-extension-graph"><a href="#service-extension-graph" class="heading-anchor" aria-label="Link to this section">¶</a>Service extension graph
 </h2>
 <p>Guix&rsquo;s service system is where functional composition does the most structural work. Services are not configured independently and then started in some order. Instead, each service type declares how it <em>extends</em> other service types, forming a directed acyclic graph.</p>
@@ -214,8 +214,8 @@
 <h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See also
 </h2>
 <ul>
-<li><a href="../terms/infrastructure-as-code.md" class="link-internal">Infrastructure as code</a> &ndash; the broader practice that Guix implements</li>
-<li><a href="../domains/software/domains/programming/domains/functional/terms/composition.md" class="link-internal">Composition</a> &ndash; the mathematical operation underlying Guix&rsquo;s design</li>
+<li><a href="/library/domains/engineering/domains/tech/domains/computing/terms/infrastructure-as-code/" class="link-internal">Infrastructure as code</a> &ndash; the broader practice that Guix implements</li>
+<li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/programming/terms/composition/" class="link-internal">Composition</a> &ndash; the mathematical operation underlying Guix&rsquo;s design</li>
 </ul>
 
   </div>

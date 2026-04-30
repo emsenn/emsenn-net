@@ -165,15 +165,15 @@
   <div class="e-content">
     <h2 id="entry-conditions"><a href="#entry-conditions" class="heading-anchor" aria-label="Link to this section">¶</a>Entry conditions
 </h2>
-<p>Use this lesson when you can already describe <a href="../terms/pure-function.md" class="link-internal">pure functions</a> and <a href="../terms/immutability.md" class="link-internal">immutability</a> and are ready to learn how functional programs combine small functions into larger ones.</p>
+<p>Use this lesson when you can already describe <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/programming/terms/pure-function/" class="link-internal">pure functions</a> and <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/programming/terms/immutability/" class="link-internal">immutability</a> and are ready to learn how functional programs combine small functions into larger ones.</p>
 <h2 id="first-class-functions"><a href="#first-class-functions" class="heading-anchor" aria-label="Link to this section">¶</a>First-class functions
 </h2>
-<p>Before functions can be composed, they must be values. A <a href="../terms/first-class-function.md" class="link-internal">first-class function</a> is a function that a language treats like any other value — it can be stored in a variable, passed as an argument, and returned as a result.</p>
+<p>Before functions can be composed, they must be values. A <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/programming/terms/first-class-function/" class="link-internal">first-class function</a> is a function that a language treats like any other value — it can be stored in a variable, passed as an argument, and returned as a result.</p>
 <pre tabindex="0"><code>double = λx. x * 2
 </code></pre><p>Here <code>double</code> is a variable whose value is a function. It is not a declaration — it is an assignment of a function value to a name, no different in kind from assigning a number to a name. This is the starting point for everything that follows.</p>
 <h2 id="composition"><a href="#composition" class="heading-anchor" aria-label="Link to this section">¶</a>Composition
 </h2>
-<p><a href="../terms/composition.md" class="link-internal">Composition</a> wires two functions together: the output of the first becomes the input of the second.</p>
+<p><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/programming/terms/composition/" class="link-internal">Composition</a> wires two functions together: the output of the first becomes the input of the second.</p>
 <p>Given <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f : A \to B</annotation></semantics></math></span> and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>B</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">g : B \to C</annotation></semantics></math></span>, the composition <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>∘</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">g \circ f</annotation></semantics></math></span> is a function from <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span> to <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span>:</p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>∘</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 (g \circ f)(x) = g(f(x))
@@ -187,7 +187,7 @@
 <p><strong>Why this matters.</strong> Composition is how functional programs scale. Instead of writing one large function, you write small pure functions — each doing one thing — and compose them. Because pure functions have no side effects, the composition is safe: the pieces cannot interfere with each other.</p>
 <h2 id="closures"><a href="#closures" class="heading-anchor" aria-label="Link to this section">¶</a>Closures
 </h2>
-<p>A <a href="../terms/closure.md" class="link-internal">closure</a> is a function that carries its defining environment with it. When a function is created inside another function, it can reference variables from the outer scope. Those references persist even after the outer function returns.</p>
+<p>A <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/programming/terms/closure/" class="link-internal">closure</a> is a function that carries its defining environment with it. When a function is created inside another function, it can reference variables from the outer scope. Those references persist even after the outer function returns.</p>
 <pre tabindex="0"><code>makeAdder(n) = λx. x + n
 addThree = makeAdder(3)
 addThree(10)  →  13
@@ -195,7 +195,7 @@ addThree(10)  →  13
 <p>Closures are the mechanism that makes the next concept — currying — work.</p>
 <h2 id="currying"><a href="#currying" class="heading-anchor" aria-label="Link to this section">¶</a>Currying
 </h2>
-<p><a href="../terms/currying.md" class="link-internal">Currying</a> transforms a function of multiple arguments into a chain of functions, each taking one argument.</p>
+<p><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/programming/terms/currying/" class="link-internal">Currying</a> transforms a function of multiple arguments into a chain of functions, each taking one argument.</p>
 <p>A function <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">f(a, b) = a + b</annotation></semantics></math></span> becomes:</p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>=</mo><mi>λ</mi><mi>a</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>λ</mi><mi>b</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>a</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">
 f&#x27; = \lambda a.\, \lambda b.\, a + b
@@ -212,7 +212,7 @@ triple(5)  →  15
 </h2>
 <p>Currying and composition combine into a powerful idiom. Partially applied functions are composed into pipelines that transform data step by step:</p>
 <pre tabindex="0"><code>process = filter(isEven) ∘ map(double) ∘ take(10)
-</code></pre><p>Each piece is a general <a href="../terms/higher-order-function.md" class="link-internal">higher-order function</a> partially applied with a specific operation. The composition chains them into a single function that takes a list and produces a result. Each piece is pure, so the pipeline is pure.</p>
+</code></pre><p>Each piece is a general <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/programming/terms/higher-order-function/" class="link-internal">higher-order function</a> partially applied with a specific operation. The composition chains them into a single function that takes a list and produces a result. Each piece is pure, so the pipeline is pure.</p>
 <p>This style — small pure functions, partially applied and composed — is the central idiom of functional programming. It scales because the pieces are independent: you can test each one in isolation, rearrange them freely (respecting types), and add new stages without modifying existing ones.</p>
 <h2 id="common-mistakes"><a href="#common-mistakes" class="heading-anchor" aria-label="Link to this section">¶</a>Common mistakes
 </h2>
@@ -245,7 +245,7 @@ triple(5)  →  15
         <dt>Part of</dt>
         <dd property="schema:isPartOf"><ul><li>functional</li></ul></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><ul><li>/technology/disciplines/computing/software/programming/functional/curricula/functional overview.md</li></ul></dd>
       </div><div class="relation">
         <dt><a href="/tags/">Tags</a></dt>

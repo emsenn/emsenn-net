@@ -143,10 +143,10 @@
     <span class="p-summary">The technique of summarizing earlier conversation messages as a session approaches the context window limit — preserving key information while freeing space for continued work.</span>
   </div>
   <div class="e-content">
-    <p>Context compaction is the technique of summarizing earlier messages in an <a href="./agentic-system.md" class="link-internal">agentic</a> conversation as the session approaches the <a href="../../terms/context-window.md" class="link-internal">context window</a> limit. Rather than truncating old messages (losing information) or ending the session (losing continuity), compaction replaces detailed earlier turns with condensed summaries that preserve the key decisions, findings, and state established so far.</p>
+    <p>Context compaction is the technique of summarizing earlier messages in an <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/" class="link-internal">agentic</a> conversation as the session approaches the <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-window/" class="link-internal">context window</a> limit. Rather than truncating old messages (losing information) or ending the session (losing continuity), compaction replaces detailed earlier turns with condensed summaries that preserve the key decisions, findings, and state established so far.</p>
 <p>The mechanism operates automatically. When the conversation&rsquo;s token count approaches the window limit, the system identifies older turns that can be summarized without losing load-bearing information — typically early research, exploration, and intermediate reasoning — and replaces them with a compact summary. Recent turns (the current working context) remain intact. The result is that the agent retains awareness of what happened earlier in the session while freeing token budget for continued work.</p>
 <p>Context compaction contrasts with <strong>context truncation</strong>, which simply drops the oldest messages. Truncation loses information unconditionally; compaction is selective, preserving conclusions and decisions while discarding the reasoning steps that led to them. The trade-off is that compaction is lossy — details of earlier exploration may not survive — but the information that does survive is the information most likely to matter for subsequent actions.</p>
-<p>In <a href="../software/domains/claude-code/terms/claude-code.md" class="link-internal">Claude Code</a>, context compaction is what enables extended coding sessions that span many files, many tool calls, and many rounds of edit-test-debug without hitting a hard context boundary. The user can also trigger compaction manually via the <code>/compact</code> command when the conversation feels cluttered. The Claude Agent SDK provides compaction as a built-in capability for any application built on the SDK, not just Claude Code.</p>
+<p>In <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-code/" class="link-internal">Claude Code</a>, context compaction is what enables extended coding sessions that span many files, many tool calls, and many rounds of edit-test-debug without hitting a hard context boundary. The user can also trigger compaction manually via the <code>/compact</code> command when the conversation feels cluttered. The Claude Agent SDK provides compaction as a built-in capability for any application built on the SDK, not just Claude Code.</p>
 <p>Context compaction is a practical instance of a broader principle: agentic systems must manage their own working memory because the tasks they handle routinely exceed the capacity of any fixed-size context window. The alternative — requiring humans to break tasks into context-sized chunks — defeats the purpose of autonomy.</p>
 
   </div>
@@ -168,7 +168,7 @@
          vocab="https://emsenn.net/vocab#">
   <h2>Relations</h2>
   <dl><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/action/">Acts on</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/action/">Acts on</a></dt>
         <dd property="emsenn:Actson">conversation history</dd>
       </div><div class="relation">
         <dt>Contrasts with</dt>
@@ -180,19 +180,19 @@
         <dt>Defines</dt>
         <dd property="schema:about"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/context-compaction/">Context Compaction</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/sets/terms/domain/">Domain</a></dt>
         <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">agents</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
         <dd property="emsenn:Enables">unbounded session length</dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/extension/">Extends</a></dt>
         <dd property="prov:wasDerivedFrom"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-window/">context window</a></dd>
       </div><div class="relation">
         <dt>Governed by</dt>
         <dd property="emsenn:Governedby"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-window/">context window</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/terms/large-language-model/">large language model</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-window/">context window</a></li></ul></dd>
       </div>
   </dl>

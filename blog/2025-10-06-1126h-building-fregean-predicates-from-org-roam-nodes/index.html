@@ -127,10 +127,10 @@
   </div>
   <div class="e-content">
     <p>So I didn&rsquo;t do a good job writing much about it in my archive as I was reading about it, but I recently did a lot of reading into the Semantic Web, which led me to reading about resource description format and finally onto things like Fregean first-order predicates.
-This all coalesced around something I&rsquo;d been slowly doing in my nodes anyway, which was writing a <a href="../../../sociology/terms/property.md" class="link-internal">property</a> into each Org-roam node, which has changed name and shape a few times, but I&rsquo;m currently calling it the <del>node-description</del> <a href="../../../sociology/terms/property.md" class="link-internal">property</a>.</p>
-<p>One way I&rsquo;m thinking of this <a href="../../../sociology/terms/property.md" class="link-internal">property</a> is as a node&rsquo;s secondary intension toward relational dynamics, and given that, the structure that seemed best was Fregian <del>subject-predicate-object</del> triplets, where each part of the triplet is another node in the database.</p>
+This all coalesced around something I&rsquo;d been slowly doing in my nodes anyway, which was writing a property into each Org-roam node, which has changed name and shape a few times, but I&rsquo;m currently calling it the <del>node-description</del> property.</p>
+<p>One way I&rsquo;m thinking of this property is as a node&rsquo;s secondary intension toward relational dynamics, and given that, the structure that seemed best was Fregian <del>subject-predicate-object</del> triplets, where each part of the triplet is another node in the database.</p>
 <p>Conveniently, this lines up with where a lot of contemporary Web and large language model technologies are moving.</p>
-<p>Here&rsquo;s a demonstration of what a node&rsquo;s <a href="../../../sociology/terms/property.md" class="link-internal">property</a> drawer looks like, in GnoponEmacs:</p>
+<p>Here&rsquo;s a demonstration of what a node&rsquo;s property drawer looks like, in GnoponEmacs:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-org" data-lang="org"><span style="display:flex;"><span><span style="color:#75715e">  :PROPERTIES:
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">  :ID:       39a3beb3-898b-4494-b1d2-144c7a38c3dd
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">  :node-description: ((resource type . babble) (author . emsenn) (publication . emsenn.net) (creation date . 2025-10-06)
@@ -143,7 +143,7 @@ This all coalesced around something I&rsquo;d been slowly doing in my nodes anyw
 <li>publication :: emsenn.net</li>
 <li>creation date :: 2025-10-06</li>
 </ul>
-<p>As you can see, every part of every triplet is itself has two parts: an <del>ID</del> and <del><a href="../../../linguistics/topics/semiotics/terms/sign.md" class="link-internal">sign</a></del> (<del>d542&hellip;ecb</del> and <del>babble</del>).</p>
+<p>As you can see, every part of every triplet is itself has two parts: an <del>ID</del> and <del>sign</del> (<del>d542&hellip;ecb</del> and <del>babble</del>).</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>  (defun gpe/build-predicates ()
 </span></span><span style="display:flex;"><span>    (cl-loop
 </span></span><span style="display:flex;"><span>     for (id file level pos todo priority scheduled deadline title props)

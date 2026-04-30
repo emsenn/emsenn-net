@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2020-10-18-1850h-starting-on-curio-shop - emsenn.net</title>
+
+
+<meta name="description" content="I&rsquo;ve been working on Curio Shop, the &ldquo;bring all my old stuff together as Lua data&rdquo; thing, a fair chunk of today. Without much headway: a lot of it has just been getting a feel for the concepts behind #Fennel and #Lua.
+">
+<link rel="canonical" href="https://emsenn.net/writing/blog/2020-10-18-1850h-starting-on-curio-shop/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="2020-10-18-1850h-starting-on-curio-shop">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/writing/blog/2020-10-18-1850h-starting-on-curio-shop/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="I&rsquo;ve been working on Curio Shop, the &ldquo;bring all my old stuff together as Lua data&rdquo; thing, a fair chunk of today. Without much headway: a lot of it has just been getting a feel for the concepts behind #Fennel and #Lua.
+">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2020-10-18-1850h-starting-on-curio-shop">
+<meta name="twitter:description" content="I&rsquo;ve been working on Curio Shop, the &ldquo;bring all my old stuff together as Lua data&rdquo; thing, a fair chunk of today. Without much headway: a lot of it has just been getting a feel for the concepts behind #Fennel and #Lua.
+">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/writing/blog/2020-10-18-1850h-starting-on-curio-shop/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/writing/blog/2020-10-18-1850h-starting-on-curio-shop/index.jsonld">
+
+
+<script type="application/ld+json">
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/writing/blog/2020-10-18-1850h-starting-on-curio-shop/",
+  "@type": "Article",
+  "description": "I\u0026rsquo;ve been working on Curio Shop, the \u0026ldquo;bring all my old stuff together as Lua data\u0026rdquo; thing, a fair chunk of today. Without much headway: a lot of it has just been getting a feel for the concepts behind #Fennel and #Lua.\n",
+  "name": "2020-10-18-1850h-starting-on-curio-shop",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/writing/blog/2020-10-18-1850h-starting-on-curio-shop/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/about/">about</a>
+    <a href="/writing/">writing</a>
+    <a href="/library/">library</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, section:writing">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/writing/">Writing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/writing/blog/">emsenn&#39;s Babble Log</a></nav>
+  <h1 class="p-name">2020-10-18-1850h-starting-on-curio-shop</h1>
+  <div class="meta">
+    
+    
+    
+  </div>
+  <div class="e-content">
+    <p>I&rsquo;ve been working on Curio Shop, the &ldquo;bring all my old stuff together as Lua
+data&rdquo; thing, a fair chunk of today. Without much headway: a lot of it has just
+been getting a feel for the concepts behind #Fennel and #Lua.</p>
+
+  </div>
+  
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/writing/blog/2020-10-18-1850h-starting-on-curio-shop/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Author</dt>
+        <dd property="emsenn:Author"><a href="/authors/emsenn/">emsenn</a></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2020-10-18">2020-10-18</time></dd>
+      </div><div class="relation">
+        <dt>Kind</dt>
+        <dd property="emsenn:Kind">log entry</dd>
+      </div><div class="relation">
+        <dt>Publish to</dt>
+        <dd property="emsenn:Publishto"><ul><li>emsenn net</li></ul></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

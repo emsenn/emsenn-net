@@ -164,7 +164,7 @@
     })();
     </script>
   <div class="e-content">
-    <p>This text maps between the theoretical concepts in this repository&rsquo;s library — <a href="../../../../humanities/domains/sociology/domains/work/terms/delegation.md" class="link-internal">delegation</a>, <a href="../../../../humanities/domains/sociology/domains/work/domains/governance/terms/role.md" class="link-internal">role</a>, <a href="../../../../humanities/domains/sociology/domains/work/terms/office.md" class="link-internal">office</a>, <a href="../../../../humanities/domains/sociology/domains/critical-theory/domains/anarchism/domains/disaster-response/domains/emergent-disaster-response/terms/dispatch.md" class="link-internal">dispatch</a> — and the concrete multi-agent patterns implemented in Claude Code harnesses and the Everything Claude Code (ECC) reference system.</p>
+    <p>This text maps between the theoretical concepts in this repository&rsquo;s library — <a href="/library/domains/humanities/domains/sociology/domains/work/terms/delegation/" class="link-internal">delegation</a>, <a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/terms/role/" class="link-internal">role</a>, <a href="/library/domains/humanities/domains/sociology/domains/work/terms/office/" class="link-internal">office</a>, <a href="/library/domains/humanities/domains/sociology/domains/work/terms/dispatch/" class="link-internal">dispatch</a> — and the concrete multi-agent patterns implemented in Claude Code harnesses and the Everything Claude Code (ECC) reference system.</p>
 <h2 id="the-orchestrationchoreography-distinction"><a href="#the-orchestrationchoreography-distinction" class="heading-anchor" aria-label="Link to this section">¶</a>The orchestration/choreography distinction
 </h2>
 <p>The W3C Web Services Choreography Working Group (2005) and Milner&rsquo;s π-calculus (1999) establish a foundational distinction: <strong>orchestration</strong> is coordination by a central process that directs participants, while <strong>choreography</strong> is coordination through a shared protocol that each participant follows independently.</p>
@@ -186,7 +186,7 @@
 <li><strong>Non-interference</strong> — can these agents run concurrently without conflicting writes?</li>
 <li><strong>Result merging</strong> — how are separate findings unified into a single report?</li>
 </ul>
-<p>In the <a href="../../../../humanities/domains/sociology/domains/work/terms/delegation.md" class="link-internal">delegation</a> framework: each dispatched agent receives bounded authority (read access to the relevant scope), the principal (parent agent) retains accountability for the merged result, and the grant is revocable (the parent can cancel or override any subagent).</p>
+<p>In the <a href="/library/domains/humanities/domains/sociology/domains/work/terms/delegation/" class="link-internal">delegation</a> framework: each dispatched agent receives bounded authority (read access to the relevant scope), the principal (parent agent) retains accountability for the merged result, and the grant is revocable (the parent can cancel or override any subagent).</p>
 <p>Non-interference in parallel dispatch is achieved by constraint: background agents can only read. Write access requires foreground dispatch, which serializes.</p>
 <h3 id="2-sequential-pipeline"><a href="#2-sequential-pipeline" class="heading-anchor" aria-label="Link to this section">¶</a>2. Sequential pipeline
 </h3>
@@ -213,7 +213,7 @@
 <li><strong>Reviewer + security-reviewer</strong> evaluate quality and safety in parallel (review roles)</li>
 <li><strong>Doc-updater</strong> maintains indexes (maintenance role)</li>
 </ul>
-<p>Each agent fills a <a href="../../../../humanities/domains/sociology/domains/work/domains/governance/terms/role.md" class="link-internal">role</a> in the formal sense: a capability signature (what tools the agent can use), a norm-set (what the agent must and must not do), and a position in the orchestration hierarchy (what it subsumes and what subsumes it). The reviewer role subsumes the security-reviewer role — any finding a security reviewer makes, a reviewer could in principle make, but the security reviewer&rsquo;s specialized capability signature makes it more likely to catch security-specific issues.</p>
+<p>Each agent fills a <a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/terms/role/" class="link-internal">role</a> in the formal sense: a capability signature (what tools the agent can use), a norm-set (what the agent must and must not do), and a position in the orchestration hierarchy (what it subsumes and what subsumes it). The reviewer role subsumes the security-reviewer role — any finding a security reviewer makes, a reviewer could in principle make, but the security reviewer&rsquo;s specialized capability signature makes it more likely to catch security-specific issues.</p>
 <h3 id="4-worktree-isolation"><a href="#4-worktree-isolation" class="heading-anchor" aria-label="Link to this section">¶</a>4. Worktree isolation
 </h3>
 <p>For tasks where multiple agents must write to overlapping files, git worktrees provide isolation:</p>
@@ -221,11 +221,11 @@
 </span></span><span style="display:flex;"><span>git worktree add ../feature-billing feat/billing
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Each agent works in its own worktree</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Merge branches when done</span>
-</span></span></code></pre></div><p>This is the practical solution to the <strong>non-interference</strong> open problem identified in the <a href="../terms/multi-agent-system.md" class="link-internal">multi-agent-system</a> term. Rather than proving at the type level that agents on overlapping regions commute, the system enforces disjointness at the filesystem level. Each agent gets an isolated copy; conflicts surface only at merge time, where they can be resolved by a human or a coordinating agent.</p>
+</span></span></code></pre></div><p>This is the practical solution to the <strong>non-interference</strong> open problem identified in the <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/multi-agent-system/" class="link-internal">multi-agent-system</a> term. Rather than proving at the type level that agents on overlapping regions commute, the system enforces disjointness at the filesystem level. Each agent gets an isolated copy; conflicts surface only at merge time, where they can be resolved by a human or a coordinating agent.</p>
 <p>The ECC <code>dmux</code> tool extends this further: multiple agent sessions run in parallel tmux panes, each in its own worktree, with a merge command (<code>m</code>) that brings results back to the main session.</p>
 <h2 id="how-delegation-theory-maps-to-agent-dispatch"><a href="#how-delegation-theory-maps-to-agent-dispatch" class="heading-anchor" aria-label="Link to this section">¶</a>How delegation theory maps to agent dispatch
 </h2>
-<p>The <a href="../../../../humanities/domains/sociology/domains/work/terms/delegation.md" class="link-internal">delegation</a> term defines four invariants. Each has a concrete implementation in agent orchestration:</p>
+<p>The <a href="/library/domains/humanities/domains/sociology/domains/work/terms/delegation/" class="link-internal">delegation</a> term defines four invariants. Each has a concrete implementation in agent orchestration:</p>
 <table>
   <thead>
       <tr>
@@ -257,7 +257,7 @@
       </tr>
   </tbody>
 </table>
-<p>The <a href="../../../../humanities/domains/sociology/domains/work/terms/assignment.md" class="link-internal">assignment</a> term adds three conditions for dispatching work to an agent: <strong>capability</strong> (can the agent do this?), <strong>authority</strong> (is the agent allowed to do this?), <strong>capacity</strong> (is the agent available?). In practice:</p>
+<p>The <a href="/library/domains/humanities/domains/sociology/domains/work/terms/assignment/" class="link-internal">assignment</a> term adds three conditions for dispatching work to an agent: <strong>capability</strong> (can the agent do this?), <strong>authority</strong> (is the agent allowed to do this?), <strong>capacity</strong> (is the agent available?). In practice:</p>
 <ul>
 <li><strong>Capability</strong> is checked against the agent&rsquo;s tool list and description</li>
 <li><strong>Authority</strong> is enforced by the permission model (background agents are read-only; tool calls require user approval)</li>
@@ -265,11 +265,11 @@
 </ul>
 <h2 id="agents-as-officeholders"><a href="#agents-as-officeholders" class="heading-anchor" aria-label="Link to this section">¶</a>Agents as officeholders
 </h2>
-<p>Each agent in the harness corresponds to an <a href="../../../../humanities/domains/sociology/domains/work/terms/office.md" class="link-internal">office</a> in the normative sense:</p>
+<p>Each agent in the harness corresponds to an <a href="/library/domains/humanities/domains/sociology/domains/work/terms/office/" class="link-internal">office</a> in the normative sense:</p>
 <ul>
 <li>The <strong>agent definition</strong> (markdown file with frontmatter) is the office — it specifies the normative structure, action domain, deontic profile, and installation mechanism independent of any particular instance.</li>
-<li>Each <strong>spawned subagent</strong> is an <a href="../../../../humanities/domains/sociology/domains/work/domains/governance/terms/officer.md" class="link-internal">officer</a> — a particular instance bound to the office&rsquo;s profile for the duration of the task.</li>
-<li>The <strong>handoff document</strong> is the <a href="../../../../humanities/domains/sociology/domains/work/domains/governance/terms/officium.md" class="link-internal">officium</a> discharge record — evidence that the positional obligation was fulfilled.</li>
+<li>Each <strong>spawned subagent</strong> is an <a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/terms/officer/" class="link-internal">officer</a> — a particular instance bound to the office&rsquo;s profile for the duration of the task.</li>
+<li>The <strong>handoff document</strong> is the <a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/terms/officium/" class="link-internal">officium</a> discharge record — evidence that the positional obligation was fulfilled.</li>
 </ul>
 <p>The office persists across sessions. A reviewer agent invoked today and a reviewer agent invoked tomorrow fill the same office — they have the same tools, the same norms, the same position in the orchestration hierarchy. The specific model instance is the body natural; the agent definition is the body politic.</p>
 <h2 id="what-remains-open"><a href="#what-remains-open" class="heading-anchor" aria-label="Link to this section">¶</a>What remains open
@@ -280,7 +280,7 @@
 <p><strong>Formal non-interference.</strong> Worktree isolation is a practical fix, not a formal proof. A system that could statically verify which agents can run concurrently on which file regions — based on their declared capabilities and the task&rsquo;s scope — would eliminate the merge step entirely.</p>
 </li>
 <li>
-<p><strong>Dynamic role composition.</strong> Current agents have fixed capability signatures. A system where agents could compose capabilities at runtime — &ldquo;I need a reviewer who also understands security and can access the database&rdquo; — would require the role meet/join operations described in the <a href="../../../../humanities/domains/sociology/domains/work/domains/governance/terms/role.md" class="link-internal">role</a> term.</p>
+<p><strong>Dynamic role composition.</strong> Current agents have fixed capability signatures. A system where agents could compose capabilities at runtime — &ldquo;I need a reviewer who also understands security and can access the database&rdquo; — would require the role meet/join operations described in the <a href="/library/domains/humanities/domains/sociology/domains/work/domains/governance/terms/role/" class="link-internal">role</a> term.</p>
 </li>
 <li>
 <p><strong>Accountability tracing.</strong> When a multi-agent workflow produces a wrong result, tracing the error through handoff documents is manual. An event-sourced architecture where every agent action is logged with its delegation chain would make accountability auditable.</p>
@@ -289,11 +289,11 @@
 <h2 id="see-also"><a href="#see-also" class="heading-anchor" aria-label="Link to this section">¶</a>See also
 </h2>
 <ul>
-<li><a href="../terms/agent-orchestration.md" class="link-internal">agent-orchestration</a> — the coordination layer definition</li>
-<li><a href="../terms/multi-agent-system.md" class="link-internal">multi-agent-system</a> — the architecture pattern</li>
-<li><a href="../../../../humanities/domains/sociology/domains/work/texts/dispatch-and-delegation-survey.md" class="link-internal">dispatch and delegation survey</a> — theoretical grounding in organizational theory</li>
-<li><a href="./agent-reliability-in-production.md" class="link-internal">agent reliability in production</a> — operational patterns for reliable multi-agent systems</li>
-<li><a href="./multi-agent-failure-modes.md" class="link-internal">multi-agent failure modes</a> — MASFT study findings</li>
+<li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/" class="link-internal">agent-orchestration</a> — the coordination layer definition</li>
+<li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/multi-agent-system/" class="link-internal">multi-agent-system</a> — the architecture pattern</li>
+<li><a href="/library/domains/humanities/domains/sociology/domains/work/texts/dispatch-and-delegation-survey/" class="link-internal">dispatch and delegation survey</a> — theoretical grounding in organizational theory</li>
+<li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-reliability-in-production/" class="link-internal">agent reliability in production</a> — operational patterns for reliable multi-agent systems</li>
+<li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/multi-agent-failure-modes/" class="link-internal">multi-agent failure modes</a> — MASFT study findings</li>
 </ul>
 
   </div>
@@ -315,6 +315,12 @@
         <dt>Surveys</dt>
         <dd property="emsenn:Surveys"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/">agent orchestration</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/multi-agent-system/">multi agent system</a></li></ul></dd>
       </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/texts/multi-agent-orchestration-frameworks-2026/">Multi-agent orchestration frameworks 2026</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/orchestration-vs-choreography-survey/">Orchestration vs. Choreography in Multi-Agent Systems</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/"></a></li></ul>
+    </dd>
+  </div>
   </dl>
 </section>
 

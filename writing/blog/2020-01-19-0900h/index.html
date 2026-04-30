@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2020-01-19, 0900h - emsenn.net</title>
+
+
+<meta name="description" content="Introduction Enclosing variables
+Manipulating Enclosed Variables
+Passing Lambdas Around
+Things
+Introduction
+In this post I&rsquo;d like to explain how things (in-game objects) work. (This will also, incidentally, be a short tutorial on lambda calculus and closures.)
+In the language of game design, …">
+<link rel="canonical" href="https://emsenn.net/writing/blog/2020-01-19-0900h/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="2020-01-19, 0900h">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/writing/blog/2020-01-19-0900h/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Introduction Enclosing variables
+Manipulating Enclosed Variables
+Passing Lambdas Around
+Things
+Introduction
+In this post I&rsquo;d like to explain how things (in-game objects) work. (This will also, incidentally, be a short tutorial on lambda calculus and closures.)
+In the language of game design, …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:author" content="emsenn">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2020-01-19, 0900h">
+<meta name="twitter:description" content="Introduction Enclosing variables
+Manipulating Enclosed Variables
+Passing Lambdas Around
+Things
+Introduction
+In this post I&rsquo;d like to explain how things (in-game objects) work. (This will also, incidentally, be a short tutorial on lambda calculus and closures.)
+In the language of game design, …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/writing/blog/2020-01-19-0900h/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/writing/blog/2020-01-19-0900h/index.jsonld">
+
+
+<script type="application/ld+json">
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/writing/blog/2020-01-19-0900h/",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net/authors/emsenn/"
+  },
+  "description": "Introduction Enclosing variables\nManipulating Enclosed Variables\nPassing Lambdas Around\nThings\nIntroduction\nIn this post I\u0026rsquo;d like to explain how things (in-game objects) work. (This will also, incidentally, be a short tutorial on lambda calculus and closures.)\nIn the language of game design, Racket-MUD uses a type “entity component system,” more or less. I call it quality of things, and developed it mostly in the isolation of solitary hacking, so there are some differences.\n",
+  "name": "2020-01-19, 0900h",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/writing/blog/2020-01-19-0900h/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/about/">about</a>
+    <a href="/writing/">writing</a>
+    <a href="/library/">library</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, section:writing">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/writing/">Writing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/writing/blog/">emsenn&#39;s Babble Log</a></nav>
+  <h1 class="p-name">2020-01-19, 0900h</h1>
+  <div class="meta">
+    
+    <span>by <span class="p-author">emsenn</span></span>
+    
+  </div>
+  <div class="e-content">
+    <p>Introduction
+Enclosing variables</p>
+<p>Manipulating Enclosed Variables</p>
+<p>Passing Lambdas Around</p>
+<p>Things</p>
+<p>Introduction</p>
+<p>In this post I&rsquo;d like to explain how things (in-game objects) work. (This will also, incidentally, be a short tutorial on lambda calculus and closures.)</p>
+<p>In the language of game design, Racket-MUD uses a type “entity component system,” more or less. I call it quality of things, and developed it mostly in the isolation of solitary hacking, so there are some differences.</p>
+<p>Everything a user interacts with inside Racket-MUD is a thing, and every thing has qualities, which define its capabilities.</p>
+<p>From the user&rsquo;s perspective, a thing is a loaf of bread, a field, a starship, or even abstract things like jealousy: it all depends on the sort of MUD being implemented.</p>
+<p>From the engine&rsquo;s perspective, a thing is a function, into which functions are thrown, and out of which comes a function.</p>
+<p>Enclosing variables</p>
+<p>Let&rsquo;s forget about things for a moment and look at some more generic code.</p>
+<pre><code>(define alef 7)
+</code></pre>
+<p>What&rsquo;s this do? It defines alef as 7. Simple enough.</p>
+<pre><code>(define bet
+  (λ () 7))
+</code></pre>
+<p>What does this one do? It defines bet as a function, that returns 7. ((λ () 7) breaks down to “make a function (λ) that takes zero arguments (()) and returns 7.“)</p>
+<p>By-the-by, that λ symbol? That&rsquo;s the lowercase “lambda” character from the Greek alphabet; it&rsquo;s used in a few programming languages (and branches of mathematics) to mean “a function.”</p>
+<pre><code>alef  ; -&gt; 7
+bet   ; -&gt; &lt;#procedure:bet&gt;
+(bet) ; -&gt; 7
+</code></pre>
+<p>Calling alef returns 7, but calling bet returns a procedure – so, we have to call that procedure, by doing (bet): and now we get our 7.</p>
+<p>Pretty simple. Let&rsquo;s build on this.</p>
+<pre><code>(define gimel
+  (λ ()
+    (define num 7)
+    (λ () num)))
+</code></pre>
+<p>Less simple: there are two of those λ things. We know that calling gimel will return a function: let&rsquo;s look at what that function actually would contain:</p>
+<pre><code>(define num 7)
+(λ () num)
+</code></pre>
+<p>So, first, it&rsquo;s defining num as 7 and then… it returns a function, that we can see, takes no arguments, and returns num. So how do we use gimel?</p>
+<pre><code>gimel     ; -&gt; &lt;#procedure:gimel&gt;
+(gimel)   ; -&gt; &lt;#procedure&gt;
+((gimel)) ; -&gt; 7
+</code></pre>
+<p>Well, we&rsquo;ve certainly added complexity, but there hasn&rsquo;t been any new capabilities added.</p>
+<pre><code>(define dalet
+  (λ ()
+    (define num 7)
+    (λ () (+ 1 num))))
+</code></pre>
+<p>Here, we&rsquo;ve replaced returning num with returning (+ 1 num).</p>
+<p>So, running these we get:</p>
+<pre><code>dalet     ; &lt;#procedure:dalet&gt;
+(dalet)   ; &lt;#procedure&gt;
+((dalet)) ; 8
+</code></pre>
+<p>Manipulating Enclosed Variables</p>
+<p>Now we&rsquo;re getting somewhere. Let&rsquo;s add some more capabilities. Here, we&rsquo;re going to make it so that the procedure returned by the outer-function is capable of taking an argument; that&rsquo;ll be added (+) to num.</p>
+<pre><code>(define he
+  (λ ()
+    (define num 7)
+    (λ (x) (+ x num))))
+</code></pre>
+<p>So now we can do:</p>
+<pre><code>he        ; &lt;#procedure:he&gt;
+(he)      ; &lt;#procedure&gt;
+((he) 1)  ; 8
+((he) 10) ; 17
+</code></pre>
+<p>Now that&rsquo;s something! Let&rsquo;s rename the function we&rsquo;ve been working on to make what it does more clear.</p>
+<pre><code>(define add-to-seven
+  (λ ()
+    (define seven 7)
+    (λ (x) (+ x seven))))
+</code></pre>
+<p>Maybe now the point of why I&rsquo;ve done this will be a little more clear: we&rsquo;ve created a bit of data, seven, and it&rsquo;s held inside the function. Basically, all we can do is ask the function, “what would happen if we added x to 7?”</p>
+<p>Let&rsquo;s make it a bit more general.</p>
+<p>Passing Lambdas Around</p>
+<pre><code>  (define do-to-seven
+    (λ ()
+      (define seven 7)
+      (λ (f) (f seven))))
+</code></pre>
+<p>We&rsquo;ve changed the returned function here: now it doesn&rsquo;t take x and return the result of (+ x seven). It takes f and returns the result of (f seven).</p>
+<p>You might be able to infer that f is intended to be a function, not a number, and that it needs to take one argument, and that argument will be seven. Let&rsquo;s play around with this.</p>
+<pre><code>do-to-seven ; &lt;#procedure:do-to-seven&gt;
+(do-to-seven) ; &lt;#procedure&gt;
+</code></pre>
+<p>Y&rsquo;know these nested parantheses aren&rsquo;t always that easy to read. Let&rsquo;s switch up the style a bit.</p>
+<pre><code>(define seven-doer (do-to-seven))
+seven-doer ; &lt;#procedure&gt;
+</code></pre>
+<p>Alright – now we can directly access the enclosed function, (λ (f) (f seven)), with seven-doer. Let&rsquo;s move on.</p>
+<pre><code>(seven-doer
+ (λ (S) S)) ; -&gt; 7
+</code></pre>
+<p>What does this do? It calls seven-doer, passing it a lambda function that takes one argument, S, and returns S. This returns 7. Let&rsquo;s see how, by looking how the statement expands. First, the code above turns into, more-or-less:</p>
+<pre><code>((λ (f) (f seven)) (λ (S) S))
+</code></pre>
+<p>Ew. Hard to read, but try to follow the parantheses. The whole thing is one statement, with two parts: the first is a lambda function that takes f and returns (f seven), and the second is a lambda function that takes S and returns S.</p>
+<p>The first part of the statement is treated as a function, and the second part is its argument, so the next step from here is to pass the second part into the first part. We get to</p>
+<pre><code>((λ (S) S) seven)
+</code></pre>
+<p>(That is, (f seven) when f is (λ (S) S).)</p>
+<p>So, from here, we pass seven into the lambda function, which just returns whatever seven is, in this case, 7.</p>
+<p>Phew! That was a lot. The point is, now, we have a function that we can ask, “Hey, show me what would happen if I do the following to 7…“</p>
+<p>…and “the following” can be just about anything you think of. Like, say, doubling it.</p>
+<pre><code>(define double
+  (λ (x) (* x 2))) ; -&gt; &lt;#procedure:double&gt;
+
+(do-to-seven double) ; -&gt; 14
+</code></pre>
+<p>Now, this is a lot of semantic overhead for what is essentially (* 7 2). but let&rsquo;s see how this relates to Racket-MUD&rsquo;s things.</p>
+<p>Things</p>
+<pre><code>(define thing-maker
+  (λ (name)
+    (let ([thing (make-hash
+		  (list
+		   (cons 'name name)))])
+      (λ (f) (f thing)))))
+</code></pre>
+<p>(This isn&rsquo;t actually the code for making a thing, just a simple version for explaining the concepts.)</p>
+<p>Let&rsquo;s pull this apart:</p>
+<p>thing-maker is a function that takes one argument, name, creates a hash-table called thing to store the name, and returns a function that takes one argument, f, and returns the result of (f thing).</p>
+<pre><code>(define bob (thing-maker &quot;Bob&quot;)) ; &lt;#procedure&gt;
+(bob (λ (thing) (hash-ref thing 'name))) ; &quot;Bob&quot;
+</code></pre>
+<p>So this defines bob as the result of (thing-maker &ldquo;Bob&rdquo;): a procedure, (λ (f) (thing f), where thing is a a hash-table of the key &rsquo;name to the value &ldquo;Bob&rdquo;.</p>
+<p>Essentially, bob, the variable, is something into which we can throw queries about Bob, the thing.</p>
+<p>So if we give the function (λ (thing) (hash-ref thing &rsquo;name))) to bob – or any thing – we&rsquo;re basically asking that thing, “Hey, what&rsquo;s your name?”</p>
+<p>And the thing will look at itself, and say what it&rsquo;s name is – &ldquo;Bob&rdquo;.</p>
+<p>In this way, we&rsquo;re able to arbitrarily define new qualities for the thing (by adding them to its hash-table), or manipulate them in new wyas, without having to extend the core functionality of the thing, which is, essentially, just making a hash-table and returning (λ (f) (f hash-table)).</p>
+<p>And that&rsquo;s how things work!</p>
+
+  </div>
+  
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/writing/blog/2020-01-19-0900h/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt><a href="/authors/">Authors</a></dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2020-01-19">2020-01-19</time></dd>
+      </div><div class="relation">
+        <dt>Publish to</dt>
+        <dd property="emsenn:Publishto"><ul><li>emsenn net</li></ul></dd>
+      </div><div class="relation">
+        <dt>Specialization</dt>
+        <dd property="emsenn:Specialization"><a href="/tags/babble/">babble</a></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

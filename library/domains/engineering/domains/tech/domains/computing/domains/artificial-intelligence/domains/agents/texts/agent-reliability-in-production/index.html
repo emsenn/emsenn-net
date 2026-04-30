@@ -159,14 +159,14 @@
     })();
     </script>
   <div class="e-content">
-    <p>This text synthesizes what the field has learned about making <a href="../terms/agentic-system.md" class="link-internal">agentic systems</a> reliable as of March 2026. The primary sources are Anthropic&rsquo;s &ldquo;Building Effective Agents&rdquo; (December 2024), Anthropic&rsquo;s engineering blog on their production multi-agent research system (2025), the MASFT multi-agent failure study (arXiv 2503.13657, March 2025), the Letta agent memory benchmarks (2025), and the enterprise agent evaluation framework (arXiv 2511.14136, November 2025).</p>
+    <p>This text synthesizes what the field has learned about making <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/" class="link-internal">agentic systems</a> reliable as of March 2026. The primary sources are Anthropic&rsquo;s &ldquo;Building Effective Agents&rdquo; (December 2024), Anthropic&rsquo;s engineering blog on their production multi-agent research system (2025), the MASFT multi-agent failure study (arXiv 2503.13657, March 2025), the Letta agent memory benchmarks (2025), and the enterprise agent evaluation framework (arXiv 2511.14136, November 2025).</p>
 <h2 id="1-start-with-the-simplest-thing-that-works"><a href="#1-start-with-the-simplest-thing-that-works" class="heading-anchor" aria-label="Link to this section">¶</a>1. Start with the simplest thing that works
 </h2>
 <p>Anthropic&rsquo;s central recommendation: &ldquo;find the simplest solution possible, and only increase complexity when needed.&rdquo; The most successful implementations they observed used simple, composable patterns — direct LLM API calls, not frameworks — often implementable in a few lines of code.</p>
 <p>The progression of complexity:</p>
 <ol>
 <li>A single LLM call with retrieval and in-context examples (the &ldquo;augmented LLM&rdquo;)</li>
-<li><a href="../terms/prompt-chaining.md" class="link-internal">Prompt chaining</a> — fixed sequence of LLM calls</li>
+<li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/prompt-chaining/" class="link-internal">Prompt chaining</a> — fixed sequence of LLM calls</li>
 <li>Routing — LLM classifies input and directs it to a handler</li>
 <li>Parallelization — independent subtasks run concurrently</li>
 <li>Orchestrator-workers — LLM delegates dynamically</li>
@@ -175,35 +175,35 @@
 <p>Each step adds latency, token cost, and failure surface. Move to the next step only when the current step demonstrably fails on the task. Anthropic explicitly warns against frameworks: &ldquo;frameworks often create extra layers of abstraction that can obscure the underlying prompts and responses, making them harder to debug.&rdquo;</p>
 <h2 id="2-errors-compound-in-stateful-systems"><a href="#2-errors-compound-in-stateful-systems" class="heading-anchor" aria-label="Link to this section">¶</a>2. Errors compound in stateful systems
 </h2>
-<p>Agents are stateful. A wrong <a href="../terms/tool-use.md" class="link-internal">tool call</a> in step 3 changes the state that step 4 operates on, which changes step 5&rsquo;s plan, which produces an output unrelated to the original goal. This is the fundamental reliability challenge. In Anthropic&rsquo;s words: &ldquo;agents are stateful and errors compound.&rdquo;</p>
+<p>Agents are stateful. A wrong <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-use/" class="link-internal">tool call</a> in step 3 changes the state that step 4 operates on, which changes step 5&rsquo;s plan, which produces an output unrelated to the original goal. This is the fundamental reliability challenge. In Anthropic&rsquo;s words: &ldquo;agents are stateful and errors compound.&rdquo;</p>
 <p>Three defenses:</p>
-<p><strong><a href="../terms/durable-execution.md" class="link-internal">Durable execution</a>.</strong> Build resumable systems. <a href="../terms/langgraph.md" class="link-internal">LangGraph</a> checkpoints state at every step; <a href="../terms/pydantic-ai.md" class="link-internal">PydanticAI</a> integrates with Temporal. On failure, resume from the last completed step. A restarted workflow follows a different trajectory because LLM output is stochastic; a resumed workflow continues from a known state.</p>
+<p><strong><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/durable-execution/" class="link-internal">Durable execution</a>.</strong> Build resumable systems. <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/langgraph/" class="link-internal">LangGraph</a> checkpoints state at every step; <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/pydantic-ai/" class="link-internal">PydanticAI</a> integrates with Temporal. On failure, resume from the last completed step. A restarted workflow follows a different trajectory because LLM output is stochastic; a resumed workflow continues from a known state.</p>
 <p><strong>Tool failure adaptation.</strong> Let the agent know when a tool fails and let it adapt. Anthropic&rsquo;s production experience: &ldquo;letting the agent know when a tool is failing and letting it adapt works surprisingly well.&rdquo; Hard crashes are worse than graceful degradation.</p>
-<p><strong><a href="../terms/human-in-the-loop.md" class="link-internal">Human-in-the-loop</a> at high-risk points.</strong> Place review checkpoints before irreversible actions (file deletions, API calls with side effects, deployments). The agent proposes; the human approves or corrects. The cost is latency; the benefit is catching errors before they become state.</p>
+<p><strong><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/" class="link-internal">Human-in-the-loop</a> at high-risk points.</strong> Place review checkpoints before irreversible actions (file deletions, API calls with side effects, deployments). The agent proposes; the human approves or corrects. The cost is latency; the benefit is catching errors before they become state.</p>
 <h2 id="3-observe-everything"><a href="#3-observe-everything" class="heading-anchor" aria-label="Link to this section">¶</a>3. Observe everything
 </h2>
-<p><a href="../terms/agent-observability.md" class="link-internal">Agent observability</a> is the prerequisite for reliability improvement. Without traces, failures are anecdotal. With traces, failures are data.</p>
+<p><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-observability/" class="link-internal">Agent observability</a> is the prerequisite for reliability improvement. Without traces, failures are anecdotal. With traces, failures are data.</p>
 <p>The minimum instrumentation:</p>
 <ul>
 <li><strong>Token usage per step.</strong> Token usage explains 80% of performance variance on complex tasks (Anthropic production data). Track tokens per tool call, per agent, per workflow. This is the single most informative metric.</li>
 <li><strong>Decision traces.</strong> Record what state the model saw, what action it chose, and what the result was. LangGraph checkpoints provide this automatically.</li>
-<li><strong>Failure classification.</strong> Categorize failures: <a href="../../terms/hallucination.md" class="link-internal">hallucinated</a> tool call, schema validation error, timeout, permission denied, context overflow. Each category has a different remedy.</li>
-<li><strong>Latency breakdown.</strong> Decompose total time into LLM inference, tool execution, retrieval, and coordination. In <a href="../terms/multi-agent-system.md" class="link-internal">multi-agent systems</a>, coordination latency dominates.</li>
+<li><strong>Failure classification.</strong> Categorize failures: <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/hallucination/" class="link-internal">hallucinated</a> tool call, schema validation error, timeout, permission denied, context overflow. Each category has a different remedy.</li>
+<li><strong>Latency breakdown.</strong> Decompose total time into LLM inference, tool execution, retrieval, and coordination. In <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/multi-agent-system/" class="link-internal">multi-agent systems</a>, coordination latency dominates.</li>
 </ul>
 <p>Track decision patterns and interaction structures rather than raw conversation contents. The shape of the trace — which tools were called, in what order, with what result types — is diagnostic. The full text is a privacy liability.</p>
 <h2 id="4-multi-agent-coordination-has-a-hard-ceiling"><a href="#4-multi-agent-coordination-has-a-hard-ceiling" class="heading-anchor" aria-label="Link to this section">¶</a>4. Multi-agent coordination has a hard ceiling
 </h2>
 <p>The MASFT study (March 2025) analyzed 150+ execution traces across 5 multi-agent frameworks. Multi-agent architectures showed minimal performance gains over single-agent baselines. Some systems performed worse than running a single agent multiple times and taking the best result.</p>
-<p><a href="../terms/coordination-overhead.md" class="link-internal">Coordination overhead</a> — token cost, latency, and error amplification from inter-agent communication — grows approximately quadratically with agent count. The saturation threshold is approximately <strong>4 agents</strong>. Multi-agent systems consume <strong>15x more tokens</strong> than equivalent single-turn interactions (Anthropic production data).</p>
-<p>Multi-agent coordination pays when the task requires isolated tool environments (coding + browsing), benefits from parallel execution, or uses diverse perspectives to reduce <a href="../../terms/hallucination.md" class="link-internal">hallucination</a>. In all other cases, a single agent with good tools and <a href="../../terms/context-engineering.md" class="link-internal">context engineering</a> is cheaper and more reliable.</p>
+<p><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/coordination-overhead/" class="link-internal">Coordination overhead</a> — token cost, latency, and error amplification from inter-agent communication — grows approximately quadratically with agent count. The saturation threshold is approximately <strong>4 agents</strong>. Multi-agent systems consume <strong>15x more tokens</strong> than equivalent single-turn interactions (Anthropic production data).</p>
+<p>Multi-agent coordination pays when the task requires isolated tool environments (coding + browsing), benefits from parallel execution, or uses diverse perspectives to reduce <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/hallucination/" class="link-internal">hallucination</a>. In all other cases, a single agent with good tools and <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-engineering/" class="link-internal">context engineering</a> is cheaper and more reliable.</p>
 <h2 id="5-memory-architecture-affects-performance-less-than-expected"><a href="#5-memory-architecture-affects-performance-less-than-expected" class="heading-anchor" aria-label="Link to this section">¶</a>5. Memory architecture affects performance less than expected
 </h2>
 <p>The Letta agent memory benchmarks (2025) produced a counterintuitive result: agents using simple filesystem operations — grep, search_files, open, close — achieved <strong>74.0% accuracy</strong> on the LoCoMo benchmark, outperforming Mem0&rsquo;s specialized graph memory at 68.5%. The 5.5 percentage point advantage came from using tools the LLM is well-trained on rather than specialized memory APIs.</p>
-<p>The implication for <a href="../terms/agent-memory.md" class="link-internal">agent memory</a> design: start with files. Markdown files with structured frontmatter, readable and writable through standard tools, searchable through grep. Add vector memory or graph memory when file-based retrieval demonstrably fails — typically when the knowledge base exceeds what keyword search can navigate, or when queries require multi-hop relationship traversal (<a href="../../terms/graph-rag.md" class="link-internal">GraphRAG</a> territory).</p>
+<p>The implication for <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-memory/" class="link-internal">agent memory</a> design: start with files. Markdown files with structured frontmatter, readable and writable through standard tools, searchable through grep. Add vector memory or graph memory when file-based retrieval demonstrably fails — typically when the knowledge base exceeds what keyword search can navigate, or when queries require multi-hop relationship traversal (<a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/graph-rag/" class="link-internal">GraphRAG</a> territory).</p>
 <p>For knowledge repositories with semantic frontmatter (<code>uses</code>, <code>related</code>, <code>extends</code> fields), the frontmatter already encodes a graph. A graph index built from existing metadata is cheaper than entity extraction from prose because the entities and relationships are already declared.</p>
 <h2 id="6-instruction-files-must-be-curated"><a href="#6-instruction-files-must-be-curated" class="heading-anchor" aria-label="Link to this section">¶</a>6. Instruction files must be curated
 </h2>
-<p><a href="../../terms/context-engineering.md" class="link-internal">Context engineering</a> research (February 2026) found that LLM-generated instruction files (auto-generated CLAUDE.md, AGENTS.md) <strong>decrease agent success rates</strong> by ~0.5% compared to no instruction file at all. Human-written, curated files perform better. Stale files — instructions describing a codebase that has changed — actively degrade performance.</p>
+<p><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-engineering/" class="link-internal">Context engineering</a> research (February 2026) found that LLM-generated instruction files (auto-generated CLAUDE.md, AGENTS.md) <strong>decrease agent success rates</strong> by ~0.5% compared to no instruction file at all. Human-written, curated files perform better. Stale files — instructions describing a codebase that has changed — actively degrade performance.</p>
 <p>The guidelines:</p>
 <ul>
 <li>Keep instruction files under ~50 lines. Longer files dilute attention to earlier instructions.</li>
@@ -214,7 +214,7 @@
 </ul>
 <h2 id="7-self-improvement-works-within-bounds"><a href="#7-self-improvement-works-within-bounds" class="heading-anchor" aria-label="Link to this section">¶</a>7. Self-improvement works within bounds
 </h2>
-<p>The OpenAI cookbook&rsquo;s three-stage pattern — baseline agent, evaluation graders, metaprompt optimizer — improves agent performance on measured criteria without model <a href="../../terms/fine-tuning.md" class="link-internal">fine-tuning</a>. The system prompt changes; the model weights stay fixed.</p>
+<p>The OpenAI cookbook&rsquo;s three-stage pattern — baseline agent, evaluation graders, metaprompt optimizer — improves agent performance on measured criteria without model <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/fine-tuning/" class="link-internal">fine-tuning</a>. The system prompt changes; the model weights stay fixed.</p>
 <p>The bounds are:</p>
 <ul>
 <li>The improvement loop is only as good as its graders. Start with deterministic checks (schema valid, entities present, length in bounds). Add LLM-as-judge only when deterministic checks are insufficient.</li>
@@ -249,22 +249,22 @@
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/sets/terms/domain/">Domain</a></dt>
         <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">agents</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/factorization/">Factors through</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/factorization/">Factors through</a></dt>
         <dd property="emsenn:Factorsthrough">coordination overhead, agent memory, agent self improvement, hallucination, retrieval augmented generation, graph rag, human in the loop, multi agent system</dd>
       </div><div class="relation">
         <dt>Governs</dt>
         <dd property="emsenn:Governs"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/">agentic system</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn">agent observability, agent evaluation, durable execution, context engineering</dd>
       </div>
   <div class="relation">
     <dt>Referenced by</dt>
     <dd>
-      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/accountability-tracing-in-multi-agent-systems/">Accountability Tracing in Multi-Agent Systems</a></li></ul>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/accountability-tracing-in-multi-agent-systems/">Accountability Tracing in Multi-Agent Systems</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/multi-agent-orchestration-in-practice/">Multi-Agent Orchestration in Practice</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/"></a></li></ul>
     </dd>
   </div>
   </dl>

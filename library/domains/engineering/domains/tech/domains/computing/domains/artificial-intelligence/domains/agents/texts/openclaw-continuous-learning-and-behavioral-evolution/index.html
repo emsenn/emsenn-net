@@ -233,7 +233,7 @@
 <p>OpenClaw achieves continuous learning and behavioral evolution through a three-layer architecture that persists knowledge across sessions, enables agents to autonomously extend capabilities, and filters learning opportunities through managed input gating. Unlike stateless chatbots that reset after each conversation, OpenClaw agents accumulate durable context, self-modify through skill creation, and evolve their decision boundaries through policy mechanisms.</p>
 <h2 id="memory-persistence-layer"><a href="#memory-persistence-layer" class="heading-anchor" aria-label="Link to this section">¶</a>Memory Persistence Layer
 </h2>
-<p>OpenClaw treats memory as the primary mechanism for accumulation across sessions. The <a href="./openclaw-memory.md" class="link-internal">memory system</a> is Markdown-based and file-first, making it auditable and portable.</p>
+<p>OpenClaw treats memory as the primary mechanism for accumulation across sessions. The <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/openclaw-memory/" class="link-internal">memory system</a> is Markdown-based and file-first, making it auditable and portable.</p>
 <h3 id="durable-memory-files"><a href="#durable-memory-files" class="heading-anchor" aria-label="Link to this section">¶</a>Durable Memory Files
 </h3>
 <p>The system maintains two default layers:</p>
@@ -244,12 +244,12 @@
 <p>This two-layer approach separates intentional curation (MEMORY.md) from emergent discovery (dated logs). The agent can read both; an operator can review and promote significant discoveries from dated logs into stable MEMORY.md.</p>
 <h3 id="memory-search-and-retrieval"><a href="#memory-search-and-retrieval" class="heading-anchor" aria-label="Link to this section">¶</a>Memory Search and Retrieval
 </h3>
-<p>Official memory search tools are provided through an active <a href="./openclaw-plugin-slot.md" class="link-internal">memory plugin</a>. These are exclusive slots — only one memory implementation is active at a time. Memory search augments direct file access but does not replace it; the files remain the source of truth.</p>
-<p>An experimental <a href="../terms/qmd.md" class="link-internal">QMD</a> backend enables local-first vector retrieval over the same Markdown files, allowing semantic search without external dependencies.</p>
+<p>Official memory search tools are provided through an active <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/openclaw-plugin-slot/" class="link-internal">memory plugin</a>. These are exclusive slots — only one memory implementation is active at a time. Memory search augments direct file access but does not replace it; the files remain the source of truth.</p>
+<p>An experimental <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/qmd/" class="link-internal">QMD</a> backend enables local-first vector retrieval over the same Markdown files, allowing semantic search without external dependencies.</p>
 <p><strong>Key architectural fact:</strong> Memory makes accumulation possible across sessions. It turns repeated research or monitoring into a continuing relationship rather than a sequence of unrelated chats.</p>
 <h2 id="skill-autonomy-and-self-modification"><a href="#skill-autonomy-and-self-modification" class="heading-anchor" aria-label="Link to this section">¶</a>Skill Autonomy and Self-Modification
 </h2>
-<p>OpenClaw&rsquo;s <a href="./openclaw-skill.md" class="link-internal">skills system</a> moves beyond fixed tool sets to allow agents to autonomously extend capabilities.</p>
+<p>OpenClaw&rsquo;s <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/openclaw-skill/" class="link-internal">skills system</a> moves beyond fixed tool sets to allow agents to autonomously extend capabilities.</p>
 <h3 id="skill-structure"><a href="#skill-structure" class="heading-anchor" aria-label="Link to this section">¶</a>Skill Structure
 </h3>
 <p>Each skill is a directory containing:</p>
@@ -276,7 +276,7 @@
 <p>OpenClaw maintains CrawHub, a public skill directory with 13,729+ community-contributed skills as of February 2026. This is not just archival; agents can search, install, and adapt skills from the registry programmatically. A skill can live in the workspace, the local shared directory, or be fetched from the registry on demand.</p>
 <h2 id="heartbeatmd-and-proactive-behavior"><a href="#heartbeatmd-and-proactive-behavior" class="heading-anchor" aria-label="Link to this section">¶</a>HEARTBEAT.md and Proactive Behavior
 </h2>
-<p>The <a href="./openclaw-heartbeat.md" class="link-internal">HEARTBEAT.md</a> file is optional but critical for autonomous learning. It defines what the agent should check or notice when idle.</p>
+<p>The <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/openclaw-heartbeat/" class="link-internal">HEARTBEAT.md</a> file is optional but critical for autonomous learning. It defines what the agent should check or notice when idle.</p>
 <h3 id="low-frequency-proactive-behavior"><a href="#low-frequency-proactive-behavior" class="heading-anchor" aria-label="Link to this section">¶</a>Low-Frequency Proactive Behavior
 </h3>
 <p>Rather than only responding to messages, the agent can proactively monitor, check, and update context on a schedule. HEARTBEAT.md is read every 30 minutes (in practice, the official docs distinguish between cron-like exact timing and opportunistic awareness; HEARTBEAT.md provides the latter).</p>
@@ -302,7 +302,7 @@
 <p>HEARTBEAT.md is not just a scheduler; it is a behavior design surface. An operator can add tasks without code changes. An agent can discover what it should be monitoring and propose new heartbeat entries. Over time, HEARTBEAT.md accumulates the agent&rsquo;s learned responsibilities.</p>
 <h2 id="hook-driven-learning-and-adaptation"><a href="#hook-driven-learning-and-adaptation" class="heading-anchor" aria-label="Link to this section">¶</a>Hook-Driven Learning and Adaptation
 </h2>
-<p><a href="./openclaw-hook.md" class="link-internal">Hooks</a> are directory-discovered event handlers that fire on command or lifecycle events. They are the event-driven automation layer and a mechanism for behavioral learning.</p>
+<p><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/openclaw-hook/" class="link-internal">Hooks</a> are directory-discovered event handlers that fire on command or lifecycle events. They are the event-driven automation layer and a mechanism for behavioral learning.</p>
 <h3 id="hook-structure"><a href="#hook-structure" class="heading-anchor" aria-label="Link to this section">¶</a>Hook Structure
 </h3>
 <p>Each hook is a directory containing:</p>
@@ -332,7 +332,7 @@
 <p>Unlike hard-coded behavior, hooks are discoverable and can be modified or added without rebuilding the agent. An agent that learns it should monitor something can propose a new hook; an operator can review and enable it.</p>
 <h2 id="soulmd-and-behavioral-boundaries"><a href="#soulmd-and-behavioral-boundaries" class="heading-anchor" aria-label="Link to this section">¶</a>SOUL.md and Behavioral Boundaries
 </h2>
-<p><a href="./openclaw-soul-md.md" class="link-internal">SOUL.md</a> defines the agent&rsquo;s identity, style, values, and behavioral boundaries. It is not a knowledge base but a behavioral and stylistic configuration surface.</p>
+<p><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/openclaw-soul-md/" class="link-internal">SOUL.md</a> defines the agent&rsquo;s identity, style, values, and behavioral boundaries. It is not a knowledge base but a behavioral and stylistic configuration surface.</p>
 <h3 id="identity-and-style"><a href="#identity-and-style" class="heading-anchor" aria-label="Link to this section">¶</a>Identity and Style
 </h3>
 <p>SOUL.md captures:</p>
@@ -354,7 +354,7 @@
 <p>Unlike memory (which accumulates facts), SOUL.md is prescriptive: it tells the agent how to behave, not what happened.</p>
 <h2 id="dm-policy-and-learning-gating"><a href="#dm-policy-and-learning-gating" class="heading-anchor" aria-label="Link to this section">¶</a>DM Policy and Learning Gating
 </h2>
-<p>The <a href="./openclaw-dm-policy.md" class="link-internal">DM Policy</a> is not primarily a learning mechanism, but it shapes <em>what learning opportunities reach the agent</em>. Four modes control inbound messages:</p>
+<p>The <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/openclaw-dm-policy/" class="link-internal">DM Policy</a> is not primarily a learning mechanism, but it shapes <em>what learning opportunities reach the agent</em>. Four modes control inbound messages:</p>
 <ul>
 <li><strong>pairing</strong> — unknown senders receive a short code and messages are ignored until approval</li>
 <li><strong>allowlist</strong> — only approved senders can reach the agent</li>

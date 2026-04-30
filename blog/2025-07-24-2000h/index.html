@@ -146,7 +146,7 @@ If I try and just babble on it, a big part of what I&rsquo;m trying to do is, un
 </ol>
 <p>From here, it seems critical to pin down certain things, such as:</p>
 <ul>
-<li>Every /Org-mode file/ and /Org-mode subtree/ with an /Org-mode ID <a href="../../../sociology/terms/property.md" class="link-internal">property</a>/ is a /Org-roam node/
+<li>Every /Org-mode file/ and /Org-mode subtree/ with an /Org-mode ID property/ is a /Org-roam node/
 <ul>
 <li>This means it is a /relational node/, in our grammar.</li>
 </ul>
@@ -182,9 +182,9 @@ If I try and just babble on it, a big part of what I&rsquo;m trying to do is, un
 <li>This ID and title are the canonical version of a relational node.</li>
 </ul>
 <p>I&rsquo;ve just checked, and nodes linked in a file&rsquo;s properties show up in the Org-roam backlinks list, by default, so that&rsquo;s cool.</p>
-<p>And I should be able to do <del>:var data=(org-entry-get nil &ldquo;FOO&rdquo; t)</del> to grab the <del>FOO</del> <a href="../../../sociology/terms/property.md" class="link-internal">property</a>, for populating source blocks&hellip; so that actually all works pretty well!</p>
+<p>And I should be able to do <del>:var data=(org-entry-get nil &ldquo;FOO&rdquo; t)</del> to grab the <del>FOO</del> property, for populating source blocks&hellip; so that actually all works pretty well!</p>
 <p>For rendeirng text, Org-mode macros will let me reference properties and insert them into the file on export/publishing.</p>
-<p>On that note, addressing another concern a brief look shows that something like the following, set as the function being pointed to by <del>:preparation-function</del> in my Org-publish project&rsquo;s configuration, will let it skip anything that doesn&rsquo;t have a <del>:PUBLISH:</del> <a href="../../../sociology/terms/property.md" class="link-internal">property</a> set to <del>t</del>.</p>
+<p>On that note, addressing another concern a brief look shows that something like the following, set as the function being pointed to by <del>:preparation-function</del> in my Org-publish project&rsquo;s configuration, will let it skip anything that doesn&rsquo;t have a <del>:PUBLISH:</del> property set to <del>t</del>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>  (defun gpe/skip-if-not-publish (plist)
 </span></span><span style="display:flex;"><span>  (unless (string= (org-entry-get <span style="color:#66d9ef">nil</span> <span style="color:#e6db74">&#34;PUBLISH&#34;</span> <span style="color:#66d9ef">t</span>) <span style="color:#e6db74">&#34;true&#34;</span>)
 </span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">error</span> <span style="color:#e6db74">&#34;Skipping file: PUBLISH property not set to true&#34;</span>)))

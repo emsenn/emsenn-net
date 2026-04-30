@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-02-26, 1021h, Setting up zotlit for zotero citations in Obsidian - emsenn.net</title>
+
+
+<meta name="description" content="In order to enrich my notes in a certain way, I need to figure out how I&rsquo;m going to handle citations.
+I was starting to use Zotero, toward the end of 2025, because extending out of critical theory into other sciences meant I was incorporating way more sources into any given piece of writing. …">
+<link rel="canonical" href="https://emsenn.net/writing/blog/2026-02-26-1021h-setting-up-zotlit-for-zotero-citations-in-obsidian/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="2026-02-26, 1021h, Setting up zotlit for zotero citations in Obsidian">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/writing/blog/2026-02-26-1021h-setting-up-zotlit-for-zotero-citations-in-obsidian/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="In order to enrich my notes in a certain way, I need to figure out how I&rsquo;m going to handle citations.
+I was starting to use Zotero, toward the end of 2025, because extending out of critical theory into other sciences meant I was incorporating way more sources into any given piece of writing. …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2026-02-26, 1021h, Setting up zotlit for zotero citations in Obsidian">
+<meta name="twitter:description" content="In order to enrich my notes in a certain way, I need to figure out how I&rsquo;m going to handle citations.
+I was starting to use Zotero, toward the end of 2025, because extending out of critical theory into other sciences meant I was incorporating way more sources into any given piece of writing. …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/writing/blog/2026-02-26-1021h-setting-up-zotlit-for-zotero-citations-in-obsidian/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/writing/blog/2026-02-26-1021h-setting-up-zotlit-for-zotero-citations-in-obsidian/index.jsonld">
+
+
+<script type="application/ld+json">
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/writing/blog/2026-02-26-1021h-setting-up-zotlit-for-zotero-citations-in-obsidian/",
+  "@type": "Article",
+  "description": "In order to enrich my notes in a certain way, I need to figure out how I\u0026rsquo;m going to handle citations.\nI was starting to use Zotero, toward the end of 2025, because extending out of critical theory into other sciences meant I was incorporating way more sources into any given piece of writing.\nAnd, I\u0026rsquo;d figured out some way, if I recall, of exporting my Zotero bibliography to a single file, which my Org-mode files were able to draw on in such a way that when I published PDFs or HTML files, a bibliography was properly rendered at the bottom of the page.\n",
+  "name": "2026-02-26, 1021h, Setting up zotlit for zotero citations in Obsidian",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/writing/blog/2026-02-26-1021h-setting-up-zotlit-for-zotero-citations-in-obsidian/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/about/">about</a>
+    <a href="/writing/">writing</a>
+    <a href="/library/">library</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, section:writing">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/writing/">Writing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/writing/blog/">emsenn&#39;s Babble Log</a></nav>
+  <h1 class="p-name">2026-02-26, 1021h, Setting up zotlit for zotero citations in Obsidian</h1>
+  <div class="meta">
+    
+    
+    
+  </div>
+  <div class="e-content">
+    <p>In order to enrich my notes in a certain way, I need to figure out how I&rsquo;m going to handle citations.</p>
+<p>I was starting to use Zotero, toward the end of 2025, because extending out of critical theory into other sciences meant I was incorporating way more sources into any given piece of writing.</p>
+<p>And, I&rsquo;d figured out some way, if I recall, of exporting my Zotero bibliography to a single file, which my Org-mode files were able to draw on in such a way that when I published PDFs or HTML files, a bibliography was properly rendered at the bottom of the page.</p>
+<p>I&rsquo;m guessing, without going further into it, that the static site generator I&rsquo;m using, Quartz, doesn&rsquo;t have an innate capability of doing something like that, because Obsidian doesn&rsquo;t. So I will probably have to divide this into a few chunks:</p>
+<ul>
+<li>Getting my Zotero bibliography out of Zotero and someplace where my Obsidian vault can see it.</li>
+<li>Getting my Obsidian notes to be able to treat those entries as some type of linkable thing.</li>
+<li>Getting Quartz to render a bibliography of the citations used in a given note, when it&rsquo;s turned into a page.</li>
+</ul>
+<p>I&rsquo;m just assuming that getting Quartz to do that will require writing some new &ldquo;component&rdquo; for it, and I believe that&rsquo;d require using JavaScript, so I&rsquo;m comfortable postponing that for now. As-is, citations are just, broken or unavailable, and I receive few complaints, so the focus is very much on improving the research, not publishing, side of things.</p>
+<p>When I took a brief look at this stuff last night, I found the <a href="https://zotlit.aidenlx.top/" class="link-external">Zotlit</a> extension, which seems to be in that sweet spot of developed-enough, and still-actively-developing, that makes it a good choice.</p>
+<p>I&rsquo;ve just gone ahead and installed that, enabled it, configured &ldquo;literature notes&rdquo; to go into References and&hellip; testing something, here: [@emsenn_MolochsBargainNecessaryMisalignment_2025]</p>
+<p>Yes, that seems to find things in my Zotero library seamlessly. And if I click through to that, it attempts to open the matching file in /References/ - creating it, since it didn&rsquo;t already exist. A bit of poking, and it seems like it finds the file via the <code>citekey</code> frontmatter, which means I&rsquo;m free to change any other part of the file how I like. It also means, I think, that I can add things to that folder which aren&rsquo;t in my Zotero, i.e. [@emsenn_test_2026]</p>
+<p>&hellip;Yes, but then I don&rsquo;t get autocomplete via Zotero&rsquo;s API. Fair enough.</p>
+<p>And, this is actually without installing the plugin to Zotero.</p>
+<p>I&rsquo;ve now done that, and I see it gives me the ability to create or update a literature note from Obsidian. That&rsquo;s handy, because it means that - with some template tweaks, I believe - I can make my Obsidian notes have all the information I want from my Zotero stuff.</p>
+<p>I&rsquo;ll have to actually try and fix up the citations in something, now, but that should be all I need to get set up to make citations work better, internally.</p>
+<p>Since that was easier than expected, let me check what Quartz has to say about citations&hellip;</p>
+<p>Surprising! There&rsquo;s a whole (short) <a href="https://quartz.jzhao.xyz/features/Citations" class="link-external">page of documentation</a> on the concept. It tells me that it&rsquo;s using <a href="https://github.com/timlrx/rehype-citation" class="link-external">Rehype-Citation</a>, which I hadn&rsquo;t heard of before, but it looks like I might actually have functional citations <em>now</em>, without further configuration&hellip; Oh! Missed a line on the Quartz documentation: I have to learn how to enable the Citations plugin, which I think is explained <a href="https://quartz.jzhao.xyz/configuration" class="link-external">on the Configuration docs</a>.</p>
+<p>So, this teaches me that plugins &ldquo;act as a series of transformations over content,&rdquo; and fall into three categories: transformers, filters, and emitters. The Citation doc says it&rsquo;s a Transformer.</p>
+<p>That means I&rsquo;ll be editing <code>config.configuration.plugins.transformers</code> in <code>quartz.config.ts</code>, in my Quartz instance.</p>
+<p>Ahh - reading that Citations document more, it uses a local bibliography (<code>.bib</code>) file to find its citations, so I will have to remember to export my Zotero bibliography before building the site.</p>
+<p>Having done that, I think I&rsquo;m ready to try building the site&hellip;</p>
+<p>&hellip;Which is throwing an error:</p>
+<pre tabindex="0"><code>Failed to process html `content/Personal/Letters to the Web/2017-01-01, Public Posts Implicitly Endorse the Framework They Discuss.md`: Cannot read non valid bibliography URL in node env.        
+    at trace (../util/trace.ts:37:11)  
+    at ../processors/parse.ts:137:9  
+</code></pre><p>Checking the file which triggers the failure, I don&rsquo;t actually see any links at all, or even a <code>@</code>&hellip;</p>
+<p>So I&rsquo;m thinking perhaps which file it failed to process is irrelevant, and what matters is that the &ldquo;bibliography URL&rdquo; is invalid. I&rsquo;m assuming that means the path to the bibliography file - let me double-check where documentation says it should be.</p>
+<p>Ahh, &ldquo;<code>./bibliography.bib</code> relative to the git source of the vault,&rdquo; but I think it might mean &ldquo;relative to the git source of the Quartz instance,&rdquo; so I&rsquo;m going to move the bibliography up a level, from the <code>./content/</code> directory where the Obsidian vault is, to <code>./</code> where Quartz is.</p>
+<p>That seems to have done it! The site at least builds, and, if I look at this babble, yes! We get citations.</p>
+<p>That was so much easier than I hoped.</p>
+
+  </div>
+  
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/writing/blog/2026-02-26-1021h-setting-up-zotlit-for-zotero-citations-in-obsidian/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Cites</dt>
+        <dd property="schema:citation"><ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/texts/describing-molochs-bargain-as-necessary-misalignment-of-truth-value-under-epistemic-constraint/">Moloch&#39;s Bargain as Necessary Misalignment of Truth Value Under Epistemic Constraint</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2026-02-26">2026-02-26</time></dd>
+      </div><div class="relation">
+        <dt>Publish to</dt>
+        <dd property="emsenn:Publishto"><ul><li>emsenn net</li></ul></dd>
+      </div><div class="relation">
+        <dt>Specialization</dt>
+        <dd property="emsenn:Specialization"><a href="/tags/babble/">babble</a></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

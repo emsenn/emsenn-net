@@ -128,13 +128,13 @@
     
   </div>
   <div class="e-content">
-    <p>A survey of software frameworks for running machine learning models locally on consumer hardware, focusing on Windows and <a href="../../terms/neural-processing-unit.md" class="link-internal">NPU</a> support as of early 2026.</p>
+    <p>A survey of software frameworks for running machine learning models locally on consumer hardware, focusing on Windows and <a href="/library/domains/engineering/domains/tech/domains/computing/terms/neural-processing-unit/" class="link-internal">NPU</a> support as of early 2026.</p>
 <h2 id="onnx-runtime"><a href="#onnx-runtime" class="heading-anchor" aria-label="Link to this section">¶</a>ONNX Runtime
 </h2>
-<p>Microsoft&rsquo;s ONNX Runtime is the primary framework for NPU inference on Windows. Its QNN execution provider integrates Qualcomm&rsquo;s AI Engine Direct SDK, routing <a href="terms/onnx.md" class="link-internal">ONNX</a> model operations to the Hexagon NPU. Since version 1.18.0, prebuilt packages include the QNN dependencies. Microsoft distributes updates to the QNN execution provider through Windows Update. This is the path jointly recommended by Microsoft and Qualcomm.</p>
+<p>Microsoft&rsquo;s ONNX Runtime is the primary framework for NPU inference on Windows. Its QNN execution provider integrates Qualcomm&rsquo;s AI Engine Direct SDK, routing <a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/terms/onnx/" class="link-internal">ONNX</a> model operations to the Hexagon NPU. Since version 1.18.0, prebuilt packages include the QNN dependencies. Microsoft distributes updates to the QNN execution provider through Windows Update. This is the path jointly recommended by Microsoft and Qualcomm.</p>
 <h2 id="windows-ml"><a href="#windows-ml" class="heading-anchor" aria-label="Link to this section">¶</a>Windows ML
 </h2>
-<p>Windows ML is the built-in AI inference runtime in Windows, generally available since September 2025. It replaced DirectML (now in maintenance mode) as the system-level API for hardware-accelerated inference across CPUs, <a href="../../terms/graphics-processing-unit.md" class="link-internal">GPUs</a>, and NPUs from multiple vendors. It uses hardware-specific execution providers underneath, including QNN for Qualcomm NPUs.</p>
+<p>Windows ML is the built-in AI inference runtime in Windows, generally available since September 2025. It replaced DirectML (now in maintenance mode) as the system-level API for hardware-accelerated inference across CPUs, <a href="/library/domains/engineering/domains/tech/domains/computing/terms/graphics-processing-unit/" class="link-internal">GPUs</a>, and NPUs from multiple vendors. It uses hardware-specific execution providers underneath, including QNN for Qualcomm NPUs.</p>
 <h2 id="qualcomm-ai-engine-direct-qnn-sdk"><a href="#qualcomm-ai-engine-direct-qnn-sdk" class="heading-anchor" aria-label="Link to this section">¶</a>Qualcomm AI Engine Direct (QNN SDK)
 </h2>
 <p>The low-level SDK providing direct access to the Hexagon NPU, Adreno GPU, and Kryo CPU through a unified API. The NPU backend is called HTP (Hexagon Tensor Processor). Most developers interact with QNN indirectly through ONNX Runtime or Windows ML rather than using this SDK directly.</p>
@@ -146,7 +146,7 @@
 <p>A third-party SDK providing an abstraction layer that detects available accelerators and routes operators to the best backend. Has demonstrated promising results on Snapdragon hardware: Llama-3B, Phi4-mini, and Qwen3-4B running on NPU. On Snapdragon 8 Elite (mobile), benchmarked at approximately 90 tokens/second sustained on NPU, 24x faster than CPU under sustained load.</p>
 <h2 id="ollama"><a href="#ollama" class="heading-anchor" aria-label="Link to this section">¶</a>Ollama
 </h2>
-<p>The dominant local LLM runtime as of 2026. Uses llama.cpp as its inference backend. Runs on CPU and GPU (via CUDA, ROCm, Metal). Does not currently support NPU acceleration. A QNN backend for llama.cpp is under active development but not merged into the mainline — see <a href="./npu-llm-inference.md" class="link-internal">npu-llm-inference</a>.</p>
+<p>The dominant local LLM runtime as of 2026. Uses llama.cpp as its inference backend. Runs on CPU and GPU (via CUDA, ROCm, Metal). Does not currently support NPU acceleration. A QNN backend for llama.cpp is under active development but not merged into the mainline — see <a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/npu-llm-inference/" class="link-internal">npu-llm-inference</a>.</p>
 <h2 id="webnn"><a href="#webnn" class="heading-anchor" aria-label="Link to this section">¶</a>WebNN
 </h2>
 <p>A W3C web standard for neural network inference in the browser, backed by Windows ML underneath. Enables NPU-accelerated AI in web applications without native code.</p>

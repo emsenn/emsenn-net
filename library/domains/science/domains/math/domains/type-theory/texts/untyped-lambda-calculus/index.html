@@ -70,18 +70,32 @@
   "citation": [
     {
       "@type": "CreativeWork",
-      "identifier": "ref1",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Barendregt"
+        }
+      ],
+      "datePublished": "1984",
+      "identifier": "barendregt_lambdacalculus_1984",
       "name": "The Lambda Calculus: Its Syntax and Semantics"
+    },
+    {
+      "@type": "CreativeWork",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Hindley"
+        }
+      ],
+      "datePublished": "2008",
+      "identifier": "hindley_lambdacalculuscombinators_2008",
+      "name": "Lambda-Calculus and Combinators: An Introduction"
     },
     {
       "@type": "CreativeWork",
       "identifier": "ref2",
       "name": "An Introduction to Functional Programming Through Lambda Calculus"
-    },
-    {
-      "@type": "CreativeWork",
-      "identifier": "ref3",
-      "name": "Lambda-Calculus and Combinators: An Introduction"
     }
   ],
   "dateModified": "2026-03-05",
@@ -208,7 +222,7 @@
 <p><strong>Example.</strong> A function that takes two arguments (by nesting):</p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>λ</mi><mi>y</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>x</mi></mrow><annotation encoding="application/x-tex">
 \lambda x.\, \lambda y.\, x
-</annotation></semantics></math></span><p>Takes <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span>, returns a function that takes <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span> and ignores it, returning <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span>. This is how multi-argument functions work in the lambda calculus — every function takes exactly one argument, and multi-argument functions are chains of single-argument functions. This technique is called <a href="/technology/disciplines/computing/software/programming/functional/terms/currying.md" class="link-internal">currying</a>.</p>
+</annotation></semantics></math></span><p>Takes <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span>, returns a function that takes <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span> and ignores it, returning <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span>. This is how multi-argument functions work in the lambda calculus — every function takes exactly one argument, and multi-argument functions are chains of single-argument functions. This technique is called <a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/programming/terms/currying/" class="link-internal">currying</a>.</p>
 <h2 id="beta-reduction-how-computation-happens"><a href="#beta-reduction-how-computation-happens" class="heading-anchor" aria-label="Link to this section">¶</a>Beta-reduction: how computation happens
 </h2>
 <p>The one computation rule is <strong>beta-reduction</strong>:</p>
@@ -239,7 +253,7 @@
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">Ω</mi><mo>=</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo><mtext>  </mtext><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 \Omega = (\lambda x.\, x\; x)\;(\lambda x.\, x\; x)
 </annotation></semantics></math></span><p>Apply <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>x</mi><mtext>  </mtext><mi>x</mi></mrow><annotation encoding="application/x-tex">\lambda x.\, x\; x</annotation></semantics></math></span> to itself: replace <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span> with <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\lambda x.\, x\; x)</annotation></semantics></math></span> in the body <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mtext>  </mtext><mi>x</mi></mrow><annotation encoding="application/x-tex">x\; x</annotation></semantics></math></span>, yielding <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo><mtext>  </mtext><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\lambda x.\, x\; x)\;(\lambda x.\, x\; x)</annotation></semantics></math></span> — which is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math></span> again. Reduction loops forever.</p>
-<p>This is not a bug — it is a feature. The ability to express non-termination is what makes the untyped lambda calculus <strong>Turing-complete</strong>: it can compute anything a Turing machine can compute. The <a href="./typed-lambda-calculus.md" class="link-internal">simply typed lambda calculus</a> eliminates non-termination by adding types, but at the cost of reducing expressiveness.</p>
+<p>This is not a bug — it is a feature. The ability to express non-termination is what makes the untyped lambda calculus <strong>Turing-complete</strong>: it can compute anything a Turing machine can compute. The <a href="/library/domains/science/domains/math/domains/type-theory/texts/typed-lambda-calculus/" class="link-internal">simply typed lambda calculus</a> eliminates non-termination by adding types, but at the cost of reducing expressiveness.</p>
 <h2 id="church-encodings-data-from-functions"><a href="#church-encodings-data-from-functions" class="heading-anchor" aria-label="Link to this section">¶</a>Church encodings: data from functions
 </h2>
 <p>Since the lambda calculus has no built-in data, data must be encoded as functions. These encodings are named after Alonzo Church, who invented the lambda calculus in the 1930s [@hindley_LambdaCalculusCombinators_2008].</p>
@@ -279,7 +293,7 @@
 <p>The lambda calculus has no built-in recursion — a function cannot refer to itself by name, because there are no names (only variables bound by <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span>). The <strong>Y combinator</strong> solves this:</p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>Y</mi><mo>=</mo><mi>λ</mi><mi>f</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>f</mi><mtext>  </mtext><mo stretchy="false">(</mo><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mtext>  </mtext><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi mathvariant="normal">.</mi><mtext> </mtext><mi>f</mi><mtext>  </mtext><mo stretchy="false">(</mo><mi>x</mi><mtext>  </mtext><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 Y = \lambda f.\, (\lambda x.\, f\;(x\; x))\;(\lambda x.\, f\;(x\; x))
-</annotation></semantics></math></span><p>For any function <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mtext>  </mtext><mi>g</mi></mrow><annotation encoding="application/x-tex">Y\; g</annotation></semantics></math></span> reduces to <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mtext>  </mtext><mo stretchy="false">(</mo><mi>Y</mi><mtext>  </mtext><mi>g</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g\;(Y\; g)</annotation></semantics></math></span>. The Y combinator feeds a function its own fixed point, enabling recursion without self-reference. This is the mechanism behind <a href="/technology/disciplines/computing/software/programming/functional/terms/recursion.md" class="link-internal">recursion</a> in functional programming.</p>
+</annotation></semantics></math></span><p>For any function <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mtext>  </mtext><mi>g</mi></mrow><annotation encoding="application/x-tex">Y\; g</annotation></semantics></math></span> reduces to <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mtext>  </mtext><mo stretchy="false">(</mo><mi>Y</mi><mtext>  </mtext><mi>g</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g\;(Y\; g)</annotation></semantics></math></span>. The Y combinator feeds a function its own fixed point, enabling recursion without self-reference. This is the mechanism behind <a href="/library/domains/science/domains/math/domains/number-theory/terms/recursion/" class="link-internal">recursion</a> in functional programming.</p>
 <h2 id="normal-forms-and-reduction-strategies"><a href="#normal-forms-and-reduction-strategies" class="heading-anchor" aria-label="Link to this section">¶</a>Normal forms and reduction strategies
 </h2>
 <p>An expression is in <strong>normal form</strong> if no more beta-reductions can be applied — there are no remaining applications of a <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span>-abstraction to an argument.</p>
@@ -299,7 +313,7 @@ Y = \lambda f.\, (\lambda x.\, f\;(x\; x))\;(\lambda x.\, f\;(x\; x))
 </ul>
 <h2 id="what-comes-next"><a href="#what-comes-next" class="heading-anchor" aria-label="Link to this section">¶</a>What comes next
 </h2>
-<p>The untyped lambda calculus is maximally expressive but allows nonsense — self-application, non-termination, and expressions with no clear meaning. The <a href="./typed-lambda-calculus.md" class="link-internal">simply typed lambda calculus</a> adds a type system that rules out ill-formed expressions at the cost of some expressiveness. That lesson is the next step.</p>
+<p>The untyped lambda calculus is maximally expressive but allows nonsense — self-application, non-termination, and expressions with no clear meaning. The <a href="/library/domains/science/domains/math/domains/type-theory/texts/typed-lambda-calculus/" class="link-internal">simply typed lambda calculus</a> adds a type system that rules out ill-formed expressions at the cost of some expressiveness. That lesson is the next step.</p>
 <h2 id="minimal-data"><a href="#minimal-data" class="heading-anchor" aria-label="Link to this section">¶</a>Minimal data
 </h2>
 <ul>
@@ -315,12 +329,16 @@ Y = \lambda f.\, (\lambda x.\, f\;(x\; x))\;(\lambda x.\, f\;(x\; x))
   
   <section class="bibliography" id="bibliography"
          vocab="https://schema.org/" typeof="ItemList">
-  <h2>References</h2><p class="bib-entry h-cite" id="ref-ref1" typeof="CreativeWork" resource="#ref-ref1">
-    <span class="bib-key">[ref1]</span><cite class="p-name" property="name">The Lambda Calculus: Its Syntax and Semantics</cite>..
+  <h2>References</h2><p class="bib-entry h-cite" id="ref-barendregt_lambdacalculus_1984" typeof="CreativeWork" resource="#ref-barendregt_lambdacalculus_1984">
+    <span class="bib-key">[barendregt_lambdacalculus_1984]</span>
+      <span class="p-author" property="author">Barendregt</span>.
+      (<time class="dt-published" property="datePublished" datetime="1984">1984</time>).<cite class="p-name" property="name">The Lambda Calculus: Its Syntax and Semantics</cite>..
+  </p><p class="bib-entry h-cite" id="ref-hindley_lambdacalculuscombinators_2008" typeof="CreativeWork" resource="#ref-hindley_lambdacalculuscombinators_2008">
+    <span class="bib-key">[hindley_lambdacalculuscombinators_2008]</span>
+      <span class="p-author" property="author">Hindley</span>.
+      (<time class="dt-published" property="datePublished" datetime="2008">2008</time>).<cite class="p-name" property="name">Lambda-Calculus and Combinators: An Introduction</cite>..
   </p><p class="bib-entry h-cite" id="ref-ref2" typeof="CreativeWork" resource="#ref-ref2">
     <span class="bib-key">[ref2]</span><cite class="p-name" property="name">An Introduction to Functional Programming Through Lambda Calculus</cite>..
-  </p><p class="bib-entry h-cite" id="ref-ref3" typeof="CreativeWork" resource="#ref-ref3">
-    <span class="bib-key">[ref3]</span><cite class="p-name" property="name">Lambda-Calculus and Combinators: An Introduction</cite>..
   </p>
 </section>
 </article>
@@ -337,6 +355,12 @@ Y = \lambda f.\, (\lambda x.\, f\;(x\; x))\;(\lambda x.\, f\;(x\; x))
         <dt>Teaches</dt>
         <dd property="schema:teaches"><ul><li><a href="/library/domains/science/domains/math/domains/type-theory/texts/untyped-lambda-calculus/">Untyped Lambda Calculus</a></li><li>Beta Reduction</li><li>Church Encodings</li></ul></dd>
       </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/science/domains/math/domains/type-theory/texts/typed-lambda-calculus/">Typed Lambda Calculus</a></li></ul>
+    </dd>
+  </div>
   </dl>
 </section>
 

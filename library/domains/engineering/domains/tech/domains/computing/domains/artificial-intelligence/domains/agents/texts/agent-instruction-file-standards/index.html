@@ -168,7 +168,7 @@
 </h2>
 <p>An AI coding agent operating on a codebase needs project-specific context: how to build, how to test, what style conventions to follow, what files to leave alone, what the architecture looks like. An agent without this context hallucinates conventions or applies generic defaults that conflict with project norms.</p>
 <p>Before dedicated agent instruction files, this context lived in READMEs, contributing guides, CI configurations, and developer memory — none optimized for machine consumption. The conventions discussed here all respond to the same need: a predictable, machine-readable location for project context.</p>
-<p>A separate problem, addressed by <a href="../terms/soul-md.md" class="link-internal">SOUL.md</a>, is agent <em>identity</em>: who the agent is — its voice, values, and behavioral constraints.</p>
+<p>A separate problem, addressed by <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/soul-md/" class="link-internal">SOUL.md</a>, is agent <em>identity</em>: who the agent is — its voice, values, and behavioral constraints.</p>
 <h2 id="2-the-conventions"><a href="#2-the-conventions" class="heading-anchor" aria-label="Link to this section">¶</a>2. The conventions
 </h2>
 <h3 id="21-agentsmd"><a href="#21-agentsmd" class="heading-anchor" aria-label="Link to this section">¶</a>2.1 AGENTS.md
@@ -178,7 +178,7 @@
 <strong>Governance:</strong> Linux Foundation Agentic AI Foundation (AAIF) since December 2025.
 <strong>Adoption:</strong> 60,000+ open-source projects; 20+ supporting tools.
 <strong>Format:</strong> Plain Markdown, no schema, no required fields.</p>
-<p><a href="../terms/agents-md.md" class="link-internal">AGENTS.md</a> is the most widely adopted convention and the only one with formal governance through a standards body. Its strength is simplicity: any agent that can read Markdown can use it. Its weakness is the same: without a schema, there is no way to validate structure, completeness, or correctness. Quality varies enormously across projects.</p>
+<p><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agents-md/" class="link-internal">AGENTS.md</a> is the most widely adopted convention and the only one with formal governance through a standards body. Its strength is simplicity: any agent that can read Markdown can use it. Its weakness is the same: without a schema, there is no way to validate structure, completeness, or correctness. Quality varies enormously across projects.</p>
 <p>The nearest-ancestor resolution rule (agents read the closest AGENTS.md in the directory tree) is well-suited to monorepos where different subdirectories have different build systems, languages, or conventions.</p>
 <h3 id="22-claudemd"><a href="#22-claudemd" class="heading-anchor" aria-label="Link to this section">¶</a>2.2 CLAUDE.md
 </h3>
@@ -196,7 +196,7 @@
 <strong>Governance:</strong> Community convention, no standards body.
 <strong>Adoption:</strong> Lower than AGENTS.md; supported by Claude Code, OpenClaw, Cursor, and others.
 <strong>Format:</strong> Markdown with an optional five-file structure (SOUL.md, STYLE.md, SKILL.md, MEMORY.md, data/).</p>
-<p><a href="../terms/soul-md.md" class="link-internal">SOUL.md</a> focuses on <em>who the agent is</em> rather than <em>what it should do</em>. It encodes identity, worldview, voice patterns, and behavioral constraints. The philosophical premise — that identity is encoded in language and can be transferred to an LLM — has not been empirically verified at scale.</p>
+<p><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/soul-md/" class="link-internal">SOUL.md</a> focuses on <em>who the agent is</em> rather than <em>what it should do</em>. It encodes identity, worldview, voice patterns, and behavioral constraints. The philosophical premise — that identity is encoded in language and can be transferred to an LLM — has not been empirically verified at scale.</p>
 <p>The extended Soul Spec (v0.5) provides more structure than AGENTS.md, with a <code>.soul/</code> directory containing machine-readable metadata (<code>soul.json</code>), identity documents, rules, and context files — closer to a schema, though advisory.</p>
 <h3 id="24-tool-specific-conventions"><a href="#24-tool-specific-conventions" class="heading-anchor" aria-label="Link to this section">¶</a>2.4 Tool-specific conventions
 </h3>
@@ -238,7 +238,7 @@
 <p><strong>Convergence or coexistence?</strong> AGENTS.md has the strongest adoption trajectory and institutional backing. CLAUDE.md&rsquo;s tight runtime integration gives it capabilities AGENTS.md cannot match without schema enforcement. The trajectory points toward coexistence: AGENTS.md as the universal baseline, tool-specific files for runtime-enforced constraints.</p>
 <p><strong>Does identity matter?</strong> SOUL.md&rsquo;s premise — that conditioning an agent on a persistent identity produces measurably different behavior from conditioning it on task instructions alone — is testable. No published study has tested it at scale. If identity conditioning makes no measurable difference to output quality, SOUL.md addresses a nonexistent problem. If it does, the other conventions are missing a critical dimension.</p>
 <p><strong>Schema or no schema?</strong> AGENTS.md&rsquo;s decision to avoid a schema minimizes the barrier to adoption. Without a schema, tooling cannot validate, lint, or auto-generate instruction files. As adoption grows, pressure for optional schema support (via YAML frontmatter or a companion JSON file) will grow with it.</p>
-<p><strong>Instruction versus configuration.</strong> Current conventions encode instructions in natural language — maximally flexible, inherently ambiguous. The alternative is structured data (JSON Schema for tool definitions, YAML for build rules) that agents consume programmatically — less flexible, more reliable. <a href="../domains/model-context-protocol/index.md" class="link-internal">MCP</a>&rsquo;s tool definition schema exemplifies the structured approach.</p>
+<p><strong>Instruction versus configuration.</strong> Current conventions encode instructions in natural language — maximally flexible, inherently ambiguous. The alternative is structured data (JSON Schema for tool definitions, YAML for build rules) that agents consume programmatically — less flexible, more reliable. MCP&rsquo;s tool definition schema exemplifies the structured approach.</p>
 <h2 id="sources"><a href="#sources" class="heading-anchor" aria-label="Link to this section">¶</a>Sources
 </h2>
 <ul>
@@ -266,10 +266,10 @@
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-29">2026-03-29</time></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/sets/terms/domain/">Domain</a></dt>
         <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">agents</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/factorization/">Factors through</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/factorization/">Factors through</a></dt>
         <dd property="emsenn:Factorsthrough">system prompt, context engineering, model context protocol</dd>
       </div><div class="relation">
         <dt>Governs</dt>

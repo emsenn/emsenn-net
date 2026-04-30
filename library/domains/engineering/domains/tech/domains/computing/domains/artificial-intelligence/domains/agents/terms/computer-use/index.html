@@ -143,8 +143,8 @@
     <span class="p-summary">The capability of a language model to interact with graphical desktop environments by interpreting screen content and producing mouse and keyboard actions — extending tool use from APIs to GUIs.</span>
   </div>
   <div class="e-content">
-    <p>Computer use is the capability of a <a href="../../../terms/large-language-model.md" class="link-internal">large language model</a> to interact with graphical desktop environments by interpreting screen content (screenshots) and producing mouse clicks, keyboard inputs, and other GUI actions. Anthropic released computer use as a beta capability with Claude 3.5 Sonnet on <strong>October 22, 2024</strong>.</p>
-<p>Standard <a href="./tool-use.md" class="link-internal">tool use</a> connects a model to APIs — structured interfaces with defined inputs and outputs. Computer use extends this to graphical interfaces that have no API. The model receives a screenshot of the current screen state, reasons about what it sees (buttons, text fields, menus, error messages), and emits actions (click at coordinates, type text, press key combinations) that the host environment executes. The cycle repeats: act, observe the new screen state, act again.</p>
+    <p>Computer use is the capability of a <a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/terms/large-language-model/" class="link-internal">large language model</a> to interact with graphical desktop environments by interpreting screen content (screenshots) and producing mouse clicks, keyboard inputs, and other GUI actions. Anthropic released computer use as a beta capability with Claude 3.5 Sonnet on <strong>October 22, 2024</strong>.</p>
+<p>Standard <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-use/" class="link-internal">tool use</a> connects a model to APIs — structured interfaces with defined inputs and outputs. Computer use extends this to graphical interfaces that have no API. The model receives a screenshot of the current screen state, reasons about what it sees (buttons, text fields, menus, error messages), and emits actions (click at coordinates, type text, press key combinations) that the host environment executes. The cycle repeats: act, observe the new screen state, act again.</p>
 <p>The implementation uses three built-in tools:</p>
 <ul>
 <li><strong><code>computer</code></strong> — move the mouse, click, type, take screenshots, scroll</li>
@@ -153,7 +153,7 @@
 </ul>
 <p>The model combines these tools to perform tasks that span both GUI and command-line interfaces: filling out web forms, navigating desktop applications, configuring settings, and interacting with software that exposes no programmatic interface.</p>
 <p>Computer use is slower and less reliable than API-based tool use. Screenshot interpretation introduces latency and error — the model must parse visual layout, identify interactive elements, and map pixel coordinates to actions. Misidentifying a button or clicking the wrong coordinates produces cascading failures that the model must detect and recover from. The error rate on GUI tasks is higher than on API tasks because the interface is ambiguous (visually similar elements, dynamic layouts, pop-ups).</p>
-<p>Computer use matters for <a href="./agentic-system.md" class="link-internal">agentic systems</a> because it extends the action space from programmatic interfaces to any software a human can operate. An agent with computer use can interact with legacy applications, proprietary web tools, and desktop software that will never have an API or <a href="../domains/model-context-protocol/terms/model-context-protocol.md" class="link-internal">MCP</a> server.</p>
+<p>Computer use matters for <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/" class="link-internal">agentic systems</a> because it extends the action space from programmatic interfaces to any software a human can operate. An agent with computer use can interact with legacy applications, proprietary web tools, and desktop software that will never have an API or <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/model-context-protocol/" class="link-internal">MCP</a> server.</p>
 
   </div>
   
@@ -174,7 +174,7 @@
          vocab="https://emsenn.net/vocab#">
   <h2>Relations</h2>
   <dl><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/action/">Acts on</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/action/">Acts on</a></dt>
         <dd property="emsenn:Actson">graphical user interface</dd>
       </div><div class="relation">
         <dt>Date created</dt>
@@ -183,22 +183,22 @@
         <dt>Defines</dt>
         <dd property="schema:about"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/computer-use/">Computer Use</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/sets/terms/domain/">Domain</a></dt>
         <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">agents</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/extension/">Extends</a></dt>
         <dd property="prov:wasDerivedFrom"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-use/">tool use</a></dd>
       </div><div class="relation">
         <dt>Governed by</dt>
         <dd property="emsenn:Governedby"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/">human in the loop</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/terms/large-language-model/">large language model</a></dd>
       </div>
   <div class="relation">
     <dt>Referenced by</dt>
     <dd>
-      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/claude/">Claude</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/claude-model-releases/">Claude Model Releases</a></li></ul>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/anthropic/">Anthropic</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/claude/">Claude</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/claude-model-releases/">Claude Model Releases</a></li></ul>
     </dd>
   </div>
   </dl>

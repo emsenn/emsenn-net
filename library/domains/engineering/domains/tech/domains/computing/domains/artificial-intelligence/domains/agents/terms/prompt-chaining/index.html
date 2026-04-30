@@ -124,7 +124,7 @@
     <span class="p-summary">The simplest orchestration pattern — a fixed sequence of LLM calls where each call&#39;s output becomes the next call&#39;s input.</span>
   </div>
   <div class="e-content">
-    <p>Prompt chaining is the simplest <a href="./agent-orchestration.md" class="link-internal">agent orchestration</a> pattern: a fixed sequence of LLM calls where each call&rsquo;s output becomes the next call&rsquo;s input. Between steps, the application may transform the output, validate it against a schema, call a tool, or inject additional context. The sequence is predefined by the developer; the LLM controls the content of each step but not the execution path.</p>
+    <p>Prompt chaining is the simplest <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/" class="link-internal">agent orchestration</a> pattern: a fixed sequence of LLM calls where each call&rsquo;s output becomes the next call&rsquo;s input. Between steps, the application may transform the output, validate it against a schema, call a tool, or inject additional context. The sequence is predefined by the developer; the LLM controls the content of each step but not the execution path.</p>
 <p>Anthropic&rsquo;s &ldquo;Building Effective Agents&rdquo; (December 2024) places prompt chaining at the low-autonomy end of the orchestration spectrum:</p>
 <table>
   <thead>
@@ -157,14 +157,14 @@
       </tr>
   </tbody>
 </table>
-<p>A prompt chain is a pipeline. Step 1 generates a plan, step 2 executes each item in the plan, step 3 reviews the results. Each step has its own <a href="../../../terms/system-prompt.md" class="link-internal">system prompt</a> tailored to its role. The developer writes the steps; the model fills them in.</p>
+<p>A prompt chain is a pipeline. Step 1 generates a plan, step 2 executes each item in the plan, step 3 reviews the results. Each step has its own <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/system-prompt/" class="link-internal">system prompt</a> tailored to its role. The developer writes the steps; the model fills them in.</p>
 <h3 id="when-prompt-chaining-works"><a href="#when-prompt-chaining-works" class="heading-anchor" aria-label="Link to this section">¶</a>When prompt chaining works
 </h3>
 <p>Prompt chaining works when the task decomposes into a fixed number of steps with known dependencies. Translating a document (extract → translate → format), generating structured reports (gather data → analyze → write sections → assemble), or processing forms (extract fields → validate → store) all fit the pattern.</p>
 <h3 id="when-prompt-chaining-breaks"><a href="#when-prompt-chaining-breaks" class="heading-anchor" aria-label="Link to this section">¶</a>When prompt chaining breaks
 </h3>
-<p>Prompt chaining breaks when the number of steps or their order depends on the input. A debugging task requires an unknown number of investigate-hypothesize-test cycles. A research task requires following leads that may or may not pan out. These tasks need model-directed control flow — the model must decide whether to continue, branch, or stop — which is where <a href="./agent-orchestration.md" class="link-internal">agent orchestration</a> frameworks like <a href="./langgraph.md" class="link-internal">LangGraph</a> take over.</p>
-<p>Prompt chaining also does not satisfy the definition of an <a href="./agentic-system.md" class="link-internal">agentic system</a> by itself: it lacks goal-directed planning (condition 2) because the execution path is developer-specified. A prompt chain that includes a tool call satisfies condition 1 (environmental action) but fails condition 2 unless the model selects which tools to call and in what order.</p>
+<p>Prompt chaining breaks when the number of steps or their order depends on the input. A debugging task requires an unknown number of investigate-hypothesize-test cycles. A research task requires following leads that may or may not pan out. These tasks need model-directed control flow — the model must decide whether to continue, branch, or stop — which is where <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/" class="link-internal">agent orchestration</a> frameworks like <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/langgraph/" class="link-internal">LangGraph</a> take over.</p>
+<p>Prompt chaining also does not satisfy the definition of an <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/" class="link-internal">agentic system</a> by itself: it lacks goal-directed planning (condition 2) because the execution path is developer-specified. A prompt chain that includes a tool call satisfies condition 1 (environmental action) but fails condition 2 unless the model selects which tools to call and in what order.</p>
 
   </div>
   
@@ -200,7 +200,7 @@
   <div class="relation">
     <dt>Referenced by</dt>
     <dd>
-      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/coordination-overhead/"></a></li></ul>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/coordination-overhead/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-reliability-in-production/">Agent Reliability in Production (March 2026)</a></li></ul>
     </dd>
   </div>
   </dl>

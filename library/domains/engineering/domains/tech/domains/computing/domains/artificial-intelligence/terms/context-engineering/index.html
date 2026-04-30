@@ -124,17 +124,17 @@
     <span class="p-summary">The discipline of designing the complete information environment a language model receives — system prompts, retrieved documents, tool definitions, conversation history, and instruction files — to maximize task performance within the context window budget.</span>
   </div>
   <div class="e-content">
-    <p>Context engineering is the discipline of designing the complete information environment a <a href="../on-device-inference/terms/large-language-model.md" class="link-internal">language model</a> receives — <a href="./system-prompt.md" class="link-internal">system prompts</a>, retrieved documents, <a href="../domains/agents/terms/tool-use.md" class="link-internal">tool</a> definitions, conversation history, and instruction files — to maximize task performance within the <a href="./context-window.md" class="link-internal">context window</a> budget. The term became established in <strong>June 2025</strong> when Shopify CEO Tobi Lutke and former OpenAI researcher Andrej Karpathy publicly endorsed it. Lutke described it as &ldquo;the art of providing all the context for the task to be plausibly solvable by the LLM.&rdquo; Gartner defines it as &ldquo;designing and structuring the relevant data, workflows and environment so AI systems can understand intent, make better decisions and deliver contextual, enterprise-aligned outcomes.&rdquo;</p>
+    <p>Context engineering is the discipline of designing the complete information environment a <a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/terms/large-language-model/" class="link-internal">language model</a> receives — <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/system-prompt/" class="link-internal">system prompts</a>, retrieved documents, <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-use/" class="link-internal">tool</a> definitions, conversation history, and instruction files — to maximize task performance within the <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-window/" class="link-internal">context window</a> budget. The term became established in <strong>June 2025</strong> when Shopify CEO Tobi Lutke and former OpenAI researcher Andrej Karpathy publicly endorsed it. Lutke described it as &ldquo;the art of providing all the context for the task to be plausibly solvable by the LLM.&rdquo; Gartner defines it as &ldquo;designing and structuring the relevant data, workflows and environment so AI systems can understand intent, make better decisions and deliver contextual, enterprise-aligned outcomes.&rdquo;</p>
 <p>Context engineering supersedes prompt engineering. Prompt engineering focuses on the text of instructions — word choice, formatting, few-shot examples. Context engineering focuses on the entire information environment: what information reaches the model, in what order, at what token cost, and through what mechanisms (direct inclusion, retrieval, tool calls, instruction files).</p>
 <h3 id="why-order-matters"><a href="#why-order-matters" class="heading-anchor" aria-label="Link to this section">¶</a>Why order matters
 </h3>
-<p>Research on context window utilization documents a &ldquo;lost in the middle&rdquo; problem: model accuracy is highest when relevant information appears at the beginning or end of the context, with over 30% accuracy drop for information placed in the middle. This produces a U-shaped attention curve. In <a href="../domains/agents/terms/agentic-system.md" class="link-internal">agentic systems</a>, this means the placement of instructions, tool definitions, and retrieved documents within the context window directly affects output quality — the same information in a different position produces measurably different results.</p>
+<p>Research on context window utilization documents a &ldquo;lost in the middle&rdquo; problem: model accuracy is highest when relevant information appears at the beginning or end of the context, with over 30% accuracy drop for information placed in the middle. This produces a U-shaped attention curve. In <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/" class="link-internal">agentic systems</a>, this means the placement of instructions, tool definitions, and retrieved documents within the context window directly affects output quality — the same information in a different position produces measurably different results.</p>
 <h3 id="why-length-matters"><a href="#why-length-matters" class="heading-anchor" aria-label="Link to this section">¶</a>Why length matters
 </h3>
 <p>As instruction count increases, instruction-following quality decreases. A focused 50-line instruction file outperforms a 1,000-line file because models have limited instruction-following capacity — additional instructions dilute attention to earlier ones. A February 2026 study of 138 coding tasks found that LLM-generated context files (the kind produced by automated <code>/init</code> commands) decreased agent success rates by approximately 0.5% compared to no context file at all. Human-written, curated context files performed better than auto-generated ones. Stale context files — instructions describing a codebase that has since changed — actively degrade performance.</p>
 <h3 id="application-to-agent-instruction-files"><a href="#application-to-agent-instruction-files" class="heading-anchor" aria-label="Link to this section">¶</a>Application to agent instruction files
 </h3>
-<p><a href="../domains/agents/terms/agents-md.md" class="link-internal">AGENTS.md</a>, <a href="../domains/agents/terms/agents-md.md" class="link-internal">CLAUDE.md</a>, and <a href="../domains/agents/terms/soul-md.md" class="link-internal">SOUL.md</a> are context engineering artifacts. Their content is injected into the model&rsquo;s context window and competes for <a href="./token.md" class="link-internal">tokens</a> with the actual task. Context engineering principles apply directly:</p>
+<p><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agents-md/" class="link-internal">AGENTS.md</a>, <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agents-md/" class="link-internal">CLAUDE.md</a>, and <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/soul-md/" class="link-internal">SOUL.md</a> are context engineering artifacts. Their content is injected into the model&rsquo;s context window and competes for <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/token/" class="link-internal">tokens</a> with the actual task. Context engineering principles apply directly:</p>
 <ul>
 <li>Keep instruction files short and specific to observed problems</li>
 <li>Place the most critical constraints first (identity before procedures before edge cases)</li>
@@ -144,7 +144,7 @@
 </ul>
 <h3 id="relationship-to-retrieval"><a href="#relationship-to-retrieval" class="heading-anchor" aria-label="Link to this section">¶</a>Relationship to retrieval
 </h3>
-<p>Context engineering includes decisions about what information to retrieve and what to include directly. <a href="./retrieval-augmented-generation.md" class="link-internal">RAG</a> is a context engineering strategy: retrieve relevant documents on demand rather than including everything upfront. Tool definitions are another: the model sees tool schemas in its context and decides which to invoke. The context engineer&rsquo;s job is to design the retrieval, inclusion, and ordering strategy that maximizes task performance per token spent.</p>
+<p>Context engineering includes decisions about what information to retrieve and what to include directly. <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/" class="link-internal">RAG</a> is a context engineering strategy: retrieve relevant documents on demand rather than including everything upfront. Tool definitions are another: the model sees tool schemas in its context and decides which to invoke. The context engineer&rsquo;s job is to design the retrieval, inclusion, and ordering strategy that maximizes task performance per token spent.</p>
 
   </div>
   
@@ -165,28 +165,28 @@
         <dt>Defines</dt>
         <dd property="schema:about"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-engineering/">Context Engineering</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/sets/terms/domain/">Domain</a></dt>
         <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/">artificial intelligence</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/extension/">Extends</a></dt>
         <dd property="prov:wasDerivedFrom"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/system-prompt/">system prompt</a></dd>
       </div><div class="relation">
         <dt>Governs</dt>
         <dd property="emsenn:Governs">system prompt, agents md, soul md</dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/optimization/">Optimized by</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/optimization/">Optimized by</a></dt>
         <dd property="emsenn:Optimizedby"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-self-improvement/">agent self improvement</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/optimization/">Optimizes</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/optimization/">Optimizes</a></dt>
         <dd property="emsenn:Optimizes"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-window/">context window</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/blockchain/terms/token/">token</a></dd>
       </div>
   <div class="relation">
     <dt>Referenced by</dt>
     <dd>
-      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agents-md/">AGENTS.md</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/soul-md/">SOUL.md</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/system-prompt/">System Prompt</a></li></ul>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-reliability-in-production/">Agent Reliability in Production (March 2026)</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agents-md/">AGENTS.md</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/soul-md/">SOUL.md</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/system-prompt/">System Prompt</a></li></ul>
     </dd>
   </div>
   </dl>

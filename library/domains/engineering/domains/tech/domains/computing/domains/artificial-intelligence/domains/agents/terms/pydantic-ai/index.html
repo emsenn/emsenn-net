@@ -124,14 +124,14 @@
     <span class="p-summary">A Python agent framework by the Pydantic team emphasizing type safety, structured outputs, and model-agnostic design — validation errors are fed back to the LLM for self-correction.</span>
   </div>
   <div class="e-content">
-    <p>PydanticAI is a Python framework for building <a href="./agentic-system.md" class="link-internal">agentic systems</a> with type safety, structured outputs, and model-agnostic design. It is created and maintained by Samuel Colvin and the Pydantic team — the same team behind Pydantic, Python&rsquo;s dominant data validation library. The framework applies Pydantic&rsquo;s philosophy (define the shape of your data, let the library enforce it) to AI agent development.</p>
+    <p>PydanticAI is a Python framework for building <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/" class="link-internal">agentic systems</a> with type safety, structured outputs, and model-agnostic design. It is created and maintained by Samuel Colvin and the Pydantic team — the same team behind Pydantic, Python&rsquo;s dominant data validation library. The framework applies Pydantic&rsquo;s philosophy (define the shape of your data, let the library enforce it) to AI agent development.</p>
 <p>PydanticAI was publicly announced on December 2, 2024. <strong>Version 1.0 was released on September 4, 2025</strong>, after nine months of iteration and 15 million downloads. The current version as of March 2026 is 1.73.0, with Production/Stable status on PyPI. MIT license.</p>
-<p>The central design decision is <strong><a href="../../../../terms/type-safety.md" class="link-internal">type safety</a> as a first-class constraint</strong>. When a PydanticAI agent produces structured output, the output must conform to a Pydantic model. If the LLM&rsquo;s output fails validation, the validation errors are fed back to the LLM for self-correction — the type system participates in the inference loop. Malformed output becomes a retryable error: the model sees what went wrong and corrects it.</p>
+<p>The central design decision is <strong><a href="/library/domains/engineering/domains/tech/domains/computing/terms/type-safety/" class="link-internal">type safety</a> as a first-class constraint</strong>. When a PydanticAI agent produces structured output, the output must conform to a Pydantic model. If the LLM&rsquo;s output fails validation, the validation errors are fed back to the LLM for self-correction — the type system participates in the inference loop. Malformed output becomes a retryable error: the model sees what went wrong and corrects it.</p>
 <p>Key architectural features:</p>
 <ul>
 <li><strong>Model-agnostic.</strong> Supports OpenAI, Anthropic, Google Gemini, DeepSeek, Grok, Cohere, Mistral, and 20+ other providers including Amazon Bedrock, Google Vertex AI, Ollama, and LiteLLM. Custom model implementations are supported through a provider interface.</li>
-<li><strong>MCP integration.</strong> Native <a href="../domains/model-context-protocol/index.md" class="link-internal">Model Context Protocol</a> support for connecting to external tool servers, both as client and server.</li>
-<li><strong>A2A support.</strong> Integrates the <a href="./agent-to-agent-protocol.md" class="link-internal">Agent-to-Agent protocol</a> for inter-agent communication and discovery.</li>
+<li><strong>MCP integration.</strong> Native Model Context Protocol support for connecting to external tool servers, both as client and server.</li>
+<li><strong>A2A support.</strong> Integrates the <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-to-agent-protocol/" class="link-internal">Agent-to-Agent protocol</a> for inter-agent communication and discovery.</li>
 <li><strong>Dependency injection.</strong> A built-in system for managing tool dependencies, keeping tool implementations testable and decoupled from runtime context.</li>
 <li><strong>Durable execution.</strong> Native support via Temporal integration for workflows that must survive process crashes, network failures, and restarts.</li>
 <li><strong>Graph support.</strong> Type-hint-based node and edge definitions for complex workflows, added in January 2025.</li>
@@ -140,7 +140,7 @@
 <p>PydanticAI maintains 100% code coverage, and its documentation examples are unit-tested. The v1 API stability commitment guarantees no breaking changes for at least six months, with security fixes continuing six months after any v2 release.</p>
 <h3 id="assessment"><a href="#assessment" class="heading-anchor" aria-label="Link to this section">¶</a>Assessment
 </h3>
-<p>PydanticAI&rsquo;s defining contribution is the type-safety-in-the-loop pattern: the Pydantic model actively shapes LLM output through the validation-retry cycle, enforcing output conformance as a hard constraint. Model-agnostic design and native protocol support (MCP, A2A) make it interoperable across providers. PydanticAI&rsquo;s graph support is newer than <a href="./langgraph.md" class="link-internal">LangGraph</a>&rsquo;s; its provider coverage is broader than the Claude Agent SDK&rsquo;s single-provider depth.</p>
+<p>PydanticAI&rsquo;s defining contribution is the type-safety-in-the-loop pattern: the Pydantic model actively shapes LLM output through the validation-retry cycle, enforcing output conformance as a hard constraint. Model-agnostic design and native protocol support (MCP, A2A) make it interoperable across providers. PydanticAI&rsquo;s graph support is newer than <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/langgraph/" class="link-internal">LangGraph</a>&rsquo;s; its provider coverage is broader than the Claude Agent SDK&rsquo;s single-provider depth.</p>
 
   </div>
   
@@ -164,25 +164,25 @@
         <dt><a href="/library/domains/science/domains/information/terms/channel/">Delivered via</a></dt>
         <dd property="emsenn:Deliveredvia">model context protocol, agent to agent protocol</dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/sets/terms/domain/">Domain</a></dt>
         <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">agents</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
         <dd property="emsenn:Enables">structured output, durable execution</dd>
       </div><div class="relation">
         <dt>Instance of</dt>
         <dd property="rdf:type"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/">agent orchestration</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/optimization/">Optimizes</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/optimization/">Optimizes</a></dt>
         <dd property="emsenn:Optimizes"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/structured-output/">structured output</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><a href="/library/domains/engineering/domains/tech/domains/computing/terms/type-safety/">type safety</a></dd>
       </div>
   <div class="relation">
     <dt>Referenced by</dt>
     <dd>
-      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/structured-output/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/langgraph/">LangGraph</a></li></ul>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/structured-output/"></a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-reliability-in-production/">Agent Reliability in Production (March 2026)</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-to-agent-protocol/">Agent-to-Agent Protocol</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/terms/json-schema/">JSON Schema</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/langgraph/">LangGraph</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/model-context-protocol/">Model Context Protocol</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/terms/type-safety/">Type Safety</a></li></ul>
     </dd>
   </div>
   </dl>

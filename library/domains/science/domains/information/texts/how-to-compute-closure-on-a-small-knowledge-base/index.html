@@ -158,7 +158,7 @@
     })();
     </script>
   <div class="e-content">
-    <p>You have a small knowledge base: a set of <a href="../terms/subject-predicate-object.md" class="link-internal">subject-predicate-object</a> triples, each carrying an <a href="../terms/epistemic-state.md" class="link-internal">epistemic state</a> from <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi mathvariant="normal">⊥</mi><mo separator="true">,</mo><mi>t</mi><mo separator="true">,</mo><mi>f</mi><mo separator="true">,</mo><mi mathvariant="normal">⊤</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\bot, t, f, \top\}</annotation></semantics></math></span>. You want to <a href="../math/domains/algebra/terms/closure.md" class="link-internal">close</a> it — derive everything that follows from what you have.</p>
+    <p>You have a small knowledge base: a set of <a href="/library/domains/science/domains/information/terms/subject-predicate-object/" class="link-internal">subject-predicate-object</a> triples, each carrying an <a href="/library/domains/science/domains/information/terms/epistemic-state/" class="link-internal">epistemic state</a> from <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi mathvariant="normal">⊥</mi><mo separator="true">,</mo><mi>t</mi><mo separator="true">,</mo><mi>f</mi><mo separator="true">,</mo><mi mathvariant="normal">⊤</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\bot, t, f, \top\}</annotation></semantics></math></span>. You want to close it — derive everything that follows from what you have.</p>
 <h2 id="the-starting-state"><a href="#the-starting-state" class="heading-anchor" aria-label="Link to this section">¶</a>The starting state
 </h2>
 <p>Suppose you have five assertions:</p>
@@ -308,7 +308,7 @@
 <li>A extends C (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span>, new) — any new composable pairs? A extends C and&hellip; no C extends anything in our system.</li>
 <li>No other composable pairs produce new results.</li>
 </ul>
-<p>Nothing changed. We have reached the <a href="../math/domains/order/terms/fixpoint.md" class="link-internal">fixpoint</a>.</p>
+<p>Nothing changed. We have reached the fixpoint.</p>
 <h2 id="the-closed-knowledge-base"><a href="#the-closed-knowledge-base" class="heading-anchor" aria-label="Link to this section">¶</a>The closed knowledge base
 </h2>
 <table>
@@ -348,7 +348,7 @@
 <p>What we learn:</p>
 <ul>
 <li><strong>Derived</strong>: A extends C was unknown; transitivity resolved it to affirmed.</li>
-<li><strong>Unresolved</strong>: A extends D and D extends C remain <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">\bot</annotation></semantics></math></span>. No rule can reach them because there is no chain connecting A to D or D to C through affirmed links. These are <a href="./how-to-detect-contradictions-and-gaps.md" class="link-internal">gaps</a> — the system has no basis for resolving them.</li>
+<li><strong>Unresolved</strong>: A extends D and D extends C remain <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi></mrow><annotation encoding="application/x-tex">\bot</annotation></semantics></math></span>. No rule can reach them because there is no chain connecting A to D or D to C through affirmed links. These are <a href="/library/domains/science/domains/information/texts/how-to-detect-contradictions-and-gaps/" class="link-internal">gaps</a> — the system has no basis for resolving them.</li>
 <li><strong>No contradictions</strong>: no <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊤</mi></mrow><annotation encoding="application/x-tex">\top</annotation></semantics></math></span> values appeared. The knowledge base is consistent.</li>
 </ul>
 <h2 id="when--appears"><a href="#when--appears" class="heading-anchor" aria-label="Link to this section">¶</a>When ⊤ appears
@@ -362,7 +362,7 @@
 <h2 id="why-it-terminates"><a href="#why-it-terminates" class="heading-anchor" aria-label="Link to this section">¶</a>Why it terminates
 </h2>
 <p>The knowledge ordering <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>≤</mo><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">\leq_k</annotation></semantics></math></span> on <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi mathvariant="normal">⊥</mi><mo separator="true">,</mo><mi>t</mi><mo separator="true">,</mo><mi>f</mi><mo separator="true">,</mo><mi mathvariant="normal">⊤</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\bot, t, f, \top\}</annotation></semantics></math></span> has height 2: the longest chain is <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi><msub><mo>&lt;</mo><mi>k</mi></msub><mi>t</mi><msub><mo>&lt;</mo><mi>k</mi></msub><mi mathvariant="normal">⊤</mi></mrow><annotation encoding="application/x-tex">\bot &lt;_k t &lt;_k \top</annotation></semantics></math></span> (or <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">⊥</mi><msub><mo>&lt;</mo><mi>k</mi></msub><mi>f</mi><msub><mo>&lt;</mo><mi>k</mi></msub><mi mathvariant="normal">⊤</mi></mrow><annotation encoding="application/x-tex">\bot &lt;_k f &lt;_k \top</annotation></semantics></math></span>). Each step pushes at least one value strictly upward. With <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> assertions, closure takes at most <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">2n</annotation></semantics></math></span> steps.</p>
-<p>The fixpoint always exists because the inference rules are <a href="../math/domains/order/terms/monotone.md" class="link-internal">monotone</a> in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>≤</mo><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">\leq_k</annotation></semantics></math></span> (Fitting 1991) and the pointwise ordering on <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi mathvariant="normal">⊥</mi><mo separator="true">,</mo><mi>t</mi><mo separator="true">,</mo><mi>f</mi><mo separator="true">,</mo><mi mathvariant="normal">⊤</mi><msup><mo stretchy="false">}</mo><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\{\bot, t, f, \top\}^n</annotation></semantics></math></span> is a <a href="../math/domains/order/terms/complete-lattice.md" class="link-internal">complete lattice</a>. The Knaster-Tarski theorem guarantees a least fixpoint.</p>
+<p>The fixpoint always exists because the inference rules are monotone in <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>≤</mo><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">\leq_k</annotation></semantics></math></span> (Fitting 1991) and the pointwise ordering on <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi mathvariant="normal">⊥</mi><mo separator="true">,</mo><mi>t</mi><mo separator="true">,</mo><mi>f</mi><mo separator="true">,</mo><mi mathvariant="normal">⊤</mi><msup><mo stretchy="false">}</mo><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\{\bot, t, f, \top\}^n</annotation></semantics></math></span> is a complete lattice. The Knaster-Tarski theorem guarantees a least fixpoint.</p>
 
   </div>
   
@@ -377,11 +377,11 @@
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-31">2026-03-31</time></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
-        <dd property="schema:isBasedOn"><ul><li><a href="/library/domains/science/domains/information/terms/epistemic-state/">epistemic state</a></li><li><a href="/library/domains/science/domains/math/domains/algebra/terms/bilattice/">bilattice</a></li></ul></dd>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dd property="schema:isBasedOn"><ul><li><a href="/library/domains/science/domains/information/terms/epistemic-state/">epistemic state</a></li><li><a href="/library/domains/humanities/domains/math/domains/voidmath/terms/bilattice/">bilattice</a></li></ul></dd>
       </div><div class="relation">
         <dt>Teaches</dt>
-        <dd property="schema:teaches"><ul><li><a href="/library/domains/science/domains/information/domains/cybernetics/terms/operational-closure/">closure</a></li><li><a href="/library/domains/science/domains/math/domains/order/terms/fixpoint/">fixpoint</a></li></ul></dd>
+        <dd property="schema:teaches"><ul><li><a href="/library/domains/science/domains/information/domains/cybernetics/terms/operational-closure/">closure</a></li><li><a href="/library/domains/humanities/domains/math/domains/order/terms/fixpoint/">fixpoint</a></li></ul></dd>
       </div>
   </dl>
 </section>

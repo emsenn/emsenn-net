@@ -124,7 +124,7 @@
     <span class="p-summary">The practice of instrumenting agentic systems to make their decisions, tool calls, state transitions, and failure modes inspectable — tracing the causal chain from input to action.</span>
   </div>
   <div class="e-content">
-    <p>Agent observability is the practice of instrumenting <a href="./agentic-system.md" class="link-internal">agentic systems</a> to make their decisions, <a href="./tool-use.md" class="link-internal">tool calls</a>, state transitions, and failure modes inspectable. In traditional software, observability means logs, metrics, and traces. In agentic systems, observability must additionally capture <em>why</em> the model made each decision — what context it saw, what alternatives it considered, and what state it was operating on.</p>
+    <p>Agent observability is the practice of instrumenting <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/" class="link-internal">agentic systems</a> to make their decisions, <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/tool-use/" class="link-internal">tool calls</a>, state transitions, and failure modes inspectable. In traditional software, observability means logs, metrics, and traces. In agentic systems, observability must additionally capture <em>why</em> the model made each decision — what context it saw, what alternatives it considered, and what state it was operating on.</p>
 <p>Observability matters more in agentic systems than in conversational LLM use because agents are stateful and errors compound. Anthropic&rsquo;s engineering blog on their production multi-agent research system states this directly: &ldquo;minor failures cascade into entirely different trajectories.&rdquo; A wrong tool call in step 3 changes the state that step 4 operates on, which changes step 5&rsquo;s plan, which produces an output unrelated to the original goal. Without tracing, diagnosing the root cause requires manually reconstructing the agent&rsquo;s reasoning across every step.</p>
 <h3 id="the-observability-stack"><a href="#the-observability-stack" class="heading-anchor" aria-label="Link to this section">¶</a>The observability stack
 </h3>
@@ -135,15 +135,15 @@
 <li><strong>Spans.</strong> Logical units of work within a trace — a single LLM call, a tool invocation, a retrieval operation, a state update. Spans nest: a &ldquo;plan execution&rdquo; span contains child spans for each tool call.</li>
 <li><strong>Events.</strong> Significant milestones within spans — checkpoint saves, human approvals, error recoveries, state mutations.</li>
 <li><strong>Generations.</strong> Individual LLM calls with full input/output. The most token-expensive layer to log, but essential for debugging prompt-level issues.</li>
-<li><strong>Retrievals.</strong> <a href="../../../terms/retrieval-augmented-generation.md" class="link-internal">RAG</a> query tracking — what was searched, what was returned, what was injected into context.</li>
+<li><strong>Retrievals.</strong> <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/retrieval-augmented-generation/" class="link-internal">RAG</a> query tracking — what was searched, what was returned, what was injected into context.</li>
 <li><strong>Tool calls.</strong> External API execution monitoring — arguments sent, results received, latency, errors.</li>
 </ol>
 <h3 id="what-to-measure"><a href="#what-to-measure" class="heading-anchor" aria-label="Link to this section">¶</a>What to measure
 </h3>
 <p><strong>Token usage per step.</strong> Anthropic&rsquo;s production data shows token usage explains 80% of performance variance on complex tasks. Tracking tokens per tool call, per agent, per workflow reveals where budget is spent and where compression would help.</p>
-<p><strong>Decision traces.</strong> Record the model&rsquo;s reasoning at each branching point — what state it observed, what action it chose, what alternatives existed. <a href="./langgraph.md" class="link-internal">LangGraph</a>&rsquo;s checkpoint system provides this for graph-based workflows; PydanticAI&rsquo;s Logfire integration provides it through OpenTelemetry traces.</p>
+<p><strong>Decision traces.</strong> Record the model&rsquo;s reasoning at each branching point — what state it observed, what action it chose, what alternatives existed. <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/langgraph/" class="link-internal">LangGraph</a>&rsquo;s checkpoint system provides this for graph-based workflows; PydanticAI&rsquo;s Logfire integration provides it through OpenTelemetry traces.</p>
 <p><strong>Failure classification.</strong> Categorize failures by type (hallucinated tool call, schema validation error, timeout, permission denied, context overflow) and by recovery strategy (retry, escalate to human, abort, adapt). This produces a failure taxonomy specific to the system.</p>
-<p><strong>Latency breakdown.</strong> Total response time decomposed into LLM inference time, tool execution time, retrieval time, and coordination overhead. In <a href="./multi-agent-system.md" class="link-internal">multi-agent systems</a>, inter-agent communication latency dominates at scale.</p>
+<p><strong>Latency breakdown.</strong> Total response time decomposed into LLM inference time, tool execution time, retrieval time, and coordination overhead. In <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/multi-agent-system/" class="link-internal">multi-agent systems</a>, inter-agent communication latency dominates at scale.</p>
 <h3 id="observability-and-privacy"><a href="#observability-and-privacy" class="heading-anchor" aria-label="Link to this section">¶</a>Observability and privacy
 </h3>
 <p>Logging full LLM inputs and outputs captures user data, proprietary information, and potentially sensitive content. Anthropic&rsquo;s recommendation: track decision patterns and interaction structures rather than conversation contents. Log the shape of the trace (which tools were called, in what order, with what result types) rather than the full text.</p>
@@ -167,22 +167,22 @@
         <dt><a href="/library/domains/science/domains/information/terms/channel/">Delivered via</a></dt>
         <dd property="emsenn:Deliveredvia">langgraph, pydantic ai</dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/sets/terms/domain/">Domain</a></dt>
         <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">agents</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
         <dd property="emsenn:Enables">agent evaluation, agent self improvement</dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/measure/">Measures</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/measure/">Measures</a></dt>
         <dd property="emsenn:Measures"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/">agentic system</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/">agent orchestration</a></dd>
       </div>
   <div class="relation">
     <dt>Referenced by</dt>
     <dd>
-      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-evaluation/">Agent Evaluation</a></li></ul>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/accountability-tracing-in-multi-agent-systems/">Accountability Tracing in Multi-Agent Systems</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-evaluation/">Agent Evaluation</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-reliability-in-production/">Agent Reliability in Production (March 2026)</a></li></ul>
     </dd>
   </div>
   </dl>

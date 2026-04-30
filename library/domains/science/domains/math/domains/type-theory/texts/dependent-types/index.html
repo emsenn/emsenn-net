@@ -73,18 +73,39 @@ Types that vary according to a value — a vector whose type includes its length
   "citation": [
     {
       "@type": "CreativeWork",
-      "identifier": "ref1",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Martinlof"
+        }
+      ],
+      "datePublished": "1982",
+      "identifier": "martinlof_constructivemathematicscomputerprogramming_1982",
       "name": "Constructive Mathematics and Computer Programming"
     },
     {
       "@type": "CreativeWork",
-      "identifier": "ref2",
-      "name": "Homotopy Type Theory: Univalent Foundations of Mathematics"
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Pierce"
+        }
+      ],
+      "datePublished": "2002",
+      "identifier": "pierce_typesprogramminglanguages_2002",
+      "name": "Types and Programming Languages"
     },
     {
       "@type": "CreativeWork",
-      "identifier": "ref3",
-      "name": "Types and Programming Languages"
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Univalentfoundationsprogram"
+        }
+      ],
+      "datePublished": "2013",
+      "identifier": "univalentfoundationsprogram_homotopytypetheory_2013",
+      "name": "Homotopy Type Theory: Univalent Foundations of Mathematics"
     }
   ],
   "dateModified": "2026-03-01",
@@ -195,7 +216,7 @@ check that functions return the right kind of output.</li>
 </ul>
 <h2 id="from-simple-types-to-dependent-types"><a href="#from-simple-types-to-dependent-types" class="heading-anchor" aria-label="Link to this section">¶</a>From simple types to dependent types
 </h2>
-<p>The <a href="./typed-lambda-calculus.md" class="link-internal">simply typed lambda calculus</a> assigns every term a type, and
+<p>The <a href="/library/domains/science/domains/math/domains/type-theory/texts/typed-lambda-calculus/" class="link-internal">simply typed lambda calculus</a> assigns every term a type, and
 function types have the form <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \to B</annotation></semantics></math></span>: the input has type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span>, the output has type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span>.
 The output type does not depend on the input value — a function of type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">N</mi><mo>→</mo><mi mathvariant="double-struck">N</mi></mrow><annotation encoding="application/x-tex">\mathbb{N} \to
 \mathbb{N}</annotation></semantics></math></span> returns a natural number regardless of which natural number it receives.</p>
@@ -211,7 +232,7 @@ by elements of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/Math
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> does not depend on <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span>, the Pi-type reduces to the ordinary function type. When <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span>
 does depend on <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span>, the Pi-type expresses a universal statement: &ldquo;for every <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">x : A</annotation></semantics></math></span>,
 there is a <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B(x)</annotation></semantics></math></span>.&rdquo;</p>
-<p>Under the <a href="../../../concepts/curry-howard-correspondence/index.md" class="link-internal">Curry-Howard correspondence</a>, a Pi-type corresponds to a <strong>universal
+<p>Under the Curry-Howard correspondence, a Pi-type corresponds to a <strong>universal
 quantification</strong> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∀</mi><mi>x</mi><mo>:</mo><mi>A</mi><mi mathvariant="normal">.</mi><mtext>  </mtext><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\forall x : A.\; P(x)</annotation></semantics></math></span>. A term of type <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Π</mi><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi><mtext>  </mtext><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi(x : A).\; P(x)</annotation></semantics></math></span> is a
 function that, given any <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">x : A</annotation></semantics></math></span>, produces a proof of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(x)</annotation></semantics></math></span>. Having such a function
 means having a uniform proof that <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span> holds for every element of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span>.</p>
@@ -292,19 +313,19 @@ and proofs of the group axioms — all bundled in nested Sigma-types.</p>
       </tr>
   </tbody>
 </table>
-<p>This correspondence is the foundation of <a href="../../../concepts/proof-assistant/index.md" class="link-internal">proof assistants</a> like <a href="../../../../technology/disciplines/computing/software/lean/index.md" class="link-internal">Lean</a> and <a href="../../../../technology/disciplines/computing/software/agda/index.md" class="link-internal">Agda</a>: to prove a
+<p>This correspondence is the foundation of proof assistants like Lean and Agda: to prove a
 theorem, write a program of the corresponding type [@pierce_TypesProgrammingLanguages_2002]. The type checker verifies the proof by
 checking that the program is well-typed.</p>
-<p>Because the type system is based on <a href="../../logic/curricula/intuitionistic-logic.md" class="link-internal">intuitionistic logic</a>, <a href="../../../../../../humanities/domains/philosophy/terms/law-of-excluded-middle.md" class="link-internal">excluded middle</a> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∨</mo><mi mathvariant="normal">¬</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">P \vee \neg P</annotation></semantics></math></span>) is not available by default. A proof of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∨</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">P \vee Q</annotation></semantics></math></span> must supply a proof of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span> or a proof of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math></span> — you cannot argue by contradiction unless you explicitly add classical axioms.</p>
+<p>Because the type system is based on <a href="/library/domains/science/domains/math/domains/logic/texts/intuitionistic-logic/" class="link-internal">intuitionistic logic</a>, <a href="/library/domains/humanities/domains/philosophy/domains/western/domains/analytic-philosophy/terms/law-of-excluded-middle/" class="link-internal">excluded middle</a> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∨</mo><mi mathvariant="normal">¬</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">P \vee \neg P</annotation></semantics></math></span>) is not available by default. A proof of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∨</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">P \vee Q</annotation></semantics></math></span> must supply a proof of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span> or a proof of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math></span> — you cannot argue by contradiction unless you explicitly add classical axioms.</p>
 <h2 id="indexed-families-and-universes"><a href="#indexed-families-and-universes" class="heading-anchor" aria-label="Link to this section">¶</a>Indexed families and universes
 </h2>
 <p>Dependent types require a notion of <strong>universe</strong> — a type whose elements are themselves
-types. The <a href="../../../../linguistics/topics/semiotics/terms/symbol.md" class="link-internal">symbol</a> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="sans-serif">T</mi><mi mathvariant="sans-serif">y</mi><mi mathvariant="sans-serif">p</mi><mi mathvariant="sans-serif">e</mi></mrow><annotation encoding="application/x-tex">\mathsf{Type}</annotation></semantics></math></span> (or <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="sans-serif">S</mi><mi mathvariant="sans-serif">e</mi><mi mathvariant="sans-serif">t</mi></mrow><annotation encoding="application/x-tex">\mathsf{Set}</annotation></semantics></math></span> in some systems) is a universe. To
+types. The <a href="/library/domains/science/domains/linguistics/domains/semiotics/terms/symbol/" class="link-internal">symbol</a> <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="sans-serif">T</mi><mi mathvariant="sans-serif">y</mi><mi mathvariant="sans-serif">p</mi><mi mathvariant="sans-serif">e</mi></mrow><annotation encoding="application/x-tex">\mathsf{Type}</annotation></semantics></math></span> (or <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="sans-serif">S</mi><mi mathvariant="sans-serif">e</mi><mi mathvariant="sans-serif">t</mi></mrow><annotation encoding="application/x-tex">\mathsf{Set}</annotation></semantics></math></span> in some systems) is a universe. To
 avoid paradoxes (Russell&rsquo;s paradox in type-theoretic form), universes are stratified:</p>
 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mrow><mi mathvariant="sans-serif">T</mi><mi mathvariant="sans-serif">y</mi><mi mathvariant="sans-serif">p</mi><mi mathvariant="sans-serif">e</mi></mrow><mn>0</mn></msub><mo>:</mo><msub><mrow><mi mathvariant="sans-serif">T</mi><mi mathvariant="sans-serif">y</mi><mi mathvariant="sans-serif">p</mi><mi mathvariant="sans-serif">e</mi></mrow><mn>1</mn></msub><mo>:</mo><msub><mrow><mi mathvariant="sans-serif">T</mi><mi mathvariant="sans-serif">y</mi><mi mathvariant="sans-serif">p</mi><mi mathvariant="sans-serif">e</mi></mrow><mn>2</mn></msub><mo>:</mo><mo>⋯</mo></mrow><annotation encoding="application/x-tex">
 \mathsf{Type}_0 : \mathsf{Type}_1 : \mathsf{Type}_2 : \cdots
 </annotation></semantics></math></span><p>Each <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="sans-serif">T</mi><mi mathvariant="sans-serif">y</mi><mi mathvariant="sans-serif">p</mi><mi mathvariant="sans-serif">e</mi></mrow><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\mathsf{Type}_i</annotation></semantics></math></span> contains all types at level <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span> and below. This hierarchy is
-analogous to the cumulative hierarchy of sets in <a href="../../../concepts/set-theory/index.md" class="link-internal">set theory</a>, but built into the type
+analogous to the cumulative hierarchy of sets in set theory, but built into the type
 system itself [@univalentfoundationsprogram_HomotopyTypeTheory_2013].</p>
 <p>An <strong>indexed family</strong> is a function from some index type into a universe: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>:</mo><mi>A</mi><mo>→</mo><mrow><mi mathvariant="sans-serif">T</mi><mi mathvariant="sans-serif">y</mi><mi mathvariant="sans-serif">p</mi><mi mathvariant="sans-serif">e</mi></mrow></mrow><annotation encoding="application/x-tex">B : A \to
 \mathsf{Type}</annotation></semantics></math></span>. This is a type-valued function — it assigns a type to each element of
@@ -327,9 +348,9 @@ types powerful for proofs — case analysis in a proof corresponds to pattern ma
 code, and the type checker ensures you handle every case.</p>
 <h2 id="applications"><a href="#applications" class="heading-anchor" aria-label="Link to this section">¶</a>Applications
 </h2>
-<p>Dependent types are the foundation of modern proof assistants — <a href="../../../../technology/disciplines/computing/software/lean/index.md" class="link-internal">Lean</a>, <a href="../../../../technology/disciplines/computing/software/agda/index.md" class="link-internal">Agda</a>, Coq, and others. They are used to:</p>
+<p>Dependent types are the foundation of modern proof assistants — Lean, Agda, Coq, and others. They are used to:</p>
 <ul>
-<li><strong>Formalize mathematics</strong>: encode algebraic structures (groups, rings, <a href="../../../objects/posets/terms/lattice.md" class="link-internal">lattices</a>) as types that bundle operations with proofs of their axioms. A <a href="../../../objects/posets/curricula/heyting-algebras.md" class="link-internal">Heyting algebra</a>, for instance, becomes a type carrying a carrier, operations, and proofs of the <a href="../../../../../../humanities/domains/general/domains/people/arend-heyting.md" class="link-internal">Heyting</a> axioms.</li>
+<li><strong>Formalize mathematics</strong>: encode algebraic structures (groups, rings, <a href="/library/domains/science/domains/math/domains/order/terms/lattice/" class="link-internal">lattices</a>) as types that bundle operations with proofs of their axioms. A <a href="/library/domains/science/domains/math/domains/order/texts/heyting-algebras/" class="link-internal">Heyting algebra</a>, for instance, becomes a type carrying a carrier, operations, and proofs of the Heyting axioms.</li>
 <li><strong>Verify software</strong>: specify program behavior in the type, then type-check to verify that the implementation meets the specification. Dependent types enable specifications that simple types cannot express (e.g., &ldquo;this sorting function returns a permutation of its input&rdquo;).</li>
 <li><strong>Construct certified proofs</strong>: state a theorem as a type and construct a proof as a term. The type checker verifies correctness mechanically.</li>
 </ul>
@@ -362,12 +383,18 @@ Lean), which is available but not automatic.</li>
   
   <section class="bibliography" id="bibliography"
          vocab="https://schema.org/" typeof="ItemList">
-  <h2>References</h2><p class="bib-entry h-cite" id="ref-ref1" typeof="CreativeWork" resource="#ref-ref1">
-    <span class="bib-key">[ref1]</span><cite class="p-name" property="name">Constructive Mathematics and Computer Programming</cite>..
-  </p><p class="bib-entry h-cite" id="ref-ref2" typeof="CreativeWork" resource="#ref-ref2">
-    <span class="bib-key">[ref2]</span><cite class="p-name" property="name">Homotopy Type Theory: Univalent Foundations of Mathematics</cite>..
-  </p><p class="bib-entry h-cite" id="ref-ref3" typeof="CreativeWork" resource="#ref-ref3">
-    <span class="bib-key">[ref3]</span><cite class="p-name" property="name">Types and Programming Languages</cite>..
+  <h2>References</h2><p class="bib-entry h-cite" id="ref-martinlof_constructivemathematicscomputerprogramming_1982" typeof="CreativeWork" resource="#ref-martinlof_constructivemathematicscomputerprogramming_1982">
+    <span class="bib-key">[martinlof_constructivemathematicscomputerprogramming_1982]</span>
+      <span class="p-author" property="author">Martinlof</span>.
+      (<time class="dt-published" property="datePublished" datetime="1982">1982</time>).<cite class="p-name" property="name">Constructive Mathematics and Computer Programming</cite>..
+  </p><p class="bib-entry h-cite" id="ref-pierce_typesprogramminglanguages_2002" typeof="CreativeWork" resource="#ref-pierce_typesprogramminglanguages_2002">
+    <span class="bib-key">[pierce_typesprogramminglanguages_2002]</span>
+      <span class="p-author" property="author">Pierce</span>.
+      (<time class="dt-published" property="datePublished" datetime="2002">2002</time>).<cite class="p-name" property="name">Types and Programming Languages</cite>..
+  </p><p class="bib-entry h-cite" id="ref-univalentfoundationsprogram_homotopytypetheory_2013" typeof="CreativeWork" resource="#ref-univalentfoundationsprogram_homotopytypetheory_2013">
+    <span class="bib-key">[univalentfoundationsprogram_homotopytypetheory_2013]</span>
+      <span class="p-author" property="author">Univalentfoundationsprogram</span>.
+      (<time class="dt-published" property="datePublished" datetime="2013">2013</time>).<cite class="p-name" property="name">Homotopy Type Theory: Univalent Foundations of Mathematics</cite>..
   </p>
 </section>
 </article>
@@ -387,6 +414,12 @@ Lean), which is available but not automatic.</li>
         <dt>Teaches</dt>
         <dd property="schema:teaches"><ul><li><a href="/library/domains/science/domains/math/domains/type-theory/texts/dependent-types/">Dependent Types</a></li></ul></dd>
       </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/software/domains/lean/texts/types-and-propositions-in-lean/">Types and Propositions in Lean</a></li></ul>
+    </dd>
+  </div>
   </dl>
 </section>
 

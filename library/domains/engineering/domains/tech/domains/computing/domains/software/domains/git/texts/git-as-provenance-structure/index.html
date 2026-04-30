@@ -70,12 +70,26 @@
   "citation": [
     {
       "@type": "CreativeWork",
-      "identifier": "ref1",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Chacon"
+        }
+      ],
+      "datePublished": "2014",
+      "identifier": "chacon_progit_2014",
       "name": "Git"
     },
     {
       "@type": "CreativeWork",
-      "identifier": "ref2",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Spinellis"
+        }
+      ],
+      "datePublished": "2012",
+      "identifier": "spinellis_gitversion_2012",
       "name": "Pro Git"
     }
   ],
@@ -173,7 +187,7 @@
     <p>Git is a version control system. It is also, read differently, a provenance structure: an
 immutable record of what was done, when, by whom, and building on what prior work. This
 lesson reads git&rsquo;s data model through that lens, connecting its design to the formal
-concept of provenance in the <a href="../../../../../../mathematics/objects/universes/interactive-semioverse/index.md" class="link-internal">Interactive Semioverse</a>.</p>
+concept of provenance in the Interactive Semioverse.</p>
 <h2 id="gits-data-model"><a href="#gits-data-model" class="heading-anchor" aria-label="Link to this section">¶</a>Git&rsquo;s data model
 </h2>
 <p>Git stores four kinds of objects, all content-addressed (identified by cryptographic hash) [@chacon_ProGit_2014]:</p>
@@ -186,7 +200,7 @@ concept of provenance in the <a href="../../../../../../mathematics/objects/univ
 <p>Every commit points to one or more parent commits, forming a <strong>directed acyclic graph (DAG)</strong> [@spinellis_GitVersion_2012]. The DAG is append-only: you can add new commits, but existing commits are immutable. Their hashes depend on their content, their parents&rsquo; hashes, and their metadata — change any of these and you get a different object.</p>
 <h2 id="commits-as-work-units"><a href="#commits-as-work-units" class="heading-anchor" aria-label="Link to this section">¶</a>Commits as work units
 </h2>
-<p>A commit records a discrete unit of work: <a href="../../../../../../../../humanities/domains/sociology/terms/the-state.md" class="link-internal">the state</a> of every file after the work, <a href="../../../../../../../../humanities/domains/sociology/terms/the-state.md" class="link-internal">the state</a> before (via the parent commit), the identity of the author, and a natural-language description of what was done and why. This is a concrete instance of what the Interactive Semioverse formalizes as a <strong>provenance history</strong> — a finite sequence of construction steps, each recording what operation was applied, to what inputs, producing what result.</p>
+<p>A commit records a discrete unit of work: <a href="/library/domains/humanities/domains/sociology/domains/critical-theory/domains/anarchism/terms/the-state/" class="link-internal">the state</a> of every file after the work, <a href="/library/domains/humanities/domains/sociology/domains/critical-theory/domains/anarchism/terms/the-state/" class="link-internal">the state</a> before (via the parent commit), the identity of the author, and a natural-language description of what was done and why. This is a concrete instance of what the Interactive Semioverse formalizes as a <strong>provenance history</strong> — a finite sequence of construction steps, each recording what operation was applied, to what inputs, producing what result.</p>
 <p>The parallel is direct:</p>
 <table>
   <thead>
@@ -206,7 +220,7 @@ concept of provenance in the <a href="../../../../../../mathematics/objects/univ
       </tr>
       <tr>
           <td>Commit DAG</td>
-          <td>Provenance category (objects = histories, <a href="../../../../../../mathematics/objects/categories/ordinary-categories/terms/morphism.md" class="link-internal">morphisms</a> = refinements)</td>
+          <td>Provenance category (objects = histories, <a href="/library/domains/humanities/domains/math/domains/categories/domains/ordinary-categories/terms/morphism/" class="link-internal">morphisms</a> = refinements)</td>
       </tr>
       <tr>
           <td>Diff (parent → child)</td>
@@ -228,20 +242,20 @@ concept of provenance in the <a href="../../../../../../mathematics/objects/univ
 <p>The commit DAG is not a linear history — it branches and merges:</p>
 <ul>
 <li>
-<p><strong>Branching</strong> creates divergent lines of work from a common ancestor. Two agents (or the same agent pursuing two directions) produce independent sequences of commits. In the Interactive Semioverse, this corresponds to two interaction sequences operating on the same initial state, producing distinct <a href="../../../../../../mathematics/objects/universes/interactive-semioverse/terms/footprint.md" class="link-internal">footprints</a>.</p>
+<p><strong>Branching</strong> creates divergent lines of work from a common ancestor. Two agents (or the same agent pursuing two directions) produce independent sequences of commits. In the Interactive Semioverse, this corresponds to two interaction sequences operating on the same initial state, producing distinct footprints.</p>
 </li>
 <li>
 <p><strong>Merging</strong> combines divergent lines into a single commit with multiple parents. The merge commit records the resolution: how two independent histories were reconciled into one state. This parallels the Interactive Semioverse&rsquo;s treatment of concurrent interactions — when two interaction sequences affect overlapping fragments, their results must be composed coherently.</p>
 </li>
 <li>
-<p><strong>Rebasing</strong> rewrites history by replaying commits onto a different base. This produces new commits (with different hashes) that represent the same logical work in a different provenance context. The original commits remain in the object store until garbage-collected. The Interactive Semioverse&rsquo;s provenance categories have a similar structure: refinement <a href="../../../../../../mathematics/objects/categories/ordinary-categories/terms/morphism.md" class="link-internal">morphisms</a> between histories that preserve the logical content while changing the construction path.</p>
+<p><strong>Rebasing</strong> rewrites history by replaying commits onto a different base. This produces new commits (with different hashes) that represent the same logical work in a different provenance context. The original commits remain in the object store until garbage-collected. The Interactive Semioverse&rsquo;s provenance categories have a similar structure: refinement <a href="/library/domains/humanities/domains/math/domains/categories/domains/ordinary-categories/terms/morphism/" class="link-internal">morphisms</a> between histories that preserve the logical content while changing the construction path.</p>
 </li>
 </ul>
 <h2 id="distributed-repositories"><a href="#distributed-repositories" class="heading-anchor" aria-label="Link to this section">¶</a>Distributed repositories
 </h2>
 <p>Git is distributed: every clone is a complete copy of the repository, including the full commit DAG. Multiple agents maintain their own local histories and synchronize through push and pull operations that transfer commits between repositories.</p>
 <p>This distribution has structural significance. Each local repository is a local view of a shared semioverse — a fragment with its own interaction history. Synchronization (push/pull/fetch) transfers provenance records between views, and merge resolution ensures coherence. There is no privileged central copy; any clone can reconstruct the full history.</p>
-<p>In the Interactive Semioverse&rsquo;s terms, each local repository is an agent&rsquo;s working state, and synchronization operations are <a href="../../../../../../mathematics/objects/universes/interactive-semioverse/terms/interaction-term.md" class="link-internal">interaction terms</a> that transport fragments between agents while preserving provenance.</p>
+<p>In the Interactive Semioverse&rsquo;s terms, each local repository is an agent&rsquo;s working state, and synchronization operations are interaction terms that transport fragments between agents while preserving provenance.</p>
 <h2 id="why-provenance-matters-for-knowledge-work"><a href="#why-provenance-matters-for-knowledge-work" class="heading-anchor" aria-label="Link to this section">¶</a>Why provenance matters for knowledge work
 </h2>
 <p>Any collaborative knowledge project benefits from provenance — the ability to trace every change to who made it, when, and why. Git provides this without requiring infrastructure beyond the repository itself. The provenance is intrinsic: it is the data structure, not an annotation added afterward.</p>
@@ -262,10 +276,14 @@ concept of provenance in the <a href="../../../../../../mathematics/objects/univ
   
   <section class="bibliography" id="bibliography"
          vocab="https://schema.org/" typeof="ItemList">
-  <h2>References</h2><p class="bib-entry h-cite" id="ref-ref1" typeof="CreativeWork" resource="#ref-ref1">
-    <span class="bib-key">[ref1]</span><cite class="p-name" property="name">Git</cite>..
-  </p><p class="bib-entry h-cite" id="ref-ref2" typeof="CreativeWork" resource="#ref-ref2">
-    <span class="bib-key">[ref2]</span><cite class="p-name" property="name">Pro Git</cite>..
+  <h2>References</h2><p class="bib-entry h-cite" id="ref-chacon_progit_2014" typeof="CreativeWork" resource="#ref-chacon_progit_2014">
+    <span class="bib-key">[chacon_progit_2014]</span>
+      <span class="p-author" property="author">Chacon</span>.
+      (<time class="dt-published" property="datePublished" datetime="2014">2014</time>).<cite class="p-name" property="name">Git</cite>..
+  </p><p class="bib-entry h-cite" id="ref-spinellis_gitversion_2012" typeof="CreativeWork" resource="#ref-spinellis_gitversion_2012">
+    <span class="bib-key">[spinellis_gitversion_2012]</span>
+      <span class="p-author" property="author">Spinellis</span>.
+      (<time class="dt-published" property="datePublished" datetime="2012">2012</time>).<cite class="p-name" property="name">Pro Git</cite>..
   </p>
 </section>
 </article>
@@ -276,7 +294,7 @@ concept of provenance in the <a href="../../../../../../mathematics/objects/univ
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><ul><li>/technology/disciplines/computing/software/git/curricula/what is git.md</li><li>/technology/disciplines/computing/software/git/curricula/branching and merging.md</li></ul></dd>
       </div><div class="relation">
         <dt><a href="/tags/">Tags</a></dt>

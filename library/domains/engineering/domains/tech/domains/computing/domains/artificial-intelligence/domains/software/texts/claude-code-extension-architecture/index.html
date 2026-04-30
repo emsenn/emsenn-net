@@ -227,7 +227,7 @@
     })();
     </script>
   <div class="e-content">
-    <p><a href="../terms/claude-code.md" class="link-internal">Claude Code</a> is extensible through four mechanisms. They operate at different levels of the system and serve different purposes. Understanding which mechanism to use for a given customization is the central design decision when configuring Claude Code for a project.</p>
+    <p><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-code/" class="link-internal">Claude Code</a> is extensible through four mechanisms. They operate at different levels of the system and serve different purposes. Understanding which mechanism to use for a given customization is the central design decision when configuring Claude Code for a project.</p>
 <h2 id="the-four-mechanisms"><a href="#the-four-mechanisms" class="heading-anchor" aria-label="Link to this section">¶</a>The four mechanisms
 </h2>
 <table>
@@ -242,28 +242,28 @@
   </thead>
   <tbody>
       <tr>
-          <td><a href="../terms/claude-md.md" class="link-internal">CLAUDE.md</a></td>
+          <td><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-md/" class="link-internal">CLAUDE.md</a></td>
           <td>Markdown instruction file</td>
           <td>Every session (root) or lazily (subdirectory)</td>
           <td>Model reasoning and decisions</td>
           <td>No — advisory</td>
       </tr>
       <tr>
-          <td><a href="../terms/slash-commands.md" class="link-internal">Skills</a></td>
+          <td><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/slash-commands/" class="link-internal">Skills</a></td>
           <td>SKILL.md files invoked with <code>/name</code></td>
           <td>On demand (user or model invocation)</td>
           <td>Model reasoning for a specific task</td>
           <td>No — advisory</td>
       </tr>
       <tr>
-          <td><a href="../terms/hooks.md" class="link-internal">Hooks</a></td>
+          <td><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/hooks/" class="link-internal">Hooks</a></td>
           <td>Shell commands in settings.json</td>
           <td>On tool-call lifecycle events</td>
           <td>Runtime behavior before/after tool execution</td>
           <td>Yes — mandatory</td>
       </tr>
       <tr>
-          <td><a href="../../../../agents/domains/model-context-protocol/terms/model-context-protocol.md" class="link-internal">MCP servers</a></td>
+          <td><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/model-context-protocol/" class="link-internal">MCP servers</a></td>
           <td>External processes exposing tools/resources</td>
           <td>At session start (configured servers)</td>
           <td>Available tool set and data sources</td>
@@ -275,11 +275,11 @@
 </h2>
 <p>The four mechanisms split along two axes:</p>
 <p><strong>Advisory vs. mandatory.</strong> CLAUDE.md and skills shape the model&rsquo;s reasoning — they tell it what to do, but the model ultimately decides how to interpret and follow those instructions. Hooks execute deterministically on events, regardless of what the model decides. MCP servers are hybrid: their availability is deterministic (the tools exist or they don&rsquo;t), but whether the model invokes a tool is its decision.</p>
-<p><strong>Always-loaded vs. on-demand.</strong> CLAUDE.md at the project root loads on every session, consuming <a href="../../../../../terms/context-window.md" class="link-internal">context</a> whether relevant or not. Skills load only when invoked. Hooks are configured but consume no context (they are settings, not prompt content). MCP server tool definitions load at session start.</p>
+<p><strong>Always-loaded vs. on-demand.</strong> CLAUDE.md at the project root loads on every session, consuming <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-window/" class="link-internal">context</a> whether relevant or not. Skills load only when invoked. Hooks are configured but consume no context (they are settings, not prompt content). MCP server tool definitions load at session start.</p>
 <h2 id="when-to-use-each"><a href="#when-to-use-each" class="heading-anchor" aria-label="Link to this section">¶</a>When to use each
 </h2>
 <p><strong>Use CLAUDE.md</strong> for rules the agent should follow on every request: build commands, architectural constraints, style rules, what not to touch. Keep it short — everything in CLAUDE.md competes for attention with the user&rsquo;s actual request.</p>
-<p><strong>Use skills</strong> for task-specific instructions that only matter when that task is being performed: commit conventions, review checklists, deployment procedures, domain-specific workflows. Skills implement <a href="../terms/progressive-disclosure.md" class="link-internal">progressive disclosure</a>: the instructions exist in the project but don&rsquo;t load until needed.</p>
+<p><strong>Use skills</strong> for task-specific instructions that only matter when that task is being performed: commit conventions, review checklists, deployment procedures, domain-specific workflows. Skills implement <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/progressive-disclosure/" class="link-internal">progressive disclosure</a>: the instructions exist in the project but don&rsquo;t load until needed.</p>
 <p><strong>Use hooks</strong> for guardrails and automation that must execute regardless of model behavior: blocking dangerous shell commands (PreToolUse), logging all file edits for audit (PostToolUse), sending notifications when Claude is idle (Notification). If a behavior must happen, it belongs in a hook, not in CLAUDE.md — the model can misinterpret or ignore instructions, but it cannot suppress a hook.</p>
 <p><strong>Use MCP servers</strong> for connecting Claude to external data and tools: databases, APIs, file-format parsers, specialized computation. MCP extends what Claude can <em>do</em>; the other mechanisms shape <em>how</em> it does things.</p>
 <h2 id="how-they-compose"><a href="#how-they-compose" class="heading-anchor" aria-label="Link to this section">¶</a>How they compose
@@ -341,12 +341,18 @@
         <dt>Part of</dt>
         <dd property="schema:isPartOf"><ul><li><a href="/tags/claude-code/">claude code</a></li></ul></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><ul><li><a href="/tags/claude-code/">claude code</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-md/">claude md</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/slash-commands/">slash commands</a></li><li><a href="/tags/hooks/">hooks</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/model-context-protocol/">model context protocol</a></li></ul></dd>
       </div><div class="relation">
         <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/claude-code/">claude-code</a></li><li><a href="/tags/extension-architecture/">extension-architecture</a></li><li><a href="/tags/agent-design/">agent-design</a></li></ul></dd>
       </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-code/">Claude Code</a></li></ul>
+    </dd>
+  </div>
   </dl>
 </section>
 

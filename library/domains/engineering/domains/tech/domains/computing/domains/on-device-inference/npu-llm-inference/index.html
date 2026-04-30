@@ -128,20 +128,20 @@
     
   </div>
   <div class="e-content">
-    <p>An assessment of running large language models on <a href="../../terms/neural-processing-unit.md" class="link-internal">neural processing units</a>, with particular attention to the Qualcomm Snapdragon X Elite (45 <a href="terms/tops.md" class="link-internal">TOPS</a>), as of early 2026.</p>
+    <p>An assessment of running large language models on <a href="/library/domains/engineering/domains/tech/domains/computing/terms/neural-processing-unit/" class="link-internal">neural processing units</a>, with particular attention to the Qualcomm Snapdragon X Elite (45 <a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/terms/tops/" class="link-internal">TOPS</a>), as of early 2026.</p>
 <h2 id="the-fundamental-tension"><a href="#the-fundamental-tension" class="heading-anchor" aria-label="Link to this section">¶</a>The fundamental tension
 </h2>
 <p>NPUs were designed for convolutional neural network (CNN) inference: image classification, object detection, segmentation. These workloads have regular, predictable compute patterns that map cleanly onto fixed-point arithmetic and static data flow. Transformer-based language models are architecturally different: the attention mechanism involves softmax and exponentiation that create extreme dynamic ranges, and autoregressive token generation is inherently sequential. This mismatch is the root of most current limitations.</p>
 <h2 id="what-works"><a href="#what-works" class="heading-anchor" aria-label="Link to this section">¶</a>What works
 </h2>
-<p>Small models (1B–4B parameters) run well on NPU through <a href="terms/onnx.md" class="link-internal">ONNX</a>-based toolchains. The Nexa AI SDK has demonstrated Llama-3B, Phi4-mini, and Qwen3-4B on Snapdragon NPU hardware. Microsoft&rsquo;s Phi Silica is a small language model tuned specifically for Copilot+ PC NPUs, accessible through Windows APIs. AnythingLLM has been ported to use ONNX Runtime with the QNN execution provider for NPU-accelerated local chat.</p>
+<p>Small models (1B–4B parameters) run well on NPU through <a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/terms/onnx/" class="link-internal">ONNX</a>-based toolchains. The Nexa AI SDK has demonstrated Llama-3B, Phi4-mini, and Qwen3-4B on Snapdragon NPU hardware. Microsoft&rsquo;s Phi Silica is a small language model tuned specifically for Copilot+ PC NPUs, accessible through Windows APIs. AnythingLLM has been ported to use ONNX Runtime with the QNN execution provider for NPU-accelerated local chat.</p>
 <h2 id="what-does-not-yet-work"><a href="#what-does-not-yet-work" class="heading-anchor" aria-label="Link to this section">¶</a>What does not yet work
 </h2>
 <p>Mainstream LLM runtimes (Ollama, LM Studio, llama.cpp mainline, Hugging Face Transformers) do not use the NPU. They run on CPU or GPU exclusively.</p>
 <p>The llama.cpp QNN backend exists as multiple experimental branches and pull requests (PR #12049, #12063 on GitHub, plus independent forks). It passes basic tests and runs Llama 3.2 1B/3B in FP16/FP32. However, GGML&rsquo;s block quantization formats (Q4_0, Q4_K_M) do not map onto QNN&rsquo;s operator graph — quantized models fall back to CPU for unsupported operations, negating the NPU benefit. Early benchmarks showed CPU inference at approximately 26 tokens/second versus NPU at approximately 3 tokens/second, reflecting software immaturity rather than hardware limits.</p>
 <h2 id="model-format-fragmentation"><a href="#model-format-fragmentation" class="heading-anchor" aria-label="Link to this section">¶</a>Model format fragmentation
 </h2>
-<p>The NPU ecosystem requires <a href="terms/onnx.md" class="link-internal">ONNX</a> models optimized specifically for Snapdragon. The broader LLM ecosystem uses GGUF (llama.cpp), safetensors (Hugging Face), and PyTorch formats. There is no automatic conversion path that preserves performance. Models must be explicitly built or converted for Snapdragon NPU deployment.</p>
+<p>The NPU ecosystem requires <a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/terms/onnx/" class="link-internal">ONNX</a> models optimized specifically for Snapdragon. The broader LLM ecosystem uses GGUF (llama.cpp), safetensors (Hugging Face), and PyTorch formats. There is no automatic conversion path that preserves performance. Models must be explicitly built or converted for Snapdragon NPU deployment.</p>
 <h2 id="memory-bandwidth-constraints"><a href="#memory-bandwidth-constraints" class="heading-anchor" aria-label="Link to this section">¶</a>Memory bandwidth constraints
 </h2>
 <p>The Snapdragon X Elite uses shared LPDDR5x memory for CPU, GPU, and NPU. LLM inference is memory-bandwidth-bound (reading model weights dominates compute time). The NPU competes with the rest of the system for memory access. Models above 7B parameters push against bandwidth limits.</p>
@@ -172,6 +172,12 @@
         <dt><a href="/tags/">Tags</a></dt>
         <dd property="schema:keywords"><ul><li><a href="/tags/survey/">survey</a></li></ul></dd>
       </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/on-device-inference-frameworks/">On-Device Inference Frameworks</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/on-device-inference/two-format-problem/">The Two-Format Problem in Local Inference</a></li></ul>
+    </dd>
+  </div>
   </dl>
 </section>
 

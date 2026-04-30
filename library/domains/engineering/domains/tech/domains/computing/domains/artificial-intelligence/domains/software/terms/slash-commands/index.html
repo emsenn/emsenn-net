@@ -160,12 +160,12 @@
     <span class="p-summary">User-defined and bundled commands in Claude Code invoked with /name — skills carry SKILL.md instructions loaded on demand rather than at session start.</span>
   </div>
   <div class="e-content">
-    <p>Slash commands are <a href="./claude-code.md" class="link-internal">Claude Code&rsquo;s</a> mechanism for invoking task-specific instructions on demand. A user types <code>/name</code> at the prompt to load a command&rsquo;s instructions into the conversation context. Claude Code ships with built-in commands (<code>/help</code>, <code>/clear</code>, <code>/compact</code>, <code>/context</code>, <code>/review</code>) that perform fixed operations, and supports user-defined <strong>skills</strong> backed by <code>SKILL.md</code> files.</p>
+    <p>Slash commands are <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-code/" class="link-internal">Claude Code&rsquo;s</a> mechanism for invoking task-specific instructions on demand. A user types <code>/name</code> at the prompt to load a command&rsquo;s instructions into the conversation context. Claude Code ships with built-in commands (<code>/help</code>, <code>/clear</code>, <code>/compact</code>, <code>/context</code>, <code>/review</code>) that perform fixed operations, and supports user-defined <strong>skills</strong> backed by <code>SKILL.md</code> files.</p>
 <p>A skill is a slash command with its own instruction document. Each <code>SKILL.md</code> has YAML frontmatter (name, description) and markdown body (the instructions Claude follows when the skill is invoked). The <code>name</code> field becomes the <code>/slash-command</code>. The <code>description</code> field serves double duty: it labels the command for the user and tells Claude when to load the skill automatically — if a user&rsquo;s request matches the description, Claude may invoke the skill without being asked.</p>
 <p>Skills can be placed at three locations: project skills (<code>.claude/skills/&lt;name&gt;/SKILL.md</code>) are version-controlled and shared with the team; user skills (<code>~/.claude/skills/&lt;name&gt;/SKILL.md</code>) are personal and available across all projects; plugin skills are installed via <code>/plugin</code> from published packages.</p>
-<p>The key distinction from <a href="./claude-md.md" class="link-internal">CLAUDE.md</a> is temporal: CLAUDE.md loads on every session regardless of relevance, while skills load only when invoked or when Claude judges them relevant. This makes skills the primary mechanism for <a href="./progressive-disclosure.md" class="link-internal">progressive disclosure</a> — keeping root instructions minimal while allowing deep task-specific guidance to exist in the project without consuming context on every request.</p>
-<p>Skills consume context when loaded. The budget scales dynamically at 2% of the <a href="../../../../terms/context-window.md" class="link-internal">context window</a>, with a 16,000-character fallback. Skills exceeding the budget may be excluded; <code>/context</code> surfaces warnings. The limit is overridable via the <code>SLASH_COMMAND_TOOL_CHAR_BUDGET</code> environment variable.</p>
-<p>As of late 2025, skills can be bundled as <strong>plugins</strong> — installable packages of slash commands, <a href="./subagents.md" class="link-internal">subagents</a>, <a href="../../../agents/domains/model-context-protocol/terms/model-context-protocol.md" class="link-internal">MCP servers</a>, and <a href="./hooks.md" class="link-internal">hooks</a> distributed and installed with <code>/plugin</code>.</p>
+<p>The key distinction from <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-md/" class="link-internal">CLAUDE.md</a> is temporal: CLAUDE.md loads on every session regardless of relevance, while skills load only when invoked or when Claude judges them relevant. This makes skills the primary mechanism for <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/progressive-disclosure/" class="link-internal">progressive disclosure</a> — keeping root instructions minimal while allowing deep task-specific guidance to exist in the project without consuming context on every request.</p>
+<p>Skills consume context when loaded. The budget scales dynamically at 2% of the <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/context-window/" class="link-internal">context window</a>, with a 16,000-character fallback. Skills exceeding the budget may be excluded; <code>/context</code> surfaces warnings. The limit is overridable via the <code>SLASH_COMMAND_TOOL_CHAR_BUDGET</code> environment variable.</p>
+<p>As of late 2025, skills can be bundled as <strong>plugins</strong> — installable packages of slash commands, <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/subagents/" class="link-internal">subagents</a>, <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/model-context-protocol/" class="link-internal">MCP servers</a>, and <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/hooks/" class="link-internal">hooks</a> distributed and installed with <code>/plugin</code>.</p>
 
   </div>
   
@@ -204,13 +204,13 @@
         <dt>Delivers</dt>
         <dd property="emsenn:Delivers">task specific instructions</dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/sets/terms/domain/">Domain</a></dt>
         <dd property="emsenn:Domain"><a href="/tags/claude-code/">claude code</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
         <dd property="emsenn:Enables"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/progressive-disclosure/">progressive disclosure</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/extension/">Extends</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/extension/">Extends</a></dt>
         <dd property="prov:wasDerivedFrom">command pattern</dd>
       </div><div class="relation">
         <dt>Governed by</dt>
@@ -219,13 +219,13 @@
         <dt>Part of</dt>
         <dd property="schema:isPartOf"><ul><li><a href="/tags/claude-code/">claude code</a></li></ul></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><a href="/tags/claude-code/">claude code</a></dd>
       </div>
   <div class="relation">
     <dt>Referenced by</dt>
     <dd>
-      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/how-to-write-a-skill/">How to Write an Effective Skill</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/claude-code-extension-architecture/">Extension Architecture in Claude Code</a></li></ul>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/how-to-write-a-skill/">How to Write an Effective Skill</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/claude-code/">Claude Code</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/claude-code-development-and-adoption/">Claude Code Development and Adoption</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/texts/claude-code-extension-architecture/">Extension Architecture in Claude Code</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/software/terms/ide-integration/">IDE Integration</a></li></ul>
     </dd>
   </div>
   </dl>

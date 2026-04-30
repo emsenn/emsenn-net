@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2020-01-19, Anatomy of things - emsenn.net</title>
+
+
+<meta name="description" content="In this post I&rsquo;d like to explain how things (in-game objects) work. (This will also, incidentally, be a short tutorial on lambda calculus and closures.)
+In the language of game design, Racket-MUD uses a type “entity component system,” more or less. I call it quality of things, and developed it …">
+<link rel="canonical" href="https://emsenn.net/writing/blog/2020-01-19-0800h/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="2020-01-19, Anatomy of things">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/writing/blog/2020-01-19-0800h/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="In this post I&rsquo;d like to explain how things (in-game objects) work. (This will also, incidentally, be a short tutorial on lambda calculus and closures.)
+In the language of game design, Racket-MUD uses a type “entity component system,” more or less. I call it quality of things, and developed it …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2020-01-19, Anatomy of things">
+<meta name="twitter:description" content="In this post I&rsquo;d like to explain how things (in-game objects) work. (This will also, incidentally, be a short tutorial on lambda calculus and closures.)
+In the language of game design, Racket-MUD uses a type “entity component system,” more or less. I call it quality of things, and developed it …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/writing/blog/2020-01-19-0800h/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/writing/blog/2020-01-19-0800h/index.jsonld">
+
+
+<script type="application/ld+json">
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/writing/blog/2020-01-19-0800h/",
+  "@type": "Article",
+  "description": "In this post I\u0026rsquo;d like to explain how things (in-game objects) work. (This will also, incidentally, be a short tutorial on lambda calculus and closures.)\nIn the language of game design, Racket-MUD uses a type “entity component system,” more or less. I call it quality of things, and developed it mostly in the isolation of solitary hacking, so there are some differences.\nEverything a user interacts with inside Racket-MUD is a thing, and every thing has qualities, which define its capabilities.\n",
+  "name": "2020-01-19, Anatomy of things",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/writing/blog/2020-01-19-0800h/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/about/">about</a>
+    <a href="/writing/">writing</a>
+    <a href="/library/">library</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, section:writing">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/writing/">Writing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/writing/blog/">emsenn&#39;s Babble Log</a></nav>
+  <h1 class="p-name">2020-01-19, Anatomy of things</h1>
+  <div class="meta">
+    
+    
+    
+  </div>
+  <div class="e-content">
+    <p>In this post I&rsquo;d like to explain how things (in-game objects) work. (This will also, incidentally, be a short tutorial on lambda calculus and closures.)</p>
+<p>In the language of game design, Racket-MUD uses a type “entity component system,” more or less. I call it quality of things, and developed it mostly in the isolation of solitary hacking, so there are some differences.</p>
+<p>Everything a user interacts with inside Racket-MUD is a thing, and every thing has qualities, which define its capabilities.</p>
+<p>From the user&rsquo;s perspective, a thing is a loaf of bread, a field, a starship, or even abstract things like jealousy: it all depends on the sort of MUD being implemented.</p>
+<p>From the engine&rsquo;s perspective, a thing is a function, into which functions are thrown, and out of which comes a function.</p>
+<p>Enclosing variables</p>
+<p>Let&rsquo;s forget about things for a moment and look at some more generic code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>alef <span style="color:#ae81ff">7</span>)
+</span></span></code></pre></div><p>What&rsquo;s this do? It defines <code>alef</code> as 7. Simple enough.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>bet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">λ</span> () <span style="color:#ae81ff">7</span>))
+</span></span></code></pre></div><p>What does this one do? It defines <code>bet</code> as a function, that returns 7. (<code>(λ () 7)</code> breaks down to “make a function (<code>λ</code>) that takes zero arguments (<code>()</code>) and returns 7.“)</p>
+<p>By-the-by, that <code>λ</code> symbol? That&rsquo;s the lowercase “lambda” character from the Greek alphabet; it&rsquo;s used in a few programming languages (and branches of mathematics) to mean “a function.”</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>alef  <span style="color:#75715e">; -&gt; 7</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bet   <span style="color:#75715e">; -&gt; &lt;#procedure:bet&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">bet</span>) <span style="color:#75715e">; -&gt; 7</span>
+</span></span></code></pre></div><p>Calling <code>alef</code> returns 7, but calling <code>bet</code> returns a procedure – so, we have to call that procedure, by doing <code>(bet)</code>: and now we get our 7.</p>
+<p>Pretty simple. Let&rsquo;s build on this.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>gimel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">λ</span> ()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>num <span style="color:#ae81ff">7</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">λ</span> () num)))
+</span></span></code></pre></div><p>Less simple: there are two of those <code>λ</code> things. We know that calling <code>gimel</code> will return a function: let&rsquo;s look at what that function actually would contain:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>num <span style="color:#ae81ff">7</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">λ</span> () num)
+</span></span></code></pre></div><p>So, first, it&rsquo;s defining <code>num</code> as 7 and then… it returns a function, that we can see, takes no arguments, and returns <code>num</code>. So how do we use <code>gimel</code>?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gimel     <span style="color:#75715e">; -&gt; &lt;#procedure:gimel&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">gimel</span>)   <span style="color:#75715e">; -&gt; &lt;#procedure&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>((<span style="color:#a6e22e">gimel</span>)) <span style="color:#75715e">; -&gt; 7</span>
+</span></span></code></pre></div><p>Well, we&rsquo;ve certainly added complexity, but there hasn&rsquo;t been any new capabilities added.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>dalet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">λ</span> ()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>num <span style="color:#ae81ff">7</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">λ</span> () (+ <span style="color:#ae81ff">1</span> num))))
+</span></span></code></pre></div><p>Here, we&rsquo;ve replaced returning <code>num</code> with returning <code>(+ 1 num)</code>.</p>
+<p>So, running these we get:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dalet     <span style="color:#75715e">; &lt;#procedure:dalet&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">dalet</span>)   <span style="color:#75715e">; &lt;#procedure&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>((<span style="color:#a6e22e">dalet</span>)) <span style="color:#75715e">; 8</span>
+</span></span></code></pre></div><p>Now we&rsquo;re getting somewhere. Let&rsquo;s add some more capabilities. Here, we&rsquo;re going to make it so that the procedure returned by the outer-function is capable of taking an argument; that&rsquo;ll be added (<code>+</code>) to <code>num</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">define </span>he
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">λ</span> ()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">define </span>num <span style="color:#ae81ff">7</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">λ</span> (<span style="color:#a6e22e">x</span>) (+ x num))))
+</span></span></code></pre></div><p>So now we can do:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scheme" data-lang="scheme"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>he        <span style="color:#75715e">; &lt;#procedure:he&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">he</span>)      <span style="color:#75715e">; &lt;#procedure&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>((<span style="color:#a6e22e">he</span>) <span style="color:#ae81ff">1</span>)  <span style="color:#75715e">; 8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>((<span style="color:#a6e22e">he</span>) <span style="color:#ae81ff">10</span>) <span style="color:#75715e">; 17</span>
+</span></span></code></pre></div>
+  </div>
+  
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/writing/blog/2020-01-19-0800h/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2025-01-01">2025-01-01</time></dd>
+      </div><div class="relation">
+        <dt>Publish to</dt>
+        <dd property="emsenn:Publishto"><ul><li>emsenn net</li></ul></dd>
+      </div><div class="relation">
+        <dt>Specialization</dt>
+        <dd property="emsenn:Specialization"><a href="/tags/babble/">babble</a></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>

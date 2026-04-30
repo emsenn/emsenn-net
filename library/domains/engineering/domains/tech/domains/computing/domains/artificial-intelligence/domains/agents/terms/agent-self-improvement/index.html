@@ -142,7 +142,7 @@
     <span class="p-summary">The capability of an agentic system to improve its own prompts, tools, or workflows based on evaluated performance — a feedback loop from execution to instruction.</span>
   </div>
   <div class="e-content">
-    <p>Agent self-improvement is the capability of an <a href="./agentic-system.md" class="link-internal">agentic system</a> to modify its own prompts, tools, or workflows based on <a href="./agent-evaluation.md" class="link-internal">evaluated</a> performance. The agent executes a task, a grading system scores the output, and the scores feed back into the agent&rsquo;s instructions or configuration for the next iteration. The loop runs: execute → evaluate → revise → execute.</p>
+    <p>Agent self-improvement is the capability of an <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/" class="link-internal">agentic system</a> to modify its own prompts, tools, or workflows based on <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-evaluation/" class="link-internal">evaluated</a> performance. The agent executes a task, a grading system scores the output, and the scores feed back into the agent&rsquo;s instructions or configuration for the next iteration. The loop runs: execute → evaluate → revise → execute.</p>
 <h3 id="the-practical-pattern"><a href="#the-practical-pattern" class="heading-anchor" aria-label="Link to this section">¶</a>The practical pattern
 </h3>
 <p>The OpenAI cookbook documents a three-stage production pattern:</p>
@@ -151,15 +151,15 @@
 <li><strong>Evaluation layer</strong> scores the output through multiple graders. Effective grading combines deterministic checks (entity preservation, output length, schema validity) with semantic evaluation (cosine similarity to reference outputs, LLM-as-judge scoring). Start with deterministic graders; add semantic evaluation only when deterministic checks are insufficient.</li>
 <li><strong>Metaprompt agent</strong> receives the grader scores and the current instructions, then generates revised instructions that address the identified weaknesses. The revised instructions replace the originals for the next iteration.</li>
 </ol>
-<p>This pattern improves agent performance on measured criteria without <a href="../../../terms/fine-tuning.md" class="link-internal">fine-tuning</a> the underlying model — the model&rsquo;s weights stay fixed; only its <a href="../../../terms/system-prompt.md" class="link-internal">system prompt</a> changes. The recommended starting pass threshold is ~75%, and human review remains essential before deploying revised instructions to production.</p>
+<p>This pattern improves agent performance on measured criteria without <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/fine-tuning/" class="link-internal">fine-tuning</a> the underlying model — the model&rsquo;s weights stay fixed; only its <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/system-prompt/" class="link-internal">system prompt</a> changes. The recommended starting pass threshold is ~75%, and human review remains essential before deploying revised instructions to production.</p>
 <h3 id="limitations"><a href="#limitations" class="heading-anchor" aria-label="Link to this section">¶</a>Limitations
 </h3>
 <p>An ICML 2025 position paper (&ldquo;Truly Self-Improving Agents Require Intrinsic Metacognitive Learning&rdquo;) argues that current self-improvement approaches are rigid, fail to generalize across task domains, and struggle to scale with increasing agent capability. The paper proposes that effective self-improvement requires <strong>intrinsic metacognitive learning</strong> — the agent&rsquo;s ability to evaluate and adapt its own learning processes, not just its outputs. Current systems optimize outputs against fixed criteria; they do not revise the criteria themselves or discover new evaluation dimensions.</p>
-<p>The AutoGPT experience (2023–2025) illustrates the failure mode: fully autonomous self-improvement produces infinite loops when tasks are ambiguous, <a href="../../../terms/hallucination.md" class="link-internal">hallucinated</a> corrections when the agent misdiagnoses its own failures, and token cost spirals as the agent iterates without convergence. The consensus by 2025: self-improvement works when grounded in measurable criteria with human oversight; it fails when open-ended and unsupervised.</p>
+<p>The AutoGPT experience (2023–2025) illustrates the failure mode: fully autonomous self-improvement produces infinite loops when tasks are ambiguous, <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/hallucination/" class="link-internal">hallucinated</a> corrections when the agent misdiagnoses its own failures, and token cost spirals as the agent iterates without convergence. The consensus by 2025: self-improvement works when grounded in measurable criteria with human oversight; it fails when open-ended and unsupervised.</p>
 <h3 id="self-improvement-in-practice"><a href="#self-improvement-in-practice" class="heading-anchor" aria-label="Link to this section">¶</a>Self-improvement in practice
 </h3>
 <p>Anthropic&rsquo;s production multi-agent system demonstrates that prompt-based self-improvement works within bounds: models diagnose failures and suggest prompt enhancements. The key constraint is evaluation quality — the improvement loop is only as good as its graders. LLM-as-judge evaluations with a single well-crafted prompt produce more consistent results than multiple specialized judges. Starting with 20 test queries reveals enough pattern to iterate.</p>
-<p>File-based <a href="./agent-memory.md" class="link-internal">agent memory</a> systems (MEMORY.md, working notes) provide a natural substrate for self-improvement: the agent records what worked and what failed, reads those records at the start of the next session, and adjusts its approach. This is self-improvement through accumulated experience rather than automated prompt rewriting — slower, more robust, and compatible with human review.</p>
+<p>File-based <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-memory/" class="link-internal">agent memory</a> systems (MEMORY.md, working notes) provide a natural substrate for self-improvement: the agent records what worked and what failed, reads those records at the start of the next session, and adjusts its approach. This is self-improvement through accumulated experience rather than automated prompt rewriting — slower, more robust, and compatible with human review.</p>
 
   </div>
   
@@ -179,7 +179,7 @@
          vocab="https://emsenn.net/vocab#">
   <h2>Relations</h2>
   <dl><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/action/">Acts on</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/action/">Acts on</a></dt>
         <dd property="emsenn:Actson"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/terms/system-prompt/">system prompt</a></dd>
       </div><div class="relation">
         <dt>Contrasts with</dt>
@@ -191,16 +191,16 @@
         <dt>Defines</dt>
         <dd property="schema:about"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-self-improvement/">Agent Self Improvement</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/sets/terms/domain/">Domain</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/sets/terms/domain/">Domain</a></dt>
         <dd property="emsenn:Domain"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/">agents</a></dd>
       </div><div class="relation">
         <dt>Governed by</dt>
         <dd property="emsenn:Governedby"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/">human in the loop</a></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/terms/optimization/">Optimizes</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/terms/optimization/">Optimizes</a></dt>
         <dd property="emsenn:Optimizes">context engineering, system prompt</dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-evaluation/">agent evaluation</a></dd>
       </div>
   <div class="relation">

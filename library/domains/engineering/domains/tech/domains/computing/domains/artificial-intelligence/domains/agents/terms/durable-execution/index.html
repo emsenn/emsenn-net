@@ -125,10 +125,10 @@
   </div>
   <div class="e-content">
     <p>Durable execution is an execution model where workflow state is persisted at every step so that a process interrupted by crashes, network failures, or restarts resumes from its last completed step. The workflow function looks like ordinary sequential code, but the runtime automatically checkpoints state after each step and replays completed steps on recovery without re-executing their side effects.</p>
-<p>The concept originates in workflow orchestration systems: Azure Durable Functions, AWS Step Functions, and Temporal all implement durable execution for distributed systems. In <a href="./agentic-system.md" class="link-internal">agentic systems</a>, durable execution solves a specific problem: agent workflows involve expensive LLM calls and irreversible tool actions (file writes, API calls, database mutations). Re-executing a failed workflow from the beginning wastes tokens on completed work, may produce different results (LLM output is stochastic), and may duplicate side effects.</p>
+<p>The concept originates in workflow orchestration systems: Azure Durable Functions, AWS Step Functions, and Temporal all implement durable execution for distributed systems. In <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agentic-system/" class="link-internal">agentic systems</a>, durable execution solves a specific problem: agent workflows involve expensive LLM calls and irreversible tool actions (file writes, API calls, database mutations). Re-executing a failed workflow from the beginning wastes tokens on completed work, may produce different results (LLM output is stochastic), and may duplicate side effects.</p>
 <p>The critical distinction is <strong>resumable</strong> versus <strong>restartable</strong>. A restartable system re-executes the entire workflow on failure. A resumable system picks up where it stopped. Resumable systems preserve completed work, maintain trajectory consistency (same state continues rather than a new stochastic path), and avoid duplicating side effects. Build resumable systems, not restartable ones.</p>
 <p>Durable execution requires that workflow state be serializable — convertible to bytes and back without loss. Database connections, file handles, and model instances cannot be checkpointed. The state must be pure data: typed objects containing only the information the workflow needs to continue. This serialization constraint shapes how agent state is designed — it must be data, not live references.</p>
-<p>Durable execution enables two other patterns. <a href="./human-in-the-loop.md" class="link-internal">Human-in-the-loop</a> depends on it: the agent pauses at a checkpoint, the human reviews, and the agent resumes from that exact state. Time-travel debugging depends on it: any prior checkpoint can be restored to inspect what the agent was doing at that moment.</p>
+<p>Durable execution enables two other patterns. <a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/human-in-the-loop/" class="link-internal">Human-in-the-loop</a> depends on it: the agent pauses at a checkpoint, the human reviews, and the agent resumes from that exact state. Time-travel debugging depends on it: any prior checkpoint can be restored to inspect what the agent was doing at that moment.</p>
 
   </div>
   
@@ -152,7 +152,7 @@
         <dt>Distinction</dt>
         <dd property="emsenn:Distinction">resumable, restartable</dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/possibility/">Enables</a></dt>
         <dd property="emsenn:Enables">human in the loop, time travel debugging</dd>
       </div><div class="relation">
         <dt>Origins</dt>
@@ -161,6 +161,12 @@
         <dt>Property of</dt>
         <dd property="emsenn:Propertyof"><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/terms/agent-orchestration/">agent orchestration</a></dd>
       </div>
+  <div class="relation">
+    <dt>Referenced by</dt>
+    <dd>
+      <ul><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/accountability-tracing-in-multi-agent-systems/">Accountability Tracing in Multi-Agent Systems</a></li><li><a href="/library/domains/engineering/domains/tech/domains/computing/domains/artificial-intelligence/domains/agents/texts/agent-reliability-in-production/">Agent Reliability in Production (March 2026)</a></li></ul>
+    </dd>
+  </div>
   </dl>
 </section>
 

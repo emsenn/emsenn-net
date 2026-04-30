@@ -173,20 +173,20 @@ Type (actually Type u for universe level u) — the sort of computational types.
 they carry no computational content — a proof that <code>2 + 2 = 4</code> does not affect program
 execution. This separation lets Lean be both a programming language and a proof assistant
 without proofs slowing down compiled code.</p>
-<p>Both <code>Prop</code> and <code>Type</code> support <a href="../../../../../../mathematics/disciplines/type-theory/curricula/dependent-types.md" class="link-internal">dependent types</a>. Dependent function types (<code>∀</code> / <code>Π</code>) and dependent pair types (<code>Σ</code> / <code>⟨_, _⟩</code>) work in both sorts.</p>
+<p>Both <code>Prop</code> and <code>Type</code> support <a href="/library/domains/humanities/domains/math/domains/type-theory/texts/dependent-types/" class="link-internal">dependent types</a>. Dependent function types (<code>∀</code> / <code>Π</code>) and dependent pair types (<code>Σ</code> / <code>⟨_, _⟩</code>) work in both sorts.</p>
 <h2 id="encoding-mathematical-structures"><a href="#encoding-mathematical-structures" class="heading-anchor" aria-label="Link to this section">¶</a>Encoding mathematical structures
 </h2>
 <p>Mathematical structures in Lean are defined as <code>structure</code> or <code>class</code> declarations —
 bundled records of data and properties.</p>
-<p><strong>Example: <a href="../../../../../../mathematics/objects/posets/terms/partial-order.md" class="link-internal">partial order</a>.</strong></p>
+<p><strong>Example: <a href="/library/domains/humanities/domains/math/domains/order/terms/partial-order/" class="link-internal">partial order</a>.</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">class</span> PartialOrder <span style="color:#f92672">(</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">)</span> <span style="color:#f92672">extends</span> LE α <span style="color:#f92672">where</span>
 </span></span><span style="display:flex;"><span>  le_refl  <span style="color:#f92672">:</span> ∀ a<span style="color:#f92672">,</span> a ≤ a
 </span></span><span style="display:flex;"><span>  le_trans <span style="color:#f92672">:</span> ∀ a b c<span style="color:#f92672">,</span> a ≤ b → b ≤ c → a ≤ c
 </span></span><span style="display:flex;"><span>  le_antisymm <span style="color:#f92672">:</span> ∀ a b<span style="color:#f92672">,</span> a ≤ b → b ≤ a → a = b
-</span></span></code></pre></div><p>This says: a <a href="../../../../../../mathematics/objects/posets/terms/partial-order.md" class="link-internal">partial order</a> on a type <code>α</code> is a <code>≤</code> relation together with proofs of
+</span></span></code></pre></div><p>This says: a <a href="/library/domains/humanities/domains/math/domains/order/terms/partial-order/" class="link-internal">partial order</a> on a type <code>α</code> is a <code>≤</code> relation together with proofs of
 reflexivity, transitivity, and antisymmetry. The <code>class</code> keyword enables Lean&rsquo;s type class
 inference to find instances automatically.</p>
-<p><strong>Example: <a href="../../../../../../mathematics/objects/posets/terms/lattice.md" class="link-internal">lattice</a>.</strong></p>
+<p><strong>Example: <a href="/library/domains/humanities/domains/math/domains/order/terms/lattice/" class="link-internal">lattice</a>.</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">class</span> Lattice <span style="color:#f92672">(</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">)</span> <span style="color:#f92672">extends</span> PartialOrder α <span style="color:#f92672">where</span>
 </span></span><span style="display:flex;"><span>  inf <span style="color:#f92672">:</span> α → α → α
 </span></span><span style="display:flex;"><span>  sup <span style="color:#f92672">:</span> α → α → α
@@ -198,18 +198,18 @@ inference to find instances automatically.</p>
 </span></span><span style="display:flex;"><span>  sup_le       <span style="color:#f92672">:</span> ∀ a b c<span style="color:#f92672">,</span> a ≤ c → b ≤ c → sup a b ≤ c
 </span></span></code></pre></div><p>Each field is either data (<code>inf</code>, <code>sup</code>) or a proof obligation (the axioms). Constructing
 an instance of <code>Lattice α</code> requires supplying all of them.</p>
-<h2 id="encoding-heyting-algebras"><a href="#encoding-heyting-algebras" class="heading-anchor" aria-label="Link to this section">¶</a>Encoding <a href="../../../../../../mathematics/concepts/heyting-algebra/index.md" class="link-internal">Heyting algebras</a>
+<h2 id="encoding-heyting-algebras"><a href="#encoding-heyting-algebras" class="heading-anchor" aria-label="Link to this section">¶</a>Encoding Heyting algebras
 </h2>
 <p>Mathlib provides <code>HeytingAlgebra</code> and <code>CompleteHeytingAlgebra</code> classes. A
-<a href="../../../../../../mathematics/objects/posets/curricula/heyting-algebras.md" class="link-internal">Heyting algebra</a>
-extends a bounded <a href="../../../../../../mathematics/objects/posets/terms/lattice.md" class="link-internal">lattice</a> with an implication operation:</p>
+<a href="/library/domains/humanities/domains/math/domains/order/texts/heyting-algebras/" class="link-internal">Heyting algebra</a>
+extends a bounded <a href="/library/domains/humanities/domains/math/domains/order/terms/lattice/" class="link-internal">lattice</a> with an implication operation:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">class</span> HeytingAlgebra <span style="color:#f92672">(</span>α <span style="color:#f92672">:</span> <span style="color:#66d9ef">Type</span><span style="color:#f92672">)</span> <span style="color:#f92672">extends</span> Lattice α<span style="color:#f92672">,</span> Top α<span style="color:#f92672">,</span> Bot α <span style="color:#f92672">where</span>
 </span></span><span style="display:flex;"><span>  himp <span style="color:#f92672">:</span> α → α → α
 </span></span><span style="display:flex;"><span>  le_himp_iff <span style="color:#f92672">:</span> ∀ a b c<span style="color:#f92672">,</span> a ≤ himp b c ↔ a ⊓ b ≤ c
-</span></span></code></pre></div><p>The field <code>le_himp_iff</code> encodes the defining <a href="../../../../../../mathematics/disciplines/higher-topos-theory/terms/adjunction.md" class="link-internal">adjunction</a>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>≤</mo><mo stretchy="false">(</mo><mi>a</mi><mo>⇒</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">c \leq (a \Rightarrow b)</annotation></semantics></math></span> iff
-<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>∧</mo><mi>a</mi><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">c \wedge a \leq b</annotation></semantics></math></span>. This is the <a href="../../../../../../mathematics/disciplines/logic/terms/heyting-implication.md" class="link-internal">Heyting implication</a> expressed as a type class.</p>
+</span></span></code></pre></div><p>The field <code>le_himp_iff</code> encodes the defining <a href="/library/domains/humanities/domains/math/domains/topology/terms/adjunction/" class="link-internal">adjunction</a>: <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>≤</mo><mo stretchy="false">(</mo><mi>a</mi><mo>⇒</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">c \leq (a \Rightarrow b)</annotation></semantics></math></span> iff
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>∧</mo><mi>a</mi><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">c \wedge a \leq b</annotation></semantics></math></span>. This is the <a href="/library/domains/humanities/domains/math/domains/logic/terms/heyting-implication/" class="link-internal">Heyting implication</a> expressed as a type class.</p>
 <p>Mathlib&rsquo;s <code>CompleteHeytingAlgebra</code> adds arbitrary meets and joins, matching the complete
-<a href="../../../../../../mathematics/concepts/heyting-algebra/index.md" class="link-internal">Heyting algebra</a> that the Semiotic Universe requires as its ambient semantic domain.</p>
+Heyting algebra that the Semiotic Universe requires as its ambient semantic domain.</p>
 <h2 id="propositions-as-types-in-practice"><a href="#propositions-as-types-in-practice" class="heading-anchor" aria-label="Link to this section">¶</a>Propositions as types in practice
 </h2>
 <p>In Lean, logical connectives are defined as inductive types in <code>Prop</code>:</p>
@@ -227,17 +227,17 @@ contradiction from any proof of <code>P</code>.</li>
 <li><code>∃ x : α, P x</code> — a dependent pair in <code>Prop</code>. A proof is a witness <code>x</code> together with a
 proof of <code>P x</code>.</li>
 </ul>
-<p>This is the <a href="../../../../../../mathematics/disciplines/type-theory/curricula/typed-lambda-calculus.md" class="link-internal">Curry-Howard correspondence</a> in action. Every logical operation is a type operation; every proof step is a program construction step.</p>
+<p>This is the <a href="/library/domains/humanities/domains/math/domains/type-theory/texts/typed-lambda-calculus/" class="link-internal">Curry-Howard correspondence</a> in action. Every logical operation is a type operation; every proof step is a program construction step.</p>
 <h2 id="classical-reasoning"><a href="#classical-reasoning" class="heading-anchor" aria-label="Link to this section">¶</a>Classical reasoning
 </h2>
-<p>Lean&rsquo;s logic is intuitionistic by default — <a href="../../../../../../../../humanities/domains/philosophy/terms/law-of-excluded-middle.md" class="link-internal">excluded middle</a> is not assumed. To use
+<p>Lean&rsquo;s logic is intuitionistic by default — <a href="/library/domains/humanities/domains/philosophy/domains/western/domains/analytic-philosophy/terms/law-of-excluded-middle/" class="link-internal">excluded middle</a> is not assumed. To use
 classical reasoning:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lean" data-lang="lean"><span style="display:flex;"><span><span style="color:#f92672">open</span> Classical <span style="color:#66d9ef">in</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">theorem</span> em_example <span style="color:#f92672">(</span>P <span style="color:#f92672">:</span> <span style="color:#66d9ef">Prop</span><span style="color:#f92672">)</span> <span style="color:#f92672">:</span> P ∨ ¬P <span style="color:#f92672">:</span>= em P
-</span></span></code></pre></div><p><code>Classical.em</code> provides <a href="../../../../../../../../humanities/domains/philosophy/terms/law-of-excluded-middle.md" class="link-internal">excluded middle</a> as an axiom. Lean also provides <code>Classical.choice</code>
+</span></span></code></pre></div><p><code>Classical.em</code> provides <a href="/library/domains/humanities/domains/philosophy/domains/western/domains/analytic-philosophy/terms/law-of-excluded-middle/" class="link-internal">excluded middle</a> as an axiom. Lean also provides <code>Classical.choice</code>
 (a global choice principle). These are available but opt-in: you import them when you need
 them, and the proof explicitly records their use.</p>
-<p>For formalizing the Semiotic Universe&rsquo;s <a href="../../../../../../mathematics/disciplines/logic/curricula/intuitionistic-logic.md" class="link-internal">intuitionistic logic</a>, working without classical axioms is often preferable — it keeps proofs constructive and aligned with the <a href="../../../../../../../../humanities/domains/general/domains/people/arend-heyting.md" class="link-internal">Heyting</a>-algebraic semantics.</p>
+<p>For formalizing the Semiotic Universe&rsquo;s <a href="/library/domains/humanities/domains/math/domains/logic/texts/intuitionistic-logic/" class="link-internal">intuitionistic logic</a>, working without classical axioms is often preferable — it keeps proofs constructive and aligned with the <a href="/library/references/people/arend-heyting/" class="link-internal">Heyting</a>-algebraic semantics.</p>
 <h2 id="what-comes-next"><a href="#what-comes-next" class="heading-anchor" aria-label="Link to this section">¶</a>What comes next
 </h2>
 <ul>
@@ -258,7 +258,7 @@ step by step</li>
         <dt>Date created</dt>
         <dd property="schema:dateCreated"><time datetime="2026-03-01">2026-03-01</time></dd>
       </div><div class="relation">
-        <dt><a href="/library/domains/science/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
+        <dt><a href="/library/domains/humanities/domains/math/domains/logic/terms/necessity/">Requires</a></dt>
         <dd property="schema:isBasedOn"><ul><li>/technology/disciplines/computing/software/lean/curricula/introduction to lean.md</li><li>/mathematics/disciplines/type theory/curricula/dependent types.md</li></ul></dd>
       </div><div class="relation">
         <dt><a href="/tags/">Tags</a></dt>

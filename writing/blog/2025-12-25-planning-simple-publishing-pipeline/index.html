@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: https://schema.org/ dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# emsenn: https://emsenn.net/vocab#">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2025-12-25, Planning simple publishing pipeline - emsenn.net</title>
+
+
+<meta name="description" content="Today it&rsquo;s my hope to set up what I need so that I can do make publish-emsenn-net from the Emsemioverse&rsquo;s root.
+This looks like:
+Having scripts for collecting matching content (i.e. publications is {emsenn-net: publishable} or whatever is proper YAML) IN THE FUTURE, Build that content …">
+<link rel="canonical" href="https://emsenn.net/writing/blog/2025-12-25-planning-simple-publishing-pipeline/">
+
+
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+
+<meta property="og:title" content="2025-12-25, Planning simple publishing pipeline">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://emsenn.net/writing/blog/2025-12-25-planning-simple-publishing-pipeline/">
+<meta property="og:site_name" content="emsenn.net">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Today it&rsquo;s my hope to set up what I need so that I can do make publish-emsenn-net from the Emsemioverse&rsquo;s root.
+This looks like:
+Having scripts for collecting matching content (i.e. publications is {emsenn-net: publishable} or whatever is proper YAML) IN THE FUTURE, Build that content …">
+<meta property="og:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+<meta property="og:image:alt" content="The text &#39;(ems), representing emsenn&#39;s logotype.">
+<meta property="article:author" content="emsenn">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2025-12-25, Planning simple publishing pipeline">
+<meta name="twitter:description" content="Today it&rsquo;s my hope to set up what I need so that I can do make publish-emsenn-net from the Emsemioverse&rsquo;s root.
+This looks like:
+Having scripts for collecting matching content (i.e. publications is {emsenn-net: publishable} or whatever is proper YAML) IN THE FUTURE, Build that content …">
+<meta name="twitter:image" content="https://emsenn.net/imgs/emsenn-logotype.png">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfLz0UPTAfXZDdRVtiEgqowVbFMRmHd1cQaMNLqbm0E+VYNyjU6MX" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});"></script>
+
+
+<link href="https://gmpg.org/xfn/11" rel="profile">
+<link href="https://emsenn.net" rel="me">
+<link href="mailto:emsenn@emsenn.net" rel="me authn">
+<link rel="webmention" href="https://webmention.io/emsenn.net/webmention">
+<link rel="pingback" href="https://webmention.io/webmention?forward=https://emsenn.net/webmention">
+
+
+<link rel="alternate" type="text/turtle" href="https://emsenn.net/writing/blog/2025-12-25-planning-simple-publishing-pipeline/index.ttl">
+<link rel="alternate" type="application/ld&#43;json" href="https://emsenn.net/writing/blog/2025-12-25-planning-simple-publishing-pipeline/index.jsonld">
+
+
+<script type="application/ld+json">
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "emsenn": "https://emsenn.net/vocab#",
+      "skos": "http://www.w3.org/2004/02/skos/core#"
+    }
+  ],
+  "@id": "https://emsenn.net/writing/blog/2025-12-25-planning-simple-publishing-pipeline/",
+  "@type": "Article",
+  "author": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net/authors/emsenn/"
+  },
+  "description": "Today it\u0026rsquo;s my hope to set up what I need so that I can do make publish-emsenn-net from the Emsemioverse\u0026rsquo;s root.\nThis looks like:\nHaving scripts for collecting matching content (i.e. publications is {emsenn-net: publishable} or whatever is proper YAML) IN THE FUTURE, Build that content into \u0026ldquo;hydrated\u0026rdquo; Markdown (i.e. take davaiew queries and render them) FOR NOW, just fill in whatever missing content is necessary and may be inferred from the collect, and then publish it via MkDocs Now, one thing I want to do is start refining a work pipeline that goes something like this:\n",
+  "name": "2025-12-25, Planning simple publishing pipeline",
+  "publisher": {
+    "@type": "Person",
+    "name": "emsenn",
+    "url": "https://emsenn.net"
+  },
+  "url": "https://emsenn.net/writing/blog/2025-12-25-planning-simple-publishing-pipeline/"
+}
+</script>
+
+
+</head>
+<body>
+  <a class="skip-to-content" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="site-identity">
+    <a href="/" class="site-title">emsenn.net</a>
+    <span class="site-tagline">on relations and things</span>
+  </div>
+  <nav>
+    <a href="/about/">about</a>
+    <a href="/writing/">writing</a>
+    <a href="/library/">library</a>
+  </nav>
+  <details class="site-about">
+    <summary>About this site</summary>
+    <ul>
+      <li><details>
+        <summary>This is a personal library and digital garden.</summary>
+        <p>It contains terms, texts, and letters organized by domain. Content grows and changes as research continues.</p>
+      </details></li>
+      <li><details>
+        <summary>Its content was written by hand.</summary>
+        <p>This means there might be mistakes, and some pages are more complete than others.</p>
+      </details></li>
+      <li><details>
+        <summary>This site was built as a public asset.</summary>
+        <p>Content is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>. If you find it useful, consider <a href="https://ko-fi.com/emsenn">supporting the work on Ko-fi</a>.</p>
+      </details></li>
+    </ul>
+  </details>
+</header>
+
+  <main id="content" data-pagefind-body>
+    <article class="h-entry" data-type="page"
+  data-pagefind-meta="type:page, section:writing">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/writing/">Writing</a> <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span> <a href="/writing/blog/">emsenn&#39;s Babble Log</a></nav>
+  <h1 class="p-name">2025-12-25, Planning simple publishing pipeline</h1>
+  <div class="meta">
+    
+    <span>by <span class="p-author">emsenn</span></span>
+    
+  </div>
+  <div class="e-content">
+    <p>Today it&rsquo;s my hope to set up what I need so that I can do <code>make publish-emsenn-net</code> from the Emsemioverse&rsquo;s root.</p>
+<p>This looks like:</p>
+<ul>
+<li>Having scripts for collecting matching content (i.e. <code>publications</code> is <code>{emsenn-net: publishable}</code> or whatever is proper YAML)</li>
+<li>IN THE FUTURE, Build that content into &ldquo;hydrated&rdquo; Markdown (i.e. take davaiew queries and render them)</li>
+<li>FOR NOW, just fill in whatever missing content is necessary and may be inferred from the collect, and then</li>
+<li>publish it via MkDocs</li>
+</ul>
+<hr>
+<p>Now, one thing I want to do is start refining a work pipeline that goes something like this:</p>
+<ul>
+<li>I log about what I&rsquo;m thinking.</li>
+<li>An agent (probably me) comes along and goes, okay, what changes does this motivate, if any, to the library?</li>
+<li>Those changes get noted as IDEAs first, with a notion of working them through being PLANs and finally, y&rsquo;know, made.</li>
+<li>But! Doing that process just described will itself require a set of skills and documentation that explain all that stuff.</li>
+</ul>
+<hr>
+<p>So what I want to do is very very slowly go, okay. I have described a process. I want to do a bit to formalize that process, and, formalize is itself process that needs formalizing, and it&rsquo;s hard to untangle the circularity in my head.</p>
+<p>The idea is that for every discrete unit of Work - a term that hasn&rsquo;t been defined yet but will be part of our Agential Semioverse - we establish it having some sort of phasing that goes from Idea to Plan to Task to Task-At-Hand and from there what it is really changes shape. And, the shape of a planned math paper is already pretty different from the shape of a planned software project.</p>
+<p>And so what we want is to record these processes, in keeping with emergent conventions, as Skills that, over time, represent every Unit-of-Work that Agents <em>can</em> do in this Agential Semioverse. (I think, at first, the underlying mathematical object is going to pretty irrelevant, but as we approach tying these skills together, we&rsquo;ll be glad for it).</p>
+<hr>
+<p>What this gives us then is a few general Work-Flows (Chains-of-Work in some sort of Work-Graph? These ideas are emergent)</p>
+<ul>
+<li>Keep developing the Math Objects from which the repository&rsquo;s structuration derive:
+<ul>
+<li>Semiotic Universe</li>
+<li>Interactive Semioverse</li>
+<li>Agential Semioverse</li>
+</ul>
+</li>
+<li>Develop the skills related to doing that</li>
+<li>Develop the skills for collecting what should be published to emsenn-net</li>
+<li>Do whatever else is necessary to make emsenn-net buildable and publishable</li>
+<li>Write the documentation that helps fill in the more qualitative substrate underneath skills:
+<ul>
+<li>ReadMes, Agent Contracts, Specifications, Glossaries.</li>
+</ul>
+</li>
+</ul>
+<p>I might be missing a few key things that make all that actually work, as an idea.</p>
+<hr>
+<p>Personally, getting the ability to publish emsenn.net is absolutely the critical priority; we don&rsquo;t need to do it via fully atomic skills or anything, but being able to get <em>any</em> website up is important as a real-world obligation of this research.</p>
+<hr>
+<p>Beyond that, I am going to keep moving in older content, either directly where it should go, or into our Triage.</p>
+<hr>
+<p>But, related to the work at hand, I see there being basically two immediate steps:</p>
+<ul>
+<li>Write the skill and script for collecting emsenn-net publishables</li>
+<li>Write the skill and script for publishing the collected emsenn-net-source</li>
+</ul>
+<p>I think there might already be some work done stubbing those out, but I&rsquo;m not sure.</p>
+<p>Once that&rsquo;s happened it opens up a few concurrent directions of work, none of which are blocked by not having a place to publish artifacts. (As, from there, it&rsquo;ll be easy to set up other publications, hopefully).</p>
+<p>But! There is a lot of nuance to &ldquo;publishing&rdquo; that I&rsquo;m glossing over for now, mostly due to unfamiliarity with the contemporary MkDocs ecosystem. I know I want Activity to be triggered locally by agents first, then git hooks if possible, and only use remote forget CI-stuff when it&rsquo;s actually appropriate.</p>
+<p>Which leaves me with the actual next steps of:</p>
+<ol>
+<li>Write the collection script, make sure it works.</li>
+<li>Read more about MkDocs</li>
+</ol>
+
+  </div>
+  
+  
+</article>
+<section class="page-relations" resource="https://emsenn.net/writing/blog/2025-12-25-planning-simple-publishing-pipeline/" typeof="schema:CreativeWork"
+         vocab="https://emsenn.net/vocab#">
+  <h2>Relations</h2>
+  <dl><div class="relation">
+        <dt><a href="/authors/">Authors</a></dt>
+        <dd property="schema:author"><ul><li><a href="/authors/emsenn/">emsenn</a></li></ul></dd>
+      </div><div class="relation">
+        <dt>Date created</dt>
+        <dd property="schema:dateCreated"><time datetime="2025-12-25">2025-12-25</time></dd>
+      </div><div class="relation">
+        <dt>Publish to</dt>
+        <dd property="emsenn:Publishto"><ul><li>emsenn net</li></ul></dd>
+      </div><div class="relation">
+        <dt>Specialization</dt>
+        <dd property="emsenn:Specialization"><a href="/tags/babble/">babble</a></dd>
+      </div>
+  </dl>
+</section>
+
+
+  
+
+
+  </main>
+  <script>
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (window.location.pathname.startsWith('/search')) {
+          const input = document.querySelector('#search input.pagefind-ui__search-input');
+          if (input) { input.focus(); input.select(); }
+        } else {
+          window.location.href = '/search/';
+        }
+      }
+    });
+  </script>
+  <footer>
+    <p class="footer-closing">All information can only be grounded in other information. Nothing here or anywhere should be understood as True, or False.</p>
+    <div class="footer-license"><a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> — attribution required for reuse, but reuse is encouraged.</div>
+    <div class="footer-meta"><a href="mailto:emsenn@emsenn.net">emsenn@emsenn.net</a> · <a href="https://ko-fi.com/emsenn">support this work</a></div>
+  </footer>
+</body>
+</html>
